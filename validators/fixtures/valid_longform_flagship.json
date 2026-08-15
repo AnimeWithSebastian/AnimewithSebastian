@@ -4,6 +4,7 @@
   "show": "Frieren: Beyond Journey's End",
   "angle": "Why Frieren's combat writing rewards rewatching more than any current shounen",
   "duration_sec": 660,
+  "aspect_ratio": "16:9",
   "face": true,
   "model": "Claude Fable 5",
   "primary_keywords": ["frieren", "frieren combat"],

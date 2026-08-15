@@ -1,7 +1,11 @@
 # Law #146 — Long-Form Flagship Separation (added July 17, 2026)
 
-**Status:** ACTIVE. User-approved. Codifies the 8-12 minute long-form flagship as a
-**distinct product** from the 30-second Shorts. Extends (does not replace) Law #66/#136
+**Status:** ACTIVE. User-approved. Codifies the ~~8-12 minute~~ long-form flagship as a
+**distinct product** from the 30-second Shorts. [HEADER CORRECTED 2026-08-15: the
+"8-12 minute" descriptor contradicted this law's own two-tier length rule below, which
+retired that fixed band on 2026-07-26. The band is not the defining property of a
+flagship — separation from the Shorts product is. See the length rule in section 2.]
+Extends (does not replace) Law #66/#136
 long-form governance. Fable governance is unchanged (Law #137).
 
 ## Evidence base (both must agree)

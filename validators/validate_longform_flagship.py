@@ -15,7 +15,22 @@ from the Shorts pipeline so the two products can never be cross-checked with the
 laws.
 
 Requirements enforced:
-  - content_type == "longform"; duration in the 8-12 min band (absolute watch time).
+  - content_type == "longform"; aspect_ratio present and valid; duration long enough
+    that the video cannot be classified as a YouTube Short.
+
+    LENGTH RULE (updated 2026-08-15 to match Law #146's two-tier rule; the old fixed
+    480-720s / 8-12 min band this validator used to hard-enforce was RETIRED by that
+    law on 2026-07-26 and is no longer a gate in either direction):
+      * FLOOR (hard, fail-closed): the video must not be classifiable as a Short.
+        A 16:9 video is long-form at ANY length, so the floor is satisfied by format
+        rather than by runtime. A square/vertical video (1:1 or 9:16) is a Short up
+        to 3:00, so it must exceed 180s. This is why aspect_ratio is REQUIRED --
+        without it the floor cannot be evaluated at all, and defaulting it would
+        fail OPEN on exactly the case it exists to catch.
+      * TARGET (advisory, NEVER a gate): 8:00 (480s), where mid-roll ads become
+        available. Falling short emits an advisory and does NOT fail the manifest.
+        Law #146 is explicit that padding to reach it is worse than being under it.
+      * CEILING: none. Law #146: "No upper bound is reinstated by this correction."
   - NO Shorts-only fields required (no capcut_target_sec / clips-tiling / loop_line).
     If a Shorts loop/timing field is present it is flagged (wrong product).
   - Chapters: >=3, the first at 0:00, strictly increasing start times.
@@ -41,8 +56,21 @@ from dataclasses import dataclass, field
 from typing import Any
 
 RECIPIENT = "hero_or_villain@outlook.com"
-LONGFORM_MIN_SEC = 8 * 60   # 480
-LONGFORM_MAX_SEC = 12 * 60  # 720
+
+# LENGTH CONSTANTS (rewritten 2026-08-15 — see the LENGTH RULE block in the module
+# docstring). The previous LONGFORM_MIN_SEC = 480 / LONGFORM_MAX_SEC = 720 pair
+# hard-enforced the 8-12 min band that Law #146 retired on 2026-07-26. Both are gone
+# deliberately: MIN is replaced by a format-based floor, and MAX is not replaced at
+# all because the law reinstates no upper bound. They are NOT kept as aliases -- a
+# lingering LONGFORM_MAX_SEC would invite something to start enforcing a ceiling again.
+LONGFORM_TARGET_SEC = 8 * 60   # 480 — mid-roll ad threshold. ADVISORY ONLY, never a gate.
+SHORT_MAX_SEC = 3 * 60         # 180 — YouTube classifies square/vertical video as a
+                               #       Short up to this length. 16:9 is exempt entirely.
+# Aspect ratios a flagship may declare. 16:9 is long-form at any duration; the other
+# two are Shorts-eligible below SHORT_MAX_SEC and so carry a real duration floor.
+ASPECT_RATIOS = ("16:9", "9:16", "1:1")
+SHORTS_ELIGIBLE_ASPECTS = ("9:16", "1:1")
+
 ALLOWED_MODELS = ("claude sonnet 5.0", "claude fable 5")
 # M5: teasers are capped at <=3/week until funnel evidence justifies more. The feed
 # audience is ~99% new viewers with no attachment to the flagship, so a large teaser
@@ -58,9 +86,20 @@ SHORTS_ONLY_FIELDS = ("capcut_target_sec", "total_clip_time_sec", "loop_line",
 @dataclass
 class Result:
     checks: list[tuple[str, bool, str]] = field(default_factory=list)
+    # ADVISORIES (added 2026-08-15): non-blocking notes that are reported but do NOT
+    # affect `ok`. This channel exists because Law #146's 8:00 length target is
+    # explicitly "a revenue-optimization recommendation, not a hard gate" -- it cannot
+    # honestly be a check. Recording it via add() would either fail a compliant
+    # manifest or print a green [PASS] line for something that was never gated, which
+    # is the same "the report looked at nothing" failure mode logged as F42.
+    advisories: list[str] = field(default_factory=list)
 
     def add(self, name: str, ok: bool, detail: str = "") -> None:
         self.checks.append((name, bool(ok), detail))
+
+    def advise(self, note: str) -> None:
+        """Record a non-blocking recommendation. Never affects `ok`."""
+        self.advisories.append(note)
 
     @property
     def ok(self) -> bool:
@@ -86,10 +125,43 @@ def validate_flagship(m: dict[str, Any]) -> Result:
     r.add("content_type is 'longform'", _norm(m.get("content_type", "")) == "longform",
           f"content_type={m.get('content_type')!r}")
 
+    # --- LENGTH: Law #146 two-tier rule (floor by format, target advisory, no ceiling)
+    aspect = _norm(m.get("aspect_ratio", ""))
+    aspect_ok = aspect in ASPECT_RATIOS
+    r.add(f"aspect_ratio present and one of {ASPECT_RATIOS}",
+          aspect_ok, f"aspect_ratio={m.get('aspect_ratio')!r}")
+
     dur = m.get("duration_sec")
-    r.add(f"duration in the {LONGFORM_MIN_SEC//60}-{LONGFORM_MAX_SEC//60} min band",
-          _is_num(dur) and LONGFORM_MIN_SEC <= dur <= LONGFORM_MAX_SEC,
-          f"duration_sec={dur}")
+    dur_ok = _is_num(dur) and dur > 0
+    r.add("duration_sec is a positive number", dur_ok, f"duration_sec={dur!r}")
+
+    # FLOOR: the video must not be classifiable as a YouTube Short. 16:9 clears this at
+    # any length; square/vertical must exceed 3:00. Fails closed when either input is
+    # missing or malformed -- an unevaluatable floor is a failed floor, not a skipped one.
+    if aspect_ok and dur_ok:
+        floor_ok = aspect not in SHORTS_ELIGIBLE_ASPECTS or dur > SHORT_MAX_SEC
+        floor_detail = (
+            f"aspect_ratio={aspect} duration_sec={dur}; {aspect} is classified a Short "
+            f"at or below {SHORT_MAX_SEC}s"
+        )
+    else:
+        floor_ok = False
+        floor_detail = (
+            f"cannot evaluate the floor: aspect_ratio={m.get('aspect_ratio')!r} "
+            f"duration_sec={dur!r}"
+        )
+    r.add("duration clears the Short-classification floor (Law #146: format, not runtime)",
+          floor_ok, floor_detail)
+
+    # TARGET: advisory only. Never added as a check -- see Result.advise().
+    if dur_ok and dur < LONGFORM_TARGET_SEC:
+        r.advise(
+            f"duration_sec={dur:g} is below the {LONGFORM_TARGET_SEC//60}:00 "
+            f"({LONGFORM_TARGET_SEC}s) mid-roll ad target. This is a recommendation, "
+            f"NOT a gate, and Law #146 is explicit that padding to reach it is worse "
+            f"than shipping shorter: \"NEVER pad a video to reach the 8-minute target "
+            f"if the material doesn't support that length.\""
+        )
 
     # this is NOT a Short: none of the Shorts loop/timing fields belong here
     leaked = [f for f in SHORTS_ONLY_FIELDS if f in m]
@@ -166,6 +238,14 @@ def validate_flagship(m: dict[str, Any]) -> Result:
         r.add("model is Sonnet 5.0 or Fable 5 (Law #137 flagship allowlist)",
               model in ALLOWED_MODELS, f"model={m.get('model')!r}")
 
+    # Advisories are recommendations for a manifest that is otherwise shippable. On a
+    # BLOCKED manifest they are noise at best and misleading at worst -- telling an
+    # author to aim for a better ad-revenue runtime on a video that cannot ship buries
+    # the actual failure. Cleared here rather than merely hidden at print time, so
+    # `Result.advisories` means the same thing to a caller as it does in the report.
+    if not r.ok:
+        r.advisories.clear()
+
     return r
 
 
@@ -175,9 +255,16 @@ def format_report(r: Result) -> str:
         tag = "PASS" if ok else "FAIL"
         suffix = f"  ({detail})" if detail and not ok else ""
         lines.append(f"[{tag}] {name}{suffix}")
+    # Advisories print separately and never change the verdict (Law #146's 8:00 target
+    # is a recommendation, not a gate). Tagged [ADVISORY] so it can't be misread as a
+    # check that ran.
+    for note in r.advisories:
+        lines.append(f"[ADVISORY] {note}")
     lines.append("=" * 40)
     n_fail = len(r.failures())
     verdict = "PASS — flagship cleared" if r.ok else f"BLOCKED — {n_fail} check(s) failed"
+    if r.ok and r.advisories:
+        verdict += f" ({len(r.advisories)} advisory note(s), none blocking)"
     lines.append(f"RESULT: {verdict}")
     return "\n".join(lines)
 
@@ -187,7 +274,18 @@ SCHEMA = """LONG-FORM FLAGSHIP MANIFEST SCHEMA (Law #146 — distinct from Short
   "content_type": "longform",
   "recipient": "hero_or_villain@outlook.com",
   "show": "string", "angle": "string",
-  "duration_sec": 600,                 // 480-720 (8-12 min); absolute watch time is the goal
+  "aspect_ratio": "16:9",              // REQUIRED, one of "16:9" | "9:16" | "1:1".
+                                       // Determines the Short-classification floor:
+                                       // 16:9 is long-form at ANY duration; 9:16 and
+                                       // 1:1 must exceed 180s. Fail-closed if missing
+                                       // or invalid -- not defaulted, because a default
+                                       // would fail OPEN on the one case this catches.
+  "duration_sec": 600,                 // positive number. NO fixed band: the old
+                                       // 480-720 (8-12 min) range was retired by Law
+                                       // #146 (2026-07-26) and is not enforced in
+                                       // either direction. 480s (8:00) is an ADVISORY
+                                       // mid-roll target only -- below it emits an
+                                       // [ADVISORY] line and still PASSES. No ceiling.
   "face": true,                        // face-cam PERMITTED/recommended for long-form
   "model": "Claude Fable 5",           // Fable 5 allowed for flagship script (Law #137)
   "primary_keywords": ["kw1", "kw2"],  // 1-2; must feature in the first description line
