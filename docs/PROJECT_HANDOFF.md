@@ -127,6 +127,36 @@ remaining trace of `322f616a` or `2bb28991`. If citing an old commit or prior
 turn that references `322f616a`/`2bb28991`/`30e0c963`, treat those as
 historical — the IDs above are current.
 
+**DATED NOTE (2026-08-15) — `2bb28991` and `12200bb4` are BOTH real, with
+different scopes. Neither is wrong; the paragraph above is what needs qualifying.**
+The sentence above stating there is "no remaining trace of `322f616a` or
+`2bb28991`" is accurate about the *scheduler* but not about the *repo*. Verified by
+grep on 2026-08-15:
+
+| ID | Where it actually lives | Count |
+|---|---|---|
+| `2bb28991` | **Live code + live state** — `tools/weekly_noop_gate.py:42` (`CRON_ID = "2bb28991"`), the `cron_tracking/2bb28991/` state directory (`state.json`, `last_noop_summary.json`, `run2_grades.json`, `run4_grades.json`), `cron_analytics_runtime.txt:3`, Laws #61/#65/#66/#89/#139/#147, `scheduler/daily_dual_package_task.txt` | ~80 occurrences |
+| `12200bb4` | **Documentation only** — the §3 table above (line 110), the open-question entry in §15, and `docs/LAW_AUDIT_2026-08-14.md:162,168`. Zero occurrences in code, zero in state files, zero in law files. | 4 occurrences |
+
+**Working interpretation — `12200bb4` is the SCHEDULER task ID; `2bb28991` is the
+CODE/STATE identifier.** This is the reading already proposed by
+`docs/LAW_AUDIT_2026-08-14.md:168` and it fits the evidence: a task recreated in a
+new session would get a new scheduler ID, while the repo's hardcoded constant and
+its on-disk state directory would keep the original name because nothing renamed
+them.
+
+**THIS INTERPRETATION IS UNVERIFIED.** Nothing inside this repo can see the real
+scheduler, so the mapping above is inference from occurrence patterns, not
+confirmation. It stands until someone checks the live scheduler task list and
+confirms which ID the Sunday 23:30 UTC analytics task actually carries. Until then,
+do not cite it as settled.
+
+**DO NOT RENAME EITHER ID.** `2bb28991` is load-bearing: it is a hardcoded constant
+in running code and the name of a state directory that the weekly no-op gate reads.
+Renaming it would break the gate and orphan the accumulated state. `12200bb4`
+should not be "corrected" to match it either — they are believed to be different
+identifiers for different layers, not two spellings of one thing.
+
 ## 4. Model routing (Law #137)
 
 - **Claude Sonnet 5.0** — all routine daily work: live research, idea generation,
