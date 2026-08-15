@@ -199,12 +199,41 @@ Effective on this law's approval:
    > than marking this done: this must be built before `SEASON_ROUNDUP` is
    > used in production, or a roundup could ship with one source waved across
    > several shows undetected.
-4. NOT YET DONE — Validator: the `TRAILER: [name]` clip-source label line
-   rendering (parallel to the existing `CHAPTER N` manga rendering) was NOT
-   implemented this pass. Grepped `validate_dual_package.py` and confirmed
-   no `TRAILER:` string exists anywhere in the file. The underlying data
-   (`trailer_reference.trailer_title_or_id`) is validated and available, but
-   nothing renders the label line yet.
+4. **DONE — 2026-08-15, but the item's own premise was WRONG and is corrected
+   below. Original text preserved verbatim at the end of this item.**
+
+   **What was wrong:** this item says the `TRAILER:` label should be built
+   "parallel to the existing `CHAPTER N` manga rendering." **There is no
+   existing `CHAPTER N` rendering.** Verified 2026-08-15: zero `CHAPTER`
+   matches across `tools/`, `validators/`, `templates/` and `scheduler/`;
+   `tools/render_clip_descriptions.py` handles neither manga nor trailer, and
+   its `ensure_clip_locations()` only appends season/episode tokens for
+   `scene_verified=true` clips. `CHAPTER 126` is a **hand-authored prose
+   convention**, specified in `cron_daily_runtime.txt`'s CLIP SOURCE LABELED
+   LINE block (Law #73, manga-panel addition, 2026-08-03) and written by the
+   drafting model — not emitted by code.
+
+   **The real gap** was therefore not "trailer rendering was skipped while
+   manga rendering exists." It was that Law #73's label spec defines three
+   cases — `SEASON x EPISODE y` (anime), `CHAPTER n` (manga), `UNVERIFIED
+   [footage_status]` (neither) — and **Law #159 added `trailer_reference` as a
+   fourth clip source without extending that spec**, leaving trailer-sourced
+   clips as the only source type with no defined label line.
+
+   **What was done:** the trailer case was added to that spec in
+   `cron_daily_runtime.txt`, completing the four-way rule. Prose only, additive,
+   **no code change** — deliberately, because building code-side rendering for
+   trailers while manga and unverified remain hand-authored would have created
+   an inconsistency rather than removed one. The item's underlying observation
+   (no `TRAILER:` string exists in the validator) was accurate; only its
+   attributed cause was not.
+
+   > NOT YET DONE — Validator: the `TRAILER: [name]` clip-source label line
+   > rendering (parallel to the existing `CHAPTER N` manga rendering) was NOT
+   > implemented this pass. Grepped `validate_dual_package.py` and confirmed
+   > no `TRAILER:` string exists anywhere in the file. The underlying data
+   > (`trailer_reference.trailer_title_or_id`) is validated and available, but
+   > nothing renders the label line yet.
 5. DONE — Tests: `TestSeasonRoundupClipSourcingLaw159` (14 tests: the
    original 10 plus 4 added 2026-08-10) covers (a) valid trailer_reference
    with match=true passes, (b) match=false fails closed, (c) missing all

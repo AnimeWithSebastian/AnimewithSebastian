@@ -738,6 +738,17 @@ standards the legacy runs enforced (nothing relaxed):
         <chapter number from manga_reference>" (e.g. "CHAPTER 126"), same visual
         prominence as the season/episode line above — its own line, not folded into
         the scene/why text.
+      - a trailer_reference object instead (trailer/PV-sourced — the THIRD valid
+        source type added by Law #159 for SEASON_ROUNDUP; a trailer is not an aired
+        episode, so clip_locate correctly does NOT apply and its absence is not a
+        gap): "TRAILER: <trailer_reference.trailer_title_or_id>" (e.g. "TRAILER:
+        Kagurabachi Season 2 PV 2"), same visual prominence and same its-own-line
+        rule as the two above. [ADDED 2026-08-15, completing this spec — Law #159
+        implementation item 4. Law #159 added trailer_reference as a fourth clip
+        source but never extended THIS list to cover it, so a trailer-sourced clip
+        had no defined label line while anime, manga and unverified all did. That
+        is the real gap; see the correction recorded in
+        laws/law_159_season_roundup_multi_show.md item 4.]
       - scene_verified=false with a verification_note instead (F20, no manga source
         applies either): "UNVERIFIED [<footage_status>] — <verification_note>"
         (Law #73 UPDATE 8: the footage_status value is now rendered inline so
