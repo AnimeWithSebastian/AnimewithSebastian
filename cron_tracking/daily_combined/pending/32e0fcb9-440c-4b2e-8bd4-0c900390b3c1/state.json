@@ -1,6 +1,7 @@
 {
-  "status": "AWAITING_APPROVAL",
-  "emails_sent": false,
+  "status": "sent",
+  "emails_sent": true,
+  "log_appended": true,
   "batch_id": "32e0fcb9-440c-4b2e-8bd4-0c900390b3c1",
   "corrects_batch_id": "b03ef8b6-d254-442a-aaf9-673a6578a0c5",
   "post_date": "2026-08-14",
@@ -12,8 +13,25 @@
       "show": "Link Click",
       "format_type": "SEASON_PREVIEW",
       "vo_word_count": 209,
-      "correction_reason": "source citation did not support claim; claim re-sourced"
+      "correction_reason": "source citation did not support claim; claim re-sourced",
+      "disposition": "SENT"
     }
   ],
-  "pending_path": "cron_tracking/daily_combined/pending/32e0fcb9-440c-4b2e-8bd4-0c900390b3c1/"
+  "held_packages": [
+    {
+      "slot": "evening",
+      "show": "That Time I Got Reincarnated as a Slime",
+      "disposition": "HELD_NOT_SENT",
+      "held_under": "Law #165 fetch-and-confirm review",
+      "reason": "Core hook claim 'Episode 18 aired August 7' is contradicted by both of its own cited sources once genuinely fetched.",
+      "tracked_as": "docs/KNOWN_ISSUES.md F36",
+      "archived_at": "cron_tracking/daily_combined/ARCHIVED_20260814_slime_ep18_law165_held.md",
+      "still_open": true,
+      "note": "This package was deliberately EXCLUDED from batch 32e0fcb9's approval (see approval.json scope_note) and was never sent. It remains separately held and is NOT resolved by this batch reaching a terminal status. Resolving F36 is its own decision, not a side effect of closing this batch."
+    }
+  ],
+  "pending_path": "cron_tracking/daily_combined/pending/32e0fcb9-440c-4b2e-8bd4-0c900390b3c1/",
+  "terminal_state_written_at": "2026-08-15",
+  "terminal_state_written_by": "manual one-off correction (docs/KNOWN_ISSUES.md F38 'Practical effect tonight')",
+  "terminal_state_note": "CORRECTED 2026-08-15. This file carried a non-terminal awaiting-approval status with emails_sent=false long after the batch's morning package had actually been sent, because nothing in STEP 7/8/9 ever flipped the per-batch pending copy (F38). That left Law #166's pending-batch scan reading a completed batch as an open backlog blocker (F37), which would have skipped the next unattended daily run. Evidence the send really happened, checked before this edit: (1) cron_tracking/sent_scripts_events.jsonl carries a status=\"sent\" row for package 7182ec38 under batch 32e0fcb9; (2) cron_tracking/daily_combined/state.json (top-level mirror) records batch 32e0fcb9 as status=success, emails_sent=true, log_appended=true; (3) the legacy sent_scripts_log.json carries the matching appended entry. NOT verified from the mailbox itself -- no mail tool is available in this environment -- so 'sent' here means the repo's own recorded definition of sent (the logger fails closed without --emails-sent and --approval-file, and both were asserted). The batch is terminal as SENT for its morning package ONLY; the evening package is separately held above and stays open. DELIBERATE WORDING: this note avoids writing the awaiting-approval token literally, because Law #166's check is prose that says to look for a state.json that 'reads' that status -- an agent doing a substring grep rather than parsing the status field would otherwise re-flag this completed batch on the strength of its own explanatory note. The F37 fix makes field-parsing explicit."
 }
