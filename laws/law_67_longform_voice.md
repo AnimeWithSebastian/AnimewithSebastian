@@ -3,7 +3,31 @@
 **Added:** June 2026
 **Status:** ACTIVE
 **Source:** Law #54 (Shorts) adapted for long-form format
-**Applies to:** All long-form videos (5–8 minutes)
+**Applies to:** All long-form videos ~~(5–8 minutes)~~ — see the length note below.
+This law's VOICE rules are unaffected by length and still apply in full.
+
+> **LENGTH FIGURE SUPERSEDED — note added 2026-08-15 during a law audit. Original
+> "(5–8 minutes)" preserved above via strikethrough; nothing else in this law changes.**
+>
+> "5–8 minutes" is Law #66's original June 2026 target. **Law #146's July 26, 2026
+> correction explicitly supersedes it** (and Law #136's 6–12 min figure). Law #146 now
+> states: **FLOOR** — the video must simply not be classified as a YouTube Short (a 16:9
+> video is long-form at any length, so this channel's flagships satisfy the floor by
+> format, not by runtime); **TARGET** — reach 8:00 (480s) where the material genuinely
+> supports it, because that is the current threshold for mid-roll ads, explicitly
+> "recommended, not mandatory"; **NEVER pad** to reach 8:00 if the material doesn't
+> support it. Law #146 also states in terms: *"The old fixed 480-720s (8-12 min) band is
+> retired as a mandatory range... No upper bound is reinstated."*
+>
+> **UNRESOLVED LAW-vs-CODE CONFLICT — do not treat the above as the operative gate.**
+> `validators/validate_longform_flagship.py` still hard-enforces the retired band:
+> `LONGFORM_MIN_SEC = 480`, `LONGFORM_MAX_SEC = 720`, checked as "duration in the 8-12
+> min band". Per this repo's authority order (running validators outrank law text), the
+> VALIDATOR governs in practice: a flagship at, say, 6 minutes is explicitly permitted by
+> Law #146 but **would fail validation today**. Reconciling the two — relax the validator
+> to match Law #146, or reinstate the band in Law #146 to match the validator — is a real
+> decision, not a text correction, and is deliberately NOT made here. Flagged for the
+> owner. Check the validator before planning any flagship length.
 
 ---
 
