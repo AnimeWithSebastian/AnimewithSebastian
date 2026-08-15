@@ -302,16 +302,27 @@ Pick BOTH ideas together so you can guarantee cross-slot diversity in one pass:
     NOTE ON TOKEN COUNT (corrected 2026-08-11 — the prior "16 tokens" note was stale;
     real count independently verified against validate_dual_package.py's live
     FORMAT_TYPES tuple): the validator's FORMAT_TYPES enum has 17 tokens as of
-    2026-08-10 (Law #158/#159/#160), but only 16 are selectable from this runtime
-    step [count updated 2026-08-14: was 15 / TWO reasons — SEASON_ROUNDUP's withholding
-    was lifted when Law #159 item 3 shipped], for ONE remaining reason:
+    2026-08-10 (Law #158/#159/#160), and ~~only 16 are~~ ALL 17 ARE selectable from
+    this runtime step [count updated 2026-08-14: was 15 / TWO reasons —
+    SEASON_ROUNDUP's withholding was lifted when Law #159 item 3 shipped]~~, for ONE
+    remaining reason~~
+    [COUNT UPDATED AGAIN 2026-08-15: 16 -> 17. THEORY_SPECULATION's withholding was
+    lifted on Sebastian's explicit decision once Law #160 item 7's selection guidance
+    was actually written — see item 2 below and the THEORY_SPECULATION callout at the
+    end of this list. There is no longer ANY withheld token; the two historical
+    reasons below are both resolved and are kept as record, not as live blockers]:
       1. SEASON_ROUNDUP — WITHHOLDING LIFTED 2026-08-14; the token is now SELECTABLE.
          It was deliberately withheld because the validator lacked a per-show
          source-count cross-check for roundups (Law #159 item 3). That check now exists
          (`_validate_season_roundup_sourcing` in validate_dual_package.py), so the
          documented blocker is resolved — see the SEASON_ROUNDUP callout at the end of
          this list for the fields a roundup must now carry.
-      2. THEORY_SPECULATION (Law #160) is simply absent from this runtime step —
+      2. THEORY_SPECULATION (Law #160) — RESOLVED 2026-08-15, NOW SELECTABLE; see the
+         lift note at the end of this item and the full callout at the end of the
+         format list. Everything from here to that note is HISTORICAL RECORD of why
+         the token was unavailable between its creation and 2026-08-15, retained per
+         the no-retroactive-rewrite rule. It no longer describes the current state.
+         ~~is simply absent from this runtime step —
          ~~Law #160 is still status: DRAFT~~ [STATUS CORRECTED 2026-08-14: Law #160 is
          status ACTIVE — IMPLEMENTED, not DRAFT. The law's header said DRAFT while
          implementation items 1-6 were in fact shipped and live in the validator; the
@@ -325,11 +336,11 @@ Pick BOTH ideas together so you can guarantee cross-slot diversity in one pass:
          and that law's own item 7 ("cron_daily_runtime.txt: add THEORY_SPECULATION
          to format-selection guidance") is explicitly NOT YET DONE — this remains the
          single genuinely outstanding item, and is why the token stays unselectable
-         here. ~~This is not a deliberate withholding like SEASON_ROUNDUP's — it is an
+         here.~~ ~~This is not a deliberate withholding like SEASON_ROUNDUP's — it is an
          outstanding porting gap, tracked as a separate future step, not a design
          decision to exclude it.~~
 
-         [CONVERTED TO A DELIBERATE WITHHOLDING 2026-08-15, on owner decision. The
+         ~~[CONVERTED TO A DELIBERATE WITHHOLDING 2026-08-15, on owner decision. The
          struck sentence above was accurate as a description of how the gap AROSE —
          item 7 was never ported, rather than consciously declined. It is no longer
          accurate as a description of the CURRENT state. The gap has now been
@@ -365,7 +376,21 @@ Pick BOTH ideas together so you can guarantee cross-slot diversity in one pass:
          Do NOT make the token selectable by simply deleting this note. The
          validator accepting a token has never been sufficient for selectability in
          this runtime, and treating it as sufficient is what would put an
-         unguided, hedging-critical format into production.]
+         unguided, hedging-critical format into production.]~~
+
+         [WITHHOLDING LIFTED 2026-08-15, on Sebastian's explicit decision — the
+         SECOND runtime change of this date, superseding the withholding block struck
+         immediately above, which was added earlier the same day. Both entries are
+         kept so the sequence reads honestly: the gap was first converted from an
+         accidental porting omission into a deliberate withholding, and then the
+         withholding was deliberately lifted once the guidance it demanded was
+         actually written. THEORY_SPECULATION IS NOW SELECTABLE.
+
+         This completes Law #160 item 7 — the single genuinely outstanding item —
+         by satisfying the exit condition the struck block itself named, rather than
+         by deleting the note, which that block explicitly warned against. Selectable
+         count in this NOTE is updated from 16 to 17 accordingly: all 17 FORMAT_TYPES
+         tokens are now selectable, with no remaining withheld token.]
       Law #85 hierarchy (9 tokens covering 8 ranks — rank 8 is written in Law #85's
       text as one combined format "SLEPT_ON / HIDDEN_GEM", but real production history
       used both as distinct format_type strings, so both are kept as separate tokens
@@ -432,6 +457,75 @@ Pick BOTH ideas together so you can guarantee cross-slot diversity in one pass:
           manga_reference / trailer_reference), unchanged.
       Length: the MULTI-CLAIM EXPLAINER band — several independently-verified claims
       that don't reduce to one throughline — up to 180s.
+      THEORY_SPECULATION (Law #160) IS SELECTABLE as of 2026-08-15, on Sebastian's
+      explicit decision. This entry IS Law #160 item 7 — the format's selection
+      guidance — and lifting the prior withholding depended on writing it.
+      WHAT IT IS: a speculative theory about an UNRESOLVED story question (what a
+      symbol means, a character's real motive, how a foreshadowed event resolves),
+      built from real sourced evidence but presented AS A THEORY. Law #160's
+      two-tier truth handling is the whole point: the EVIDENCE tier is governed
+      exactly like every other format (Law #73 clip verification, Laws #147/#148
+      claim_source_matrix, Law #155 independent verification — no new mechanism, no
+      weaker standard), while the THEORY tier — the speculative conclusion itself —
+      is a NAMED, PERMANENT EXCEPTION to this project's dominant no-hedging rule.
+      Do not pick this format to soften a claim you could not source; the evidence
+      tier is not relaxed by the theory tier existing.
+      WHEN SELECTING THEORY_SPECULATION, the package MUST additionally carry (all
+      fail-closed in validate_dual_package.py's THEORY_SPECULATION branch):
+        - related_existing_theories: a LIST (possibly empty) of
+          {theory_description, source_url, how_this_differs}. This is a REAL
+          RESEARCH ARTIFACT, not a boolean — every entry needs a real description
+          and a real URL. An empty list is a positive claim that the originality
+          search found nothing, so only use it when that is actually true.
+        - originality_search_performed: {"query": "<the real query you ran>",
+          "search_performed": true}. The query string must be real. A fabricated
+          query here is the same class of failure as a fabricated source, and it is
+          the one thing in this format nothing downstream can catch — see the
+          FIRST-USE note below.
+        - theory_claim_line: the speculative conclusion, stated ONCE, as its own
+          field. Two mechanical checks apply to THIS FIELD ONLY (not to the whole
+          VO): it must contain >=1 REQUIRED_THEORY_HEDGES phrase ("this theory
+          suggests", "one likely explanation", "the evidence points to", "this may
+          explain", "a strong possibility is", "this could mean", "the working
+          theory here is", "it's possible that", "this points toward", "the leading
+          theory is"), and it must contain NONE of BANNED_THEORY_CERTAINTY_LANGUAGE
+          ("this is what happened", "the confirmed answer is", "this is confirmed",
+          "we now know", "this proves", "the fact is this is", "there's no doubt
+          this is").
+        - theory_hedge_attested: true — an explicit self-attestation, separate from
+          the mechanical hedge floor above. Both are required; neither substitutes
+          for the other.
+        - DISCLOSURE when extending someone else's theory: if ANY
+          related_existing_theories entry has a non-empty how_this_differs, real
+          attribution language must appear in vo, pinned_comment, or
+          tiktok_post_text. Bare use of the word "theory" does NOT satisfy this —
+          the required hedge phrases themselves contain it, and a 2026-08-11 user
+          review caught exactly that false pass. Credit the existing theory in
+          language a viewer would recognize as credit.
+      BLACKOUT (Law #160 Decision 4 — differs from every other format's fixed
+      cooldown): the blocked unit is SAME SHOW + SAME QUESTION, not a day count.
+      Theory content may legitimately be revisited when genuinely new evidence
+      lands. To revisit, set blackout_conflict/recent_send_conflict honestly and
+      supply revisit_justification: {"new_evidence_summary", "new_evidence_source_url",
+      "new_evidence_date"} — a real dated source, not a fresh assertion. Without it
+      the same show+question is blocked like any other conflict. This is the ONLY
+      format_type with a carve-out on those two flags; every other token still
+      requires both to be false.
+      LENGTH: Law #160 specifies NO band of its own — verified against the law text,
+      not assumed. Map onto STEP 3.5's existing bands with no new logic, the same
+      way WORTH_WATCHING does: one theory resting on a single verified beat ->
+      SINGLE-FACT/QUICK-TAKE (20-30s); a theory built from 2-3 connected verified
+      beats -> MULTI-BEAT ARGUMENT (45-75s). Do not stretch a thin theory to fill a
+      longer band; evidence density is what makes this format work.
+      FIRST REAL USE — EXTRA SCRUTINY, NOT LESS. Law #165's real fetch-and-confirm
+      review applies in full, exactly as for every other format, PLUS this format's
+      own layer: THE ORIGINALITY SEARCH MUST ACTUALLY HAVE BEEN RUN. The validator
+      can only check that originality_search_performed is well-SHAPED — it cannot
+      tell a real query from an invented one, the same structural blind spot that
+      let the One Piece package assert a hundred-year-old age and a Rocks D. Xebec
+      mentorship that no source stated (docs/KNOWN_ISSUES.md F40). A newly-enabled
+      format has no production history to catch drift against, so its first real
+      send warrants the same extra attention WORTH_WATCHING's first send got.
   - RECURRING SERIES (Law #143): where an idea fits a proven recurring structure
     (seasonal ranking, episode/scene test), tag series={"id":<machine-id>,
     "recurring":true} to serve returning viewers. Do NOT force the same show; blackout /

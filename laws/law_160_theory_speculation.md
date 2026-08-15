@@ -171,10 +171,40 @@ any other blackout conflict.
 > The individual `NOT YET DONE` markers below are left in place as the historical
 > record of what the design pass believed at the time, per this project's standing
 > no-retroactive-rewrite rule — but **they are wrong about the current state of the
-> code and must not be relied on.** Item 7 (`cron_daily_runtime.txt` format-selection
+> code and must not be relied on.** ~~Item 7 (`cron_daily_runtime.txt` format-selection
 > guidance) is the ONE item still genuinely outstanding: `THEORY_SPECULATION` is
 > accepted by the validator but is not yet offered to the model during selection, so
-> in practice the format cannot currently be chosen by a daily run.
+> in practice the format cannot currently be chosen by a daily run.~~
+
+> **ITEM 7 COMPLETED 2026-08-15, on Sebastian's explicit decision — THIS LAW IS NOW
+> FULLY IMPLEMENTED, items 1-7.** `THEORY_SPECULATION` is SELECTABLE by a real daily
+> run as of that date. The struck sentence above described the state from the law's
+> creation until 2026-08-15 and is kept as the historical record.
+>
+> What item 7 actually required, and what was written to satisfy it: a real
+> format-selection entry in `cron_daily_runtime.txt`'s format catalog covering the
+> format's scope, its required fields (`related_existing_theories`,
+> `originality_search_performed`, `theory_claim_line`, `theory_hedge_attested`), the
+> hedge floor and banned-certainty list applied to `theory_claim_line` specifically,
+> the disclosure requirement when extending an existing theory, the Decision 4
+> same-show-same-question blackout and its sourced `revisit_justification` escape,
+> and a length mapping. Note that **this law specifies no length band of its own** —
+> the runtime entry maps onto STEP 3.5's existing bands (the same approach
+> `WORTH_WATCHING` uses) rather than inventing one here, and says so explicitly.
+>
+> Sequence worth preserving, because it reads oddly in the runtime otherwise: earlier
+> on 2026-08-15 the item-7 gap was converted from an accidental porting omission into
+> a *deliberate* withholding, on the reasoning that validator acceptance alone has
+> never been sufficient for selectability in this project. That withholding was then
+> lifted the same day by actually writing the guidance it demanded — which is the exit
+> condition the withholding note itself specified. Both entries survive in
+> `cron_daily_runtime.txt`, struck and dated, so the order of decisions stays legible.
+>
+> **First-use caution carried over from the runtime entry:** the validator can only
+> check that `originality_search_performed` is well-SHAPED. It cannot distinguish a
+> real query from an invented one. Law #165's fetch-and-confirm review applies in full,
+> plus a genuine originality search — the same standard that caught the fabricated age
+> and inverted Rocks D. Xebec relationship documented in `docs/KNOWN_ISSUES.md` F40.
 
 1. NOT YET DONE — Validator: `"THEORY_SPECULATION"` added to `FORMAT_TYPES`
    (17 tokens total). Proposed diff below, not yet applied to any file.
@@ -209,10 +239,13 @@ any other blackout conflict.
    confirms no leakage into other format_types, adversarial innocent-phrase
    tests, and a dedicated test proving the required-minimum-hedge floor
    catches an over-confident theory claim).
-7. NOT YET DONE — `cron_daily_runtime.txt`: add `THEORY_SPECULATION` to
-   format-selection guidance. Deferred until after user review/approval of
-   this law text and the validator diff, per design-before-code discipline
-   — same deferral pattern as Law #158 item 5 and Law #159 item 6.
+7. ~~NOT YET DONE~~ **DONE 2026-08-15** — `cron_daily_runtime.txt`: add
+   `THEORY_SPECULATION` to format-selection guidance. ~~Deferred until after user
+   review/approval of this law text and the validator diff, per design-before-code
+   discipline — same deferral pattern as Law #158 item 5 and Law #159 item 6.~~
+   The deferral ended on Sebastian's explicit decision; the guidance now exists as a
+   full callout in that file's format catalog, and the token's selectable count was
+   raised 16 -> 17. See the completion block above for what the entry covers.
 
 **Honest scope note, matching Law #159's own disclosure pattern:** item 5's
 revisit-evidence-genuinely-new check has the same real, pre-existing
