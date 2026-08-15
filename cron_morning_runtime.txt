@@ -773,7 +773,7 @@ FALLBACK (if SEARCH 7B returns nothing after 2 attempts):
   Default order: Pattern Interrupt → Stat Lead → Contradiction → Curiosity Gap
   Log: "Hook type: [chosen] — SEARCH 7B fallback (live search returned no results)"
 
-### STEP 10 — VO QUALITY CHECK (18 checks standard | 19 checks MVA/EM/ER/EVM)
+### STEP 10 — VO QUALITY CHECK (21 checks standard | 22 checks MVA/EM/ER/EVM)  [COUNT CORRECTED 2026-08-15: this header read "18 checks standard | 19 checks MVA/EM/ER/EVM", which was stale — it predated the CHECK 12B-12J sub-checks. Counted from this file's own definitions: CHECK 1-12 (12) + CHECK 12B-12J (9) = 21 standard, +CHECK 13 (MVA/EM/ER/EVM only) = 22. This matches this file's own OVERALL STEP 10 RESULT line. NOTE: the v8.7 *_runtime.txt pair legitimately carries a DIFFERENT total from the v8.9 *_part3.txt pair — the runtime files have no CHECK 12K (Law #133 General Audience Language), so 21/22 there and 22/23 in part3 are BOTH correct for their own version. Do not "harmonize" them.]
 Based on: YouTubeNiches June 4 2026 (HYPOTHESIS — comments may be a strong algorithm signal; personality may drive sub conversion; neither verified as #1 on this channel)
          viralhookanalyzer.com June 8 2026 (5,000 Shorts study — viral first cut at 0.9 sec median)
 
