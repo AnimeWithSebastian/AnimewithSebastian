@@ -104,7 +104,61 @@ All grade data is saved to:
 > section around what the weekly cron genuinely persists (`cron_tracking/2bb28991/state.json`
 > plus the publication ledger), is a real decision and is deliberately NOT made here.
 
-This file accumulates week over week. The cron reads the previous week's data before generating new grades, so trends can be identified across multiple runs.
+~~This file accumulates week over week. The cron reads the previous week's data before generating new grades, so trends can be identified across multiple runs.~~
+
+> **STORAGE SECTION REWRITTEN 2026-08-15, on owner decision — this replaces the
+> struck claim above with what is actually on disk.** The correction banner above is
+> retained as the historical record of when the problem was first caught; this block
+> is the fix. Verified by direct inspection of the real files on 2026-08-15.
+>
+> **`analytics_performance_log.json` does not exist and no code writes it.**
+> `find` returns nothing, and `grep -rn "analytics_performance_log" --include="*.py"`
+> returns nothing. There is no accumulating log, and nothing reads a previous week's
+> data before grading. Grade history is NOT continuous.
+>
+> **WHAT IS ACTUALLY PERSISTED — two things, neither of them an accumulating log:**
+>
+> **1. `cron_tracking/2bb28991/state.json` — a single overwritten snapshot, not a
+> history.** It holds only the most recent run's summary. Current contents include
+> `last_run`, `run_count` (7), `videos_graded` (58), `top_performer` and
+> `bottom_performer` as single formatted strings, `tier_breakdown`
+> (`{LOOP_SIGNAL: 4, STRONG: 30, AVERAGE: 22, WEAK: 2, DROP: 0}`),
+> `analytics_processed_video_ids`, `channel_totals`, `reconciliation`,
+> `model_compliance`, `github_sync`, `email_sent`, `notes`, `last_noop_ts`. Each run
+> overwrites the previous values. Prior weeks' numbers are not recoverable from it.
+>
+> **2. `cron_tracking/2bb28991/run<N>_grades.json` — per-run grade arrays, but only
+> for SOME runs.** Two exist: `run2_grades.json` (41 entries) and
+> `run4_grades.json` (49 entries). `run_count` is 7, so **five of seven runs left no
+> grade file at all.** These are the only real per-video grade records in the repo.
+>
+> **THE TWO GRADE FILES USE DIFFERENT SCHEMAS.** This is a real obstacle to any
+> future trend analysis and is recorded here rather than discovered later:
+>
+> | Concept | `run2_grades.json` | `run4_grades.json` |
+> |---|---|---|
+> | video identifier | `video_id` | `vid` |
+> | retention | `retention` | `avg_pct` |
+> | view points | `view_pts` | `v_pts` |
+> | retention points | `ret_pts` | `r_pts` |
+> | engagement points | `eng_pts` | `e_pts` |
+> | only in run4 | — | `subs_lost`, `sub_conv_pct` |
+>
+> Shared by both: `views`, `likes`, `comments`, `shares`, `mins_watched`,
+> `subs_gained`, `eng_per_100`, `score`, `tier`.
+>
+> **CONSEQUENCE FOR THIS LAW'S FEEDBACK LOOP.** The scoring system, tier
+> definitions, and feedback-loop rules in this law are UNCHANGED and still apply to
+> a single run's grading. What this law can NOT currently support is any rule that
+> depends on comparing a video or a format against previous weeks — the data for
+> that is partial (2 of 7 runs), schema-inconsistent between those two, and absent
+> from `state.json`, which keeps only the latest snapshot. Treat any cross-week trend
+> claim as unsupported until an accumulating store actually exists.
+>
+> **BUILDING THE ACCUMULATING LOG IS STILL AN OPEN OPTION, NOT A CLOSED ONE.** This
+> rewrite documents reality; it does not decide that the capability should be
+> abandoned. If it is built later, note that backfill can only draw on those same two
+> grade files and would need the schema differences above reconciled first.
 
 Format per entry:
 ```json
