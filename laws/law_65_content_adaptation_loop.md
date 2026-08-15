@@ -57,7 +57,14 @@ must find and how the findings must affect the package.
 
 **What gets searched:**
 - SEARCH 5: `[show] YouTube Shorts [current year] most viewed format`
-  → Identifies which of the 8 format types is performing best for this show right now
+  → Identifies which of the ~~8~~ **17** format types is performing best for this show right now
+    [Count corrected 2026-08-15 during a law audit. "8" was accurate when this law was
+    written (June 2026, the v5.0 Open Format System). The controlled enum has grown
+    since: `FORMAT_TYPES` in `validators/validate_dual_package.py` holds **17** tokens
+    as of 2026-08-10 — 9 from Law #85's monetization hierarchy, 4 from Law #96's
+    rotation, 1 from Law #98, plus WORTH_WATCHING (#158), SEASON_ROUNDUP (#159) and
+    THEORY_SPECULATION (#160). The validator is authoritative — verify against it, not
+    against any prose count including this one.]
 - SEARCH 6: `[show] anime [current month year] site:reddit.com OR site:youtube.com`
   → Confirms the show has active fandom discussion (not dormant)
 

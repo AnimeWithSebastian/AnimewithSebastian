@@ -68,7 +68,14 @@ Each video idea presented to the user must contain ALL of the following:
 
 1. **Show** — name and current airing/release status (verified, dated source)
 2. **Why now** — live traction signal with source URL and publication date
-3. **Format** — which of the 19 formats and why this format fits this show at this moment (from SEARCH 5 or SEARCH 7)
+3. **Format** — which of the ~~19~~ **17** formats and why this format fits this show at this moment (from SEARCH 5 or SEARCH 7)
+   [Count corrected 2026-08-15 during a law audit. "19" predates the controlled enum;
+   `FORMAT_TYPES` in `validators/validate_dual_package.py` holds **17** tokens as of
+   2026-08-10, and free-text/compound format labels are now REJECTED outright. Pick the
+   single closest controlled token and verify it against the validator, not against any
+   prose count. Note that as of 2026-08-15 one of the 17 (THEORY_SPECULATION, Law #160)
+   is not yet selectable from the daily runtime — 16 are. See `cron_daily_runtime.txt`'s
+   token-count note for the current split and why.]
 4. **Angle** — the specific angle, NOT the generic one. Must pass the GAP test (not already covered by competitors)
 5. **Competitor status** — CLEAR or BLOCKED with evidence from SEARCH 8
 6. **Engagement signal** — views, comments, shares, or fandom activity metric that justifies this show being selected over others tonight

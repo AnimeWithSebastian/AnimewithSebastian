@@ -29,7 +29,12 @@ Orange highlight words are marked with [ORANGE] immediately after the word.
 - Applies to: ALL email packages — morning, evening, and any manual sends
 - Cron must generate caption text block at STEP 11B alongside clip plan
 - If caption text block is missing → email CANNOT be sent
-- This is not optional based on format type — ALL 19 formats require it
+- This is not optional based on format type — ALL ~~19~~ **17** formats require it
+  [Count corrected 2026-08-15 during a law audit. "19" predates the controlled enum;
+  `FORMAT_TYPES` in `validators/validate_dual_package.py` holds **17** tokens as of
+  2026-08-10. The rule itself is UNCHANGED — it applies to every format without
+  exception, which is what this line is actually asserting; only the number was stale.
+  Verify the count against the validator, never against prose.]
 
 ## Origin
 User flagged June 28, 2026: videos sent June 27 included caption spec but not caption text. Law created to prevent recurrence.
