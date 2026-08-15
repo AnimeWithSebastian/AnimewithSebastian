@@ -18,11 +18,22 @@
    suggest it might"), and do not state a leak or rumor as settled fact. If the source itself hedges,
    the VO's phrasing must carry a comparable hedge.
 
-4. THE LOOP LINE MUST PROMISE SOMETHING SPECIFIC. The loop line's colon setup must promise a
-   specific number, name, or outcome — not a vague tease — and the opening sentence must literally
-   deliver that specific thing, not just a thematically related idea. ("Here's the one classic
-   Crunchyroll wiped out:" -> naming that classic, is compliant; a loop line promising a specific
-   number that the opening sentence never actually delivers is not.)
+4. THE LOOP LINE MUST PROMISE SOMETHING SPECIFIC. **[SUPERSEDED / INERT as of 2026-07-27 —
+   status added 2026-08-14 during a full law audit.]** This point is written entirely on top of
+   Law #141's forced colon-handoff loop mechanic, which was **rescinded on 2026-07-27** (no
+   confirmed platform benefit, documented register-violation cost). `loop_line` is now an
+   optional, inert field that no validator reads, and a VO may end on any clean, complete,
+   natural closing thought. There is therefore no "colon setup" for this point to govern.
+   It was left standing as an ACTIVE HARD LAW clause for over two weeks after the mechanic
+   it depends on ceased to exist. **Do not enforce this point.** If a loop-style ending
+   arises naturally it is still permitted (Law #141), but nothing about it is required,
+   checked, or scored. Original text preserved below for the record:
+
+   > The loop line's colon setup must promise a
+   > specific number, name, or outcome — not a vague tease — and the opening sentence must
+   > literally deliver that specific thing, not just a thematically related idea. ("Here's the
+   > one classic Crunchyroll wiped out:" -> naming that classic, is compliant; a loop line
+   > promising a specific number that the opening sentence never actually delivers is not.)
 
 5. READ AS SPEECH, NOT PROSE. Read the full VO as continuous speech before finalizing; cut or
    rephrase anything that only parses correctly as written prose (e.g., stacked subordinate clauses,
@@ -112,6 +123,19 @@
    the show (not this specific VO's content)? If yes, it fails this point regardless of how clever
    or debate-worthy the two options sound. A compliant question_line must require having just heard
    the specific claim, scene, or fact this VO delivered.
+
+9. **[NUMBER NEVER ISSUED — recorded 2026-08-14 during a full law audit.]** This law jumps
+   from point 8 to point 10; no point 9 was ever written. The gap appears to be a
+   transcription slip against `cron_daily_runtime.txt`'s STEP 4.5 **point 9** (the AI-slop
+   pattern check), which is referenced repeatedly in this file and in Law #144 and is a
+   *runtime step*, not a clause of this law. **This matters because Law #158 cites
+   "Law #149 point 9's enumerated-pattern approach" as the model for its
+   `BANNED_COMPARATIVE_LANGUAGE` list — a reference to a clause that does not exist.**
+   Left as an explicit placeholder rather than renumbering points 10+ (renumbering would
+   silently invalidate every existing external citation of "point 10"). The dangling
+   Law #158 reference needs the owner to confirm which clause was intended — the closest
+   candidates are point 6 (the fragment budget, this law's only other enumerated-pattern
+   rule) or the runtime's own point 9.
 
 10. THE CLOSER QUESTION MUST NOT BE ONE THE VO'S OWN BODY ALREADY ANSWERED (added August 8,
     2026). Distinct from point 8 (which catches abstract, noun-swappable A-or-B debate frames that

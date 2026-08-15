@@ -1,8 +1,16 @@
 ================================================================================
 CREATOR VOICE LAW — LAW #54
 VERSION: 1.0 — June 7, 2026
-APPLIES TO: All crons (57a3c92e, d43ab889) + manual runs
-CREATED: After channel rebrand to The Deep Cut. Creator defined the voice
+APPLIES TO: All crons + manual runs. [Cron IDs corrected 2026-08-14 during a full
+            law audit: this line named the retired morning/evening crons
+            `57a3c92e` and `d43ab889`, which Law #139 replaced on 2026-07-15 with
+            the single `daily_combined` run. The law itself still applies in full —
+            only the cron identifiers were stale.]
+CREATED: After a channel rebrand. Creator defined the voice
+         [Brand name corrected 2026-08-14 during a full law audit: this read
+         "rebrand to The Deep Cut" — a retired former channel name that a later
+         global rename pass missed. Per Session Fixes Law FIX 26, the current and
+         only channel identity is AnimeWithSebastian / @animewithsebastian.]
          standard in their own words on June 8, 2026.
 PURPOSE: Scripts must sound like a real person with real opinions —
          not a content machine reciting facts. The voice is the channel.

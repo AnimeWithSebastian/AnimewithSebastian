@@ -1,7 +1,11 @@
 ================================================================================
 VO STATUS LOCK LAW — LAW #79
 VERSION: 1.0 — June 25, 2026
-APPLIES TO: All crons (57a3c92e, d43ab889) + manual runs
+APPLIES TO: All crons + manual runs. [Cron IDs corrected 2026-08-14 during a full
+            law audit: this line named the retired morning/evening crons
+            `57a3c92e` and `d43ab889`, which Law #139 replaced on 2026-07-15 with
+            the single `daily_combined` run. The law itself still applies in full —
+            only the cron identifiers were stale.]
 CREATED: After a Witch Hat Atelier VO was sent with the line "Episode 13 drops Monday"
          when the finale had already aired June 22, 2026 — 3 days before the package
          was sent. No status verification was run before writing the VO.

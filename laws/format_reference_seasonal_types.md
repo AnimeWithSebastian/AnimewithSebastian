@@ -8,12 +8,23 @@ list. This note documents four proven format concepts as usable `format_type` va
 going forward. They are governed entirely by **CURRENT rules** — VO length/CTA/loop —
 not by Law #96's original numbers:
 
-- **VO length:** Law #138 — derives from the fixed CapCut edit duration. Default edit
-  is 30 seconds → 100–108 words, target ~104 (not Law #96's original 60–90w band).
+- **VO length:** ~~Law #138 — derives from the fixed CapCut edit duration. Default edit
+  is 30 seconds → 100–108 words, target ~104 (not Law #96's original 60–90w band).~~
+  **Corrected 2026-08-14 during a full law audit: the edit is no longer "fixed" at 30
+  seconds.** VO length still derives from the CapCut edit duration at the calibrated
+  3.3–3.6 w/s rate, and a 30s edit still yields 100–108 words, target ~104 (not Law
+  #96's original 60–90w band) — but Stage 2 (2026-08-09) made edit length open-ended
+  across 20–180s per package (`MIN_EDIT_SEC`/`MAX_EDIT_SEC` in
+  `validate_dual_package.py`). The word band scales with the resolved length, and 30s
+  is now just one point on that range rather than the default.
 - **CTA:** current CTA law (Law #139) — specific question immediately followed by the
   exact phrase "Leave your take." (Law #62's question-closer rule is narrowed for this
   exact structure — see `laws/law_62_cut7_closer.md` SUPERSESSION NOTE.)
-- **Loop:** Law #141/#147 seamless colon-handoff loop mechanics.
+- **Loop:** ~~Law #141/#147 seamless colon-handoff loop mechanics.~~ **RESCINDED
+  2026-07-27 — corrected here 2026-08-14 during a full law audit.** There is no loop
+  requirement. The VO may end on any clean, complete, natural closing thought; a
+  loop-style ending is permitted but never required, checked, or scored. See
+  `laws/law_141_seamless_loop_mechanics.md`.
 - **Fan voice:** Law #92 fan-voice standard still applies to all four.
 
 Everything below is the four content concepts themselves — the angle requirements and

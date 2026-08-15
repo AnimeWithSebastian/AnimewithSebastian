@@ -1,7 +1,11 @@
 ================================================================================
 LAW #77 — CLIP DURATION REQUIREMENT
 VERSION: 1.0 — June 25, 2026
-APPLIES TO: All crons (57a3c92e, d43ab889) + manual runs
+APPLIES TO: All crons + manual runs. [Cron IDs corrected 2026-08-14 during a full
+            law audit: this line named the retired morning/evening crons
+            `57a3c92e` and `d43ab889`, which Law #139 replaced on 2026-07-15 with
+            the single `daily_combined` run. The law itself still applies in full —
+            only the cron identifiers were stale.]
 CREATED: After clip instruction blocks were being sent without per-cut durations or total video runtime, leaving the creator without a clear edit order.
 PURPOSE: Every clip instruction block must state total video runtime AND per-cut duration in seconds. No guessing. No missing durations.
 ================================================================================
@@ -30,6 +34,12 @@ For every cut:
   81–90 words  →  ~34–37 sec total runtime
 
 CUT 1 brand stamp = always 3 sec.
+  ^^^ SUPERSEDED by Law #82 (June 28, 2026) — banner added 2026-08-14 during a full law
+  audit. Law #82 permanently BANS brand stamps, logo animations and intro sequences:
+  "CUT 1 in every clip plan = first content clip, no exceptions," and "Runtime total
+  video runtime calculation does NOT include any intro time (none exists)." This line
+  is the direct opposite and had stood unmarked for ~7 weeks. DO NOT budget 3 seconds
+  for a brand stamp. CUT 1 is the first real content clip with VO already running.
 Most cuts = 3–6 sec each.
 No single cut may exceed 8 sec.
 

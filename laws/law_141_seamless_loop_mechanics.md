@@ -173,7 +173,12 @@ is rescinded.
 - `cron_daily_runtime.txt` — header/law-list, STEP 5 drafting instructions, M6
   attestation note, STEP 4.5 checklist items 1.5 and 6, the semantic_qa `checks`
   object description, and the STEP 6 validator description all updated to remove the
-  forced-loop mandate and reflect the nine-key `checks` set.
+  forced-loop mandate and reflect the ~~nine~~ **ten**-key `checks` set. [Corrected
+  2026-08-14 during a full law audit: this read "nine-key." The live
+  `SEMANTIC_QA_CHECK_KEYS` tuple in `validate_dual_package.py` holds **ten** keys, and
+  Law #147 Part 1 also states "ten keys total." Removing `loop_colon_handoff` took the
+  set from ten to nine, but `ai_slop_pattern_check` was added in the same 2026-07-26/27
+  window, returning it to ten.]
 - `templates/package_template.txt` — VO section no longer instructs a colon-ending
   close; the LOOP-BACK email section made explicitly optional; clip-plan section no
   longer requires a `carries_loop_back` cut; footer updated.

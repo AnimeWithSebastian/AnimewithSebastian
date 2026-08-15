@@ -1,7 +1,11 @@
 ================================================================================
 COMMUNITY COMMENT LAW — LAW #55
 VERSION: 1.0 — June 7, 2026
-APPLIES TO: All crons (57a3c92e, d43ab889) + manual runs
+APPLIES TO: All crons + manual runs. [Cron IDs corrected 2026-08-14 during a full
+            law audit: this line named the retired morning/evening crons
+            `57a3c92e` and `d43ab889`, which Law #139 replaced on 2026-07-15 with
+            the single `daily_combined` run. The law itself still applies in full —
+            only the cron identifiers were stale.]
 CREATED: After analytics showed 27 comments across 35 videos — 0.77 avg.
          The comment section is the actual product. Silence is the only failure.
 PURPOSE: Every package must be engineered to generate comments — not just views.

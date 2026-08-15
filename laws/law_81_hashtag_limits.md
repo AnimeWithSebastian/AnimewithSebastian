@@ -7,6 +7,19 @@
 
 ## YouTube Shorts
 
+> **SUPERSEDED FOR TITLES by Law #144 — banner added 2026-08-14 during a full law audit.**
+> The YouTube block below instructs **3 hashtags in the title**, placed at the "End of
+> title." This directly contradicts BOTH neighbouring laws and the running validator:
+> Law #76 says "No hashtags in the YouTube title" and places them in the description;
+> Law #144 rule 2 requires **no hashtags (`#`) in EITHER title**, enforced
+> deterministically fail-closed, on this channel's own cohort data (clean titles averaged
+> 1,739 views vs 1,447 for hashtagged ones). A package following the rule below as written
+> would **fail validation**. The hashtag *counts* and the dead-tag list remain useful for
+> the **description** and for `tiktok_post_text`; the **placement instruction is dead.**
+> Note the caps also disagree numerically — #81 says "under 60 characters including
+> hashtags," #76 says 100, #144 says a hard 60 with no hashtags. Law #144 wins.
+
+
 **Hard limit:** 3 hashtags maximum in the title
 **Optimal:** Exactly 3
 **Mix:** 1 show/topic-specific tag + 1 content-angle tag + 1 channel tag (#AnimewithSebastian)

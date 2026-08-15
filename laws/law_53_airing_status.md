@@ -1,7 +1,11 @@
 ================================================================================
 AIRING STATUS ENFORCEMENT LAW — LAW #53
 VERSION: 1.0 — June 7, 2026
-APPLIES TO: All crons (57a3c92e, d43ab889) + manual runs
+APPLIES TO: All crons + manual runs. [Cron IDs corrected 2026-08-14 during a full
+            law audit: this line named the retired morning/evening crons
+            `57a3c92e` and `d43ab889`, which Law #139 replaced on 2026-07-15 with
+            the single `daily_combined` run. The law itself still applies in full —
+            only the cron identifiers were stale.]
 CREATED: After Steel Ball Run VO referenced manga-only content (Love Train,
          Lucy Steel, D4C) that has not aired in animated form.
 PURPOSE: Zero VO lines can reference content that does not exist yet in anime.

@@ -1,8 +1,9 @@
 # Law #160 — THEORY_SPECULATION (evidence-governed, conclusion-hedged theory content)
 
-**Status:** DRAFT — awaiting user review/approval (design proposal 2026-08-10/11,
-decisions confirmed 2026-08-11; Decision 3's mechanism corrected 2026-08-11 after
-a real bug was found during user review — see Decision 3 below). Proposed 17th
+**Status:** ACTIVE — IMPLEMENTED (status corrected 2026-08-14 during a full law
+audit; see Implementation status below). Design proposal 2026-08-10/11, decisions
+confirmed 2026-08-11; Decision 3's mechanism corrected 2026-08-11 after a real bug
+was found during user review — see Decision 3 below. 17th
 controlled `format_type` token
 (alongside `WORTH_WATCHING` Law #158 and `SEASON_ROUNDUP` Law #159), extending
 the Law #96 rotation-expansion family. Generalizable across any anime/manga —
@@ -159,6 +160,21 @@ carrying a real dated source, the same show+question is blocked exactly like
 any other blackout conflict.
 
 ## Where this fits (implementation status)
+
+> **STATUS CORRECTED 2026-08-14 (full law audit).** Items 1-6 below were written as
+> `NOT YET DONE` with "proposed diff below, not yet applied to any file," but every one
+> of them **is in fact shipped and live** in `validators/validate_dual_package.py` and
+> `validators/test_validate_dual_package.py`. Verified directly against the code:
+> `"THEORY_SPECULATION"` is in `FORMAT_TYPES` (17 tokens); `REQUIRED_THEORY_HEDGES`,
+> `BANNED_THEORY_CERTAINTY_LANGUAGE` and `CREDIT_ATTRIBUTION_PATTERN` are all defined
+> and applied in the `fmt_raw == "THEORY_SPECULATION"` branch; the full suite passes.
+> The individual `NOT YET DONE` markers below are left in place as the historical
+> record of what the design pass believed at the time, per this project's standing
+> no-retroactive-rewrite rule — but **they are wrong about the current state of the
+> code and must not be relied on.** Item 7 (`cron_daily_runtime.txt` format-selection
+> guidance) is the ONE item still genuinely outstanding: `THEORY_SPECULATION` is
+> accepted by the validator but is not yet offered to the model during selection, so
+> in practice the format cannot currently be chosen by a daily run.
 
 1. NOT YET DONE — Validator: `"THEORY_SPECULATION"` added to `FORMAT_TYPES`
    (17 tokens total). Proposed diff below, not yet applied to any file.

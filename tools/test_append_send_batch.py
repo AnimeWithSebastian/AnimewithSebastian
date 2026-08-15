@@ -425,10 +425,20 @@ class TestManifestRevalidationGate(LoggerCase):
         self.assertFalse(st["log_appended"])
         self.assertIn("preflight validation", st["error"])
 
-    def test_invalid_manifest_broken_loop_fails_closed(self):
+    def test_invalid_manifest_wrong_opening_sentence_fails_closed(self):
+        # REPOINTED 2026-08-14. This test previously asserted a Law #141 violation
+        # (loop_read_aloud_pass = False). Law #141's forced-loop mandate was rescinded
+        # 2026-07-27 and loop_read_aloud_pass is now an inert, unchecked field, so the
+        # old assertion tested nothing -- it failed because the manifest correctly
+        # PASSED. The rescission's files-touched list removed the corresponding loop
+        # tests from validators/test_validate_dual_package.py but missed this file.
+        #
+        # Repointed rather than deleted so the revalidation-gate coverage is preserved:
+        # opening_sentence is the one check from the old loop block that SURVIVED the
+        # rescission (it is retained under Law #144/#145 because published hook_line
+        # must equal opening_sentence), so it is the closest still-enforced analogue.
         bad = load_manifest()
-        # Law #141 violation: read-aloud attestation is false
-        bad["packages"][1]["loop_read_aloud_pass"] = False
+        bad["packages"][1]["opening_sentence"] = "This is not the VO's first sentence."
         rc = self.run_cli_manifest(bad, "--emails-sent", "--git-pushed")
         self.assertEqual(rc, 1)
         self.assertFalse(os.path.exists(self.events_path))

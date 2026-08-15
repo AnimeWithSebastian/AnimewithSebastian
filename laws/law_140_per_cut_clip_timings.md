@@ -12,6 +12,24 @@ plan must show, for each cut, an exact length and its cumulative position on the
 fixed 30-second edit, plus a stated total.
 
 ## Requirement
+
+> **INTERNAL CONTRADICTION RESOLVED 2026-08-14 (full law audit).** The Requirement and
+> Enforcement sections below were written against the old fixed 30-second edit and still
+> say `capcut_target_sec` = 30 / `total_clip_time_sec` = 30 / "the final cut ends at 30"
+> / "TOTAL CLIP TIME: 30 seconds" as hard, exact values. **The Stage 2 change of
+> 2026-08-09 (see "Duration experiment (M1) — RETIRED" below) made edit length
+> open-ended across 20–180s for every package**, and the running code agrees:
+> `validate_dual_package.py` defines `MIN_EDIT_SEC = 20.0` / `MAX_EDIT_SEC = 180.0` and
+> resolves the target via `_resolve_edit_target`, with no hard 30 anywhere. Law #62's
+> own CTA addendum also already states the open-ended `[20,180]` range.
+>
+> **Read every literal `30` in the two sections below as `capcut_target_sec` (the
+> resolved edit length for that package).** The tiling rule itself is unchanged: cuts
+> tile `0 → capcut_target_sec` contiguously with no gaps or overlaps, durations sum to
+> the resolved target, and `total_clip_time_sec` equals it. The literal text is left in
+> place rather than rewritten because per authority order the validator governs, and
+> silently editing the number would erase the record of the drift.
+
 For **every** clip (cut) in **every** package:
 - `duration_sec` — the cut's length in seconds (positive number).
 - `timeline_start_sec` and `timeline_end_sec` — the cut's cumulative range on the
