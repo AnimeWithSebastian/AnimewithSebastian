@@ -81,7 +81,7 @@ to the repo, not a replacement for reading the actual law/runtime files it point
 | Topic | File(s) |
 |---|---|
 | Full historical law text | `hero_or_villain_master_laws_final.txt` |
-| Individual recent laws (#53–#147) | `laws/law_*.md` — **grep this directory first** before searching the master file |
+| Individual recent laws (~~#53–#147~~ see corrected list below) | `laws/law_*.md` — **grep this directory first** before searching the master file |
 | Daily production runtime (authoritative, what the daily cron actually reads) | `cron_daily_runtime.txt` |
 | Weekly analytics runtime | `cron_analytics_runtime.txt` |
 | Per-slot email/package shape | `templates/package_template.txt` |
@@ -97,6 +97,26 @@ to the repo, not a replacement for reading the actual law/runtime files it point
 | Append-only send events | `cron_tracking/sent_scripts_events.jsonl` |
 | Publication source of truth (by `youtube_video_id`) | `cron_tracking/publication_ledger.jsonl` |
 | Per-cron runtime state | `cron_tracking/<cron_id>/state.json` |
+
+> **RANGE CORRECTED 2026-08-15.** "#53–#147" was wrong in BOTH directions: `laws/`
+> contains eight files ABOVE #147, and has gaps INSIDE the range. Enumerated from the
+> real directory (62 files) on 2026-08-15:
+>
+> ```
+> 53–63, 65–96, 129, 139–141, 143–150, 153–154, 158–160
+> ```
+>
+> Gaps inside that span are **#64** and **#142**, and they are not the same kind of gap:
+>
+> - **#64 is a real law with no file.** It is defined in
+>   `hero_or_villain_master_laws_final.txt` and cited 12 times across the repo. Grep the
+>   master file for it — this is the case the "grep here first" advice above can miss.
+> - **#142 never existed.** Zero definitions anywhere (master file included) and zero
+>   references repo-wide. It is an unused number, not a missing law. Do not go looking
+>   for it.
+>
+> The general rule still holds — grep `laws/` first — but when a cited law has no file
+> there, fall through to the master file rather than assuming the citation is broken.
 
 **Authority order when sources conflict:** (1) current production runtimes/validators
 → (2) newest numbered law file → (3) master laws file → (4) templates/docs →
