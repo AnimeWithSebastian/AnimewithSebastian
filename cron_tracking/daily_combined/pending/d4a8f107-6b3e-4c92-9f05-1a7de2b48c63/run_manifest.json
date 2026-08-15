@@ -1,0 +1,303 @@
+{
+  "batch_id": "d4a8f107-6b3e-4c92-9f05-1a7de2b48c63",
+  "run_ts": "2026-08-15T16:33:38.877107+00:00",
+  "post_date": "2026-08-15",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-08-15T00:00:00+00:00",
+    "age_days": 0,
+    "status": "REFRESHED"
+  },
+  "single_package_reason": "One package only. The intended second package (One Piece, chapter 1190, Scopper Gaban) was DROPPED on owner decision 2026-08-15 as a duplicate: the channel already sent that exact story on 2026-08-09 (batch 6818490a, THE_MOMENT, angle 'Chapter 1190: Scopper Gaban lands the first confirmed injury on Imu in the entire series, then loses his arm for it'). Same show, same chapter, same character, same arm-loss beat, six days earlier. Rebuilding it would republish already-published content, so recent_send_conflict could not honestly be recorded as false and no One Piece package appears in this batch. See docs/KNOWN_ISSUES.md F41.",
+  "packages": [
+    {
+      "package_id": "b7c41e0a-9d52-4f38-8a16-2e5c0f7a9b34",
+      "slot": "evening",
+      "content_type": "short",
+      "show": "BLEACH: Thousand-Year Blood War - The Calamity",
+      "angle": "Episode 3 puts Hitsugaya, Kenpachi and Byakuya on Gerard Valkyrie together and none of it works: the hand Kenpachi severs regrows immediately, and The Miracle turns the damage they deal back onto them, ending the episode unresolved",
+      "format_type": "EPISODE_MOMENT",
+      "topic_class": "timely",
+      "topic_signals": [
+        "currently_airing"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "THREE CAPTAINS. ZERO PROGRESS.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Three Gotei Thirteen captains hit Gerard Valkyrie with everything they had this week, and the only people bleeding when it ended were them.",
+        "Kenpachi cut Gerard's hand off this week and it was back before the scene ended."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 60,
+      "total_clip_time_sec": 60,
+      "hook_line": "Three Gotei Thirteen captains hit Gerard Valkyrie with everything they had this week, and the only people bleeding when it ended were them.",
+      "opening_sentence": "Three Gotei Thirteen captains hit Gerard Valkyrie with everything they had this week, and the only people bleeding when it ended were them.",
+      "vo": "Three Gotei Thirteen captains hit Gerard Valkyrie with everything they had this week, and the only people bleeding when it ended were them. Spoiler warning for Bleach: Thousand-Year Blood War, The Calamity, episode three, which aired August eighth. Toshiro Hitsugaya opens by freezing Gerard's hand solid. Kenpachi Zaraki follows with a classic Kenpachi entrance and cuts that hand clean off. It grows back immediately, which is the episode telling you exactly what kind of problem this is. Byakuya Kuchiki adds a swarm of cherry blossoms from Senbonzakura Kageyoshi. Three captains, three completely different answers, and Gerard leaves the exchange mostly uninjured. Then the episode reframes the entire fight. When the captains damage his sword Hoffnung, the wounds do not stay on Gerard. They land on the captains instead. The Miracle does not simply heal him, it hands the damage back to whoever dealt it. That is not a power you can out-damage, and three of the Gotei Thirteen's heaviest hitters just spent an entire episode proving it. The episode ends there, unresolved, all three still standing in front of him, with the climax held for episode four. So is there any amount of raw force that actually solves Gerard, or does the answer have to come from somewhere else entirely? Leave your take.",
+      "vo_word_count": 215,
+      "question_line": "So is there any amount of raw force that actually solves Gerard, or does the answer have to come from somewhere else entirely?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 52,
+      "length_rationale": "3 verified beats building one throughline (all three captains land their best attacks; the severed hand regenerates instantly; The Miracle reflects the damage back onto them) -> MULTI-BEAT ARGUMENT band (45-75s), resolved at 60s so each captain's attempt and the damage-reversal reveal get room without padding.",
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "In The Calamity episode 3, aired 2026-08-08, Hitsugaya, Kenpachi and Byakuya all attack Gerard Valkyrie and the episode ends with him mostly uninjured and the captains taking the damage instead.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+              "https://www.aol.com/articles/bleach-thousand-blood-war-calamity-173000000.html"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Kenpachi Zaraki severs Gerard's hand and it regenerates immediately.",
+            "core": true,
+            "claim_type": "D",
+            "source_urls": [
+              "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+              "https://www.aol.com/articles/bleach-thousand-blood-war-calamity-173000000.html"
+            ]
+          },
+          {
+            "claim": "Toshiro Hitsugaya freezes Gerard's hand.",
+            "core": true,
+            "claim_type": "D",
+            "source_urls": [
+              "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+              "https://www.aol.com/articles/bleach-thousand-blood-war-calamity-173000000.html"
+            ]
+          },
+          {
+            "claim": "Byakuya Kuchiki attacks with Senbonzakura Kageyoshi's cherry-blossom blade swarm.",
+            "core": true,
+            "claim_type": "D",
+            "source_urls": [
+              "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+              "https://www.aol.com/articles/bleach-thousand-blood-war-calamity-173000000.html"
+            ]
+          },
+          {
+            "claim": "Gerard's The Miracle causes damage dealt to him and to his sword Hoffnung to land on the attacking captains instead.",
+            "core": true,
+            "claim_type": "D",
+            "source_urls": [
+              "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+              "https://www.aol.com/articles/bleach-thousand-blood-war-calamity-173000000.html"
+            ]
+          },
+          {
+            "claim": "Episode 4 releases 2026-08-15 and is expected to carry the climax of the captains-versus-Gerard fight, which episode 3 leaves unresolved.",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://www.cbr.com/bleach-tybw-season-4-episode-4-the-calamity-release-date-time/",
+              "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-4-release-date-time-watch-guide/"
+            ]
+          },
+          {
+            "claim": "Episode 3 is titled 'Blood for My Bone'.",
+            "core": false,
+            "source_urls": [
+              "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Face-Cam Split Screen",
+      "face": true,
+      "split_screen": true,
+      "sources": [
+        {
+          "claim": "Episode 3 beat-by-beat: Hitsugaya freezes the hand, Kenpachi severs it, it regrows, Byakuya's Senbonzakura, damage reflected onto the captains; title 'Blood for My Bone', aired Aug 8 2026",
+          "url": "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Independent episode 3 recap confirming the same five beats, and explicitly noting Kenpachi cuts the HAND rather than the arm",
+          "url": "https://www.aol.com/articles/bleach-thousand-blood-war-calamity-173000000.html",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Episode 4 release date/time (Aug 15 2026) for the unresolved-climax claim",
+          "url": "https://www.cbr.com/bleach-tybw-season-4-episode-4-the-calamity-release-date-time/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Episode 4 guide: climax of the captains vs Gerard fight expected in episode 4",
+          "url": "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-4-release-date-time-watch-guide/",
+          "date": "Aug 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Hitsugaya freezes Gerard Valkyrie's hand solid",
+          "reason": "Opens the captains' assault; first of three answers tried on Gerard",
+          "duration_sec": 10,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 10,
+          "scene_verified": true,
+          "verification_source_url": "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Toshiro Hitsugaya freezes Gerard's hand at the start of the captains' assault",
+            "source_content_confirmed": "AOL episode 3 recap: 'he freezes Gerard's hand'; FandomWire review: 'His hand freezes as we see the return of Toshiro Hitsugaya.'",
+            "match": true
+          },
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Episode 3 of BLEACH: Thousand-Year Blood War - The Calamity aired 2026-08-08 on Hulu (US) / Disney+ (global) and is the source for every cut in this plan. Beat-level content confirmed by two independent fetches this session: the FandomWire episode 3 review and the AOL episode 3 recap, which agree on all five action beats used here.",
+          "clip_locate": {
+            "season": 4,
+            "episode": 3,
+            "locate_confirmed_via": "Both fetched sources name episode 3 of The Calamity explicitly, give its title as 'Blood for My Bone', and date it 2026-08-08.",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Kenpachi Zaraki cuts Gerard's hand clean off",
+          "reason": "The single hardest hit landed in the episode -- and the setup for the regeneration beat",
+          "duration_sec": 10,
+          "timeline_start_sec": 10,
+          "timeline_end_sec": 20,
+          "scene_verified": true,
+          "verification_source_url": "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Kenpachi Zaraki severs Gerard's hand",
+            "source_content_confirmed": "FandomWire review: 'He severs Gerard's hand, which eventually grows back', called a 'classic Kenpachi entrance'; AOL recap independently: 'cuts off Gerard's hand', explicitly noting it is the hand rather than the arm.",
+            "match": true
+          },
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Episode 3 of BLEACH: Thousand-Year Blood War - The Calamity aired 2026-08-08 on Hulu (US) / Disney+ (global) and is the source for every cut in this plan. Beat-level content confirmed by two independent fetches this session: the FandomWire episode 3 review and the AOL episode 3 recap, which agree on all five action beats used here.",
+          "clip_locate": {
+            "season": 4,
+            "episode": 3,
+            "locate_confirmed_via": "Both fetched sources name episode 3 of The Calamity explicitly, give its title as 'Blood for My Bone', and date it 2026-08-08.",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Gerard's severed hand regenerates immediately",
+          "reason": "The payoff that reframes the fight: the hardest hit available changes nothing",
+          "duration_sec": 10,
+          "timeline_start_sec": 20,
+          "timeline_end_sec": 30,
+          "scene_verified": true,
+          "verification_source_url": "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+          "claim_vs_source_check": {
+            "claimed_beat": "The hand Kenpachi severed grows back at once",
+            "source_content_confirmed": "AOL recap: 'The hand grows back immediately, which shows how powerful Gerard's regenerative ability is'; FandomWire review confirms the severed hand 'eventually grows back'.",
+            "match": true
+          },
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Episode 3 of BLEACH: Thousand-Year Blood War - The Calamity aired 2026-08-08 on Hulu (US) / Disney+ (global) and is the source for every cut in this plan. Beat-level content confirmed by two independent fetches this session: the FandomWire episode 3 review and the AOL episode 3 recap, which agree on all five action beats used here.",
+          "clip_locate": {
+            "season": 4,
+            "episode": 3,
+            "locate_confirmed_via": "Both fetched sources name episode 3 of The Calamity explicitly, give its title as 'Blood for My Bone', and date it 2026-08-08.",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Byakuya Kuchiki's Senbonzakura Kageyoshi cherry-blossom swarm",
+          "reason": "Third captain, third distinct approach, same result",
+          "duration_sec": 10,
+          "timeline_start_sec": 30,
+          "timeline_end_sec": 40,
+          "scene_verified": true,
+          "verification_source_url": "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Byakuya attacks Gerard with Senbonzakura Kageyoshi's blade swarm",
+            "source_content_confirmed": "FandomWire review: Byakuya enters using 'Senbonzakura Kageyoshi'; AOL recap independently describes him attacking 'with a swarm of cherry blossoms'.",
+            "match": true
+          },
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Episode 3 of BLEACH: Thousand-Year Blood War - The Calamity aired 2026-08-08 on Hulu (US) / Disney+ (global) and is the source for every cut in this plan. Beat-level content confirmed by two independent fetches this session: the FandomWire episode 3 review and the AOL episode 3 recap, which agree on all five action beats used here.",
+          "clip_locate": {
+            "season": 4,
+            "episode": 3,
+            "locate_confirmed_via": "Both fetched sources name episode 3 of The Calamity explicitly, give its title as 'Blood for My Bone', and date it 2026-08-08.",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "The Miracle turning the captains' own damage back onto them",
+          "reason": "The actual reveal of the episode -- Gerard is not merely durable, he reflects damage",
+          "duration_sec": 10,
+          "timeline_start_sec": 40,
+          "timeline_end_sec": 50,
+          "scene_verified": true,
+          "verification_source_url": "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Damage dealt to Gerard/Hoffnung lands on the captains instead",
+            "source_content_confirmed": "FandomWire review: when the three captains injure his sword Hoffnung, 'they are the ones ending up with cuts'; AOL recap: 'It only becomes worse when they are the ones getting hurt while he leaves the fight mostly uninjured.'",
+            "match": true
+          },
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Episode 3 of BLEACH: Thousand-Year Blood War - The Calamity aired 2026-08-08 on Hulu (US) / Disney+ (global) and is the source for every cut in this plan. Beat-level content confirmed by two independent fetches this session: the FandomWire episode 3 review and the AOL episode 3 recap, which agree on all five action beats used here.",
+          "clip_locate": {
+            "season": 4,
+            "episode": 3,
+            "locate_confirmed_via": "Both fetched sources name episode 3 of The Calamity explicitly, give its title as 'Blood for My Bone', and date it 2026-08-08.",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Episode 3's closing shot: all three captains still standing before an unresolved Gerard",
+          "reason": "Closer beat carrying the cliffhanger and the CTA",
+          "duration_sec": 10,
+          "timeline_start_sec": 50,
+          "timeline_end_sec": 60,
+          "scene_verified": true,
+          "verification_source_url": "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+          "claim_vs_source_check": {
+            "claimed_beat": "The episode ends unresolved with the three captains still facing Gerard",
+            "source_content_confirmed": "FandomWire review states the episode ends on a deep cliffhanger with the Gerard fight unresolved; AOL recap likewise ends with all three captains facing Gerard without resolution.",
+            "match": true
+          },
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Episode 3 of BLEACH: Thousand-Year Blood War - The Calamity aired 2026-08-08 on Hulu (US) / Disney+ (global) and is the source for every cut in this plan. Beat-level content confirmed by two independent fetches this session: the FandomWire episode 3 review and the AOL episode 3 recap, which agree on all five action beats used here.",
+          "clip_locate": {
+            "season": 4,
+            "episode": 3,
+            "locate_confirmed_via": "Both fetched sources name episode 3 of The Calamity explicitly, give its title as 'Blood for My Bone', and date it 2026-08-08.",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          }
+        }
+      ],
+      "clip_descriptions": "CUT 1 (0:00-0:10): Hitsugaya freezes Gerard's hand solid - opens the assault - S4E3. CUT 2 (0:10-0:20): Kenpachi severs that hand in a classic Kenpachi entrance - S4E3. CUT 3 (0:20-0:30): the hand regenerates immediately - the beat that reframes the fight - S4E3. CUT 4 (0:30-0:40): Byakuya's Senbonzakura Kageyoshi cherry-blossom swarm - S4E3. CUT 5 (0:40-0:50): The Miracle reflecting the captains' damage back onto them - S4E3. CUT 6 (0:50-1:00): the unresolved closing shot, all three still facing Gerard - S4E3. All six cuts come from aired episode 3 (2026-08-08); no manga or stand-in footage is used, and no beat from later in the manga (including Gerard's eventual fate) appears anywhere in this package.",
+      "captions": "THREE CAPTAINS / ONE GERARD / HITSUGAYA FREEZES IT / KENPACHI CUTS IT OFF / IT GREW BACK / NOW THEY'RE THE ONES BLEEDING / LEAVE YOUR TAKE",
+      "youtube_title": "Bleach: 3 Captains Couldn't Scratch Gerard",
+      "tiktok_title": "They Cut His Hand Off. It Grew Back.",
+      "tiktok_post_text": "Three Gotei 13 captains went at Gerard Valkyrie in The Calamity episode 3 and walked away as the only ones bleeding. Kenpachi took the hand off and it was back instantly. Episode 4 is out now. #bleach #bleachtybw #thecalamity #gerardvalkyrie #anime",
+      "pinned_comment": "The detail that gets me: it's not that Gerard tanked the hits. It's that the hits came back. You can't brute-force a guy who returns the damage.",
+      "post_times": {
+        "youtube": "7:00 PM ET",
+        "tiktok": "7:15 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false
+    }
+  ]
+}

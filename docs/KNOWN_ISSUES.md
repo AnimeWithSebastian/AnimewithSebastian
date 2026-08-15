@@ -1765,6 +1765,36 @@ fetched. Recorded here rather than silently omitted. It also did not matter: Law
 claim anyway, so both corrections rest on non-encyclopedic sources (cbr.com,
 fandomwire.com) as required.
 
+**UPDATE (2026-08-15) — the Fandom 402 is SYSTEMIC, not a one-off; the framing
+above understates it:** the "Note on encyclopedic sourcing" paragraph above was
+written treating a single HTTP 402 on one One Piece page as an incident worth
+recording so it was not silently omitted. That framing is too narrow. Later the
+same day, while doing per-clip verification for the Bleach package, `fandom.com`
+returned **HTTP 402 Payment Required on every attempt, across different
+subdomains** — `bleach.fandom.com` (both the Gerard Valkyrie character page and
+the "The Gotei 13 & The Visored vs. Gerard Valkyrie" battle page) failed exactly
+as `onepiece.fandom.com` had. This is not a per-page or per-franchise problem: it
+is a blanket access block on `fandom.com` from this environment.
+
+**Why it matters more than the original note implies:** Fandom's per-battle and
+per-chapter pages are the most chapter-precise source available for clip
+verification — they are frequently the only source that states which specific
+chapter a given beat occurs in. Losing them does not threaten Law #147 compliance
+(as the original note correctly observes, an encyclopedic source can never be the
+SOLE support for a core claim anyway, so nothing that *depends* on Fandom was ever
+allowed), but it does materially raise the cost of Law #73 clip anchoring, which
+must now be assembled from chapter-review blogs and news articles that often
+disagree on detail. A concrete example from the same session: two independently
+fetched sources on the same manga chapter disagreed on whether Kenpachi *sliced*
+or *bit* Gerard's arm off — the kind of discrepancy a wiki page would normally
+settle in one fetch.
+
+**Practical effect going forward:** do not plan a verification pass around
+fetching `fandom.com`, and do not treat a Fandom 402 as a surprise worth
+re-attempting. Budget for non-encyclopedic chapter-level sources from the start.
+The original paragraph above is left unedited as the record of what was known when
+F40 was written.
+
 ## F41: A full send-review-approve-send-log cycle was reported complete with NO matching artifact anywhere in the repo — the same failure pattern as F35, at workflow scale
 
 **Discovered:** 2026-08-15, on picking up the repo at HEAD 0e8ac58.
@@ -1835,3 +1865,234 @@ someone checked the artifacts instead of the report.
 the 2026-08-15 Phase 2 report — the Slime hold and the already-sent Link Click
 approval both rest on the same fetch mechanism, and both deserve spot-checking on
 this same principle.
+
+## F42: EPISODE_MOMENT has ZERO validator logic — neither its mandatory spoiler warning nor its hard 7-day airing deadline has any mechanical backstop
+
+**Discovered:** 2026-08-15, while building an EPISODE_MOMENT package for BLEACH:
+Thousand-Year Blood War – The Calamity episode 3 (batch
+d4a8f107-6b3e-4c92-9f05-1a7de2b48c63) and checking what the validator would enforce
+before relying on it.
+
+**Status:** OPEN — findings record only, no fix written. Same standing convention as
+every other backlog item in this file: no diff without explicit go-ahead and full
+diff review first.
+
+**The gap, verified by grep on 2026-08-15:**
+
+| Check | Result |
+|---|---|
+| `grep -rn -i "spoiler" validators/ tools/` | **no matches at all** |
+| `grep -rn "EPISODE_MOMENT" validators/ tools/` | exactly ONE match: `validate_dual_package.py:87`, inside the `FORMAT_TYPES` tuple |
+| `grep -rn -i "airing_window\|aired_within\|air_date\|7-day" validators/ tools/` | **no matches** |
+
+So `EPISODE_MOMENT` is a token the validator will accept, and nothing more. There is
+no branch keyed on it anywhere in the validation or send path.
+
+**What `cron_daily_runtime.txt` actually requires of the format** (format catalog,
+Law #96 rotation block): "EPISODE_MOMENT (one scene/beat/reveal from an episode aired
+within 7 days; **spoiler warning required**; no blackout but **the 7-day airing window
+is a hard deadline**)."
+
+Both obligations are real rules. Neither is checked. A package can declare
+`format_type: "EPISODE_MOMENT"`, carry no spoiler warning in any field, and describe
+an episode that aired four months ago, and the validator will return a clean PASS.
+
+**Why this is the durable finding and not a batch note:** the two obligations are
+exactly the kind this repo has already decided should have mechanical backstops, and
+has closed twice before with working precedent:
+
+- **WORTH_WATCHING's comparative-language ban (Law #158).** The runtime does not
+  merely ask the drafting pass to avoid comparative phrasing and set
+  `no_comparative_language=true`. `validators/validate_dual_package.py` carries a real
+  `BANNED_COMPARATIVE_LANGUAGE` regex table and runs an independent mechanical scan
+  over the same fields, failing closed on a match **regardless of what the
+  self-attestation flag claims**. The runtime says so explicitly: "do not set it true
+  unless the draft genuinely contains zero comparative/ranking phrasing."
+- **Law #167's `episode_source`.** Rather than trusting that a clip's episode number
+  was properly established, the field is a closed enum (`explicitly_stated` /
+  `inferred`) and `episode_source_ok` is part of the `clip_locate` validity return at
+  `validate_dual_package.py:581-583`.
+
+In both cases the pattern is the same: a drafting-pass obligation was paired with a
+mechanical check that fails closed, precisely because self-attestation alone was not
+considered sufficient. EPISODE_MOMENT's two obligations sit at the same risk level and
+have neither.
+
+**Concrete evidence this is not theoretical.** The 2026-08-15 Bleach package DOES
+carry its spoiler warning — the VO's second sentence is "Spoiler warning for Bleach:
+Thousand-Year Blood War, The Calamity, episode three, which aired August eighth." It
+is there because the author read the runtime prose and put it there, not because
+anything would have caught its absence. The validator returned PASS on 87/87 checks
+and not one of those 87 checks looked at it. Had the drafting pass simply forgotten,
+the package would have shipped a spoiler-laden Shorts script for a currently-airing
+weekly series with a clean validator report attached — and the report would have been
+accurate about everything it actually checked.
+
+The 7-day half has a live near-miss in the same batch: episode 3 aired 2026-08-08 and
+the package's `post_date` is 2026-08-15, which is day 7 — inside the window with zero
+margin, and eligible only on that one day. Nothing in the tooling computes that
+distance or would flag day 8.
+
+**Severity:** Medium-high for the spoiler half, medium for the deadline half. The
+spoiler obligation protects the audience relationship directly and its failure mode is
+public and not retractable once posted; the deadline failure mode is a stale package,
+which is embarrassing but recoverable.
+
+**Two sub-gaps, separable if only one gets fixed:**
+1. **Spoiler warning.** Hardest part is deciding what counts as satisfying it — a
+   substring scan for "spoiler" across `vo`/`captions`/`hook_onscreen_text` would be
+   crude but fail-closed and consistent with `BANNED_COMPARATIVE_LANGUAGE`'s existing
+   anchored-regex discipline. Worth noting the inverse risk: a naive scan invites
+   satisfying the check with the word rather than an actual warning, the same
+   self-attestation weakness one layer down.
+2. **7-day airing window.** Not mechanically checkable today at all — no package field
+   carries the episode's air date. `clip_locate` records `season`/`episode` but no
+   date, so enforcing this would require a new field (e.g. `episode_air_date`) before
+   any check could exist. That makes it a schema change, not just a validator change,
+   and it should be scoped as such.
+
+**Relationship to other entries:** this is the same *category* as F18's confirmed root
+cause — a field or obligation that the validator only checks for presence/shape, never
+for substance — but a distinct instance, and unlike F18 there is no field here to check
+at all. Also adjacent to the standing-practice note in F41: "reported complete" is not
+evidence, and here "validator PASS" is not evidence of spoiler compliance either,
+because the validator never claimed to look.
+
+**ADDENDUM (2026-08-15) — a second, unrelated defect in the same validator area:
+the schema docstring contradicts the live check on `face`/`split_screen`.** Found
+while building the same batch, by reading the schema block to learn the required
+package shape. Documented here rather than as its own entry because it lives in the
+same file and the same review pass would touch both.
+
+`validators/validate_dual_package.py`'s PACKAGE schema docstring states, at lines
+2199-2200:
+
+```
+  "video_style": "Anime Clips Only (anime footage only; no face/split/inset)",
+  "face": false, "split_screen": false,
+```
+
+The live checks at lines 1526-1533 require the exact opposite:
+
+```
+    r.add(f"{p} face flag is true (face-cam split-screen is the required default format)",
+          pkg.get("face", None) is True, ...)
+    r.add(f"{p} split_screen flag is true (face-cam split-screen is the required default format)",
+          pkg.get("split_screen", None) is True, ...)
+    r.add(f"{p} video_style declares the face-cam split-screen format",
+          any(tok in style for tok in ("face", "split")), ...)
+```
+
+A package built by copying the documented example would fail all three checks. The
+docstring is stale relative to the Law #134 Stage 2 face-cam decision that the live
+checks implement (`cron_daily_runtime.txt` restates the requirement: "No change to
+Law #134 Stage 2 face-cam split screen — required here same as every other format,
+no anime-only exception").
+
+**Severity:** Low for correctness — this fails CLOSED, so no bad package ships
+because of it; the validator rejects the wrong shape rather than accepting it. The
+cost is authoring friction and misdirection: the schema block is the natural place
+to look for the required shape, and it is actively wrong. Worth noting that this
+document has repeatedly found stale in-repo documentation to be the leading cause
+of wasted effort, and this is an instance of it inside the validator itself.
+
+**Explicitly NOT fixed:** no change has been made to `validate_dual_package.py`.
+Correcting the docstring is a one-line-area edit with no behavioral effect, but it
+touches the validator, and validator changes require their own authorization and
+diff review per standing convention. Documented only.
+
+## F43: `blackout_conflict` and `recent_send_conflict` are pure self-attestation with zero mechanical verification — a real duplicate very nearly shipped because of it
+
+**Discovered:** 2026-08-15, while rebuilding the batch that F41 found had never been
+sent. The duplicate was caught by manually reading `sent_scripts_events.jsonl`, not
+by any check.
+
+**Status:** OPEN — findings record only, no fix written. Same standing convention as
+every other backlog item here: no diff without explicit go-ahead and full diff review.
+
+**What nearly happened.** A One Piece package was being rebuilt around chapter 1190
+and Scopper Gaban's fate. Reading the send log directly to confirm blackout state
+turned up this already-sent entry from six days earlier:
+
+| Field | Value |
+|---|---|
+| `post_date` | 2026-08-09 |
+| `batch` | 6818490a |
+| `show` | One Piece |
+| `format_type` | THE_MOMENT |
+| `angle` | "Chapter 1190: Scopper Gaban lands the first confirmed injury on Imu in the entire series, **then loses his arm for it**" |
+| `tiktok_title` | "Gaban just did what Luffy couldn't" |
+
+Same show, same chapter, same character, same arm-loss beat, same format family, six
+days apart. The rebuild would have republished the previous week's video. The package
+was dropped (see the 2026-08-15 batch's `approval.json` `dropped_package_record`).
+
+**Why nothing would have caught it.** `validators/validate_dual_package.py` checks
+only that the two conflict flags are PRESENT and set to `false`
+(`validate_dual_package.py:1616-1620`):
+
+```
+    bo = pkg.get("blackout_conflict", None)
+    rc = pkg.get("recent_send_conflict", None)
+    r.add(f"{p} blackout_conflict input present and clear", bo is False, ...)
+    r.add(f"{p} recent_send_conflict input present and clear", rc is False, ...)
+```
+
+That is the entire mechanism. The validator never opens `blackout_state.json`, never
+opens `sent_scripts_log.json` or `sent_scripts_events.jsonl`, never compares the
+package's `show` against recent sends, and never computes a date distance. A package
+asserting `recent_send_conflict: false` while duplicating yesterday's send passes
+cleanly. The validator's own comment at line 1951 acknowledges the limitation
+("blackout_conflict/recent_send_conflict are self-attested"), so this is a known
+shape — but the acknowledgment is the whole treatment, and the near-miss shows the
+cost is real and not hypothetical.
+
+**Why this is the same pattern already closed twice elsewhere.** This repo has
+twice decided that a drafting-pass obligation at this risk level needs a mechanical
+backstop, and has built one:
+
+- **WORTH_WATCHING's comparative-language ban (Law #158)** pairs the
+  `no_comparative_language` self-attestation with a real
+  `BANNED_COMPARATIVE_LANGUAGE` regex scan that fails closed on a match **regardless
+  of what the flag claims**.
+- **Law #167's `episode_source`** replaced an implicit assumption with a closed enum
+  checked at `validate_dual_package.py:581-583`.
+
+The conflict flags are strictly more checkable than either of those: the necessary
+data is already in the repo, in files the runtime is already instructed to read
+(`cron_daily_runtime.txt` line 41-42 lists `sent_scripts_log.json` and
+`blackout_state.json` as authoritative reads). This is not a case of "the validator
+cannot know" — it is a case of the validator not looking at data sitting next to it.
+
+**Distinguishing this from F42.** F42 is about a format token with no logic attached.
+This is about two fields that DO have checks, where the checks verify the wrong
+thing — presence and value of a self-report, rather than the fact the self-report
+claims. Related in spirit, different in mechanism, and separately fixable.
+
+**Sketch of what a real check could do** (not a proposal to implement, just to show
+feasibility): for each package, read the send log, filter to entries with a matching
+`show`, and fail closed if any falls inside the applicable window — the generic
+7-day no-repeat, or the format-specific blackout from `cron_daily_runtime.txt`'s
+catalog (SEASON_RATING 7 days, SEASON_PREVIEW 7 days, MANGA_VS_ANIME 14 days,
+WATCH_RANK 14 days per ranking, WORTH_WATCHING 7 days, EPISODE_MOMENT no blackout).
+A stricter version could compare chapter/episode numbers where present, which is what
+would have caught THIS case even at a show level that a date window alone might miss
+if the cooldown had already lapsed.
+
+**One honest caveat on scope.** Even a date-window check would not have caught the
+full problem here on its own. The two packages shared a chapter number, and the
+duplicate would still have been a duplicate on day 8, when the 7-day window had
+expired and `recent_send_conflict: false` would have been literally true. Detecting
+"we already told this exact story" is a content-similarity question, not a date
+question. A date-window check is worth building and would have caught this specific
+instance, but it should not be mistaken for a complete solution to duplicate content.
+
+**Severity:** High. The failure mode is public, reaches the audience directly, and
+damages the channel's credibility in the same way F40's false claims would have —
+with the added problem that a duplicate is obvious to exactly the engaged repeat
+viewers the channel most depends on.
+
+**Relationship to other entries:** F41 established that a "reported complete" claim
+needs artifact evidence. This is the same principle one level down: a package's own
+`recent_send_conflict: false` is a report about the send log, and it should be
+verified against the send log rather than trusted.

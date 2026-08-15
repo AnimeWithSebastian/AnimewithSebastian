@@ -1,0 +1,73 @@
+SUBJECT: EVENING | BLEACH: Thousand-Year Blood War - The Calamity | 2026-08-15 | Bleach: 3 Captains Couldn't Scratch Gerard
+
+━━━ EVENING — 2026-08-15 ━━━
+SHOW:    BLEACH: Thousand-Year Blood War - The Calamity
+ANGLE:   Episode 3 puts Hitsugaya, Kenpachi and Byakuya on Gerard Valkyrie together and none of it works: the hand Kenpachi severs regrows immediately, and The Miracle turns the damage they deal back onto them, ending the episode unresolved
+FORMAT:  EPISODE_MOMENT
+STYLE:   Face-Cam Split Screen (Creator TOP / anime footage BOTTOM — Law #134 Stage 2)
+TOPIC:   timely — signals: currently_airing
+SERIES:  one-off
+FUNNEL:  standalone
+
+*** SINGLE-PACKAGE BATCH — NO MORNING PACKAGE ***
+One package only. The intended second package (One Piece, chapter 1190, Scopper Gaban) was DROPPED on owner decision 2026-08-15 as a duplicate: the channel already sent that exact story on 2026-08-09 (batch 6818490a, THE_MOMENT, angle 'Chapter 1190: Scopper Gaban lands the first confirmed injury on Imu in the entire series, then loses his arm for it'). Same show, same chapter, same character, same arm-loss beat, six days earlier. Rebuilding it would republish already-published content, so recent_send_conflict could not honestly be recorded as false and no One Piece package appears in this batch. See docs/KNOWN_ISSUES.md F41.
+
+*** SPOILER NOTICE (EPISODE_MOMENT requirement) ***
+This package covers a currently-airing episode. The spoiler warning is carried in the
+VO itself as its second sentence. Note that nothing in the validator enforces this —
+see docs/KNOWN_ISSUES.md F42.
+
+━━━ FIRST-SECOND HOOK (Law #144) ━━━
+ON-SCREEN (second 1): THREE CAPTAINS. ZERO PROGRESS.
+SPOKEN (VO first line): Three Gotei Thirteen captains hit Gerard Valkyrie with everything they had this week, and the only people bleeding when it ended were them.
+HOOK FAMILY: contradiction
+(candidate A: Three Gotei Thirteen captains hit Gerard Valkyrie with everything they had this week, and the only people bleeding when it ended were them.
+ candidate B: Kenpachi cut Gerard's hand off this week and it was back before the scene ended.
+ SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (215 words — fills the resolved 60s CapCut edit) ━━━
+Three Gotei Thirteen captains hit Gerard Valkyrie with everything they had this week, and the only people bleeding when it ended were them. Spoiler warning for Bleach: Thousand-Year Blood War, The Calamity, episode three, which aired August eighth. Toshiro Hitsugaya opens by freezing Gerard's hand solid. Kenpachi Zaraki follows with a classic Kenpachi entrance and cuts that hand clean off. It grows back immediately, which is the episode telling you exactly what kind of problem this is. Byakuya Kuchiki adds a swarm of cherry blossoms from Senbonzakura Kageyoshi. Three captains, three completely different answers, and Gerard leaves the exchange mostly uninjured. Then the episode reframes the entire fight. When the captains damage his sword Hoffnung, the wounds do not stay on Gerard. They land on the captains instead. The Miracle does not simply heal him, it hands the damage back to whoever dealt it. That is not a power you can out-damage, and three of the Gotei Thirteen's heaviest hitters just spent an entire episode proving it. The episode ends there, unresolved, all three still standing in front of him, with the climax held for episode four. So is there any amount of raw force that actually solves Gerard, or does the answer have to come from somewhere else entirely? Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings — Law #140) ━━━
+CUT 1 — 10 sec (0:00–0:10): Hitsugaya freezes Gerard Valkyrie's hand solid — Opens the captains' assault; first of three answers tried on Gerard (S4E3)
+CUT 2 — 10 sec (0:10–0:20): Kenpachi Zaraki cuts Gerard's hand clean off — The single hardest hit landed in the episode -- and the setup for the regeneration beat (S4E3)
+CUT 3 — 10 sec (0:20–0:30): Gerard's severed hand regenerates immediately — The payoff that reframes the fight: the hardest hit available changes nothing (S4E3)
+CUT 4 — 10 sec (0:30–0:40): Byakuya Kuchiki's Senbonzakura Kageyoshi cherry-blossom swarm — Third captain, third distinct approach, same result (S4E3)
+CUT 5 — 10 sec (0:40–0:50): The Miracle turning the captains' own damage back onto them — The actual reveal of the episode -- Gerard is not merely durable, he reflects damage (S4E3)
+CUT 6 — 10 sec (0:50–1:00): Episode 3's closing shot: all three captains still standing before an unresolved Gerard — Closer beat carrying the cliffhanger and the CTA (S4E3)
+TOTAL CLIP TIME: 60 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+THREE CAPTAINS / ONE GERARD / HITSUGAYA FREEZES IT / KENPACHI CUTS IT OFF / IT GREW BACK / NOW THEY'RE THE ONES BLEEDING / LEAVE YOUR TAKE
+
+━━━ YOUTUBE TITLE ━━━
+Bleach: 3 Captains Couldn't Scratch Gerard
+
+━━━ TIKTOK TITLE ━━━
+They Cut His Hand Off. It Grew Back.
+
+━━━ TIKTOK POST TEXT ━━━
+Three Gotei 13 captains went at Gerard Valkyrie in The Calamity episode 3 and walked away as the only ones bleeding. Kenpachi took the hand off and it was back instantly. Episode 4 is out now. #bleach #bleachtybw #thecalamity #gerardvalkyrie #anime
+
+━━━ PINNED COMMENT ━━━
+The detail that gets me: it's not that Gerard tanked the hits. It's that the hits came back. You can't brute-force a guy who returns the damage.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 7:00 PM ET
+TikTok — post 7:15 PM ET
+
+*** TIMING CAVEAT — SEBASTIAN'S DECISION ***
+Episode 4 of The Calamity released today at 8:00am PDT / 11:00am ET. These post times
+put this package out roughly eight hours AFTER the next episode was already available.
+The package is factually accurate and inside EPISODE_MOMENT's 7-day window — but only
+just: episode 3 aired 2026-08-08, so 2026-08-15 is day 7 of 7, the last
+eligible day. Sending later is not an option without rebuilding against episode 4.
+See approval.json's verification_gaps_and_caveats for the full framing.
+
+━━━ SOURCES ━━━
+1. Episode 3 beat-by-beat: Hitsugaya freezes the hand, Kenpachi severs it, it regrows, Byakuya's Senbonzakura, damage reflected onto the captains; title 'Blood for My Bone', aired Aug 8 2026 — https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/ (Aug 2026)
+2. Independent episode 3 recap confirming the same five beats, and explicitly noting Kenpachi cuts the HAND rather than the arm — https://www.aol.com/articles/bleach-thousand-blood-war-calamity-173000000.html (Aug 2026)
+3. Episode 4 release date/time (Aug 15 2026) for the unresolved-climax claim — https://www.cbr.com/bleach-tybw-season-4-episode-4-the-calamity-release-date-time/ (Aug 2026)
+4. Episode 4 guide: climax of the captains vs Gerard fight expected in episode 4 — https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-4-release-date-time-watch-guide/ (Aug 2026)
+
+━━━ END EVENING ━━━

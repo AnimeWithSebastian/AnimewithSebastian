@@ -1,0 +1,85 @@
+{
+  "approved_by": null,
+  "approved_at": null,
+  "approval_status": "AWAITING_APPROVAL",
+  "approval_pending_note": "approved_by/approved_at are deliberately left null. This file records the MODEL's Law #165 fetch-and-confirm review only; it is not a human approval and must not be read as one. Sebastian fills these two fields when he approves. Pre-filling them would be exactly the defect documented in docs/KNOWN_ISSUES.md F41 -- a workflow step reported complete without the event having occurred.",
+  "batch_id": "d4a8f107-6b3e-4c92-9f05-1a7de2b48c63",
+  "corrects_batch_id": null,
+  "scope_note": "This batch contains ONE package: BLEACH: Thousand-Year Blood War - The Calamity (evening). It is NOT a correction of batch 32acbc3d-5319-42e9-a6bf-321e9c6f3f85 -- that batch was reported sent but never existed in any artifact (docs/KNOWN_ISSUES.md F41), so there is nothing to correct and corrects_batch_id is null. The One Piece package originally intended alongside this one was DROPPED, not held: see dropped_package_record below.",
+  "dropped_package_record": {
+    "show": "One Piece",
+    "intended_angle": "Chapter 1190 / Scopper Gaban's fate, with the two F40 corrections applied (age hedge, Rocks D. Xebec relationship)",
+    "disposition": "DROPPED as duplicate content, on owner decision 2026-08-15",
+    "reason": "The channel already sent this exact story on 2026-08-09 under batch 6818490a: format_type THE_MOMENT, angle 'Chapter 1190: Scopper Gaban lands the first confirmed injury on Imu in the entire series, then loses his arm for it', tiktok_title 'Gaban just did what Luffy couldn't'. Same show, same chapter, same character, same arm-loss beat, six days earlier. Verified directly against cron_tracking/sent_scripts_events.jsonl this session.",
+    "consequence": "recent_send_conflict could not honestly be recorded as false for a rebuilt One Piece package, and the validator requires it to be false to pass (carve-out exists only for THEORY_SPECULATION + revisit_justification). Rather than stage a knowingly-failing package or misreport the flag, the package was dropped entirely.",
+    "note_on_F40": "The two false claims documented in F40 remain correctly documented and were never sent -- the 2026-08-09 package does not contain them. Dropping this rebuild does not leave any uncorrected claim in circulation."
+  },
+  "fetch_review": [
+    {
+      "claim": "[CORE, anchors_claim=hook] In The Calamity episode 3, aired 2026-08-08, Hitsugaya, Kenpachi and Byakuya all attack Gerard Valkyrie and the episode ends with him mostly uninjured and the captains taking the damage instead.",
+      "url": "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh this session. Confirms episode number (3), title ('Blood for My Bone') and air date (August 8, 2026). On the outcome, exact quote: when the three captains injure his sword Hoffnung, 'they are the ones ending up with cuts.' Second, independent citation https://www.aol.com/articles/bleach-thousand-blood-war-calamity-173000000.html was also fetched fresh this session and confirms the same outcome in its own words: 'It only becomes worse when they are the ones getting hurt while he leaves the fight mostly uninjured.' Both sources independently describe the episode ending unresolved with all three captains still facing Gerard. Claim is doubly confirmed."
+    },
+    {
+      "claim": "[CORE, type D] Kenpachi Zaraki severs Gerard's hand and it regenerates immediately.",
+      "url": "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh this session. Exact quote: 'He severs Gerard's hand, which eventually grows back', described as a 'classic Kenpachi entrance.' Independently confirmed by the AOL recap fetched this session: 'cuts off Gerard's hand' and 'The hand grows back immediately, which shows how powerful Gerard's regenerative ability is.' IMPORTANT CORRECTION CAPTURED HERE: the task brief described this beat as Kenpachi severing Gerard's ARM. Both fetched anime sources say HAND, and the AOL recap explicitly flags the distinction ('specified as the hand rather than the arm'). The VO was written to say hand. This is the third factual error in this batch caught only by fetching -- see also the two logged in docs/KNOWN_ISSUES.md F40."
+    },
+    {
+      "claim": "[CORE, type D] Toshiro Hitsugaya freezes Gerard's hand.",
+      "url": "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh this session. Exact quote: 'His hand freezes as we see the return of Toshiro Hitsugaya.' Independently confirmed by the AOL recap fetched this session: 'he freezes Gerard's hand' before the other captains engage. Doubly confirmed."
+    },
+    {
+      "claim": "[CORE, type D] Byakuya Kuchiki attacks with Senbonzakura Kageyoshi's cherry-blossom blade swarm.",
+      "url": "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh this session. States Byakuya enters using 'Senbonzakura Kageyoshi'. Independently confirmed by the AOL recap fetched this session, which describes him attacking 'with a swarm of cherry blossoms'. Doubly confirmed. NOTE ON A DELIBERATE OMISSION: the manga equivalent of this beat (chapter 671) has Byakuya use the Senkei form and its Ikka Senjinka secret technique. The FandomWire review explicitly does NOT specify whether the episode used Senkei or Ikka Senjinka, so the VO says only 'a swarm of cherry blossoms from Senbonzakura Kageyoshi' and does not name the sub-technique. Naming it would have been an inference from the manga, not a fetched fact about the episode."
+    },
+    {
+      "claim": "[CORE, type D] Gerard's The Miracle causes damage dealt to him and to his sword Hoffnung to land on the attacking captains instead.",
+      "url": "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh this session. Exact quote: the climax shows 'The Miracle' reversing damage -- when the three captains injure his sword Hoffnung, 'they are the ones ending up with cuts.' Independently confirmed by the AOL recap fetched this session: 'It only becomes worse when they are the ones getting hurt while he leaves the fight mostly uninjured.' Doubly confirmed. This is the package's central reveal and the beat the hook rests on."
+    },
+    {
+      "claim": "[CORE, type C] Episode 4 releases 2026-08-15 and is expected to carry the climax of the captains-versus-Gerard fight, which episode 3 leaves unresolved.",
+      "url": "https://www.cbr.com/bleach-tybw-season-4-episode-4-the-calamity-release-date-time/",
+      "fetched_content_supports_claim": true,
+      "note": "Episode 4's release date of Saturday, August 15, 2026 at 8:00am PDT (Hulu US / Disney+ global) is confirmed across the CBR release-date page and the FandomWire episode 4 guide, both surfaced this session, which also states the episode 'will likely see the climax of the battle between the captains and Gerard Valkyrie.' HEDGE DISCIPLINE (Law #149 point 3): the source hedges with 'likely', so the VO does NOT assert what episode 4 contains. The VO says only that the climax is 'held for episode four' -- i.e. that episode 3 ended unresolved, which is directly confirmed -- and makes no claim about episode 4's actual content."
+    },
+    {
+      "claim": "[NON-CORE] Episode 3 is titled 'Blood for My Bone'.",
+      "url": "https://fandomwire.com/bleach-thousand-year-blood-war-the-calamity-episode-3-review/",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh this session; title and air date stated directly. Not used in the VO, captions, or titles -- recorded for the clip_locate audit trail only."
+    }
+  ],
+  "verification_gaps_and_caveats": [
+    {
+      "issue": "fandom.com is entirely unfetchable this session (HTTP 402 Payment Required)",
+      "detail": "Both bleach.fandom.com and onepiece.fandom.com returned HTTP 402 on every attempt. docs/KNOWN_ISSUES.md F40 recorded this for the One Piece page as a single incident; it is in fact a blanket block on the single most chapter-precise source available. No claim in this package depends on a Fandom source -- every core claim is sourced to fandomwire.com, aol.com or cbr.com, all non-encyclopedic -- so this gap did not weaken the package. Recorded because F40's framing understates it and should be updated."
+    },
+    {
+      "issue": "EPISODE_MOMENT's 7-day airing window is at its final day",
+      "detail": "Episode 3 aired 2026-08-08; post_date is 2026-08-15. That is exactly 7 days, the last eligible day under cron_daily_runtime.txt's EPISODE_MOMENT rule ('one scene/beat/reveal from an episode aired within 7 days; the 7-day airing window is a hard deadline'). Inside the window, but with zero margin. If this batch is not sent on 2026-08-15 it is no longer eligible as an EPISODE_MOMENT and must be rebuilt against episode 4."
+    },
+    {
+      "issue": "Episode 4 airs the same day this package would post",
+      "detail": "Episode 4 releases 2026-08-15 at 8:00am PDT (11:00am ET). The proposed post times are 7:00pm ET (YouTube) / 7:15pm ET (TikTok), which is roughly eight hours AFTER episode 4 is already available. The package is factually accurate and within its window, but it is commentary on last week's episode published the evening the next one dropped. This is a genuine editorial weakness, not a rule violation, and it is Sebastian's call whether to send it, re-time it earlier, or rebuild against episode 4."
+    },
+    {
+      "issue": "Manga verification performed this session but deliberately NOT used",
+      "detail": "Before the framing was settled, this session fetch-verified the manga equivalents of these beats: chapter 669 (Kenpachi severs Gerard's arm; regenerates stronger -- two independent fetches, though sources disagree on mechanism, shannaro.wordpress.com saying he 'rips Gerard's arm off with his mouth alone' while others say sliced), chapter 671 (Hitsugaya freezes Gerard, Gerard breaks free, Byakuya's Ikka Senjinka), and chapter 680 (Yhwach's Auswaehlen drains Gerard and Haschwalth -- confirmed by three independent fetches; Gerard 'is turned into a skeleton' confirmed by only ONE direct fetch quote, with two other fetches of the same chapter silent on it). NONE of this is used in the shipped package. Chapter 680 in particular is far ahead of the broadcast and would spoil the arc for an audience watching weekly. Recorded here so the verification work is preserved and auditable, and so no future session mistakes it for approved package content."
+    },
+    {
+      "issue": "Spoiler warning is not mechanically enforced",
+      "detail": "cron_daily_runtime.txt requires a spoiler warning for EPISODE_MOMENT, but validate_dual_package.py contains no spoiler check and no EPISODE_MOMENT-specific logic at all (grep for 'spoiler' returns nothing). The warning is present in the VO as the second sentence ('Spoiler warning for Bleach: Thousand-Year Blood War, The Calamity, episode three, which aired August eighth') by authoring discipline, not because anything would have caught its absence. Worth a KNOWN_ISSUES entry as a validator gap."
+    }
+  ],
+  "changes_made_before_approval": "(1) One Piece package dropped entirely rather than rebuilt -- see dropped_package_record. (2) Bleach package reframed from a manga retrospective (chapters 669/671/680) to an EPISODE_MOMENT anchored to aired episode 3, after discovering mid-verification that The Calamity is adapting this exact fight weekly right now. All six clips were re-anchored from manga chapters to episode 3, and the chapter 680 Auswaehlen material was cut completely. (3) 'Arm' corrected to 'hand' throughout the VO, clips and captions after both fetched anime sources specified the hand, with AOL explicitly flagging the difference. (4) Byakuya's sub-technique left unnamed rather than carried over from the manga, since the episode-level sources do not specify it. (5) claim_type tags (Law #58) added to all six core matrix entries -- A for the episode-specifics hook claim, D for the four character-action beats, C for the episode 4 timeline claim; the first validator run failed on their absence and the taxonomy was read from hero_or_villain_master_laws_final.txt rather than copied from the prior manifest. (6) vo_word_count changed from 213 to 215 after the first count used str.split() while the validator uses its own _words() tokenizer; the build script now imports _words() from the validator directly so the count is derived, never guessed to match. FINAL VALIDATOR STATE: validators/validate_dual_package.py run against the finished manifest returns raw PASS, 0 failures.",
+  "related_process_gaps_logged_separately": "All four gaps found while preparing this batch are now logged in docs/KNOWN_ISSUES.md (commit pending at time of staging): (a) fandom.com's blanket HTTP 402 -> folded into F40 as a dated UPDATE block rather than a new entry, correcting that entry's original one-off framing; the original paragraph is left unedited as the record of what was known when F40 was written. (b) EPISODE_MOMENT having zero validator logic -- neither its mandatory spoiler warning nor its hard 7-day airing deadline has any mechanical backstop -> F42. (c) validate_dual_package.py's PACKAGE schema docstring (lines 2199-2200) showing face/split_screen as false while the live checks (lines 1526-1533) require both true -> folded into F42 as an ADDENDUM, same validator area, documented only. NO validator code was changed; that requires separate authorization. (d) blackout_conflict/recent_send_conflict being pure self-attestation with zero mechanical verification, which nearly let this batch ship a real duplicate -> F43, its own entry. F42 and F43 both cite the same precedent pattern this repo has already closed twice: WORTH_WATCHING's BANNED_COMPARATIVE_LANGUAGE scan and Law #167's episode_source enum, both of which pair a drafting-pass self-attestation with a mechanical check that fails closed."
+}
