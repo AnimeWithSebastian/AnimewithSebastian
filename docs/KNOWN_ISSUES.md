@@ -1703,3 +1703,135 @@ hour. When picked up: add a real Law #167 block to
 described) describing `episode_source`'s purpose, its two accepted values,
 and which Law #73 UPDATE 8 requirement it mirrors — matching the documentation
 depth #158/#159/#160 already have.
+
+## F40: Two false factual claims in the One Piece "Gaban" package — an unhedged age figure and an inverted character relationship — both catchable only by real fetching, not by any validator
+
+**Discovered:** 2026-08-15, while rebuilding the One Piece / Bleach batch that F41
+(below) found had never actually been produced. This entry records what was
+actually wrong, what the real sources say, and why no automated check could have
+caught either error.
+
+**Status:** both corrections VERIFIED against live sources 2026-08-15 (quotes
+below). Corrected content not yet sent — see F41 for why the original send never
+happened.
+
+**Claim 1 — "a hundred-year-old man" (FALSE, and falsely precise).**
+Scopper Gaban's age is not established in canon. Fetched live 2026-08-15:
+- CBR, "10 Strongest One Piece Characters Scopper Gaban Can Easily Beat":
+  "He **may be** in his late 70s, but Gaban can defeat some of One Piece's
+  strongest characters with ease" — note the hedge, and note "late 70s", not 100.
+  Same article: "no longer in his prime, but he can still muster enough strength
+  to take tough enemies down."
+- CBR, "One Piece Chapter 1190 Established Luffy as the Future Pirate King":
+  Gaban's "exact birthdate remains unknown", though he is "likely around the same
+  age as the 78-year-old Silvers Rayleigh."
+
+**Correct phrasing:** "a man decades past his prime" — carries the real meaning
+(elderly, diminished, still formidable) without asserting a number canon never
+gave. Per Law #149 point 3 the VO's hedge strength must match the source's: both
+sources hedge ("may be", "likely", "remains unknown"), so the VO must too.
+
+**Claim 2 — "trained under Rocks D. Xebec" (FALSE — the relationship is inverted).**
+Gaban was a Roger Pirate fighting AGAINST Rocks' crew, not a student of Rocks.
+Fetched live 2026-08-15 — FandomWire, "Every God Valley Character in One Piece and
+Their Current Status, Explained": "Scopper Gaban was with the Roger Pirates
+opposing Rocks D. Xebec's crew"; the article places his role in "the chaotic
+battle against Rocks Pirates and Celestial Dragons at God Valley."
+
+**Correct phrasing:** "fought alongside him against Rocks D. Xebec's crew at God
+Valley." This is not a nuance — the original inverts an antagonistic relationship
+into a mentorship, the kind of error a fan audience corrects instantly and which
+directly damages the channel's authority claim (Law #94 media-kit signal).
+
+**Why no validator caught either:** both are SEMANTIC truth claims. The validator
+enforces that core claims carry at least one listed, dated, non-encyclopedic
+source (Law #147) — it cannot and does not verify that the source SAYS what the
+claim says. That is exactly the Law #165 fetch-and-confirm layer's job, and it is
+a human/model judgment layer by design (M6). A package asserting "trained under
+Rocks D. Xebec" while citing a real, dated, non-encyclopedic One Piece source
+would pass every mechanical check in this repo.
+
+**Pattern worth noting:** both errors share a shape — real entities (Gaban, Rocks
+D. Xebec, God Valley) combined into a relationship or figure that no source
+states. Plausible-sounding specificity is the failure mode, not obvious invention.
+A round number ("a hundred-year-old man") and a clean narrative ("trained under")
+are both more satisfying than the hedged, messier truth, which is precisely why
+they need fetching rather than reasoning.
+
+**Note on encyclopedic sourcing:** the One Piece Fandom wiki page for Scopper
+Gaban was attempted first and returned HTTP 402 Payment Required — it could not be
+fetched. Recorded here rather than silently omitted. It also did not matter: Law
+#147 forbids an encyclopedic source (fandom.com) being the SOLE support for a core
+claim anyway, so both corrections rest on non-encyclopedic sources (cbr.com,
+fandomwire.com) as required.
+
+## F41: A full send-review-approve-send-log cycle was reported complete with NO matching artifact anywhere in the repo — the same failure pattern as F35, at workflow scale
+
+**Discovered:** 2026-08-15, on picking up the repo at HEAD 0e8ac58.
+
+**What was reported:** a prior session reported producing and SENDING two
+production emails — One Piece ("Gaban's Fate Left Unconfirmed") and Bleach
+("3 Captains Can't Beat Gerard") — under batch_id
+32acbc3d-5319-42e9-a6bf-321e9c6f3f85, including a detailed real-fetch verification
+process, an approval.json, and a "send confirmed" report.
+
+**What actually exists: nothing.** Verified fresh at HEAD 0e8ac58, working tree
+clean, in sync with origin/main:
+
+| Check | Result |
+|---|---|
+| 32acbc3d... in cron_tracking/sent_scripts_events.jsonl | 0 |
+| 32acbc3d... in sent_scripts_log.json | 0 |
+| 32acbc3d... anywhere in the repo | no files |
+| pending/32acbc3d.../ directory | absent (only 32e0fcb9... exists) |
+| archive file | absent |
+| this file's own highest entry | F39 — the promised "F40" was never written |
+
+Content keywords are equally absent from both send logs: Gerard 0, God Valley 0,
+Rocks D. Xebec 0, Captains Can 0.
+
+**Ruled out — a send under a different batch_id.** "Gaban" DOES appear (2 event
+rows, 8 legacy hits). Both are unrelated earlier One Piece packages: 05138946...
+"One Piece: Gaban Never Landed One Hit" (post_date 2026-07-27) and 6818490a...
+"One Piece 1190: Imu Finally Bleeds" (post_date 2026-08-09). Neither VO contains
+"hundred", "Rocks", "Xebec" or "God Valley" — so there is also no UNCORRECTED
+version of F40's disputed claims sitting sent, which was the real risk worth
+ruling out. The last real send event in the repo is Link Click under batch
+32e0fcb9 (post_date 2026-08-14).
+
+**Conclusion: reported as done, never executed.** No emails, no manifest, no
+approval record, no log rows, no issue entry.
+
+**SAME PATTERN AS F35, AT LARGER SCALE.** F35 documented a single fetch_url call
+reporting a claim "unsupported" that two later independent fetches of the same URL
+confirmed IS present verbatim — one step's self-report not matching reality. F41
+is the same failure at workflow scale: an entire multi-step sequence (draft →
+fetch-review → approve → send → log → document) reported complete, where not one
+of the six steps left an artifact. Taken together these are not two unrelated
+incidents; they are one class of defect appearing at two magnitudes, and this
+project has now hit it at least twice.
+
+**RECOMMENDED STANDING PRACTICE (not a one-off lesson):**
+Any report that an action COMPLETED — a send, a commit, a push, a fetch, a file
+write — should be treated as a claim requiring evidence, not as the event itself,
+and should be spot-check-verifiable against real, independent artifacts before it
+is trusted or built upon. Concretely:
+
+- a **send** is evidenced by a row in sent_scripts_events.jsonl plus the top-level
+  state.json plus the legacy log — not by a report saying "sent";
+- a **commit/push** is evidenced by `git ls-remote` matching local HEAD — not by a
+  report saying "pushed". `git rev-parse origin/main` alone is NOT sufficient: it
+  reads a local tracking ref that can be stale;
+- a **fetch** is evidenced by a quote-match recorded in approval.json — and per F35
+  a single fetch is not fully reliable in EITHER direction, so a lone "unsupported"
+  result deserves a second fetch just as much as a lone "supported" one;
+- a **file write** is evidenced by reading the file back, or by `git status`.
+
+The cost of each check is seconds. The cost of not checking, here, was an entire
+reported-complete workflow that had produced nothing — discovered only because
+someone checked the artifacts instead of the report.
+
+**Directly reinforces:** F35 (fetch reliability), and the F35/F36 priority note in
+the 2026-08-15 Phase 2 report — the Slime hold and the already-sent Link Click
+approval both rest on the same fetch mechanism, and both deserve spot-checking on
+this same principle.

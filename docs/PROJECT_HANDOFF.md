@@ -358,6 +358,37 @@ read those.*
 
 ---
 
+## 15A. ENVIRONMENT CAPABILITY BOUNDARY — Claude Code CANNOT SEND EMAIL (know this upfront)
+
+**Confirmed 2026-08-15. Read this before planning any task whose final step is a send.**
+
+A Claude Code session in this environment **cannot send email.** There is no mail
+tool available. The Zapier MCP server is present but **unauthorized**, and it cannot
+be authorized from a non-interactive session — the OAuth flow needs an interactive
+`claude mcp` / `/mcp` session or the claude.ai connector settings.
+
+**What this means in practice:**
+- A Claude Code session can do everything in the daily pipeline EXCEPT the send
+  itself: research, draft, run the Law #165 fetch-and-confirm review (WebFetch and
+  WebSearch DO work), build `run_manifest.json`, run the validator to a real PASS,
+  construct `approval.json`, and stage the batch at
+  `cron_tracking/daily_combined/pending/<batch_id>/` as `AWAITING_APPROVAL`.
+- The final send must be performed by whoever has mail access — the Computer task,
+  or a human. The Law #164/#165/#166 approval gate is already designed for exactly
+  this handoff, so this boundary does not break the workflow; it just means a Claude
+  Code session's terminal state is "staged and awaiting send", never "sent".
+- **A Claude Code session must therefore never report a send as completed.** Per F41,
+  that is not hypothetical — a prior session reported exactly that, and no artifact
+  of it exists anywhere in the repo.
+
+**Related capability notes confirmed the same day:** `git` push/fetch to GitHub works
+(verified via `git ls-remote`). `WebFetch`/`WebSearch` work, though individual fetches
+can fail or return paywalls — the One Piece Fandom wiki returned HTTP 402 (see F40),
+and per F35 a single fetch result is not fully reliable in either direction.
+`list_scheduled_tasks` returns nothing here, so this environment is NOT the Computer
+session that owns the daily/weekly crons — scheduler state cannot be verified from a
+Claude Code session either.
+
 ## 16. Session record — 2026-08-14/15 (law audit, Law #159 item 3, YPP, point 9)
 
 Three commits, all on `origin/main`. Suites went from **RED** (one failure standing
