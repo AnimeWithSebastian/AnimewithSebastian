@@ -446,7 +446,9 @@ class TestManifestRevalidationGate(LoggerCase):
 
     def test_invalid_manifest_wrong_recipient_fails_closed(self):
         bad = load_manifest()
-        bad["recipient"] = "sebastianlemos0716@gmail.com"
+        # Audit item #21 (2026-08-14): was a real personal address committed to the repo.
+        # Any non-hero_or_villain@outlook.com value exercises this check identically.
+        bad["recipient"] = "wrong@example.com"
         rc = self.run_cli_manifest(bad, "--emails-sent")
         self.assertEqual(rc, 1)
         self.assertFalse(os.path.exists(self.legacy_path))

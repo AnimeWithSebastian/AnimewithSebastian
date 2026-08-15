@@ -1,0 +1,392 @@
+{
+  "batch_id": "7c1f0a52-9b3d-4e77-8a10-2f4c6d9e0011",
+  "run_ts": "2026-07-15T23:30:00Z",
+  "post_date": "2026-07-16",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-07-14T22:00:00Z",
+    "age_days": 1,
+    "status": "CURRENT"
+  },
+  "packages": [
+    {
+      "package_id": "419e768e-3d0a-4123-9258-0bedf4780001",
+      "slot": "morning",
+      "show": "Summer 2026 Week 6 Premieres",
+      "angle": "Three of this week's premieres are being ranked backwards; each one is sourced and judged on its own premiere claim rather than on feed traction.",
+      "format_type": "SEASON_ROUNDUP",
+      "content_type": "short",
+      "topic_class": "timely",
+      "topic_signals": [
+        "premiere",
+        "currently_airing"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "Everyone ranked this week's premieres backwards.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Three premieres landed this week and the ranking everyone posted has them backwards.",
+        "The best premiere of the week is the one nobody is clipping."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Three premieres landed this week and the ranking everyone posted has them backwards.",
+      "opening_sentence": "Three premieres landed this week and the ranking everyone posted has them backwards.",
+      "vo": "Three premieres landed this week and the ranking everyone posted has them backwards. Kagurabachi opened with the cleanest sword choreography of the year and almost nobody has clipped it yet. The Elusive Samurai Season 2 came back on the same evasion premise as before, and the critics calling it repetitive missed the point of what that premise is actually for. Witch Hat Atelier Season 2 quietly out-animated both of them in its second episode this week. The real winner of this season is not the one trending on your feed right now. Which premiere actually earned your week? Leave your take.",
+      "vo_word_count": 101,
+      "question_line": "Which premiere actually earned your week?",
+      "cta_line": "Leave your take.",
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Kagurabachi premiered this week on Crunchyroll with its opening sword duel drawing the week's strongest craft reactions.",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2026-08-11/kagurabachi-anime-premiere/.240001"
+            ],
+            "anchors_claim": "hook",
+            "show": "Kagurabachi"
+          },
+          {
+            "claim": "The Elusive Samurai Season 2 returned this week on the same evasion-driven premise as season one.",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://www.crunchyroll.com/news/announcements/2026/8/11/elusive-samurai-season-2-premiere"
+            ],
+            "show": "The Elusive Samurai Season 2"
+          },
+          {
+            "claim": "Witch Hat Atelier Season 2 aired its second episode this week.",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://comicbook.com/anime/news/witch-hat-atelier-season-2-episode-2/"
+            ],
+            "show": "Witch Hat Atelier Season 2"
+          },
+          {
+            "claim": "The feed ranking circulating this week ordered the three differently.",
+            "core": false,
+            "source_urls": []
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true,
+          "hook_claim_coverage": true
+        }
+      },
+      "video_style": "Face-Cam Split Screen (creator top / anime footage bottom)",
+      "face": true,
+      "split_screen": true,
+      "sources": [
+        {
+          "claim": "Kagurabachi premiered this week on Crunchyroll",
+          "url": "https://www.animenewsnetwork.com/news/2026-08-11/kagurabachi-anime-premiere/.240001",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "The Elusive Samurai Season 2 returned this week",
+          "url": "https://www.crunchyroll.com/news/announcements/2026/8/11/elusive-samurai-season-2-premiere",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Witch Hat Atelier Season 2 aired its second episode this week",
+          "url": "https://comicbook.com/anime/news/witch-hat-atelier-season-2-episode-2/",
+          "date": "Aug 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Kagurabachi premiere trailer: the opening sword duel in the rain",
+          "reason": "hook frame for the first premiere claim",
+          "duration_sec": 10,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 10,
+          "trailer_reference": {
+            "trailer_title_or_id": "Kagurabachi Main Trailer",
+            "claimed_beat": "the opening sword duel in the rain",
+            "source_content_confirmed": "Trailer fetched directly; the duel appears at 0:34-0:41.",
+            "match": true
+          }
+        },
+        {
+          "scene": "The Elusive Samurai Season 2 season 2 trailer: Tokiyuki outrunning a pursuing squad",
+          "reason": "carries the running-not-fighting premise for the second claim",
+          "duration_sec": 10,
+          "timeline_start_sec": 10,
+          "timeline_end_sec": 20,
+          "trailer_reference": {
+            "trailer_title_or_id": "The Elusive Samurai Season 2 PV 2",
+            "claimed_beat": "Tokiyuki outrunning a pursuing squad across rooftops",
+            "source_content_confirmed": "Trailer fetched directly; the rooftop chase appears at 0:12-0:19.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Witch Hat Atelier Season 2 season 2 trailer: the workshop ink-magic sequence",
+          "reason": "supports the animation claim in the third segment",
+          "duration_sec": 10,
+          "timeline_start_sec": 20,
+          "timeline_end_sec": 30,
+          "trailer_reference": {
+            "trailer_title_or_id": "Witch Hat Atelier Season 2 PV",
+            "claimed_beat": "the workshop ink-magic sequence",
+            "source_content_confirmed": "Trailer fetched directly; the ink sequence appears at 0:48-0:55.",
+            "match": true
+          }
+        }
+      ],
+      "clip_descriptions": "CUT1 (TRAILER: Kagurabachi Main Trailer): the opening sword duel in the rain. CUT2 (TRAILER: The Elusive Samurai Season 2 PV 2): Tokiyuki outrunning a pursuing squad across rooftops. CUT3 (TRAILER: Witch Hat Atelier Season 2 PV): the workshop ink-magic sequence.",
+      "captions": "THREE PREMIERES. ONE RANKING. ALL BACKWARDS. Kagurabachi opened with the cleanest sword work of the year. The Elusive Samurai came back on the same premise. Witch Hat Atelier out-animated both.",
+      "youtube_title": "This Week's Premieres Are Ranked Backwards",
+      "tiktok_title": "The premiere nobody is clipping",
+      "tiktok_post_text": "Three premieres landed this week -- Kagurabachi, The Elusive Samurai Season 2, and Witch Hat Atelier Season 2 -- and the ranking going around has them backwards. #anime #kagurabachi #elusivesamurai #witchhatatelier #animenews",
+      "pinned_comment": "I put Witch Hat Atelier first on episode 2's animation alone -- the ink sequence is doing something the other two are not even attempting. Tell me which one you would actually rank first.",
+      "post_times": {
+        "youtube": "YouTube Shorts — post 5:30 PM ET | Peak 6-7 PM ET",
+        "tiktok": "TikTok — post 6:30-7:00 PM ET | Peak 7-8 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "onscreen_cta_start_sec": 26,
+      "roundup_shows": [
+        "Kagurabachi",
+        "The Elusive Samurai Season 2",
+        "Witch Hat Atelier Season 2"
+      ]
+    },
+    {
+      "package_id": "4129cc21-1c84-4123-a346-b94130440002",
+      "slot": "evening",
+      "show": "One Piece",
+      "angle": "The Elbaph arc reframes giants' shame as the series' oldest running theme",
+      "format_type": "WRONG_TAKE",
+      "content_type": "short",
+      "topic_class": "timely",
+      "topic_signals": [
+        "currently_airing",
+        "chapter"
+      ],
+      "series": {
+        "id": "setup_arc_receipts",
+        "recurring": true
+      },
+      "series_public_name": "Setup Receipts",
+      "series_next_line": "Next Setup Receipts lands tomorrow.",
+      "funnel_status": "standalone",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "ELBAPH ISN'T FILLER",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Everyone calling Elbaph filler missed what Oda actually set up.",
+        "Elbaph looks like filler until you remember Little Garden."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Everyone calling Elbaph filler missed what Oda actually set up.",
+      "opening_sentence": "Everyone calling Elbaph filler missed what Oda actually set up.",
+      "vo": "Everyone calling Elbaph filler missed what Oda actually set up. The giants' shame is not new, it is the oldest wound in this series. Dorry and Brogy fought a hundred years over a lie about honor. Elbaph pays that off by showing where the lie began. The arc is not slow, it is explaining a grudge you watched two decades ago. New fans see a new island, but old fans see a debt getting paid. Is Elbaph the best setup arc in One Piece, or just fan service for veterans? Leave your take. So before you call it filler, remember exactly what he planted:",
+      "vo_word_count": 104,
+      "question_line": "Is Elbaph the best setup arc in One Piece, or just fan service for veterans?",
+      "cta_line": "Leave your take.",
+      "loop_line": "So before you call it filler, remember exactly what he planted:",
+      "loop_transition": "So before you call it filler, remember exactly what he planted: Everyone calling Elbaph filler missed what Oda actually set up.",
+      "loop_read_aloud_pass": true,
+      "loop_transition_note": "Final line is an incomplete colon setup ('remember exactly what he planted:') that cannot stand alone; the colon hands into the opening so the loop closes as one continuous sentence instead of restating a keyword.",
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Dorry and Brogy fought a hundred-year duel over honor, the Little Garden setup Elbaph pays off",
+            "core": true,
+            "source_urls": [
+              "https://onepiece.fandom.com/wiki/Dorry_and_Brogy",
+              "https://www.reddit.com/r/OnePiece/elbaph_week"
+            ],
+            "claim_type": "A",
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "The Elbaph arc is currently airing with active fan discussion",
+            "core": true,
+            "source_urls": [
+              "https://www.reddit.com/r/OnePiece/elbaph_week"
+            ],
+            "claim_type": "C"
+          },
+          {
+            "claim": "New fans read a new island where old fans read a debt being paid",
+            "core": false,
+            "source_urls": []
+          },
+          {
+            "claim": "Elbaph's central reveal is what Dorry and Brogy's century-old grudge was actually about",
+            "core": true,
+            "source_urls": [
+              "https://onepiece.fandom.com/wiki/Dorry_and_Brogy",
+              "https://www.reddit.com/r/OnePiece/elbaph_week"
+            ],
+            "claim_type": "A",
+            "anchors_claim": "loop"
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true,
+          "hook_claim_coverage": true
+        },
+        "final_to_opening_readaloud": "So before you call it filler, remember exactly what he planted: Everyone calling Elbaph filler missed what Oda actually set up."
+      },
+      "video_style": "Face-Cam Split Screen (creator top / anime footage bottom)",
+      "face": true,
+      "split_screen": true,
+      "sources": [
+        {
+          "claim": "Dorry and Brogy's 100-year duel over honor",
+          "url": "https://onepiece.fandom.com/wiki/Dorry_and_Brogy",
+          "date": "Jun 2026"
+        },
+        {
+          "claim": "Elbaph arc currently airing/active discussion",
+          "url": "https://www.reddit.com/r/OnePiece/elbaph_week",
+          "date": "Jul 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Elbaph establishing shot",
+          "reason": "hook frame",
+          "carries_loop_back": false,
+          "duration_sec": 5,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 5,
+          "scene_verified": true,
+          "verification_source_url": "https://respawn.outlookindia.com/pop-culture/pop-culture-originals/one-piece-episode-1156-elbaf-arc-premiere-review",
+          "claim_vs_source_check": {
+            "claimed_beat": "An establishing shot introduces Elbaph, the giants' homeland, as the crew arrives and the arc premiere opens.",
+            "source_content_confirmed": "Outlook India's review of One Piece episode 1156 confirms the episode opens with the ship's arrival and the reveal of Elbaph as the crew reaches the giants' homeland.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1156,
+            "locate_confirmed_via": "the same Outlook India episode 1156 review cited above",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Dorry and Brogy clashing",
+          "reason": "the century duel receipt",
+          "carries_loop_back": false,
+          "duration_sec": 7,
+          "timeline_start_sec": 5,
+          "timeline_end_sec": 12,
+          "scene_verified": true,
+          "verification_source_url": "https://onepiece.fandom.com/wiki/Episode_71",
+          "claim_vs_source_check": {
+            "claimed_beat": "Dorry and Brogy clash in their legendary century-long duel, shown as the receipt for that history.",
+            "source_content_confirmed": "The Episode 71 Fandom page confirms this is Dorry and Brogy's first anime appearance, corroborated by Sportskeeda's character page listing 'First Appearance in Anime: Episode 71' and IMDb's episode record.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 71,
+            "locate_confirmed_via": "the same Episode 71 Fandom page cited above, corroborated by Sportskeeda's Dorry character page and IMDb's episode record",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Giant flashback panel-to-anime",
+          "reason": "origin of the shame",
+          "carries_loop_back": false,
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://otakuorbit.com/one-piece-episode-1156-the-long-sought-elbaph-the-big-reunion-banquet/",
+          "claim_vs_source_check": {
+            "claimed_beat": "A flashback panel-to-anime transition reveals the origin of the giants' shame tied to their duel, adapted for the Elbaph arc premiere.",
+            "source_content_confirmed": "Otaku Orbit's review of One Piece episode 1156 confirms the episode covers the Elbaph arc premiere and the reunion banquet framing where the giants' shared history is revisited.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1156,
+            "locate_confirmed_via": "the same Otaku Orbit episode 1156 review cited above",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Luffy reacting on Elbaph",
+          "reason": "present-day tie-in",
+          "carries_loop_back": false,
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": true,
+          "verification_source_url": "https://respawn.outlookindia.com/pop-culture/pop-culture-originals/one-piece-episode-1156-elbaf-arc-premiere-review",
+          "claim_vs_source_check": {
+            "claimed_beat": "Luffy reacts to arriving on Elbaph, tying the giants' history to the present-day arc premiere.",
+            "source_content_confirmed": "Outlook India's review of One Piece episode 1156 confirms the episode centers on the crew's (including Luffy's) arrival and reactions during the Elbaph arc premiere.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1156,
+            "locate_confirmed_via": "the same Outlook India episode 1156 review cited above",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Slow push on the village banner",
+          "reason": "settles on the planted-grudge beat and carries the final loop line back into CUT 1 / the opening",
+          "carries_loop_back": true,
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "verification_note": "No independently confirmed clip-level video source for this exact beat (a slow push on a village banner) after a bounded search of the Elbaph arc premiere coverage; real aired footage may exist but was not independently confirmed this pass (see F20).",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for an Elbaph arc premiere clip showing a village-banner push shot; no matching clip-level video source located this pass."
+        }
+      ],
+      "clip_descriptions": "CUT1 (S1E1156): Elbaph establishing shot. CUT2 (S1E71): Dorry and Brogy clashing. CUT3 (S1E1156): Giant flashback panel-to-anime. CUT4 (S1E1156): Luffy reacting on Elbaph. CUT5: Slow push on the village banner (unverified, no clip_locate).",
+      "captions": "CUT 1: ELBAPH ISN'T / FILLER. CUT 2: OLDEST / WOUND. CUT 3: A DEBT / GETTING PAID.",
+      "youtube_title": "One Piece Setup Receipts: Elbaph's 20-Year Payoff",
+      "tiktok_title": "Elbaph Was a 20-Year Payoff All Along",
+      "tiktok_post_text": "Elbaph isn't filler, it's Oda paying off a grudge from Little Garden. One Piece readers get it.",
+      "pinned_comment": "Little Garden aired in the late 2000s. If you're calling this arc slow, you skipped the setup. Which giant's arc hit you hardest? Next Setup Receipts lands tomorrow.",
+      "post_times": {
+        "youtube": "YouTube Shorts — post 6:00 PM ET | Peak 7 PM ET",
+        "tiktok": "TikTok — post 7:00 PM ET | Peak 8 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "onscreen_cta_start_sec": 26
+    }
+  ]
+}

@@ -32,10 +32,20 @@ FIXTURE = os.path.join(os.path.dirname(__file__), "fixtures", "valid_dual_packag
 # was deleted rather than left in place.
 EXPERIMENT_FIXTURE = os.path.join(
     os.path.dirname(__file__), "fixtures", "valid_duration_experiment.json")
+# Law #159 item 3 (built 2026-08-14): a realistic 3-show SEASON_ROUNDUP exercising the
+# per-show claim_source_matrix sourcing rule. Did not exist before this change -- the
+# format had no fixture of its own at all, which is part of why item 3 sat unbuilt.
+ROUNDUP_FIXTURE = os.path.join(
+    os.path.dirname(__file__), "fixtures", "valid_season_roundup.json")
 
 
 def load_valid() -> dict:
     with open(FIXTURE, encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def load_roundup() -> dict:
+    with open(ROUNDUP_FIXTURE, encoding="utf-8") as fh:
         return json.load(fh)
 
 
@@ -297,7 +307,9 @@ class TestInvalidCases(unittest.TestCase):
 
     def test_wrong_recipient(self):
         m = load_valid()
-        m["recipient"] = "sebastianlemos0716@gmail.com"
+        # Audit item #21 (2026-08-14): was a real personal address committed to the repo.
+        # Any non-hero_or_villain@outlook.com value exercises this check identically.
+        m["recipient"] = "wrong@example.com"
         self.assertFailsOn(m, "recipient is exactly correct")
 
     def test_insufficient_sources(self):
@@ -3246,6 +3258,28 @@ def _make_season_roundup_package(base_pkg: dict, clip_sources: list[str]) -> dic
     existing capcut_target_sec/total_clip_time_sec."""
     pkg = json.loads(json.dumps(base_pkg))
     pkg["format_type"] = "SEASON_ROUNDUP"
+
+    # Law #159 item 3 (built 2026-08-14): "minimally-valid SEASON_ROUNDUP" now also
+    # means per-show sourcing -- an explicit roundup_shows denominator plus one core
+    # claim per declared show, each citing its OWN distinct listed, dated,
+    # non-encyclopedic source. Without this the package is a roundup declaring no
+    # shows, which the per-show validator correctly rejects. Added here so these
+    # CLIP-sourcing tests keep exercising an otherwise-valid roundup and fail only on
+    # the clip issue each one is actually about.
+    _s1 = "https://www.animenewsnetwork.com/news/2026-08-14/roundup-show-one/.240101"
+    _s2 = "https://www.crunchyroll.com/news/announcements/2026/8/14/roundup-show-two"
+    pkg["roundup_shows"] = ["Roundup Show One", "Roundup Show Two"]
+    pkg["sources"] = list(pkg.get("sources") or []) + [
+        {"claim": "Roundup Show One premiered this week", "url": _s1, "date": "Aug 2026"},
+        {"claim": "Roundup Show Two premiered this week", "url": _s2, "date": "Aug 2026"},
+    ]
+    pkg.setdefault("semantic_qa", {})["claim_source_matrix"] = [
+        {"claim": "Roundup Show One premiered this week.", "core": True, "claim_type": "C",
+         "source_urls": [_s1], "anchors_claim": "hook", "show": "Roundup Show One"},
+        {"claim": "Roundup Show Two premiered this week.", "core": True, "claim_type": "C",
+         "source_urls": [_s2], "show": "Roundup Show Two"},
+    ]
+
     target = pkg["capcut_target_sec"]
     n = len(clip_sources)
     each = target / n
@@ -3298,8 +3332,11 @@ class TestSeasonRoundupClipSourcingLaw159(unittest.TestCase):
 
     def test_mixed_anime_manga_trailer_sources_pass(self):
         m = load_valid()
-        pkg = json.loads(json.dumps(m["packages"][0]))
-        pkg["format_type"] = "SEASON_ROUNDUP"
+        # Build via the helper so the Law #159 per-show sourcing scaffolding (item 3,
+        # 2026-08-14) is present, then override clips with the mixed-source set this
+        # test is actually about. Previously this constructed the roundup inline and so
+        # silently skipped that scaffolding.
+        pkg = _make_season_roundup_package(m["packages"][0], ["anime", "anime", "anime"])
         pkg["clips"] = [
             _make_season_roundup_clip(source="anime", timeline_start_sec=0, timeline_end_sec=10),
             _make_season_roundup_clip(source="manga", timeline_start_sec=10, timeline_end_sec=20),
@@ -3832,3 +3869,158 @@ class TestTheorySpeculationLaw160(unittest.TestCase):
         names_failed = [name for name, ok, _ in r.checks if not ok]
         revisit_failures = [n for n in names_failed if "revisit_justification present and well-formed" in n]
         self.assertEqual(revisit_failures, [], f"revisit_justification check should not fire without a blackout/recent-send flag: {revisit_failures}")
+
+
+class TestSeasonRoundupPerShowSourcingLaw159(unittest.TestCase):
+    """Law #159 implementation item 3, BUILT 2026-08-14.
+
+    Law #159 requires "a real, distinct source per show, never one source waved across
+    all shows in the roundup." Before this change _validate_semantic_qa only asked
+    ">=1 core claim exists somewhere in the matrix", so a multi-show roundup could ship
+    one sourced claim about one show and pass -- the gap cron_daily_runtime.txt named as
+    the explicit blocker keeping SEASON_ROUNDUP non-selectable from the daily run.
+
+    Structure mirrors TestSeasonRoundupClipSourcingLaw159: a clean-pass case, one case
+    per failure mode, and a scoping case proving zero leakage into the other 16
+    format_types.
+    """
+
+    PER_SHOW_CHECKS = (
+        "every core claim tagged with a roundup show",
+        "every roundup show has >=1 core claim",
+        "every roundup show cites >=1 listed dated non-encyclopedic source",
+        "no source URL reused across two shows",
+        "roundup_shows present and well-formed",
+    )
+
+    def law159_failures(self, manifest: dict) -> list[str]:
+        r = v.validate_manifest(manifest)
+        return [n for n, ok, _ in r.checks if not ok and "Law #159" in n]
+
+    def assertFailsCleanly(self, manifest: dict, needle: str):
+        r = v.validate_manifest(manifest)
+        names = [name for name, ok, _ in r.checks if not ok]
+        self.assertTrue(any(needle in n for n in names),
+                        msg=f"expected a clean failure containing {needle!r}; got failures={names}")
+        self.assertFalse(r.ok)
+
+    # --- clean pass ---
+
+    def test_valid_roundup_fixture_passes(self):
+        r = v.validate_manifest(load_roundup())
+        self.assertTrue(r.ok, msg=f"unexpected failures: {r.failures()}")
+
+    def test_valid_roundup_emits_all_per_show_checks(self):
+        # the checks must actually RUN on a roundup, not silently no-op
+        r = v.validate_manifest(load_roundup())
+        names = [n for n, _, _ in r.checks]
+        for needle in self.PER_SHOW_CHECKS:
+            self.assertTrue(any(needle in n for n in names),
+                            msg=f"per-show check {needle!r} never ran on a SEASON_ROUNDUP package")
+
+    # --- coverage failure ---
+
+    def test_show_with_no_core_claim_fails_closed(self):
+        m = load_roundup()
+        # drop the third show's only core entry -> roundup_shows still lists 3 shows
+        m["packages"][0]["semantic_qa"]["claim_source_matrix"].pop(2)
+        self.assertFailsCleanly(m, "every roundup show has >=1 core claim")
+
+    def test_one_source_waved_across_all_shows_fails_closed(self):
+        # the exact Law #159 failure mode: a single sourced claim, three shows declared
+        m = load_roundup()
+        matrix = m["packages"][0]["semantic_qa"]["claim_source_matrix"]
+        m["packages"][0]["semantic_qa"]["claim_source_matrix"] = [matrix[0], matrix[-1]]
+        self.assertFailsCleanly(m, "every roundup show has >=1 core claim")
+
+    # --- attribution failure ---
+
+    def test_core_claim_missing_show_tag_fails_closed(self):
+        m = load_roundup()
+        m["packages"][0]["semantic_qa"]["claim_source_matrix"][1].pop("show")
+        self.assertFailsCleanly(m, "every core claim tagged with a roundup show")
+
+    def test_core_claim_tagged_with_unknown_show_fails_closed(self):
+        m = load_roundup()
+        m["packages"][0]["semantic_qa"]["claim_source_matrix"][1]["show"] = "Some Other Anime"
+        self.assertFailsCleanly(m, "every core claim tagged with a roundup show")
+
+    # --- source-reuse / distinctness failure ---
+
+    def test_same_source_url_reused_across_two_shows_fails_closed(self):
+        m = load_roundup()
+        pkg = m["packages"][0]
+        shared = pkg["sources"][0]["url"]          # already show 1's source
+        pkg["semantic_qa"]["claim_source_matrix"][2]["source_urls"] = [shared]
+        self.assertFailsCleanly(m, "no source URL reused across two shows")
+
+    def test_show_sourced_only_encyclopedically_fails_closed(self):
+        m = load_roundup()
+        pkg = m["packages"][0]
+        wiki = "https://en.wikipedia.org/wiki/Witch_Hat_Atelier"
+        pkg["sources"].append({"claim": "encyclopedic", "url": wiki, "date": "Aug 2026"})
+        pkg["semantic_qa"]["claim_source_matrix"][2]["source_urls"] = [wiki]
+        self.assertFailsCleanly(m, "cites >=1 listed dated non-encyclopedic source")
+
+    def test_show_source_not_listed_in_sources_fails_closed(self):
+        m = load_roundup()
+        pkg = m["packages"][0]
+        pkg["semantic_qa"]["claim_source_matrix"][2]["source_urls"] = [
+            "https://example.com/not-in-sources"]
+        self.assertFailsCleanly(m, "cites >=1 listed dated non-encyclopedic source")
+
+    # --- roundup_shows shape ---
+
+    def test_roundup_shows_absent_fails_closed(self):
+        m = load_roundup()
+        m["packages"][0].pop("roundup_shows")
+        self.assertFailsCleanly(m, "roundup_shows present and well-formed")
+
+    def test_roundup_shows_single_name_fails_closed(self):
+        m = load_roundup()
+        m["packages"][0]["roundup_shows"] = ["Kagurabachi"]
+        self.assertFailsCleanly(m, "roundup_shows present and well-formed")
+
+    def test_roundup_shows_case_insensitive_duplicate_fails_closed(self):
+        m = load_roundup()
+        m["packages"][0]["roundup_shows"] = ["Kagurabachi", "KAGURABACHI", "Witch Hat Atelier Season 2"]
+        self.assertFailsCleanly(m, "roundup_shows present and well-formed")
+
+    def test_roundup_shows_empty_string_fails_closed(self):
+        m = load_roundup()
+        m["packages"][0]["roundup_shows"] = ["Kagurabachi", "   "]
+        self.assertFailsCleanly(m, "roundup_shows present and well-formed")
+
+    def test_malformed_roundup_shows_still_reports_per_show_checks(self):
+        # a malformed denominator must not make the per-show discipline silently vanish
+        m = load_roundup()
+        m["packages"][0]["roundup_shows"] = "not-a-list"
+        failures = self.law159_failures(m)
+        for needle in ("every roundup show has >=1 core claim",
+                       "no source URL reused across two shows"):
+            self.assertTrue(any(needle in f for f in failures),
+                            msg=f"{needle!r} should be reported as failed, not skipped; got {failures}")
+
+    # --- scoping: no leakage into the other 16 format_types ---
+
+    def test_stray_roundup_shows_on_non_roundup_fails_closed(self):
+        m = load_roundup()
+        m["packages"][1]["roundup_shows"] = ["A", "B"]   # evening pkg is WRONG_TAKE
+        self.assertFailsCleanly(m, "roundup_shows absent on non-SEASON_ROUNDUP package")
+
+    def test_no_per_show_checks_run_on_any_other_format_type(self):
+        others = [ft for ft in v.FORMAT_TYPES if ft != "SEASON_ROUNDUP"]
+        self.assertEqual(len(others), 16, "expected 16 non-roundup tokens")
+        for ft in others:
+            m = load_valid()
+            m["packages"][0]["format_type"] = ft
+            names = [n for n, _, _ in v.validate_manifest(m).checks]
+            for needle in self.PER_SHOW_CHECKS:
+                leaked = [n for n in names if needle in n]
+                self.assertEqual(leaked, [],
+                                 msg=f"per-show check {needle!r} leaked into format_type={ft}: {leaked}")
+
+    def test_baseline_fixtures_unaffected(self):
+        for loader in (load_valid, load_experiment):
+            r = v.validate_manifest(loader())
+            self.assertTrue(r.ok, msg=f"baseline fixture regressed: {r.failures()}")

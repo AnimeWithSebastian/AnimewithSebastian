@@ -159,15 +159,46 @@ Effective on this law's approval:
    system. Manga- and trailer-sourced clips are unaffected — they correctly
    have no `clip_locate` requirement of their own, confirmed by a dedicated
    regression test.
-3. NOT YET DONE — Validator: per-show `claim_source_matrix` entry count
-   check for `SEASON_ROUNDUP` packages (one real source per show claimed,
-   not one source covering multiple shows) was NOT implemented this pass.
-   Today's `_validate_semantic_qa` only checks that `claim_source_matrix` has
-   >=1 core claim overall — it does not yet cross-check entry count against
-   number of shows in a `SEASON_ROUNDUP` roundup. Flagging honestly rather
-   than marking this done: this must be built before `SEASON_ROUNDUP` is
-   used in production, or a roundup could ship with one source waved across
-   several shows undetected.
+3. **DONE — built 2026-08-14.** [Status corrected 2026-08-14; the original
+   NOT-YET-DONE text is preserved verbatim below, per this project's standing
+   no-retroactive-rewrite rule.] Implemented as
+   `_validate_season_roundup_sourcing()` in `validators/validate_dual_package.py`,
+   called for every package immediately after `_validate_semantic_qa`.
+   **Schema additions:** `roundup_shows` (array, REQUIRED and fail-closed when
+   `format_type == "SEASON_ROUNDUP"`, MUST be absent otherwise; >=2 distinct
+   non-empty names) supplies the authoritative denominator, and core
+   `claim_source_matrix` entries carry a `show` tag naming one of them.
+   **Clip count is deliberately NOT used to infer the show count** — nothing
+   enforces 1 clip == 1 show (the >=4-clip floor was removed as arbitrary, F22
+   2026-07-28), so inferring from clips would fail OPEN exactly when a show is
+   under-covered. **Five fail-closed checks:** roundup_shows well-formed; every
+   core claim tagged with a declared show; COVERAGE (every show has >=1 core
+   claim); PER-SHOW SOURCING (each show cites >=1 source that is both listed in
+   `sources` — hence dated — and non-encyclopedic); and DISTINCTNESS (no source
+   URL reused across two shows), which is the check that actually implements
+   "a real, distinct source per show, never one source waved across all shows."
+   Coverage alone cannot express that: five core claims about one show would
+   satisfy a bare count while covering nothing.
+   **Scoping:** on all 16 other `format_type` values the function requires
+   `roundup_shows` to be absent and reports nothing else, so neither the field
+   nor these checks leak.
+   **Tests/fixture:** `TestSeasonRoundupPerShowSourcingLaw159` (17 tests, incl. a
+   scoping test asserting zero leakage across all 16 other tokens) plus the new
+   `validators/fixtures/valid_season_roundup.json` — a realistic 3-show roundup,
+   the first fixture this format has ever had. Suites: validators 365, tools 115.
+   Like every other Law #73/#147/#159 field check this is presence/shape/domain
+   only — it cannot verify a source actually supports its claim, which remains a
+   drafting-pass attestation subject to the weekly human spot-check (Law #147 M6).
+
+   > NOT YET DONE — Validator: per-show `claim_source_matrix` entry count
+   > check for `SEASON_ROUNDUP` packages (one real source per show claimed,
+   > not one source covering multiple shows) was NOT implemented this pass.
+   > Today's `_validate_semantic_qa` only checks that `claim_source_matrix` has
+   > >=1 core claim overall — it does not yet cross-check entry count against
+   > number of shows in a `SEASON_ROUNDUP` roundup. Flagging honestly rather
+   > than marking this done: this must be built before `SEASON_ROUNDUP` is
+   > used in production, or a roundup could ship with one source waved across
+   > several shows undetected.
 4. NOT YET DONE — Validator: the `TRAILER: [name]` clip-source label line
    rendering (parallel to the existing `CHAPTER N` manga rendering) was NOT
    implemented this pass. Grepped `validate_dual_package.py` and confirmed
@@ -197,10 +228,26 @@ Effective on this law's approval:
    bare-URL, missing-episode, boolean-episode, and blank-timestamp all fail;
    `approx_timestamp: null` is explicitly allowed). Full suite (296 tests
    total) passes with zero failures.
-6. NOT YET DONE — `cron_daily_runtime.txt`: add `SEASON_ROUNDUP` to
-   format-selection guidance with the MULTI-CLAIM EXPLAINER length-band
-   mapping and the three-source-type sourcing rule above. Deferred until
-   after user review/approval, per design-before-code discipline.
+6. **STATUS CORRECTED 2026-08-14** — this item read "NOT YET DONE," which was
+   inaccurate: `cron_daily_runtime.txt` **did** address `SEASON_ROUNDUP`, just not
+   in the form this item anticipated. Rather than being absent from the runtime, the
+   token was covered by an explicit, named **withholding note** (the SEASON_ROUNDUP
+   callout at the end of the format list, plus a pointer to it in the token-count
+   note) stating the format `IS NOT YET SELECTABLE FROM THIS STEP` and citing item 3
+   above as the precise blocker. That is the opposite of missing guidance — it is a
+   deliberate, documented exclusion, and it is what kept the unbuilt item 3 from
+   becoming a live production gap. The runtime itself drew the distinction, noting
+   `THEORY_SPECULATION`'s absence was "not a deliberate withholding like
+   SEASON_ROUNDUP's — it is an outstanding porting gap." Original text preserved:
+
+   > NOT YET DONE — `cron_daily_runtime.txt`: add `SEASON_ROUNDUP` to
+   > format-selection guidance with the MULTI-CLAIM EXPLAINER length-band
+   > mapping and the three-source-type sourcing rule above. Deferred until
+   > after user review/approval, per design-before-code discipline.
+
+   With item 3 now built (2026-08-14), the blocker that withholding note existed to
+   enforce is resolved, and the runtime is updated in the same change to make the
+   token selectable — see the `cron_daily_runtime.txt` diff accompanying this edit.
 
 **Honest scope note:** items 3 and 4 above are real gaps in this pass, not
 oversights being hidden. The clip-sourcing mechanism (item 2) is the load-

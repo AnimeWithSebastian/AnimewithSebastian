@@ -473,10 +473,20 @@ def _resolve_edit_target(pkg: dict[str, Any], p: str, r: Result) -> tuple[float,
 
 def _validate_clip_timeline(clips: list[Any], capcut_target: Any, target_sec: float,
                             p: str, r: Result) -> None:
-    """Every cut must carry per-cut timing (Law #140). The cuts must tile the fixed
+    """Every cut must carry per-cut timing (Law #140). The cuts must tile the resolved
     edit contiguously: first starts at 0, each end == next start, last ends at the
     target, end-start == duration_sec, and the durations sum to capcut_target_sec.
-    target_sec is 30 by default, or the sanctioned experiment length (M1)."""
+
+    target_sec is whatever _resolve_edit_target returned for THIS package: its own
+    capcut_target_sec anywhere in [MIN_EDIT_SEC, MAX_EDIT_SEC] (20-180s), falling back
+    to CAPCUT_TARGET_SEC (30s) only when the field is absent entirely.
+
+    [Docstring corrected 2026-08-14 during the Law #159 item 3 build. It previously read
+    "target_sec is 30 by default, or the sanctioned experiment length (M1)". The M1
+    list/ranking-only 45-59s duration experiment was RETIRED by the Stage 1/2 rebuild on
+    2026-08-09, which made open-ended variable length the permanent default framework --
+    there is no "experiment length" branch anymore. Stale comment, correct code: the
+    implementation below already reads the resolved target and never referenced M1.]"""
     tgt = int(target_sec)
     have_fields = bool(clips) and all(
         isinstance(c, dict) and _is_num(c.get("duration_sec"))
@@ -1123,6 +1133,133 @@ def _validate_season_roundup_clip_sourcing(clips: list[Any], pkg: dict[str, Any]
 def _url_is_encyclopedic(url: str) -> bool:
     u = (url or "").lower()
     return any(dom in u for dom in ENCYCLOPEDIC_DOMAINS)
+
+
+def _validate_season_roundup_sourcing(pkg: dict[str, Any], p: str, r: Result) -> None:
+    """Law #159 PER-SHOW SOURCING (implementation item 3 -- BUILT 2026-08-14).
+
+    Law #159: "Each show's premiere claim needs its OWN claim_source_matrix entry ...
+    a real, distinct source per show, never one source waved across all shows in the
+    roundup." Until this function existed, _validate_semantic_qa only ever asked
+    ">=1 core claim exists somewhere in the matrix", so a five-show roundup could ship
+    with a single sourced claim about a single show and pass undetected -- a direct
+    structural echo of the Gachiakuta incident (Law #73 UPDATE 7) that motivated the
+    per-clip verification discipline. cron_daily_runtime.txt named exactly this gap as
+    the blocker making SEASON_ROUNDUP non-selectable from the daily run.
+
+    DENOMINATOR: the explicit `roundup_shows` list, NOT the clip count. Nothing
+    enforces 1 clip == 1 show (the >=4-clip floor was removed as arbitrary, F22
+    2026-07-28), so inferring the count from clips would fail OPEN precisely when a
+    show is under-covered -- the exact case this check exists to catch.
+
+    Checks (all fail-closed):
+      1. roundup_shows well-formed: list of >=2 non-empty strings, no case-insensitive
+         duplicates.
+      2. every core:true matrix entry carries a `show` naming one of roundup_shows.
+      3. COVERAGE: every roundup_shows name has >=1 core entry tagged to it.
+      4. PER-SHOW SOURCING: each show's tagged entries cite, between them, >=1 source
+         that is BOTH listed in package `sources` (hence dated) AND non-encyclopedic --
+         the same standard _validate_semantic_qa applies globally, applied per show.
+      5. DISTINCTNESS: no source URL shared by two different shows. This is the check
+         that actually implements "never one source waved across all shows"; coverage
+         alone cannot express it (five core claims about one show would satisfy a bare
+         count while covering nothing).
+
+    SCOPING: for every non-SEASON_ROUNDUP format_type this requires roundup_shows to be
+    ABSENT and reports nothing else, so neither the field nor these checks can leak into
+    the other 16 tokens' behavior.
+
+    Like every other Law #73/#147/#159 field check, this is presence/shape/domain only.
+    It cannot verify a source actually supports the claim -- that stays a drafting-pass
+    attestation subject to the weekly human spot-check (Law #147 M6).
+    """
+    is_roundup = pkg.get("format_type") == "SEASON_ROUNDUP"
+    raw = pkg.get("roundup_shows")
+
+    if not is_roundup:
+        r.add(f"{p} roundup_shows absent on non-SEASON_ROUNDUP package (Law #159 scoping)",
+              raw is None,
+              f"format_type={pkg.get('format_type')!r} roundup_shows={raw!r}")
+        return
+
+    shows_ok = (isinstance(raw, list) and len(raw) >= 2
+                and all(isinstance(s, str) and s.strip() for s in raw))
+    dupes: list[str] = []
+    if shows_ok:
+        seen: set[str] = set()
+        for s in raw:
+            k = _norm(s)
+            if k in seen:
+                dupes.append(s)
+            seen.add(k)
+        shows_ok = not dupes
+    r.add(f"{p} roundup_shows present and well-formed (Law #159: >=2 distinct non-empty names)",
+          shows_ok, f"roundup_shows={raw!r} duplicates={dupes}")
+    if not shows_ok:
+        # Denominator unknown -> the per-show checks below are not evaluable. Record them
+        # as failures rather than skipping, so a malformed roundup_shows can never make
+        # the per-show discipline silently disappear from the result set.
+        for nm in ("every core claim tagged with a roundup show (Law #159)",
+                   "every roundup show has >=1 core claim (Law #159 coverage)",
+                   "every roundup show cites >=1 listed dated non-encyclopedic source (Law #159)",
+                   "no source URL reused across two shows (Law #159 distinctness)"):
+            r.add(f"{p} {nm}", False, "roundup_shows malformed/absent -- per-show checks not evaluable")
+        return
+
+    show_keys = {_norm(s): s for s in raw}
+
+    qa = pkg.get("semantic_qa")
+    matrix = qa.get("claim_source_matrix") if isinstance(qa, dict) else None
+    core = ([e for e in matrix if isinstance(e, dict) and e.get("core") is True]
+            if isinstance(matrix, list) else [])
+
+    untagged: list[str] = []
+    for e in core:
+        sv = e.get("show")
+        if not (isinstance(sv, str) and _norm(sv) in show_keys):
+            untagged.append(f"{sv!r}:{str(e.get('claim', ''))[:32]}")
+    r.add(f"{p} every core claim tagged with a roundup show (Law #159)",
+          bool(core) and not untagged,
+          f"core_claims={len(core)} untagged_or_unknown_show={untagged}")
+
+    by_show: dict[str, list[dict[str, Any]]] = {k: [] for k in show_keys}
+    for e in core:
+        sv = e.get("show")
+        if isinstance(sv, str) and _norm(sv) in show_keys:
+            by_show[_norm(sv)].append(e)
+
+    missing = [show_keys[k] for k, v in by_show.items() if not v]
+    r.add(f"{p} every roundup show has >=1 core claim (Law #159 coverage)",
+          not missing, f"shows_with_no_core_claim={missing}")
+
+    pkg_source_urls = {_norm(s.get("url")) for s in _list(pkg, "sources")
+                       if isinstance(s, dict) and isinstance(s.get("url"), str)
+                       and s.get("url") and s.get("date")}
+    unsourced: list[str] = []
+    for k, entries in by_show.items():
+        if not entries:
+            continue  # already reported by the coverage check above
+        qualifying = any(
+            isinstance(u, str) and _norm(u) in pkg_source_urls and not _url_is_encyclopedic(u)
+            for e in entries for u in (e.get("source_urls") or []))
+        if not qualifying:
+            unsourced.append(show_keys[k])
+    r.add(f"{p} every roundup show cites >=1 listed dated non-encyclopedic source (Law #159)",
+          not unsourced, f"shows_without_qualifying_source={unsourced}")
+
+    url_owner: dict[str, str] = {}
+    shared: list[str] = []
+    for k, entries in by_show.items():
+        urls = {_norm(u) for e in entries for u in (e.get("source_urls") or [])
+                if isinstance(u, str) and u.strip()}
+        for u in sorted(urls):
+            prev = url_owner.get(u)
+            if prev is not None and prev != k:
+                shared.append(f"{u[:60]} shared by {show_keys[prev]!r} and {show_keys[k]!r}")
+            else:
+                url_owner[u] = k
+    r.add(f"{p} no source URL reused across two shows (Law #159 distinctness)",
+          not shared, f"shared_sources={shared}")
 
 
 def _validate_semantic_qa(pkg: dict[str, Any], p: str, r: Result) -> None:
@@ -1827,6 +1964,14 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
     # --- one-pass semantic QA self-audit (Law #147 / credit-safe mode) ---
     _validate_semantic_qa(pkg, p, r)
 
+    # --- Law #159 per-show sourcing for SEASON_ROUNDUP (item 3, built 2026-08-14) ---
+    # Runs for EVERY package, not just roundups: on the non-roundup path it asserts
+    # roundup_shows is absent, which is what keeps the field from leaking into the
+    # other 16 format_types. Must run AFTER _validate_semantic_qa so the global
+    # matrix shape checks are reported first -- this adds the per-show layer on top,
+    # it does not replace them.
+    _validate_season_roundup_sourcing(pkg, p, r)
+
 
 def validate_manifest(m: dict[str, Any]) -> Result:
     r = Result()
@@ -1961,6 +2106,18 @@ PACKAGE {
   "content_type": "short",          // Shorts pipeline only; long-form uses the flagship validator (Law #146)
   "show": "string", "angle": "string",
   "format_type": "one of FORMAT_TYPES (17 controlled tokens; free-text/compound labels REJECTED)",
+  "roundup_shows": ["Show A", "Show B", "Show C"],  // Law #159 implementation item 3 (BUILT 2026-08-14).
+                                     // REQUIRED and fail-closed when format_type == "SEASON_ROUNDUP";
+                                     // MUST be absent/omitted for every other format_type (a stray
+                                     // roundup_shows on a non-roundup package is rejected, so the field
+                                     // cannot leak into the other 16 tokens' behavior).
+                                     // The AUTHORITATIVE list of shows the roundup claims: >=2 entries,
+                                     // each a non-empty string, no duplicates (case-insensitive).
+                                     // This is the denominator for the per-show sourcing check. Clip
+                                     // count is deliberately NOT used to infer it -- nothing enforces
+                                     // 1 clip == 1 show (the >=4-clip floor was removed as arbitrary,
+                                     // F22 2026-07-28), so deriving the count from clips would fail
+                                     // OPEN exactly when a show is under-covered.
   "topic_class": "timely | evergreen",   // Law #143 (weekly target >=9/14 timely enforced in analytics)
   "topic_signals": ["currently_airing|premiere|chapter|news|seasonal_ranking", ...],  // >=1 when timely
   "series": {"id": "machine-series-id", "recurring": true},  // Law #143; null/omit for one-offs
@@ -2011,11 +2168,18 @@ PACKAGE {
     "audited_before_return": true,
     "claim_source_matrix": [      // every CORE claim needs >=1 listed dated source AND >=1 non-encyclopedic source
       {"claim": "core factual/narrative claim", "core": true, "source_urls": ["https://... (also in sources[])"],
-       "anchors_claim": "hook"},  // OPTIONAL on other entries; REQUIRED on exactly one core:true
+       "anchors_claim": "hook",   // OPTIONAL on other entries; REQUIRED on exactly one core:true
                                   // entry so the hook_line/opening_sentence claim is individually
                                   // sourced, not just ">=1 core claim exists somewhere" (Law #148/#150
                                   // fix, 2026-07-25). anchors_claim="loop" is accepted but no longer
                                   // required or checked (Law #141 rescission, 2026-07-27).
+       "show": "Show A"},         // Law #159 implementation item 3 (BUILT 2026-08-14). OPTIONAL and
+                                  // ignored for the other 16 format_types; REQUIRED on EVERY core:true
+                                  // entry when format_type == "SEASON_ROUNDUP", where it must name one
+                                  // of roundup_shows (case-insensitive). This per-entry attribution is
+                                  // what makes "a real, DISTINCT source per show" (Law #159) expressible
+                                  // at all: a bare coverage count cannot tell five core claims about one
+                                  // show apart from one core claim about each of five shows.
       {"claim": "minor/color claim", "core": false, "source_urls": []}
     ],
     "checks": {                   // model self-attested audit results (validator also enforces the mechanics)

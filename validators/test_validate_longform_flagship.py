@@ -147,7 +147,9 @@ class TestInvalidFlagship(unittest.TestCase):
         self.assertFailsOn(m, "model is Sonnet 5.0 or Fable 5")
 
     def test_wrong_recipient(self):
-        m = load_valid(); m["recipient"] = "sebastianlemos0716@gmail.com"
+        # Audit item #21 (2026-08-14): was a real personal address committed to the repo.
+        # Any non-hero_or_villain@outlook.com value exercises this check identically.
+        m = load_valid(); m["recipient"] = "wrong@example.com"
         self.assertFailsOn(m, "recipient is exactly correct")
 
     def test_non_dict_chapter_entry_fails_cleanly(self):

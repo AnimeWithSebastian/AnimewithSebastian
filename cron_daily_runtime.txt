@@ -255,17 +255,29 @@ Pick BOTH ideas together so you can guarantee cross-slot diversity in one pass:
     NOTE ON TOKEN COUNT (corrected 2026-08-11 — the prior "16 tokens" note was stale;
     real count independently verified against validate_dual_package.py's live
     FORMAT_TYPES tuple): the validator's FORMAT_TYPES enum has 17 tokens as of
-    2026-08-10 (Law #158/#159/#160), but only 15 are selectable from this runtime
-    step, for TWO separate reasons:
-      1. SEASON_ROUNDUP is deliberately withheld — see the SEASON_ROUNDUP callout at
-         the end of this list for the documented reason (validator lacks a per-show
-         source-count cross-check for roundups).
+    2026-08-10 (Law #158/#159/#160), but only 16 are selectable from this runtime
+    step [count updated 2026-08-14: was 15 / TWO reasons — SEASON_ROUNDUP's withholding
+    was lifted when Law #159 item 3 shipped], for ONE remaining reason:
+      1. SEASON_ROUNDUP — WITHHOLDING LIFTED 2026-08-14; the token is now SELECTABLE.
+         It was deliberately withheld because the validator lacked a per-show
+         source-count cross-check for roundups (Law #159 item 3). That check now exists
+         (`_validate_season_roundup_sourcing` in validate_dual_package.py), so the
+         documented blocker is resolved — see the SEASON_ROUNDUP callout at the end of
+         this list for the fields a roundup must now carry.
       2. THEORY_SPECULATION (Law #160) is simply absent from this runtime step —
-         Law #160 is still status: DRAFT (laws/law_160_theory_speculation_draft.md),
+         ~~Law #160 is still status: DRAFT~~ [STATUS CORRECTED 2026-08-14: Law #160 is
+         status ACTIVE — IMPLEMENTED, not DRAFT. The law's header said DRAFT while
+         implementation items 1-6 were in fact shipped and live in the validator; the
+         2026-08-14 law audit corrected that header (commit e98805b), which left THIS
+         line stale — drift introduced by the very change that was fixing drift. The
+         rest of this item is unaffected and still accurate.]
+         (laws/law_160_theory_speculation_draft.md),
          and that law's own item 7 ("cron_daily_runtime.txt: add THEORY_SPECULATION
-         to format-selection guidance") is explicitly NOT YET DONE. This is not a
-         deliberate withholding like SEASON_ROUNDUP's — it is an outstanding porting
-         gap, tracked as a separate future step, not a design decision to exclude it.
+         to format-selection guidance") is explicitly NOT YET DONE — this remains the
+         single genuinely outstanding item, and is why the token stays unselectable
+         here. This is not a deliberate withholding like SEASON_ROUNDUP's — it is an
+         outstanding porting gap, tracked as a separate future step, not a design
+         decision to exclude it.
       Law #85 hierarchy (9 tokens covering 8 ranks — rank 8 is written in Law #85's
       text as one combined format "SLEPT_ON / HIDDEN_GEM", but real production history
       used both as distinct format_type strings, so both are kept as separate tokens
@@ -308,16 +320,30 @@ Pick BOTH ideas together so you can guarantee cross-slot diversity in one pass:
       here same as every other format, no anime-only exception.
       None of these 6 formats are recap videos, essay-voice, or general/unspecific takes
       (Law #92 fan-voice test applies to all).
-      SEASON_ROUNDUP (Law #159) IS NOT YET SELECTABLE FROM THIS STEP, even though it is
-      live in the validator's FORMAT_TYPES enum as of 2026-08-10. Named, explicit
-      blocker: the validator does not yet cross-check claim_source_matrix entry count
-      against the number of shows covered in a roundup (Law #159 implementation-status
-      item 3), so a SEASON_ROUNDUP package could pass validation today with a single
-      source waved across multiple shows' claims, undetected — a direct structural
-      echo of the real Gachiakuta incident (Law #73 UPDATE 7) that motivated the
-      per-clip verification discipline in the first place. Do not select SEASON_ROUNDUP
-      for a real send until that per-show source-count check exists and this runtime
-      section is updated to remove this blocker note.
+      SEASON_ROUNDUP (Law #159) IS SELECTABLE as of 2026-08-14.
+      [Blocker note removed 2026-08-14, per its own stated exit condition. It previously
+      read "IS NOT YET SELECTABLE FROM THIS STEP," because the validator did not
+      cross-check claim_source_matrix entry count against the number of shows covered in
+      a roundup (Law #159 implementation-status item 3) — so a roundup could pass
+      validation with a single source waved across multiple shows' claims, undetected: a
+      direct structural echo of the real Gachiakuta incident (Law #73 UPDATE 7) that
+      motivated the per-clip verification discipline in the first place. That per-show
+      check now exists (`_validate_season_roundup_sourcing`), so the blocker is resolved
+      and the note is retired rather than deleted silently.]
+      WHEN SELECTING SEASON_ROUNDUP, the package MUST additionally carry:
+        - roundup_shows: the authoritative list of shows the roundup claims (>=2
+          distinct non-empty names). REQUIRED and fail-closed for this token; it must be
+          ABSENT on every other format_type. The show count is NOT inferred from the
+          clip count — nothing enforces 1 clip == 1 show.
+        - ONE core claim_source_matrix entry PER declared show, each tagged
+          "show": "<name>" matching a roundup_shows entry, and each citing its OWN
+          distinct source that is listed in sources[] (hence dated) AND
+          non-encyclopedic. NO source URL may be reused across two shows — one source
+          waved across several shows is exactly what this check exists to reject.
+        - the three-source-type clip rule (aired anime scene_verified+clip_locate /
+          manga_reference / trailer_reference), unchanged.
+      Length: the MULTI-CLAIM EXPLAINER band — several independently-verified claims
+      that don't reduce to one throughline — up to 180s.
   - RECURRING SERIES (Law #143): where an idea fits a proven recurring structure
     (seasonal ranking, episode/scene test), tag series={"id":<machine-id>,
     "recurring":true} to serve returning viewers. Do NOT force the same show; blackout /
