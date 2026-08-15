@@ -81,7 +81,13 @@ Before every send:
 [ ] Does the pinned comment state a position AND leave a specific open thread?
 [ ] Are at least 3 of the 5 levers active?
 
-SELF-HEAL SOURCE: /home/user/workspace/laws/law_55_community_comment.md
+SELF-HEAL SOURCE: laws/law_55_community_comment.md
+  [Path corrected 2026-08-15 during a law audit. This read
+  "/home/user/workspace/laws/law_55_community_comment.md" — the old sandbox
+  layout, which does not resolve in this repo-based checkout. Per Session Fixes
+  FIX 25 the GitHub repo is the authoritative source, so the path is now
+  repo-relative. The self-heal instruction itself is UNCHANGED — only the path
+  was stale.]
 ================================================================================
 END OF COMMUNITY COMMENT LAW — LAW #55
 ================================================================================

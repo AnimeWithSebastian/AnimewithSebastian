@@ -37,7 +37,12 @@ None of these are checked once and forgotten. They feed back into the system wee
 (Tracking note: this mechanism has zero code enforcement and no state file currently exists — see docs/UNDERPERFORMANCE_DEPRIORITIZATION_TRACKING.md before treating this rule as actually applied to any real selection.)
 
 **Where this lives:**
-`/home/user/workspace/analytics_performance_log.json`
+~~`/home/user/workspace/analytics_performance_log.json`~~ → `analytics_performance_log.json` (repo-relative)
+[Path corrected 2026-08-15 during a law audit: the `/home/user/workspace/` prefix is the
+old sandbox layout and does not resolve in this repo-based checkout. Per Session Fixes
+FIX 25 the repo is the authoritative source. MECHANICAL ONLY — this law already carried
+the substantive caveat below, unlike Law #61, which defined the same file with no such
+warning until it was corrected on the same date.]
 This file does not currently exist in the repo; see docs/UNDERPERFORMANCE_DEPRIORITIZATION_TRACKING.md Finding 3.
 Updated every Sunday by cron 2bb28991.
 

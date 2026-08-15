@@ -80,7 +80,29 @@ The cron does not just report. It feeds back into the production system.
 ## THE MEMORY FILE
 
 All grade data is saved to:
-`/home/user/workspace/analytics_performance_log.json`
+~~`/home/user/workspace/analytics_performance_log.json`~~ → `analytics_performance_log.json` (repo-relative)
+
+> **CORRECTED 2026-08-15 during a law audit — TWO problems, one of them substantive.**
+>
+> 1. **Stale path (mechanical):** the `/home/user/workspace/` prefix is the old sandbox
+>    layout and does not resolve in this repo-based checkout. Per Session Fixes FIX 25
+>    the GitHub repo is the authoritative source, so the path is repo-relative.
+>
+> 2. **THE FILE DOES NOT EXIST (substantive):** there is no
+>    `analytics_performance_log.json` anywhere in this repo. The paragraph below states
+>    that it "accumulates week over week" and that "the cron reads the previous week's
+>    data before generating new grades" — describing an accumulating trend history that
+>    is not actually being written or read. **Law #65 already carries this caveat**
+>    ("This file does not currently exist in the repo; see
+>    `docs/UNDERPERFORMANCE_DEPRIORITIZATION_TRACKING.md` Finding 3"); Law #61 — the law
+>    that actually DEFINES the file — did not, which made this the more misleading of the
+>    two references. Anyone reading #61 alone would reasonably believe week-over-week
+>    grade history exists.
+>
+> The scoring system and feedback-loop rules in this law are UNCHANGED and still apply;
+> only the storage claim is inaccurate. Whether to build the file, or to rewrite this
+> section around what the weekly cron genuinely persists (`cron_tracking/2bb28991/state.json`
+> plus the publication ledger), is a real decision and is deliberately NOT made here.
 
 This file accumulates week over week. The cron reads the previous week's data before generating new grades, so trends can be identified across multiple runs.
 

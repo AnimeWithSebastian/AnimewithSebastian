@@ -77,7 +77,13 @@ Before every send:
 [ ] If manga: is it framed as manga content, not "in the anime"?
 [ ] Has the manga track limit (30 days) been hit?
 
-SELF-HEAL SOURCE: /home/user/workspace/laws/law_57_hidden_gems_pillar.md
+SELF-HEAL SOURCE: laws/law_57_hidden_gems_pillar.md
+  [Path corrected 2026-08-15 during a law audit. This read
+  "/home/user/workspace/laws/law_57_hidden_gems_pillar.md" — the old sandbox
+  layout, which does not resolve in this repo-based checkout. Per Session Fixes
+  FIX 25 the GitHub repo is the authoritative source, so the path is now
+  repo-relative. The self-heal instruction itself is UNCHANGED — only the path
+  was stale.]
 ================================================================================
 END OF HIDDEN GEMS PILLAR LAW — LAW #57
 ================================================================================

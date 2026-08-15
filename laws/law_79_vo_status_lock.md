@@ -111,7 +111,13 @@ With this law:
   Search result: finale aired June 22 → VO line removed before draft →
   Package goes out with correct status ("all 13 episodes available now") → no false claim
 
-SELF-HEAL SOURCE: /home/user/workspace/laws/law_79_vo_status_lock.md
+SELF-HEAL SOURCE: laws/law_79_vo_status_lock.md
+  [Path corrected 2026-08-15 during a law audit. This read
+  "/home/user/workspace/laws/law_79_vo_status_lock.md" — the old sandbox
+  layout, which does not resolve in this repo-based checkout. Per Session Fixes
+  FIX 25 the GitHub repo is the authoritative source, so the path is now
+  repo-relative. The self-heal instruction itself is UNCHANGED — only the path
+  was stale.]
 ================================================================================
 END OF VO STATUS LOCK LAW — LAW #79
 ================================================================================

@@ -131,7 +131,13 @@ this law's pre-send verification requirement across all artifact types — scrip
 law changes, fixtures, and reference documents — and defines what counts as a
 genuinely independent check.
 
-SELF-HEAL SOURCE: /home/user/workspace/laws/law_58_pre_send_verification.md
+SELF-HEAL SOURCE: laws/law_58_pre_send_verification.md
+  [Path corrected 2026-08-15 during a law audit. This read
+  "/home/user/workspace/laws/law_58_pre_send_verification.md" — the old sandbox
+  layout, which does not resolve in this repo-based checkout. Per Session Fixes
+  FIX 25 the GitHub repo is the authoritative source, so the path is now
+  repo-relative. The self-heal instruction itself is UNCHANGED — only the path
+  was stale.]
 ================================================================================
 END OF PRE-SEND VERIFICATION LAW — LAW #58
 ================================================================================

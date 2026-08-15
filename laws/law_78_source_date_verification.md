@@ -93,7 +93,13 @@ Any source over 180 days old with no current backup → claim is blocked, cannot
 
 Missing source dates in the verification block = LAW #78 VIOLATION.
 
-SELF-HEAL SOURCE: /home/user/workspace/laws/law_78_source_date_verification.md
+SELF-HEAL SOURCE: laws/law_78_source_date_verification.md
+  [Path corrected 2026-08-15 during a law audit. This read
+  "/home/user/workspace/laws/law_78_source_date_verification.md" — the old sandbox
+  layout, which does not resolve in this repo-based checkout. Per Session Fixes
+  FIX 25 the GitHub repo is the authoritative source, so the path is now
+  repo-relative. The self-heal instruction itself is UNCHANGED — only the path
+  was stale.]
 ================================================================================
 END OF SOURCE DATE VERIFICATION LAW — LAW #78
 ================================================================================

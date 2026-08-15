@@ -55,7 +55,13 @@ June 25, 2026 — Clip instruction blocks sent without per-cut durations. Creato
 that they need to know how long each cut should be in the edit — not just what clip to use.
 Without durations the edit order is incomplete and useless for CapCut production.
 
-SELF-HEAL SOURCE: /home/user/workspace/laws/law_77_clip_duration.md
+SELF-HEAL SOURCE: laws/law_77_clip_duration.md
+  [Path corrected 2026-08-15 during a law audit. This read
+  "/home/user/workspace/laws/law_77_clip_duration.md" — the old sandbox
+  layout, which does not resolve in this repo-based checkout. Per Session Fixes
+  FIX 25 the GitHub repo is the authoritative source, so the path is now
+  repo-relative. The self-heal instruction itself is UNCHANGED — only the path
+  was stale.]
 ================================================================================
 END OF CLIP DURATION LAW — LAW #77
 ================================================================================

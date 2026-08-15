@@ -44,4 +44,10 @@ No validator blocklist exists for this law by deliberate design decision (July 2
 - Law #148 — source authority, attribution accuracy, and conflict handling (comparative source-strength ranking; this law is a binary exclusion that applies before any strength comparison).
 - Law #147 — the "one dated, non-encyclopedic source" minimum sufficiency rule (also does not cure a conflict-of-interest exclusion; a conflict-of-interest source cannot serve as the "non-encyclopedic" pairing source either).
 
-SELF-HEAL SOURCE: /home/user/workspace/laws/law_154_conflict_of_interest_exclusion.md
+SELF-HEAL SOURCE: laws/law_154_conflict_of_interest_exclusion.md
+  [Path corrected 2026-08-15 during a law audit. This read
+  "/home/user/workspace/laws/law_154_conflict_of_interest_exclusion.md" — the old sandbox
+  layout, which does not resolve in this repo-based checkout. Per Session Fixes
+  FIX 25 the GitHub repo is the authoritative source, so the path is now
+  repo-relative. The self-heal instruction itself is UNCHANGED — only the path
+  was stale.]

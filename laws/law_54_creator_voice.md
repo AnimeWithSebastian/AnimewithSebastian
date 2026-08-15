@@ -78,7 +78,13 @@ Before every send:
 [ ] Does the closer feel like a real person landing on a thought — not a conclusion?
 [ ] Would a viewer say "this sounds AI" after reading this aloud?
 
-SELF-HEAL SOURCE: /home/user/workspace/laws/law_54_creator_voice.md
+SELF-HEAL SOURCE: laws/law_54_creator_voice.md
+  [Path corrected 2026-08-15 during a law audit. This read
+  "/home/user/workspace/laws/law_54_creator_voice.md" — the old sandbox
+  layout, which does not resolve in this repo-based checkout. Per Session Fixes
+  FIX 25 the GitHub repo is the authoritative source, so the path is now
+  repo-relative. The self-heal instruction itself is UNCHANGED — only the path
+  was stale.]
 ================================================================================
 END OF CREATOR VOICE LAW — LAW #54
 ================================================================================

@@ -86,7 +86,13 @@ Before every send:
 [ ] Does any VO line reference content beyond the ceiling?
 [ ] If Steel Ball Run: none of the blocked content listed above appears anywhere
 
-SELF-HEAL SOURCE: /home/user/workspace/laws/law_53_airing_status.md
+SELF-HEAL SOURCE: laws/law_53_airing_status.md
+  [Path corrected 2026-08-15 during a law audit. This read
+  "/home/user/workspace/laws/law_53_airing_status.md" — the old sandbox
+  layout, which does not resolve in this repo-based checkout. Per Session Fixes
+  FIX 25 the GitHub repo is the authoritative source, so the path is now
+  repo-relative. The self-heal instruction itself is UNCHANGED — only the path
+  was stale.]
 ================================================================================
 END OF AIRING STATUS ENFORCEMENT LAW — LAW #53
 ================================================================================
