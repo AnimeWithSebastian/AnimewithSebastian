@@ -318,13 +318,54 @@ Pick BOTH ideas together so you can guarantee cross-slot diversity in one pass:
          2026-08-14 law audit corrected that header (commit e98805b), which left THIS
          line stale — drift introduced by the very change that was fixing drift. The
          rest of this item is unaffected and still accurate.]
-         (laws/law_160_theory_speculation_draft.md),
+         (laws/law_160_theory_speculation.md [FILENAME UPDATED 2026-08-15: was
+         law_160_theory_speculation_draft.md; the "_draft" suffix was the last place
+         still calling this law a draft after its header was corrected to
+         ACTIVE — IMPLEMENTED on 2026-08-14]),
          and that law's own item 7 ("cron_daily_runtime.txt: add THEORY_SPECULATION
          to format-selection guidance") is explicitly NOT YET DONE — this remains the
          single genuinely outstanding item, and is why the token stays unselectable
-         here. This is not a deliberate withholding like SEASON_ROUNDUP's — it is an
+         here. ~~This is not a deliberate withholding like SEASON_ROUNDUP's — it is an
          outstanding porting gap, tracked as a separate future step, not a design
-         decision to exclude it.
+         decision to exclude it.~~
+
+         [CONVERTED TO A DELIBERATE WITHHOLDING 2026-08-15, on owner decision. The
+         struck sentence above was accurate as a description of how the gap AROSE —
+         item 7 was never ported, rather than consciously declined. It is no longer
+         accurate as a description of the CURRENT state. The gap has now been
+         reviewed and the token is being withheld on purpose, for the same reason
+         SEASON_ROUNDUP was withheld before its blocker was lifted: the supporting
+         guidance a real production run would need in order to choose this format
+         well does not exist in this runtime yet.
+
+         WHAT IS AND IS NOT TRUE OF THEORY_SPECULATION TODAY:
+           - It IS validator-complete. FORMAT_TYPES carries the token, and
+             validate_dual_package.py contains real THEORY_SPECULATION-specific
+             logic (including the revisit_justification requirement when
+             blackout_conflict/recent_send_conflict are true — the one format-
+             specific carve-out on those flags).
+           - It IS tested. validators/test_validate_dual_package.py exercises the
+             token directly.
+           - Law #160 IS status ACTIVE — IMPLEMENTED, and items 1-6 are shipped.
+           - It is NOT selectable from this step, and that is now intentional.
+             Selecting a format from this runtime requires more than the validator
+             accepting the token: it requires the per-format guidance every other
+             entry in the catalog below carries — what the format is for, its
+             evidence/hedging discipline, its length band, and its blackout rule.
+             None of that has been written here for THEORY_SPECULATION.
+
+         TO LIFT THIS WITHHOLDING, port Law #160 item 7 properly: add a
+         THEORY_SPECULATION entry to the format catalog below with its scope, its
+         evidence-and-hedging requirements (this is the one format whose whole point
+         is conclusion-hedging, so the guidance matters more here than elsewhere, not
+         less), its length band, and its blackout rule — then update the selectable
+         count in this NOTE and strike this withholding block, the same way
+         SEASON_ROUNDUP's was struck above when Law #159 item 3 shipped.
+
+         Do NOT make the token selectable by simply deleting this note. The
+         validator accepting a token has never been sufficient for selectability in
+         this runtime, and treating it as sufficient is what would put an
+         unguided, hedging-critical format into production.]
       Law #85 hierarchy (9 tokens covering 8 ranks — rank 8 is written in Law #85's
       text as one combined format "SLEPT_ON / HIDDEN_GEM", but real production history
       used both as distinct format_type strings, so both are kept as separate tokens
