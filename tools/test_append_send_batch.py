@@ -806,3 +806,137 @@ class TestCorrectionBatchAttribution(LoggerCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class TestPendingStateMirrorF38(LoggerCase):
+    """F38 fix (2026-08-15): after a genuinely successful send, the PER-BATCH
+    pending/<batch_id>/state.json must flip to a terminal status.
+
+    Before this, STEP 7/8/9 only wrote the TOP-LEVEL state.json, so a batch that
+    had really sent still looked -- to Law #166's pending-batch scan, which reads
+    exactly that per-batch file -- like an open unreviewed backlog item forever.
+    That is F37's mechanical enabler: the next unattended run would skip generating
+    a fresh batch with no distinct failure signal. It happened for real to batch
+    32e0fcb9 (Link Click, post_date 2026-08-14).
+
+    Fail-safe requirement: a FAILED send must NOT flip anything, so a genuinely
+    incomplete batch keeps blocking exactly as intended.
+    """
+
+    def pending_dir(self):
+        return os.path.join(self.tree, "cron_tracking", CRON_ID, "pending",
+                            self.manifest["batch_id"])
+
+    def pending_path(self):
+        return os.path.join(self.pending_dir(), "state.json")
+
+    def seed_pending(self, extra: dict | None = None):
+        """Write a STEP 6-style per-batch state, as the approval flow would."""
+        os.makedirs(self.pending_dir(), exist_ok=True)
+        body = {
+            "status": "AWAITING_" + "APPROVAL",   # split so this file never
+                                                  # trips a naive substring scan
+            "emails_sent": False,
+            "batch_id": self.manifest["batch_id"],
+            "post_date": self.manifest.get("post_date"),
+        }
+        if extra:
+            body.update(extra)
+        with open(self.pending_path(), "w", encoding="utf-8") as fh:
+            json.dump(body, fh)
+        return body
+
+    def pending(self):
+        with open(self.pending_path(), encoding="utf-8") as fh:
+            return json.load(fh)
+
+    # --- the core fix ---
+
+    def test_successful_send_flips_pending_to_terminal(self):
+        self.seed_pending()
+        self.assertEqual(self.run_cli("--emails-sent"), 0)
+        p = self.pending()
+        self.assertEqual(p["status"], "sent")
+        self.assertTrue(p["emails_sent"])
+        self.assertIn("terminal_state_written_at", p)
+        self.assertEqual(p["terminal_state_written_by"],
+                         "tools/append_send_batch.py (F38)")
+
+    def test_terminal_pending_no_longer_matches_a_naive_scan(self):
+        # Law #166's check is prose that greps for the awaiting-approval status.
+        self.seed_pending()
+        self.assertEqual(self.run_cli("--emails-sent"), 0)
+        with open(self.pending_path(), encoding="utf-8") as fh:
+            raw = fh.read()
+        self.assertNotIn("AWAITING_" + "APPROVAL", raw,
+                         "terminal pending state must not still contain the "
+                         "awaiting-approval token, or Law #166 re-blocks on it")
+
+    # --- fail-safe ---
+
+    def test_failed_send_does_not_flip_pending(self):
+        seeded = self.seed_pending()
+        rc = self.run_cli()          # no --emails-sent -> fail closed
+        self.assertEqual(rc, 1)
+        self.assertEqual(self.pending(), seeded, "a failed send must leave the "
+                         "pending state untouched so Law #166 keeps blocking")
+
+    def test_validator_rejected_manifest_does_not_flip_pending(self):
+        seeded = self.seed_pending()
+        bad = load_manifest()
+        bad["recipient"] = "wrong@example.com"
+        rc = self.run_cli_manifest(bad, "--emails-sent")
+        self.assertEqual(rc, 1)
+        self.assertEqual(self.pending(), seeded)
+
+    # --- preservation: partial batches ---
+
+    def test_step6_fields_are_preserved_not_overwritten(self):
+        # 32e0fcb9's real shape: one package sent, one deliberately held.
+        held = [{"show": "That Time I Got Reincarnated as a Slime",
+                 "disposition": "HELD_NOT_SENT", "tracked_as": "F36",
+                 "still_open": True}]
+        self.seed_pending({
+            "corrects_batch_id": "b03ef8b6-d254-442a-aaf9-673a6578a0c5",
+            "single_package_reason": "evening held under Law #165",
+            "held_packages": held,
+        })
+        self.assertEqual(self.run_cli("--emails-sent"), 0)
+        p = self.pending()
+        self.assertEqual(p["status"], "sent")
+        self.assertEqual(p["corrects_batch_id"], "b03ef8b6-d254-442a-aaf9-673a6578a0c5")
+        self.assertEqual(p["single_package_reason"], "evening held under Law #165")
+        self.assertEqual(p["held_packages"], held,
+                         "a held package must survive the batch reaching a terminal "
+                         "status -- terminal != the hold was resolved")
+        self.assertTrue(p["held_packages"][0]["still_open"])
+
+    # --- no-op paths ---
+
+    def test_no_pending_dir_is_a_clean_noop(self):
+        # the overwhelmingly common case: batch never used the approval flow
+        self.assertFalse(os.path.isdir(self.pending_dir()))
+        self.assertEqual(self.run_cli("--emails-sent"), 0)
+        self.assertFalse(os.path.exists(self.pending_path()))
+        self.assertEqual(self.state()["status"], "success")
+
+    def test_corrupt_pending_file_still_yields_terminal_state(self):
+        os.makedirs(self.pending_dir(), exist_ok=True)
+        with open(self.pending_path(), "w", encoding="utf-8") as fh:
+            fh.write("{ not valid json,,,")
+        self.assertEqual(self.run_cli("--emails-sent"), 0)
+        self.assertEqual(self.pending()["status"], "sent")
+
+    def test_mirror_returns_none_when_not_success(self):
+        state = {"status": "failed", "run_ts": "x"}
+        self.assertIsNone(
+            a.mirror_pending_state(self.manifest, self.tree, CRON_ID, state))
+
+    def test_top_level_state_still_written_normally(self):
+        # the per-batch mirror must not disturb the authoritative top-level write
+        self.seed_pending()
+        self.assertEqual(self.run_cli("--emails-sent", "--git-pushed"), 0)
+        st = self.state()
+        self.assertEqual(st["status"], "success")
+        self.assertTrue(st["git_pushed"])
+        self.assertEqual(self.pending()["git_pushed"], True)

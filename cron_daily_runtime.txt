@@ -133,9 +133,56 @@ evening with date_sent = today: NO-OP (already done today) — write state no_op
 exit.
 
 PENDING-BATCH CHECK (Law #166, added 2026-08-13, part of the Law #164 approval
-gate): BEFORE reserving a new batch, check cron_tracking/daily_combined/pending/
-for any batch directory whose state.json still reads status="AWAITING_APPROVAL"
-(i.e. approval.json was never written for it). If ANY such batch exists:
+gate; CARVE-OUT + PARSING RULE ADDED 2026-08-15, docs/KNOWN_ISSUES.md F37/F38)
+
+  *** HOW TO READ A PENDING BATCH'S STATUS — DO THIS FIRST ***
+  PARSE state.json AND READ THE "status" FIELD. Do NOT substring-grep the file
+  for the awaiting-approval token. A completed batch's state.json legitimately
+  CONTAINS that token inside explanatory prose (its own correction note explains
+  what its status used to be), so a grep-based check re-blocks on a batch that
+  is actually finished. This is not hypothetical — it was hit while fixing F38
+  on batch 32e0fcb9. Only the value of the top-level "status" field counts.
+
+  A pending batch BLOCKS today's run only if BOTH are true:
+    (a) its state.json "status" field is exactly "AWAITING_APPROVAL", AND
+    (b) it has no confirmed send — i.e. no row for its batch_id in
+        cron_tracking/sent_scripts_events.jsonl, and the top-level
+        cron_tracking/daily_combined/state.json does not record that batch_id
+        as status="success" / emails_sent=true.
+
+  A batch whose status is terminal ("sent") is NOT a blocker. Since 2026-08-15
+  tools/append_send_batch.py flips the per-batch pending copy to "sent"
+  automatically on a successful send (F38 fix, fail-safe: it only ever flips on
+  success), so in normal operation a completed batch self-clears.
+
+  CORRECTION-BATCH CARVE-OUT (F37): a batch carrying a "corrects_batch_id" field
+  is a correction of an earlier batch, not a fresh daily backlog item. If such a
+  batch satisfies (a) but FAILS (b) — i.e. it reads awaiting-approval yet its
+  packages are demonstrably already sent — that is the F38 stale-state bug, not a
+  real backlog. Do NOT skip the day for it. Instead: flip that batch's per-batch
+  state.json to status="sent" (recording why, and preserving every STEP 6 field
+  including any held_packages), note it in the run log, and CONTINUE normally.
+  IMPORTANT: a batch reaching terminal status NEVER means a separately held
+  package was resolved. Batch 32e0fcb9 is the worked example — Link Click sent,
+  Slime still held under Law #165 / F36, and closing the batch did not close F36.
+
+  [ORIGINAL TEXT, PRESERVED — this check previously read, with no carve-out and
+  no parsing rule: "BEFORE reserving a new batch, check
+  cron_tracking/daily_combined/pending/ for any batch directory whose state.json
+  still reads status='AWAITING_APPROVAL' (i.e. approval.json was never written
+  for it). If ANY such batch exists: ..." That wording could not tell a completed
+  correction batch from an abandoned one, and would have skipped the next
+  unattended run against batch 32e0fcb9, which had already sent.]
+
+  HONEST LIMITATION (unchanged by this fix): Law #166 is still PROSE ONLY. No
+  validator or tool enforces the pending-batch check itself — a grep across
+  validators/ and tools/ for AWAITING_APPROVAL / pending_batch / skipped_pending
+  finds no enforcement. It depends entirely on the agent context reading and
+  following this file. Only the F38 terminal-state FLIP is code-backed.
+
+BEFORE reserving a new batch, check cron_tracking/daily_combined/pending/
+for any batch directory that BLOCKS under the two-part test above. If ANY such
+batch exists:
   - Do NOT generate a new batch today. Generating a second batch on top of an
     unreviewed one defeats the purpose of the approval gate — it creates a
     backlog that's easier to skim past, and a second batch risks assuming

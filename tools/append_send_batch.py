@@ -318,6 +318,74 @@ def append_batch(manifest: dict[str, Any], tree: str, cron_id: str) -> dict[str,
             "package_ids": [p.get("package_id") for p in pkgs]}
 
 
+def mirror_pending_state(manifest: dict[str, Any], tree: str, cron_id: str,
+                         state: dict[str, Any]) -> str | None:
+    """F38 fix (2026-08-15): flip the PER-BATCH pending/<batch_id>/state.json to a
+    terminal status after a genuinely successful send.
+
+    THE GAP THIS CLOSES: STEP 6 writes pending/<batch_id>/state.json with a
+    non-terminal awaiting-approval status. STEP 7/8/9 then only ever wrote the
+    TOP-LEVEL cron_tracking/<cron_id>/state.json -- nothing transitioned the
+    per-batch copy. So a batch that sent hours or days ago still looked, to Law
+    #166's pending-batch scan (which reads exactly that per-batch file), like an
+    open unreviewed backlog item forever. That is the direct mechanical enabler of
+    F37: the next unattended daily run would read it as still open and skip
+    generating a fresh batch, with no distinct failure signal. This already
+    happened for real to batch 32e0fcb9 (Link Click, post_date 2026-08-14), which
+    sat non-terminal after its morning package had actually been sent.
+
+    FAIL-SAFE BY DESIGN -- ONLY FLIPS ON SUCCESS. If the send/log did not fully
+    succeed this writes NOTHING and leaves the pending state untouched, so a failed
+    batch keeps blocking Law #166 exactly as it should. A terminal status is only
+    ever recorded for a batch that really completed.
+
+    STEP 6 FIELDS ARE PRESERVED (merge, not overwrite): single_package_reason,
+    corrects_batch_id, held_packages and any hold record stay intact, because a
+    batch can legitimately be terminal for one package while another is separately
+    held (e.g. 32e0fcb9: Link Click sent, Slime held under Law #165 / F36).
+    Reaching a terminal status here NEVER implies a held package was resolved.
+
+    Returns the path written, or None when nothing was written. None is not a
+    failure signal -- it means "not a success" or "no pending dir for this batch"
+    (most batches never use the pending/ approval flow at all).
+    """
+    if state.get("status") != "success":
+        return None
+    batch_id = manifest.get("batch_id")
+    if not batch_id:
+        return None
+    pending_dir = os.path.join(tree, "cron_tracking", cron_id, "pending", str(batch_id))
+    if not os.path.isdir(pending_dir):
+        return None
+    pending_path = os.path.join(pending_dir, "state.json")
+
+    existing: dict[str, Any] = {}
+    try:
+        with open(pending_path, encoding="utf-8") as fh:
+            loaded = json.load(fh)
+        if isinstance(loaded, dict):
+            existing = loaded
+    except (OSError, json.JSONDecodeError):
+        # A missing/corrupt per-batch file must not abort the send record -- the
+        # top-level state.json is already written and authoritative. Still write a
+        # terminal per-batch file so Law #166's scan gets a clean signal.
+        existing = {}
+
+    merged = dict(existing)
+    merged.update({
+        "status": "sent",          # terminal value proposed by F38 itself
+        "emails_sent": state.get("emails_sent"),
+        "log_appended": state.get("log_appended"),
+        "git_pushed": state.get("git_pushed"),
+        "error": state.get("error"),
+        "batch_id": batch_id,
+        "terminal_state_written_at": state.get("run_ts"),
+        "terminal_state_written_by": "tools/append_send_batch.py (F38)",
+    })
+    _atomic_write(pending_path, json.dumps(merged, indent=2, ensure_ascii=False))
+    return pending_path
+
+
 def write_state(manifest: dict[str, Any], tree: str, cron_id: str, *,
                 emails_sent: bool, log_appended: bool, git_pushed: bool,
                 error: str | None) -> str:
@@ -347,6 +415,11 @@ def write_state(manifest: dict[str, Any], tree: str, cron_id: str, *,
     }
     state_path = os.path.join(tree, "cron_tracking", cron_id, "state.json")
     _atomic_write(state_path, json.dumps(state, indent=2, ensure_ascii=False))
+    # F38 (2026-08-15): keep the per-batch pending copy in sync with this top-level
+    # mirror. No-ops unless the send actually succeeded AND this batch used the
+    # pending/ approval flow. Deliberately AFTER the top-level write: the top-level
+    # state is authoritative, so it must land even if the per-batch mirror cannot.
+    mirror_pending_state(manifest, tree, cron_id, state)
     return state_path
 
 

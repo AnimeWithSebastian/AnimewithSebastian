@@ -1531,6 +1531,25 @@ scratch.
 
 ## F37: Law #166's pending-batch check has no `corrects_batch_id` carve-out — a correction batch could be misread as an unreviewed backlog blocker by tomorrow's unattended cron
 
+> **RESOLVED 2026-08-15** (original entry preserved below unchanged). Fixed in
+> `cron_daily_runtime.txt`'s Law #166 check, taking F37's own option (b) now that
+> F38 is closed. Three changes: (1) a **two-part blocking test** — a pending batch
+> blocks only if its `status` field is exactly the awaiting-approval value AND it
+> has no confirmed send in `sent_scripts_events.jsonl` / the top-level
+> `state.json`; (2) an explicit **`corrects_batch_id` carve-out** — a correction
+> batch that reads awaiting-approval but is demonstrably already sent is the F38
+> stale-state bug, so the run flips it to terminal and CONTINUES rather than
+> skipping the day; (3) a **parsing rule** — parse the `status` field, never
+> substring-grep the file. That third point was found the hard way while fixing
+> F38: a completed batch's own correction note legitimately contains the
+> awaiting-approval token in prose, so a grep-based check re-blocks on a batch
+> that is actually finished.
+> **Still true and unchanged:** Law #166 remains PROSE ONLY with no code
+> enforcement of the check itself — only F38's terminal-state flip is code-backed.
+> That limitation is now stated explicitly in the runtime rather than implied.
+> Verified against real repo state: batch 32e0fcb9 no longer blocks on either
+> half of the test.
+
 **Discovered:** 2026-08-13/14, while building the Link Click-only correction
 batch (`batch_id` `32e0fcb9-440c-4b2e-8bd4-0c900390b3c1`, corrects
 `b03ef8b6-d254-442a-aaf9-673a6578a0c5`) and preparing to write its
@@ -1584,6 +1603,29 @@ chance to misfire against it. This is a forward-looking process gap, not a
 failure that has already occurred.
 
 ## F38: STEP 8 has no specified step to flip a sent batch's own `pending/<batch_id>/state.json` to a terminal status — it can be left reading `AWAITING_APPROVAL` indefinitely after a successful send
+
+> **RESOLVED 2026-08-15** (original entry preserved below unchanged). Fixed in
+> **code**, not prose: `tools/append_send_batch.py` now has
+> `mirror_pending_state()`, called from `write_state()` immediately after the
+> authoritative top-level write. On a genuinely successful send it flips
+> `pending/<batch_id>/state.json` to terminal `status="sent"`, stamping
+> `terminal_state_written_at` / `_by`.
+> **Fail-safe:** it only ever flips on success — a failed or validator-rejected
+> send writes nothing, so an incomplete batch keeps blocking Law #166 exactly as
+> intended. **Merge, not overwrite:** STEP 6 fields (`corrects_batch_id`,
+> `single_package_reason`, `held_packages`) are preserved, because a batch can be
+> terminal for one package while another is separately held — reaching terminal
+> status NEVER implies a hold was resolved.
+> Covered by `TestPendingStateMirrorF38` (9 tests): the flip, the fail-safe on
+> both failure paths, STEP 6 field preservation, the no-pending-dir and
+> corrupt-file no-ops, and an explicit check that a terminal file no longer
+> contains the awaiting-approval token at all.
+> **The one-off backlog this entry predicted was real and has been cleared:**
+> batch 32e0fcb9's per-batch state was still non-terminal on 2026-08-15, a day
+> after its morning package actually sent — the manual correction this entry
+> anticipated ("will be worked around by hand") was never performed. It has now
+> been applied, with the send verified first against three independent artifacts.
+> Suites: validators 365, tools 124.
 
 **Discovered:** 2026-08-13/14, same session as F37, while re-reading
 `cron_daily_runtime.txt`'s STEP 7-9 spec text in full to check what STEP 8
