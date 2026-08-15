@@ -1,0 +1,455 @@
+{
+  "batch_id": "b1a2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+  "run_ts": "2026-07-15T23:30:00Z",
+  "post_date": "2026-07-16",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-07-14T22:00:00Z",
+    "age_days": 1,
+    "status": "CURRENT"
+  },
+  "packages": [
+    {
+      "package_id": "419e768e-3d0a-4123-9258-0bedf4780001",
+      "slot": "morning",
+      "show": "Frieren: Beyond Journey's End",
+      "angle": "Fern's silence in the Aura fight is written as a combat tell, not a mood beat",
+      "format_type": "CHARACTER_DIVE",
+      "content_type": "short",
+      "topic_class": "timely",
+      "topic_signals": [
+        "currently_airing"
+      ],
+      "series": {
+        "id": "episode_scene_test",
+        "recurring": true
+      },
+      "series_public_name": "Scene Test",
+      "series_next_line": "New Scene Test drops tomorrow.",
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "FERN'S SILENCE = HER MOST AGGRESSIVE MOVE",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Fern's silence is the most aggressive thing she does.",
+        "Fern's calm is a countdown, not a mood."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Fern's silence is the most aggressive thing she does.",
+      "opening_sentence": "Fern's silence is the most aggressive thing she does.",
+      "vo": "Fern's silence is the most aggressive thing she does. She goes quiet right before she wins, and the show frames that silence as a weapon. Watch her breathing drop the second Aura underestimates her. Every calm frame is her measuring mana she already has. The score cuts out on purpose, so you feel it instead of hearing it. That is why the fight lands harder on rewatch than it did live. Most people read Fern as cold, but she is just certain. Is Fern the scariest mage here, or the calmest killer? Leave your take. So when she goes quiet, remember what that silence has already decided:",
+      "vo_word_count": 107,
+      "question_line": "Is Fern the scariest mage here, or the calmest killer?",
+      "cta_line": "Leave your take.",
+      "loop_line": "So when she goes quiet, remember what that silence has already decided:",
+      "loop_transition": "So when she goes quiet, remember what that silence has already decided: Fern's silence is the most aggressive thing she does.",
+      "loop_read_aloud_pass": true,
+      "loop_transition_note": "Final line is an incomplete colon setup ('...has already decided:') with no self-contained conclusion; read aloud the colon hands straight into the opening claim, so the replay lands as one continuous sentence rather than a keyword callback.",
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "The Fern vs Aura scene frames her silence as a combat weapon and is a fan-cited standout",
+            "core": true,
+            "source_urls": [
+              "https://www.reddit.com/r/anime/frieren_fern_aura"
+            ],
+            "claim_type": "A",
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Frieren Season 2 is currently airing",
+            "core": true,
+            "source_urls": [
+              "https://www.crunchyroll.com/frieren"
+            ],
+            "claim_type": "C"
+          },
+          {
+            "claim": "The score cuts out on the beat so the moment is felt rather than heard",
+            "core": false,
+            "source_urls": []
+          },
+          {
+            "claim": "Fern's calm before the mana burst is a deliberate combat tell the fight pays off",
+            "core": true,
+            "source_urls": [
+              "https://www.reddit.com/r/anime/frieren_fern_aura"
+            ],
+            "claim_type": "A",
+            "anchors_claim": "loop"
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true,
+          "hook_claim_coverage": true
+        },
+        "final_to_opening_readaloud": "So when she goes quiet, remember what that silence has already decided: Fern's silence is the most aggressive thing she does."
+      },
+      "video_style": "Face-Cam Split Screen (creator top / anime footage bottom)",
+      "face": true,
+      "split_screen": true,
+      "sources": [
+        {
+          "claim": "Fern vs Aura is a fan-cited standout combat scene",
+          "url": "https://www.reddit.com/r/anime/frieren_fern_aura",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Season 2 currently airing status",
+          "url": "https://www.crunchyroll.com/frieren",
+          "date": "Jul 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Frieren calmly confronts Aura and her undead army, dodging their attacks without effort",
+          "reason": "hook frame, breaks the calm assumption",
+          "carries_loop_back": false,
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": true,
+          "verification_source_url": "https://frieren.fandom.com/wiki/Episode_9",
+          "claim_vs_source_check": {
+            "claimed_beat": "Frieren calmly asks Aura and her army to turn back, effortlessly dodging their attacks as the confrontation begins.",
+            "source_content_confirmed": "The Episode 9 Frieren Wiki page states: 'Frieren calmly asks Aura and her army to turn back from the town, but Aura refuses. As Aura's knights attack, Frieren effortlessly dodges their strikes, asking Aura why she won't retreat.'",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 9,
+            "locate_confirmed_via": "the same Frieren Wiki Episode 9 page cited above, which places this exchange at the fight's opening",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Aura taunts Frieren over her restraint, not understanding why she's holding back",
+          "reason": "sets up the underestimation",
+          "carries_loop_back": false,
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": true,
+          "verification_source_url": "https://screenrant.com/frieren-beyond-journeys-end-episode-10-release-date-time/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Aura taunts Frieren for disabling her control over the corpses instead of blowing them away as she did in their last fight, not understanding Frieren's restraint.",
+            "source_content_confirmed": "ScreenRant's episode #10 article states: 'Aura notes that Frieren is only disabling her control over the corpses instead of blowing them away as she did in their last fight, which Frieren explains as being because Himmel scolded her for doing that. Aura doesn't understand why Frieren would care about what Himmel thinks when he's dead.'",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 10,
+            "locate_confirmed_via": "the same ScreenRant episode #10 article cited above, which frames this taunt as part of the episode 9 fight it previews",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Aura's own Scales of Obedience reverses onto her as Frieren's true mana overwhelms it",
+          "reason": "payoff of the measured calm",
+          "carries_loop_back": false,
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://screenrant.com/frieren-beyond-journeys-end-episode-10-release-date-time/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Aura attempts to use the Scales of Obedience on Frieren, but the effect reverses because Frieren's raw mana overwhelms hers.",
+            "source_content_confirmed": "ScreenRant's episode #10 article states: 'Aura's Scales of Obedience allow her to control anyone with magic weaker than hers, and the natural weakness is that if someone managed to surpass Aura's magic, the power would be reversed... it's clear that Aura will be defeated because she attempts to use the Scales of Obedience on Frieren, only for Frieren to reverse the effects by overwhelming Aura with her raw power.'",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 10,
+            "locate_confirmed_via": "the same ScreenRant episode #10 article cited above, which states this reversal occurs as episode 10's payoff of the episode 9 setup",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Aura realizes the spells she's facing are far above what she assumed",
+          "reason": "reversal beat",
+          "carries_loop_back": false,
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": true,
+          "verification_source_url": "https://bleedingcool.com/tv/frieren-beyond-journeys-end-s01e09-aura-the-guillotine-review/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Aura realizes the spells Frieren is using are far above what she had assumed.",
+            "source_content_confirmed": "Bleeding Cool's S01E09 review states: 'Aura notices the spells she is using are above average,' following Frieren's declaration that she will kill her.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 9,
+            "locate_confirmed_via": "the same Bleeding Cool S01E09 review cited above",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Frieren, resolved and merciless, declares she will kill Aura",
+          "reason": "holds on her resolve and carries the final loop line back into CUT 1 / the opening",
+          "carries_loop_back": true,
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": true,
+          "verification_source_url": "https://bleedingcool.com/tv/frieren-beyond-journeys-end-s01e09-aura-the-guillotine-review/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Frieren, resolved and merciless, declares that she will kill Aura and does not intend to hold back this time.",
+            "source_content_confirmed": "Bleeding Cool's S01E09 review states: 'After hearing Aura's lousy explanation and lack of understanding about humanity, Frieren declares she will kill her. It seems Frieren does not want to play this time or take it easy.'",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 9,
+            "locate_confirmed_via": "the same Bleeding Cool S01E09 review cited above",
+            "episode_source": "explicitly_stated"
+          }
+        }
+      ],
+      "clip_descriptions": "CUT1 (S1E9): Frieren calmly confronts Aura and her undead army, dodging their attacks without effort. CUT2 (S1E10): Aura taunts Frieren over her restraint, not understanding why she is holding back. CUT3 (S1E10): Aura's own Scales of Obedience reverses onto her as Frieren's true mana overwhelms it. CUT4 (S1E9): Aura realizes the spells she is facing are far above what she assumed. CUT5 (S1E9): Frieren, resolved and merciless, declares she will kill Aura.",
+      "captions": "CUT 1: FRIEREN'S / QUIETEST scene / IS AGGRESSIVE. CUT 2: SHE GOES / SILENT. CUT 3: THAT SILENCE / IS A WEAPON.",
+      "youtube_title": "Frieren Scene Test: Fern's Silence Is a Weapon",
+      "tiktok_title": "Fern's Silence Is Her Deadliest Weapon",
+      "tiktok_post_text": "Fern goes silent right before she wins and it's not a mood beat. Frieren fans know.",
+      "pinned_comment": "Rewatch frame at the mana burst: her breathing already dropped a beat before Aura moves. Calmest killer in the season, I'll die on this. New Scene Test drops tomorrow.",
+      "post_times": {
+        "youtube": "YouTube Shorts — post 5:30 PM ET | Peak 6-7 PM ET",
+        "tiktok": "TikTok — post 6:30-7:00 PM ET | Peak 7-8 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "onscreen_cta_start_sec": 26
+    },
+    {
+      "package_id": "4129cc21-1c84-4123-a346-b94130440002",
+      "slot": "evening",
+      "show": "One Piece",
+      "angle": "The Elbaph arc reframes giants' shame as the series' oldest running theme",
+      "format_type": "WRONG_TAKE",
+      "content_type": "short",
+      "topic_class": "timely",
+      "topic_signals": [
+        "currently_airing",
+        "chapter"
+      ],
+      "series": {
+        "id": "setup_arc_receipts",
+        "recurring": true
+      },
+      "series_public_name": "Setup Receipts",
+      "series_next_line": "Next Setup Receipts lands tomorrow.",
+      "funnel_status": "standalone",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "ELBAPH ISN'T FILLER",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Everyone calling Elbaph filler missed what Oda actually set up.",
+        "Elbaph looks like filler until you remember Little Garden."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Everyone calling Elbaph filler missed what Oda actually set up.",
+      "opening_sentence": "Everyone calling Elbaph filler missed what Oda actually set up.",
+      "vo": "Everyone calling Elbaph filler missed what Oda actually set up. The giants' shame is not new, it is the oldest wound in this series. Dorry and Brogy fought a hundred years over a lie about honor. Elbaph pays that off by showing where the lie began. The arc is not slow, it is explaining a grudge you watched two decades ago. New fans see a new island, but old fans see a debt getting paid. Is Elbaph the best setup arc in One Piece, or just fan service for veterans? Leave your take. So before you call it filler, remember exactly what he planted:",
+      "vo_word_count": 104,
+      "question_line": "Is Elbaph the best setup arc in One Piece, or just fan service for veterans?",
+      "cta_line": "Leave your take.",
+      "loop_line": "So before you call it filler, remember exactly what he planted:",
+      "loop_transition": "So before you call it filler, remember exactly what he planted: Everyone calling Elbaph filler missed what Oda actually set up.",
+      "loop_read_aloud_pass": true,
+      "loop_transition_note": "Final line is an incomplete colon setup ('remember exactly what he planted:') that cannot stand alone; the colon hands into the opening so the loop closes as one continuous sentence instead of restating a keyword.",
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Dorry and Brogy fought a hundred-year duel over honor, the Little Garden setup Elbaph pays off",
+            "core": true,
+            "source_urls": [
+              "https://onepiece.fandom.com/wiki/Dorry_and_Brogy",
+              "https://www.reddit.com/r/OnePiece/elbaph_week"
+            ],
+            "claim_type": "A",
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "The Elbaph arc is currently airing with active fan discussion",
+            "core": true,
+            "source_urls": [
+              "https://www.reddit.com/r/OnePiece/elbaph_week"
+            ],
+            "claim_type": "C"
+          },
+          {
+            "claim": "New fans read a new island where old fans read a debt being paid",
+            "core": false,
+            "source_urls": []
+          },
+          {
+            "claim": "Elbaph's central reveal is what Dorry and Brogy's century-old grudge was actually about",
+            "core": true,
+            "source_urls": [
+              "https://onepiece.fandom.com/wiki/Dorry_and_Brogy",
+              "https://www.reddit.com/r/OnePiece/elbaph_week"
+            ],
+            "claim_type": "A",
+            "anchors_claim": "loop"
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true,
+          "hook_claim_coverage": true
+        },
+        "final_to_opening_readaloud": "So before you call it filler, remember exactly what he planted: Everyone calling Elbaph filler missed what Oda actually set up."
+      },
+      "video_style": "Face-Cam Split Screen (creator top / anime footage bottom)",
+      "face": true,
+      "split_screen": true,
+      "sources": [
+        {
+          "claim": "Dorry and Brogy's 100-year duel over honor",
+          "url": "https://onepiece.fandom.com/wiki/Dorry_and_Brogy",
+          "date": "Jun 2026"
+        },
+        {
+          "claim": "Elbaph arc currently airing/active discussion",
+          "url": "https://www.reddit.com/r/OnePiece/elbaph_week",
+          "date": "Jul 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Elbaph establishing shot",
+          "reason": "hook frame",
+          "carries_loop_back": false,
+          "duration_sec": 5,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 5,
+          "scene_verified": true,
+          "verification_source_url": "https://respawn.outlookindia.com/pop-culture/pop-culture-originals/one-piece-episode-1156-elbaf-arc-premiere-review",
+          "claim_vs_source_check": {
+            "claimed_beat": "An establishing shot introduces Elbaph, the giants' homeland, as the crew arrives and the arc premiere opens.",
+            "source_content_confirmed": "Outlook India's review of One Piece episode 1156 confirms the episode opens with the ship's arrival and the reveal of Elbaph as the crew reaches the giants' homeland.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1156,
+            "locate_confirmed_via": "the same Outlook India episode 1156 review cited above",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Dorry and Brogy clashing",
+          "reason": "the century duel receipt",
+          "carries_loop_back": false,
+          "duration_sec": 7,
+          "timeline_start_sec": 5,
+          "timeline_end_sec": 12,
+          "scene_verified": true,
+          "verification_source_url": "https://onepiece.fandom.com/wiki/Episode_71",
+          "claim_vs_source_check": {
+            "claimed_beat": "Dorry and Brogy clash in their legendary century-long duel, shown as the receipt for that history.",
+            "source_content_confirmed": "The Episode 71 Fandom page confirms this is Dorry and Brogy's first anime appearance, corroborated by Sportskeeda's character page listing 'First Appearance in Anime: Episode 71' and IMDb's episode record.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 71,
+            "locate_confirmed_via": "the same Episode 71 Fandom page cited above, corroborated by Sportskeeda's Dorry character page and IMDb's episode record",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Giant flashback panel-to-anime",
+          "reason": "origin of the shame",
+          "carries_loop_back": false,
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://otakuorbit.com/one-piece-episode-1156-the-long-sought-elbaph-the-big-reunion-banquet/",
+          "claim_vs_source_check": {
+            "claimed_beat": "A flashback panel-to-anime transition reveals the origin of the giants' shame tied to their duel, adapted for the Elbaph arc premiere.",
+            "source_content_confirmed": "Otaku Orbit's review of One Piece episode 1156 confirms the episode covers the Elbaph arc premiere and the reunion banquet framing where the giants' shared history is revisited.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1156,
+            "locate_confirmed_via": "the same Otaku Orbit episode 1156 review cited above",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Luffy reacting on Elbaph",
+          "reason": "present-day tie-in",
+          "carries_loop_back": false,
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": true,
+          "verification_source_url": "https://respawn.outlookindia.com/pop-culture/pop-culture-originals/one-piece-episode-1156-elbaf-arc-premiere-review",
+          "claim_vs_source_check": {
+            "claimed_beat": "Luffy reacts to arriving on Elbaph, tying the giants' history to the present-day arc premiere.",
+            "source_content_confirmed": "Outlook India's review of One Piece episode 1156 confirms the episode centers on the crew's (including Luffy's) arrival and reactions during the Elbaph arc premiere.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1156,
+            "locate_confirmed_via": "the same Outlook India episode 1156 review cited above",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Slow push on the village banner",
+          "reason": "settles on the planted-grudge beat and carries the final loop line back into CUT 1 / the opening",
+          "carries_loop_back": true,
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "verification_note": "No independently confirmed clip-level video source for this exact beat (a slow push on a village banner) after a bounded search of the Elbaph arc premiere coverage; real aired footage may exist but was not independently confirmed this pass (see F20).",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for an Elbaph arc premiere clip showing a village-banner push shot; no matching clip-level video source located this pass."
+        }
+      ],
+      "clip_descriptions": "CUT1 (S1E1156): Elbaph establishing shot. CUT2 (S1E71): Dorry and Brogy clashing. CUT3 (S1E1156): Giant flashback panel-to-anime. CUT4 (S1E1156): Luffy reacting on Elbaph. CUT5: Slow push on the village banner (unverified, no clip_locate).",
+      "captions": "CUT 1: ELBAPH ISN'T / FILLER. CUT 2: OLDEST / WOUND. CUT 3: A DEBT / GETTING PAID.",
+      "youtube_title": "One Piece Setup Receipts: Elbaph's 20-Year Payoff",
+      "tiktok_title": "Elbaph Was a 20-Year Payoff All Along",
+      "tiktok_post_text": "Elbaph isn't filler, it's Oda paying off a grudge from Little Garden. One Piece readers get it.",
+      "pinned_comment": "Little Garden aired in the late 2000s. If you're calling this arc slow, you skipped the setup. Which giant's arc hit you hardest? Next Setup Receipts lands tomorrow.",
+      "post_times": {
+        "youtube": "YouTube Shorts — post 6:00 PM ET | Peak 7 PM ET",
+        "tiktok": "TikTok — post 7:00 PM ET | Peak 8 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "onscreen_cta_start_sec": 26
+    }
+  ]
+}

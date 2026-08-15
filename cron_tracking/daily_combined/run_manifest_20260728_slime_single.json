@@ -1,0 +1,256 @@
+{
+  "batch_id": "794d00b8-96b5-44d5-b310-f70dff48245f",
+  "run_ts": "2026-07-26T18:00:00-04:00",
+  "post_date": "2026-07-28",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-07-24T22:45:00",
+    "age_days": 2,
+    "status": "CURRENT"
+  },
+  "packages": [
+    {
+      "package_id": "a6cd0642-5205-4e4a-a66e-5dd58bd14b44",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "That Time I Got Reincarnated as a Slime Season 4",
+      "angle": "Rimuru and Granbell Rosso both claim they're protecting humanity -- one by giving monsters a seat at the table, the other by controlling everyone at it -- and season four spends five full cours proving which one is actually the villain",
+      "format_type": "COMMENTARY",
+      "topic_class": "evergreen",
+      "topic_signals": [],
+      "series": null,
+      "series_public_name": null,
+      "series_next_line": null,
+      "duration_experiment": false,
+      "funnel_status": "standalone",
+      "flagship_url": null,
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "Both sides say they're protecting humanity",
+      "hook_first_second": true,
+      "hook_candidates": [
+        "Rimuru protects humanity by giving monsters a seat at the table, and Granbell Rosso protects humanity by controlling everyone at it.",
+        "Rimuru and Granbell Rosso both claim they're protecting humanity in Slime Season 4 -- so why is only one of them the villain?"
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Rimuru protects humanity by giving monsters a seat at the table, and Granbell Rosso protects humanity by controlling everyone at it.",
+      "opening_sentence": "Rimuru protects humanity by giving monsters a seat at the table, and Granbell Rosso protects humanity by controlling everyone at it.",
+      "vo": "Rimuru protects humanity by giving monsters a seat at the table, and Granbell Rosso protects humanity by controlling everyone at it. Season four stretches that conflict across five full cours, nearly five times the length of any prior season's twelve episodes. Granbell is a former Hero and head of the Five Elders, and his granddaughter Mariabell used that identical protect humanity language before her death earlier this season. So when two sides start from the exact same stated goal, what real difference decides who is the villain here? Leave your take. Here is the one distinction the season keeps proving every time they clash:",
+      "vo_word_count": 104,
+      "question_line": "So when two sides start from the exact same stated goal, what real difference decides who is the villain here?",
+      "cta_line": "Leave your take.",
+      "loop_line": "Here is the one distinction the season keeps proving every time they clash:",
+      "loop_transition": "Here is the one distinction the season keeps proving every time they clash: Rimuru protects humanity by giving monsters a seat at the table, and Granbell Rosso protects humanity by controlling everyone at it.",
+      "final_to_opening": {
+        "final": "Here is the one distinction the season keeps proving every time they clash:",
+        "opening": "Rimuru protects humanity by giving monsters a seat at the table, and Granbell Rosso protects humanity by controlling everyone at it."
+      },
+      "loop_read_aloud_pass": true,
+      "loop_transition_note": "The colon in the loop line ('...every time they clash:') is completed as one continuous thought by the opening sentence stating the actual distinction (seat at the table vs. controlling everyone at it) -- not a restated question, not a self-contained sentence, and not identical to the loop line.",
+      "video_style": "Anime Clips Only",
+      "face": false,
+      "split_screen": false,
+      "clip_plan_needs_manga_source": false,
+      "clip_plan_needs_release_delay": false,
+      "film_release_gap_note": null,
+      "clip_descriptions": "CUT1: Rimuru founding Tempest as human-monster coexistence. CUT2: Granbell/Five Elders council scene establishing his domination-based 'protect humanity' stance. CUT3: Mariabell using her Unique Skill against Rimuru, mirroring the same stated goal. CUT4: Rimuru scene carrying the loop back to the coexistence framing.",
+      "captions": "TWO SIDES. (line1) -> SAME GOAL? (line2, orange: SAME GOAL?) -> ONE SEAT. ONE CONTROL. (orange: ONE CONTROL.) -> WHO'S THE VILLAIN? (orange: VILLAIN?)",
+      "youtube_title": "Slime S4: Rimuru vs Granbell, Same Goal",
+      "tiktok_title": "Both protect humanity. One is the villain.",
+      "tiktok_post_text": "Rimuru wants monsters and humans to coexist. Granbell Rosso wants humanity protected through total control. Same stated goal, five full cours to prove who's actually right. #TensuraSeason4 #ThatTimeIGotReincarnatedAsASlime #Tensura #AnimeTheory #AnimeCommentary #IsekaiAnime #Rimuru #AnimeTok #ShonenAnime #AnimeEdit",
+      "pinned_comment": "Granbell and Mariabell used the exact same 'protect humanity' language Rimuru does -- just aimed at control instead of coexistence. Where do you draw the line? Leave your take below.",
+      "post_times": {
+        "youtube": "8:00 AM ET",
+        "tiktok": "8:15 AM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "clips": [
+        {
+          "scene": "Slime S4 Ep1/2 -- Rimuru establishing Tempest as a nation where humans and monsters coexist (founding vision)",
+          "reason": "Establishes Rimuru's half of the stated thesis visually before the VO states it",
+          "carries_loop_back": false,
+          "duration_sec": 8,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 8,
+          "scene_verified": true,
+          "verification_source_url": "https://tensura.fandom.com/wiki/Season_4"
+        },
+        {
+          "scene": "Slime S4 Ep8 -- Council scene where Granbell, head of the Five Elders, discusses controlling/constraining Tempest and the Western Nations",
+          "reason": "Shows Granbell's domination-based 'protect humanity' stance as real footage, not just narration",
+          "carries_loop_back": false,
+          "duration_sec": 8,
+          "timeline_start_sec": 8,
+          "timeline_end_sec": 16,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=wyA5xug4ZX0"
+        },
+        {
+          "scene": "Slime S4 Ep10 (Ep82 overall) -- Mariabell Rosso confronts Rimuru using her Unique Skill 'Greedy', framed by Granbell/Mariabell's shared ideology before her death",
+          "reason": "Visual proof of the Rosso family's active opposition to Rimuru, tied to the VO's Mariabell reference",
+          "carries_loop_back": false,
+          "duration_sec": 7,
+          "timeline_start_sec": 16,
+          "timeline_end_sec": 23,
+          "scene_verified": true,
+          "verification_source_url": "https://www.wasabipop.com/article/tensura-season-4-episode-10-yuuki-blocks-rimuru/"
+        },
+        {
+          "scene": "Slime S4 Ep1/2 -- Rimuru/Tempest coexistence scene, final shot before loop",
+          "reason": "Carries the loop line's colon setup back into the opening coexistence-vs-control statement",
+          "carries_loop_back": true,
+          "duration_sec": 7,
+          "timeline_start_sec": 23,
+          "timeline_end_sec": 30,
+          "scene_verified": true,
+          "verification_source_url": "https://tensura.fandom.com/wiki/Season_4"
+        }
+      ],
+      "sources": [
+        {
+          "claim": "Season 4 will air for a total of five cours, with the first two cours airing continuously -- official Bandai Namco Filmworks announcement",
+          "url": "https://www.animenewsnetwork.com/news/2025-12-19/that-time-i-got-reincarnated-as-a-slime-anime-4th-season-premieres-in-april-to-run-for-more-than-a-/.232260",
+          "date": "Dec 19, 2025"
+        },
+        {
+          "claim": "Confirms 5-cour structure and April 3, 2026 premiere date",
+          "url": "https://www.cbr.com/reincarnated-as-a-slime-season-4-long-anime-arcs-better/",
+          "date": "accessed Jul 2026"
+        },
+        {
+          "claim": "All three of the previous seasons had 12 episodes each -- 'unprecedented for the franchise' scale comparison",
+          "url": "https://www.cbr.com/reincarnated-as-a-slime-season-4-long-anime-arcs-better/",
+          "date": "accessed Jul 2026"
+        },
+        {
+          "claim": "Confirmed episode count for cours 1-2 is 16; remaining 3 cours have no release dates yet (NOT ~60 confirmed -- that figure is CBR's own approximation, excluded from this package's hard claims)",
+          "url": "https://en.wikipedia.org/wiki/That_Time_I_Got_Reincarnated_as_a_Slime_season_4",
+          "date": "accessed Jul 2026"
+        },
+        {
+          "claim": "Granbell Rosso, former Hero and head of the Five Elders of the Kingdom of Siltrosso, and granddaughter Mariabell Rosso advocate 'protection of humanity through domination' and clash with Rimuru",
+          "url": "https://tensura.fandom.com/wiki/Season_4",
+          "date": "accessed Jul 2026"
+        },
+        {
+          "claim": "Rimuru founded Tempest as a nation where humans and monsters coexist, the vision that directly opposes the Rosso family's domination-based approach",
+          "url": "https://www.wasabipop.com/article/tensura-season-4-episode-10-yuuki-blocks-rimuru/",
+          "date": "Jun 15, 2026"
+        },
+        {
+          "claim": "Granbell heads the council of Five Elders that governs relations with Tempest",
+          "url": "https://www.youtube.com/watch?v=wyA5xug4ZX0",
+          "date": "May 31, 2026"
+        },
+        {
+          "claim": "Mariabell Rosso confronts Rimuru directly using her Unique Skill 'Greedy' in episode 10 (episode 82 overall); the episode marks a turning point in the Rosso/Rimuru conflict",
+          "url": "https://www.wasabipop.com/article/tensura-season-4-episode-10-yuuki-blocks-rimuru/",
+          "date": "Jun 15, 2026"
+        },
+        {
+          "claim": "Yuuki Kagurazaka kills Mariabell Rosso in episode 10 (episode 82 overall), taking her Unique Skill and declaring he will inherit her ideals",
+          "url": "https://note.com/apt_hyena2536/n/nbccf630baf99?hl=en",
+          "date": "Jun 15, 2026"
+        },
+        {
+          "claim": "Mariabell Rosso is deceased (character wiki status page, 'Deceased Characters' category), killed by Yuuki Kagurazaka in episode 10 (episode 82 overall)",
+          "url": "https://tensura.fandom.com/wiki/Mariabell_Rosso",
+          "date": "accessed Jul 26, 2026"
+        },
+        {
+          "claim": "Episode 16 aired July 24, 2026; episode 17 airs July 31, 2026 (weekly Fridays on Crunchyroll) -- confirms no new episode airs on the 07-28 post date itself",
+          "url": "https://www.radiotimes.com/tv/fantasy/anime/that-time-i-got-reincarnated-as-a-slime-season-4-release-schedule-2/",
+          "date": "accessed Jul 2026"
+        }
+      ],
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Rimuru protects humanity by giving monsters a seat at the table (Tempest as human-monster coexistence)",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.wasabipop.com/article/tensura-season-4-episode-10-yuuki-blocks-rimuru/",
+              "https://tensura.fandom.com/wiki/Season_4"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Granbell Rosso protects humanity by controlling everyone at it (domination-based ideology)",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://tensura.fandom.com/wiki/Season_4",
+              "https://www.youtube.com/watch?v=wyA5xug4ZX0"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Season four runs five full cours, nearly five times the length of any prior season's twelve episodes",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2025-12-19/that-time-i-got-reincarnated-as-a-slime-anime-4th-season-premieres-in-april-to-run-for-more-than-a-/.232260",
+              "https://www.cbr.com/reincarnated-as-a-slime-season-4-long-anime-arcs-better/"
+            ],
+            "anchors_claim": null
+          },
+          {
+            "claim": "Granbell is a former Hero and head of the Five Elders",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://tensura.fandom.com/wiki/Season_4",
+              "https://www.youtube.com/watch?v=wyA5xug4ZX0"
+            ],
+            "anchors_claim": null
+          },
+          {
+            "claim": "Mariabell used the identical 'protect humanity' language before her death earlier this season",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://tensura.fandom.com/wiki/Mariabell_Rosso",
+              "https://www.wasabipop.com/article/tensura-season-4-episode-10-yuuki-blocks-rimuru/",
+              "https://note.com/apt_hyena2536/n/nbccf630baf99?hl=en"
+            ],
+            "anchors_claim": "loop"
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "loop_colon_handoff": true,
+          "hook_loop_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        },
+        "final_to_opening_readaloud": "Here is the one distinction the season keeps proving every time they clash: Rimuru protects humanity by giving monsters a seat at the table, and Granbell Rosso protects humanity by controlling everyone at it.",
+        "conflict_flags": [
+          {
+            "topic": "Mariabell Rosso's exact cause/timing of death",
+            "conflict": "Earlier draft of this package cited an untraceable phrase ('a recap') for the corroborating source instead of a real URL. The actual, fetchable source is note.com (Jun 15, 2026), which explicitly states Yuuki killed Mariabell after taking her Unique Skill. This is independently corroborated by the Tensura Fandom Chronology page ('confronted and then killed by Yuuki Kagurazaka') and by the dated July 24, 2026 video 'Granbell Rosso Lost Everything After Mariabell's Death' tied to episode 16. All three sources agree with each other -- this was a citation-sourcing gap, not a genuine disagreement between credible sources.",
+            "resolution": "Treated as deceased, killed by Yuuki Kagurazaka in episode 10 (episode 82 overall), based on note.com's explicit account plus the Fandom Chronology page's independent corroboration and the July 24, 2026 episode-16 video title. VO states only the bare fact of her death ('before her death earlier this season') without naming the killer or method on-screen, since the VO's claim is narrower than what the sources support -- no unverified detail is asserted beyond what the VO actually says.",
+            "not_silently_resolved": true
+          },
+          {
+            "topic": "Season 4 total episode count",
+            "conflict": "Wikipedia confirms 16 episodes for cours 1-2 only, with the remaining 3 cours having no release dates yet. CBR frames the season as being 'about 60 episodes' -- this is CBR's own approximation for the full 5-cour run, not an officially confirmed count.",
+            "resolution": "Package does not state a total episode count. It only uses the confirmed 5-cour structure and the confirmed 'prior seasons were 12 episodes each' comparison, both directly sourced.",
+            "not_silently_resolved": true
+          }
+        ]
+      }
+    }
+  ],
+  "note": "SINGLE-PACKAGE MANIFEST (not the usual morning/evening dual pair). Second slot for 07-28 intentionally left unfilled per explicit user decision -- genuine candidate-supply exhaustion after full blackout/7-day-repeat check against sent_scripts_log.json and blackout_state.json (Black Torch, Elusive Samurai S2, Tomb Raider King, Ghost in the Shell 2026, Grand Blue Dreaming S3, Berserk, Fist of the North Star, Hunter x Hunter, Clevatess S2 all excluded; Demon Slayer: Infinity Castle hard-excluded as exact same-angle one-day repeat of the 07-25-sent package). Love Unseen and Rich Girl Caretaker explicitly NOT forced through -- both scored LOW/LOW/LOW on Law #85 and are hard-blocked regardless of creative quality. Quality-over-quota (STEP 4.5 M5) applied: this package is not yet validated or sent -- awaiting user review of this raw manifest before any further action.",
+  "single_package_reason": "Two clean, fully-verified candidates for the second slot -- Love Unseen and Rich Girl Caretaker -- were independently blocked by Law #85 scoring (both scored LOW/LOW/LOW across all three axes, triggering the hard block regardless of creative quality). The one remaining timely candidate, Demon Slayer: Infinity Castle, was excluded as a clean episode-repeat conflict: it is the exact same-angle, one-day repeat of the package already sent on 2026-07-25 evening (same July 28 Crunchyroll streaming angle). No other timely or evergreen candidate cleared blackout/7-day-repeat screening against sent_scripts_log.json and blackout_state.json (Black Torch, Elusive Samurai S2, Tomb Raider King, Ghost in the Shell (2026), Grand Blue Dreaming S3, Berserk, Fist of the North Star, Hunter x Hunter, and Clevatess S2 were all excluded on the same grounds). Per M5 (quality over quota), the second slot is intentionally left unfilled rather than publishing a Law #85-blocked or repeat-conflicted package."
+}

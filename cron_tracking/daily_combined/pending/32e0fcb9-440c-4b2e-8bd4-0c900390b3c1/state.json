@@ -1,0 +1,19 @@
+{
+  "status": "AWAITING_APPROVAL",
+  "emails_sent": false,
+  "batch_id": "32e0fcb9-440c-4b2e-8bd4-0c900390b3c1",
+  "corrects_batch_id": "b03ef8b6-d254-442a-aaf9-673a6578a0c5",
+  "post_date": "2026-08-14",
+  "single_package_reason": "Slime (evening) held per Law #165 fetch-and-confirm review: core hook claim 'Episode 18 aired August 7' is contradicted by both cited sources once fetched. See docs/KNOWN_ISSUES.md F36.",
+  "packages": [
+    {
+      "package_id": "7182ec38-a018-440a-b30c-64b19866eb17",
+      "slot": "morning",
+      "show": "Link Click",
+      "format_type": "SEASON_PREVIEW",
+      "vo_word_count": 209,
+      "correction_reason": "source citation did not support claim; claim re-sourced"
+    }
+  ],
+  "pending_path": "cron_tracking/daily_combined/pending/32e0fcb9-440c-4b2e-8bd4-0c900390b3c1/"
+}

@@ -1,0 +1,25 @@
+{
+  "cron_id": "daily_combined",
+  "run_number": 14,
+  "trigger": "manual (user-triggered outside schedule)",
+  "run_ts": "2026-08-06T22:46:50.972805+00:00",
+  "status": "no_op",
+  "reason": "Both morning and evening slots already status=sent for today (date_sent 2026-08-06) targeting post_date 2026-08-07 -- Step 1 no-op gate.",
+  "existing_batch_id": "8c737fff-f523-4b00-896a-4e2fc8a40152",
+  "existing_packages": [
+    {
+      "slot": "morning",
+      "show": "Kagurabachi",
+      "package_id": "fc92f1fc-de9d-4829-9f5c-7bf144f99fa3",
+      "date_sent": "2026-08-06T18:45:00Z"
+    },
+    {
+      "slot": "evening",
+      "show": "Gachiakuta",
+      "package_id": "88dff475-d267-46d1-946f-f65bdaf5c785",
+      "date_sent": "2026-08-06T18:45:00Z"
+    }
+  ],
+  "note": "This batch subsequently received a post-send VO identity correction for the Kagurabachi morning package (Kunishige/Chihiro dad ambiguity); correction email sent 2026-08-06T21:20:59Z, tracked separately in VO_IDENTITY_CORRECTION_20260806_kagurabachi_kunishige_chihiro_dad.md. No new generation performed by this scheduled run.",
+  "model_compliance": "N/A -- no model launch this run (no-op resolved before Step 4 drafting)"
+}

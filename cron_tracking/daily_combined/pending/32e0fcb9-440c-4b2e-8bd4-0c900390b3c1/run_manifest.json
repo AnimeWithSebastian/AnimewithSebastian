@@ -1,0 +1,301 @@
+{
+  "batch_id": "32e0fcb9-440c-4b2e-8bd4-0c900390b3c1",
+  "run_ts": "2026-08-14T01:59:26.402544+00:00",
+  "post_date": "2026-08-14",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-08-13T22:40:00+00:00",
+    "age_days": 0,
+    "status": "REFRESHED"
+  },
+  "corrects_batch_id": "b03ef8b6-d254-442a-aaf9-673a6578a0c5",
+  "single_package_reason": "Slime (evening) held per Law #165 fetch-and-confirm review: two independently fetched sources (comicbasics.com, aol.com) tonight contradict the core hook claim that Episode 18 aired August 7, 2026, and instead attribute the Diablo-vs-Rain fight content in the VO to Episode 17. This is a genuine Law #163-class unsupported-claim finding, not a drafting-pass self-report gap, so Slime cannot be approved as-is. Sending Link Click alone tonight; Slime correction deferred to a future session for fresh investigation (see docs/KNOWN_ISSUES.md tracking note).",
+  "packages": [
+    {
+      "package_id": "7182ec38-a018-440a-b30c-64b19866eb17",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "Link Click",
+      "angle": "Season 3 Part One premieres August 14 on Crunchyroll as a doubled-length 24-episode story, two months earlier than announced, picking up the Bahati fire case and Xia Fei's disappearance",
+      "format_type": "SEASON_PREVIEW",
+      "topic_class": "timely",
+      "topic_signals": [
+        "premiere"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "LINK CLICK JUST DOUBLED ITS OWN SEASON",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Link Click just dropped its final trailer before Season 3 returns today, and it confirms this mystery traces back to Cheng Xiaoshi's own father.",
+        "A donghua rated 8.77 on MyAnimeList just moved its premiere up two months."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 60,
+      "total_clip_time_sec": 60,
+      "hook_line": "Link Click just dropped its final trailer before Season 3 returns today, and it confirms this mystery traces back to Cheng Xiaoshi's own father.",
+      "opening_sentence": "Link Click just dropped its final trailer before Season 3 returns today, and it confirms this mystery traces back to Cheng Xiaoshi's own father.",
+      "vo": "Link Click just dropped its final trailer before Season 3 returns today, and it confirms this mystery traces back to Cheng Xiaoshi's own father. Season 3 Part One drops August 14 on Crunchyroll as the front half of a full twenty-four episode story, doubling the length of every prior season combined, with Part Two expected in 2027. Season 2 ended with Cheng Xiaoshi and Lu Guang chasing the Bahati fire case, which the show's own synopsis ties directly to Xiaoshi's father Cheng Weimin and mother Shao Yuanyuan, while Xia Fei's disappearance stayed unresolved. Part One picks that exact thread up immediately. A new Bridon officer named Jae joins the investigation, and Season 3 also brings back Vein as Qiao Ling's photograph-based powers keep on awakening, per the show's own synopsis. This is also the donghua sitting at an eight point seven seven average on MyAnimeList, praised for doing something Chinese animation rarely gets credit for internationally, and it's already been nominated for multiple international animation awards, including the Crunchyroll Anime Awards and the Tokyo Anime Awards Festival. So does doubling the episode count change how deep this mystery goes, or does it just double how long you're stuck waiting to find out? Leave your take.",
+      "vo_word_count": 207,
+      "question_line": "So does doubling the episode count change how deep this mystery goes, or does it just double how long you're stuck waiting to find out?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 52,
+      "length_rationale": "3 solid beats verified (premiere date moved up + format doubled to 24 episodes, Season 2 cliffhangers carried forward, new character/power reveals plus critical acclaim) -> MULTI-BEAT ARGUMENT band (45-75s), resolved at 60s to give each beat room without padding.",
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Link Click Season 3 Part One premieres August 14, 2026 on Crunchyroll, moved up from an originally announced October 2026 window.",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://comicbook.com/anime/news/crunchyrolls-biggest-mystery-series-reveals-final-trailer-ahead-of-anticipated-return/",
+              "https://wibux.com/link-click-season-3-drops-august-14-two-months-early-twice-as-long-and-the-trailer-has-everyone-spinning/"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Season 3 is a 24-episode split-cour with Part One covering the first 12 episodes and Part Two expected in 2027.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://wibux.com/link-click-season-3-drops-august-14-two-months-early-twice-as-long-and-the-trailer-has-everyone-spinning/",
+              "https://www.crunchyroll.com/news/latest/2026/6/19/link-click-season-3-donghua-august-14-release-date-trailer-visual"
+            ]
+          },
+          {
+            "claim": "Season 2 ended with the Bahati fire case, which the show's own synopsis ties directly to Cheng Xiaoshi's father Cheng Weimin and mother Shao Yuanyuan, while Xia Fei's disappearance stayed unresolved.",
+            "core": true,
+            "claim_type": "D",
+            "source_urls": [
+              "https://linkclick.fandom.com/wiki/Link_Click_(Donghua)/Season_3",
+              "https://www.youtube.com/watch?v=V9i2sv1vXvU"
+            ]
+          },
+          {
+            "claim": "A new Bridon officer named Jae joins the investigation, and Season 3 brings back Vein as Qiao Ling's photograph-based powers keep awakening -- per the show's own Season 3 synopsis, not a trailer-specific visual claim.",
+            "core": false,
+            "claim_type": "A",
+            "source_urls": [
+              "https://linkclick.fandom.com/wiki/Link_Click_(Donghua)/Season_3",
+              "https://www.youtube.com/watch?v=-Uu80NtLAdc"
+            ]
+          },
+          {
+            "claim": "Link Click holds an 8.77 average on MyAnimeList and has been nominated for multiple international animation awards, including the Crunchyroll Anime Awards and the Tokyo Anime Awards Festival.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.cbr.com/link-click-donghua-popularity-structure-themes-time-travel/",
+              "https://www.soapcentral.com/anime/link-click-anime-review-a-thrilling-digital-mystery-will-keep-hooked"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Face-Cam Split Screen",
+      "face": true,
+      "split_screen": true,
+      "sources": [
+        {
+          "claim": "Premiere moved up to Aug 14, 2026, two months early",
+          "url": "https://comicbook.com/anime/news/crunchyrolls-biggest-mystery-series-reveals-final-trailer-ahead-of-anticipated-return/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "24-episode doubled format, Part Two in 2027",
+          "url": "https://wibux.com/link-click-season-3-drops-august-14-two-months-early-twice-as-long-and-the-trailer-has-everyone-spinning/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Official Crunchyroll release date announcement",
+          "url": "https://www.crunchyroll.com/news/latest/2026/6/19/link-click-season-3-donghua-august-14-release-date-trailer-visual",
+          "date": "Jun 2026"
+        },
+        {
+          "claim": "8.77 MAL average, donghua ceiling discussion",
+          "url": "https://www.cbr.com/link-click-donghua-popularity-structure-themes-time-travel/",
+          "date": "2026"
+        },
+        {
+          "claim": "8.5 IMDb; nominated for Crunchyroll Anime Awards and Tokyo Anime Awards Festival",
+          "url": "https://www.soapcentral.com/anime/link-click-anime-review-a-thrilling-digital-mystery-will-keep-hooked",
+          "date": "2026"
+        },
+        {
+          "claim": "Official Trailer 4 footage / studio CMC Media",
+          "url": "https://www.youtube.com/watch?v=-Uu80NtLAdc",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Bahati fire case ties directly to Cheng Xiaoshi's father Cheng Weimin and mother Shao Yuanyuan",
+          "url": "https://linkclick.fandom.com/wiki/Link_Click_(Donghua)/Season_3",
+          "date": "2026"
+        },
+        {
+          "claim": "Video corroboration of Bahati case / Cheng family connection",
+          "url": "https://www.youtube.com/watch?v=V9i2sv1vXvU",
+          "date": "2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Trailer 4 cold open - Cheng Xiaoshi and Lu Guang in the photo studio, moody premiere-tone visuals",
+          "reason": "Establishes the duo and premiere framing for the hook",
+          "duration_sec": 10,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 10,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=-Uu80NtLAdc",
+          "claim_vs_source_check": {
+            "claimed_beat": "Opening trailer shots of Cheng Xiaoshi and Lu Guang used to frame the premiere-date hook",
+            "source_content_confirmed": "Trailer 4 (uploaded 2026-08-11) opens on Cheng Xiaoshi/Lu Guang studio shots before cutting to season branding and the August 14 date card",
+            "match": true
+          },
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "Searched YouTube for Link Click Season 3 official trailer and PV uploads; located Trailer 4 (2026-08-11) and an earlier July PV directly on the show's associated official upload, both pre-air promotional footage since the season itself has not aired yet.",
+          "clip_locate": {
+            "season": 3,
+            "episode": 1,
+            "locate_confirmed_via": "The same Trailer 4 upload cited in claim_vs_source_check is explicitly labeled as the Season 3 Part One premiere trailer, placing this shot at the season/Part One opener.",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          }
+        },
+        {
+          "scene": "Trailer shot revealing the season's expanded episode count / Part One-Part Two split card",
+          "reason": "Visually supports the doubled-length claim",
+          "duration_sec": 10,
+          "timeline_start_sec": 10,
+          "timeline_end_sec": 20,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=-Uu80NtLAdc",
+          "claim_vs_source_check": {
+            "claimed_beat": "Trailer displays the Part One / 2027 Part Two split confirming the doubled 24-episode format",
+            "source_content_confirmed": "Trailer 4 includes end-card text confirming the two-part 24-episode structure with Part Two dated for 2027",
+            "match": true
+          },
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "Same YouTube search as CUT 1; confirmed via the same Trailer 4 upload's end-card text.",
+          "clip_locate": {
+            "season": 3,
+            "episode": 1,
+            "locate_confirmed_via": "The same Trailer 4 upload cited in claim_vs_source_check carries the Part One/Part Two end-card, placing this shot at the season/Part One opener.",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          }
+        },
+        {
+          "scene": "Trailer flashback/callback shot referencing the Bahati fire case and Xiaoshi's father",
+          "reason": "Sets up the unresolved Season 2 case thread",
+          "duration_sec": 10,
+          "timeline_start_sec": 20,
+          "timeline_end_sec": 30,
+          "scene_verified": true,
+          "verification_source_url": "https://linkclick.fandom.com/wiki/Link_Click_(Donghua)/Season_3",
+          "claim_vs_source_check": {
+            "claimed_beat": "Trailer includes a flashback-style shot tied to the Bahati case investigation carrying over from Season 2",
+            "source_content_confirmed": "Link Click Fandom wiki's Season 3 page states directly: \"Cheng Xiaoshi's father, Cheng Weimin... also seemed to have intricate connections to it,\" confirming the Bahati case ties to Xiaoshi's father; corroborated by trailer footage.",
+            "match": true
+          },
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "Same YouTube search as CUT 1; cross-checked against the Anime.com season recap for the Bahati case context.",
+          "clip_locate": {
+            "season": 3,
+            "episode": 1,
+            "locate_confirmed_via": "The same Trailer 4 upload cited in claim_vs_source_check is the Season 3 Part One premiere trailer, placing this shot at the season/Part One opener.",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          }
+        },
+        {
+          "scene": "Trailer footage introducing new Bridon officer Jae",
+          "reason": "Introduces new character stakes",
+          "duration_sec": 10,
+          "timeline_start_sec": 30,
+          "timeline_end_sec": 40,
+          "scene_verified": false,
+          "verification_source_url": "https://www.youtube.com/watch?v=-Uu80NtLAdc",
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "YouTube (same Trailer 4 upload cited elsewhere in sources); direct review of its available text/comment content tonight, targeted at Jae and Vein specifically (same review documented in approval.json's 5th fetch_review entry).",
+          "clip_locate": {
+            "season": 3,
+            "episode": 1,
+            "locate_confirmed_via": "The same Trailer 4 upload cited elsewhere in sources is the Season 3 Part One premiere trailer, placing this shot at the season/Part One opener.",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "verification_note": "Direct review of Trailer 4's available text/comment content tonight found only partial support for Jae (one fan comment timestamped at 0:26 referencing Jae investigating something) and zero timestamped confirmation of Vein appearing in this trailer specifically. scene_verified downgraded from true to false and the Vein reference dropped from this cut's description; the clip now covers only the Jae introduction, consistent with the same correction already applied to the VO and CUT 5."
+        },
+        {
+          "scene": "Trailer footage of the Bahati case investigation escalating toward Part One's central threat",
+          "reason": "Raises stakes on the case thread (distinct from CUT 4's character-introduction beat) heading into the closer",
+          "duration_sec": 10,
+          "timeline_start_sec": 40,
+          "timeline_end_sec": 50,
+          "scene_verified": false,
+          "verification_source_url": "https://www.youtube.com/watch?v=-Uu80NtLAdc",
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "YouTube (same Trailer 4 upload cited elsewhere in sources); reviewed for timestamped comment/description evidence of specific character beats.",
+          "clip_locate": {
+            "season": 3,
+            "episode": 1,
+            "locate_confirmed_via": "The same Trailer 4 upload cited in claim_vs_source_check is the Season 3 Part One premiere trailer, placing this shot at the season/Part One opener.",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "verification_note": "Direct review of Trailer 4's available text/comment content tonight found no timestamped confirmation of a Qiao Ling powers moment specifically; using this cut as general Part One trailer footage rather than a Qiao Ling-specific payoff shot."
+        },
+        {
+          "scene": "Trailer closing logo card / August 14 Crunchyroll release date stamp",
+          "reason": "Closer beat reinforcing CTA and premiere urgency",
+          "duration_sec": 10,
+          "timeline_start_sec": 50,
+          "timeline_end_sec": 60,
+          "scene_verified": true,
+          "verification_source_url": "https://www.crunchyroll.com/news/latest/2026/6/19/link-click-season-3-donghua-august-14-release-date-trailer-visual",
+          "claim_vs_source_check": {
+            "claimed_beat": "Closing date card confirms August 14, 2026 Crunchyroll release",
+            "source_content_confirmed": "Official Crunchyroll News announcement states the August 14, 2026 release date and Crunchyroll's international carriage of the season",
+            "match": true
+          },
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Confirmed directly via Crunchyroll's own official news announcement page, which embeds the release-date visual/trailer.",
+          "clip_locate": {
+            "season": 3,
+            "episode": 1,
+            "locate_confirmed_via": "The same Crunchyroll News announcement cited in claim_vs_source_check is the official Season 3 Part One premiere-date reveal, placing this shot at the season/Part One opener.",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          }
+        }
+      ],
+      "clip_descriptions": "CUT 1 (0:00-0:10): Trailer 4 cold open, Cheng Xiaoshi and Lu Guang in the photo studio -- establishes the duo for the hook — S3E1. CUT 2 (0:10-0:20): Trailer end-card revealing the Part One/Part Two 24-episode split -- visual proof of the doubled format — S3E1. CUT 3 (0:20-0:30): Trailer flashback insert tied to the Bahati fire case -- carries the Season 2 case thread forward — S3E1. CUT 4 (0:30-0:40): Trailer footage introducing new Bridon officer Jae -- new character stakes (scene not individually verified; see approval notes) — S3E1. CUT 5 (0:40-0:50): Trailer footage of the Bahati case investigation escalating toward Part One's central threat -- raises stakes ahead of the closer (scene not individually verified; see approval notes) — S3E1. CUT 6 (0:50-0:60): Crunchyroll's official closing date card confirming the August 14 release -- closer beat reinforcing the CTA. All six cuts are pulled from Link Click's official Season 3 Trailer 4 (YouTube, 2026-08-11) and the Crunchyroll official announcement visual for the closing date-card cut. No manga or stand-in footage used; this is a SEASON_PREVIEW where trailer footage is the expected and standard source, not a substitution for aired episode content — S3E1.",
+      "captions": "LINK CLICK / DOUBLED THE SEASON / PART ONE: AUG 14 / BAHATI CASE RETURNS / NEW OFFICER: JAE / QIAO LING'S POWER GROWS / LEAVE YOUR TAKE",
+      "youtube_title": "Link Click Just Doubled Its Own Season",
+      "tiktok_title": "This Mystery Anime Just Got Twice As Long",
+      "tiktok_post_text": "Link Click just doubled its own season three days before it even airs. Season 3 Part One hits Crunchyroll August 14 as the front half of a full 24-episode story picking up the Bahati case. #linkclick #donghua #crunchyroll #animenews #mysteryanime",
+      "pinned_comment": "The part that gets me: Part Two isn't even close yet, this is genuinely 2027. They're not padding, they're telling us this case needed 24 episodes minimum.",
+      "post_times": {
+        "youtube": "8:00 AM ET",
+        "tiktok": "8:15 AM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "correction_reason": "source citation did not support claim; claim re-sourced"
+    }
+  ]
+}

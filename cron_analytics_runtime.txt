@@ -1,0 +1,591 @@
+================================================================================
+ANIMEWITHSEBASTIAN — WEEKLY ANALYTICS FEEDBACK
+CRON: 2bb28991 | Schedule: Sundays 23:30 UTC (7:30 PM ET)
+VERSION: v1.5 — Closed Loop Analytics | v5.7 Hard Gate Restore | Publication-Ledger Join (video_id key) | API Health Gate (disconnected/stale/current) | Rebase-Safe Git Sync (no reset --hard) | Law #137 Model Governance (this WEEKLY task = Claude Sonnet 5.0) | Law #138 Shorts VO-to-Fixed-Edit Fill (Shorts production law — NOT applicable to this analytics task; no clip plans produced here) | Law #147 Credit-Safe Mode STEP 0.5 EARLY NO-OP GATE (deterministic; skip connectors/model/email when zero new published video_ids since last run; fail-open to full run) | Red-team strategic corrections M3-M6 (sequential hook-family learning; day-7 fixed-age + rolling-percentile + >=4wk measurement; quality-over-quota precedence + teaser cap; attestation spot-check; attribution-unavailable != zero)
+Updated: July 21, 2026
+================================================================================
+
+PURPOSE:
+The daily crons produce scripts. This cron reads back what actually happened.
+Every Sunday it pulls live YouTube data, grades every video, identifies what's
+working and what's not, and emails a full performance report.
+This is how the system gets smarter instead of just running on assumptions.
+
+MODEL GOVERNANCE (Law #137 — this task):
+This is the WEEKLY analytics feedback task (CRON 2bb28991, Sundays). Under Law #137 it is
+ROUTINE ANALYTICS and runs on Claude Sonnet 5.0 — NOT Claude Fable 5. Fable is reserved for a
+DESIGNATED MONTHLY deep performance review (allowlist category 5); the weekly run does NOT
+qualify, and "make it the best" does not change that. Do NOT create a monthly cron or change
+this schedule to satisfy Law #137 — this law defines model eligibility only.
+Emit in the report footer and state.json:
+  MODEL COMPLIANCE (Law #137): MODEL: Claude Sonnet 5.0 | ELIGIBILITY CATEGORY: none (routine weekly analytics) | REASON: routine — default Sonnet 5.0 | STATUS: PASS
+If a monthly deep performance review is ever run through this file, it may use Claude Fable 5
+ONLY when explicitly designated as the monthly review — log MODEL: Claude Fable 5 | CATEGORY: 5 |
+REASON: designated monthly deep performance review | STATUS: PASS. Full spec:
+hero_or_villain_master_laws_final.txt, Law #137.
+
+================================================================================
+STEP ZERO — GITHUB RESTORE (v5.7 — Hard Gate — MANDATORY FIRST)
+================================================================================
+
+The workspace resets between runs. ALL runtime and log files must be restored
+from GitHub before proceeding. This is NOT optional. Do this every run.
+
+*** HARD GATE — NO FILE-PRESENCE SHORTCUT ALLOWED ***
+Do NOT check if files already exist. Do NOT skip if runtime files appear present.
+File presence in workspace does NOT mean the data is current.
+Every run MUST execute the restore commands below — no exceptions.
+
+Run via bash (api_credentials=["github"]):
+  cd /home/user/workspace
+  if [ -d repo/.git ]; then
+    cd repo && git pull origin main 2>&1 | tail -3 && cd ..
+  else
+    git clone https://github.com/SEBLABHRIS/AnimeWithSebastian.git repo 2>&1 | tail -3
+  fi
+  cp repo/cron_analytics_runtime.txt . 2>/dev/null || true
+  cp repo/sent_scripts_log.json . 2>/dev/null || true
+  cp repo/hero_or_villain_master_laws_final.txt . 2>/dev/null || true
+  cp -r repo/cron_tracking . 2>/dev/null || true
+  cp -r repo/laws . 2>/dev/null || true
+  echo RESTORE COMPLETE
+
+Log in state.json: github_sync: success (or failed if clone/pull errored).
+If clone/pull fails for ANY reason: log github_sync: failed and continue.
+Do not skip — workspace resets between sessions, GitHub is source of truth.
+
+================================================================================
+STEP 0.5 — EARLY NO-OP GATE (Law #147 — credit-safe mode; run BEFORE any connector)
+================================================================================
+
+Before discovering or calling ANY YouTube connector, and before invoking ANY
+model-heavy synthesis or building/sending the email, run this cheap DETERMINISTIC gate.
+It answers one question from local files only: has anything actually been PUBLISHED
+since the last successful weekly analytics run? If nothing new published, there is
+nothing new to grade — skip the whole expensive run.
+
+*** PUBLICATION IS THE ONLY TRIGGER — SENT IS NOT PUBLISHED ***
+"New work" is measured ONLY by new youtube_video_id rows in
+cron_tracking/publication_ledger.jsonl (event="published"). The sent log
+(sent_scripts_events.jsonl / sent_scripts_log.json) is NEVER publication proof and is
+not consulted by the gate. The "cutoff" is the analytics_processed_video_ids set the
+last SUCCESSFUL full run recorded in cron_tracking/2bb28991/state.json (STEP 7).
+
+Run via bash (NO api_credentials — this is local only):
+  cd /home/user/workspace/repo || cd /home/user/workspace
+  python3 tools/weekly_noop_gate.py --tree "$(pwd)"
+  echo "GATE_EXIT=$?"
+
+DECISION by exit code (the gate FAILS OPEN to a full run — it only skips on a
+confident zero-new-IDs result, so historical/missing/corrupt state can never cause a
+wrong no-op):
+  - GATE_EXIT == 0  → NO-OP. The gate already wrote a small atomic no-op record
+      (cron_tracking/2bb28991/last_noop_summary.json + a state.json touch:
+      last_run_mode="noop", bumped run_count, cutoff preserved). DO NOT call any YouTube
+      connector, DO NOT run model synthesis, DO NOT send an email. Log a one-line note
+      and EXIT SUCCESSFULLY. This is the credit-saving path on weeks with no new uploads.
+      Optionally commit+push the small no-op record using the rebase-safe STEP 8 git
+      snippet (stage cron_tracking/2bb28991/state.json and
+      cron_tracking/2bb28991/last_noop_summary.json) so the run_count touch survives the
+      workspace reset — a push failure here is non-blocking and NEVER downgrades the no-op
+      to a full run. Pushing is the ONLY action allowed on the no-op path (no connectors,
+      no model, no email).
+  - GATE_EXIT == 10 (or ANY non-zero) → RUN FULL. New published IDs exist, or the cutoff
+      could not be established (no state / corrupt state / no analytics_processed_video_ids
+      field / malformed). Proceed to STEP 1 and run the COMPLETE existing workflow below
+      UNCHANGED (pull analytics, join, grade, all four reconciliation buckets, report,
+      email). The full run is the safe default; never treat "unsure" as a no-op.
+
+Only proceed past this point when the gate said RUN FULL.
+
+================================================================================
+STEP 1 — PULL YOUTUBE ANALYTICS
+================================================================================
+
+Pull all-time analytics (not last 30 days — all-time since channel launch).
+Channel ID: UC61s-4MEP_2QBNjseKDXdpA
+
+Use YouTube Analytics API connector (youtube_analytics_api__pipedream).
+Pull per-video metrics for every video on the channel:
+  - views
+  - averageViewPercentage (retention)
+  - likes
+  - comments
+  - shares
+  - estimatedMinutesWatched
+  - subscribersGained
+
+Use YouTube Data API connector (youtube_data_api__pipedream) to get:
+  - Full video title list with video IDs
+  - Upload dates
+
+*** API HEALTH GATE — RUN BEFORE ANY MATCHING OR GRADING ***
+Do not assume the API is connected and current. Classify the pull explicitly and
+write the result to the report header and to state.json (api_status field):
+  - DISCONNECTED: the Analytics API or Data API returned an auth error, an empty
+    response, or 0 videos. → Set api_status="disconnected". Do NOT grade. Do NOT
+    fabricate matches. Emit a report that says LIVE DATA UNAVAILABLE, lists the
+    exact error, and stops after the header. A run with no live data must never
+    invent metrics or infer performance from the sent log.
+  - STALE: the API connected but the newest upload date it returns is OLDER than
+    the most recent PUBLISHED entry in the publication ledger (see STEP 2), OR the
+    newest upload date is more than 3 days behind today while sends have occurred.
+    → Set api_status="stale". Grade only the videos actually returned, and flag at
+    the top of the report: "STALE DATA — API newest upload [date] is behind ledger
+    newest publish [date]; N published videos have no analytics yet."
+  - CURRENT: API connected and newest upload matches the ledger. api_status="current".
+
+If the Data API returns FEWER videos than the publication ledger has PUBLISHED
+entries: this is expected for videos posted in the last 48h. List EXACTLY which
+published video IDs are missing from the analytics pull (by video_id) — never
+paper over the gap by guessing a title match. Report the count and the IDs.
+
+================================================================================
+STEP 2 — JOIN TO THE PUBLICATION LEDGER (video_id is the ONLY join key)
+================================================================================
+
+SOURCE OF TRUTH FOR "PUBLISHED":
+Read /home/user/workspace/cron_tracking/publication_ledger.jsonl.
+Schema and rules: cron_tracking/publication_ledger.schema.txt.
+A row exists in this ledger ONLY when a video was actually published to YouTube
+and its real youtube_video_id was recorded. This is DIFFERENT from the sent log.
+
+CRITICAL — status="sent" IS NOT "published":
+sent_scripts_log.json / sent_scripts_events.jsonl record that a SCRIPT PACKAGE was
+emailed. That is not evidence a video went live. NEVER treat a sent-log entry as a
+published video. Only publication_ledger.jsonl rows count as published. If a
+package was sent but has no ledger row, it is UNPUBLISHED — report it as such, do
+not grade it, do not invent a video_id for it.
+
+JOIN RULE — MATCH ON video_id ONLY:
+Match each analytics/Data-API video to a ledger row by youtube_video_id. The
+video_id is the join key. Do NOT match on show name, post date, slot, or title —
+title matching is BANNED here because titles are edited after upload and fuzzy
+title matches fabricate false joins. If the analytics pull does not carry a
+video_id for a row, it cannot be joined — report it in the UNRESOLVED list.
+
+For each JOINED video pull from the ledger row: package_id, show, angle,
+format_type, objective, hook, cta, loop, runtime_sec, related_video_used, and the
+staged 24h/72h/7d metrics for trend context.
+
+COMBINED DAILY DUAL-PACKAGE AWARENESS (Law #139 — added July 15, 2026):
+The daily producer is now ONE run (cron daily_combined) that emails TWO packages per
+day — a MORNING and an EVENING Short. Its two sent events in
+cron_tracking/sent_scripts_events.jsonl share one batch_id and carry distinct
+package_id values (legacy morning d43ab889 / evening 57a3c92e events remain valid
+history). Treat these as ONE daily BATCH but TWO PACKAGES: still grade per package
+(per video). This does NOT change grading, buckets, or the join rule — matching is
+still on youtube_video_id ONLY (never on batch_id, package_id, show, date, or slot).
+batch_id/package_id are informational grouping only. This analytics cron's cadence
+(Sundays) and behavior are UNCHANGED by Law #139.
+
+EXACT RECONCILIATION OUTPUT (all four buckets, with counts and IDs):
+  1. JOINED        — ledger row + analytics row (by video_id). Grade these.
+  2. PUBLISHED-NO-ANALYTICS — ledger row exists but no analytics row yet
+                     (list video_id + publish_ts). Usually <48h old or STALE API.
+  3. ANALYTICS-NO-LEDGER — analytics video_id with no ledger row (predates ledger
+                     or a manual upload). Grade on analytics alone, flag as
+                     UNTRACKED — do NOT back-fill a fabricated ledger row.
+  4. SENT-NOT-PUBLISHED — sent-log/event package with no ledger row. NOT published.
+                     Report as a pipeline gap; never grade.
+Report the exact count and the exact IDs/package_ids in each bucket. "N missing"
+without the specific IDs is not acceptable.
+
+================================================================================
+STEP 3 — GRADE EVERY VIDEO
+================================================================================
+
+Grade each video on a 5-tier system using this scoring matrix:
+
+SCORE = views weight + retention weight + engagement weight
+
+Views:
+  2,000+ views       → 3 pts
+  1,000–1,999        → 2 pts
+  500–999            → 1 pt
+  Under 500          → 0 pts
+
+Retention (averageViewPercentage):
+  75%+               → 3 pts
+  60–74%             → 2 pts
+  45–59%             → 1 pt
+  Under 45%          → 0 pts
+
+Engagement (likes + comments + shares combined, normalized per 100 views):
+  3.0+ per 100       → 3 pts
+  1.5–2.9 per 100    → 2 pts
+  0.5–1.4 per 100    → 1 pt
+  Under 0.5 per 100  → 0 pts
+
+TIER ASSIGNMENT:
+  8–9 pts  → LOOP SIGNAL  (replicate immediately — angle, format, hook all working)
+  6–7 pts  → STRONG       (solid performer, repeat the format)
+  4–5 pts  → AVERAGE      (views okay, engagement or retention gap)
+  2–3 pts  → WEAK         (underperforming, audit the angle and format)
+  0–1 pts  → DROP         (not working — do not repeat show/angle combo)
+
+IMPORTANT: Never grade on a single metric. A video with 1,200 views and
+low retention is not a DROP. A video with high retention and 200 views is
+not a DROP. The composite score is the grade. User challenged a single-metric
+flag on the Gon video (1,195 views, 3.8% like rate) and was correct to do so.
+
+================================================================================
+STEP 4 — IDENTIFY PATTERNS
+================================================================================
+
+After grading all videos, look for these patterns:
+
+TOP HOOK STYLE:
+Which opening line type appears most in LOOP SIGNAL + STRONG videos?
+Types: question hook / revelation hook / contradiction hook / casual observation
+Flag the top performer. Note it in report.
+
+HOOK-FAMILY LEARNING PROTOCOL (M3 — sequential, NOT same-video A/B):
+Law #145 publishes exactly ONE hook variant per Short (the loser is never posted), so
+there is NO same-video A/B and no counterfactual. Do NOT report an "A/B hook decision"
+or claim one variant "beat" another on a single pair — that KPI is unmeasurable under
+this system and is retired. Instead learn hook_family effects SEQUENTIALLY across
+published Shorts:
+  - Group published Shorts by hook_family (question / revelation / contradiction /
+    observation / ...).
+  - Only compare families once a family has ~>=8 published Shorts that have MATURED
+    (>=7 days live, so day-7 metrics exist — see M4). Fewer than ~8 matured = "not
+    enough data yet", report the running count and make no kill/scale call.
+  - Compare the DISTRIBUTIONS of stayed-to-watch (averageViewPercentage) across
+    families, not single pairs. These comparisons are observational and confounded by
+    show/topic/timing — report them as directional, never causal.
+
+TOP ANGLE TYPE:
+Which gap_type appears most in LOOP SIGNAL + STRONG videos?
+Types: CHARACTER_DIVE / FACT_DROP / ORIGIN_STORY / HIDDEN_GEM /
+       COMMENTARY / TOP10_LIST / TRIVIA / IDENTITY / WRONG_TAKE / SLEPT_ON /
+       SEASON_PREVIEW / SEASON_RATING / MANGA_VS_ANIME / EPISODE_MOMENT /
+       WATCH_RANK / SEASON_RANK / EPISODE_REVIEW / EPISODE_VS_MANGA
+Flag the top performer.
+
+TOP SHOW CATEGORY:
+Which show genre appears most in LOOP SIGNAL + STRONG videos?
+Categories: shounen / dark fantasy / psychological / isekai / sports / classic
+
+SLOT PERFORMANCE:
+Are MORNING or EVENING packages performing better overall?
+Compare average score across both slots.
+
+COMMENT TRIGGER ANALYSIS:
+Which videos have comments? What do the comments say?
+Are they debate-starting or just reaction? Flag what type.
+The channel avg is 27 comments across 38+ videos — that is the core gap.
+Every LOOP SIGNAL video should be analyzed for what triggered the comment.
+
+ATTRIBUTION BREAKDOWN (Laws #143-#145 — grounded, non-causal):
+Join each graded video to its attribution fields and report average score + views by
+each dimension. Source of the attribution fields: the SENT-EVENT log
+(cron_tracking/sent_scripts_events.jsonl, legacy sent_scripts_log.json) carries
+topic_class, topic_signals, series, hook_family, hook_line, and funnel_status per
+package_id — the publication ledger does NOT, and the daily run_manifest.json is
+overwritten each day so it cannot supply a week of packages. Reach them by:
+graded video -> ledger row (by youtube_video_id) -> package_id -> sent-event row (by
+package_id). These are DESCRIPTIVE breakdowns on a small sample —
+report the numbers and the sample size; do NOT assert statistical significance or
+causation.
+
+MISSING ATTRIBUTION IS "attribution-unavailable", NOT ZERO (M4): send rows logged
+before the attribution-persistence fix (commit 6b47ae4) carry none of these fields.
+For any graded video whose sent-event row lacks a field, count it as
+"attribution-unavailable" for that dimension and EXCLUDE it from the denominator —
+never coerce a missing field to 0/evergreen/standalone. Treating missing as zero would
+understate topic mix / recurring series and could trip a false "target missed" flag.
+Report the attribution-unavailable count alongside every dimension so the coverage is
+visible.
+
+Dimensions:
+  - topic_class: timely vs evergreen (avg score, avg views, count each)
+  - series: recurring-series packages vs one-offs (which series ids appear in
+    LOOP SIGNAL/STRONG)
+  - hook_family: question / revelation / contradiction / observation
+  - format_type: which formats cluster in the top tiers
+  - funnel_status: standalone / teaser / flagship_followup
+Where a dimension has too few samples to be meaningful, say so explicitly.
+
+================================================================================
+STEP 5 — FLAG WHAT TO CHANGE
+================================================================================
+
+Based on the pattern analysis, flag:
+
+REPLICATE:
+  Show(s) that should be revisited soon (not in blackout)
+  Format type that's overperforming vs how often it's been used
+  Hook style that should be written into more scripts
+
+RETIRE (do not delete — just flag for the report):
+  Show/angle combos that scored WEAK or DROP twice
+  Any format type that consistently underperforms
+
+SUB CONVERSION CHECK:
+  Pull subscribersGained per video where available.
+  Flag videos that generated even 1 sub — those are conversion events.
+  The channel sub conversion target: 0.04% → 0.1% → 0.3% over 90 days.
+  Any video above 0.1% conversion rate is a benchmark — flag it and
+  identify what it did differently.
+
+COMMENT GAP CHECK:
+  Channel target: 0.8 comments/video → 3 → 7 over 90 days.
+  Flag current average. Flag which videos have zero comments.
+  Flag what format/angle those videos used.
+
+PORTFOLIO & EXPERIMENT TARGETS (Laws #143-#145 — weekly aggregates, flags not bans):
+  These aggregates are enforced HERE (weekly), not by any single daily run. Report
+  each with the actual count and flag when off target — grounded in the baseline, no
+  causal claims on small samples.
+  - TOPIC MIX (Law #143): across the 14 daily Short slots this week, count timely vs
+    evergreen. Target: >=9 timely. If <9 timely → flag "TOPIC MIX BELOW TARGET:
+    [N]/14 timely (target >=9)"; evergreen/experiments may fill up to 5.
+  - RECURRING SERIES (Law #143): count packages tagged with a recurring series id.
+    Target: >=2/week. If <2 → flag "RECURRING SERIES BELOW TARGET: [N] (target >=2)".
+  - STAYED-TO-WATCH (Law #145, uses averageViewPercentage as the stayed-to-watch
+    proxy). Prefer engaged-view-aligned metrics (stayed %, avg % viewed) over raw
+    views: since 2025-03-31 a Shorts "view" counts every play/replay, so raw views are
+    loop-inflated while YPP runs on Engaged Views (M4). BANDS ARE ROLLING PERCENTILES,
+    NOT FIXED CONSTANTS (M4): compute this week's cutoffs from the trailing
+    distribution of graded videos (e.g. bottom quartile → "RE-HOOK WARNING"; top
+    quartile → "STRONG STAY") and recompute quarterly. The old fixed <40 / >=60
+    constants were in-sample values (n=57) that drift — do not hard-code them. Report
+    the current percentile cutoffs, the distribution, and the re-hook warnings.
+  - BREAKOUT RATE (Law #145): measure on FIXED-AGE views (day-7 views), NOT
+    lifetime-in-window views (M4). Lifetime-in-window right-censors young uploads and
+    biases "2x median" toward old videos. breakout = day-7 views > 2x the rolling
+    median of day-7 views across graded videos. Report the rolling median (day-7), the
+    breakout count, and the breakout rate. Videos not yet 7 days live are "not matured"
+    — exclude them from the breakout median rather than comparing them at partial age.
+    Do NOT read causation into a breakout on a small sample — report it as an outlier
+    to study, not a proven formula.
+  - PER-1K RATES (Law #145): report comments per 1k views and subscribers per 1k
+    views as the actionable engagement levers, AGGREGATED OVER A ROLLING WINDOW OF
+    >=4 WEEKS (M4). At current scale (~0.45 subs/1k, ~1.4k views/video) a single week
+    yields single-digit counts, so weekly flags on these fire on noise — only flag a
+    per-1k move against the >=4-week rolling baseline, never on one week.
+  - RETURNING VIEWERS (Law #143 gap — HYPOTHESIS with a week-8 success gate): report
+    regular vs casual/new viewer counts if the API exposes them; the channel's known
+    gap is ~0 regular viewers. That recurring series CREATE regular viewers is a
+    HYPOTHESIS, not a finding (no series existed before). SUCCESS GATE: sustained
+    nonzero 28-day regular viewers by WEEK 8 of recurring-series publishing. If it is
+    still ~0 at week 8, the recurrence MECHANISM needs a redesign (the M2 viewer-facing
+    marker makes the test fair) — do NOT respond by raising the series quota.
+  - SINGLE-VARIANT INTEGRITY (Law #145): confirm no two published Shorts share the
+    same insight/hook (the daily validator already blocks duplicate published hooks);
+    flag any duplicate that slipped through as a pipeline defect.
+  - DURATION EXPERIMENT (M1, Law #140 extension): the daily validator sanctions at most
+    ONE 45-59s list/ranking recurring-series Short per batch. Report how many 45-59s
+    experiments published this week and their day-7 stayed-% and views vs the 30s
+    default. This is an EXPERIMENT, not a new default — do not recommend widening the
+    45-59s band until several matured experiments show a consistent lift.
+  - TEASER CAP (M5, Law #146): count flagship teaser Shorts published this week. Cap is
+    <=3/week until funnel KPIs exist (the longform validator enforces 1-3). If >3 →
+    flag "TEASER CAP EXCEEDED: [N] (cap <=3 until funnel evidence)". The feed audience
+    is ~99% new viewers with no flagship attachment, so teasers past the cap spend
+    Shorts slots on derivative content before any funnel signal exists.
+  - EXTERNAL LENS CAP (Law #153, added 2026-07-27, BOUNDED EXPERIMENT): count packages
+    with a non-null `external_lens` field published this week. Cap is <=1/week — this
+    is a ceiling, not a target; 0/week is fully compliant. If >1 → flag "EXTERNAL LENS
+    CAP EXCEEDED: [N] (cap <=1/week until Shorts-specific evidence exists)". Separately,
+    report `external_lens`-tagged package performance (day-7 views, stayed-to-watch,
+    subs/1k) split out from the rest of the portfolio, joined against real ledger data
+    (`publication_ledger.jsonl` by `youtube_video_id`) — per `docs/EXPERIMENTS.md` E1.
+    This pattern is proven only in long-form elsewhere; report the real number, do not
+    interpret it as validating or invalidating the pattern on a single week's sample.
+
+QUALITY-OVER-QUOTA PRECEDENCE (M5 — governance, overrides every quota):
+Quotas (>=9/14 timely, >=2 recurring series, cadence floor, teasers) are FLAGS, never a
+mandate to publish a weak package. A short week of strong-hook Shorts beats a full week
+padded with weak ones — the #2 finding is "gate publication on hook quality", and upload
+volume is not itself a growth lever. When a quota is missed, first ask whether it was
+missed because weak packages were correctly held; if so, report the miss as
+"quota missed — quality gate held" and do NOT recommend loosening the creative gate to
+hit the number.
+CADENCE IS CONTINUITY LOGIC, NOT A GROWTH GUARANTEE: a steady two-per-day cadence keeps
+the pipeline and audience-facing presence continuous; it is NOT evidence that posting
+more causes growth. No channel data here shows a volume→growth relationship. So never
+justify publishing a weak package (or loosening a creative gate) by appealing to
+"keeping cadence" — cadence protects continuity, quality protects growth.
+
+ATTESTATION SPOT-CHECK (M6 — human review, NOT machine-verified):
+hook_first_second, loop_read_aloud_pass, and the self-labeled topic_class/topic_signals
+are SELF-ATTESTATIONS by the generator. The daily validator can only confirm the fields
+are present/well-formed — it CANNOT verify that the hook actually lands in the first
+rendered second, that the loop reads seamless aloud, or that a "timely" label is truly
+timely. Do NOT report these as "verified". Each week, SAMPLE 2-3 published packages and
+have a human editor confirm: (a) the first-second render matches hook_onscreen_text/
+hook_line, (b) the final->opening loop reads as one continuous thought, (c) the
+timely label is truthful (a real dated signal, not "news" slapped on an old announcement
+to clear the >=9/14 quota). Report the spot-check result and any label that failed.
+
+LONG-FORM TRIGGER CHECK (Law #66 — REQUIRED):
+  Check: Has any video graded LOOP SIGNAL or STRONG this week?
+  If YES → flag it as a long-form trigger:
+    LONG-FORM TRIGGER: [Show] — [Video title] — Grade: [LOOP SIGNAL/STRONG] — Views: [X]
+    Recommended: Expand this angle to long-form within 2 weeks.
+
+  Check: Has the channel posted any long-form video (over 3 minutes) in the last 30 days?
+  Pull from channel_history.json — look for duration > 180 seconds.
+  If NO long-form in 30+ days → flag:
+    LONG-FORM OVERDUE: No long-form posted in 30+ days.
+    Recommended: Post one long-form video this week.
+    Pick the show with the highest Short performance in the last 30 days.
+
+  Long-form performance (if any exist):
+  Pull watch time and subscribersGained for any video over 3 minutes.
+  Report separately from Shorts:
+    LONG-FORM PERFORMANCE:
+    [Title] | Watch time: [X] mins | Avg retention: [X]% | Subs gained: [X]
+  Target: 40%+ average retention on long-form. Below 40% = hook or setup losing viewers.
+  Sub conversion target from long-form: higher than Shorts baseline (0.04%).
+  Research finding: channels with Shorts + long-form MAY grow faster than Shorts-only (HYPOTHESIS — the specific "3x" figure is unverified).
+
+================================================================================
+STEP 6 — BUILD THE REPORT
+================================================================================
+
+Email subject: ANIMEWITHSEBASTIAN — WEEKLY ANALYTICS | [Date]
+
+Email format:
+
+---
+ANIMEWITHSEBASTIAN — WEEKLY ANALYTICS FEEDBACK
+Week ending: [Date]
+Total videos graded: [N]
+---
+
+CHANNEL TOTALS (ALL-TIME)
+Views: [X]
+Likes: [X]
+Comments: [X]
+Shares: [X]
+Watch time: [X] hours
+Subscribers gained: [X]
+Sub conversion rate: [X]% (views/subs)
+
+---
+
+TOP PERFORMERS THIS WEEK
+[List LOOP SIGNAL and STRONG videos with: title | views | retention | engagement score | tier]
+
+BOTTOM PERFORMERS
+[List WEAK and DROP videos with: title | views | retention | engagement score | tier]
+
+---
+
+PATTERN FINDINGS
+Top hook style: [type] — appears in [N] of top performers
+Top angle type: [type]
+Top show category: [type]
+Best slot: MORNING / EVENING (avg score comparison)
+
+---
+
+COMMENT GAP
+Current avg: [X] comments per video
+Target: 3 comments per video
+Videos with zero comments: [N] — [list titles]
+Videos that generated comments: [N] — what triggered them: [analysis]
+
+---
+
+SUB CONVERSION
+Subs gained this period: [X]
+Videos that converted subs: [list]
+Current conversion rate: [X]%
+Target: 0.1%
+Gap: [X]%
+
+---
+
+WHAT TO REPLICATE
+[Specific show/angle/format combos to prioritize]
+
+WHAT TO ADJUST
+[Specific patterns that are underperforming]
+
+---
+
+LONG-FORM STATUS (Law #66)
+Long-form posted in last 30 days: YES / NO
+If NO → LONG-FORM OVERDUE — post one this week
+
+Long-form performance (if any):
+[Title] | Watch time: [X] mins | Avg retention: [X]% | Subs gained: [X]
+Retention target: 40%+. Below 40% = fix the hook or setup section.
+
+Long-form triggers this week:
+[Any LOOP SIGNAL or STRONG video → flag as expand candidate]
+LONG-FORM TRIGGER: [Show] — [Video title] — Grade: [X] — Views: [X]
+Recommended: Expand to long-form within 2 weeks.
+
+Note: HYPOTHESIS: channels with Shorts + long-form may grow faster than Shorts-only (the "3x" figure is unverified).
+Subs come from long-form. Shorts bring discovery. Long-form closes the follow.
+
+---
+Send to: hero_or_villain@outlook.com ONLY
+Do not send to sebastianlemos0716@gmail.com
+---
+
+================================================================================
+STEP 7 — UPDATE TRACKING FILES
+================================================================================
+
+After sending the report, update:
+
+/home/user/workspace/cron_tracking/2bb28991/state.json
+Fields to write:
+  last_run: [ISO timestamp]
+  last_run_mode: "full"
+  videos_graded: [N]
+  top_performer: [video title]
+  bottom_performer: [video title]
+  current_comment_avg: [X]
+  current_conversion_rate: [X]%
+  run_count: [increment by 1]
+  analytics_processed_video_ids: [ARRAY of EVERY youtube_video_id from the publication
+    ledger that this run considered — i.e. the FULL set of published video_ids known at
+    this run, JOINED and PUBLISHED-NO-ANALYTICS alike (11-char ids, deduped). This is the
+    CUTOFF the STEP 0.5 early no-op gate compares against next week. It must be the full
+    published set the run saw (NOT just the ones with analytics yet), so a video that was
+    already published this run is never re-counted as "new" next week. Credit-safe mode
+    (Law #147) depends on this field being written on EVERY successful full run — omitting
+    it forces next week to fail open to a full run.]
+
+================================================================================
+STEP 8 — GITHUB PUSH
+================================================================================
+
+After updating the tracking file, push back to GitHub. All git operations run
+INSIDE the repository working tree, and pull --rebase runs BEFORE staging so local
+work replays on top of the newest remote state. Never reset --hard (it discards
+remote commits and appended ledger rows).
+
+The analytics cron edits state.json IN THE REPO TREE directly (it does not copy the
+workspace file over the tree). Write state.json atomically (temp + rename) as the
+daily crons do, then:
+
+Run via bash (api_credentials=["github"]):
+  cd /home/user/workspace/repo || { echo "NO REPO TREE"; exit 1; }
+  git config user.email "hero_or_villain@outlook.com"
+  git config user.name "Anime With Sebastian"
+  git fetch origin 2>&1 | tail -2
+  git pull --rebase origin main 2>&1 | tail -3
+  git add cron_tracking/2bb28991/state.json
+  git commit -m "cron 2bb28991 — analytics run [Date]"
+  git push origin HEAD:main 2>&1 | tail -3
+
+If push is rejected (non-fast-forward) — resolve by rebasing, NEVER reset --hard:
+  git pull --rebase origin main 2>&1 | tail -5
+  git add -A && git rebase --continue 2>&1 | tail -3
+  git push origin HEAD:main 2>&1 | tail -3
+  If it STILL fails: save error to cron_tracking/2bb28991/git_push_error_[date].txt,
+  record git_pushed:false in state.json, and stop.
+If push fails for any other reason: log the error. Do not block — email was already
+sent. Never record a git failure as a git success.
+
+================================================================================
+END OF ANALYTICS RUNTIME v1.3
+================================================================================

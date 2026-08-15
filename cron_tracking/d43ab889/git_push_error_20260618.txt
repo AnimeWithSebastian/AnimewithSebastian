@@ -1,0 +1,13 @@
+Git push failed (non-fast-forward). Attempted `git pull --rebase origin main` then `git push`, but rebase hit merge conflict in sent_scripts_log.json.
+
+Evidence:
+- First push rejected: remote contains work you do not have locally.
+- Rebase conflict: Auto-merging sent_scripts_log.json; CONFLICT (content).
+
+Next-run recovery suggestion:
+- Run `git rebase --abort` to exit rebase.
+- Pull latest main.
+- Re-append the new log entry (date_sent 2026-06-18, post_date 2026-06-19, morning, Bleach Calamity) to the updated sent_scripts_log.json.
+- Commit and push.
+
+Email was already sent successfully.

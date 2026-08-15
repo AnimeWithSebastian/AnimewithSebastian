@@ -1,0 +1,14 @@
+{
+  "cron_id": "57a3c92e",
+  "run": 42,
+  "status": "complete",
+  "completed_at": "2026-07-15T22:35:00Z",
+  "show": "The World Is Dancing",
+  "format": "FIRST_EPISODE_TEST",
+  "slot": "evening",
+  "qc": "12/12",
+  "email_sent": true,
+  "log_appended": true,
+  "git_pushed": true,
+  "package_id": "4129cc21-1c84-45e4-a346-b9413044acf0"
+}

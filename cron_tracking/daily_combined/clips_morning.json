@@ -1,0 +1,114 @@
+[
+  {
+    "scene": "Tanya on duty / battalion command establishing shot, early episode",
+    "reason": "Grounds the hook in Tanya's actual position of authority before the reassignment twist lands",
+    "duration_sec": 6,
+    "timeline_start_sec": 0,
+    "timeline_end_sec": 6,
+    "scene_verified": true,
+    "verification_source_url": "https://www.youtube.com/watch?v=FaC4Sc5LzSI",
+    "claim_vs_source_check": {
+      "claimed_beat": "Tanya is shown in an active command/battalion role at the start of the episode",
+      "source_content_confirmed": "Ani-One Indonesia official YouTube upload of Season 2 Episode 5 (23:50 runtime) is the confirmed real episode; its own synopsis places Tanya in an active elite-battalion command role",
+      "match": true
+    }
+  },
+  {
+    "scene": "Hans receiving Eastern Front reassignment orders",
+    "reason": "Direct visual for the reassignment beat named in the hook",
+    "duration_sec": 6,
+    "timeline_start_sec": 6,
+    "timeline_end_sec": 12,
+    "scene_verified": true,
+    "verification_source_url": "https://www.soapcentral.com/anime/saga-tanya-evil-ii-episode-5-tanya-faces-suicidal-mission-empire-begins-crumble",
+    "claim_vs_source_check": {
+      "claimed_beat": "Hans is reassigned to the Eastern Front early in the episode",
+      "source_content_confirmed": "SoapCentral recap (Aug 6, 2026) explicitly states \"Hans is reassigned to the Eastern Front\" as an early-episode event that exposes the Empire command structure weakness",
+      "match": true
+    }
+  },
+  {
+    "scene": "Leadership meeting refusing to end the war despite Hans's push",
+    "reason": "Establishes the political-failure theme driving the whole episode",
+    "duration_sec": 6,
+    "timeline_start_sec": 12,
+    "timeline_end_sec": 18,
+    "scene_verified": true,
+    "verification_source_url": "https://www.soapcentral.com/anime/saga-tanya-evil-ii-episode-5-tanya-faces-suicidal-mission-empire-begins-crumble",
+    "claim_vs_source_check": {
+      "claimed_beat": "Hans challenges Empire leadership to end the war and is refused/sidelined",
+      "source_content_confirmed": "SoapCentral recap confirms \"Hans attempts to challenge the leadership... the higher-ups remain determined to continue fighting... Hans is sidelined\"",
+      "match": true
+    }
+  },
+  {
+    "scene": "Hans and Tanya strategy meeting where the bait plan is proposed",
+    "reason": "Direct visual for the hook's central claim: fame used as a weapon",
+    "duration_sec": 7,
+    "timeline_start_sec": 18,
+    "timeline_end_sec": 25,
+    "scene_verified": true,
+    "verification_source_url": "https://www.soapcentral.com/anime/saga-tanya-evil-ii-episode-5-tanya-faces-suicidal-mission-empire-begins-crumble",
+    "claim_vs_source_check": {
+      "claimed_beat": "Hans decides to use Tanya as bait because leadership views her as one of the Empire's biggest threats",
+      "source_content_confirmed": "SoapCentral recap confirms \"Hans continues to regard Tanya as one of the Empire's greatest threats... instead of concealing her, he decides to use her as bait... Tanya is horrified by the plan\"",
+      "match": true
+    }
+  },
+  {
+    "scene": "Tanya's horrified reaction to the bait assignment",
+    "reason": "Emotional beat pairing with the strategy-meeting cut, shows her actual response",
+    "duration_sec": 6,
+    "timeline_start_sec": 25,
+    "timeline_end_sec": 31,
+    "scene_verified": true,
+    "verification_source_url": "https://www.soapcentral.com/anime/saga-tanya-evil-ii-episode-5-tanya-faces-suicidal-mission-empire-begins-crumble",
+    "claim_vs_source_check": {
+      "claimed_beat": "Tanya reacts with horror to being used as bait and views the mission as a suicide mission",
+      "source_content_confirmed": "SoapCentral recap confirms \"Tanya is horrified by the plan\" and \"Tanya sees the assignment... and understands it as a suicidal mission\"",
+      "match": true
+    }
+  },
+  {
+    "scene": "Abandoned railway depot establishing shot, no retreat route visible",
+    "reason": "Direct visual for the depot setting named in the VO",
+    "duration_sec": 6,
+    "timeline_start_sec": 31,
+    "timeline_end_sec": 37,
+    "scene_verified": true,
+    "verification_source_url": "https://www.soapcentral.com/anime/saga-tanya-evil-ii-episode-5-tanya-faces-suicidal-mission-empire-begins-crumble",
+    "claim_vs_source_check": {
+      "claimed_beat": "Tanya is assigned to defend an abandoned railway depot with no viable retreat option",
+      "source_content_confirmed": "SoapCentral recap confirms \"The operation requires Tanya to defend an abandoned railway depot... Retreat is not presented as a viable option\"",
+      "match": true
+    }
+  },
+  {
+    "scene": "Allied Kingdom command room reacting to leaked intelligence",
+    "reason": "Direct visual for the spy/leak beat that raises the stakes before the battle",
+    "duration_sec": 5,
+    "timeline_start_sec": 37,
+    "timeline_end_sec": 42,
+    "scene_verified": true,
+    "verification_source_url": "https://www.soapcentral.com/anime/saga-tanya-evil-ii-episode-5-tanya-faces-suicidal-mission-empire-begins-crumble",
+    "claim_vs_source_check": {
+      "claimed_beat": "A spy inside the Empire leaks intelligence to the Allied Kingdom about troop movements and Tanya's position",
+      "source_content_confirmed": "SoapCentral recap confirms \"The Allied Kingdom appears to possess detailed intelligence... The source of the leak is described as a spy threatening the Empire from within\"",
+      "match": true
+    }
+  },
+  {
+    "scene": "Battlefield sequence ending with Weiss seriously wounded, cliffhanger",
+    "reason": "Direct visual for the cliffhanger the VO closes on",
+    "duration_sec": 8,
+    "timeline_start_sec": 42,
+    "timeline_end_sec": 50,
+    "scene_verified": true,
+    "verification_source_url": "https://www.soapcentral.com/anime/saga-tanya-evil-ii-episode-5-tanya-faces-suicidal-mission-empire-begins-crumble",
+    "claim_vs_source_check": {
+      "claimed_beat": "The episode ends with Weiss seriously wounded during the battlefield operation, condition unresolved",
+      "source_content_confirmed": "SoapCentral recap confirms \"Weiss is seriously wounded during the operation in the final battlefield sequence... His condition remains uncertain at the episode's end\"",
+      "match": true
+    }
+  }
+]

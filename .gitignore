@@ -1,0 +1,28 @@
+# Perplexity internal — auto-managed, do not track
+current_session_context/
+memory/
+skills/
+
+# Backup files
+*.bak
+*.tmp
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Scratch/working files -- superseded once the real tracking doc + manifest commit lands
+cron_tracking/daily_combined/WORKING_NOTES_*.md
+cron_tracking/daily_combined/draft_scratch_*.md
+cron_tracking/daily_combined/build_manifest_*.py
+cron_tracking/daily_combined/*_draft.json
+cron_tracking/daily_combined/reservation_*.json
+cron_tracking/daily_combined/candidate_verification_*.py
+cron_tracking/daily_combined/market_sweep_*.py
+cron_tracking/daily_combined/source_content_fetch_*.py
+build_*_manifest.py

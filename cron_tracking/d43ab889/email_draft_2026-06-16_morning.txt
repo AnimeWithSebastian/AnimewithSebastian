@@ -1,0 +1,123 @@
+SUBJECT
+TOMORROW | MORNING | THE GHOST IN THE SHELL | 2026-06-16 | The July 7 detail that changes how you should watch it
+
+1) RESEARCH STACK
+SEARCH 1 — TRENDING / SEASON
+- https://www.anisearch.com/anime/calendar
+- https://www.youtube.com/watch?v=AQpYkr7LPFA
+- https://www.reddit.com/r/anime/comments/1t35fj3/top_10_anime_of_the_week_3_spring_2026_anime/
+
+SEARCH 2 — SHOW-SPECIFIC TRACTION
+- https://www.reddit.com/r/anime/comments/1t9pjzz/the_ghost_in_the_shell_new_key_visual/
+- https://www.reddit.com/r/Ghost_in_the_Shell/comments/1s5l29n/ghost_in_the_shell_the_ghost_in_the_shell_pv_2/
+
+SEARCH 3 — FANDOM GAP
+- https://theghostintheshell.jp/en/news/the-ghost-in-the-shell-key-visual-3
+
+SEARCH 4 — CONSENSUS CHECK
+- https://www.reddit.com/r/Ghost_in_the_Shell/comments/1s5l29n/ghost_in_the_shell_the_ghost_in_the_shell_pv_2/
+
+SEARCH 5 — FORMAT RESEARCH (SHOW-SPECIFIC)
+- https://www.youtube.com/watch?v=yedJOylFOtg
+
+SEARCH 6 — TRACTION CONFIRMATION
+- https://www.reddit.com/r/anime/comments/1t9pjzz/the_ghost_in_the_shell_new_key_visual/
+
+SEARCH 7 — NICHE FORMAT TRACTION
+- https://kotaku.com/the-10-upcoming-summer-2026-anime-you-should-be-most-excited-for-2000698322
+
+SEARCH 8 — COMPETITOR CHECK
+- https://www.youtube.com/watch?v=ilIvN132Jkc
+
+2) ACTIVE TRACTION AUDIT
+Show: THE GHOST IN THE SHELL (2026 TV anime)
+Traction Tier: T1_AIRING (WINDOW EVENT)
+Reasoning: The official site confirms the premiere date (July 7, 2026), so we’re in the pre-launch hype window and searchable interest is spiking.
+Source: https://theghostintheshell.jp/en/news/the-ghost-in-the-shell-key-visual-3
+
+SEARCH 7 result (niche-wide): Signal is still that curiosity-gap FACT_DROP / COMMENTARY hooks outperform generic recap (secondary signal this run; sources returned more season-hype than true Shorts analytics).
+Source used for broader “what’s being pushed right now” context: https://kotaku.com/the-10-upcoming-summer-2026-anime-you-should-be-most-excited-for-2000698322
+
+3) RESEARCH NOTE
+Gap Category: GAP_2_MISSING_CONTEXT
+Engagement Mechanic: “You’re about to watch it wrong unless you know this one detail” (pre-launch framing)
+Consensus Avoided: Avoids the basic “what is Ghost in the Shell” explainer; focuses on concrete official details (setting/year + Section 9 framing + the return of the Puppet Master) as the angle.
+Source Verified: Yes (official site)
+Gap Identified: People know it’s coming back; they don’t know what the new version is literally positioning itself as (2029, Section 9 as ‘Shell Squad’, Puppet Master as the early adversary).
+
+4) FACT VERIFICATION BLOCK
+Verified claims to use:
+- (B) THE GHOST IN THE SHELL premieres in Japan on July 7, 2026.
+- (B) Animation production: Science SARU.
+- (A) Setting year stated: 2029.
+- (A) Motoko Kusanagi leads Public Security Section 9 ("Shell Squad").
+- (A) The team encounters an unidentified hacker known as the “Puppet Master.”
+All verified from: https://theghostintheshell.jp/en/news/the-ghost-in-the-shell-key-visual-3
+
+Blocked / avoid:
+- Any claim about worldwide streaming platforms, exclusivity windows, or exact simulcast timing (not confirmed in the official announcement page).
+
+5) FORMAT RECOMMENDATION
+Recommended format: FACT_DROP
+Why this format for this show today: Pre-launch window + verified specifics (date, year, studio, stated premise) let us do a clean “here’s the detail” Short without recapping plot.
+Primary signal (show-specific): Search results around the new series are dominated by trailers and announcements — which means a factual, curiosity-gap framing can ride the same demand.
+Primary source: https://theghostintheshell.jp/en/news/the-ghost-in-the-shell-key-visual-3
+Alternative format: COMMENTARY (identity/legacy angle once episode 1 airs and people start arguing tone).
+Competitor overlap check (SEARCH 8): Returned mostly trailers/older clips; no clear 500K+ Short doing this exact “what the official premise implies” angle surfaced.
+Log: COMPETITOR CHECK: no obvious viral Short on this exact angle — proceed with original framing.
+
+6) DRAFT VO (FACT_DROP) — 75 words max
+"Before you watch the new THE GHOST IN THE SHELL, you need one detail.
+It premieres July 7, 2026 — and it’s not coming back as a nostalgia remake.
+The official premise puts it in 2029, with Motoko leading Section 9 as the ‘Shell Squad’.
+And the first big shadow in the story is already named: the Puppet Master.
+So if you go in expecting a clean reboot, you’ll miss what it’s actually setting up.
+What do you want this new version to be?"
+
+7) VO QUALITY CHECK (5 points)
+1) First line drops viewer in immediately? YES
+2) Closer lands on specific point? YES (clear question)
+3) All facts confirmed in Fact Verification Block? YES
+4) VO matches recommended format? YES (fact-drop framing)
+5) Sounds like conversation, not script? YES
+RESULT: 5/5 — PASS
+
+8) CLIP INSTRUCTIONS (5 cuts min)
+Content note: This is pre-release. Use official PV/visuals + legacy clips as texture (muted) without implying they’re from the 2026 series.
+CUT 1 (Brand stamp): Quick glitchy city network shot (legacy) + SERIES BRAND STAMP top of frame for first 2–3 sec.
+CUT 2 (Key shot): Use the NEW key visual/PV frame with Motoko/Section 9 (from official PV) when saying “one detail”.
+CUT 3: On “July 7, 2026” show the date as on-screen text overlay; keep footage moving underneath.
+CUT 4: On “2029 / Shell Squad” show PV shots of Section 9 team silhouettes or tactical motion.
+CUT 5: On “Puppet Master” cut to a fast cyber-text / hacker motif shot (PV if present; otherwise abstract UI).
+KEY SHOT overlay (center, size 18–20): “THIS IS NOT A CLEAN REBOOT”
+Caption spec: Anton | ALL CAPS | White | Black outline | Size 15 | Outline 3–4
+Position: Bottom 60–70% | Highlight: Orange #FF6B00 | Timing: word-by-word
+Content ID protection: All clips muted; VO only; add mild zoom/crop + speed ramps; avoid long untransformed trailer stretches.
+
+9) TITLES
+YouTube: THE GHOST IN THE SHELL isn’t rebooting the way you think (July 7 detail)
+TikTok: The July 7 Ghost in the Shell detail people are missing
+Backup: Before Ghost in the Shell drops… read the official premise
+
+10) CAPTION (Pinned Comment)
+"Clean reboot… or direct continuation vibe?"
+
+11) HASHTAGS
+#TheGhostInTheShell #anime #animeshorts #TheDeepCut #Section9
+
+12) CONTENT ID PROTECTION AUDIT
+- Trailer/PV clips: keep under ~1.2 sec per beat, heavy text overlay + zooms, audio muted.
+- Legacy clips: same rules; never let original audio ride.
+
+13) CHANNEL IDENTITY AUDIT
+- For people who think about anime after the episode ends? YES (sets expectation + invites debate)
+- Avoids “correct take nobody needed”? YES (specific premise detail; pre-frames viewing)
+- Reaction with no person behind it? NO (has stance: not a clean reboot)
+- Clean conclusion? YES (question forces comments)
+
+14) SEARCH CONTENT BALANCE CHECK
+Slot: MORNING (SEARCH-RANKED)
+- Searchable lead: THE GHOST IN THE SHELL in first 3 words.
+- Active/evergreen: Window event verified by official premiere date.
+- Format: FACT_DROP supported by current pre-launch info environment.
+- Competitor angle check: Clean.

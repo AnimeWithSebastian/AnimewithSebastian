@@ -1,0 +1,21 @@
+{
+  "cron_id": "daily_combined",
+  "workflow": "combined_daily_dual_package",
+  "batch_id": "32e0fcb9-440c-4b2e-8bd4-0c900390b3c1",
+  "run_ts": "2026-08-14T14:55:29.759904+00:00",
+  "post_date": "2026-08-14",
+  "status": "success",
+  "emails_sent": true,
+  "log_appended": true,
+  "git_pushed": false,
+  "error": null,
+  "packages": [
+    {
+      "package_id": "7182ec38-a018-440a-b30c-64b19866eb17",
+      "slot": "morning",
+      "show": "Link Click",
+      "format_type": "SEASON_PREVIEW",
+      "vo_word_count": 207
+    }
+  ]
+}

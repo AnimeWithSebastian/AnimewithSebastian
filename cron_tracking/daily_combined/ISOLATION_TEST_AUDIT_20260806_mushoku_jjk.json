@@ -1,0 +1,436 @@
+{
+  "batch_id": "f36bf5d9-be2f-408d-a2e5-57fe63a3bdff",
+  "run_ts": "2026-08-05T22:39:39+00:00",
+  "post_date": "2026-08-06",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-08-03T18:35:00-04:00",
+    "age_days": 2,
+    "status": "CURRENT"
+  },
+  "packages": [
+    {
+      "package_id": "902006e6-d24f-4fc0-8ba3-c83385de404f",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "Mushoku Tensei: Jobless Reincarnation Season 3",
+      "angle": "Rudeus finally apologizes to Sara and admits he confused heartbreak for love \u2014 while Eris earns the Sword King title",
+      "format_type": "CHARACTER_DIVE",
+      "topic_class": "timely",
+      "topic_signals": [
+        "currently_airing",
+        "episode"
+      ],
+      "series": null,
+      "duration_experiment": false,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "He finally told her the truth",
+      "hook_first_second": true,
+      "hook_candidates": [
+        "Rudeus finally sat down with the woman he broke years ago.",
+        "Mushoku Tensei just let Rudeus apologize instead of moving on."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Rudeus finally sat down with the woman he broke years ago.",
+      "opening_sentence": "Rudeus finally sat down with the woman he broke years ago.",
+      "vo": "Rudeus finally sat down with the woman he broke years ago. Episode 6 strands Rudeus and Sara alone on a pilgrimage escort, and he apologizes. He admits he was never in love with her, he was drowning after Eris walked away, and Sara became the person he grabbed onto to stop feeling it. Sara admits she misread it too. No yelling, just two people being honest about a relationship with no real foundation. They part on good terms. Then the episode cuts to Eris, who just earned the Sword King title, the first since Ghislaine. Was Rudeus right to call it heartbreak instead of love? Leave your take.",
+      "vo_word_count": 108,
+      "question_line": "Was Rudeus right to call it heartbreak instead of love?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Rudeus and Sara are reunited on a royal pilgrimage escort mission in Episode 6",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://butwhytho.net/2026/08/jobless-reincarnation-season-3-episode-6/",
+              "https://www.indiatimes.com/trending/mushoku-tenseijobless-reincarnationseason-3-episode-6-recap-rudeus-and-sara-finally-settle-their-painful-past-as-eris-earns-a-major-new-title/articleshow/132839561.html"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Rudeus apologizes and admits he was never truly in love with Sara, that his feelings were tied to healing from Eris leaving him",
+            "core": true,
+            "claim_type": "D",
+            "source_urls": [
+              "https://www.indiatimes.com/trending/mushoku-tenseijobless-reincarnationseason-3-episode-6-recap-rudeus-and-sara-finally-settle-their-painful-past-as-eris-earns-a-major-new-title/articleshow/132839561.html",
+              "https://butwhytho.net/2026/08/jobless-reincarnation-season-3-episode-6/"
+            ]
+          },
+          {
+            "claim": "Sara acknowledges she also misread parts of the past conflict",
+            "core": true,
+            "claim_type": "D",
+            "source_urls": [
+              "https://www.indiatimes.com/trending/mushoku-tenseijobless-reincarnationseason-3-episode-6-recap-rudeus-and-sara-finally-settle-their-painful-past-as-eris-earns-a-major-new-title/articleshow/132839561.html"
+            ]
+          },
+          {
+            "claim": "The two part on good terms with no forced dramatic reunion",
+            "core": true,
+            "claim_type": "D",
+            "source_urls": [
+              "https://www.indiatimes.com/trending/mushoku-tenseijobless-reincarnationseason-3-episode-6-recap-rudeus-and-sara-finally-settle-their-painful-past-as-eris-earns-a-major-new-title/articleshow/132839561.html"
+            ]
+          },
+          {
+            "claim": "Eris earns the Sword King title, the first since Ghislaine",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.indiatimes.com/trending/mushoku-tenseijobless-reincarnationseason-3-episode-6-recap-rudeus-and-sara-finally-settle-their-painful-past-as-eris-earns-a-major-new-title/articleshow/132839561.html"
+            ]
+          },
+          {
+            "claim": "Episode 6 premiered August 3, 2026 on Crunchyroll",
+            "core": false,
+            "claim_type": "C",
+            "source_urls": [
+              "https://www.indiatimes.com/trending/mushoku-tenseijobless-reincarnationseason-3-episode-6-recap-rudeus-and-sara-finally-settle-their-painful-past-as-eris-earns-a-major-new-title/articleshow/132839561.html"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Anime Clips Only",
+      "face": false,
+      "split_screen": false,
+      "sources": [
+        {
+          "claim": "Rudeus and Sara reunite on a royal pilgrimage escort mission, get separated, and resolve their past conflict, parting on good terms",
+          "url": "https://butwhytho.net/2026/08/jobless-reincarnation-season-3-episode-6/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Full episode recap: Rudeus apologizes, admits he confused heartbreak for love, Sara acknowledges her own misunderstanding, and Eris earns the Sword King title",
+          "url": "https://www.indiatimes.com/trending/mushoku-tenseijobless-reincarnationseason-3-episode-6-recap-rudeus-and-sara-finally-settle-their-painful-past-as-eris-earns-a-major-new-title/articleshow/132839561.html",
+          "date": "Aug 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Rudeus, Roxy, and Sylphiette accept the royal pilgrimage escort mission; Sara's adventuring party joins",
+          "reason": "Sets up why Rudeus and Sara are forced into the same group after years apart",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": true,
+          "verification_source_url": "https://butwhytho.net/2026/08/jobless-reincarnation-season-3-episode-6/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Rudeus, Roxy, and Sylphiette are assigned to guard a royal pilgrimage alongside an adventuring party that includes Sara",
+            "source_content_confirmed": "Recap confirms Rudeus, Roxy, and Sylphette provide security for a royal pilgrimage, aided by an adventuring party including Sara",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 3,
+            "episode": 6,
+            "locate_confirmed_via": "the same But Why Tho? Season 3 Episode 6 recap cited above"
+          }
+        },
+        {
+          "scene": "Monster attacks during the pilgrimage; Roxy uses her magic against the threats",
+          "reason": "Shows the mission's danger and Roxy's strength before the group splits up",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": true,
+          "verification_source_url": "https://www.indiatimes.com/trending/mushoku-tenseijobless-reincarnationseason-3-episode-6-recap-rudeus-and-sara-finally-settle-their-painful-past-as-eris-earns-a-major-new-title/articleshow/132839561.html",
+          "claim_vs_source_check": {
+            "claimed_beat": "The traveling group faces monster attacks during the escort mission, giving Roxy chances to use her magic",
+            "source_content_confirmed": "Recap confirms the group faces several monster attacks and that Roxy's spells impress both allies and viewers",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 3,
+            "episode": 6,
+            "locate_confirmed_via": "the same Indiatimes Season 3 Episode 6 recap cited above"
+          }
+        },
+        {
+          "scene": "Rudeus and Sara separated from the group; the two talk alone",
+          "reason": "The core moment the video is about \u2014 the isolated conversation that forces the reckoning",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://butwhytho.net/2026/08/jobless-reincarnation-season-3-episode-6/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Circumstances separate Rudeus and Sara from the rest of the group, giving them the chance to talk through their past conflict",
+            "source_content_confirmed": "Article confirms in Episode 6 circumstances separate Rudeus and Sara, and they talk through what happened and put the conflict to rest",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 3,
+            "episode": 6,
+            "locate_confirmed_via": "the same But Why Tho? Season 3 Episode 6 recap cited above"
+          }
+        },
+        {
+          "scene": "Rudeus apologizes and admits his feelings for Sara were tied to moving on from Eris, not real love",
+          "reason": "The emotional core claim of the whole video \u2014 must be shown, not just narrated over generic footage",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": true,
+          "verification_source_url": "https://www.indiatimes.com/trending/mushoku-tenseijobless-reincarnationseason-3-episode-6-recap-rudeus-and-sara-finally-settle-their-painful-past-as-eris-earns-a-major-new-title/articleshow/132839561.html",
+          "claim_vs_source_check": {
+            "claimed_beat": "Rudeus openly apologizes and admits he was never truly in love with Sara, that his feelings were tied to healing from Eris leaving him",
+            "source_content_confirmed": "Recap confirms Rudeus apologizes, explains he was emotionally lost after Eris left, and admits he confused heartbreak with love rather than being in love with Sara",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 3,
+            "episode": 6,
+            "locate_confirmed_via": "the same Indiatimes Season 3 Episode 6 recap cited above"
+          }
+        },
+        {
+          "scene": "Closing cutaway to Eris earning the Sword King title, the first since Ghislaine",
+          "reason": "Final beat that pays off the emotional arc and teases the Eris/Rudeus reunion",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": true,
+          "verification_source_url": "https://www.indiatimes.com/trending/mushoku-tenseijobless-reincarnationseason-3-episode-6-recap-rudeus-and-sara-finally-settle-their-painful-past-as-eris-earns-a-major-new-title/articleshow/132839561.html",
+          "claim_vs_source_check": {
+            "claimed_beat": "The episode closes on Eris earning the Sword King title, becoming the first to hold the rank since Ghislaine",
+            "source_content_confirmed": "Recap confirms Eris earns the title of Sword King and becomes the first person since Ghislaine to achieve the rank",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 3,
+            "episode": 6,
+            "locate_confirmed_via": "the same Indiatimes Season 3 Episode 6 recap cited above"
+          }
+        }
+      ],
+      "clip_descriptions": "CUT1: Rudeus/Roxy/Sylphiette accept pilgrimage escort, Sara's party joins \u2014 S3E6. CUT2: Monster attack, Roxy casts magic mid-escort \u2014 S3E6. CUT3: Rudeus and Sara isolated from the group, begin talking \u2014 S3E6. CUT4: Rudeus apologizes, admits confusing heartbreak for love \u2014 S3E6. CUT5: Closing cutaway \u2014 Eris earns the Sword King title \u2014 S3E6.",
+      "captions": "CUT1: 'PILGRIMAGE ESCORT' / CUT2: 'ROXY STRIKES' / CUT3: 'ALONE WITH SARA' / CUT4: 'NOT LOVE \u2014 HEARTBREAK' / CUT5: 'ERIS: SWORD KING'",
+      "youtube_title": "Mushoku Tensei: Rudeus Finally Told Sara The Truth",
+      "tiktok_title": "He Finally Apologized To Sara",
+      "tiktok_post_text": "Rudeus finally told Sara the truth in Mushoku Tensei S3 Episode 6 \u2014 and it wasn't the apology anyone expected. #MushokuTensei #JoblessReincarnation #Rudeus #AnimeShorts #AnimeTok",
+      "pinned_comment": "The harder read: Rudeus wasn't healing with Sara, he was hiding from Eris leaving. That's not closure, that's avoidance with better manners.",
+      "post_times": {
+        "youtube": "8:00 AM ET",
+        "tiktok": "8:15 AM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "isolation_test_pass": true
+    },
+    {
+      "package_id": "1f25b49b-3e76-46e4-9bfb-cc6063da8b12",
+      "slot": "evening",
+      "content_type": "short",
+      "show": "Jujutsu Kaisen",
+      "angle": "Juju Fest 2026 (Aug 29-30) confirmed as the venue for real Season 4 / Culling Games Part 2 news, teasing the Gojo vs. Sukuna arc",
+      "format_type": "FACT_DROP",
+      "topic_class": "timely",
+      "topic_signals": [
+        "news",
+        "premiere"
+      ],
+      "series": null,
+      "duration_experiment": false,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "Juju Fest just got a real date",
+      "hook_first_second": true,
+      "hook_candidates": [
+        "Jujutsu Kaisen's Juju Fest just got a real date.",
+        "MAPPA just locked in the Jujutsu Kaisen event fans have waited for."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Jujutsu Kaisen's Juju Fest just got a real date.",
+      "opening_sentence": "Jujutsu Kaisen's Juju Fest just got a real date.",
+      "vo": "Jujutsu Kaisen's Juju Fest just got a real date. Juju Fest 2026 hits K Arena Yokohama on August 29th and 30th, closing the franchise's fifth anniversary. Cast appearances, live performances, and the update fans have wanted for months: real news on Season 4. Season 4 is confirmed as Culling Games Part 2, already in production at MAPPA, bridging to Gojo versus Sukuna, the fight fans call the series' defining moment. No release date yet, but Yokohama's been under citywide takeover since August 1st, with new anniversary art going up since the 15th. Is Gojo versus Sukuna going to live up to five years of buildup? Leave your take.",
+      "vo_word_count": 108,
+      "question_line": "Is Gojo versus Sukuna going to live up to five years of buildup?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Juju Fest 2026 takes place August 29-30 at K Arena Yokohama, closing the franchise's 5th anniversary celebrations",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://respawn.outlookindia.com/pop-culture/pop-culture-news/jujutsu-kaisen-marks-5th-anniversary-with-yokohama-tie-up",
+              "https://www.levelup.com/en/news/jujutsu-kaisen-is-preparing-a-major-announcement-season-4-will-finally-get-a-long-awaited-update/"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "The festival will include cast appearances and live performances from opening/ending theme artists",
+            "core": true,
+            "claim_type": "D",
+            "source_urls": [
+              "https://www.levelup.com/en/news/jujutsu-kaisen-is-preparing-a-major-announcement-season-4-will-finally-get-a-long-awaited-update/"
+            ]
+          },
+          {
+            "claim": "Season 4 is officially titled Culling Games Part 2 and is in production at MAPPA",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://www.instagram.com/p/DbmkYgyjvyh/",
+              "https://news.terabox.com/hub/jujutsu-kaisen-season-4-release-date-and-everything-we-know-about-the-culling-game"
+            ]
+          },
+          {
+            "claim": "Season 4 will bridge into the Gojo vs. Sukuna confrontation",
+            "core": true,
+            "claim_type": "E",
+            "source_urls": [
+              "https://www.levelup.com/en/news/jujutsu-kaisen-is-preparing-a-major-announcement-season-4-will-finally-get-a-long-awaited-update/",
+              "https://news.terabox.com/hub/jujutsu-kaisen-season-4-release-date-and-everything-we-know-about-the-culling-game"
+            ]
+          },
+          {
+            "claim": "No official Season 4 release date has been announced yet",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://news.terabox.com/hub/jujutsu-kaisen-season-4-release-date-and-everything-we-know-about-the-culling-game"
+            ]
+          },
+          {
+            "claim": "Yokohama has been under a citywide Jujutsu Kaisen takeover since August 1st, with large 5th-anniversary photo installations added citywide starting August 15th",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://gamerant.com/jujustu-kaisen-yokohama-takeover/"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Anime Clips Only",
+      "face": false,
+      "split_screen": false,
+      "sources": [
+        {
+          "claim": "Juju Fest 2026 confirmed August 29-30 at K Arena Yokohama for the 5th anniversary; cast and live performances included",
+          "url": "https://www.levelup.com/en/news/jujutsu-kaisen-is-preparing-a-major-announcement-season-4-will-finally-get-a-long-awaited-update/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Season 4 officially titled Culling Games Part 2, in production at MAPPA, no release date yet",
+          "url": "https://news.terabox.com/hub/jujutsu-kaisen-season-4-release-date-and-everything-we-know-about-the-culling-game",
+          "date": "2026"
+        },
+        {
+          "claim": "Yokohama citywide takeover began August 1st; 5th-anniversary photo installations added citywide starting August 15th; culminates Aug 29-30 at Juju Fest",
+          "url": "https://gamerant.com/jujustu-kaisen-yokohama-takeover/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Season 3 Episode 12 'Sendai Colony' (aired March 26, 2026) is the confirmed Culling Game Part 1 finale",
+          "url": "https://www.animenewsnetwork.com/news/2026-03-19/jujutsu-kaisen-season-3-the-culling-game-part-1-anime-ends-with-extended-27-minute-episode/.235498",
+          "date": "Mar 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Gojo Satoru \u2014 signature domain/technique footage from prior seasons, used to visually anchor the Gojo vs. Sukuna teaser",
+          "reason": "Opens on the show's most recognizable character to hook viewers before the news drop",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": false,
+          "verification_note": "Using existing aired Jujutsu Kaisen anime footage of Gojo from prior seasons as a visual anchor for the news topic; not a scene-specific claim tied to Juju Fest itself, which has not happened yet"
+        },
+        {
+          "scene": "Sukuna \u2014 footage from prior seasons establishing the character ahead of the teased Gojo vs. Sukuna fight",
+          "reason": "Pairs with the Gojo cut to visually set up the anticipated confrontation mentioned in the VO",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": false,
+          "verification_note": "Using existing aired Jujutsu Kaisen anime footage of Sukuna from prior seasons as a visual anchor for the news topic; not a scene-specific claim tied to Juju Fest itself, which has not happened yet"
+        },
+        {
+          "scene": "Culling Game arc footage from Season 3, establishing the ongoing arc Season 4 continues",
+          "reason": "Grounds the 'Culling Games Part 2' claim in real, already-aired footage of the arc in progress",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://news.terabox.com/hub/jujutsu-kaisen-season-4-release-date-and-everything-we-know-about-the-culling-game",
+          "claim_vs_source_check": {
+            "claimed_beat": "Jujutsu Kaisen Season 4 continues the Culling Game arc as Part 2, following Season 3's Culling Game Part 1",
+            "source_content_confirmed": "Source confirms Season 4 is officially in production at MAPPA, transitioning into the second half of the Culling Game arc following Season 3 (Culling Game Part 1)'s March 2026 conclusion",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 3,
+            "episode": 12,
+            "locate_confirmed_via": "Season 3 Episode 12 'Sendai Colony,' the confirmed Culling Game Part 1 finale per the Anime News Network report cited in sources, used as the clip since it is the last aired Culling Game footage before the Part 2 continuation discussed in this claim"
+          }
+        },
+        {
+          "scene": "General Jujutsu High / cast ensemble footage from prior seasons, used as anniversary-event visual backdrop",
+          "reason": "Visually represents the 'fifth anniversary' framing without needing convention/event footage that doesn't exist yet",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": false,
+          "verification_note": "Using existing aired Jujutsu Kaisen anime ensemble footage as anniversary-event visual backdrop; Juju Fest itself is a real-world convention event with no anime-footage equivalent"
+        },
+        {
+          "scene": "Closing cut \u2014 Sukuna close-up from prior seasons, paired with the CTA question about the Gojo vs. Sukuna payoff",
+          "reason": "Final beat ties the visual back to the question driving the CTA",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "verification_note": "Using existing aired Jujutsu Kaisen anime footage of Sukuna from prior seasons as a closing visual tied to the CTA question; not a scene-specific claim about Juju Fest, which has not happened yet"
+        }
+      ],
+      "clip_descriptions": "CUT1: Gojo footage (prior seasons) as visual anchor. CUT2: Sukuna footage (prior seasons) as visual anchor. CUT3: Culling Game arc footage (Season 3) grounding the Part 2 claim \u2014 S3E12. CUT4: Ensemble footage (prior seasons) as anniversary backdrop. CUT5: Closing Sukuna cut tied to the CTA question.",
+      "captions": "CUT1: 'GOJO' / CUT2: 'SUKUNA' / CUT3: 'CULLING GAME PT.2' / CUT4: '5TH ANNIVERSARY' / CUT5: 'WORTH THE WAIT?'",
+      "youtube_title": "Jujutsu Kaisen's Juju Fest Just Got A Date",
+      "tiktok_title": "Juju Fest Just Got A Real Date",
+      "tiktok_post_text": "Juju Fest 2026 is where we finally get real Jujutsu Kaisen Season 4 news \u2014 and it's building straight toward Gojo vs Sukuna. #JujutsuKaisen #JJK #Gojo #Sukuna #AnimeShorts",
+      "pinned_comment": "Worth noting: MAPPA still hasn't given a release WINDOW, just confirmed production. Juju Fest could easily be cast/music heavy with the Season 4 news being a single trailer drop, not a date.",
+      "post_times": {
+        "youtube": "7:00 PM ET",
+        "tiktok": "7:15 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "isolation_test_pass": true
+    }
+  ]
+}

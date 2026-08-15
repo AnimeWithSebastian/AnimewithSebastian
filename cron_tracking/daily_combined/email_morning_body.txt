@@ -1,0 +1,58 @@
+━━━ MORNING — 2026-08-03 ━━━
+SHOW:    Jujutsu Kaisen
+ANGLE:   Season 3's finale animated Sukuna's true form and a three-way domain clash the same day Season 4 was confirmed
+FORMAT:  FACT_DROP
+STYLE:   Anime Clips Only  (anime footage only; no face, no split screen, no inset)
+TOPIC:   timely — signals: news/seasonal_ranking
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK (Law #144 — on screen + spoken in second 1) ━━━
+ON-SCREEN (second 1): JJK CONFIRMED SEASON 4 THE DAY THIS AIRED
+SPOKEN (VO first line): Jujutsu Kaisen confirmed Season 4 the same day it aired something fans waited three years for.
+HOOK FAMILY: revelation
+(Draft two hook candidates internally — Law #145 — publish ONLY the selected one:
+  candidate A: Jujutsu Kaisen confirmed Season 4 the same day it aired something fans waited three years for.
+  candidate B: JJK just animated three domain expansions at once, and Season 4 dropped the same day.
+  SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (107 words — fills the fixed 30s CapCut edit) ━━━
+Jujutsu Kaisen confirmed Season 4 the same day it aired something fans waited three years for. Episode 12 finally showed Sukuna's true form on screen, inside a finale where Yuta fought three special grade sorcerers at once. That triple fight forced the first three way simultaneous domain expansion the anime has ever animated, twenty eight minutes with zero filler. Manga readers knew this moment was coming since chapter one seventy four. Watching it animated with three domains at once still hits different. Is the Sendai Colony finale the best fight MAPPA has drawn, or does Shibuya still win? Leave your take. Season four already has a name.
+
+━━━ CLIP PLAN (anime-only; per-cut timings REQUIRED — Law #140) ━━━
+CUT 1 — 6 sec (0:00–0:06): Yuta Okkotsu facing off against Kurourushi, using his katana with Rika to protect civilians from a cockroach swarm (S3E12) — hook frame, opens on the fight that leads into the finale's centerpiece
+CUT 2 — 7 sec (0:06–0:13): Yuta, Takako Uro, and Ryu Ishigori all shout 'Domain Expansion' and trigger three overlapping domain spheres simultaneously (S3E12) — the verified franchise-first beat the hook and title are built on
+CUT 3 — 6 sec (0:13–0:19): Overlapping domain barriers destabilize the environment as none of the three fighters can land an automatic hit (S3E12) — explains the mechanic payoff of the triple clash
+CUT 4 — 6 sec (0:19–0:25): Yuta calls out to Rika for her full manifestation as the fight escalates (S3E12) — the anime's first look at Rika's complete manifestation, tied to the finale's power escalation
+CUT 5 (final) — 5 sec (0:25–0:30): Yuta lands the final beam clash that defeats Ryu, closing out the Part 1 finale (S3E12) — closing frame, the cour-ending payoff of the fight
+(+ more cuts as needed; CUT 1 = first real content clip, no brand stamp)
+Cumulative ranges are contiguous with no gaps/overlaps: CUT 1 starts at 0:00, each
+cut's end is the next cut's start, and the final cut ends at the edit length (0:30).
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+CUT 1: THE FINALE / NO ONE SAW COMING. CUT 2: THREE DOMAINS / AT ONCE. CUT 3: SEASON 4 / CONFIRMED SAME DAY.
+
+━━━ YOUTUBE TITLE (Law #144 — punchy, searchable) ━━━
+Jujutsu Kaisen Just Confirmed Season 4
+
+━━━ TIKTOK TITLE (Law #144 — punchy; distinct from the caption below) ━━━
+3 Domains at Once Just Confirmed JJK S4
+
+━━━ TIKTOK POST TEXT (caption — may be longer; hashtags live HERE, not in the title) ━━━
+Sukuna's true form finally hit screen, three domains opened at once, and Season 4 got confirmed the same day. Jujutsu Kaisen fans, this is not a normal Sunday. #JujutsuKaisen #JJK #AnimeShorts #Sukuna #AnimeTok
+
+━━━ PINNED COMMENT ━━━
+The insane part: Ryu, Uro, and Yuta all read the room and dropped their domains in the same second, which is why none of them could land an automatic hit. That mechanic alone is why this finale gets replayed.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 8:00 AM ET | Peak 9-10 AM ET
+TikTok — post 8:30 AM ET | Peak 9-11 AM ET
+
+━━━ SOURCES (concise evidence — >=2, each dated) ━━━
+1. Season 3 Part 1 finale (Episode 12/13) aired March 26-27, 2026; Season 4 (Culling Game Part 2) officially confirmed the same day — https://en.wikipedia.org/wiki/Jujutsu_Kaisen_season_3 (Mar 2026)
+2. Crunchyroll News confirms Season 4 'Culling Game Part 2' announcement timing — https://www.crunchyroll.com/news/latest/2026/3/26/jujutsu-kaisen-season-4-culling-game-part-2-announced (Mar 2026)
+3. Episode 12 recap: adapts chapters 174-181, 27-28 minute runtime, no filler — https://respawn.outlookindia.com/pop-culture/pop-culture-originals/jujutsu-kaisen-season-3-episode-12-review-recap-sendai-colony (Mar 2026)
+4. Episode 12 features first on-screen Sukuna true form + first three-way simultaneous domain expansion — https://fandomwire.com/jujutsu-kaisen-season-3-episode-12-review/ (Mar 2026)
+
+━━━ END MORNING ━━━

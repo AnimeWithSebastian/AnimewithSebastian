@@ -1,0 +1,133 @@
+SUBJECT: CORRECTION | Kagurabachi | 2026-08-07 | Kagurabachi Ch. 126: Chihiro's Dad's Dark Past
+
+━━━ CORRECTION NOTICE ━━━
+This corrects the Kagurabachi MORNING package for post_date 2026-08-07,
+originally sent 2026-08-06 at 6:45 PM ET. Only the VO, opening line, and
+hook line changed. Everything else in the original package (title, clip
+plan, captions, sources, post times) is unchanged and still applies.
+
+━━━ WHAT WAS WRONG ━━━
+The VO never explicitly established that "Kunishige" is Chihiro's dad.
+The hook named him only as "Chihiro's dad," then the VO introduced
+"Kunishige" by name two sentences later with no link back — and right
+before that, "his father"/"he died" referred to a different person
+(Kunishige's own father, Chihiro's grandfather). A viewer unfamiliar with
+the cast had no way to tell whether Kunishige WAS Chihiro's dad or a
+separate character. The story was unfollowable without outside context.
+
+━━━ WHAT CHANGED ━━━
+The opening sentence now names Kunishige as Chihiro's dad the moment his
+name is first used: "Chihiro's dad, Kunishige, is the legendary
+swordsmith..." Every pronoun after that point was re-traced and confirmed
+to resolve cleanly to one person. Sentence 2 was also tightened
+("beat him and his mother, and when he died" instead of "beat them both,
+so when he died") to recover the word count spent on the name anchor. No
+sourced claim was added, removed, or changed — only the identity
+attribution and connective wording.
+
+Word count: 107 -> 108 (still within the required 100-108 range,
+independently re-verified). Hook line and opening line are unchanged in
+meaning, only the name anchor was added. The Isolation Test was re-run
+against the new hook line and passed: it still promises only that a
+revered "hero dad" figure has a dark/tragic past, with no specific act or
+direction implied, matching the VO's actual delivery.
+
+━━━ FULL CORRECTED VO (108 words) ━━━
+Chihiro's dad, Kunishige, is the legendary swordsmith Kagurabachi fans
+call a hero, but chapter 126 reveals a tragic childhood. His drunk father
+beat him and his mother, and when he died, Kunishige remembers her
+looking relieved, not sad. The abuse had broken her, and she grabbed at
+his eyes while he cried out that she was hurting him, the same eyes he
+inherited from his father. She later left an apology note and took her
+own life. Kunishige isolated himself until Chiaki stood in the rain and
+cooked him a meal. He cried at the first bite. Does this change how you
+see his dad? Leave your take.
+
+━━━ FIRST-SECOND HOOK (unchanged on-screen text, corrected spoken line) ━━━
+ON-SCREEN (second 1): HIS HERO DAD'S PAST JUST GOT DARK
+SPOKEN (VO first line, CORRECTED): Chihiro's dad, Kunishige, is the
+legendary swordsmith Kagurabachi fans call a hero, but chapter 126
+reveals a tragic childhood.
+HOOK FAMILY: revelation
+(Two hook candidates drafted internally — publish ONLY the selected one:
+  candidate A (SELECTED): Chihiro's dad, Kunishige, is the legendary
+  swordsmith Kagurabachi fans call a hero, but chapter 126 reveals a
+  tragic childhood.
+  candidate B: Everyone in Kagurabachi calls Chihiro's dad a legend.
+  Chapter 126 finally reveals the childhood he never talks about.)
+
+━━━ CLIP PLAN (unchanged; anime-only; per-cut timings) ━━━
+CUT 1 — 6 sec (0:00–0:06): Adult Kunishige established as the respected
+  swordsmith, before the chapter's flashback begins — Anchors the hook's
+  "legendary hero" claim visually before the flashback reveals his
+  tragic past. Chapter 126, Page 1 of 18.
+CUT 2 — 6 sec (0:06–0:12): Young Kunishige's drunk father beating him and
+  his mother — Delivers the VO's core claim about the father's abuse of
+  both. Chapter 126, Page 3 of 18.
+CUT 3 — 6 sec (0:12–0:18): The mother's breakdown — she grabs his face
+  and he cries out that she's hurting him, confirming the abuse turned
+  directly on Kunishige — Chapter 126, Page 6 of 18 (extreme close-up
+  reaction shot, hand only approaching/hovering, mother in silhouette, no
+  blood or explicit contact drawn).
+CUT 4 — 6 sec (0:18–0:24): The apology note reading "I'm sorry," found by
+  Kunishige — Chapter 126, Page 7 of 18.
+CUT 5 (final) — 6 sec (0:24–0:30): Chiaki cooking Kunishige a meal after
+  years of isolation; Kunishige crying at the first bite, closing on
+  sparklers — Chapter 126, Pages 15-18 of 18.
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS (unchanged) ━━━
+Kagurabachi chapter 126 just revealed the tragic childhood behind
+Chihiro's legendary hero dad, including a confirmed moment where his
+mother's abuse turned on him directly. It's a lot heavier than fans
+expected.
+
+━━━ YOUTUBE TITLE (unchanged) ━━━
+Kagurabachi Ch. 126: Chihiro's Dad's Dark Past
+
+━━━ TIKTOK TITLE (unchanged) ━━━
+The hero dad's childhood nobody talks about
+
+━━━ TIKTOK POST TEXT (unchanged) ━━━
+The legend everyone calls a hero had a childhood most fans never saw
+coming. Kagurabachi chapter 126 finally reveals it. #kagurabachi
+#kagurabachimanga #chihirorokuhira #kunishige #mangatok #animetok
+#shonenjump #mangaspoilers #animeshorts #weeklyshonenjump
+
+━━━ PINNED COMMENT (unchanged) ━━━
+Chapter 126 dropped and it's the heaviest look we've had at Chihiro's
+parents before the war. What part hit you hardest?
+
+━━━ RECOMMENDED POST TIME (unchanged) ━━━
+YouTube Shorts — post 8:00 AM ET
+TikTok — post 8:15 AM ET
+
+━━━ SOURCES (unchanged, concise evidence — each dated) ━━━
+1. Chapter 126 flashback content, panel-by-panel, most granular verbatim
+   transcript — https://www.youtube.com/watch?v=iRX_4B38fBg (Jul 2026)
+2. Chapter 126 flashback content, independent corroboration (mother
+   targets Kunishige's eyes, not her own) —
+   https://www.youtube.com/watch?v=9yKXd4heOMQ (Jul 2026)
+3. Chapter 126 recap describing the eyes incident as self-harm —
+   conflicts with the other sources above, disclosed not adopted —
+   https://www.soapcentral.com/anime/kagurabachi-chapter-126-kunishige-s-heartbreaking-past-changes-everything-know
+   (Jul 2026)
+4. Independent corroboration: father's abuse of both Kunishige and
+   mother — https://www.youtube.com/watch?v=X12WEzNpbCs (Jul 2026)
+5. Kunishige Rokuhira character background —
+   https://kagurabachi.fandom.com/wiki/Kunishige_Rokuhira (Aug 2026)
+6. Kagurabachi anime has not broadcast any episodes yet, April 2027
+   premiere — confirms manga-only sourcing required —
+   https://www.crunchyroll.com/news/latest/2026/4/27/kagurabachi-tv-anime-announced-april-2027-premiere-trailer-visual
+   (Apr 2026)
+7. Chapter 126 ("Fire") full 18-page scan, directly viewed page-by-page —
+   primary source for all 5 clip-plan page citations and for resolving
+   the eyes-incident direction —
+   https://mangakatana.com/manga/kagurabachi.27050/c126 (Jul 2026)
+
+━━━ VALIDATOR ━━━
+Ran the full deterministic preflight validator against the corrected
+two-package manifest (Kagurabachi morning corrected, Gachiakuta evening
+unchanged): RESULT: PASS — cleared to send.
+
+━━━ END CORRECTION ━━━

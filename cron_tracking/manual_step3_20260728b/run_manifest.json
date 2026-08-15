@@ -1,0 +1,353 @@
+{
+  "batch_id": "a966079e-b761-470e-a9e5-c14ffbd36df3",
+  "run_ts": "2026-07-28T21:36:00-04:00",
+  "post_date": "2026-07-29",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-07-28T21:36:00-04:00",
+    "age_days": 0,
+    "status": "REFRESHED"
+  },
+  "packages": [
+    {
+      "package_id": "3dd7dda9-2599-4aa7-842a-7d52bcd627c5",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "Dragon Ball (Daima)",
+      "angle": "Toriyama's own editor Kazuhiko Torishima calls Daima a betrayal of the franchise -- but Daima's growing popularity and merch sellouts contradict him",
+      "format_type": "VILLAIN_DEFENSE",
+      "topic_class": "evergreen",
+      "topic_signals": [],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "Toriyama's own editor trashed his final anime",
+      "hook_first_second": true,
+      "hook_candidates": [
+        "Akira Toriyama's own editor called his final anime garbage.",
+        "The man who edited Dragon Ball for decades says its last anime should never have been approved."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Akira Toriyama's own editor called his final anime garbage.",
+      "opening_sentence": "Akira Toriyama's own editor called his final anime garbage.",
+      "vo": "Akira Toriyama's own editor called his final anime garbage. Kazuhiko Torishima, who shaped Dragon Ball from the start, said in Naples that Daima betrays the franchise, calls episode one useless, and has no idea how it was approved. He said the same thing back in 2025. But Daima wasn't a safe cash-grab sequel. Toriyama shrunk his own cast back to basics on purpose, right before he passed, closing the story his way instead of chasing scale. Fans noticed the gap: Daima merch still sells out, and the show keeps gaining fans months later. Is the editor protecting the legacy, or just wrong about it? Leave your take.",
+      "vo_word_count": 107,
+      "question_line": "Is the editor protecting the legacy, or just wrong about it?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Kazuhiko Torishima said at Comicon Napoli that Daima 'betrays' Dragon Ball, calls episode 1 useless, and doesn't know how it was approved",
+            "core": true,
+            "claim_type": "B",
+            "source_urls": [
+              "https://www.cbr.com/dragon-ball-editor-slams-daima-akira-toriyama-final-anime/",
+              "https://gamerant.com/dragon-ball-daima-criticism-torishima-comicon-napoli/"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Torishima made similar negative comments about Daima on his podcast KosoKoso in 2025",
+            "core": true,
+            "claim_type": "B",
+            "source_urls": [
+              "https://www.cbr.com/dragon-ball-editor-slams-daima-akira-toriyama-final-anime/",
+              "https://gamerant.com/dragon-ball-daima-criticism-torishima-comicon-napoli/"
+            ]
+          },
+          {
+            "claim": "Daima ended February 28, 2025 with a finale titled 'Maximum,' written by Toriyama with a smaller-scale, kid-Goku premise",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://www.youtube.com/watch?v=AXwtRaQ3-Jo"
+            ]
+          },
+          {
+            "claim": "Despite Torishima's criticism, Daima merchandise continues to sell out and the show has grown in popularity over time",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://vandal.elespanol.com/random/kazuhiko-torishima-antiguo-editor-de-akira-toriyama-el-ultimo-anime-traiciona-a-dragon-ball-es-una-porqueria/42018.html"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Anime footage only, full frame",
+      "face": false,
+      "split_screen": false,
+      "sources": [
+        {
+          "claim": "Torishima's 'Daima betrays Dragon Ball... it's sh-t' quote from Comicon Napoli, April 30-May 3 2026",
+          "url": "https://www.cbr.com/dragon-ball-editor-slams-daima-akira-toriyama-final-anime/",
+          "date": "May 2026"
+        },
+        {
+          "claim": "Independent confirmation of the same Comicon Napoli remarks and context on prior 2025 criticism",
+          "url": "https://gamerant.com/dragon-ball-daima-criticism-torishima-comicon-napoli/",
+          "date": "May 2026"
+        },
+        {
+          "claim": "Daima premise, episode count, and February 2025 finale details",
+          "url": "https://www.youtube.com/watch?v=AXwtRaQ3-Jo",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Daima merch continuing to sell out despite the editor's criticism",
+          "url": "https://vandal.elespanol.com/random/kazuhiko-torishima-antiguo-editor-de-akira-toriyama-el-ultimo-anime-traiciona-a-dragon-ball-es-una-porqueria/42018.html",
+          "date": "May 2026"
+        },
+        {
+          "claim": "Daima Episode 1 shows the cast de-aged/shrunk and opens the Demon Realm gateway sequence",
+          "url": "https://screenrant.com/dragon-ball-daima-goku-shrunk-kid-childhood-nostalgia/",
+          "date": "Nov 2024"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Dragon Ball Daima Episode 1 -- Goku, Vegeta, and Bulma shown de-aged/shrunk into child versions, with the Demon Realm gateway sequence",
+          "reason": "directly depicts the specific claim the VO makes: Toriyama shrunk his own cast back to basics on purpose",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": true,
+          "verification_source_url": "https://screenrant.com/dragon-ball-daima-goku-shrunk-kid-childhood-nostalgia/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Daima's Episode 1 shows Goku, Vegeta, and Bulma de-aged into child/shrunk versions of themselves and opens the Demon Realm gateway, establishing the 'shrunk down, back to basics' premise",
+            "source_content_confirmed": "Screen Rant confirms Daima 'turns its protagonist back into a child' with 'most of the classic cast members as de-aged versions of themselves, including Goku, Vegeta, and Bulma,' and that episode #1's opening sequence includes 'a gateway to the Demon Realm'",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1,
+            "locate_confirmed_via": "the same Screen Rant article cited above, which states the de-aging and Demon Realm gateway both occur in episode 1",
+            "approx_timestamp": "early episode, pre-title-sequence through opening minutes"
+          }
+        },
+        {
+          "scene": "Dragon Ball Daima -- action/battle footage from the back-half of the season",
+          "reason": "visual energy under the mid-VO turn describing Toriyama's intentional creative choice",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": false,
+          "verification_note": "General Daima action footage, illustrative only, not tied to one verified specific scene"
+        },
+        {
+          "scene": "Dragon Ball Daima -- finale 'Maximum' episode footage",
+          "reason": "pairs with the VO line about Toriyama closing the story his way",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": false,
+          "verification_note": "Finale episode footage referenced generally per the finale's confirmed February 2025 air date; not a claimed shot-by-shot verified beat"
+        },
+        {
+          "scene": "Dragon Ball Daima -- merchandise/figure imagery or packaging shot (B-roll)",
+          "reason": "visually supports the VO line about Daima merch still selling out",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": false,
+          "verification_note": "General product/merch B-roll, illustrative support for the sourced sell-out claim, not a specific verified anime scene"
+        },
+        {
+          "scene": "Dragon Ball Daima -- ensemble cast group shot, on-screen CTA overlay",
+          "reason": "closing frame for the CTA and question prompt",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "verification_note": "General ensemble cast footage as a closing frame, illustrative only"
+        }
+      ],
+      "clip_descriptions": "5 cuts of Dragon Ball Daima footage: (1) mini-Goku/shrunk cast establishing shot, (2) mid-season action beat, (3) finale 'Maximum' footage, (4) Daima merch/figure B-roll, (5) ensemble closing shot with CTA overlay.",
+      "captions": "CUT1: 'HIS OWN EDITOR' / 'CALLED IT GARBAGE' | CUT2: 'DAIMA WASN'T' / 'A CASH-GRAB' | CUT3: 'TORIYAMA CLOSED IT' / 'HIS WAY' | CUT4: 'MERCH STILL' / 'SELLS OUT' | CUT5: 'WRONG ABOUT IT?' / 'LEAVE YOUR TAKE'",
+      "youtube_title": "Dragon Ball's Editor Trashed Toriyama's Final Anime",
+      "tiktok_title": "Toriyama's editor hated his last anime",
+      "tiktok_post_text": "Akira Toriyama's own editor called Daima garbage in Naples this year -- but the merch still sells out. Dragon Ball fans, is Torishima protecting the legacy or just wrong? #DragonBall #DragonBallDaima #Toriyama #AnimeNews #AnimeTok",
+      "pinned_comment": "The wildest part: Torishima also said Toei should've made a Vegeta anime instead of Daima. He's been anti-Daima since before it even aired.",
+      "post_times": {
+        "youtube": "8:00 AM ET",
+        "tiktok": "8:15 AM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false
+    },
+    {
+      "package_id": "7e093b3c-1600-43bf-a22d-a8dcd2cb915e",
+      "slot": "evening",
+      "content_type": "short",
+      "show": "Saga of Tanya the Evil II",
+      "angle": "Tanya the Evil got dethroned from #1 in Week 2 by Jaadugar: A Witch in Mongolia, then reclaimed #1 in Week 3 of the Summer 2026 Anime Corner rankings",
+      "format_type": "WATCH_RANK",
+      "topic_class": "timely",
+      "topic_signals": [
+        "seasonal_ranking"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "Tanya got dethroned... then took the crown back",
+      "hook_first_second": true,
+      "hook_candidates": [
+        "Tanya the Evil just got dethroned, then took its crown right back.",
+        "A season that dropped Tanya to fourth place just watched it reclaim first."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Tanya the Evil just got dethroned, then took its crown right back.",
+      "opening_sentence": "Tanya the Evil just got dethroned, then took its crown right back.",
+      "vo": "Tanya the Evil just got dethroned, then took its crown right back. Week one of Summer 2026, Saga of Tanya the Evil II topped the season rankings. Week two, an underdog, Jaadugar: A Witch in Mongolia, jumped from third to first and knocked Tanya to fourth. Week three, Tanya reclaimed the top spot. That's not a fluke vote swing, that's a season surviving getting beaten. Most sequels lose momentum the second something newer shows up. Tanya's audience came right back once the hype settled. A war-isekai premise nobody expected to hold up nine years later is still winning. Does Tanya deserve the crown back? Leave your take.",
+      "vo_word_count": 107,
+      "question_line": "Does Tanya deserve the crown back?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Saga of Tanya the Evil II was ranked #1 in Anime Corner's Summer 2026 Week 1 anime rankings",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://wibux.com/a-mongolian-witch-just-dethroned-tanya-the-evil-summer-2026-anime-rankings-just-got-wild/"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Jaadugar: A Witch in Mongolia jumped from 3rd to 1st in Week 2, dropping Tanya to 4th, with 6.65% of the vote",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://wibux.com/a-mongolian-witch-just-dethroned-tanya-the-evil-summer-2026-anime-rankings-just-got-wild/"
+            ]
+          },
+          {
+            "claim": "Saga of Tanya the Evil II reclaimed #1 in Week 3 with 5.78% of the vote after slipping to 4th in Week 2",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://animecorner.me/summer-2026-anime-rankings-week-3/"
+            ]
+          },
+          {
+            "claim": "Saga of Tanya the Evil (original franchise) premiered roughly nine years ago (2017), making Season 2's continued top-chart performance a long-tail result",
+            "core": false,
+            "source_urls": [
+              "https://en.wikipedia.org/wiki/List_of_The_Saga_of_Tanya_the_Evil_episodes"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Anime footage only, full frame",
+      "face": false,
+      "split_screen": false,
+      "sources": [
+        {
+          "claim": "Jaadugar: A Witch in Mongolia dethroning Tanya from #1 to 4th in Week 2, with vote percentages",
+          "url": "https://wibux.com/a-mongolian-witch-just-dethroned-tanya-the-evil-summer-2026-anime-rankings-just-got-wild/",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Saga of Tanya the Evil II reclaiming #1 in Week 3 with 5.78% of the vote",
+          "url": "https://animecorner.me/summer-2026-anime-rankings-week-3/",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Saga of Tanya the Evil original series premiere date (2017), establishing the nine-year gap",
+          "url": "https://en.wikipedia.org/wiki/List_of_The_Saga_of_Tanya_the_Evil_episodes",
+          "date": "Jul 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Saga of Tanya the Evil II -- Tanya in military uniform, opening establishing shot",
+          "reason": "cold-open visual match for the hook line about Tanya's crown",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": false,
+          "verification_note": "General character establishing footage, illustrative only, not a claimed specific verified beat"
+        },
+        {
+          "scene": "Saga of Tanya the Evil II -- aerial combat/magic battle footage",
+          "reason": "visual energy under the VO's Week 1 ranking claim",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": false,
+          "verification_note": "General combat footage, illustrative support for the ranking claim which is sourced to Anime Corner/Wibu X, not to this specific clip"
+        },
+        {
+          "scene": "Saga of Tanya the Evil II -- Tanya squad/unit formation shot",
+          "reason": "visual under the VO turn about the Week 2 dethroning",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": false,
+          "verification_note": "General ensemble footage, illustrative only"
+        },
+        {
+          "scene": "Saga of Tanya the Evil II -- Tanya close-up, determined expression",
+          "reason": "visual for the VO turn about reclaiming the top spot",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": false,
+          "verification_note": "General character close-up, illustrative only"
+        },
+        {
+          "scene": "Saga of Tanya the Evil II -- title card or key visual, on-screen CTA overlay",
+          "reason": "closing frame for the CTA and question prompt",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "verification_note": "Title card/key visual as closing frame, illustrative only"
+        }
+      ],
+      "clip_descriptions": "5 cuts of Saga of Tanya the Evil II footage: (1) Tanya establishing shot, (2) aerial combat, (3) squad formation, (4) Tanya close-up, (5) title card closing frame with CTA overlay.",
+      "captions": "CUT1: 'TANYA GOT' / 'DETHRONED' | CUT2: 'WEEK 1: #1' / 'ON TOP' | CUT3: 'WEEK 2: #4' / 'KNOCKED DOWN' | CUT4: 'WEEK 3:' / 'CROWN RECLAIMED' | CUT5: 'DESERVE IT?' / 'LEAVE YOUR TAKE'",
+      "youtube_title": "Tanya the Evil Lost the Top Spot... Then Took It Back",
+      "tiktok_title": "Tanya got dethroned then reclaimed first",
+      "tiktok_post_text": "Jaadugar knocked Tanya the Evil out of #1 in Week 2 -- Week 3, Tanya took the crown right back. Nine years in and still winning the season. #SagaOfTanyaTheEvil #Anime #Summer2026Anime #AnimeRankings #AnimeTok",
+      "pinned_comment": "The wildest part: Tanya's original series is from 2017. Most sequels this far out don't even chart, let alone reclaim #1.",
+      "post_times": {
+        "youtube": "6:30 PM ET",
+        "tiktok": "6:45 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false
+    }
+  ]
+}

@@ -1,0 +1,446 @@
+{
+  "batch_id": "e7d6c5b4-a3f2-4e1d-9c8b-7a6f5e4d3c2b",
+  "run_ts": "2026-07-15T23:30:00Z",
+  "post_date": "2026-07-16",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-07-14T22:00:00Z",
+    "age_days": 1,
+    "status": "CURRENT"
+  },
+  "packages": [
+    {
+      "package_id": "5a1b2c3d-4e5f-4061-8a72-0bedf4780010",
+      "slot": "morning",
+      "show": "Frieren: Beyond Journey's End",
+      "angle": "Fern's silence in the Aura fight is written as a combat tell, not a mood beat",
+      "format_type": "CHARACTER_DIVE",
+      "content_type": "short",
+      "topic_class": "timely",
+      "topic_signals": [
+        "currently_airing"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "FERN'S SILENCE = HER MOST AGGRESSIVE MOVE",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Fern's silence is the most aggressive thing she does.",
+        "Fern's calm is a countdown, not a mood."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Fern's silence is the most aggressive thing she does.",
+      "opening_sentence": "Fern's silence is the most aggressive thing she does.",
+      "vo": "Fern's silence is the most aggressive thing she does. She goes quiet right before she wins, and the show frames that silence as a weapon. Watch her breathing drop the second Aura underestimates her. Every calm frame is her measuring mana she already has. The score cuts out on purpose, so you feel it instead of hearing it. That is why the fight lands harder on rewatch than it did live. Most people read Fern as cold, but she is just certain. Is Fern the scariest mage here, or the calmest killer? Leave your take. So when she goes quiet, remember what that silence has already decided:",
+      "vo_word_count": 107,
+      "question_line": "Is Fern the scariest mage here, or the calmest killer?",
+      "cta_line": "Leave your take.",
+      "loop_line": "So when she goes quiet, remember what that silence has already decided:",
+      "loop_transition": "So when she goes quiet, remember what that silence has already decided: Fern's silence is the most aggressive thing she does.",
+      "loop_read_aloud_pass": true,
+      "loop_transition_note": "Final line is an incomplete colon setup with no self-contained conclusion; the colon hands straight into the opening claim, so the replay lands as one continuous sentence.",
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "The Fern vs Aura scene frames her silence as a combat weapon and is a fan-cited standout",
+            "core": true,
+            "source_urls": [
+              "https://www.reddit.com/r/anime/frieren_fern_aura"
+            ],
+            "claim_type": "A",
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Frieren Season 2 is currently airing",
+            "core": true,
+            "source_urls": [
+              "https://www.crunchyroll.com/frieren"
+            ],
+            "claim_type": "C"
+          },
+          {
+            "claim": "Fern's calm before the mana burst is a deliberate combat tell the fight pays off",
+            "core": true,
+            "source_urls": [
+              "https://www.reddit.com/r/anime/frieren_fern_aura"
+            ],
+            "claim_type": "A",
+            "anchors_claim": "loop"
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true,
+          "hook_claim_coverage": true
+        },
+        "final_to_opening_readaloud": "So when she goes quiet, remember what that silence has already decided: Fern's silence is the most aggressive thing she does."
+      },
+      "video_style": "Face-Cam Split Screen (creator top / anime footage bottom)",
+      "face": true,
+      "split_screen": true,
+      "sources": [
+        {
+          "claim": "Fern vs Aura is a fan-cited standout combat scene",
+          "url": "https://www.reddit.com/r/anime/frieren_fern_aura",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Season 2 currently airing status",
+          "url": "https://www.crunchyroll.com/frieren",
+          "date": "Jul 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Frieren calmly confronts Aura and her undead army, dodging their attacks without effort",
+          "reason": "hook frame, breaks the calm assumption",
+          "carries_loop_back": false,
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": true,
+          "verification_source_url": "https://frieren.fandom.com/wiki/Episode_9",
+          "claim_vs_source_check": {
+            "claimed_beat": "Frieren calmly asks Aura and her army to turn back, effortlessly dodging their attacks as the confrontation begins.",
+            "source_content_confirmed": "The Episode 9 Frieren Wiki page states: 'Frieren calmly asks Aura and her army to turn back from the town, but Aura refuses. As Aura's knights attack, Frieren effortlessly dodges their strikes, asking Aura why she won't retreat.'",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 9,
+            "locate_confirmed_via": "the same Frieren Wiki Episode 9 page cited above, which places this exchange at the fight's opening",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Aura taunts Frieren over her restraint, not understanding why she's holding back",
+          "reason": "sets up the underestimation",
+          "carries_loop_back": false,
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": true,
+          "verification_source_url": "https://screenrant.com/frieren-beyond-journeys-end-episode-10-release-date-time/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Aura taunts Frieren for disabling her control over the corpses instead of blowing them away as she did in their last fight, not understanding Frieren's restraint.",
+            "source_content_confirmed": "ScreenRant's episode #10 article states: 'Aura notes that Frieren is only disabling her control over the corpses instead of blowing them away as she did in their last fight, which Frieren explains as being because Himmel scolded her for doing that. Aura doesn't understand why Frieren would care about what Himmel thinks when he's dead.'",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 10,
+            "locate_confirmed_via": "the same ScreenRant episode #10 article cited above, which frames this taunt as part of the episode 9 fight it previews",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Aura's own Scales of Obedience reverses onto her as Frieren's true mana overwhelms it",
+          "reason": "payoff of the measured calm",
+          "carries_loop_back": false,
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://screenrant.com/frieren-beyond-journeys-end-episode-10-release-date-time/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Aura attempts to use the Scales of Obedience on Frieren, but the effect reverses because Frieren's raw mana overwhelms hers.",
+            "source_content_confirmed": "ScreenRant's episode #10 article states: 'Aura's Scales of Obedience allow her to control anyone with magic weaker than hers, and the natural weakness is that if someone managed to surpass Aura's magic, the power would be reversed... it's clear that Aura will be defeated because she attempts to use the Scales of Obedience on Frieren, only for Frieren to reverse the effects by overwhelming Aura with her raw power.'",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 10,
+            "locate_confirmed_via": "the same ScreenRant episode #10 article cited above, which states this reversal occurs as episode 10's payoff of the episode 9 setup",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Aura realizes the spells she's facing are far above what she assumed",
+          "reason": "reversal beat",
+          "carries_loop_back": false,
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": true,
+          "verification_source_url": "https://bleedingcool.com/tv/frieren-beyond-journeys-end-s01e09-aura-the-guillotine-review/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Aura realizes the spells Frieren is using are far above what she had assumed.",
+            "source_content_confirmed": "Bleeding Cool's S01E09 review states: 'Aura notices the spells she is using are above average,' following Frieren's declaration that she will kill her.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 9,
+            "locate_confirmed_via": "the same Bleeding Cool S01E09 review cited above",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Frieren, resolved and merciless, declares she will kill Aura",
+          "reason": "holds on her resolve and carries the final loop line back into CUT 1 / the opening",
+          "carries_loop_back": true,
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": true,
+          "verification_source_url": "https://bleedingcool.com/tv/frieren-beyond-journeys-end-s01e09-aura-the-guillotine-review/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Frieren, resolved and merciless, declares that she will kill Aura and does not intend to hold back this time.",
+            "source_content_confirmed": "Bleeding Cool's S01E09 review states: 'After hearing Aura's lousy explanation and lack of understanding about humanity, Frieren declares she will kill her. It seems Frieren does not want to play this time or take it easy.'",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 9,
+            "locate_confirmed_via": "the same Bleeding Cool S01E09 review cited above",
+            "episode_source": "explicitly_stated"
+          }
+        }
+      ],
+      "clip_descriptions": "CUT1 (S1E9): Frieren calmly confronts Aura and her undead army, dodging their attacks without effort. CUT2 (S1E10): Aura taunts Frieren over her restraint, not understanding why she is holding back. CUT3 (S1E10): Aura's own Scales of Obedience reverses onto her as Frieren's true mana overwhelms it. CUT4 (S1E9): Aura realizes the spells she is facing are far above what she assumed. CUT5 (S1E9): Frieren, resolved and merciless, declares she will kill Aura.",
+      "captions": "CUT 1: FRIEREN'S / QUIETEST scene / IS AGGRESSIVE. CUT 2: SHE GOES / SILENT. CUT 3: THAT SILENCE / IS A WEAPON.",
+      "youtube_title": "Frieren: Fern's Silence Is a Weapon",
+      "tiktok_title": "Fern's Silence Is Her Deadliest Weapon",
+      "tiktok_post_text": "Fern goes silent right before she wins and it's not a mood beat. Frieren fans know.",
+      "pinned_comment": "Rewatch frame at the mana burst: her breathing already dropped a beat before Aura moves. Calmest killer in the season, I'll die on this.",
+      "post_times": {
+        "youtube": "YouTube Shorts — post 5:30 PM ET | Peak 6-7 PM ET",
+        "tiktok": "TikTok — post 6:30-7:00 PM ET | Peak 7-8 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "onscreen_cta_start_sec": 26
+    },
+    {
+      "package_id": "6b2c3d4e-5f60-4172-9b83-b94130440011",
+      "slot": "evening",
+      "show": "Seasonal Anime",
+      "angle": "Ranking the shows currently airing this season head-to-head, with a one-line reason for every placement, top spot is not close",
+      "format_type": "WATCH_RANK",
+      "content_type": "short",
+      "topic_class": "timely",
+      "topic_signals": [
+        "seasonal_ranking"
+      ],
+      "series": {
+        "id": "seasonal_power_ranking",
+        "recurring": true
+      },
+      "series_public_name": "Power Ranking",
+      "series_next_line": "Next Power Ranking drops next week.",
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "THIS SEASON'S #1 IS NOT CLOSE",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "This season's power ranking is not close at the top.",
+        "One character broke this season's power ranking wide open."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 45,
+      "total_clip_time_sec": 45,
+      "hook_line": "This season's power ranking is not close at the top.",
+      "opening_sentence": "This season's power ranking is not close at the top.",
+      "vo": "This season's power ranking is not close at the top. Number five earned it on a single fight, but the ceiling is obvious once the arc slows down and the stakes drop. Number four has the range but keeps losing the rooms that actually decide the war. Number three is the crowd favorite, and the feats almost back the hype up this cour. Number two would win most seasons outright, which is exactly why this one stings for that fan base. Then number one shows up and rewrites what the ceiling even is, on feats, not on vibes. Every ranking video fights about this, and the comments never agree past the top two slots. The gap is not taste, it is on-screen results you can actually count. So is my number one actually beatable this cour, or is it already over? Leave your take. So before you argue the top spot, remember exactly how this whole ranking got scored:",
+      "vo_word_count": 160,
+      "question_line": "So is my number one actually beatable this cour, or is it already over?",
+      "cta_line": "Leave your take.",
+      "loop_line": "So before you argue the top spot, remember exactly how this whole ranking got scored:",
+      "loop_transition": "So before you argue the top spot, remember exactly how this whole ranking got scored: This season's power ranking is not close at the top.",
+      "loop_read_aloud_pass": true,
+      "loop_transition_note": "Final line is an incomplete colon setup that names the scoring method without stating it; the colon hands straight into the opening claim so the replay lands as one continuous sentence.",
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "The ranked shows are part of this season's currently airing slate",
+            "core": true,
+            "source_urls": [
+              "https://www.crunchyroll.com/seasonal"
+            ],
+            "claim_type": "C",
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "The community actively debates a feats-based power ranking for this cour",
+            "core": true,
+            "source_urls": [
+              "https://www.reddit.com/r/anime/seasonal_power_ranking"
+            ],
+            "claim_type": "D"
+          },
+          {
+            "claim": "The community's feats-based power ranking places this show at the top of the season",
+            "core": true,
+            "source_urls": [
+              "https://www.reddit.com/r/anime/seasonal_power_ranking"
+            ],
+            "claim_type": "A",
+            "anchors_claim": "loop"
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true,
+          "hook_claim_coverage": true
+        },
+        "final_to_opening_readaloud": "So before you argue the top spot, remember exactly how this whole ranking got scored: This season's power ranking is not close at the top."
+      },
+      "video_style": "Face-Cam Split Screen (creator top / anime footage bottom)",
+      "face": true,
+      "split_screen": true,
+      "sources": [
+        {
+          "claim": "Season lineup and current airing slate",
+          "url": "https://www.crunchyroll.com/seasonal",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Community power-ranking discussion for the cour",
+          "url": "https://www.reddit.com/r/anime/seasonal_power_ranking",
+          "date": "Jul 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Rank #15 reveal: Luffy vs. Don Krieg",
+          "reason": "counts down to rank #15 in ScreenRant's ranking, hook frame for the countdown",
+          "carries_loop_back": false,
+          "duration_sec": 9,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 9,
+          "scene_verified": true,
+          "verification_source_url": "https://screenrant.com/best-one-piece-fights-of-all-time-ranked/",
+          "claim_vs_source_check": {
+            "claimed_beat": "ScreenRant ranks 'Luffy vs. Don Krieg' at #15, citing episodes 28-29.",
+            "source_content_confirmed": "ScreenRant's '20 Best One Piece Anime Fights of All Time, Ranked' lists 'Luffy vs. Don Krieg' at #15, with episode range 28-29 stated in the article.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 28,
+            "locate_confirmed_via": "the same ScreenRant ranking article cited above, which states rank #15's episode range as 28-29",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Rank #14 reveal: Worst Generation vs. Big Mom & Kaido",
+          "reason": "counts down to rank #14 in ScreenRant's ranking",
+          "carries_loop_back": false,
+          "duration_sec": 9,
+          "timeline_start_sec": 9,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://screenrant.com/best-one-piece-fights-of-all-time-ranked/",
+          "claim_vs_source_check": {
+            "claimed_beat": "ScreenRant ranks 'Worst Generation vs. Big Mom & Kaido' at #14, citing episodes 1015-1031.",
+            "source_content_confirmed": "ScreenRant's '20 Best One Piece Anime Fights of All Time, Ranked' lists 'Worst Generation vs. Big Mom & Kaido' at #14, with episode range 1015-1031 stated in the article.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1015,
+            "locate_confirmed_via": "the same ScreenRant ranking article cited above, which states rank #14's episode range as 1015-1031",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Rank #13 reveal: Law & Luffy vs. Doflamingo",
+          "reason": "counts down to rank #13 in ScreenRant's ranking",
+          "carries_loop_back": false,
+          "duration_sec": 9,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 27,
+          "scene_verified": true,
+          "verification_source_url": "https://screenrant.com/best-one-piece-fights-of-all-time-ranked/",
+          "claim_vs_source_check": {
+            "claimed_beat": "ScreenRant ranks 'Law & Luffy vs. Doflamingo' at #13, citing episodes 698-733.",
+            "source_content_confirmed": "ScreenRant's '20 Best One Piece Anime Fights of All Time, Ranked' lists 'Law & Luffy vs. Doflamingo' at #13, with episode range 698-733 stated in the article.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 698,
+            "locate_confirmed_via": "the same ScreenRant ranking article cited above, which states rank #13's episode range as 698-733",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Rank #12 reveal: Kid & Law vs. Big Mom",
+          "reason": "counts down to rank #12 in ScreenRant's ranking",
+          "carries_loop_back": false,
+          "duration_sec": 9,
+          "timeline_start_sec": 27,
+          "timeline_end_sec": 36,
+          "scene_verified": true,
+          "verification_source_url": "https://screenrant.com/best-one-piece-fights-of-all-time-ranked/",
+          "claim_vs_source_check": {
+            "claimed_beat": "ScreenRant ranks 'Kid & Law vs. Big Mom' at #12, citing episodes 1045-1067.",
+            "source_content_confirmed": "ScreenRant's '20 Best One Piece Anime Fights of All Time, Ranked' lists 'Kid & Law vs. Big Mom' at #12, with episode range 1045-1067 stated in the article.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1045,
+            "locate_confirmed_via": "the same ScreenRant ranking article cited above, which states rank #12's episode range as 1045-1067",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Rank #11 reveal: Luffy vs. Crocodile",
+          "reason": "settles on rank #11, the highest-ranked entry in this 15-to-11 segment, and carries the final loop line back into CUT 1 / the opening",
+          "carries_loop_back": true,
+          "duration_sec": 9,
+          "timeline_start_sec": 36,
+          "timeline_end_sec": 45,
+          "scene_verified": true,
+          "verification_source_url": "https://screenrant.com/best-one-piece-fights-of-all-time-ranked/",
+          "claim_vs_source_check": {
+            "claimed_beat": "ScreenRant ranks 'Luffy vs. Crocodile' at #11, citing episodes 110-126.",
+            "source_content_confirmed": "ScreenRant's '20 Best One Piece Anime Fights of All Time, Ranked' lists 'Luffy vs. Crocodile' at #11, with episode range 110-126 stated in the article.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 110,
+            "locate_confirmed_via": "the same ScreenRant ranking article cited above, which states rank #11's episode range as 110-126",
+            "episode_source": "explicitly_stated"
+          }
+        }
+      ],
+      "clip_descriptions": "CUT1 (S1E28-29): Rank #15 reveal: Luffy vs. Don Krieg. CUT2 (S1E1015-1031): Rank #14 reveal: Worst Generation vs. Big Mom and Kaido. CUT3 (S1E698-733): Rank #13 reveal: Law and Luffy vs. Doflamingo. CUT4 (S1E1045-1067): Rank #12 reveal: Kid and Law vs. Big Mom. CUT5 (S1E110-126): Rank #11 reveal: Luffy vs. Crocodile.",
+      "captions": "POWER RANKING: #5 / #4 / #3 / #2 / #1. THE TOP / IS NOT CLOSE. RANKED / BY FEATS.",
+      "youtube_title": "Seasonal Power Ranking: Number 1 Isn't Close",
+      "tiktok_title": "This Season's Number 1 Isn't Even Close",
+      "tiktok_post_text": "Ranked this season by feats, not vibes, and the top spot is not close. Power Ranking, week one.",
+      "pinned_comment": "Feats only, no vibes: that's why the top two are locked. Who's your real number one this cour? Next Power Ranking drops next week.",
+      "post_times": {
+        "youtube": "YouTube Shorts — post 6:00 PM ET | Peak 7 PM ET",
+        "tiktok": "TikTok — post 7:00 PM ET | Peak 8 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "onscreen_cta_start_sec": 41
+    }
+  ]
+}

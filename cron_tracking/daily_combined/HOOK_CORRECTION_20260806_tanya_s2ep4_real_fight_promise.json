@@ -1,0 +1,498 @@
+{
+  "batch_id": "8f3c2a1e-9b7d-4e6a-a5c3-1d8f4b2e9c60",
+  "run_ts": "2026-08-03T23:55:00-04:00",
+  "post_date": "2026-08-04",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-08-03T18:35:00-04:00",
+    "age_days": 0,
+    "status": "REFRESHED"
+  },
+  "packages": [
+    {
+      "package_id": "a1b2c3d4-1111-4e6a-a5c3-1d8f4b2e9c61",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "Saga of Tanya the Evil Season 2",
+      "angle": "Operation Iron Hammer succeeds almost too easily, then the peace deal that could have ended the war gets rejected by leadership protecting their own wealth",
+      "format_type": "EPISODE_MOMENT",
+      "topic_class": "timely",
+      "topic_signals": [
+        "currently_airing"
+      ],
+      "series": {
+        "id": "tanya_s2_weekly",
+        "recurring": true
+      },
+      "series_public_name": "Tanya S2",
+      "series_next_line": "Episode 5 drops August 5.",
+      "duration_experiment": false,
+      "funnel_status": "standalone",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "They won the war. Then they voted against peace.",
+      "hook_first_second": true,
+      "hook_candidates": [
+        "Saga of Tanya the Evil season 2 episode 4 shows the Empire pull off Operation Iron Hammer almost too easily.",
+        "The hardest fight in Tanya season 2 episode 4 wasn't on the battlefield."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Saga of Tanya the Evil season 2 episode 4 shows the Empire pull off Operation Iron Hammer almost too easily.",
+      "opening_sentence": "Saga of Tanya the Evil season 2 episode 4 shows the Empire pull off Operation Iron Hammer almost too easily.",
+      "vo": "Saga of Tanya the Evil season 2 episode 4 shows the Empire pull off Operation Iron Hammer almost too easily. Tanya's tank column pushes toward a river, using it to guard their backs while troops close in from both sides. A scarecrow popping up is the only real scare, and the bridge falls without a real fight. Tanya still ends up airborne, firing on stragglers, but reactions call the whole operation stupid easy. Then the episode flips it: a peace deal appears, one side keeps everything it took, but leadership rejects it since ending the war now would bankrupt them. Was that battle worth it? Leave your take.",
+      "vo_word_count": 108,
+      "question_line": "Was that battle worth it?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Operation Iron Hammer is portrayed as unexpectedly, almost comically easy, with troops barely encountering resistance",
+            "core": true,
+            "source_urls": [
+              "https://www.youtube.com/watch?v=Jiqm_AIIM5Q",
+              "https://www.youtube.com/watch?v=6cm_uWSCbSY"
+            ],
+            "anchors_claim": "hook",
+            "claim_type": "A"
+          },
+          {
+            "claim": "Tanya's forces travel by tank during the operation, not paratrooper drop -- reconciled 2-of-3 sources over a third source's paratrooper claim",
+            "core": true,
+            "source_urls": [
+              "https://www.youtube.com/watch?v=Jiqm_AIIM5Q",
+              "https://www.youtube.com/watch?v=6cm_uWSCbSY"
+            ],
+            "claim_type": "A"
+          },
+          {
+            "claim": "A scarecrow popping up startles the troops and is described as the episode's main action beat",
+            "core": true,
+            "source_urls": [
+              "https://www.youtube.com/watch?v=Jiqm_AIIM5Q",
+              "https://www.youtube.com/watch?v=lqJeJIs0VhM"
+            ],
+            "claim_type": "D"
+          },
+          {
+            "claim": "A bridge is held/falls with minimal resistance",
+            "core": false,
+            "source_urls": [
+              "https://www.youtube.com/watch?v=Jiqm_AIIM5Q"
+            ],
+            "claim_type": "D"
+          },
+          {
+            "claim": "Tanya goes airborne and fires on stragglers during the battle",
+            "core": true,
+            "source_urls": [
+              "https://www.youtube.com/watch?v=Jiqm_AIIM5Q"
+            ],
+            "claim_type": "D"
+          },
+          {
+            "claim": "A peace deal is proposed that would let the enemy keep everything taken, but is explicitly rejected by political/wealthy figures unwilling to lose profit from ending the war",
+            "core": true,
+            "source_urls": [
+              "https://www.youtube.com/watch?v=Jiqm_AIIM5Q",
+              "https://www.youtube.com/watch?v=lqJeJIs0VhM"
+            ],
+            "claim_type": "A"
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Anime Clips Only",
+      "face": false,
+      "split_screen": false,
+      "sources": [
+        {
+          "claim": "Episode 4 aired July 29, 2026; Episode 5 releases August 5, 2026",
+          "url": "https://www.moviefone.com/tv-shows/saga-of-tanya-the-evil/YtYZJcoDyMtDOKp7pgt5O6/seasons/2/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Operation Iron Hammer scene content, tanks (not paratroopers), scarecrow beat, no blood imagery, explicit peace rejection",
+          "url": "https://www.youtube.com/watch?v=Jiqm_AIIM5Q",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Peace deal explicit rejection, political self-interest framing, blood-imagery claim (not corroborated, excluded)",
+          "url": "https://www.youtube.com/watch?v=lqJeJIs0VhM",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Tank-based transport (not paratroopers), peace outcome framed as more open/speculative in this account",
+          "url": "https://www.youtube.com/watch?v=6cm_uWSCbSY",
+          "date": "Jul 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Tanya in command, tank column pushing toward the river with the pincer plan forming",
+          "reason": "sets up the operation and stakes immediately",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=Jiqm_AIIM5Q",
+          "claim_vs_source_check": {
+            "claimed_beat": "Tanya in a command role directing a tank-based encirclement plan toward a river",
+            "source_content_confirmed": "Transcript confirms a tactical encirclement plan involving the river guarding the troops' backs, forces pushing the enemy back in a pincer, and tanks shown for most of the operation",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 2,
+            "episode": 4,
+            "locate_confirmed_via": "the same G.O.T Games reaction video cited in claim_vs_source_check, which explicitly reacts to Season 2 Episode 4"
+          }
+        },
+        {
+          "scene": "A scarecrow suddenly pops up mid-advance and startles the troops",
+          "reason": "the one real jolt in an otherwise eerily quiet operation",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=Jiqm_AIIM5Q",
+          "claim_vs_source_check": {
+            "claimed_beat": "A scarecrow pops up and startles the troops during the quiet advance",
+            "source_content_confirmed": "Transcript timestamp 7:33-7:45 explicitly: 'A scarecrow suddenly pops up and startles the group,' later called the episode's main action moment",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 2,
+            "episode": 4,
+            "locate_confirmed_via": "the same G.O.T Games reaction video cited in claim_vs_source_check",
+            "approx_timestamp": "7:33-7:45 in the reaction video"
+          }
+        },
+        {
+          "scene": "Troops hold the bridge, tanks roll through with barely any resistance",
+          "reason": "pays off how easily the operation actually goes",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=Jiqm_AIIM5Q",
+          "claim_vs_source_check": {
+            "claimed_beat": "The bridge is held/taken with minimal visible resistance, and the operation concludes as an easy victory",
+            "source_content_confirmed": "Transcript timestamps 7:45-8:01 and 11:55-12:07: 'They held the bridge' with no visible gunfights; reactor repeatedly calls the result 'stupid easy' and 'complete' success",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 2,
+            "episode": 4,
+            "locate_confirmed_via": "the same G.O.T Games reaction video cited in claim_vs_source_check",
+            "approx_timestamp": "7:45-8:01"
+          }
+        },
+        {
+          "scene": "Tanya goes airborne mid-battle, firing on stragglers",
+          "reason": "the one Tanya action beat viewers expect from her",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=Jiqm_AIIM5Q",
+          "claim_vs_source_check": {
+            "claimed_beat": "Tanya takes to the sky and fires on enemy stragglers during the battle",
+            "source_content_confirmed": "Transcript timestamp 11:25-11:31: 'Tanya takes to the sky, performs an action, and bullets are fired'",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 2,
+            "episode": 4,
+            "locate_confirmed_via": "the same G.O.T Games reaction video cited in claim_vs_source_check",
+            "approx_timestamp": "11:25-11:31"
+          }
+        },
+        {
+          "scene": "Suits in a room reject the peace proposal that would let the enemy keep what they took",
+          "reason": "the tonal gut-punch the hook and VO build toward",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=Jiqm_AIIM5Q",
+          "claim_vs_source_check": {
+            "claimed_beat": "Political figures reject a peace proposal that would let the enemy keep everything taken, prioritizing their own wealth over ending the war",
+            "source_content_confirmed": "Transcript timestamps 13:32-15:53: peace proposal discussed ('you get to keep everything you've taken'), rejected by men in suits who 'want money and will not agree because they do not get rich from the proposal,' ending 'It's done'",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 2,
+            "episode": 4,
+            "locate_confirmed_via": "the same G.O.T Games reaction video cited in claim_vs_source_check",
+            "approx_timestamp": "13:32-15:53"
+          }
+        }
+      ],
+      "clip_descriptions": "CUT 1: Tanya in command, tank column pushing toward the river with the pincer plan forming \u2014 sets up the operation and stakes immediately \u2014 S2E4. CUT 2: A scarecrow suddenly pops up mid-advance and startles the troops \u2014 the one real jolt in an otherwise eerily quiet operation \u2014 S2E4. CUT 3: Troops hold the bridge, tanks roll through with barely any resistance \u2014 pays off how easily the operation actually goes \u2014 S2E4. CUT 4: Tanya goes airborne mid-battle, firing on stragglers \u2014 the one Tanya action beat viewers expect from her \u2014 S2E4. CUT 5: Suits in a room reject the peace proposal that would let the enemy keep what they took \u2014 the tonal gut-punch the hook and VO build toward \u2014 S2E4.",
+      "captions": "Tanya S2 Ep4: they won the war, then voted against peace. Episode 5 drops August 5.",
+      "youtube_title": "Tanya S2 Ep4: Won The War, Voted Against Peace",
+      "tiktok_title": "They won the war. Then voted against peace.",
+      "tiktok_post_text": "Operation Iron Hammer went almost too smooth in Saga of Tanya the Evil S2 Episode 4 -- then the peace deal that could've ended it all got rejected by the people who'd lose money if the war stopped. Episode 5 drops August 5. Was that battle even worth fighting? Leave your take. #SagaOfTanyaTheEvil #Tanya #YoujoSenki #AnimeShorts #AnimeTikTok #AnimeCommentary #AnimeReview #WW1Anime #MilitaryAnime #AnimePolitics",
+      "pinned_comment": "Episode 5 drops August 5 -- curious if that rejected peace deal comes back to bite them. Leave your take below.",
+      "post_times": {
+        "youtube": "8:00 AM ET",
+        "tiktok": "8:15 AM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false
+    },
+    {
+      "package_id": "b2c3d4e5-2222-4e6a-a5c3-1d8f4b2e9c62",
+      "slot": "evening",
+      "content_type": "short",
+      "show": "Link Click",
+      "angle": "Season 3's new character Jae Lee is a Bridon Crime Agency sergeant hunting the same kind of power Cheng Xiaoshi and Lu Guang have, and the trailer's evidence board ties him straight into Vain's unresolved mystery",
+      "format_type": "SEASON_PREVIEW",
+      "topic_class": "timely",
+      "topic_signals": [
+        "premiere"
+      ],
+      "series": null,
+      "duration_experiment": false,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "Season 3's new character is hunting Vain",
+      "hook_first_second": true,
+      "hook_candidates": [
+        "Link Click season 3 premieres August 14, and the trailer sets up its darkest mystery yet.",
+        "Link Click just revealed a new character who might be hunting the same people you are."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Link Click season 3 premieres August 14, and the trailer sets up its darkest mystery yet.",
+      "opening_sentence": "Link Click season 3 premieres August 14, and the trailer sets up its darkest mystery yet.",
+      "vo": "Link Click season 3 premieres August 14, and the trailer sets up its darkest mystery yet. A new character, Jae Lee, a Bridon Crime Agency sergeant, gets pulled off vacation by a call from someone he calls \"sir,\" relieved they're alive. That's the exact language fans used for Vain after the Bridon Arc, since Vain was left for dead until his eyes opened on an autopsy table. Jae Lee's eyes change color too, meaning he has powers like Cheng Xiaoshi and Lu Guang, except he's hunting them. Season 3 runs twenty-four episodes. Is Jae Lee working for Vain? Leave your take.",
+      "vo_word_count": 102,
+      "question_line": "Is Jae Lee working for Vain?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Link Click Season 3 Part 1 premieres August 14, 2026",
+            "core": true,
+            "source_urls": [
+              "https://www.anime.com/news/link-click-season-3-part-one-august-2026",
+              "https://aniflixy.com/is-link-click-season-3-streaming-on-crunchyroll-usa-2026-release-date-rumors-and-official-updates/"
+            ],
+            "anchors_claim": "hook",
+            "claim_type": "C"
+          },
+          {
+            "claim": "Jae Lee is a new character, a Bridon Crime Agency sergeant in the Special Affairs Squad, introduced via a phone call pulling him off vacation",
+            "core": true,
+            "source_urls": [
+              "https://www.youtube.com/watch?v=kcOUdigl1O0"
+            ],
+            "claim_type": "A"
+          },
+          {
+            "claim": "Jae Lee's exact phone dialogue includes 'Hello dear' and 'good to hear you're still alive sir'",
+            "core": true,
+            "source_urls": [
+              "https://www.youtube.com/watch?v=kcOUdigl1O0"
+            ],
+            "claim_type": "A"
+          },
+          {
+            "claim": "Jae Lee's eyes change color (to white) near the end of the trailer",
+            "core": true,
+            "source_urls": [
+              "https://www.youtube.com/watch?v=kcOUdigl1O0"
+            ],
+            "claim_type": "A"
+          },
+          {
+            "claim": "The evidence board directly features Vain's autopsy report and ties to the Bridon Arc mystery",
+            "core": true,
+            "source_urls": [
+              "https://www.youtube.com/watch?v=kcOUdigl1O0"
+            ],
+            "claim_type": "A"
+          },
+          {
+            "claim": "Season 3 totals 24 episodes",
+            "core": true,
+            "source_urls": [
+              "https://animefire.com/2025/11/19/new-link-click-season-3-information-drops/",
+              "https://www.youtube.com/watch?v=H0uT88yvWE4"
+            ],
+            "claim_type": "C"
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Anime Clips Only",
+      "face": false,
+      "split_screen": false,
+      "sources": [
+        {
+          "claim": "Link Click Season 3 Part 1 premieres August 14, 2026 on Bilibili/Crunchyroll",
+          "url": "https://www.anime.com/news/link-click-season-3-part-one-august-2026",
+          "date": "Jun 2026"
+        },
+        {
+          "claim": "August 14, 2026 premiere confirmed, Crunchyroll US streaming",
+          "url": "https://aniflixy.com/is-link-click-season-3-streaming-on-crunchyroll-usa-2026-release-date-rumors-and-official-updates/",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Jae Lee reveal PV shot-by-shot content: phone call dialogue, Bridon Crime Agency sergeant rank, eyes changing to white, evidence board Vain/Leo/Chris connections",
+          "url": "https://www.youtube.com/watch?v=kcOUdigl1O0",
+          "date": "May 2025"
+        },
+        {
+          "claim": "Season 3 total episode count of 24, more than prior seasons combined",
+          "url": "https://animefire.com/2025/11/19/new-link-click-season-3-information-drops/",
+          "date": "Nov 2025"
+        },
+        {
+          "claim": "August 14, 2026 premiere date, part of Crunchyroll's August 2026 lineup",
+          "url": "https://collider.com/best-anime-series-coming-netflix-crunchyroll-august-2026/",
+          "date": "Jul 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Jae Lee answers a call mid-vacation: 'Hello dear... good to hear you're still alive sir'",
+          "reason": "delivers the hook line verbatim from the actual trailer audio",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=kcOUdigl1O0",
+          "claim_vs_source_check": {
+            "claimed_beat": "Jae Lee answers a phone call while on vacation, saying 'Hello dear' and expressing relief the caller is still alive, addressing them as 'sir'",
+            "source_content_confirmed": "Transcript confirms Jae Lee's dialogue: 'Hello dear,' followed by 'It's good to hear you're still alive sir,' during an officially released PV/trailer segment",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 3,
+            "episode": 0,
+            "locate_confirmed_via": "the same VIVIDLIE PV analysis video cited in claim_vs_source_check -- this is official pre-air promotional trailer footage, not a numbered episode, per Sebastian's confirmed standard that the officially-released Jae Lee reveal PV counts as legitimate anime-sourced footage"
+          }
+        },
+        {
+          "scene": "Brighton Crime Agency database interface reveals his rank: sergeant, Special Affairs Squad",
+          "reason": "establishes who Jae Lee actually is",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=kcOUdigl1O0",
+          "claim_vs_source_check": {
+            "claimed_beat": "A database/interface visual in the trailer identifies Jae Lee as a Brighton Crime Agency sergeant in the Special Affairs Squad",
+            "source_content_confirmed": "Transcript confirms visuals showing Jae Lee works for the Brighton Crime Agency, appears part of the Special Affairs Squad, with rank identified as sergeant",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 3,
+            "episode": 0,
+            "locate_confirmed_via": "the same VIVIDLIE PV analysis video cited in claim_vs_source_check -- official pre-air trailer footage"
+          }
+        },
+        {
+          "scene": "Evidence board pans across Vain's autopsy report and the 'top secret' file",
+          "reason": "ties directly to the Bridon Arc mystery viewers already know",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=kcOUdigl1O0",
+          "claim_vs_source_check": {
+            "claimed_beat": "The trailer's evidence board shows Vain's autopsy report labeled top secret, plus notes questioning where his body is and who took him",
+            "source_content_confirmed": "Transcript confirms an autopsy report labeled 'top secret' in the Vain evidence section, with sticky notes asking 'where the body is' and 'who took him'",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 3,
+            "episode": 0,
+            "locate_confirmed_via": "the same VIVIDLIE PV analysis video cited in claim_vs_source_check -- official pre-air trailer footage"
+          }
+        },
+        {
+          "scene": "Jae Lee's eyes change to white near the end of the PV",
+          "reason": "the visual parallel to Cheng Xiaoshi and Lu Guang's powers",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=kcOUdigl1O0",
+          "claim_vs_source_check": {
+            "claimed_beat": "Jae Lee's eyes visibly change color near the end of the trailer, paralleling the protagonists' power visual",
+            "source_content_confirmed": "Transcript confirms: 'Near the end of the video, Jae Lee's eyes change to white'",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 3,
+            "episode": 0,
+            "locate_confirmed_via": "the same VIVIDLIE PV analysis video cited in claim_vs_source_check -- official pre-air trailer footage"
+          }
+        },
+        {
+          "scene": "Evidence board red string connects Leo, the ransom note, and Vain's photos",
+          "reason": "sets up the open question the hook and CTA point at",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=kcOUdigl1O0",
+          "claim_vs_source_check": {
+            "claimed_beat": "Red string on the evidence board visually connects Leo's photo, a ransom note, and Vain's photos",
+            "source_content_confirmed": "Transcript confirms red-string connections: 'The string from the Leo photo continues to the ransom note,' then 'The ransom note connects to the photos of Vain'",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 3,
+            "episode": 0,
+            "locate_confirmed_via": "the same VIVIDLIE PV analysis video cited in claim_vs_source_check -- official pre-air trailer footage"
+          }
+        }
+      ],
+      "clip_descriptions": "CUT 1: Jae Lee answers a call mid-vacation: 'Hello dear... good to hear you're still alive sir' \u2014 delivers the hook line verbatim from the actual trailer audio \u2014 S3E0. CUT 2: Brighton Crime Agency database interface reveals his rank: sergeant, Special Affairs Squad \u2014 establishes who Jae Lee actually is \u2014 S3E0. CUT 3: Evidence board pans across Vain's autopsy report and the 'top secret' file \u2014 ties directly to the Bridon Arc mystery viewers already know \u2014 S3E0. CUT 4: Jae Lee's eyes change to white near the end of the PV \u2014 the visual parallel to Cheng Xiaoshi and Lu Guang's powers \u2014 S3E0. CUT 5: Evidence board red string connects Leo, the ransom note, and Vain's photos \u2014 sets up the open question the hook and CTA point at \u2014 S3E0.",
+      "captions": "Link Click S3 premieres August 14. Is Jae Lee hunting Vain?",
+      "youtube_title": "Link Click S3: New Character Is Hunting Vain",
+      "tiktok_title": "Link Click's new character is hunting Vain",
+      "tiktok_post_text": "Link Click season 3 drops August 14 with 24 episodes, and the Jae Lee trailer already ties straight into Vain's unresolved Bridon Arc mystery. Same 'still alive' relief fans used for Vain. Same eyes-changing-color power as Cheng Xiaoshi and Lu Guang. Is Jae Lee hunting Vain? Leave your take. #LinkClick #LinkClickSeason3 #ShiguangDailiren #Donghua #AnimeShorts #AnimeMystery #AnimeTikTok #AnimeCommentary #VainLinkClick",
+      "pinned_comment": "August 14 is closer than it feels. Do you think Jae Lee's working with Vain or against him? Leave your take below.",
+      "post_times": {
+        "youtube": "7:00 PM ET",
+        "tiktok": "7:15 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false
+    }
+  ],
+  "correction_note": "Standalone corrected manifest snapshot for the 2026-08-04 batch. The live cron_tracking/daily_combined/run_manifest.json has since been overwritten by later runs (see docs/KNOWN_ISSUES.md F31); this file is the rebuilt full manifest at correction time, sourced from the original commit daa7b91 with only the fields listed in HOOK_CORRECTION_20260806_tanya_s2ep4_real_fight_promise.md changed."
+}

@@ -1,0 +1,64 @@
+ARCHIVED — PRE-CORRECTION DRAFT. This is the ORIGINAL daily-cron output before correction; it does NOT reflect what was actually sent. See CORRECTION_TO_CORRECTION_FULLSCRIPT_20260810_love_unseen.md (and FOOTAGE_CORRECTION_20260810_rezero_love_unseen.md) for the actual sent content.
+
+━━━ EVENING — August 11, 2026 ━━━
+SHOW:    Love Unseen Beneath the Clear Night Sky
+ANGLE:   A current romance setup built from Kakeru’s white-cane encounter and Episode 6’s rain-canceled fireworks plan.
+FORMAT:  WORTH_WATCHING
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM — Law #134 Stage 2)
+TOPIC:   timely — signals: currently_airing/seasonal_ranking
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK (Law #144 — on screen + spoken in second 1) ━━━
+ON-SCREEN (second 1): A white cane starts this romance.
+SPOKEN (VO first line): Love Unseen makes a white cane the start of its romance.
+HOOK FAMILY: observation
+candidate A: Love Unseen makes a white cane the start of its romance.
+candidate B: Rain cancels the fireworks, and the real conversation starts.
+SELECTED: 0
+
+━━━ VO (155 words — fills the resolved 45s CapCut edit) ━━━
+Love Unseen makes a white cane the start of its romance. Kakeru Sorano is a university freshman who gets dragged to a welcome party by his dormmate, Narumi. There he meets Koharu Fuyutsuki, a blind girl who laughs easily and keeps talking about the dreams she wants to reach. After class, Kakeru picks up her white cane, and the official story says that small act begins to close the distance between them. Koharu also says she wants to see fireworks. Episode six puts that wish under pressure: heavy rain cancels the planned display, so Kakeru invites Koharu to shelter in his dorm room. The episode gives their connection a new setting without changing what brought them together. Does that rain-canceled fireworks scene make you want to follow Kakeru and Koharu after the rain? Leave your take. Episode six leaves Kakeru and Koharu alone with a conversation they could not have had at the fireworks.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view — Law #134 Stage 2 two-track) ━━━
+[FACE: DIRECT-TO-CAMERA, lean in] Love Unseen makes a white cane the start of its romance. [FACE: GLANCE-DOWN-AT-FOOTAGE] Kakeru Sorano is a university freshman who gets dragged to a welcome party by his dormmate, Narumi. [FACE: DIRECT-TO-CAMERA] There he meets Koharu Fuyutsuki, a blind girl who laughs easily and keeps talking about the dreams she wants to reach. [FACE: REACTION BEAT] After class, Kakeru picks up her white cane, and the official story says that small act begins to close the distance between them. [FACE: GLANCE-DOWN-AT-FOOTAGE] Koharu also says she wants to see fireworks. [FACE: DIRECT-TO-CAMERA] Episode six puts that wish under pressure: heavy rain cancels the planned display, so Kakeru invites Koharu to shelter in his dorm room. [FACE: DIRECT-TO-CAMERA] The episode gives their connection a new setting without changing what brought them together. [FACE: DIRECT-TO-CAMERA] Does that rain-canceled fireworks scene make you want to follow Kakeru and Koharu after the rain? [FACE: DIRECT-TO-CAMERA] Leave your take. [FACE: DIRECT-TO-CAMERA, lean in] Episode six leaves Kakeru and Koharu alone with a conversation they could not have had at the fireworks.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings REQUIRED — Law #140) ━━━
+CUT 1 — 15 sec (0:00–0:15): UNVERIFIED — Kakeru and Koharu’s first white-cane encounter, only if editor independently verifies the episode and exact frame. — Visualize the official setup without treating a show-level page as a scene-level verification source.
+UNVERIFIED — The fetched official setup describes the encounter but does not provide an inspectable scene-level video transcript or frame trail for this exact clip.
+CUT 2 — 15 sec (0:15–0:30): UNVERIFIED — Episode 6 rain or canceled-fireworks setup, only after independent episode and rights verification. — Matches the dated Episode 6 description while keeping the footage status honest.
+UNVERIFIED — The fetched Episode 6 page provides a written description, not enough scene-level evidence to certify an exact bottom-track anime clip.
+CUT 3 — 15 sec (0:30–0:45): UNVERIFIED — Episode 6 dorm-room shelter setup, only after independent episode and rights verification. — Holds the final audience question on the episode’s verified premise.
+UNVERIFIED — No independently inspectable scene-level source was available in the live research for this exact moment.
+TOTAL CLIP TIME: 45 seconds
+CLIP PLAN FLAG: no scene-level aired-footage source was verified in this run; manually verify every bottom-track asset before editing.
+
+━━━ ON-SCREEN CAPTIONS ━━━
+LOVE UNSEEN
+A WHITE CANE
+STARTS THE ROMANCE
+FIREWORKS CANCELED
+RAIN CHANGES THE PLAN
+LEAVE YOUR TAKE
+
+━━━ YOUTUBE TITLE (Law #144 — punchy, searchable) ━━━
+Love Unseen Starts With a White Cane
+
+━━━ TIKTOK TITLE (Law #144 — punchy) ━━━
+Love Unseen’s Rainy-Night Turn
+
+━━━ TIKTOK POST TEXT (caption — may be longer; hashtags live HERE, not in the title) ━━━
+Love Unseen makes a white cane the start of its romance. Episode 6 turns a rain-canceled fireworks plan into a shelter scene. #LoveUnseen #AnimeShorts #RomanceAnime #SummerAnime
+
+━━━ PINNED COMMENT ━━━
+Koharu’s wish to see fireworks comes from the official setup, which makes Episode 6’s rain cancellation matter before Kakeru offers shelter.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 7:15 PM ET | Peak 7:15 PM ET
+TikTok — post 7:30 PM ET | Peak 7:30 PM ET
+
+━━━ SOURCES (concise evidence — >=2, each dated) ━━━
+1. Official setup: Kakeru meets blind student Koharu, picks up her white cane, and their distance begins to close; Koharu wants to see fireworks. — https://sh-anime.shochiku.co.jp/kakekoi/en/ (Jan 2026)
+2. Episode 6 description: heavy rain cancels the planned fireworks and Kakeru invites Koharu into his dorm room for shelter. — https://www.youtube.com/watch?v=XRdBP2T1Ieg (Aug 2026)
+
+━━━ END EVENING ━━━

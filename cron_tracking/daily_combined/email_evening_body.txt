@@ -1,0 +1,61 @@
+━━━ EVENING — 2026-08-03 ━━━
+SHOW:    Chainsaw Man
+ANGLE:   Reze's escape-then-return at the café is the real twist of the Bomb Girl arc, and it's being restaged live in Japan right now
+FORMAT:  COMMENTARY
+STYLE:   Anime Clips Only  (anime footage only; no face, no split screen, no inset)
+TOPIC:   timely — signals: news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK (Law #144 — on screen + spoken in second 1) ━━━
+ON-SCREEN (second 1): REZE WAS ALREADY GONE. SHE CAME BACK ANYWAY
+SPOKEN (VO first line): Reze was sent to steal Denji's heart, and every soft moment at that café started as the job.
+HOOK FAMILY: contradiction
+(Draft two hook candidates internally — Law #145 — publish ONLY the selected one:
+  candidate A: Reze was sent to steal Denji's heart, and every soft moment at that café started as the job.
+  candidate B: Everyone remembers Reze as the Bomb Devil. Almost no one remembers she turned back.
+  SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (108 words — fills the fixed 30s CapCut edit) ━━━
+Reze was sent to steal Denji's heart, and every soft moment at that café started as the job. She reveals herself as the Bomb Devil right before the fight breaks loose. Denji ties her up, then offers to run away together anyway. She refuses and knocks him out cold. But she never actually leaves. Reze heads for a train alone, changes her mind mid escape, and runs back to that same café instead. Makima and Angel are already waiting there. That ending is being restaged live on a Tokyo stage right now, moving to Kyoto next week. Was her turnaround real, or one more con? Leave your take.
+
+━━━ CLIP PLAN (anime-only; per-cut timings REQUIRED — Law #140) ━━━
+CUT 1 — 5 sec (0:00–0:05): Denji and Reze meet in a phone booth during a storm, the start of their café relationship () — hook frame, establishes the relationship the hook line reframes as a job
+CUT 2 — 6 sec (0:05–0:11): Reze kisses Denji, bites out his tongue, and reveals her true identity as the Bomb Devil () — the reveal beat the VO's second line is built on
+CUT 3 — 6 sec (0:11–0:17): Denji binds Reze with chains after the citywide fight, then proposes they run away together anyway () — the offer beat, sets up her refusal
+CUT 4 — 7 sec (0:17–0:24): Reze refuses Denji's offer and easily subdues him, then later heads toward the train station alone () — the refusal-then-departure beat
+CUT 5 (final) — 6 sec (0:24–0:30): Reze has a change of heart, rushes back to the café to meet Denji, and is intercepted by Makima and Angel Devil in the alley across from it () — closing frame, the turnaround the question_line is asking about
+(+ more cuts as needed; CUT 1 = first real content clip, no brand stamp)
+Cumulative ranges are contiguous with no gaps/overlaps: CUT 1 starts at 0:00, each
+cut's end is the next cut's start, and the final cut ends at the edit length (0:30).
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+CUT 1: THE CAFÉ / WAS THE JOB. CUT 2: SHE WAS ALREADY / GONE. CUT 3: SHE CAME BACK / ANYWAY.
+
+━━━ YOUTUBE TITLE (Law #144 — punchy, searchable) ━━━
+Chainsaw Man: Reze Was Already Gone. She Came Back
+
+━━━ TIKTOK TITLE (Law #144 — punchy; distinct from the caption below) ━━━
+Reze's Real Ending Nobody Talks About
+
+━━━ TIKTOK POST TEXT (caption — may be longer; hashtags live HERE, not in the title) ━━━
+Reze had a train ticket out and used it, then turned around anyway. The Bomb Girl arc's real twist isn't the fight, it's the café. Restaged live in Japan right now. #ChainsawMan #Reze #AnimeShorts #AnimeTok #Denji
+
+━━━ PINNED COMMENT ━━━
+People remember the bomb fight. Almost nobody brings up that she was already gone, on the train, and chose to come back to a café instead of freedom. That's the version the stage play is putting in front of a live audience this week.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 7:00 PM ET | Peak 8-9 PM ET
+TikTok — post 7:30 PM ET | Peak 8-10 PM ET
+
+━━━ SOURCES (concise evidence — >=2, each dated) ━━━
+1. Reze's full plot arc: Bomb Devil reveal, Denji's escape offer, her refusal, her train departure, her change of heart and return to the café, interception by Makima/Angel — https://en.wikipedia.org/wiki/Reze_(Chainsaw_Man) (Jul 2026)
+2. Reze Arc movie plot details and character background — https://en.wikipedia.org/wiki/Chainsaw_Man_%E2%80%93_The_Movie:_Reze_Arc (Jan 2025)
+3. Ending analysis confirming Reze's train departure and return to the café — https://www.msn.com/en-us/tv/news/how-the-ending-of-chainsaw-man-the-movie-reze-arc-sets-up-season-2/ar-AA1PahUo (Oct 2025)
+4. GamesRadar ending-explained piece confirming Reze's Bomb Devil reveal and assassin mission — https://www.gamesradar.com/entertainment/anime-movies/chainsaw-man-the-movie-reze-arc-ending-explained-bomb-devil/ (Oct 2025)
+5. Reddit ending-explainer thread corroborating Denji's escape offer and Reze's refusal/subduing him — https://www.reddit.com/r/ChainsawMan/comments/1ogh9fq/can_someone_explain_the_reze_arc_movie_ending_and/ (Nov 2025)
+6. Chainsaw Man The Stage: Reze Arc — cast, Tokyo dates, Kyoto transfer — https://www.animenewsnetwork.com/news/2026-04-22/chainsaw-man-reze-arc-stage-play-reveals-cast-trailer-dates/.236674 (Apr 2026)
+7. Reze Arc movie confirmed streaming on Crunchyroll — https://www.crunchyroll.com/news/announcements/2026/2/10/chainsaw-man-the-movie-reze-arc-stream-spring-2026 (Feb 2026)
+
+━━━ END EVENING ━━━

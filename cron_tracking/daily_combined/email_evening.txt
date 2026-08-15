@@ -1,0 +1,60 @@
+SUBJECT: TOMORROW | EVENING | That Time I Got Reincarnated as a Slime | 2026-08-14 | Slime: One Insult Made Diablo Snap
+
+━━━ EVENING — 2026-08-14 ━━━
+SHOW:    That Time I Got Reincarnated as a Slime
+ANGLE:   Season 4 Episode 18 (aired Aug 7): Diablo overwhelms the Primordial Demon Rain after she insults Rimuru, revealing his true loyalty mid-fight, while Granbell Rosso overwhelms Hinata's Paladins on a separate front
+FORMAT:  EPISODE_MOMENT
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM)
+TOPIC:   timely — signals: currently_airing
+SERIES:  one-off
+FUNNEL:  standalone
+SPOILER WARNING: Yes — covers Episode 18 content aired Aug 7, 2026
+
+━━━ FIRST-SECOND HOOK ━━━
+ON-SCREEN (second 1): ONE INSULT MADE DIABLO SNAP
+SPOKEN (VO first line): That Time I Got Reincarnated as a Slime just let Diablo snap, and it took exactly one insult aimed at Rimuru to do it.
+HOOK FAMILY: revelation
+(candidate A: That Time I Got Reincarnated as a Slime just let Diablo snap, and it took exactly one insult aimed at Rimuru to do it.
+ candidate B: It took Rimuru getting insulted once for Diablo to overwhelm a Primordial Demon.
+ SELECTED: 0)
+
+━━━ VO (200 words — fills the resolved 60s CapCut edit) ━━━
+That Time I Got Reincarnated as a Slime just let Diablo snap, and it took exactly one insult aimed at Rimuru to do it. Episode eighteen aired August 7th, and the moment everyone's talking about is Diablo turning on the Primordial Demon Rain after she disrespects Rimuru directly to his face in front of everyone. He doesn't argue with her. He opens with Holy Magic Multi Layered Disintegration and starts overwhelming her almost immediately, and it's only once he's already winning that Rain drops her disguise and reveals her true form as a Primordial Demon herself. That's when Guy Crimson steps in and watches Diablo explain, in the middle of the fight, exactly why he chose to serve Rimuru in the first place instead of ruling on his own. On a completely separate front in that same episode, the legendary Hero Granbell Rosso tears through Hinata's own Paladins like they're nothing at all, which means Guy Crimson isn't just watching one demon lose his composure, he's watching Rimuru's entire orbit of power become impossible to ignore anymore. So was that Diablo protecting his master, or Diablo finally getting the fight he'd been waiting for this whole time? Leave your take.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view) ━━━
+[FACE: direct-to-camera, lean in] That Time I Got Reincarnated as a Slime just let Diablo snap, and it took exactly one insult aimed at Rimuru to do it. [FACE: glance-down-at-footage] Episode eighteen aired August 7th, and the moment everyone's talking about is Diablo turning on the Primordial Demon Rain after she disrespects Rimuru directly to his face in front of everyone. [FACE: glance-down-at-footage] He doesn't argue with her. [FACE: glance-down-at-footage] He opens with Holy Magic Multi Layered Disintegration and starts overwhelming her almost immediately, and it's only once he's already winning that Rain drops her disguise and reveals her true form as a Primordial Demon herself. [FACE: glance-down-at-footage] That's when Guy Crimson steps in and watches Diablo explain, in the middle of the fight, exactly why he chose to serve Rimuru in the first place instead of ruling on his own. [FACE: glance-down-at-footage] On a completely separate front in that same episode, the legendary Hero Granbell Rosso tears through Hinata's own Paladins like they're nothing at all, which means Guy Crimson isn't just watching one demon lose his composure, he's watching Rimuru's entire orbit of power become impossible to ignore anymore. [FACE: glance-down-at-footage] So was that Diablo protecting his master, or Diablo finally getting the fight he'd been waiting for this whole time? Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings) ━━━
+CUT 1 — 10 sec (0:00–0:10): Rain insults Rimuru directly, provoking Diablo (recap 5:04-5:54) — Sets up the inciting insult for the hook
+CUT 2 — 10 sec (0:10–0:20): Diablo opens with Holy Magic Multi-Layered Disintegration (recap 7:03) — Delivers the specific named attack beat from the VO
+CUT 3 — 10 sec (0:20–0:30): Diablo overwhelms Rain (recap 8:09) — Shows the one-sided nature of the fight
+CUT 4 — 10 sec (0:30–0:40): Rain reveals her true Primordial Demon form (recap 9:41) and Guy Crimson appears (9:53) — Escalation beat that raises the stakes
+CUT 5 — 10 sec (0:40–0:50): Diablo explains why he chose to serve Rimuru (recap 11:39) — Delivers the emotional/loyalty beat referenced in the VO
+CUT 6 (final) — 10 sec (0:50–0:60): Granbell Rosso overwhelming Hinata's Paladins on the parallel front — Closer beat reinforcing the episode-wide power-shift theme
+TOTAL CLIP TIME: 60 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+ONE INSULT / DIABLO SNAPPED / MULTI-LAYERED DISINTEGRATION / RAIN'S TRUE FORM / GUY CRIMSON WATCHING / LEAVE YOUR TAKE
+
+━━━ YOUTUBE TITLE ━━━
+Slime: One Insult Made Diablo Snap
+
+━━━ TIKTOK TITLE ━━━
+Diablo Didn't Even Argue, He Just Attacked
+
+━━━ TIKTOK POST TEXT (caption) ━━━
+It took one insult aimed at Rimuru for Diablo to overwhelm a literal Primordial Demon. Slime Season 4 Episode 18 spoilers ahead. #tensura #slime #rimuru #diablo #animemoments
+
+━━━ PINNED COMMENT ━━━
+What gets me is Guy Crimson didn't step in to help Rain. He just watched Diablo explain himself mid-fight, like he already knew how this was going to end.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 7:00 PM ET
+TikTok — post 7:15 PM ET
+
+━━━ SOURCES ━━━
+1. Episode 18 aired August 7, 2026 — https://www.aol.com/articles/time-got-reincarnated-slime-season-153000000.html (Aug 2026)
+2. Episode 18 release date/time confirmation — https://www.comicbasics.com/that-time-i-got-reincarnated-as-a-slime-season-4-episode-18-release-date-and-time/ (Aug 2026)
+3. Timestamped scene recap of the Diablo vs Rain fight, Guy Crimson appearance, Granbell vs Hinata's Paladins — https://www.youtube.com/watch?v=_4xtVj881w4 (May 2026)
+
+━━━ END EVENING ━━━

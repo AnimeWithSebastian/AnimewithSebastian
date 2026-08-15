@@ -1,0 +1,29 @@
+{
+  "cron": "d43ab889",
+  "slot": "morning",
+  "run_ts": "2026-07-15T21:19:41.034652+00:00",
+  "post_date": "2026-07-16",
+  "show": "Daemons of the Shadow Realm",
+  "angle": "Arakawa inverted FMA's Equivalent Exchange into the pair as the fundamental unit",
+  "format_type": "ORIGIN_STORY",
+  "package_id": "419e768e-3d0a-4143-9258-0bedf478753a",
+  "status": "success",
+  "email_sent": true,
+  "log_appended": true,
+  "git_pushed": true,
+  "error": null,
+  "github_sync": "success",
+  "model_compliance": {
+    "model": "Claude Sonnet 5.0",
+    "eligibility_category": "none",
+    "reason": "routine \u2014 default Sonnet 5.0",
+    "status": "PASS"
+  },
+  "vo_runtime": {
+    "capcut_target_sec": 30,
+    "rate_wps": "3.3\u20133.6",
+    "required_words": "100\u2013108",
+    "actual_words": 104,
+    "status": "PASS"
+  }
+}

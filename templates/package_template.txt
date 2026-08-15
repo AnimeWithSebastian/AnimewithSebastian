@@ -1,0 +1,137 @@
+================================================================================
+COMPACT DUAL-PACKAGE EMAIL TEMPLATE  (one email per slot; plain text)
+Governed by Law #139. Recipient: hero_or_villain@outlook.com ONLY.
+================================================================================
+
+PURPOSE
+Each daily email carries ONLY what Sebastian needs to produce and post the video:
+the actionable production content plus concise source evidence. The full audit —
+VO quality checks, conversion audit, format-window block, search logs, model
+routing, compliance matrices, content-ID/channel-identity boilerplate — is NOT in
+the email. It is computed and stored in the run manifest / internal run log. The
+checks are NOT removed; they are moved. The deterministic validator
+(validators/validate_dual_package.py) enforces the mechanics before send.
+
+Send two emails (MORNING first, then EVENING). Same recipient. Consecutive sends by
+the one daily run are fine.
+
+--------------------------------------------------------------------------------
+SUBJECT
+  TOMORROW | {SLOT} | {Show} | {Post Date} | {Title}
+--------------------------------------------------------------------------------
+
+BODY (render exactly these labeled sections — nothing more):
+
+━━━ {SLOT} — {Post Date} ━━━
+SHOW:    {Show}
+ANGLE:   {one-line angle}
+FORMAT:  {format_type}
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM — Law #134 Stage 2; manga panels allowed within the anime-footage half for manga-based formats)
+TOPIC:   {topic_class: timely|evergreen}{ — signals: currently_airing/premiere/chapter/news/seasonal_ranking if timely}
+SERIES:  {series.id if recurring, e.g. seasonal_power_ranking / episode_scene_test — else "one-off"}
+{if recurring — M2 viewer-facing markers, REQUIRED:}
+  SERIES NAME (viewer-facing): {series_public_name — MUST appear in the title or the first-second on-screen text}
+  NEXT INSTALLMENT CUE: {series_next_line — MUST appear in captions / pinned comment / TikTok text}
+FUNNEL:  {funnel_status: standalone|teaser|flagship_followup}{ — flagship_url if teaser}
+
+━━━ FIRST-SECOND HOOK (Law #144 — on screen + spoken in second 1) ━━━
+ON-SCREEN (second 1): {hook_onscreen_text — the assumption-break shown immediately}
+SPOKEN (VO first line): {hook_line == opening_sentence — same break, first sentence}
+HOOK FAMILY: {question|revelation|contradiction|observation}
+(Draft two hook candidates internally — Law #145 — publish ONLY the selected one:
+  candidate A: {hook_candidates[0]}
+  candidate B: {hook_candidates[1]}
+  SELECTED: {selected_hook_index} — this is the published hook; the loser is not posted.)
+
+━━━ VO ({vo_word_count} words — fills the resolved {capcut_target_sec}s CapCut edit) ━━━
+{full VO text — pure, tag-free spoken text exactly as pkg["vo"] stores it; this is
+the SAME clean field every validator check (word count, exact CTA phrase,
+opening_sentence match, every Law #149 closer rule) reads and is completely
+unaffected by direction notes. vo_word_count is computed straight from this field,
+exactly as it always has been — [FACE: ...] tags are never present in vo itself,
+only in the rendered display below. Word count scales to the resolved edit length at
+3.3-3.6 words/sec (Law #138): 20s ≈ 66-72 words, 30s = 100-108 words (target ~104),
+45s ≈ 148-162, 90s ≈ 297-324, 150s ≈ 495-540, 180s ≈ 594-648. Length is an open
+per-content judgment call in [20,180]s (STEP 3.5) — no fixed default, no separate
+experiment tier. Opens on an assumption-breaking hook with the point in the first 2
+lines. Contains the specific question immediately followed by the exact phrase
+"Leave your take." Ends on any clean, complete, natural closing thought (Law #141
+rescinded July 27, 2026 — a seamless loop-style ending is no longer required or
+specially scored; a loop-back line only appears below if one arose naturally).}
+
+━━━ PERFORMANCE SCRIPT (render-time-only view — Law #134 Stage 2 two-track) ━━━
+{THIS section, not the VO block above, is the rendering that interleaves the VO's
+sentences with the parallel direction-note track built alongside it: one
+[FACE: <direction>] tag immediately before the VO sentence it governs — e.g.
+"[FACE: direct-to-camera, lean in] <sentence> [FACE: glance-down-at-footage]
+<sentence>". DIRECT-TO-CAMERA (default; CUT 1 always this, lean in, zero warmup) /
+GLANCE-DOWN-AT-FOOTAGE (brief break toward the anime footage to cue a specific clip)
+/ REACTION BEAT (non-verbal beat carrying emotional weight). These bracket tags
+exist ONLY in this rendered display — they are never written into the vo field
+above, so they never affect vo_word_count or any other validator check.}
+
+{OPTIONAL — LOOP-BACK section, ONLY rendered if a loop-style ending arose naturally
+this run (Law #141 rescinded July 27, 2026; no longer required):}
+━━━ LOOP-BACK (seamless replay — optional, not required) ━━━
+LOOP-BACK: {exact final VO sentence} -> {exact first VO sentence}
+NOTE: {brief note on why it reads as a natural seamless replay}
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings REQUIRED — Law #140) ━━━
+CUT 1 — {duration} sec (0:00–{end}): {scene + episode/panel ref} — {why this frame}
+CUT 2 — {duration} sec ({start}–{end}): {scene ref} — {why}
+CUT 3 — {duration} sec ({start}–{end}): {scene ref} — {why}
+CUT 4 — {duration} sec ({start}–{end}): {scene ref} — {why}
+CUT N (final) — {duration} sec ({start}–end of edit): {scene ref} — {why}
+(+ more cuts as needed; CUT 1 = first real content clip, no brand stamp)
+Cumulative ranges are contiguous with no gaps/overlaps: CUT 1 starts at 0:00, each
+cut's end is the next cut's start, and the final cut ends at the resolved edit length
+(capcut_target_sec, chosen per-content in STEP 3.5, anywhere in [20,180]s — no fixed
+default and no separate experiment tier). (The old "EXACTLY the final cut carries the
+loop-back" requirement is rescinded — Law #141, 2026-07-27; carries_loop_back is now
+optional/inert if set at all.)
+TOTAL CLIP TIME: {capcut_target_sec} seconds  (open [20,180]s per-content judgment
+call — Law #138 Stage 1/2; must equal capcut_target_sec)
+
+━━━ ON-SCREEN CAPTIONS ━━━
+{word-by-word caption lines per cut, ONE orange keyword per line; max 2 lines on
+screen; Anton / ALL CAPS / white / black outline}
+
+━━━ YOUTUBE TITLE (Law #144 — punchy, searchable) ━━━
+{ONE punchy idea / curiosity gap; NO explanatory subtitle or stacked clauses; NO
+hashtags; <=60 chars HARD (target 35-50); show search keyword early in the first 40
+chars where natural (punchiness wins over awkward keyword stuffing); distinct from the
+published hook line; accurate, no clickbait overpromise}
+
+━━━ TIKTOK TITLE (Law #144 — punchy; distinct from the caption below) ━━━
+{ONE punchy idea; NO hashtags; <=55 chars HARD (target 30-45); distinct from the
+YouTube title and from the published hook line. This is the short on-platform TITLE —
+NOT the post text/caption below.}
+
+━━━ TIKTOK POST TEXT (caption — may be longer; hashtags live HERE, not in the title) ━━━
+{hook sentence in first 100 chars + show name in body + 3-5 hashtags pyramid}
+
+━━━ PINNED COMMENT ━━━
+{harder take / different angle than the VO; adds one specific detail not in the VO}
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post {time} ET | Peak {time} ET
+TikTok — post {time} ET | Peak {time} ET
+(two separate lines — never combine platforms on one line)
+
+━━━ SOURCES (concise evidence — >=2, each dated) ━━━
+1. {claim} — {url} ({Mon YYYY})
+2. {claim} — {url} ({Mon YYYY})
+
+━━━ END {SLOT} ━━━
+
+--------------------------------------------------------------------------------
+NOT IN THE EMAIL (kept in run manifest / internal run log instead):
+  the STEP 4.5 one-pass SEMANTIC QA self-audit (Law #147) — semantic_qa.claim_source_matrix
+  (per-core-claim dated non-encyclopedic source support) and the ten semantic_qa.checks —
+  plus the VO quality 21/22-check result, VO conversion audit,
+  comment-system audit, format-window block + rotation ledger, hook-type live search, model
+  compliance line, search logs / query traces, content-ID audit, channel-identity audit,
+  monetization score matrix. These remain ENFORCED via the manifest + validator.
+  (final_to_opening_readaloud removed 2026-07-27, Law #141 rescission — no longer tracked
+  anywhere, email or manifest.)
+--------------------------------------------------------------------------------

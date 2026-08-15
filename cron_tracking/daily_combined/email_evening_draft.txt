@@ -1,0 +1,65 @@
+SUBJECT: TOMORROW | EVENING | Kagurabachi | Aug 13 | Kagurabachi: Blade At His Throat, Kept Forging
+
+━━━ EVENING — 2026-08-13 ━━━
+SHOW:    Kagurabachi
+ANGLE:   Kunishige refuses to break focus on the forge even with a blade at his throat, while critically wounded Shiba keeps risking his life to protect him — Chapter 128
+FORMAT:  THE_MOMENT
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM — Law #134 Stage 2; manga panels allowed within the anime-footage half for manga-based formats)
+TOPIC:   timely — signals: chapter
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK (Law #144 — on screen + spoken in second 1) ━━━
+ON-SCREEN (second 1): Blade at his throat. He didn't look away.
+SPOKEN (VO first line): Kagurabachi's Kunishige had a blade at his throat and didn't even look away from the fire.
+HOOK FAMILY: observation
+(Draft two hook candidates internally — Law #145 — publish ONLY the selected one:
+  candidate A: Kagurabachi's Kunishige had a blade at his throat and didn't even look away from the fire.
+  candidate B: Shiba is dying on his feet and he still won't stop protecting Kunishige.
+  SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (240 words — fills the resolved 68s CapCut edit) ━━━
+Kagurabachi's Kunishige had a blade at his throat and didn't even look away from the fire. He's mid-forge at the Great Forge, and the Masumi attackers aren't just trying to kill him — they're trying to stop the smelting process itself, because interfering with the furnace or the ventilation system halts the enchanted blade completely, and if that process stops here, the report says everything eventually fails for good. Their leader slips past every defense and gets a blade against Kunishige's neck, unable to understand why he won't even flinch. Kunishige just keeps forging, thinking only of Chiaki — the person he finally has a real chance to protect, after years of believing he failed everyone close to him. He's not fighting alone, either — Subaru and Joji are already holding off the Masumi themselves, both running on zero sleep. Then Shiba, already critically wounded from an earlier fight and barely standing, teleports in and rips the attacker off him, refusing to back down even with his own stomach cut open and his life on the line. It echoes Mashiro's resolve from earlier, just as badly hurt and still refusing to stop. More Masumi agents keep coming, and Shiba keeps teleporting them away, one after another, telling Kunishige plainly that this time, he has to be the one to take center stage. Kunishige never once looks up from the flame. What does it take to earn protection like that? Leave your take.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view — Law #134 Stage 2 two-track) ━━━
+[FACE: direct-to-camera, lean in] Kagurabachi's Kunishige had a blade at his throat and didn't even look away from the fire. [FACE: direct-to-camera] He's mid-forge at the Great Forge, and the Masumi attackers aren't just trying to kill him — they're trying to stop the smelting process itself, because interfering with the furnace or the ventilation system halts the enchanted blade completely, and if that process stops here, the report says everything eventually fails for good. [FACE: glance-down-at-footage] Their leader slips past every defense and gets a blade against Kunishige's neck, unable to understand why he won't even flinch. [FACE: direct-to-camera] Kunishige just keeps forging, thinking only of Chiaki — the person he finally has a real chance to protect, after years of believing he failed everyone close to him. [FACE: glance-down-at-footage] He's not fighting alone, either — Subaru and Joji are already holding off the Masumi themselves, both running on zero sleep. [FACE: direct-to-camera] Then Shiba, already critically wounded from an earlier fight and barely standing, teleports in and rips the attacker off him, refusing to back down even with his own stomach cut open and his life on the line. [FACE: glance-down-at-footage] It echoes Mashiro's resolve from earlier, just as badly hurt and still refusing to stop. [FACE: direct-to-camera] More Masumi agents keep coming, and Shiba keeps teleporting them away, one after another, telling Kunishige plainly that this time, he has to be the one to take center stage. [FACE: glance-down-at-footage] Kunishige never once looks up from the flame. [FACE: direct-to-camera] What does it take to earn protection like that? [FACE: direct-to-camera] Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings REQUIRED — Law #140) ━━━
+CUT 1 — 7 sec (0:00–0:07): Kunishige forging at the furnace, focused and undisturbed [Manga Ch. 128] — Establishes the forge setting and Kunishige's single-minded focus before the threat arrives
+CUT 2 — 7 sec (0:07–0:14): Masumi agents targeting the furnace and ventilation system to halt the smelting process [Manga Ch. 128] — Direct visual for the new stakes beat added to the expanded VO -- the Masumi's real objective is stopping the blade, not just killing Kunishige
+CUT 3 — 7 sec (0:14–0:21): Masumi leader slips past defenses and puts a blade to Kunishige's neck [Manga Ch. 128] — Direct visual for the hook's central image
+CUT 4 — 7 sec (0:21–0:28): Kunishige refuses to look away from the fire as the blade draws blood [Manga Ch. 128] — The core hook beat -- his reaction (non-reaction) to the threat
+CUT 5 — 7 sec (0:28–0:35): Kunishige's internal motivation moment -- thinking of Chiaki [Manga Ch. 128] — Gives the emotional "why" behind his refusal to react, tied to the question CTA
+CUT 6 — 6 sec (0:35–0:41): Subaru and Joji holding off the Masumi themselves, both exhausted from zero sleep [Manga Ch. 128] — Direct visual for the new supporting-cast beat added to the expanded VO -- Kunishige and Shiba aren't the only ones fighting
+CUT 7 — 7 sec (0:41–0:48): Shiba teleports in, critically wounded, and pulls the attacker off Kunishige [Manga Ch. 128] — Direct visual for the rescue beat and Shiba's condition
+CUT 8 — 7 sec (0:48–0:55): Shiba refuses to back down while protecting Kunishige, his resolve echoing Mashiro's earlier stand [Manga Ch. 128] — Direct visual for the VO's Mashiro-echo beat -- paraphrased at the level AOL directly supports, no quote
+CUT 9 (final) — 13 sec (0:55–1:08): Shiba teleports away another Masumi agent, telling Kunishige he must take center stage [Manga Ch. 128] — Direct visual for the new closing beat added to the expanded VO -- Shiba's repeated teleporting and the center-stage line
+(+ more cuts as needed; CUT 1 = first real content clip, no brand stamp)
+TOTAL CLIP TIME: 68 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+A blade at his throat and he didn't even look away from the fire. #Kagurabachi #KunishigeRokuhira #MangaTok #ShonenJump
+
+━━━ YOUTUBE TITLE (Law #144 — punchy, searchable) ━━━
+Kagurabachi: Blade At His Throat, Kept Forging
+
+━━━ TIKTOK TITLE (Law #144 — punchy; distinct from the caption below) ━━━
+He Wouldn't Look Away From the Fire
+
+━━━ TIKTOK POST TEXT (caption — may be longer; hashtags live HERE, not in the title) ━━━
+Kagurabachi Chapter 128: a blade at his throat and Kunishige didn't even look away from the fire. #Kagurabachi #KunishigeRokuhira #TogoShiba #MangaTok #ShonenJump #AnimeTok #MangaMoments #WeeklyShonenJump
+
+━━━ PINNED COMMENT ━━━
+Shiba's already critically wounded from an earlier fight and he still teleported in to protect Kunishige. Chapter 129 releases Aug 23 after a one-week hiatus — what do you think happens next?
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 7:00 PM ET | Peak 7:00 PM ET
+TikTok — post 7:15 PM ET | Peak 7:15 PM ET
+
+━━━ SOURCES (concise evidence — >=2, each dated) ━━━
+1. Chapter 128 recap: Masumi leader blade-to-neck, Kunishige's non-reaction, Shiba's condition, Masumi's real objective, Shiba's Mashiro-echo resolve — https://www.aol.com/articles/kagurabachi-chapter-128-shiba-makes-183500000.html (Aug 9, 2026)
+2. Independent Chapter 128 review (channel No More Operator): Kunishige's Chiaki/mother motivation, Subaru and Joji fighting the Masumi on no sleep, Kunishige's non-reaction to the blade at his throat — https://www.youtube.com/watch?v=SQaibEUszrw (Aug 9, 2026)
+3. Kagurabachi anime adaptation status confirmed not yet aired (premiere April 2027) — https://en.wikipedia.org/wiki/Kagurabachi (2026)
+4. Chapter 129 confirmed for August 23, 2026 release after a one-week hiatus (pinned-comment claim only, not a core VO claim) — https://www.soapcentral.com/anime/kagurabachi-chapter-129-release-date-everything-need-know (Aug 11, 2026)
+
+━━━ END EVENING ━━━

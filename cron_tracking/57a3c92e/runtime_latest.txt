@@ -1,0 +1,291 @@
+================================================================================
+ANIMEWITHSEBASTIAN — EVENING PACKAGE (PRIME SLOT)
+CRON: 57a3c92e | Schedule: Daily 23:30 UTC (7:30 PM ET)
+VERSION: v5.2 — Content Adaptation Loop
+Updated: June 12, 2026
+================================================================================
+
+*** v5.0 NOTE — OPEN FORMAT SYSTEM (June 9, 2026) ***
+Format lock removed. 8 format types now available. Cron runs SEARCH 5 (format
+research) and recommends best format from live traction data. Draft VO matches
+recommended format. See session_fixes_law.md Fix 24 for full change log.
+For current execution order, see this file. For law reference text, see
+cron_evening_rework.txt.
+
+*** v5.2 NOTE — CONTENT ADAPTATION LOOP (June 12, 2026 — Law #65) ***
+Added SEARCH 7 (niche-wide format traction) and SEARCH 8 (competitor angle check).
+Format recommendation now cites source. Competitor overlap check added to STEP 6.
+Laws #63 (no lecturing), #64 (channel name ≠ content), #65 (adaptation loop) active.
+
+================================================================================
+STEP ZERO — READ THIS FILE COMPLETELY BEFORE DOING ANYTHING ELSE
+================================================================================
+
+### GITHUB SYNC — RUN FIRST, BEFORE ANYTHING ELSE
+Pull latest files from GitHub before reading any workspace file.
+Repo: https://github.com/SEBLABHRIS/AnimeWithSebastian
+Branch: main
+
+Run these commands via bash (api_credentials=["github"]):
+  cd /home/user/workspace
+  git pull origin main 2>&1
+
+If pull fails (no .git dir or network error):
+  git init
+  git remote add origin https://github.com/SEBLABHRIS/AnimeWithSebastian.git
+  git pull origin main 2>&1
+
+After pull succeeds, continue with SHOW HOLD LIST below.
+Do not skip this step — workspace resets between sessions, GitHub is the source of truth.
+
+### SHOW HOLD LIST (check before every run)
+STEEL BALL RUN — HOLD until Fall 2026.
+  Only Ep 1 on Netflix. 2nd STAGE Fall 2026.
+  Love Train, Valentine, Lucy Steel, D4C — ALL BLOCKED.
+KAGURABACHI — MANGA-ONLY, no anime adaptation confirmed yet.
+  Sinner/monster framing unverified. Do not use.
+
+### STEP 1 — READ SENT LOG
+Read /home/user/workspace/sent_scripts_log.json.
+- Identify last 7 days of shows used in EVENING slot.
+- Identify last 3 formats used in EVENING slot.
+- Note: evening show must not repeat within 7 days.
+- Note: avoid same format 3 nights in a row.
+- FALLBACK: If log read fails or returns 0 EVENING entries, read /home/user/workspace/blackout_state.json instead.
+  Use evening_blackout_30day for STEP 3 and evening_norepeate_7day for 7-day check. Do not escalate — proceed with package.
+
+### STEP 2 — SHOW HOLD LIST CHECK
+STEEL BALL RUN — HOLD until Fall 2026.
+  Love Train, Valentine, Lucy Steel, D4C — ALL BLOCKED.
+KAGURABACHI — do not use.
+Any show on hold: skip entirely, select next candidate.
+
+### STEP 3 — 30-DAY BLACKOUT CHECK
+Do not use any show used in the last 30 days in this slot.
+Check sent_scripts_log.json for post_date within last 30 days.
+If log parse failed at STEP 1, use blackout_state.json evening_blackout_30day list instead.
+If conflict: select next best show from traction research.
+
+### STEP 4 — ANGLE GENERATION RESEARCH STACK
+Run all 8 searches. Do not skip any.
+
+SEARCH 1 — TRENDING ANIME (what is the anime community talking about right now)
+Query: "anime trending Reddit YouTube [current month year]"
+Goal: Identify 3-5 shows with active discussion. Note traction tier for each.
+
+SEARCH 2 — SHOW-SPECIFIC TRACTION
+Query: "[selected show] anime Reddit discussion [current month year]"
+Goal: Confirm show has active fandom discussion. Assign traction tier.
+Traction Tiers:
+  T1_AIRING — currently airing, episode-by-episode discussion
+  T2_CONTROVERSY — finished/upcoming but high active debate
+  T3_NOSTALGIA — anniversary, rewatch, or throwback wave
+  T4_EVERGREEN — stable consistent traffic, no peak event
+
+SEARCH 3 — FANDOM GAP
+Query: "[show] [character/moment] overlooked detail hidden fact Reddit"
+Goal: Find the angle the fandom has not fully addressed.
+Gap Categories:
+  GAP_1_UNFINISHED_IMPLICATION — show established something, fandom never followed it through
+  GAP_2_MISSING_CONTEXT — viewers lack a key piece of information that reframes everything
+  GAP_3_RECONTEXTUALIZATION — known fact that means something different with new framing
+  GAP_4_ORIGIN_STORY — real-world or in-universe origin nobody has connected
+
+SEARCH 4 — CONSENSUS CHECK
+Query: "[show] [angle topic] Reddit popular opinion"
+Goal: Confirm the angle avoids fandom consensus. If consensus already covers it — find new angle.
+
+SEARCH 5 — FORMAT RESEARCH (v5.0 — REQUIRED)
+Query: "[show] YouTube Shorts [current year] most viewed format"
+Goal: Identify which of the 8 format types is performing best for this show right now.
+8 Format Types: TOP10/LIST | FACT_DROP | COMMENTARY | CHARACTER_DIVE | TRIVIA | IDENTITY | ORIGIN_STORY | HIDDEN_GEM
+
+SEARCH 6 — TRACTION CONFIRMATION
+Query: "[show] anime [current month year] site:reddit.com OR site:youtube.com"
+Goal: Final confirmation show is not dormant.
+
+SEARCH 7 — NICHE FORMAT TRACTION (v5.1 — Law #65 — REQUIRED)
+Query: "anime Shorts [current month year] most viewed"
+Goal: Identify what format type is performing best across anime Shorts as a whole right now — not just for the selected show.
+Note result: Format type + source channel + approximate view count.
+This is the secondary signal for the format recommendation.
+
+SEARCH 8 — COMPETITOR CHECK (v5.1 — Law #65)
+Query: "[show] [character or angle in 3 words] YouTube Shorts [current month year]"
+Goal: Check whether a competitor has already made a Short on this specific angle.
+If a competitor's Short on this exact angle has 500K+ views → the angle is now consensus. Find the gap beneath it.
+If no competitor hit found → proceed.
+Log result: "COMPETITOR CHECK: [result] — [action taken]"
+
+COMPETITOR REFERENCE CHANNELS (check these first — all active in anime Shorts niche):
+- @OrewaShimo (Shimo.) — 200K subs | top Short 12M views
+- @AnimeUproar — established, long-form analysis + Shorts
+- @AnimeBallsDeep — Shorts-focused, character ranking format
+- @KitoSenpai — 673K subs, faceless Shorts format
+
+COMPETITOR DATA RULE — HARD LAW (user instruction June 12, 2026):
+Competitor research is for SIGNAL ONLY. Never for recreation.
+The question is never "what did they make" — it is "what does their performance tell us"
+about what format, topic, or hook structure the audience responds to right now.
+
+WHAT SIGNAL MEANS:
+  FORMAT SIGNAL: If LIST performs at 10M+ on a competitor → LIST is a viable format this week.
+  TOPIC SIGNAL: If One Piece is getting massive views → One Piece has active audience.
+  HOOK SIGNAL: If curiosity-gap titles are outperforming statement titles → use that structure.
+
+WHAT SIGNAL DOES NOT MEAN:
+  Do NOT recreate their video.
+  Do NOT use their angle.
+  Do NOT use their specific question or framing.
+  Do NOT make the same show + same format + same hook.
+  Their video already exists. The audience already saw it.
+  Making the same thing is not competition — it is redundancy.
+
+ORIGINALITY IS NON-NEGOTIABLE (user instruction):
+  AnimeWithSebastian makes original content. Always.
+  Take the format signal. Build a completely different angle.
+  Take the topic signal. Find the gap the competitor didn’t go near.
+  Take the hook structure. Apply it to a different show, character, or claim.
+
+EXAMPLE — RIGHT:
+  Signal: Orewashimo's "Don't watch these anime with your parents" (7.6M) → curiosity-gap LIST is working.
+  Application: Original curiosity-gap LIST on a completely different angle — different show, different claim.
+
+EXAMPLE — WRONG:
+  "Don't watch these anime with your parents" already exists at 7.6M.
+  Making the same video = zero original value. HARD STOP.
+
+FORMAT SIGNAL FROM COMPETITOR DATA (as of June 2026):
+LIST and FACT_DROP with curiosity-gap titles are the highest-performing format type
+across the niche. Year-by-year framing is a proven viral hook structure.
+If SEARCH 7 confirms this is still trending → weight LIST/FACT_DROP in STEP 6 recommendation
+— but the angle and content must be fully original to AnimeWithSebastian.
+
+### STEP 5 — ACTIVE TRACTION AUDIT
+State: Show name, Traction Tier, Reasoning, Source URL.
+State: SEARCH 7 result — Niche format trending, Source URL.
+
+### STEP 6 — FORMAT RECOMMENDATION
+Based on SEARCH 5 (show-specific) + SEARCH 7 (niche-wide) results, recommend ONE of the 8 format types.
+State: Recommended format, Why this format for this show tonight, Source that informed it, Alternative format.
+Competitor overlap check: Confirm SEARCH 8 found no competing angle. If found → note it and confirm angle is differentiated.
+
+### STEP 7 — RESEARCH NOTE
+State: Gap Category, Engagement Mechanic, Consensus Avoided, Source Verified, Gap Identified.
+
+### STEP 8 — FACT VERIFICATION BLOCK
+Every specific claim must be verified via live source before use.
+Claim types:
+  A — General character/show fact (1 search minimum)
+  B — Core claim (collapse test: if false, whole video falls apart) (2 searches minimum)
+  C — Year/timeline/number claim (1 search minimum)
+  D — Real-world connection claim (2 searches minimum)
+Any BLOCKED claim (unverified after 2 searches): DO NOT USE. Find replacement angle.
+Law #52: NEVER source factual claims from memory.
+
+### STEP 9 — DRAFT VO
+Draft VO must match the recommended format exactly.
+Creator rewrites in their own voice before posting — this is a starting point only.
+Opening line: drop viewer into the content immediately — claim before any setup.
+Closing line: land on a specific point, not a vague feeling.
+No word count cap. No structure lock. Match the format.
+No "bro" in any VO line — permanently banned.
+No "FOLLOW AND SUBSCRIBE" — banned. Use casual CTAs only.
+
+### STEP 10 — VO QUALITY CHECK (5 points)
+1. Does the first line drop the viewer into the content immediately?
+2. Does the closer land on a specific point, not a vague feeling?
+3. Are all facts in the VO confirmed in the Fact Verification Block?
+4. Does the VO match the recommended format?
+5. Does it sound like a conversation, not a script being read?
+RESULT: X/5 — PASS (4-5) or REVISE (below 4)
+
+### STEP 11 — CLIP INSTRUCTIONS
+5 cuts minimum. For each cut:
+- Scene description and episode reference
+- Why this frame (visual hook, contrast, confirmation)
+- Content ID Protection: Audio muted + VO only, Speed altered if needed, Caption overlay
+Caption Spec: Font Anton | ALL CAPS | White fill | Black outline | Size 15 | Outline 3-4
+Position: BOTTOM 60-70% screen height
+Highlight: ONE word or short phrase per line in Orange #FF6B00
+Timing: word-by-word
+CUT 1 — SERIES BRAND STAMP: show name, top of frame, first 2-3 seconds
+KEY SHOT — CENTRAL QUESTION overlay: center frame, size 18-20
+
+### STEP 12 — TITLES
+YouTube title (primary)
+TikTok title (shorter, punchier)
+Backup title
+
+### STEP 13 — CAPTION (Pinned Comment)
+One question. Answerable in 1-5 words. Opens a debate — creates two sides.
+Cannot be closed definitively. Invites disagreement, not just answers.
+
+### STEP 14 — HASHTAGS
+Spec (locked — do not deviate):
+#1: Show name | #2: #anime | #3: #animeshorts | #4: #TheDeepCut | #5: character/arc/fandom term
+BANNED: #HeroOrVillain, #Shorts, #AnimeTikTok, any series slot tag
+
+### STEP 15 — CONTENT ID PROTECTION AUDIT
+Check every clip. Each must have at minimum: audio muted + VO only.
+Zero-transformation clips: NOT ALLOWED.
+
+### STEP 16 — CHANNEL IDENTITY AUDIT
+Is this for people who think about anime after the episode ends?
+Does it avoid the three failures?
+  1. Correct take nobody needed (affirms consensus without adding anything)
+  2. Reaction with no person (emotion without POV)
+  3. Clean conclusion (wraps up — leaves nothing to argue about)
+
+### STEP 17 — SEARCH CONTENT BALANCE CHECK
+Slot: EVENING (TRENDING-RANKED)
+Show must have active traction confirmed in SEARCH 1-2.
+Format must match traction data from SEARCH 5 (show-specific) + SEARCH 7 (niche-wide).
+Competitor angle check confirmed clean in SEARCH 8.
+
+================================================================================
+EMAIL ASSEMBLY — 15 BLOCKS (in this exact order)
+================================================================================
+1. Subject line
+2. Research Stack (all 8 searches with findings)
+3. Active Traction Audit
+4. Research Note
+5. Fact Verification Block
+6. Format Recommendation
+7. Draft VO
+8. VO Quality Check
+9. Clip Instructions
+10. Titles
+11. Caption
+12. Hashtags
+13. Content ID Protection Audit
+14. Channel Identity Audit
+15. Search Content Balance Check
+
+Send to: hero_or_villain@outlook.com ONLY
+Subject format: TOMORROW | EVENING | [Show] | [Post Date] | [Title]
+
+================================================================================
+POST-SEND LOG — append to /home/user/workspace/sent_scripts_log.json
+================================================================================
+Fields: date_sent, post_date, slot, show, angle, format_type, format_reason,
+        title, traction_tier, gap_type, fact_count, vo_draft_included, status
+Post time: 7:00 PM ET
+
+================================================================================
+GITHUB PUSH — RUN AFTER LOG IS UPDATED
+================================================================================
+After appending to sent_scripts_log.json and updating cron_tracking state,
+push all changed files back to GitHub so the next session starts fresh.
+
+Run via bash (api_credentials=["github"]):
+  cd /home/user/workspace
+  git add sent_scripts_log.json cron_tracking/57a3c92e/state.json
+  git commit -m "cron 57a3c92e — [Show] [Date] evening sent"
+  git push origin main 2>&1
+
+If push fails, log the error but do not block delivery — email was already sent.
+
+================================================================================
+END OF EVENING RUNTIME v5.2
+================================================================================

@@ -1,0 +1,58 @@
+━━━ EVENING — 2026-07-26 ━━━
+SHOW:    Demon Slayer: Infinity Castle
+ANGLE:   The highest-grossing anime film ever streams for the first time on Crunchyroll July 28, 2026, after a year in theaters
+FORMAT:  SEASON_PREVIEW / UPCOMING_HYPE
+STYLE:   Anime Clips Only  (anime footage only; no face, no split screen, no inset)
+TOPIC:   timely — signals: premiere, news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK (Law #144 — on screen + spoken in second 1) ━━━
+ON-SCREEN (second 1): The highest-grossing anime film ever is finally streaming.
+SPOKEN (VO first line): The highest grossing anime film ever is finally hitting streaming.
+HOOK FAMILY: revelation
+(Draft two hook candidates internally — Law #145 — publish ONLY the selected one:
+  candidate A: The highest grossing anime film ever is finally hitting streaming.
+  candidate B: After a full year in theaters, this record breaking anime film finally has a streaming date.
+  SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (108 words — fills the fixed 30s CapCut edit) ━━━
+The highest grossing anime film ever is finally hitting streaming. Demon Slayer: Infinity Castle premieres on Crunchyroll Tuesday, after a year in theaters. It made over seven hundred million dollars worldwide, beating Spirited Away, Your Name, and the franchise's own Mugen Train. Crunchyroll streams it worldwide outside Japan and Mainland China, with subs and the same English dub from US theaters. Netflix carries it across most of Asia the same day. This is the first chapter of the trilogy closing the series. So is two days really worth the wait after a long theatrical hold? Leave your take. Here's the exact day this record breaking film finally streams:
+
+━━━ LOOP-BACK (seamless replay — DIRECT COLON HANDOFF, Law #141 + #147) ━━━
+LOOP-BACK: Here's the exact day this record breaking film finally streams: -> The highest grossing anime film ever is finally hitting streaming.
+NOTE: Loop line poses "the exact day" as an incomplete setup; opening sentence continues the thought by identifying the film's streaming arrival, not a self-contained restatement.
+
+━━━ CLIP PLAN (anime-only; per-cut timings REQUIRED — Law #140) ━━━
+CUT 1 — 6 sec (0:00–0:06): Demon Slayer: Infinity Castle - Tanjiro establishing shot inside the shifting castle corridors — Cold open on the film's iconic setting to anchor the streaming-premiere announcement
+CUT 2 — 7 sec (0:06–0:13): Demon Slayer: Infinity Castle - Hashira ensemble battle-ready shot — Reinforces the scale of the film while VO covers its box office record
+CUT 3 — 6 sec (0:13–0:19): Demon Slayer: Infinity Castle - Muzan Kibutsuji imposing reveal shot — Visualizes the film's central antagonist while VO details the streaming platforms
+CUT 4 — 6 sec (0:19–0:25): Demon Slayer: Infinity Castle - Nezuko action sequence, demon form — Second major character beat, keeps visual variety while VO makes the box office comparison
+CUT N (final) — 5 sec (0:25–0:30): Demon Slayer: Infinity Castle - Tanjiro final close-up, resolute expression — carries the final loop line back into CUT 1 / the opening  [carries_loop_back]
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+The highest-grossing anime film ever is finally streaming. Demon Slayer: Infinity Castle hits Crunchyroll worldwide July 28, after a year in theaters and $700M+ at the box office. #anime #demonslayer #infinitycastle #animenews #animetok
+
+━━━ YOUTUBE TITLE (Law #144 — punchy, searchable) ━━━
+Demon Slayer Infinity Castle Finally Streams
+
+━━━ TIKTOK TITLE (Law #144 — punchy; distinct from the caption below) ━━━
+Infinity Castle finally hits streaming
+
+━━━ TIKTOK POST TEXT (caption — may be longer; hashtags live HERE, not in the title) ━━━
+The highest-grossing anime film ever is finally hitting streaming — Demon Slayer: Infinity Castle premieres on Crunchyroll worldwide July 28, after a full year in theaters and over $700M at the box office. #anime #demonslayer #infinitycastle #animenews #animenewstoday #animetok #animeshorts #animecommentary #crunchyroll
+
+━━━ PINNED COMMENT ━━━
+This is only the first film in the trilogy — the next chapter doesn't even have a release date yet. Leave your take below.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 7:30 PM ET | Peak 7:30 PM ET
+TikTok — post 7:45 PM ET | Peak 7:45 PM ET
+
+━━━ SOURCES (concise evidence — >=2, each dated) ━━━
+1. Demon Slayer: Kimetsu no Yaiba Infinity Castle streams on Crunchyroll worldwide (outside Japan/Mainland China) starting July 28, 2026, with Netflix carrying it across most of Asia the same day — https://www.cbr.com/crunchyroll-netflix-demon-slayer-infinity-castle-streaming-date/ (Jul 2026)
+2. Crunchyroll confirmed at Anime Expo that the film will stream with Japanese audio, English subtitles, and the English dub that played in US theaters — https://www.animenewsnetwork.com/news/2026-07-03/1st-demon-slayer-infinity-castle-anime-film-to-stream-on-crunchyroll-on-july-28/.239275 (Jul 2026)
+3. Infinity Castle is the highest-grossing anime film in global box office history, surpassing Spirited Away ($395M), Your Name ($405M), and Mugen Train ($506M) — https://www.independent.co.uk/arts-entertainment/films/news/demon-slayer-infinity-castle-box-office-records-b2831182.html (Sep 2025)
+
+━━━ END EVENING ━━━

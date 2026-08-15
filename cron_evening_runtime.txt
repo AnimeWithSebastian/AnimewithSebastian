@@ -1,0 +1,1254 @@
+================================================================================
+*** SUPERSEDED FOR FUTURE DAILY GENERATION — July 15, 2026 (Law #139) ***
+This standalone evening run is REPLACED for routine daily generation by the combined
+run in cron_daily_runtime.txt (cron daily_combined), which produces BOTH the morning
+and evening next-day packages in one lower-credit run. Do NOT schedule this file for
+new daily generation. It is PRESERVED intact for history and as the ROLLBACK target
+(see docs/MIGRATION_dual_package.md). Creative standards are identical in both paths.
+================================================================================
+ANIMEWITHSEBASTIAN — EVENING PACKAGE (PRIME SLOT)
+CRON: 57a3c92e | Schedule: Daily 23:30 UTC (7:30 PM ET)
+VERSION: v8.7 — 27 Format Types | Self-Healing Restore | Cross-Slot Conflict Check | Caption Spec Block | Law #77 enforced in STEP 11 | Law #78 Source Date | Law #79 VO Status Lock | Law #80 Caption Text Block | Law #81 Hashtag Limits | Law #82 No Intro Stamp | Law #83 Morning Reservation | Law #84 Deep Research Mandate | Law #85 Monetization-First | Law #86 VO Worth Saying | Law #87 Hook Tension | Law #88 VO Conversion Audit | Law #89 Comment Generation System | Law #90 Content Loop Architecture | Law #91 Premiere Window Rule | Law #92 Fan Voice Standard | Law #93 Brand-Deal Demographic Lock | Law #94 Media Kit Signal | Law #95 Title Conversion Standard | Law #96 Content Rotation Expansion | Law #97 Caption Block Labeling | Law #98 Content Rotation Expansion II | Law #99 Peak Post Time | Law #100 Binary Closer | Law #101 Search-First Title | Law #102 Identity Closer | Law #103 RESERVED | Law #104 Angle Requirement | Law #105 No Setup Sentences | Law #106 Energy Test | Law #107 Pacing Check | Law #108 Closer Fan Divide | Law #109 Pinned Comment Position | Law #110 Altitude Rule | Law #111 Voice Register | Law #112 One Thread | Law #113 Swap Test | Law #114 Concrete Over Abstract | Law #115 Take a Side | Law #116 Format Playbook | Law #117 Hook Rule | Law #118 Spine Structure | Law #119 Closer Types | Law #120 Eight Deliverables | Law #121 Research-First Scripting | Law #122 YouTube Title Standard | Law #123 TikTok Caption Standard | Law #124 Final VO Pass | Law #125 Format Diversity Mandate | Law #126 Blueprint/Origin Rotation | Law #127 Manga Comparison Rotation | Law #128 Ranking Rotation | Law #129 3-Day Traction Refresh | Law #130 Format Diversity Log | Law #131 VO Runtime Match (superseded for Shorts by #138) | Law #137 Model Governance — Claude Fable 5 Allowlist (default Claude Sonnet 5.0; daily runs = Sonnet 5.0) | Law #138 VO-to-Fixed-Edit Fill (CORRECTED July 15 2026 — the FIXED CapCut edit duration is controlling; VO FILLS it at calibrated 3.3–3.6 w/s; 30s≈104w, 45s≈148–162w; expand short VO with substance, never shorten the edit) | STEP 10 expanded to 21 checks (22 for MVA/EM/ER/EVM) | VO word count DERIVED from fixed edit duration | Reddit fallback chain active
+Law #82: CUT 1 = first real content clip. NO brand stamp. NO intro graphic. Video starts on content with VO running. Remove 3s brand stamp from runtime calculation.
+Law #84: ALL video recommendations MUST be based on full 8-search stack (trending, traction, gaps, saturation, format, engagement, niche, competitor). Memory and pattern-matching are BANNED as a basis for any idea. Every idea must include: show + why now + format + angle + competitor status + engagement signal + conversion relevance. Missing any element = idea BLOCKED.
+Law #85: Every video recommendation must serve monetization, brand deals, and subscriber growth. Every idea must be scored: Sub Conversion (HIGH/MED/LOW) + Brand Attractiveness (HIGH/MED/LOW) + Viral/Discovery (HIGH/MED/LOW). Minimum 2 of 3 must score HIGH or MED or idea is BLOCKED. Pure reach plays with no conversion history = low priority. Every recommendation is a business decision first.
+Law #86: Every VO must pass THREE questions before it is sent: (1) What does this give the viewer they did not already have? (2) Could they get the same thing by just watching the show? (3) Is every sentence earning its place? BANNED: lecturing (frontloading context before the point), speaking to speak (sentences with no logical dependency on each other), empty escalation (ending that restates the hook). Every sentence must require the one before it. The VO must deliver one line the viewer can repeat to someone else. If it cannot pass all three questions, it does not get sent. STRUCTURAL RULE (added June 29 2026): The specific claim the video is making MUST be present in the first 2 lines. Not teased. Not set up. PRESENT. Everything after line 2 is evidence, texture, or escalation of that claim. Warmup lines ("everybody talks about X", "most people think Y", listing what others already know before making the point) = LECTURING = BANNED. If the VO cannot state its point in the first 2 lines, the ANGLE is not sharp enough. Reframe the angle before writing the VO. A VO that buries its point past line 2 does not get sent.
+Law #87: HOOK TENSION REQUIRED. First line must create unresolved tension AND state or directly imply the point. Viral Shorts hit first hard cut at 0.9 sec median (viralhookanalyzer.com June 8 2026). APPROVED structure: a statement that breaks the viewer's default assumption about the show/character — the point IS the tension. Example: "Solo Leveling sold you a power fantasy." = verdict that breaks assumption = tension + point in one line. BANNED: warmup openers that tease without stating ("okay so...", "I'm not gonna lie...", "everybody talks about...", "I went back and watched this...") — these delay the point and violate Law #86 STRUCTURAL RULE. BANNED: clean declarative statements that confirm what the viewer already believes. The hook must break something the viewer thought was true.
+Law #88: EVERY VO must pass VO CONVERSION AUDIT in STEP 10. Minimum 2 of 5 Conversion Triggers required: (1) Re-Watch Confession (2) Specific Feeling Named (3) Community Signal (4) Open Question Closer (5) Personality Signature. Source: YouTubeNiches June 4 2026 + viralhookanalyzer.com June 8 2026. Missing audit block in email = CANNOT SEND.
+Law #89: COMMENT GENERATION SYSTEM — three-part requirement on every package: (1) CLOSER — VO final line must be a binary choice closer per Law #100 — "[A] or [B] — drop it." Two real positions fans hold, one slightly provocative. Law #100 supersedes any prior "open question" language here. Banned: clean conclusion, restatement, open-ended question with no forced choice, generic instruction. (2) CTA — one specific line before the closer, tied to this video’s emotional register. Banned: "Like and comment" / "What do you think?" (3) PINNED COMMENT — draft required in every email. Must add something not in the VO. Post immediately after upload. Reply within 60 minutes. Aspirational target (NOT a universal benchmark): ~0.3% comment-to-view ratio per video. Any part failing = CANNOT SEND. Sources: YouTubeNiches June 4 2026 + AIR Media-Tech June 18 2026.
+Law #100: BINARY CLOSER REQUIRED — Every VO must end with a two-choice closer that forces the viewer to pick a side. Format: "[Option A] or [Option B] — drop it." The two options must be real positions fans actually hold. One must be slightly provocative enough to generate disagreement. BANNED: "What do you think?" / "Let me know below" / restating the hook / open-ended questions with no forced choice. Source: channel analytics July 6 2026 — 0.027% sub conversion, 0.08 comments per 1,000 views. Both traced to closers that don’t force a response. Missing binary closer = CANNOT SEND.
+Law #101: SEARCH-FIRST TITLE — YouTube title must begin with the exact show name as it appears in search. 94.3% of channel traffic is Shorts feed. When the algorithm stops distributing a video, search is the only remaining path — currently delivering only 2.5% of views. Title format: [Exact Show Name] + [searchable descriptor: episode number, character name, or specific event]. PASS: "Daemons of the Shadow Realm Episode 13: Ivan’s Debut" — searchable. FAIL: "The FMA Creator’s New Show Just Got Its Villain" — not searchable. Source: channel analytics July 6 2026. Non-searchable title = CANNOT SEND.
+Law #102: IDENTITY CLOSER LINE — Every VO must contain one line that tells the viewer who this channel is and why they should stay. NOT a CTA. A channel identity statement embedded naturally in the VO — not tacked on. Stakes a point of view. APPROVED: "That’s exactly the kind of moment I make videos about." / "This is the stuff the recaps skip." / "If you caught that the first time, you already know why this show matters." BANNED: "Subscribe if you enjoy this." / "Follow for more." / any explicit subscribe instruction. Source: channel analytics July 6 2026 — sub conversion 0.027% traced to videos that never establish creator identity or reason to return. Missing identity line = CANNOT SEND.
+Law #90: CONTENT LOOP ARCHITECTURE — every 3 consecutive videos must form a loop: Video 1 = Discovery Hook (earns attention, broad niche appeal), Video 2 = Trust Build (deeper on same show/angle), Video 3 = Identity Signature (makes viewer feel they need this channel). No 3 consecutive unrelated videos without a connecting thread. Broken loop = next video must reconnect before new show is introduced. Source: channel analytics audit June 29 2026.
+Law #91: PREMIERE WINDOW RULE — any show with confirmed premiere within 14 days = PRIORITY TIER. Pre-premiere content owns the discovery window before competition spikes. Post-premiere = competes with every other channel. Active windows (as of July 1 2026): Grand Blue Dreaming S3 July 6, Ghost in the Shell July 7, Tanya S2 July 8, Smoking Behind Supermarket July 9. Ignoring a PREMIERE WINDOW show without documented reason = Law #84 violation. Source: Anime Corner Summer 2026 rankings June 27 2026.
+Law #92: FAN VOICE STANDARD — every VO must pass the Fan Voice Check (CHECK 7 in STEP 10). Read VO out loud: does it sound like a real anime fan talking to a friend, or an essay? BANNED: formal structures ("the thing that makes X is Y"), academic framing, over-explaining what the audience already knows, Wikipedia-style intros. REQUIRED: short punchy sentences, at least one line fans actually say, stakes felt not explained, closer sounds like something you'd say watching with a friend. Essay voice = FAIL = CANNOT SEND. Source: channel analytics audit June 29 2026.
+Law #93: BRAND-DEAL DEMOGRAPHIC LOCK — verified channel demographics (June 29 2026): 52.6% male 18–34. This is the premium demographic for anime/gaming/streaming brands. Every recommendation must be evaluated for brand-deal signal: HIGH = anime analysis, season previews, character debates, hidden gems. MED = viral clips with analysis layer. LOW = off-niche or 13–17 only content. At least 1 of every 3 videos must be HIGH brand-value. Source: YouTube Analytics API June 29 2026.
+Law #94: MEDIA KIT SIGNAL — every video sent is evidence for a future brand pitch. Before sending, ask: if a brand manager saw this alongside the last 5 videos, would they immediately understand what this channel is and who it reaches? Consistent niche + consistent voice + consistent audience = the media kit. Breaking niche consistency without strong reason = dilutes brand pitch. Channel can approach Crunchyroll, Right Stuf, manga publishers, merch brands, VPNs at sub-1K count if demographics and niche signal are strong. Source: creator monetization research June 2026.
+Law #125: FORMAT DIVERSITY MANDATE — Before selecting any format in STEP 6, read the last 6 entries in sent_scripts_log.json across BOTH slots combined. Count how many times each format_type appears. If a format appears 2 or more times in those 6 entries: it is BLOCKED for this run. Select the next best format the traction data supports. If traction data only supports a blocked format, pick the closest eligible format from the 27 types. Log: "Format [X] blocked by Law #125 — appeared [N] times in last 6. Using [Y] instead." A run that selects a Law #125-blocked format without logging the override = CANNOT SEND. Added July 8, 2026.
+Law #126: BLUEPRINT/ORIGIN ROTATION — Every 6-video window (across both slots) must contain at least one video built on the blueprint or hidden-origin angle: a real-world influence on anime, a character archetype that predates a more famous character, or a source material connection the fandom has never fully traced. Examples: Ghost in the Shell as the blueprint for The Matrix. Hiei as the blueprint for Sasuke. Evangelion as the blueprint for modern mecha and psychological anime. Eligible formats: FACT_DROP, CHARACTER_DIVE, ORIGIN_STORY, HIDDEN_GEM, COMMENTARY. Before STEP 6: check last 6 entries for a blueprint angle. If none found: this run MUST use an eligible format with a blueprint/origin angle if the research supports it. Log: "Blueprint rotation satisfied by [show] / [angle]" or "Blueprint rotation due — prioritizing eligible format." Added July 8, 2026.
+Law #127: MANGA COMPARISON ROTATION — Every 8-video window (across both slots) must contain at least one MANGA_VS_ANIME or EPISODE_VS_MANGA video for a currently airing show. This keeps source-material content in rotation and serves manga readers. Before STEP 6: count MANGA_VS_ANIME and EPISODE_VS_MANGA entries in the last 8 sent log entries. If zero: this run must use MANGA_VS_ANIME or EPISODE_VS_MANGA if any currently airing show supports it. If no airing show has manga content available this run: log the gap and carry the debt to the next eligible run. Log: "Manga rotation satisfied / due / carried." Added July 8, 2026.
+Law #128: RANKING ROTATION — Every 8-video window (across both slots) must contain at least one ranking format: WATCH_RANK, SEASON_RANK, or TOP10/LIST. Rankings drive the highest comment volume of any format type. Before STEP 6: count ranking entries in the last 8 sent log entries. If zero: this run must use a ranking format. WATCH_RANK ranks 3–6 shows Sebastian is currently watching. SEASON_RANK ranks 4–8 shows from a current or recent season. TOP10/LIST covers any ranked anime topic. If ranking cannot be supported this run: log the gap and carry to next eligible run. Log: "Ranking rotation satisfied / due / carried." Added July 8, 2026.
+Law #129: 3-DAY LIVE TRACTION REFRESH — Every 3 days, before STEP 4 research begins, run a traction refresh stack and write results to /home/user/workspace/cron_traction_cache.json with a timestamp. Refresh stack: (1) Crunchyroll top 10 current chart, (2) MyAnimeList seasonal rankings, (3) AniList trending this week, (4) open web "anime trending [current month year]". At STEP 1, read cron_traction_cache.json and check the timestamp. If file is missing OR older than 3 days: run the refresh stack before any other research. If file is current (under 3 days): read it as STEP 1 supplementary traction context and skip the refresh. This replaces static priority show lists with live rotating data. Log: "Traction cache: CURRENT [date] / REFRESHED [date]." Added July 8, 2026.
+Law #130: FORMAT DIVERSITY LOG — Every sent email must include a FORMAT WINDOW block in the email header (below subject line, above Block 1). Format:
+  FORMAT WINDOW (last 6):
+  [slot] [post_date] [show_short] — [format_type]
+  [slot] [post_date] [show_short] — [format_type]
+  [slot] [post_date] [show_short] — [format_type]
+  [slot] [post_date] [show_short] — [format_type]
+  [slot] [post_date] [show_short] — [format_type]
+  [slot] [post_date] [show_short] — [format_type]
+  THIS RUN: [format_type] — Law #125 check: CLEAR / BLOCKED (override: [reason])
+  Blueprint rotation: SATISFIED / DUE (carried from run #[N])
+  Manga rotation: SATISFIED / DUE (carried from run #[N])
+  Ranking rotation: SATISFIED / DUE (carried from run #[N])
+This block is mandatory. Missing = CANNOT SEND. Added July 8, 2026.
+Law #131 v3 — SUPERSEDED FOR SHORTS BY Law #138 (corrected July 15, 2026): the dependency is INVERTED. The FIXED CapCut edit duration is controlling; the VO FILLS it at the calibrated rate 3.3–3.6 w/s (the old 2.4 w/s / 72-word default / 108-word cap / "timeline matches VO" model is retired). MAX SHORT LENGTH 45 sec. REQUIRED WORD RANGE = fixed edit duration (sec) × 3.3–3.6. Word targets: ~20 sec ≈ 66–72w | ~30 sec ≈ 100–108w (target ~104) | ~45 sec ≈ 148–162w. If the VO is too short to fill the edit — expand with substance (analysis/receipts/contrast/stakes), never filler, never padded pauses; BLOCK if still short. Do NOT shorten the edit to fit a short VO. Build the STEP 11 clip plan to the fixed edit duration; the VO fills it. Show the math. Long-form is EXEMPT (6–12 min earned target, Law #136).
+Law #137: MODEL GOVERNANCE — CLAUDE FABLE 5 ALLOWLIST (added July 14, 2026) — Default model = Claude Sonnet 5.0. Claude Fable 5 is RESTRICTED to a STRICT ALLOWLIST of FIVE categories ONLY: (1) flagship 8–12 min long-form scripts, (2) major channel strategy decisions, (3) full system redesigns / difficult audits, (4) refining a PROVEN idea (documented prior performance/validation REQUIRED — first-pass ideation is NOT eligible), (5) the designated MONTHLY deep performance review (NOT the weekly analytics task). EVERYTHING ELSE — including THIS daily evening Shorts run, routine research, format selection, VO drafting, routine analytics, routine file repair, and normal content packages — runs on Sonnet 5.0. "Best quality" is NOT a qualifier. Log every Fable use with category + reason (+ evidence for #4). MODEL COMPLIANCE CHECK required (MODEL / ELIGIBILITY CATEGORY / REASON / PASS-BLOCKED); Fable selected without a qualifying category = BLOCKED → downgrade to Sonnet 5.0. THIS run = Sonnet 5.0. Model governance only — does NOT merge products (#134 Shorts anime-only daily / #136 long-form separate). Full spec: hero_or_villain_master_laws_final.txt, Law #137.
+Law #138: SHORTS VO-TO-FIXED-EDIT FILL (added July 15, 2026; CORRECTED July 15, 2026 — SHORTS; supersedes Law #131) — The FIXED CapCut edit duration is the CONTROLLING input; the VO must be written/expanded to FILL that fixed edit at the calibrated delivery rate 3.3–3.6 w/s (midpoint ~3.43; measured: 72 words = 20–22 sec). REQUIRED WORD RANGE = fixed edit duration (sec) × 3.3–3.6 → 20s≈66–72w | 30s≈100–108w (target ~104) | 45s≈148–162w (45 sec = MAX Short length). If the VO is too short to fill the edit, EXPAND with substance (analysis/receipts/contrast/stakes/identity/engagement setup) — NEVER filler, repeated phrasing, padded pauses, or slow unnatural delivery. Do NOT shorten the CapCut edit because the VO draft is short. Pre-send QC computes the required word range from the fixed edit and BLOCKS if the VO is short (a 30-sec edit with only 72 words BLOCKS — expand to ~104). Once the actual VO is rendered/recorded, verify final audio vs the fixed edit within ±0.25 sec — if mismatched, REVISE/RE-RECORD the VO; do NOT retime the established edit unless the user explicitly asks. NO unintended dead air, frozen padding, held outro, or empty tail. Micro-pauses 0.2–0.4s OK. ONE deliberate reaction/key-shot beat ≤0.5s OK only with clear visual purpose + continuous music/ambience/sound design, labeled INTENTIONAL BEAT — an intentional beat is part of the fixed edit and does NOT excuse a short VO unless explicitly scripted. Silence/padding ≥1.0s PROHIBITED. Keep the "Leave your take" CTA and loop; final line flows into the opening. Compliance line: CAPCUT TARGET DURATION / CALIBRATED RATE / REQUIRED WORD RANGE / ACTUAL VO WORDS / ESTIMATED VO DURATION RANGE / DELTA TO TARGET / PASS-BLOCKED. Long-form (Law #136) is a SEPARATE product EXEMPT from this band and may use longer scripted, sound-designed cinematic pauses (accidental dead air still prohibited). Full spec: hero_or_villain_master_laws_final.txt, Law #138.
+Updated: July 8, 2026
+================================================================================
+
+*** v5.5 FIX — FILE READ (Updated June 19, 2026) ***
+Preferred: Read this file in THREE segments to avoid truncation:
+  Chunk 1: read(file='/home/user/workspace/cron_evening_runtime.txt', offset=1,   limit=171)
+  Chunk 2: read(file='/home/user/workspace/cron_evening_runtime.txt', offset=172, limit=171)
+  Chunk 3: read(file='/home/user/workspace/cron_evening_runtime.txt', offset=343, limit=171)
+If you already read the file in a single call and received full content: PROCEED. Do not re-read. Do not escalate.
+A full single read that succeeded = requirement satisfied. There is no conflict.
+For cron_evening_rework.txt (laws reference) — do NOT read in full. Grep only:
+  grep for specific law number, then read 80 lines from that offset.
+If ANY read call returns TimeoutException or sandbox error:
+  Do NOT escalate. Retry the exact same call once with limit=80.
+  Transient sandbox errors resolve on retry. Proceed after one retry.
+================================================================================
+
+*** v5.0 NOTE — OPEN FORMAT SYSTEM (June 9, 2026) ***
+Format lock removed. 27 format types now available. Cron runs SEARCH 5 (format
+research) and recommends best format from live traction data. Draft VO matches
+recommended format. See session_fixes_law.md Fix 24 for full change log.
+For current execution order, see this file. For law reference text, see
+cron_evening_rework.txt.
+
+*** v5.2 NOTE — CONTENT ADAPTATION LOOP (June 12, 2026 — Law #65) ***
+Added SEARCH 7 (niche-wide format traction) and SEARCH 8 (competitor angle check).
+Format recommendation now cites source. Competitor overlap check added to STEP 6.
+Laws #63 (no lecturing), #64 (channel name ≠ content), #65 (adaptation loop) active.
+
+================================================================================
+STEP ZERO — READ THIS FILE COMPLETELY BEFORE DOING ANYTHING ELSE
+================================================================================
+
+### GITHUB SYNC — MANDATORY RESTORE (v5.8 — Soft Gate)
+The workspace resets between runs. Attempt to restore from GitHub every run.
+
+*** AUTH FAILURE RULE — READ BEFORE EXECUTING ***
+Background crons do NOT have the "github" bash credential available.
+If the git pull/clone fails with ANY error (auth error, network error,
+"No such device or address", or any other reason):
+  → DO NOT STOP. DO NOT ESCALATE. CONTINUE IMMEDIATELY TO STEP 1.
+  → The workspace files are assumed current. Proceed with all other steps.
+  → Log github_sync: failed in state.json — that is the ONLY action on failure.
+A git failure is NEVER a blocker. The email package must still run.
+
+*** FILE-PRESENCE NOTE ***
+Do NOT skip the restore attempt just because files appear present.
+Always attempt the pull — but treat failure as a soft warning, not a stop.
+
+STEP A — Always attempt this (api_credentials=["github"]):
+  Run via bash:
+    cd /home/user/workspace
+    if [ -d repo/.git ]; then
+      cd repo && git pull origin main 2>&1 || true && cd ..
+    else
+      git clone https://github.com/SEBLABHRIS/AnimeWithSebastian.git repo 2>&1 || true
+    fi
+    cp repo/cron_evening_runtime.txt . 2>/dev/null || true
+    cp repo/cron_evening_rework.txt . 2>/dev/null || true
+    cp repo/cron_morning_runtime.txt . 2>/dev/null || true
+    cp repo/cron_morning_rework.txt . 2>/dev/null || true
+    cp repo/cron_analytics_runtime.txt . 2>/dev/null || true
+    cp repo/sent_scripts_log.json . 2>/dev/null || true
+    cp repo/hero_or_villain_master_laws_final.txt . 2>/dev/null || true
+    cp repo/blackout_state.json . 2>/dev/null || true
+    cp -r repo/laws . 2>/dev/null || true
+    cp -r repo/cron_tracking . 2>/dev/null || true
+    echo RESTORE COMPLETE
+
+STEP B — Log result and CONTINUE:
+  If restore succeeded: Log github_sync: success in state.json.
+  If restore failed for ANY reason:
+    Log github_sync: failed in state.json.
+    *** CONTINUE IMMEDIATELY — DO NOT STOP — DO NOT ESCALATE ***
+    All remaining steps (STEP 1 through GitHub push) still execute normally.
+    Treat workspace files as current and proceed.
+
+After restore attempt (success OR failure), continue with SHOW HOLD LIST below.
+
+### SHOW HOLD LIST (check before every run)
+STEEL BALL RUN — CLEARED. Netflix September 25, 2026. Stages 2+3 confirmed, 11 episodes weekly.
+KAGURABACHI — CLEARED (April 2027). Studio: Cypic (CyberAgent/Shochiku). Director: Tetsuya Takeuchi. Crunchyroll simulcast. AX world premiere screening July 2026 first 20 min of Episode 1.
+
+### PRIORITY SHOWS — SUMMER 2026 (Updated July 1, 2026)
+These shows have confirmed high traction or imminent release. Weight these heavily
+in SEARCH 1. If not on 30-day blackout, these should be selected over evergreen titles.
+
+TIER 1 — WINDOW EVENTS (time-sensitive, do not miss):
+  BLEACH TYBW — THE CALAMITY
+    Status: THEATRICAL ended June 29 | TV premiere July 25, 2026 | Streaming: Hulu (US) / Disney+ (intl)
+    Window: TV premiere July 25 is next traction peak
+    Angles: Final arc, Ichigo vs Yhwach, Soul King reveal, series finale stakes
+    FORMAT BURN: FACT_DROP used 3x (June 2, June 23, June 28). FACT_DROP on Bleach = BANNED.
+    Next Bleach must use: COMMENTARY, WRONG_TAKE, CHARACTER_DIVE, or THE_MOMENT only.
+    BLACKOUT: June 28 used both slots — blackout resets from June 28. Do not use before July 28 (30-day from June 28).
+    ADDITIONAL NOTE: User already posted their own Bleach video — verify post date before using again.
+    Note: June 28 morning + evening both sent Bleach FACT_DROP — BOTH VOIDED (duplicate + repeat).
+
+  GHOST IN THE SHELL — NEW ANIME (Summer 2026)
+    Status: PREMIERES July 7, 2026 — Prime Video (US) | BLACKOUT clears July 4 (confirm log)
+    Window: Episode drops = immediate content opportunity
+    Angles: Legacy vs new, what makes the original untouchable, Motoko identity questions
+    Format signal: COMMENTARY + CHARACTER_DIVE
+
+  TANYA THE EVIL S2 (Saga of Tanya the Evil)
+    Status: PREMIERES July 8, 2026 | BLACKOUT: sent June 29 evening — clears July 6
+    Window: Available July 6+ (blackout cleared)
+    Angles: War as game mechanic, Being X vs Tanya doctrine, why this isn’t a villain story
+    Format signal: WRONG_TAKE + COMMENTARY
+
+  SMOKING BEHIND THE SUPERMARKET WITH YOU
+    Status: PREMIERES July 9, 2026 Crunchyroll | SENT July 1 morning — clears July 8
+    Window: Available July 8+ (blackout cleared)
+    Angles: Perfect pre-air rating (5 stars, 14K ratings), hidden romance formula
+    Format signal: SEASON_PREVIEW + WRONG_TAKE
+
+  GRAND BLUE DREAMING S3
+    Status: PREMIERES July 6, 2026 Crunchyroll | SENT July 1 evening — clears July 8
+    Window: Available July 8+ (blackout cleared)
+    Angles: 7-year gap comeback, comedy anime that hides emotional depth, diving
+    Format signal: SEASON_PREVIEW + SLEPT_ON
+
+TIER 2 — ACTIVELY AIRING / HIGH DISCUSSION:
+  ONE PIECE — ongoing
+    Traction: T1_AIRING — constant active discussion
+    Note: Binks' Sake / Laugh Tale content already sent June 13-14. Check 30-day log.
+
+  JUJUTSU KAISEN — ongoing
+    Traction: T1_AIRING — Culling Game arc discussion active
+    Note: Evening package sent June 13 (Dan Da Dan slot). NOTE: Dandadan S2 is FINISHED (2025) — see Dandadan entry below for full status.
+
+  DAN DA DAN — WARNING: Dandadan S2 aired and FINISHED in 2025 (July–Sept 2025).
+    S3 announced for 2027. DO NOT treat as ongoing or upcoming.
+    Any Dandadan angle must be framed as past/finished content, not active airing.
+    Last used June 25 evening (VOIDED — incorrect dates). Check sent log before using.
+
+  HELL'S PARADISE SEASON 2 — wrapped March 29, 2026
+    Traction: T2_CONTROVERSY — full season available, active discourse still running
+    Angles: Gabimaru identity, Sagiri arc payoff, what Season 2 changed vs manga
+
+  FRIEREN: BEYOND JOURNEY'S END — Season 2 airing 2026
+    Traction: T1_AIRING — consistently high engagement
+    Angles: What makes Frieren different from every other isekai, Fern character dive
+
+TIER 3 — NEW SHOW INTRO ELIGIBLE (use NEW_ANIME_INTRO format):
+  Any Summer 2026 premiere in its FIRST 2 WEEKS of airing.
+  Check current season schedule in SEARCH 1.
+  NEW_ANIME_INTRO format spec: see STEP 9 format section below.
+
+UPDATING THIS LIST:
+  This list is updated by the user's agent between sessions.
+  Do not modify mid-run. Use as-is for show selection weighting only.
+
+### STEP 1 — READ SENT LOG
+Read /home/user/workspace/sent_scripts_log.json.
+- Identify last 7 days of shows used in EVENING slot.
+- Identify last 3 formats used in EVENING slot.
+- Note: NEVER repeat the same SHOW + ANGLE (never-repeat-ANGLE, not never-repeat-show). A show MAY return sooner with a genuinely different angle. Cooldown per angle: airing shows = 7 days; evergreen shows = 21–30 days. EXCEPTION: an immediate sequel/continuation is allowed when intentionally continuing a successful arc — log the intent and the prior arc.
+- Note: avoid same format 3 nights in a row.
+- CROSS-SLOT CONFLICT CHECK (MANDATORY — Law #83):
+  Before finalizing show selection:
+  1. Pull latest log from GitHub first (morning may have just written its reservation):
+       cd /home/user/workspace/repo && git pull origin main 2>&1 | tail -1
+       cp repo/sent_scripts_log.json /home/user/workspace/sent_scripts_log.json 2>/dev/null || true
+  2. Check sent_scripts_log.json for any entry where date_sent = TODAY and slot = "morning".
+  3. The evening show MUST NOT match the morning show (including RESERVED status = morning has claimed a show).
+     If morning entry has show = "RESERVED" — treat it as unknown. Pick a different show as a precaution.
+     If morning entry has an actual show name — that show is blocked for evening.
+  4. If conflict detected: discard that show, select next best candidate from research.
+  NOTE: Both crons fire simultaneously. Morning writes a reservation at STEP 1.
+  Evening must pull fresh from GitHub to see it. This is the only reliable conflict check.
+  Reason: Both crons run the same night. Same show in both slots = duplicate content.
+- FALLBACK: If log read fails or returns 0 EVENING entries, read /home/user/workspace/blackout_state.json instead.
+  Use evening_blackout_30day for STEP 3 and evening_norepeate_7day for 7-day check. Do not escalate — proceed with package.
+
+### STEP 2 — SHOW HOLD LIST CHECK
+STEEL BALL RUN — CLEARED. Netflix September 25, 2026. Stages 2+3 confirmed, 11 episodes weekly.
+KAGURABACHI — CLEARED (April 2027). Studio: Cypic (CyberAgent/Shochiku). Director: Tetsuya Takeuchi. Crunchyroll simulcast. AX world premiere screening July 2026 first 20 min of Episode 1.
+Any show on hold: skip entirely, select next candidate.
+
+### STEP 3 — 30-DAY BLACKOUT CHECK + CROSS-SLOT HARD BLOCK
+
+MANUAL BLACKOUT CHECK (RUNS FIRST — NOT A FALLBACK — MANDATORY EVERY TIME):
+Read /home/user/workspace/blackout_state.json before touching sent_scripts_log.json.
+Any show listed in blackout_state.json with a clears date that has NOT yet passed = BLOCKED. Hard stop.
+This check runs every time regardless of whether the log parsed successfully.
+Do NOT skip this check. Do NOT treat it as optional. Manual entries are equal to log entries.
+
+30-DAY LOG CHECK:
+Do not repeat the same SHOW + ANGLE within its cooldown in this slot: airing shows = 7 days, evergreen shows = 21–30 days. A DIFFERENT angle on the same show is allowed once the 7-day airing-show cooldown has passed. EXCEPTION: an intentional sequel continuing a successful arc is exempt from cooldown (log the intent and the prior arc). This replaces the old flat 30-day never-repeat-SHOW rule.
+Check sent_scripts_log.json for post_date within last 30 days.
+If conflict: select next best show from traction research.
+
+CROSS-SLOT HARD BLOCK (MANDATORY — NO EXCEPTIONS):
+Before clearing any show, search sent_scripts_log.json for that show name across ALL slots (morning AND evening).
+If the same SHOW + ANGLE appears in ANY entry — morning or evening — within the 7-day airing-show cooldown: BLOCKED.
+A genuinely DIFFERENT angle on the same show IS allowed across slots — log both angles side by side to prove they differ.
+SAME-DAY RULE: the two slots must NEVER post the same show on the same day, even with different angles (reads as duplicate to the feed).
+Evergreen shows: 21–30 day cooldown per angle. EXCEPTION: an intentional sequel continuing a successful arc is exempt (log the intent).
+Do NOT clear a SHOW + ANGLE because it ran in a different slot. Slot difference = no exception for the SAME angle; a different angle is permitted.
+If blocked: move to the next candidate immediately. Do not attempt to justify an exception.
+
+REQUIRED LIVE RESEARCH GATE (MANDATORY BEFORE ANY SHOW IS SELECTED — NO EXCEPTIONS):
+Do NOT select a show from memory, prior session context, or summary notes.
+Every show candidate MUST be validated by live web research in STEP 4 before it can be selected.
+The 8-search stack in STEP 4 is not optional — it is the source of truth for what is trending NOW.
+If a show is not confirmed by at least 2 live search results showing active community traction this week: do NOT select it.
+Guessing or defaulting to a "known clean" show without running STEP 4 first = violation. Run the searches first, always.
+
+### STEP 4 — ANGLE GENERATION RESEARCH STACK
+Run all 8 searches. Do not skip any.
+
+SEARCH 1 — TRENDING ANIME (what is the anime community talking about right now)
+Query 1A: "anime trending Reddit YouTube [current month year]"
+Query 1B: "[current season year] anime new episodes this week site:reddit.com OR site:myanimelist.net"
+Query 1C: "most anticipated anime [current season year] premieres"
+REDDIT FALLBACK (if Reddit blocked on 1A/1B):
+  Step 1: "[current season year] anime trending site:myanimelist.net"
+  Step 2: "[current season year] anime trending site:anilist.co"
+  Step 3: "anime trending [current month year]" (open web — ANN, Crunchyroll charts, YouTube)
+  Log which source returned traction data.
+Goal: Identify 3-5 shows with active discussion. Note traction tier for each.
+Also flag: any show in its FIRST 2 WEEKS of airing — these are NEW_ANIME_INTRO eligible (Tier 3 priority).
+Also flag: any BLEACH TYBW or Ghost in the Shell activity — Tier 1 priority shows (see PRIORITY SHOWS above).
+
+SEARCH 2 — SHOW-SPECIFIC TRACTION
+Primary Query: "[selected show] anime Reddit discussion [current month year]"
+REDDIT FALLBACK (if Reddit returns no results or is blocked):
+  Step 1: "[selected show] anime discussion [current month year] site:myanimelist.net"
+  Step 2: "[selected show] anime discussion [current month year] site:anilist.co"
+  Step 3: "[selected show] anime [current month year] site:crunchyroll.com"
+  Step 4: "[selected show] anime review reaction [current month year]" (open web — YouTube comments, forum snippets)
+  Use first source that returns active fan discussion. Log which source was used.
+  If ALL fallbacks return nothing: flag show as UNVERIFIED and select a different show.
+Goal: Confirm show has active fandom discussion. Assign traction tier.
+Traction Tiers:
+  T1_AIRING — currently airing, episode-by-episode discussion
+  T2_CONTROVERSY — finished/upcoming but high active debate
+  T3_NOSTALGIA — anniversary, rewatch, or throwback wave
+  T4_EVERGREEN — stable consistent traffic, no peak event
+
+SEARCH 3 — FANDOM GAP
+Primary Query: "[show] [character/moment] overlooked detail hidden fact Reddit"
+REDDIT FALLBACK (if Reddit blocked):
+  Step 1: "[show] [character/moment] overlooked detail hidden fact site:myanimelist.net"
+  Step 2: "[show] [character/moment] hidden detail anime forum site:anilist.co"
+  Step 3: "[show] [character/moment] fan theory discussion [current month year]"
+  Use first source that returns a specific fan-identified gap. Log source used.
+Goal: Find the angle the fandom has not fully addressed.
+Gap Categories:
+  GAP_1_UNFINISHED_IMPLICATION — show established something, fandom never followed it through
+  GAP_2_MISSING_CONTEXT — viewers lack a key piece of information that reframes everything
+  GAP_3_RECONTEXTUALIZATION — known fact that means something different with new framing
+  GAP_4_ORIGIN_STORY — real-world or in-universe origin nobody has connected
+
+SEARCH 4 — CONSENSUS CHECK
+Primary Query: "[show] [angle topic] Reddit popular opinion"
+REDDIT FALLBACK (if Reddit blocked):
+  Step 1: "[show] [angle topic] popular opinion site:myanimelist.net"
+  Step 2: "[show] [angle topic] popular opinion site:anilist.co"
+  Step 3: "[show] [angle topic] fan opinion [current month year]" (open web)
+  Use first source that returns community consensus data. Log source used.
+Goal: Confirm the angle avoids fandom consensus. Arguments in VO MUST reflect what fans are actually saying from the source used — not general knowledge or memory. If consensus already covers it — find new angle.
+
+SEARCH 5 — FORMAT RESEARCH (v5.0 — REQUIRED)
+Query: "[show] YouTube Shorts [current year] most viewed format"
+Goal: Identify which of the 27 format types is performing best for this show right now. For WATCH_RANK and SEASON_RANK also query: "anime tier list YouTube Shorts [current year] engagement".
+27 Format Types: TOP10/LIST | FACT_DROP | COMMENTARY | CHARACTER_DIVE | TRIVIA | IDENTITY | ORIGIN_STORY | HIDDEN_GEM | NEW_ANIME_INTRO | PERSONAL_RATING | RECOMMENDATION | VILLAIN_DEFENSE | REWATCH_HIT | ANIME_VS_MANGA | WRONG_TAKE | FIRST_EPISODE_TEST | CHARACTER_COURT | SLEPT_ON | THE_MOMENT | SEASON_RATING | SEASON_PREVIEW | MANGA_VS_ANIME | EPISODE_MOMENT | WATCH_RANK | SEASON_RANK | EPISODE_REVIEW | EPISODE_VS_MANGA
+
+[LAW #96 FORMAT SPECS — added July 1, 2026]
+SEASON_RATING: Rate ONE currently-airing show per video. State rating in HOOK (first 3 sec). Rating must be provocative — safe takes get no comments. Show must be airing or finished within 30 days. 7-day blackout per show. One rating per show per season.
+SEASON_PREVIEW: Why you should watch a new anime/season/episode. Premiere date verified within 45 days required. Answer: why THIS show, for THIS viewer, right NOW. Do NOT recap the trailer. Competitor check required. 7-day blackout.
+MANGA_VS_ANIME: ONE specific scene where manga and anime differ meaningfully. Must take a side. Verify difference via live source (Law #52 — NEVER from memory). 14-day blackout per show.
+EPISODE_MOMENT: One scene, beat, or reveal from an episode that aired within the last 7 DAYS. SPOILER WARNING required in title or caption line 1. New enemy/power reveals are highest-priority moments. No blackout but 7-day airing window is a HARD deadline.
+WATCH_RANK: Rank 3–6 shows Sebastian is currently watching, head-to-head with placement reasoning. At least one WRONG_TAKE placement required. Shows must be currently airing or finished within 60 days. 14-day blackout per ranking.
+SEASON_RANK: Rank 4–8 shows from a specific season (current or previous, max 4 months old). Must include one underranked pick and one SLEPT_ON. 21-day blackout. One per season.
+EPISODE_REVIEW: Full episode review — what mattered, what the wrong read is, what it sets up. 5-day hard window (not 7). SPOILER WARNING required. Cannot run same episode as EPISODE_MOMENT.
+EPISODE_VS_MANGA: Compare a new episode to its manga source. 1–3 specific differences. Must take a side. 5-day hard window. SPOILER WARNING required for both anime and manga. No manga source = BLOCKED.
+PRIORITY ORDER (within slot): T1 breaking news > EPISODE_MOMENT or EPISODE_REVIEW (5-day window, tied — pick by engagement signal) > EPISODE_VS_MANGA (5-day, manga confirmed) > SEASON_PREVIEW (premiere window) > SEASON_RATING (currently airing) > WATCH_RANK (3+ shows airing) > SEASON_RANK > MANGA_VS_ANIME
+
+PERSONAL_RATING FORMAT SPEC (added June 15, 2026):
+  When to use: Creator has recently watched a show and has a genuine take on it. Works for any show — airing, finished, or classic.
+  Goal: Creator gives a real rating with a real reason. Not a review. Not a recap. A verdict with a specific argument behind it.
+  Structure:
+    Hook (5-10 sec): The rating up front — don't bury it. Start with the number or the verdict.
+    The argument (20-30 sec): ONE specific reason this rating is right. Not a list of pros and cons. One thing.
+    The honest take (10-15 sec): What it does that most shows don't — or what it fails at that kills it.
+    CTA: Ask people to rate it themselves. "What would you give it and why" drives comments.
+  Rules:
+    - This is a PERSONAL take. First person. "I think", "for me", "the way I see it."
+    - Do NOT hedge. A 7/10 with no conviction is dead content. A 7/10 with a sharp argument is a debate.
+    - The rating itself is not the content. The REASON for the rating is.
+    - No spoilers in the VO. The argument should work for someone who hasn't watched it yet.
+    - Fact Verification still applies to any specific claims made.
+    - Clip Law #73 applies. Confirm clips exist before writing them into the edit order.
+    - This format does NOT require SEARCH 2-4 (show traction/gap research). Go straight to SEARCH 5 after picking the show.
+    - Show selection: pull from creator's recent watch history if known, otherwise pick from Tier 1 or Tier 2 Priority Shows.
+
+RECOMMENDATION FORMAT SPEC (added June 15, 2026):
+  When to use: A show or manga that not enough people are talking about — or a new season/manga that just dropped and deserves attention.
+  Goal: Make someone feel like they discovered something. Not a trailer. Not hype. A specific reason this is worth their time.
+  Structure:
+    Hook (5-10 sec): Lead with the one thing about this show/manga that most people don't know. Surprising detail, creator backstory, or overlooked angle.
+    The pitch (15-20 sec): What it actually is — genre, feel, comparable — in 2 sentences max. No plot recap.
+    Why now (10-15 sec): Why this specific moment is the right time to start — new season, recent buzz, or something that just changed in the story.
+    CTA: "Have you read/watched this" — yes/no debate with a follow-up: "if not, what are you waiting for."
+  Rules:
+    - MANGA ELIGIBLE: This format applies equally to manga recommendations, not just anime.
+    - Never recap the plot. The pitch is a feeling and a reason, not a summary.
+    - "People should watch this" is not a hook. "This manga was rejected 17 times before it became [X]" is.
+    - The recommendation must feel personal — something the creator actually believes in, not just what's trending.
+    - Fact Verification applies to all specific claims (creator backstory, sales numbers, episode counts, etc.).
+    - Clip Law #73 applies. For manga recommendations: panels can be shown — confirm they exist and note chapter/volume.
+    - This format works as both Short AND long-form intro. If the show is rich enough, flag it as long-form eligible.
+
+NEW_ANIME_INTRO FORMAT SPEC (added June 15, 2026):
+  When to use: Show is in its FIRST 2 WEEKS of airing. No prior Anime With Sebastian content on this show.
+  Goal: Tell someone who hasn't watched it yet why they should — but from a specific angle, not a recap.
+  Structure:
+    Hook (5-10 sec): One specific thing about the show that most people don't know yet.
+    Setup (15-20 sec): What the show actually is — in 2-3 sentences, no spoilers.
+    The angle (20-30 sec): The one thing that makes this show different from everything else airing.
+    CTA: A question that only someone who's already watching can answer.
+  Rules:
+    - NO plot recap. Never summarize the story.
+    - Lead with something surprising — a production detail, a real-world origin, a creator backstory.
+    - The viewer should finish the video thinking "I need to watch this" OR "I already watch this and I never knew that."
+    - FACT VERIFICATION BLOCK still required. Claims about the show must be verified.
+    - Clip Law #73 applies. All clip references must be verified or flagged UNVERIFIED.
+
+VILLAIN_DEFENSE FORMAT SPEC (added June 15, 2026):
+  When to use: A character the fandom calls a villain — but you think they were right, understandable, or simply misread.
+  Goal: Make the viewer reconsider someone they already wrote off. Not a full character study — just one sharp argument.
+  Structure:
+    Hook (5-10 sec): State the defense immediately. "[Character] wasn't the villain. [One-line argument]."
+    The case (20-30 sec): Two or three specific moments that support your read. Manga/episode verified.
+    Flip (10-15 sec): Acknowledge the counterargument in one sentence — then dismiss it or flip it.
+    CTA: "Who's the real villain in [show]? Let me know."
+  Rules:
+    - Must take an actual stance. No "both sides" cop-out.
+    - Clip and panel references must be verified or flagged UNVERIFIED per Law #73.
+    - FACT VERIFICATION BLOCK required.
+
+REWATCH_HIT FORMAT SPEC (added June 15, 2026):
+  When to use: A show or arc that hits completely differently the second time — because of a detail, a callback, or a piece of foreshadowing you missed.
+  Goal: Give a rewatch reason. Make the viewer want to go back right now.
+  Structure:
+    Hook (5-10 sec): "If you rewatched [show] you already know this." Or: "The first time through, you missed this."
+    The detail (20-25 sec): One specific thing — a line, a visual, a name — that lands differently once you know the ending.
+    Why it matters (10-15 sec): What it says about the writing, the character, or the story structure.
+    CTA: "Did you catch this your first time?"
+  Rules:
+    - The detail must be real and verifiable. No invented foreshadowing.
+    - FACT VERIFICATION BLOCK required. Law #73 applies.
+
+ANIME_VS_MANGA FORMAT SPEC (added June 15, 2026):
+  When to use: A show where the manga and the anime tell the same story differently — different pacing, added scenes, cut scenes, art direction changes, or ending differences.
+  Goal: Give people a real reason to pick up the source material, OR defend the adaptation.
+  Structure:
+    Hook (5-10 sec): The specific difference — not "the manga is better," but a concrete thing that changed.
+    The comparison (20-30 sec): What the manga did vs. what the anime did. Be specific about chapter/episode.
+    Your read (10 sec): Which version works better for this particular moment — and why.
+    CTA: "Manga reader or anime only? Let me know where you're at."
+  Rules:
+    - Must cite the specific chapter or episode for every comparison.
+    - No universal "manga is always better" take — evaluate the specific moment.
+    - FACT VERIFICATION BLOCK required. Law #73 applies.
+
+WRONG_TAKE FORMAT SPEC (added June 15, 2026):
+  When to use: A popular take in the anime community that is wrong, overrated, or based on a bad read of the source material.
+  Goal: Correct the record with a specific argument. Not to be contrarian — to actually be right.
+  Structure:
+    Hook (5-10 sec): State the wrong take plainly. "The [fandom] has been saying [take] for years. They're wrong."
+    Why it's wrong (20-25 sec): Two or three specific reasons — scenes, chapters, creator interviews. Verified only.
+    The right read (10-15 sec): What the show actually says about this moment or character.
+    CTA: "Come fight me in the comments."
+  Rules:
+    - The take being challenged must actually be widespread — don't invent a strawman.
+    - Evidence must be verifiable. Law #52 and Law #73 apply.
+    - FACT VERIFICATION BLOCK required.
+
+FIRST_EPISODE_TEST FORMAT SPEC (added June 15, 2026):
+  When to use: Any show — airing, classic, or new. Evaluate the first episode only as a hook mechanism.
+  Goal: Tell the viewer whether this show earns you by episode 1 — and exactly what moment does it.
+  Structure:
+    Hook (5-10 sec): "[Show] has [X] minutes to get you. Here's the exact moment it either wins or loses you."
+    The scene (20-25 sec): Describe the specific first-episode moment that works (or doesn't). Episode 1 only.
+    The verdict (10-15 sec): Pass or fail — and why that moment works as a hook.
+    CTA: "Did episode 1 get you?"
+  Rules:
+    - Episode 1 content ONLY. No plot from later episodes.
+    - The moment cited must be verified — episode timestamp or scene description from source.
+    - FACT VERIFICATION BLOCK required.
+
+CHARACTER_COURT FORMAT SPEC (added June 15, 2026):
+  When to use: A character decision that split the fandom — sacrifice, betrayal, power-up refusal, revenge choice, anything with a "why did they do that" argument.
+  Goal: Put the decision on trial. Prosecution and defense. You deliver the verdict.
+  Structure:
+    Hook (5-10 sec): The decision. "[Character] chose [action]. Was that right?"
+    Prosecution (15 sec): The strongest argument against the choice.
+    Defense (15 sec): The strongest argument for the choice.
+    Verdict (10 sec): Your actual call — and one reason.
+    CTA: "What's your verdict?"
+  Rules:
+    - Both sides must be real arguments, not strawmen.
+    - The decision must be a real canon moment — verified per Law #73.
+    - FACT VERIFICATION BLOCK required.
+
+SLEPT_ON FORMAT SPEC (added June 15, 2026):
+  When to use: A show, arc, character, or moment that the mainstream anime community has ignored or underrated — and you have a specific reason it deserves more.
+  Goal: Shine a light on something real. Not hype — a genuine argument for why it hits.
+  Structure:
+    Hook (5-10 sec): The thing that's slept on — named immediately. "Nobody talks about [X] and that's a problem."
+    Why it's slept on (10-15 sec): One honest reason it got overlooked — release window, bad marketing, weak opening episode.
+    Why it deserves better (20-25 sec): The specific moment, arc, or character that earns it.
+    CTA: "Tell me something else that's slept on."
+  Rules:
+    - Must be genuinely under-discussed — not a show that already has 10M view Shorts.
+    - Claims about the show must be verified. Law #73 applies.
+    - FACT VERIFICATION BLOCK required.
+
+THE_MOMENT FORMAT SPEC (added June 15, 2026):
+  When to use: One single scene, panel, line, or frame from any anime or manga that changed the direction of the entire story — or the viewer's understanding of it.
+  Goal: Isolate the exact moment everything shifted. Not a "best moments" list — one moment, full focus.
+  Structure:
+    Hook (5-10 sec): Name the moment. "There is one scene in [show] that changes everything before it."
+    Setup (10-15 sec): What the viewer knew going into that moment.
+    The moment (20-25 sec): What happens — described precisely. What is said or shown.
+    Why it changes everything (10 sec): One sentence on what it reframes.
+    CTA: "What's your moment?"
+  Rules:
+    - The moment must be a real, verifiable canon event — chapter/episode cited. Law #73 applies.
+    - Do not use moments from episodes that haven't aired yet.
+    - FACT VERIFICATION BLOCK required.
+
+SEARCH 6 — TRACTION CONFIRMATION
+Primary Query: "[show] anime [current month year] site:reddit.com OR site:youtube.com"
+REDDIT FALLBACK (if Reddit blocked):
+  Step 1: "[show] anime [current month year] site:myanimelist.net OR site:youtube.com"
+  Step 2: "[show] anime [current month year] site:anilist.co OR site:youtube.com"
+  Log which source confirmed traction.
+Goal: Final confirmation show is not dormant.
+
+SEARCH 7 — NICHE FORMAT TRACTION (v5.1 — Law #65 — REQUIRED)
+Query: "anime Shorts [current month year] most viewed"
+Goal: Identify what format type is performing best across anime Shorts as a whole right now — not just for the selected show.
+Note result: Format type + source channel + approximate view count.
+This is the secondary signal for the format recommendation.
+
+SEARCH 7 VIEW COUNT FALLBACK (v1.0 — permanent rule):
+YouTube hides view counts in fetched HTML. Shorts pages do not expose them in search snippets.
+If you cannot extract a specific view count from a competitor channel, DO NOT escalate.
+DO NOT block on this. DO NOT halt the run.
+
+FALLBACK — use aggregate platform data instead of per-video counts:
+  Acceptable sources (any one is sufficient):
+  - TheMeasure.net Shorts performance studies (2025–2026)
+  - Buffer, Metricool, or Social Insider published Shorts data
+  - Tubular Labs aggregate format data
+  - Any 2025–2026 published study with a format-level finding (e.g. "commentary formats average X% higher retention")
+
+  STANDING DATA (always available — use when live search returns nothing with view counts):
+  "Anime Shorts generated 129B views on YouTube in 2025, up 125% YoY.
+  Character-driven and hot-take commentary formats drive the highest engagement.
+  Source: TheMeasure.net, April 14, 2026."
+
+  Cite format: "Format type: [type] | Source: [publication + date] | Data: [aggregate finding]"
+  This satisfies SEARCH 7. Proceed to STEP 6 on this basis.
+
+SEARCH 8 — COMPETITOR CHECK (v5.1 — Law #65)
+Query: "[show] [character or angle in 3 words] YouTube Shorts [current month year]"
+Goal: Check whether a competitor has already made a Short on this specific angle.
+If a competitor's Short on this exact angle has 500K+ views → the angle is now consensus. Find the gap beneath it.
+If no competitor hit found → proceed.
+Log result: "COMPETITOR CHECK: [result] — [action taken]"
+
+COMPETITOR REFERENCE CHANNELS (check these first — all active in anime Shorts niche):
+- @OrewaShimo (Shimo.) — 200K subs | top Short 12M views
+- @AnimeUproar — established, long-form analysis + Shorts
+- @AnimeBallsDeep — Shorts-focused, character ranking format
+- @KitoSenpai — 673K subs, faceless Shorts format
+
+COMPETITOR DATA RULE — HARD LAW (user instruction June 12, 2026):
+Competitor research is for SIGNAL ONLY. Never for recreation.
+The question is never "what did they make" — it is "what does their performance tell us"
+about what format, topic, or hook structure the audience responds to right now.
+
+WHAT SIGNAL MEANS:
+  FORMAT SIGNAL: If LIST performs at 10M+ on a competitor → LIST is a viable format this week.
+  TOPIC SIGNAL: If One Piece is getting massive views → One Piece has active audience.
+  HOOK SIGNAL: If curiosity-gap titles are outperforming statement titles → use that structure.
+
+WHAT SIGNAL DOES NOT MEAN:
+  Do NOT recreate their video.
+  Do NOT use their angle.
+  Do NOT use their specific question or framing.
+  Do NOT make the same show + same format + same hook.
+  Their video already exists. The audience already saw it.
+  Making the same thing is not competition — it is redundancy.
+
+ORIGINALITY IS NON-NEGOTIABLE (user instruction):
+  Anime With Sebastian makes original content. Always.
+  Take the format signal. Build a completely different angle.
+  Take the topic signal. Find the gap the competitor didn’t go near.
+  Take the hook structure. Apply it to a different show, character, or claim.
+
+EXAMPLE — RIGHT:
+  Signal: Orewashimo's "Don't watch these anime with your parents" (7.6M) → curiosity-gap LIST is working.
+  Application: Original curiosity-gap LIST on a completely different angle — different show, different claim.
+
+EXAMPLE — WRONG:
+  "Don't watch these anime with your parents" already exists at 7.6M.
+  Making the same video = zero original value. HARD STOP.
+
+FORMAT SIGNAL FROM COMPETITOR DATA (as of June 2026):
+LIST and FACT_DROP with curiosity-gap titles are the highest-performing format type
+across the niche. Year-by-year framing is a proven viral hook structure.
+If SEARCH 7 confirms this is still trending → weight LIST/FACT_DROP in STEP 6 recommendation
+— but the angle and content must be fully original to AnimeWithSebastian.
+
+### STEP 4 — ADDITIONAL LAWS (added July 4, 2026 | renumbered v8.3 — original #100-104 reassigned)
+AFTER running the 8-search stack, apply these laws before angle selection:
+
+NOTE: Laws originally numbered #100-#104 in this block were renumbered in v8.3 because those
+numbers were reassigned to VO quality laws (Binary Closer, Search-First Title, Identity Closer,
+RESERVED, Angle Requirement). The content below is unchanged — only the law numbers are corrected.
+
+ANNOUNCED SHOW CONTENT LAW (formerly called Law #100 in this block):
+Any officially announced show (studio, streaming, or convention reveal) is a valid
+content target regardless of air date. New movies/seasons on blacklisted franchises
+are DISTINCT content targets — not blocked by prior angle blackout.
+HOLD LIST shows (Steel Ball Run, Kagurabachi) are FULLY blocked.
+
+PRE-PREMIERE SOURCE MATERIAL LAW (formerly called Law #101 in this block):
+For any show not yet airing, the VO must anchor on verified source material:
+(1) ARC BREAKDOWN citing chapter range, (2) WHAT TO EXPECT citing chapters,
+(3) MANGA VS ANIME citing panels, or (4) CHARACTER DEEP DIVE citing arc/volume.
+Do NOT speculate without a verified source. Pre-premiere pairs best with:
+SEASON_PREVIEW | MANGA_VS_ANIME | CHARACTER_DIVE | FACT_DROP | WRONG_TAKE
+
+CONVENTION ANNOUNCEMENT WINDOW LAW (formerly called Law #102 in this block):
+Anime Expo / Jump Festa / AnimeJapan / Anime NYC announcements = 24–48 hour
+PRIORITY window. Same urgency tier as premiere window. Flag all convention drops
+in SEARCH 1 before evaluating other shows.
+
+LAW #103 — VIDEO STYLE SELECTION LAW (Law #103 confirmed — matches current numbering):
+Format → Video Style mapping (research-backed):
+  WRONG_TAKE → (C) Anime Clips Only [Law #134 — Shorts = no face cam]
+  FACT_DROP / CHARACTER_DIVE / TRIVIA / ORIGIN_STORY → (D) Manga Panels + Face Cam Inset
+  SEASON_PREVIEW / MANGA_VS_ANIME → (B) Split Screen
+  HIDDEN_GEM / COMMENTARY → (C) Anime Clips Only [Law #134 — Shorts = no face cam]
+  NEW_ANIME_INTRO → (B) or (D)
+  TOP10/LIST → (E) Anime Clips Only or (C) Manga Panels
+Style selection must be included in every script package.
+
+LAW #104 — ANGLE REQUIREMENT LAW (Law #104 confirmed — matches current numbering):
+Every VO must open with a specific angle in the first 10 words. Approved angle types:
+REFRAME | PREDICTION | SOURCE MATERIAL REVEAL | WRONG TAKE CORRECTION | OVERLOOKED DETAIL
+A VO that opens without a clear angle fails Law #104. Rewrite the hook first.
+
+### STEP 5 — ACTIVE TRACTION AUDIT
+State: Show name, Traction Tier, Reasoning, Source URL.
+State: SEARCH 7 result — Niche format trending, Source URL.
+
+SEARCH 7B — LIVE HOOK TYPE RESEARCH (REQUIRED EVERY RUN — Law #52 enforced)
+Query: "YouTube Shorts best hook type engagement [current month] [current year]"
+Alt query if no results: "anime Shorts highest retention hook structure [current year]"
+
+Goal: Identify which hook type is CURRENTLY winning on Shorts — not from memory, not from a static list.
+The hook type changes as the platform evolves. Run this search every single run.
+
+Extract from results:
+  1. Which hook type ranks #1 by composite score (retention + CTR + engagement) right now
+  2. Which hook type ranks #2
+  3. Source URL + publication date
+
+Log result as:
+  HOOK TYPE RANKING (live — [date of search]):
+  #1: [type] — [metric that makes it #1] — Source: [URL] [date]
+  #2: [type] — [metric] — Source: [URL] [date]
+  Note: [any platform-specific finding relevant to anime niche]
+
+FALLBACK (only if search returns zero results after 2 attempts):
+  Use standing data: "#1 Pattern Interrupt (72.4% 30-sec retention — Increditors June 19 2026);
+  #2 Stat/Number Lead (+34% CTR — VIralHookAnalyzer June 8 2026)."
+  Log as: HOOK TYPE RANKING (fallback — live search returned no results)
+
+DO NOT ESCALATE if search returns no results — use fallback and continue.
+
+### STEP 6 — FORMAT RECOMMENDATION
+Based on SEARCH 5 (show-specific) + SEARCH 7 (niche-wide) results, recommend ONE of the 27 format types.
+For WATCH_RANK or SEASON_RANK: list all shows included, their placement, and one-line reason per placement.
+State: Recommended format, Why this format for this show tonight, Source that informed it, Alternative format.
+Competitor overlap check: Confirm SEARCH 8 found no competing angle. If found → note it and confirm angle is differentiated.
+
+### STEP 7 — RESEARCH NOTE
+State: Gap Category, Engagement Mechanic, Consensus Avoided, Source Verified, Gap Identified.
+
+### STEP 8 — FACT VERIFICATION BLOCK
+Every specific claim must be verified via live source before use.
+Claim types:
+  A — General character/show fact (1 search minimum)
+  B — Core claim (collapse test: if false, whole video falls apart) (2 searches minimum)
+  C — Year/timeline/number claim (1 search minimum)
+  D — Real-world connection claim (2 searches minimum)
+  E — Cross-show connection (2 searches minimum, one named source)
+  F — Anime vs manga boundary (cross-reference Law #53)
+  G — Show status (airing/upcoming/finished/streaming) — LAW #79 (source within 30 days)
+Any BLOCKED claim (unverified after 2 searches): DO NOT USE. Find replacement angle.
+Law #52: NEVER source factual claims from memory.
+
+LAW #78 — SOURCE DATE REQUIREMENT (added June 25, 2026):
+Every citation in this block MUST include its publication date.
+  Source published within 90 days → use freely.
+  Source published 91–180 days ago → flag: "[Source dated X — verify still current]"
+  Source published 180+ days ago → requires a SECOND current source to confirm.
+  If no second source found → claim is BLOCKED. Do not use.
+Missing source dates in the block = LAW #78 VIOLATION.
+
+LAW #79 — VO STATUS LOCK (added June 25, 2026):
+Any VO line that references show status (episode dropping, airing now, streaming now,
+finale coming, Season X upcoming) requires a TYPE G claim in this block.
+TYPE G source must be dated within 30 days. If source is 31+ days old → run a second
+current search to confirm status. If status cannot be confirmed within 30 days →
+REMOVE the time-sensitive line from the VO. Replace with a non-time-sensitive alternative.
+A VO with a status claim and no TYPE G entry = CANNOT SEND. LAW #79 VIOLATION.
+
+FACT VERIFICATION BLOCK FORMAT:
+  Claim: [exact claim from VO] — Type [A/B/C/D/E/F/G]
+  Source: [URL]
+  Source Date: [Month Year]
+  Status: VERIFIED ✓ / DATE-FLAGGED ⚠ / BLOCKED ✗
+OVERALL STATUS: PASS — all claims verified / HARD STOP — [claim] blocked
+
+### STEP 9 — DRAFT VO
+Draft VO must match the recommended format exactly.
+Creator rewrites in their own voice before posting — this is a starting point only.
+Opening line: drop viewer into the content immediately — claim before any setup.
+Closing line: land on a specific point, not a vague feeling.
+VO WORD COUNT: No hard cap (Law #111 update July 7, 2026 — Sebastian cuts what doesn't work). Write with everything the VO needs.
+  Law #138 (supersedes Law #131 for Shorts) — REQUIRED word count is DERIVED FROM the FIXED CapCut edit duration at the calibrated rate: required words = [fixed edit sec] × 3.3–3.6. The VO must be long enough to FILL the edit. It must NOT run short. Do NOT shorten the edit to fit a short VO.
+  Word targets by fixed edit duration: ~20 sec ≈ 66–72w | ~30 sec ≈ 100–108w (target ~104) | ~45 sec ≈ 148–162w. Max Short length 45 sec. (Long-form exempt — Law #136.)
+  Show the math: [fixed edit sec] × 3.3–3.6 = [required word range]. State this before writing the VO. If the draft is short, expand with substance (never filler) until it fills the edit.
+  Law #138: once the actual VO is rendered/recorded, verify final audio vs the fixed edit within ±0.25 sec — if mismatched, revise/re-record the VO; do NOT retime the established edit unless the user explicitly asks.
+No "bro" in any VO line — permanently banned.
+No "FOLLOW AND SUBSCRIBE" — banned. Use casual CTAs only.
+
+HOOK TYPE SELECTION (v2.0 — LIVE RESEARCH EVERY RUN — July 6, 2026):
+
+DO NOT use a static hook type. DO NOT default to contradiction every time.
+The winning hook type shifts as the platform evolves. Use SEARCH 7B to determine it fresh every run.
+
+SELECTION RULE:
+  1. Read the SEARCH 7B result from STEP 5.
+  2. Use the #1 ranked hook type from that live search as the default for today's VO.
+  3. If the show/angle cannot support the #1 type, drop to #2. Document why in the email.
+  4. NEVER default to contradiction/counter-claim without checking SEARCH 7B first.
+
+CONFIRM IN EMAIL (required — Block 6 Format Recommendation):
+  "Hook type used: [TYPE] — Source: [SEARCH 7B URL + date]"
+  If not using #1: "#1 not used because: [reason]. Using #2 instead."
+
+HOOK TYPE DEFINITIONS (reference — apply whichever SEARCH 7B identifies as #1 today):
+
+PATTERN INTERRUPT
+  First line violates the viewer's expectation of what this video will say.
+  Anime application: Start with the single most surprising fact or reframe nobody expects.
+  Example: "[Show] is not a [genre] story. It's a [reframe]."
+
+STAT/NUMBER LEAD
+  Lead with a specific, counterintuitive, or alarming number.
+  Anime application: "[Show] sold [X] copies before it got an anime."
+  Requires a verified number from the research stack — no estimates.
+
+CONTRADICTION/COUNTER-CLAIM
+  Challenge a widely-held fandom belief directly.
+  Best for WRONG_TAKE format. Drives comments. Use when angle is a direct rebuttal.
+
+CURIOSITY GAP
+  Opens a question the video answers — but doesn't answer immediately.
+  Best for loop behavior. Use for HIDDEN_GEM and CHARACTER_DIVE formats.
+
+QUESTION HOOK
+  Opens with a direct question the viewer mentally answers before the VO does.
+  Drives mental engagement. Use when the angle puts a decision in the viewer's head.
+
+FALLBACK (if SEARCH 7B returns nothing after 2 attempts):
+  Default order: Pattern Interrupt → Stat Lead → Contradiction → Curiosity Gap
+  Log: "Hook type: [chosen] — SEARCH 7B fallback (live search returned no results)"
+
+### STEP 10 — VO QUALITY CHECK (18 checks standard | 19 checks MVA/EM/ER/EVM)
+Based on: YouTubeNiches June 4 2026 (HYPOTHESIS — comments may be a strong algorithm signal; personality may drive sub conversion; neither verified as #1 on this channel)
+         viralhookanalyzer.com June 8 2026 (5,000 Shorts study — viral first cut at 0.9 sec median)
+
+CHECK 1 — HOOK DROPS IN IMMEDIATELY:
+1. Does the first line drop the viewer into the content immediately? YES / NO
+
+CHECK 2 — CLOSER LANDS:
+2. Does the closer land on a specific point, not a vague feeling? YES / NO
+
+CHECK 3 — FACT VERIFICATION:
+3. Are all facts in the VO confirmed in the Fact Verification Block? YES / NO
+
+CHECK 4 — FORMAT MATCH:
+4. Does the VO match the recommended format? YES / NO
+
+CHECK 5 — HOOK TENSION (Law #87 + Law #86 STRUCTURAL RULE — REQUIRED):
+5. Does the first line state or directly imply the point AND break the viewer's default assumption?
+   APPROVED structure: A statement that breaks what the viewer already believes about the show/character.
+   The point IS the tension. Hook must do both jobs in one line.
+   Example PASS: "Solo Leveling sold you a power fantasy." — breaks assumption + states the reframe immediately.
+   BANNED warmup openers: "okay so...", "I'm not gonna lie...", "everybody talks about...", "I went back and watched this..."
+   These delay the point. Delaying the point = lecturing = Law #86 FAIL.
+   BANNED: clean declarative statements that confirm what the viewer already believes.
+   First hard cut must land at or before 1.1 seconds.
+   If point is not present in first 2 lines = REVISE THE ANGLE, not just the line.
+
+VO CONVERSION AUDIT (Law #88 — REQUIRED):
+Check VO against 5 Conversion Triggers (source: verified 2026 data).
+Minimum 2 of 5 required. Target 3+. Missing 2+ = REVISE.
+
+  TRIGGER 1 — Re-Watch Confession
+    Definition: A line that signals this video rewards a second watch. Most powerful conversion signal.
+    Check: Does any line imply there is more to find on rewatch?
+    PRESENT: YES / NO
+
+  TRIGGER 2 — Specific Feeling Named
+    Definition: Names what the viewer already felt about this show/moment, but couldn't articulate.
+    Not a label ("sad", "epic") — a texture ("the kind of quiet that means something is wrong").
+    Check: Does the VO name a specific feeling the viewer recognizes?
+    PRESENT: YES / NO
+
+  TRIGGER 3 — Community Signal
+    Definition: A CTA tied to THIS video's emotional register — not a generic prompt.
+    Examples: "Who else rewatched this?" / "Am I wrong about this?" / "What did you think the first time?"
+    NOT ALLOWED: "Like and comment" / "What do you think?" (too generic to convert)
+    Check: Is the CTA specific to the angle/feeling of this VO?
+    PRESENT: YES / NO
+
+  TRIGGER 4 — Open Question Closer
+    Definition: Final line leaves something unresolved. Viewer MUST comment to resolve it.
+    Check: Does the last line close with an open question or a genuinely debatable claim?
+    PRESENT: YES / NO
+
+  TRIGGER 5 — Personality Signature
+    Definition: One line that could NOT be copy-pasted by any other channel. Sebastian's voice only.
+    Check: Is there one line in this VO that could only come from this creator?
+    PRESENT: YES / NO
+
+VO CONVERSION AUDIT RESULT:
+  TRIGGER 1 (Re-Watch Confession): YES / NO
+  TRIGGER 2 (Specific Feeling Named): YES / NO
+  TRIGGER 3 (Community Signal): YES / NO
+  TRIGGER 4 (Open Question Closer): YES / NO
+  TRIGGER 5 (Personality Signature): YES / NO
+  TOTAL TRIGGERS HIT: X/5
+  STATUS: PASS (≥2 triggers) / REVISE (0–1 triggers)
+
+CHECK 6 — COMMENT GENERATION SYSTEM (Law #89 + Law #100 — REQUIRED):
+Source: YouTubeNiches June 4 2026 + AIR Media-Tech June 18 2026 + channel analytics July 6 2026.
+Aspirational target (NOT a universal benchmark): ~0.3% comment-to-view ratio. Current channel average: 0.08 comments per 1,000 views (CRITICAL).
+All three parts required. Missing any one = system fails.
+
+  PART 1 — BINARY CLOSER (Law #100 — VO final line):
+    Type: BINARY_CHOICE — viewer must pick between TWO real options
+    Format enforced: "[Option A] or [Option B] — drop it."
+    Two real sides exist (fans actually hold both positions): YES / NO
+    One option is slightly provocative enough to spark disagreement: YES / NO
+    Specific to this video’s argument (not generic): YES / NO
+    BANNED pattern present (clean conclusion / restatement / generic instruction): YES / NO
+    STATUS: PASS / FAIL
+    BANNED: "What do you think?" / "Let me know in the comments" / restating the hook / open questions with no forced choice
+
+  PART 2 — CTA (1 line before closer in VO):
+    Present: YES / NO
+    Specific to this video’s emotional register: YES / NO
+    STATUS: PASS / FAIL
+    APPROVED: "If you watched this show, you already have an answer." / "Come fight me in the comments." / "Leave your take." (BANNED July 14 2026: "Drop it." / "Drop your take." — read as dismissal/confusing.)
+    BANNED: "Like and comment below." / "What do you think about this?"
+
+  PART 3 — PINNED COMMENT DRAFT (must appear in email):
+    Draft included: YES / NO
+    Format: POLARIZING_Q / MICRO_POLL / DEBATE_SEED / WRONG_ANSWER_TRAP
+    Adds something NOT in the VO: YES / NO
+    STATUS: PASS / FAIL
+    NOTE: Pin immediately after upload. Reply promptly to early comments (HYPOTHESIS — early replies MAY help reach; not a guaranteed algorithmic gain).
+
+COMMENT SYSTEM RESULT: PASS (all 3 parts pass) / FAIL (any part fails → rewrite before sending)
+
+CHECK 7 — FAN VOICE STANDARD (Law #92 — REQUIRED):
+Read the VO out loud. Ask: does this sound like a real anime fan talking to a friend, or like an essay about the show?
+BANNED voice patterns:
+  - Formal structures: "the thing that makes X is Y"
+  - Academic framing: "not as a tactic, as a reflex"
+  - Over-explaining what the audience already knows
+  - Any sentence that reads like a Wikipedia intro paragraph
+REQUIRED:
+  - Short punchy sentences. One hit at a time.
+  - At least one line that uses how fans actually talk about the show
+  - Stakes felt, not explained
+  - The closer sounds like something you'd say watching with a friend
+    Fan Voice Check: PASS / FAIL
+    If FAIL: rewrite the angle, not just the words. An essay angle produces essay voice.
+    STATUS: PASS / FAIL
+
+CHECK 8 — PREMIERE WINDOW CHECK (Law #91 — REQUIRED):
+Is this show in a PREMIERE WINDOW (confirmed air date within 14 days)?
+  YES → Confirm: is the video going out BEFORE the premiere? (required for discovery advantage)
+  NO → Confirm: is there a documented competitor gap justifying coverage now vs. a premiere window show?
+Active premiere windows checked: YES / NO
+  STATUS: PASS / FAIL
+
+CHECK 9 — MEDIA KIT SIGNAL (Law #94 — REQUIRED):
+Ask: if a brand manager saw this video alongside the last 5 on the channel, would they immediately understand what this channel is and who it reaches?
+  Content reinforces anime analysis identity: YES / NO
+  Content serves male 18–34 anime fan demographic: YES / NO
+  STATUS: PASS / FAIL
+
+CHECK 10 — TITLE + POST TEXT STANDARD (Law #95 + Law #97 + Law #101 — REQUIRED):
+YOUTUBE VIDEO TITLE:
+  EXACT show name leads title (as it appears in search): YES / NO
+  Broken assumption OR curiosity gap present: YES / NO
+  Three-Question Test: all three YES? YES / NO
+  Character count: [X] — within 55–70? YES / NO
+  NO hashtags in title? YES / NO
+  SEARCH TEST (Law #101): Would someone searching "[show name] episode [X]" or "[character name]" find this? YES / NO
+  FAIL if title is clever but unsearchable — rewrite: lead with show name + episode/character/event.
+TIKTOK POST TEXT:
+  Hook sentence in first 100 characters? YES / NO
+  Show name keyword in post text (not just hashtag)? YES / NO
+  Hashtag count: [X] — within 3–5? YES / NO
+  Hashtag pyramid correct (show + niche + angle + broad + FYP)? YES / NO
+FAIL ACTION: Rewrite YouTube title or TikTok post text before proceeding. Do not advance to STEP 11.
+  STATUS: PASS / FAIL
+
+CHECK 11 — MONETIZATION SCORE (Law #85 — REQUIRED):
+Score this video on three dimensions. Minimum 2 of 3 must score HIGH or MED.
+  Sub Conversion (does this earn a subscriber?): HIGH / MED / LOW
+  Brand Attractiveness (would Crunchyroll/manga brand want association?): HIGH / MED / LOW
+  Viral/Discovery (does this reach people who haven’t found the channel?): HIGH / MED / LOW
+  TOTAL HIGH+MED: [X] of 3
+  FAIL ACTION: If fewer than 2 HIGH/MED — BLOCKED. Reframe angle before proceeding.
+  STATUS: PASS / FAIL
+
+CHECK 12 — CONTENT LOOP ARCHITECTURE (Law #90 — REQUIRED):
+Check the last 2 sent videos (morning + evening, combined) against the loop pattern:
+  Loop pattern: Video 1 = Discovery Hook | Video 2 = Trust Build | Video 3 = Identity Signature
+  This video’s role in the loop: [Discovery Hook / Trust Build / Identity Signature]
+  Is this a continuation or a new loop? [CONTINUATION / NEW LOOP]
+  FAIL ACTION: If 3 consecutive unrelated videos exist — this video MUST reconnect before a new show.
+  STATUS: PASS / FAIL / N/A (first video in new loop)
+
+CHECK 12B — IDENTITY CLOSER LINE (Law #102 — REQUIRED):
+  VO contains one line that stakes creator identity (NOT a subscribe CTA): YES / NO
+  Line tells viewer what this channel is about and why to return: YES / NO
+  Line sounds natural in context (not tacked on at the end): YES / NO
+  APPROVED: "That’s exactly the kind of moment I make videos about." / "This is the stuff the recaps skip." / "If you caught that the first time, you already know why this show matters."
+  BANNED: "Subscribe if you enjoy this." / "Follow for more." / any explicit subscribe instruction.
+  STATUS: PASS / FAIL
+  Missing = CANNOT SEND.
+
+CHECK 12C — NO SETUP SENTENCES (Law #105 — REQUIRED):
+  Apply removal test to every VO sentence: remove it — does the VO read identically without it (same meaning, same momentum)?
+  Any sentence that passes the removal test is a setup sentence and must be cut.
+  BANNED: Any sentence whose only function is to prepare the viewer for what comes next.
+  FAIL EXAMPLES: "This show has been building to this moment." / "Before we get into it..." / "You've probably heard of this show."
+  PASS EXAMPLES: "Episode 13 skips the buildup entirely." / "Ivan shows up. No warning."
+  STATUS: PASS / FAIL
+  Fail = rewrite before send.
+
+CHECK 12D — ENERGY TEST (Law #106 — REQUIRED):
+  Label each VO sentence with its function: E (escalate) / C (contradict) / R (reveal) / P (plateau).
+  Any sentence labeled P (plateau) must be cut or replaced.
+  PLATEAU = sentence that restates or summarizes the prior sentence without adding new information.
+  BANNED PLATEAU EXAMPLES: "And that's what makes this moment so impactful." / "That's really what this show is all about." / "It all comes down to this."
+  List each sentence with its function code. Example: "Ivan shows up in episode 13. [R]" / "No warning. [C]" / "That's it. [E]"
+  STATUS: PASS / FAIL
+  Plateau sentence present = CANNOT SEND.
+
+CHECK 12E — PACING CHECK (Law #107 — REQUIRED):
+  List word count of the THREE shortest sentences in the VO.
+  Shortest sentence must be 5 words or fewer.
+  If all sentences are 6+ words: rhythm is too even — rewrite required.
+  TARGET: At least 3:1 ratio between shortest and longest sentence.
+  Shortest sentence word count: ___
+  STATUS: PASS / FAIL
+  All sentences 6+ words = CANNOT SEND.
+
+CHECK 12F — CLOSER FAN DIVIDE (Law #108 — REQUIRED):
+  State the exact fan divide from research that the closer targets.
+  Required declaration: "CLOSER FAN DIVIDE: [divide] — Side A: [quote/paraphrase] vs Side B: [quote/paraphrase]. Source: [research item + date]."
+  If the agent cannot name and source the fan divide: closer is fictional. Rewrite.
+  STATUS: PASS / FAIL
+  Missing declaration or unsourced divide = CANNOT SEND.
+
+CHECK 12G — PINNED COMMENT POSITION (Law #109 — REQUIRED):
+  State which structure was used:
+    Structure 1 (GO HARDER): Takes definitive side on closer's binary AND adds one specific detail (frame, chapter, line) not in the VO.
+    Structure 2 (PIVOT): Introduces a different angle entirely — a new debate, not the closer continued.
+  BANNED: Pinned comment that restates the closer as a question or picks one side with no new information.
+  Confirm: at least one specific detail (frame number, chapter, dialogue line) present in pinned comment that is NOT in the VO.
+  STATUS: PASS / FAIL
+  Closer restated without new info = CANNOT SEND.
+
+CHECK 12H — ALTITUDE CHECK (Law #110 — REQUIRED):
+  Read every VO sentence. Any sentence that characterizes the show/character in the abstract ("he's a study in X", "it's about Y") rather than stating a specific moment = rewrite required.
+  Run the Swap Test (Law #113): swap show name in each sentence. Any sentence that still reads true with a different anime swapped in = cut or rewrite with a concrete anchor (name, episode, chapter, date, studio).
+  Scan for banned words (Law #111): delve, dive into, elevate, seamless, truly, arguably, iconic, masterpiece, peak fiction, cinema, "a study in," "a meditation on," "at its core," "what it means to," "the entire point," "pays off or falls apart," "here's the thing," "let's be honest," "at the end of the day," "in today's video."
+  Scan for banned structures (Law #111): "It's not X — it's Y" contrast, opening with "For those who don't know", symmetrical hedging, rhetorical question in first 3 sentences, 3 parallel adjectives in a row.
+  STATUS: PASS / FAIL
+  Any banned word or structure found = CANNOT SEND.
+
+CHECK 12I — SPINE STRUCTURE (Law #118 — REQUIRED):
+  Hook word count: [X] words — must be 12 or under. Contains top search phrase verbatim. Statement, not a question.
+  Midpoint receipt confirmed: specific frame, moment, number, chapter, or date lands at midpoint (not opening, not closer).
+  Identity line present: one line staking Sebastian's taste (e.g. "This is exactly the kind of [X] I pay attention to"). Not a CTA.
+  Open loop present: forward promise tied to dated event from research — "When [episode/date] drops, I'm covering [specific thing]."
+  Loop pair: first line and last line printed together — do they collide or reframe? YES / NO
+  STATUS: PASS / FAIL
+  Missing any spine element = CANNOT SEND.
+
+CHECK 12J — EIGHT DELIVERABLES (Law #120 — REQUIRED):
+  Confirm all 8 are present in the package:
+  [ ] 1. THE CLAIM — one sentence before the VO
+  [ ] 2. VO SCRIPT — total word count + hook word count noted + midpoint receipt marked
+  [ ] 3. LOOP PAIR — first and last line printed
+  [ ] 4. CLOSER DECLARATION — type (A/B/C) + fan divide sourced from research
+  [ ] 5. YOUTUBE TITLE — show name first as typed in search, under 60 characters
+  [ ] 6. TIKTOK CAPTION — one line, search phrase included, 3–5 hashtags max, at least one show-specific hashtag
+  [ ] 7. PINNED COMMENT — harder position on different point, structure declared (1 or 2), one specific detail (frame/chapter/line) not in VO
+  [ ] 8. RECEIPTS — research item cited for each major VO claim
+  STATUS: PASS / FAIL
+  Any missing deliverable = CANNOT SEND.
+
+CHECK 13 — FORMAT GATE (MVA, EM, ER, EVM formats ONLY — skip for all others):
+  MANGA_VS_ANIME: Is the specific scene difference verified via live source (not memory)? YES / NO
+  EPISODE_MOMENT: Did the episode air within the last 7 days? YES / NO
+  EPISODE_REVIEW: Did the episode air within the last 5 days? YES / NO | EPISODE_MOMENT already sent for this episode? YES (blocked) / NO (clear)
+  EPISODE_VS_MANGA: Did the episode air within the last 5 days? YES / NO | Manga source confirmed via live source? YES / NO | EPISODE_MOMENT already sent for this episode? YES (blocked) / NO (clear)
+  FAIL on any gate = hold package until next eligible slot
+  STATUS: PASS / FAIL / N/A (non-MVA/EM/ER/EVM formats)
+
+OVERALL STEP 10 RESULT: X/21 (standard) or X/22 (MVA/EM/ER/EVM) — PASS (16–21 standard / 17–22 MVA/EM/ER/EVM) or REVISE (below threshold)
+CHECK COUNT: Checks 1–12J = 21 standard. Add CHECK 13 for MVA/EM/ER/EVM = 22 total.
+
+### STEP 11 — CLIP INSTRUCTIONS (LAW #77 — REQUIRED)
+State at top: FIXED CAPCUT EDIT DURATION: ~XX sec (this is the CONTROLLING input — the VO fills it; Law #138). Max Short length 45 sec.
+The clip plan is built to the FIXED CapCut edit duration. The VO word count is DERIVED from that duration: required words = [fixed edit sec] × 3.3–3.6.
+Word targets by fixed edit duration (Law #138 calibrated 3.3–3.6 w/s): ~20 sec ≈ 66–72w | ~30 sec ≈ 100–108w (target ~104) | ~45 sec ≈ 148–162w. If the VO is short, expand with substance (never filler); do NOT shorten the edit. (Long-form exempt — Law #136.)
+
+### STEP 11 — LAW #138 VO-TO-FIXED-EDIT FILL (SHORTS — corrected July 15, 2026)
+The FIXED CapCut edit duration is the CONTROLLING input. The VO must FILL that fixed edit at the calibrated rate 3.3–3.6 w/s. Compute the REQUIRED WORD RANGE = [fixed edit sec] × 3.3–3.6 and check the actual VO word count against it. If the VO is too SHORT to fill the edit, EXPAND with substance (analysis/receipts/contrast/stakes/identity/engagement setup) — NEVER filler, repeated phrasing, padded pauses, or slow unnatural delivery. Do NOT shorten the CapCut edit to fit a short VO. An intentional beat is part of the fixed edit and does NOT excuse a short VO unless explicitly scripted. Once the actual VO is rendered/recorded, verify final audio vs the fixed edit within ±0.25 sec — if mismatched, REVISE/RE-RECORD the VO; do NOT retime the established edit unless the user explicitly asks. No unintended dead air, frozen padding, held outro, or empty tail. Micro-pauses 0.2–0.4s allowed. ONE deliberate reaction/key-shot beat ≤0.5s allowed ONLY with clear visual purpose + continuous music/ambience/sound design — labeled INTENTIONAL BEAT here. Silence/padding ≥1.0s PROHIBITED. Sound bed stays active under any intentional pause. Keep the "Leave your take" CTA and loop; final loop line connects straight into the opening — no empty tail.
+Emit the LAW #138 VO-TO-FIXED-EDIT FILL compliance line in the final package:
+  CAPCUT TARGET DURATION:   [fixed edit seconds]
+  CALIBRATED RATE:          3.3–3.6 w/s (midpoint ~3.43)
+  REQUIRED WORD RANGE:      [fixed edit sec × 3.3–3.6 = low–high]
+  ACTUAL VO WORDS:          [count]
+  ESTIMATED VO DURATION RANGE: [actual words ÷ 3.6 to ÷ 3.3 = low–high sec]
+  DELTA TO TARGET:          [estimated VO duration − fixed edit, signed sec]
+  STATUS: PASS (VO words within required range / fills the edit, no silence ≥1s, loop connects) | BLOCKED (VO too short — expand with substance and re-check)
+A 30-sec edit with only 72 words BLOCKS as too short — expand to ~104 words.
+Law #82: NO brand stamp. CUT 1 = first real content clip. Most cuts 3–8 sec. No single cut over 8 sec.
+4 cuts minimum. For each cut:
+- Scene description and episode reference
+- Why this frame (visual hook, contrast, confirmation)
+- Duration: X sec (REQUIRED on every cut — missing = LAW #77 VIOLATION)
+- Content ID Protection: Audio muted + VO only, Speed altered if needed, Caption overlay
+Caption Spec: Font Anton | ALL CAPS | White fill | Black outline | Size 15 | Outline 3-4
+Position: BOTTOM 60-70% screen height
+Highlight: ONE word or short phrase per line in Orange #FF6B00
+Timing: word-by-word
+Law #82: CUT 1 = first real content clip. NO brand stamp. NO intro graphic.
+KEY SHOT — CENTRAL QUESTION overlay: center frame, size 18-20
+
+### STEP 11A [Law #99] — RECOMMENDED POST TIME (REQUIRED IN EVERY EMAIL)
+Law #99: Every email MUST include this block. Missing = CANNOT SEND.
+YouTube Shorts and TikTok MUST each have their own separate line with their own time.
+Combining both into one line = LAW #99 VIOLATION.
+All times in Eastern Time (ET) — channel is Miami, FL.
+
+Step 1: Identify the day of the week from the post_date.
+Step 2: Look up the correct post time from EACH platform table below.
+Step 3: Write the required email block with both lines filled in separately.
+
+━━━ YOUTUBE SHORTS TABLE (ET) ━━━
+Source: Buffer 1.8M Shorts (May 2026) + SocialPilot 301k+ study + Schedulala 2026 | Post 60 min before peak
+  MONDAY    → Post at: 6:30 PM ET | Peak: 7–8 PM ET
+  TUESDAY   → Post at: 6:30 PM ET | Peak: 7–8 PM ET
+  WEDNESDAY → Post at: 5:30 PM ET | Peak: 6–7 PM ET
+  THURSDAY  → Post at: 5:30 PM ET | Peak: 6–7 PM ET
+  FRIDAY ★  → Post at: 3:00–3:30 PM ET | Peak: 4–7 PM ET  ← STRONGEST Shorts day of week (Buffer #1)
+  SATURDAY  → Post at: 6:00 PM ET | Peak: 7 PM ET  (Alt morning: 9:30 AM ET | Peak: 11 AM ET)
+  SUNDAY    → Post at: 4:00 PM ET | Peak: 5–8 PM ET
+
+━━━ TIKTOK TABLE (ET) ━━━
+Source: Buffer 7.1M posts (May 2026) + Sprout Social + SendOwl 2026 | Post 30–60 min before peak
+  MONDAY    → Post at: 7:00–7:30 PM ET | Peak: 8 PM ET
+  TUESDAY   → Post at: 7:00–7:30 PM ET | Peak: 8 PM ET
+  WEDNESDAY → Post at: 6:30–7:00 PM ET | Peak: 7–8 PM ET
+  THURSDAY  → Post at: 7:00 PM ET | Peak: 8 PM ET
+  FRIDAY    → Post at: 5:00–5:30 PM ET | Peak: 6 PM ET
+  SATURDAY  → Post at: 5:30–6:00 PM ET | Peak: 6–7 PM ET
+  SUNDAY ★  → Post at: 7:30 AM ET | Peak: 8–9 AM ET  ← Buffer #1 global TikTok slot
+              (Alt evening: 4:00–4:30 PM ET | Peak: 5–8 PM ET)
+
+Required format in email:
+━━━ RECOMMENDED POST TIME ━━━
+Post Date: [Day of week, full date]
+YouTube Shorts — post at [time] ET | Peak: [time] ET | Source: Buffer 1.8M Shorts
+TikTok — post at [time] ET | Peak: [time] ET | Source: Buffer/Metricool 7.1M+ posts
+Rule: Post before peak so the algorithm has runway before your audience arrives.
+
+### STEP 11B [Law #80 + Law #97] — THREE CAPTION BLOCKS (ALL REQUIRED IN EVERY EMAIL)
+Law #97: Three separate blocks required. Use EXACTLY these headers — no variation, no combining.
+If Sebastian cannot find the on-screen text at a glance = the email failed. CANNOT SEND.
+
+━━━ ON-SCREEN CAPTION TEXT ━━━
+BREAK THE VO BY CUT — label every cut number before its caption lines.
+Each cut's caption lines must map to the clip listed in STEP 11 (same cut number, same clip).
+Max 2 caption lines visible on screen at once. Max 3 words per caption segment.
+Timing: word-by-word. Orange highlight on the ONE word or phrase that carries the most weight per line.
+
+CAUTION — DO NOT MAKE CAPTIONS SOUND AI:
+Caption lines are NOT a dry subtitle dump. They are the voice of the video.
+Every line must sound like something a person would actually say — not generated text.
+Apply the same laws the VO follows:
+  Law #86: Only write it if it is WORTH saying. If the word does not add tension, weight, or meaning — cut it.
+  Law #87: The first caption line on CUT 1 must carry the same hook tension as the VO opener.
+           It breaks an assumption. It does not ease the viewer in.
+  Law #92: Fan voice standard. Write for someone who has seen the show.
+           Do not over-explain. Do not state what is already on screen.
+If the caption lines sound like they were auto-generated from a script — rewrite them.
+
+FORMAT (required):
+--- CUT 1 ---
+[word] [ORANGE: word] /
+[word word] /
+(continue word-by-word for all VO lines that fall on this cut)
+
+--- CUT 2 ---
+[word] [ORANGE: word] /
+[word word] /
+(continue)
+
+--- CUT 3 ---
+(continue for every cut in the edit order)
+
+Note: CUT 1 also carries the SERIES NAME STAMP overlay (top of frame, 2-3 sec) —
+mark it in this block as: [SERIES STAMP: SHOW NAME — top frame, 2.5s]
+Key Shot cut also carries the CENTRAL QUESTION overlay —
+mark it as: [CENTRAL QUESTION: “[3-6 word question]” — center frame, size 18-20, full cut duration]
+Missing = CANNOT SEND.
+
+━━━ ON-SCREEN CAPTION SPEC ━━━
+Font: Anton | ALL CAPS | White fill | Black outline | Size 15 | Outline weight 3-4
+Position: Bottom 60-70% screen height
+Highlight: ONE word or short phrase per line in Orange #FF6B00
+Timing: Word-by-word — each word appears alone or in a group of 2–3 MAX
+Max 2 lines visible simultaneously on screen at any point
+Key Shot (KEY SHOT cut): 1 caption layer only — remove subtitle layer, keep CENTRAL QUESTION overlay
+Series name stamp: Anton | ALL CAPS | same caption style | top of frame | CUT 1 only | 2-3 sec
+Central question overlay: Anton | ALL CAPS | White | Black outline | Size 18-20 | center frame
+Missing = CANNOT SEND.
+
+[PINNED COMMENT goes in STEP 13 — not here. Keep these blocks separate.]
+
+### STEP 12 — VIDEO TITLE + POST TEXT (LAW #95 + Law #97 — REQUIRED)
+These are TWO different things. Label them exactly as shown below. Do not combine.
+
+━━━ YOUTUBE VIDEO TITLE ━━━
+Format: [Show Name]: [Broken Assumption or Curiosity Hook]
+Show name in first 50 chars | 55–70 chars total | Title Case | NO hashtags
+Backup YouTube title (also labeled: YOUTUBE VIDEO TITLE — BACKUP)
+Missing = CANNOT SEND.
+
+━━━ TIKTOK POST TEXT ━━━
+Hook sentence in first 100 chars + show name in text body + 3–5 hashtags pyramid
+This is the TikTok description field — NOT on-screen text.
+Missing = CANNOT SEND.
+
+VIOLATION: One generic title for both platforms = LAW #76 VIOLATION | Hashtags in YouTube title = LAW #95 VIOLATION | Combining YouTube title and TikTok post text = LAW #97 VIOLATION
+
+### STEP 13 — PINNED COMMENT (Law #89 + Law #97 — REQUIRED)
+━━━ PINNED COMMENT ━━━
+[This is NOT on-screen text. This is posted on YouTube/TikTok immediately after upload.]
+Must NOT restate the VO. Must ADD a second angle, harder question, or direct challenge.
+Choose one format:
+  POLARIZING_Q: Harder version of the closer. "I’ll start: [Sebastian’s take]. Now come prove me wrong."
+  MICRO_POLL: A vs B framing. Viewer answers in one word. "Team [X] or Team [Y] — no fence-sitting."
+  DEBATE_SEED: Pin a counterargument to the video’s main claim. Forces audience to pick a side.
+  WRONG_ANSWER_TRAP: State something slightly off. Anime audiences correct immediately. Max once per 8–10 videos.
+Post pinned comment immediately after upload. Reply promptly to early comments (HYPOTHESIS — early replies MAY help reach; not a guaranteed algorithmic gain).
+BINARY CLOSER still required in VO (STEP 10 Check 6). Pinned comment is the follow-through, not a replacement.
+
+### STEP 14 — HASHTAGS (LAW #95 + LAW #81 — PLATFORM SPLIT REQUIRED)
+LAW #95 + LAW #81 — TITLE & HASHTAG LIMITS (ENFORCED)
+YOUTUBE: NO hashtags in title. Format: [Show Name]: [Broken Assumption or Curiosity Hook] | Show name in first 50 chars | 55–70 chars total
+TIKTOK: 3-5 hashtags max | Pyramid: show tag + #animeshorts + angle tag + #anime + #FYP | Hook sentence first 100 chars + show name in post text body
+TIKTOK (in post text, max 5): 1 mega tag (#anime) + 1-2 mid tags + 1 niche show tag
+BANNED: #HeroOrVillain, #Shorts, #AnimeTikTok, any series slot tag
+VIOLATION: YouTube hashtags in title = LAW #95 VIOLATION | Hashtags without platform label = LAW #81 VIOLATION
+
+### STEP 15 — CONTENT ID PROTECTION AUDIT
+Check every clip. Each must have at minimum: audio muted + VO only.
+Zero-transformation clips: NOT ALLOWED.
+
+### STEP 16 — CHANNEL IDENTITY AUDIT
+Is this for people who think about anime after the episode ends?
+Does it avoid the three failures?
+  1. Correct take nobody needed (affirms consensus without adding anything)
+  2. Reaction with no person (emotion without POV)
+  3. Clean conclusion (wraps up — leaves nothing to argue about)
+
+### STEP 17 — SEARCH CONTENT BALANCE CHECK
+Slot: EVENING (TRENDING-RANKED)
+Show must have active traction confirmed in SEARCH 1-2.
+Format must match traction data from SEARCH 5 (show-specific) + SEARCH 7 (niche-wide).
+Competitor angle check confirmed clean in SEARCH 8.
+
+================================================================================
+EMAIL ASSEMBLY — 15 BLOCKS (in this exact order)
+================================================================================
+1. Subject line
+2. Research Stack (all 8 searches with findings)
+3. Active Traction Audit
+4. Research Note
+5. Fact Verification Block
+6. Format Recommendation
+7. Draft VO
+8. VO Quality Check (12-point — Core Checks 1–10 + Monetization Score + Content Loop result X/12)
+8B. VO CONVERSION AUDIT BLOCK (REQUIRED — separate block in email body)
+    Format:
+    ─── VO CONVERSION AUDIT ───
+    TRIGGER 1 (Re-Watch Confession): YES / NO
+    TRIGGER 2 (Specific Feeling Named): YES / NO
+    TRIGGER 3 (Community Signal): YES / NO
+    TRIGGER 4 (Open Question Closer): YES / NO
+    TRIGGER 5 (Personality Signature): YES / NO
+    TRIGGERS HIT: X/5 | STATUS: PASS / REVISE
+    ─────────────────────────
+    Missing block = CANNOT SEND (Law #88).
+9. Clip Instructions
+9B. On-Screen Caption Text (word-by-word VO with [ORANGE] markers — for CapCut)
+9C. On-Screen Caption Spec (font/size/color/position — for CapCut)
+10. YouTube Video Title + TikTok Post Text (two separate labeled blocks — Law #97)
+11. Pinned Comment (post to YouTube/TikTok after upload — NOT on-screen text)
+12. Hashtags
+13. Content ID Protection Audit
+14. Channel Identity Audit
+15. Search Content Balance Check
+
+Send to: hero_or_villain@outlook.com ONLY
+Subject format: TOMORROW | EVENING | [Show] | [Post Date] | [Title]
+
+================================================================================
+POST-SEND LOG — append to /home/user/workspace/sent_scripts_log.json
+================================================================================
+Fields: date_sent, post_date, slot, show, angle, format_type, format_reason,
+        title, traction_tier, gap_type, fact_count, vo_draft_included, status
+Post time: 7:00 PM ET
+
+ATOMIC STATE + RUN SUMMARY (write ONLY after the email is confirmed sent):
+Append the send event as ONE JSON line to cron_tracking/sent_scripts_events.jsonl
+(merge-safe), and update sent_scripts_log.json in the repo tree (append one entry —
+do NOT copy the workspace file over the tree). Then write state + run summary
+ATOMICALLY (temp file + rename):
+  D=/home/user/workspace/cron_tracking/57a3c92e
+  printf '%s' "$STATE_JSON"   > "$D/state.json.tmp"   && mv -f "$D/state.json.tmp"   "$D/state.json"
+  printf '%s' "$SUMMARY_JSON" > "$D/run_summary_latest.json.tmp" && mv -f "$D/run_summary_latest.json.tmp" "$D/run_summary_latest.json"
+run_summary_latest.json = {"cron":"57a3c92e","run_ts":"[ISO8601]","status":"success",
+  "email_sent":true,"log_appended":true,"git_pushed":true|false,"error":null}.
+ON ANY BLOCKER (email failed or hard stop): immediately write run_summary_latest.json
+atomically with status:"failed" and the error — NEVER leave a stale "success" summary.
+
+================================================================================
+GITHUB PUSH — RUN AFTER LOG IS UPDATED
+================================================================================
+After appending to sent_scripts_log.json and updating cron_tracking state,
+push all changed files back to GitHub so the next session starts fresh.
+
+Operate ONLY in the repo working tree. Pull --rebase BEFORE staging. Never reset --hard.
+Append the send event to the append-only ledger cron_tracking/sent_scripts_events.jsonl
+(one JSON line), and edit sent_scripts_log.json IN THE TREE (read tree copy, append one
+entry, write) — never copy the workspace file over the tree copy.
+
+Run via bash (api_credentials=["github"]):
+  cd /home/user/workspace/repo || { echo "NO REPO TREE"; exit 1; }
+  git config user.email "hero_or_villain@outlook.com"
+  git config user.name "Anime With Sebastian"
+  git fetch origin 2>&1 | tail -2
+  git pull --rebase origin main 2>&1 | tail -3
+  git add cron_tracking/sent_scripts_events.jsonl sent_scripts_log.json cron_tracking/57a3c92e/state.json
+  git commit -m "cron 57a3c92e — [Show] [Date] evening sent"
+  git push origin HEAD:main 2>&1 | tail -3
+
+If push is rejected (non-fast-forward) — resolve by rebasing, NEVER reset --hard:
+  git pull --rebase origin main 2>&1 | tail -5
+  # append-only JSONL replays with no conflict; if the legacy array conflicts, keep BOTH sides' entries
+  git add -A && git rebase --continue 2>&1 | tail -3
+  git push origin HEAD:main 2>&1 | tail -3
+  If it STILL fails: save error to cron_tracking/57a3c92e/git_push_error_[date].txt and stop.
+  Parent agent will resolve on next session. Email was already sent — never block on git,
+  but never record a git failure as a git success.
+
+================================================================================
+END OF EVENING RUNTIME v8.7
+================================================================================

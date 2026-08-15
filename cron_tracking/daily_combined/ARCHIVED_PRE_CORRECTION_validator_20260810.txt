@@ -1,0 +1,174 @@
+ARCHIVED — PRE-CORRECTION DRAFT. This validator run checked the ORIGINAL daily-cron manifest before correction (same 01:15:15 UTC batch as the archived pre-correction email bodies); it does NOT reflect the real, final, post-correction packages. See CORRECTION_TO_CORRECTION_20260810_rezero_trailer_source.md and CORRECTION_TO_CORRECTION_FULLSCRIPT_20260810_love_unseen.md for the actual sent/validated-at-send content.
+
+DUAL-PACKAGE PREFLIGHT VALIDATION
+========================================
+[PASS] recipient is exactly correct
+[PASS] exactly two packages exist, OR exactly one with a non-empty single_package_reason
+[PASS] shared batch_id present
+[PASS] distinct package_id per package
+[PASS] one MORNING and one EVENING slot
+[PASS] distinct shows (no duplicate)
+[PASS] distinct formats (no duplicate)
+[PASS] distinct published hooks (no duplicate Short)
+[PASS] distinct YouTube titles across the two packages
+[PASS] distinct TikTok titles across the two packages
+[PASS] [morning] format_type is one of the controlled tokens
+[PASS] [morning] capcut_target_sec is numeric and within 20-180s
+[PASS] [morning] vo_word_count matches VO text
+[PASS] [morning] VO within 150-162 words
+[PASS] [morning] CTA line is exactly 'Leave your take.'
+[PASS] [morning] question_line is a question
+[PASS] [morning] question immediately followed by 'Leave your take.' in VO
+[PASS] [morning] exact CTA phrase present in VO
+[PASS] [morning] onscreen_cta_start_sec present
+[PASS] [morning] onscreen_cta_start_sec within the closing 6.8s of the 45s edit
+[PASS] [morning] opening_sentence present
+[PASS] [morning] opening_sentence is the VO's exact first sentence
+[PASS] [morning] face flag is true (face-cam split-screen is the required default format)
+[PASS] [morning] split_screen flag is true (face-cam split-screen is the required default format)
+[PASS] [morning] video_style declares the face-cam split-screen format
+[PASS] [morning] clip plan is non-empty (clips present)
+[PASS] [morning] capcut_target_sec == 45
+[PASS] [morning] total_clip_time_sec == 45
+[PASS] [morning] each clip has duration_sec + timeline_start_sec + timeline_end_sec
+[PASS] [morning] each clip duration_sec is positive
+[PASS] [morning] each clip: timeline_end_sec - timeline_start_sec == duration_sec
+[PASS] [morning] clip timeline is contiguous 0->45s (no gaps/overlaps)
+[PASS] [morning] final clip ends at 45s
+[PASS] [morning] sum of clip durations == capcut_target_sec == 45
+[PASS] [morning] each clip has scene_verified (bool) set (Law #73)
+[PASS] [morning] verification_source_url present wherever scene_verified is true (Law #73)
+[PASS] [morning] manga_reference or verification_note present wherever scene_verified is false (Law #73 / F20)
+[PASS] [morning] claim_vs_source_check present and well-formed wherever scene_verified is true (Law #73 UPDATE 4)
+[PASS] [morning] no clip is scene_verified=true with claim_vs_source_check.match=false (Law #73 UPDATE 4)
+[PASS] [morning] clip_locate present and well-formed wherever scene_verified is true (Law #73 UPDATE 5)
+[PASS] [morning] clip_locate episode number does not contradict claim_vs_source_check when both state one (Law #73 UPDATE 5)
+[PASS] [morning] clip_descriptions surfaces clip_locate season/episode for every verified clip (Law #73 UPDATE 6)
+[PASS] [morning] clip_plan_needs_manga_source is boolean when present (Law #73)
+[PASS] [morning] clip_plan_needs_release_delay is boolean when present (Law #73 3B)
+[PASS] [morning] required section: YouTube title
+[PASS] [morning] required section: TikTok post text
+[PASS] [morning] required section: captions
+[PASS] [morning] required section: clip descriptions
+[PASS] [morning] required section: pinned comment
+[PASS] [morning] >=2 credible live sources (url+date each)
+[PASS] [morning] post_times is an object with youtube/tiktok keys
+[PASS] [morning] separate YouTube + TikTok post-time lines
+[PASS] [morning] blackout_conflict input present and clear
+[PASS] [morning] recent_send_conflict input present and clear
+[PASS] [morning] hook_line present (required field, no silent fallback to opening_sentence)
+[PASS] [morning] assumption-breaking hook present
+[PASS] [morning] CTA not a banned phrase
+[PASS] [morning] VO contains no banned word 'bro'
+[PASS] [morning] content_type is 'short' (Shorts pipeline only)
+[PASS] [morning] hook_onscreen_text present (on-screen break in first second)
+[PASS] [morning] hook_first_second attested true
+[PASS] [morning] isolation_test_pass attested true (Law #144.1)
+[PASS] [morning] hook_line equals opening_sentence (break spoken first)
+[PASS] [morning] hook_family present (attribution)
+[PASS] [morning] exactly 2 internal hook_candidates (single-variant experiment)
+[PASS] [morning] the two hook_candidates are distinct
+[PASS] [morning] selected_hook_index selects one of the two candidates
+[PASS] [morning] published hook_line matches the selected candidate (publish ONE)
+[PASS] [morning] topic_class is 'timely' or 'evergreen'
+[PASS] [morning] timely topic declares >=1 valid topic_signal
+[PASS] [morning] funnel_status is standalone|teaser|flagship_followup
+[PASS] [morning] YouTube title has no hashtags
+[PASS] [morning] YouTube title within 60 chars
+[PASS] [morning] show search keyword appears in title
+[PASS] [morning] YouTube title is distinct from the published hook line
+[PASS] [morning] TikTok title present (distinct tiktok_title field)
+[PASS] [morning] TikTok title has no hashtags
+[PASS] [morning] TikTok title within 55 chars
+[PASS] [morning] TikTok title is distinct from the published hook line
+[PASS] [morning] YouTube and TikTok titles are distinct
+[PASS] [morning] semantic_qa audit present (self-audit before return)
+[PASS] [morning] semantic_qa.audited_before_return attested true
+[PASS] [morning] semantic_qa.checks all attested true (vo_word_count, cta_adjacency, title_search, blackout_recent_conflicts, clip_timing_tiling, hook_claim_coverage, numeric_cross_check, source_content_verification, law_149_redundancy_check, ai_slop_pattern_check)
+[PASS] [morning] semantic_qa.claim_source_matrix present with >=1 core claim (each core claim tagged with a Law #58 claim_type)
+[PASS] [morning] every core claim cites a listed dated source
+[PASS] [morning] no core claim relies solely on Wikipedia/MAL/Fandom
+[PASS] [morning] Law #58 high-risk claims (type B/E) cite >=2 listed sources incl. >=1 named/non-encyclopedic
+[PASS] [morning] hook_line/opening_sentence's claim is its own sourced core matrix entry (anchors_claim='hook')
+[PASS] [evening] format_type is one of the controlled tokens
+[PASS] [evening] capcut_target_sec is numeric and within 20-180s
+[PASS] [evening] vo_word_count matches VO text
+[PASS] [evening] VO within 150-162 words
+[PASS] [evening] CTA line is exactly 'Leave your take.'
+[PASS] [evening] question_line is a question
+[PASS] [evening] question immediately followed by 'Leave your take.' in VO
+[PASS] [evening] exact CTA phrase present in VO
+[PASS] [evening] onscreen_cta_start_sec present
+[PASS] [evening] onscreen_cta_start_sec within the closing 6.8s of the 45s edit
+[PASS] [evening] opening_sentence present
+[PASS] [evening] opening_sentence is the VO's exact first sentence
+[PASS] [evening] face flag is true (face-cam split-screen is the required default format)
+[PASS] [evening] split_screen flag is true (face-cam split-screen is the required default format)
+[PASS] [evening] video_style declares the face-cam split-screen format
+[PASS] [evening] clip plan is non-empty (clips present)
+[PASS] [evening] capcut_target_sec == 45
+[PASS] [evening] total_clip_time_sec == 45
+[PASS] [evening] each clip has duration_sec + timeline_start_sec + timeline_end_sec
+[PASS] [evening] each clip duration_sec is positive
+[PASS] [evening] each clip: timeline_end_sec - timeline_start_sec == duration_sec
+[PASS] [evening] clip timeline is contiguous 0->45s (no gaps/overlaps)
+[PASS] [evening] final clip ends at 45s
+[PASS] [evening] sum of clip durations == capcut_target_sec == 45
+[PASS] [evening] each clip has scene_verified (bool) set (Law #73)
+[PASS] [evening] verification_source_url present wherever scene_verified is true (Law #73)
+[PASS] [evening] manga_reference or verification_note present wherever scene_verified is false (Law #73 / F20)
+[PASS] [evening] claim_vs_source_check present and well-formed wherever scene_verified is true (Law #73 UPDATE 4)
+[PASS] [evening] no clip is scene_verified=true with claim_vs_source_check.match=false (Law #73 UPDATE 4)
+[PASS] [evening] clip_locate present and well-formed wherever scene_verified is true (Law #73 UPDATE 5)
+[PASS] [evening] clip_locate episode number does not contradict claim_vs_source_check when both state one (Law #73 UPDATE 5)
+[PASS] [evening] clip_descriptions surfaces clip_locate season/episode for every verified clip (Law #73 UPDATE 6)
+[PASS] [evening] clip_plan_needs_manga_source is boolean when present (Law #73)
+[PASS] [evening] clip_plan_needs_release_delay is boolean when present (Law #73 3B)
+[PASS] [evening] required section: YouTube title
+[PASS] [evening] required section: TikTok post text
+[PASS] [evening] required section: captions
+[PASS] [evening] required section: clip descriptions
+[PASS] [evening] required section: pinned comment
+[PASS] [evening] >=2 credible live sources (url+date each)
+[PASS] [evening] post_times is an object with youtube/tiktok keys
+[PASS] [evening] separate YouTube + TikTok post-time lines
+[PASS] [evening] blackout_conflict input present and clear
+[PASS] [evening] recent_send_conflict input present and clear
+[PASS] [evening] hook_line present (required field, no silent fallback to opening_sentence)
+[PASS] [evening] assumption-breaking hook present
+[PASS] [evening] CTA not a banned phrase
+[PASS] [evening] VO contains no banned word 'bro'
+[PASS] [evening] content_type is 'short' (Shorts pipeline only)
+[PASS] [evening] hook_onscreen_text present (on-screen break in first second)
+[PASS] [evening] hook_first_second attested true
+[PASS] [evening] isolation_test_pass attested true (Law #144.1)
+[PASS] [evening] hook_line equals opening_sentence (break spoken first)
+[PASS] [evening] hook_family present (attribution)
+[PASS] [evening] exactly 2 internal hook_candidates (single-variant experiment)
+[PASS] [evening] the two hook_candidates are distinct
+[PASS] [evening] selected_hook_index selects one of the two candidates
+[PASS] [evening] published hook_line matches the selected candidate (publish ONE)
+[PASS] [evening] topic_class is 'timely' or 'evergreen'
+[PASS] [evening] timely topic declares >=1 valid topic_signal
+[PASS] [evening] funnel_status is standalone|teaser|flagship_followup
+[PASS] [evening] YouTube title has no hashtags
+[PASS] [evening] YouTube title within 60 chars
+[PASS] [evening] show search keyword appears in title
+[PASS] [evening] YouTube title is distinct from the published hook line
+[PASS] [evening] TikTok title present (distinct tiktok_title field)
+[PASS] [evening] TikTok title has no hashtags
+[PASS] [evening] TikTok title within 55 chars
+[PASS] [evening] TikTok title is distinct from the published hook line
+[PASS] [evening] YouTube and TikTok titles are distinct
+[PASS] [evening] no_comparative_language self-attestation present and true (Law #158)
+[PASS] [evening] no banned comparative/ranking language found (Law #158, mechanical check)
+[PASS] [evening] semantic_qa audit present (self-audit before return)
+[PASS] [evening] semantic_qa.audited_before_return attested true
+[PASS] [evening] semantic_qa.checks all attested true (vo_word_count, cta_adjacency, title_search, blackout_recent_conflicts, clip_timing_tiling, hook_claim_coverage, numeric_cross_check, source_content_verification, law_149_redundancy_check, ai_slop_pattern_check)
+[PASS] [evening] semantic_qa.claim_source_matrix present with >=1 core claim (each core claim tagged with a Law #58 claim_type)
+[PASS] [evening] every core claim cites a listed dated source
+[PASS] [evening] no core claim relies solely on Wikipedia/MAL/Fandom
+[PASS] [evening] Law #58 high-risk claims (type B/E) cite >=2 listed sources incl. >=1 named/non-encyclopedic
+[PASS] [evening] hook_line/opening_sentence's claim is its own sourced core matrix entry (anchors_claim='hook')
+========================================
+RESULT: PASS — cleared to send both emails

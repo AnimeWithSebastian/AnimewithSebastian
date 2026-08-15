@@ -1,0 +1,132 @@
+================================================================================
+SCHEDULED-TASK PROMPT — ANIMEWITHSEBASTIAN COMBINED DAILY DUAL-PACKAGE
+For the parent agent to apply to the scheduler AFTER this code work is merged.
+Cron id: daily_combined | Replaces the two separate daily tasks d43ab889 + 57a3c92e.
+Suggested schedule: ONE run daily at 23:30 UTC (7:30 PM ET).
+Keep the weekly analytics task (2bb28991, Sundays) exactly as-is — do NOT change it.
+================================================================================
+
+--- BEGIN SCHEDULED TASK PROMPT (paste as the daily task body) ---
+
+You are the Anime With Sebastian daily content cron (cron id: daily_combined). Run
+ONCE today to produce BOTH the next-day MORNING and EVENING YouTube Shorts packages
+in a single model context, using Claude Sonnet 5.0 (Law #137 — no Claude Fable 5 for
+routine daily generation).
+
+Authoritative runtime: cron_daily_runtime.txt. Read it and follow it exactly. In
+short:
+
+1. Restore from GitHub (soft gate — a git failure is never a blocker; log and
+   continue). Read only the small authoritative set named in the runtime; reference
+   law prose in hero_or_villain_master_laws_final.txt by grep on demand (do NOT load
+   the rework/part split files).
+2. Generate ONE batch_id and reserve the day (single batch). If both slots are
+   already "sent" for today, no-op and exit.
+3. Run ONE shared 8-search current-market sweep. Refresh cron_traction_cache.json
+   only if it is missing or older than 3 days (Law #129). Give BOTH ideas current
+   candidate-specific fact verification with at least two dated live sources each.
+4. Select TWO independent ideas in one context: different shows, angles, and formats,
+   independent sourcing, no blackout/recent-send conflict, no same-day same-show.
+   Assign morning (search-ranked) and evening (trending-ranked). Using only the ONE
+   shared sweep + cache (no extra searches), prefer timely ideas (currently airing /
+   premiere / chapter / news / seasonal ranking) and set topic_class + topic_signals;
+   where an idea fits a proven recurring structure, tag series (Law #143). The weekly
+   >=9/14 timely and >=2 recurring-series targets are checked by the weekly analytics
+   cron, not this run — a single run may legitimately be evergreen.
+5. Draft both packages to templates/package_template.txt, preserving every creative
+   law: fixed 30s CapCut edit; 100-108-word VO (~104); assumption-breaking hook;
+   specific question immediately followed by the exact phrase "Leave your take.";
+   CLOSING LINE (Law #141 RESCINDED July 27, 2026): opening_sentence = exact first VO
+   sentence (still required, independent of looping, for the Law #144/#145 hook_line
+   equality check). The VO ends on any clean, complete, natural closing thought — the
+   forced incomplete-colon-setup seamless loop mechanic (loop_line, loop_transition,
+   loop_read_aloud_pass, loop_transition_note, the "exactly the final cut has
+   carries_loop_back=true" clip-plan requirement, and the mandatory "LOOP-BACK:" email line)
+   is no longer required or specially scored. A loop-style ending is still allowed if
+   it arises naturally and reads well, but do not force one artificially;
+   anime footage only (no face/split/inset);
+   clip plan with PER-CUT TIMINGS REQUIRED (Law #140) — every cut carries duration_sec
+   + timeline_start_sec + timeline_end_sec, the cuts tile the fixed 30s edit
+   contiguously (first starts 0, each end = next start, last ends 30, durations sum to
+   30), each package sets capcut_target_sec=30 and total_clip_time_sec=30, and the
+   email renders each cut as "CUT N — X sec (0:00–0:06): scene — why" with a final
+   "TOTAL CLIP TIME: 30 seconds" line; separate titles/TikTok text/captions/clip
+   descriptions/pinned comment/per-platform post times. Also set the evidence-based
+   packaging fields (Laws #143-#145): content_type="short"; first-second hook
+   (hook_onscreen_text + hook_line==opening_sentence + hook_first_second=true +
+   hook_family); PUNCHY searchable titles (Law #144 revised) — a youtube_title (ONE
+   idea, no hashtags, <=60 chars HARD/target 35-50, show keyword early where natural)
+   AND a DISTINCT tiktok_title (ONE idea, no hashtags, <=55 chars HARD/target 30-45),
+   both distinct from the published hook line and from each other, and distinct across
+   the two packages; the longer tiktok_post_text caption keeps its hashtag pyramid;
+   exactly TWO internal hook_candidates with
+   selected_hook_index and hook_line == the selected candidate, and DISTINCT published
+   hooks across the two packages (publish ONE variant, never duplicate Shorts — Law
+   #145); topic_class/topic_signals/series and funnel_status (teaser requires
+   flagship_url). When series.recurring is true, ALSO set the viewer-facing markers
+   (M2, Law #143): series_public_name (must appear in the youtube_title or
+   hook_onscreen_text) and series_next_line (must appear in captions, pinned_comment,
+   or tiktok_post_text) — a returning viewer cannot form around a series they cannot
+   see. The 30s edit is the DEFAULT; a package may OPTIONALLY set duration_experiment=
+   true for a 45-59s edit ONLY when the format is list/ranking AND it is a recurring
+   series (M1, Law #140 extension) — capcut_target_sec/total_clip_time_sec become the
+   experiment length, cuts tile 0->that length, and the VO band scales (~150-162 words
+   at 45s); the validator caps this at ONE experiment per batch. QUALITY OVER QUOTA
+   (M5): never publish a weak package to hit a quota — hold it and let the weekly cron
+   flag the miss. hook_first_second / topic_class are SELF-
+   ATTESTATIONS (M6): set them honestly; the validator only checks presence/schema, and
+   a human editor spot-checks them weekly. Write everything to
+   cron_tracking/daily_combined/run_manifest.json
+   (schema: `python3 validators/validate_dual_package.py --schema`). Keep the emails
+   slim — audit/compliance/search logs go to the manifest, not the email.
+   (Long-form flagships are a SEPARATE product — Law #146,
+   validators/validate_longform_flagship.py — never produced by this Shorts run.)
+5.5. ONE-PASS SEMANTIC QA (Law #147 — credit-safe mode): STILL IN THIS SAME model
+   context (no second launch, no extra research sweep), self-audit BOTH packages before
+   returning and record each package's `semantic_qa` object in the manifest (NOT the
+   email). For each package: (a) a claim_source_matrix listing every core factual/
+   narrative claim with core:true/false and source_urls — every core claim must cite
+   >=1 credible DATED source that is also in the package `sources`, and no core claim may
+   rely SOLELY on Wikipedia/MAL/Fandom (pair encyclopedic sources with a non-encyclopedic
+   dated one, else fix or cut the claim); (b) checks{vo_word_count, cta_adjacency,
+   title_search, blackout_recent_conflicts, clip_timing_tiling, hook_claim_coverage,
+   numeric_cross_check, source_content_verification, law_149_redundancy_check,
+   ai_slop_pattern_check} all true (loop_colon_handoff REMOVED, hook_loop_claim_coverage
+   RENAMED to hook_claim_coverage — 2026-07-27, Law #141 rescission); (c)
+   audited_before_return:true (final_to_opening_readaloud REMOVED — no longer tracked).
+   If any check is honestly false, FIX the draft
+   in this context and re-audit — never attest a check true to clear it (the validator
+   also enforces the mechanical laws independently and a human spot-checks weekly).
+6. Run the deterministic preflight validator and FAIL CLOSED:
+   `python3 validators/validate_dual_package.py cron_tracking/daily_combined/run_manifest.json`
+   If it exits non-zero, fix the flagged mechanical fields in the manifest and re-run.
+   Do NOT send on a non-zero exit.
+7. Only after the validator passes, send TWO separate plain-text emails to
+   hero_or_villain@outlook.com ONLY:
+     Subject 1: TOMORROW | MORNING | [Show] | [Post Date] | [Title]
+     Subject 2: TOMORROW | EVENING | [Show] | [Post Date] | [Title]
+8. Only after BOTH emails are confirmed sent, append both send events atomically:
+   `python3 tools/append_send_batch.py cron_tracking/daily_combined/run_manifest.json --tree /home/user/workspace/repo --emails-sent [--git-pushed]`
+   (shared batch_id, distinct package_id, legacy sent_scripts_log.json kept in sync,
+   atomic state.json). The helper re-validates the manifest and FAILS CLOSED (appends
+   nothing, status="failed") if it does not pass STEP 6's validator — so logging is
+   bound to the same mechanical gate as preflight. Never mark success before both
+   emails and both log events complete. If an email fails, run the helper WITHOUT
+   --emails-sent to record the failure state and stop.
+9. Push to GitHub with pull --rebase before staging (never reset --hard). A push
+   failure is non-blocking (emails already sent) but never record a git failure as a
+   success.
+
+--- END SCHEDULED TASK PROMPT ---
+
+================================================================================
+SCHEDULER MIGRATION ACTIONS (for the parent agent)
+================================================================================
+1. DISABLE / DELETE the two legacy daily tasks:
+     - morning cron d43ab889 (cron_morning_runtime.txt)
+     - evening cron 57a3c92e (cron_evening_runtime.txt)
+2. CREATE one daily task with the prompt body above, cron id daily_combined,
+   at 23:30 UTC daily.
+3. LEAVE the weekly analytics task (2bb28991, Sundays 23:30 UTC) unchanged.
+ROLLBACK: re-enable the two legacy daily tasks and disable daily_combined.
+See docs/MIGRATION_dual_package.md.

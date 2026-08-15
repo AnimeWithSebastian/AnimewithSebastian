@@ -1,0 +1,64 @@
+ARCHIVED — PRE-CORRECTION DRAFT. This is the ORIGINAL daily-cron output before correction; it does NOT reflect what was actually sent. See CORRECTION_TO_CORRECTION_20260810_rezero_trailer_source.md for the actual sent content.
+
+━━━ MORNING — August 11, 2026 ━━━
+SHOW:    Re:ZERO Season 4 Part 2
+ANGLE:   Why the August 12 return is a Watchtower rescue mission, not a reset.
+FORMAT:  SEASON_PREVIEW
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM — Law #134 Stage 2)
+TOPIC:   timely — signals: premiere/news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK (Law #144 — on screen + spoken in second 1) ━━━
+ON-SCREEN (second 1): The Watchtower arc starts tomorrow.
+SPOKEN (VO first line): Re:ZERO’s next eight episodes start tomorrow, and Subaru is walking toward the Pleiades Watchtower.
+HOOK FAMILY: revelation
+candidate A: Re:ZERO’s next eight episodes start tomorrow, and Subaru is walking toward the Pleiades Watchtower.
+candidate B: Re:ZERO returns with a rescue mission, not a reset.
+SELECTED: 0
+
+━━━ VO (162 words — fills the resolved 45s CapCut edit) ━━━
+Re:ZERO’s next eight episodes start tomorrow, and Subaru is walking toward the Pleiades Watchtower. Part two is the Recapture Arc, arriving August twelfth after the eleven-episode Loss Arc paused in June. Crunchyroll is carrying the return. The new run sends Subaru and his friends across the Auguria Dunes toward the Watchtower, where Shaula, the Wise Woman, may know how to help Rem, Crusch, and Julius after Priestella. Priestella was the setting of the first half; the Auguria Dunes change the terrain as well as the objective. That gives the premiere a concrete job instead of a vague restart: get through the desert, reach Shaula, and find answers for the people the battle left in danger. The official commercial names the Watchtower, so the destination is already on the board before episode twelve arrives. Which unresolved name are you carrying into the Watchtower: Rem, Crusch, or Julius? Leave your take. This return starts with a rescue mission, not a reset.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view — Law #134 Stage 2 two-track) ━━━
+[FACE: DIRECT-TO-CAMERA, lean in] Re:ZERO’s next eight episodes start tomorrow, and Subaru is walking toward the Pleiades Watchtower. [FACE: GLANCE-DOWN-AT-FOOTAGE] Part two is the Recapture Arc, arriving August twelfth after the eleven-episode Loss Arc paused in June. [FACE: DIRECT-TO-CAMERA] Crunchyroll is carrying the return. [FACE: REACTION BEAT] The new run sends Subaru and his friends across the Auguria Dunes toward the Watchtower, where Shaula, the Wise Woman, may know how to help Rem, Crusch, and Julius after Priestella. [FACE: GLANCE-DOWN-AT-FOOTAGE] Priestella was the setting of the first half; the Auguria Dunes change the terrain as well as the objective. [FACE: DIRECT-TO-CAMERA] That gives the premiere a concrete job instead of a vague restart: get through the desert, reach Shaula, and find answers for the people the battle left in danger. [FACE: DIRECT-TO-CAMERA] The official commercial names the Watchtower, so the destination is already on the board before episode twelve arrives. [FACE: DIRECT-TO-CAMERA] Which unresolved name are you carrying into the Watchtower: Rem, Crusch, or Julius? [FACE: DIRECT-TO-CAMERA] Leave your take. [FACE: DIRECT-TO-CAMERA, lean in] This return starts with a rescue mission, not a reset.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings REQUIRED — Law #140) ━━━
+CUT 1 — 15 sec (0:00–0:15): UNVERIFIED — official Re:ZERO Season 4 Part 2 promotional Watchtower image or PV frame; editor must independently confirm usable rights and the exact frame before use. — Supports the first-second destination hook without representing PV material as aired episode footage.
+UNVERIFIED — Part 2 had not aired at this run; the fetched current sources establish the premise but do not provide an inspectable scene-level episode frame trail.
+CUT 2 — 15 sec (0:15–0:30): UNVERIFIED — editor-verified Season 4 Part 1 aftermath footage only, if independently located and licensed for the intended use. — Gives visual context for the post-Priestella rescue premise without claiming an unverified moment.
+UNVERIFIED — The current fetched articles describe the return premise, not a scene-level source for a specific aired clip.
+CUT 3 — 15 sec (0:30–0:45): UNVERIFIED — official Watchtower title card or release-date graphic, only after independent rights and asset verification. — Keeps the final question anchored to the verified destination and August 12 timing.
+UNVERIFIED — The official marketing reference is not sufficient to certify a specific bottom-track clip as aired, accurate, and currently available.
+TOTAL CLIP TIME: 45 seconds
+CLIP PLAN FLAG: no scene-level aired-footage source was verified in this run; manually verify every bottom-track asset before editing.
+
+━━━ ON-SCREEN CAPTIONS ━━━
+RE:ZERO RETURNS
+EIGHT EPISODES LEFT
+THE PLEIADES WATCHTOWER
+AUGUST 12
+REM, CRUSCH, OR JULIUS?
+LEAVE YOUR TAKE
+
+━━━ YOUTUBE TITLE (Law #144 — punchy, searchable) ━━━
+Re:ZERO Returns With a Watchtower Mission
+
+━━━ TIKTOK TITLE (Law #144 — punchy) ━━━
+Re:ZERO’s Watchtower Mission Starts
+
+━━━ TIKTOK POST TEXT (caption — may be longer; hashtags live HERE, not in the title) ━━━
+Re:ZERO’s next eight episodes start tomorrow. The Watchtower rescue mission begins August 12. #ReZero #AnimeShorts #Isekai #Crunchyroll
+
+━━━ PINNED COMMENT ━━━
+The key detail is that the destination is the Pleiades Watchtower, with Shaula tied to the group’s search for answers — not a recap of Priestella.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 9:15 AM ET | Peak 9:15 AM ET
+TikTok — post 9:30 AM ET | Peak 9:30 AM ET
+
+━━━ SOURCES (concise evidence — >=2, each dated) ━━━
+1. Part 2 begins August 12, has eight remaining episodes, follows the Loss Arc, and is confirmed for Crunchyroll. — https://www.radiotimes.com/tv/fantasy/anime/rezero-starting-life-in-another-world-season-4-part-2-release-schedule/ (Jul 2026)
+2. The return heads to the Pleiades Watchtower through the Auguria Dunes, with Shaula connected to the search for answers after Priestella. — https://collider.com/best-anime-series-coming-netflix-crunchyroll-august-2026/ (Jul 2026)
+
+━━━ END MORNING ━━━

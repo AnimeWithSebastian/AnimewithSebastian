@@ -1,0 +1,57 @@
+━━━ MORNING — 2026-07-26 ━━━
+SHOW:    Though I Am an Inept Villainess
+ANGLE:   English dub cast revealed July 24 — Mori Calliope joins the cast, dub debuts July 26 on Crunchyroll/Hulu/Disney+/Netflix Asia
+FORMAT:  SEASON_PREVIEW / dub-cast reveal
+STYLE:   Anime Clips Only  (anime footage only; no face, no split screen, no inset)
+TOPIC:   timely — signals: premiere, news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK (Law #144 — on screen + spoken in second 1) ━━━
+ON-SCREEN (second 1): A VTuber just got cast in a major anime dub.
+SPOKEN (VO first line): A hololive VTuber just got cast in a major anime dub.
+HOOK FAMILY: revelation
+(Draft two hook candidates internally — Law #145 — publish ONLY the selected one:
+  candidate A: A hololive VTuber just got cast in a major anime dub.
+  candidate B: Though I Am an Inept Villainess just revealed its English dub cast, and one name stands out.
+  SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (108 words — fills the fixed 30s CapCut edit) ━━━
+A hololive VTuber just got cast in a major anime dub. Though I Am an Inept Villainess revealed its full English cast, and Mori Calliope is voicing Kou Tousetsu. The dub drops Sunday on Crunchyroll, Hulu, Disney Plus, and Netflix Asia. Brianna Knickerbocker plays the lead, Kou Reirin, with Aleks Le as Shin-u and Kaiji Tang as Ei Gyoumei rounding out the cast. This body-swap isekai already built a loyal audience last month in Japan. So does casting a VTuber alongside veteran anime voices actually widen the audience, or is it just a stunt? Leave your take. Here's the exact role Calliope was cast to play:
+
+━━━ LOOP-BACK (seamless replay — DIRECT COLON HANDOFF, Law #141 + #147) ━━━
+LOOP-BACK: Here's the exact role Calliope was cast to play: -> A hololive VTuber just got cast in a major anime dub.
+NOTE: Loop line sets up "the exact role" as an incomplete question; opening sentence answers it by identifying the VTuber-cast-in-a-dub fact, continuing as one thought rather than a keyword echo.
+
+━━━ CLIP PLAN (anime-only; per-cut timings REQUIRED — Law #140) ━━━
+CUT 1 — 6 sec (0:00–0:06): Though I Am an Inept Villainess - Kou Reirin close-up, court setting establishing shot — Cold open identifying the show and lead character central to the dub reveal
+CUT 2 — 7 sec (0:06–0:13): Though I Am an Inept Villainess - body-swap transformation moment — Visualizes the show's core body-swap premise while VO explains the dub cast news
+CUT 3 — 6 sec (0:13–0:19): Though I Am an Inept Villainess - Shin-u action/sword sequence — Shows a second principal character tied to the newly cast dub voices
+CUT 4 — 6 sec (0:19–0:25): Though I Am an Inept Villainess - imperial court group scene, ensemble cast shot — Reinforces the ensemble cast size matching the multiple dub actors named in the VO
+CUT N (final) — 5 sec (0:25–0:30): Though I Am an Inept Villainess - Kou Reirin final close-up, contemplative expression — carries the final loop line back into CUT 1 / the opening  [carries_loop_back]
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+A hololive VTuber just joined a major anime dub cast. Mori Calliope is voicing Kou Tousetsu in Though I Am an Inept Villainess, dropping this Sunday on Crunchyroll, Hulu, Disney+, and Netflix Asia. #anime #isekai #dub #animenews #animetok
+
+━━━ YOUTUBE TITLE (Law #144 — punchy, searchable) ━━━
+Inept Villainess Dub Cast Has a VTuber
+
+━━━ TIKTOK TITLE (Law #144 — punchy; distinct from the caption below) ━━━
+Villainess anime dub cast has a VTuber
+
+━━━ TIKTOK POST TEXT (caption — may be longer; hashtags live HERE, not in the title) ━━━
+A hololive VTuber just got cast in a major anime dub — Mori Calliope is voicing Kou Tousetsu in Though I Am an Inept Villainess. The English dub drops this Sunday on Crunchyroll, Hulu, Disney+, and Netflix Asia. #anime #isekai #animenews #animenewstoday #animetok #animeshorts #animecommentary #hololive #animedub
+
+━━━ PINNED COMMENT ━━━
+Calliope isn't the only surprise in this cast — Kaiji Tang and Aleks Le are also voicing principal roles. Leave your take below.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 8:00 AM ET | Peak 8:00 AM ET
+TikTok — post 8:15 AM ET | Peak 8:15 AM ET
+
+━━━ SOURCES (concise evidence — >=2, each dated) ━━━
+1. TOHO announced the English dub cast for Though I Am an Inept Villainess on July 24, 2026, with the dub debuting July 26 on Crunchyroll, Hulu, and Disney+ (Netflix in Asia) — https://www.animenewsnetwork.com/news/2026-07-24/though-i-am-an-inept-villainess-anime-reveals-english-dub-cast-july-26-debut-trailer/.239940 (Jul 2026)
+2. The English dub cast includes Mori Calliope (hololive English VTuber) as Kou Tousetsu, Brianna Knickerbocker as Kou Reirin, Aleks Le as Shin-u, Kaiji Tang as Ei Gyoumei, and Rebecca Wang as Shu Keigetsu — https://www.animationmagazine.net/2026/07/though-i-am-an-inept-villainess-english-dub-trailer-introduces-new-voice-cast/ (Jul 2026)
+
+━━━ END MORNING ━━━

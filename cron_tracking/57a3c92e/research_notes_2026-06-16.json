@@ -1,0 +1,34 @@
+{
+  "run_id": 13,
+  "timestamp_local": "2026-06-16T19:30:00-04:00",
+  "slot": "evening",
+  "selected_show": "Bleach: Thousand-Year Blood War – The Calamity",
+  "selected_format": "FACT_DROP",
+  "core_gap": "GAP_2_MISSING_CONTEXT",
+  "angle_summary": "Use verified official synopsis spoiler (Yhwach trickery leads to Ichigo cutting down the Soul King) as the factual hook, but make the video about the missing context/implication (Yhwach needs Ichigo specifically) without adding unverified manga-ending details.",
+  "sources": {
+    "theatrical_event_and_first_3_episodes": [
+      "https://www.animenewsnetwork.com/news/2026-05-19/bleach-thousand-year-blood-war-the-calamity-anime-presents-main-trailer/.237517",
+      "https://www.viz.com/blog/posts/bleach-thousand-year-blood-war-hits-theaters",
+      "https://www.fathomentertainment.com/releases/bleach-thousand-year-blood-war-the-calamity/"
+    ],
+    "traction_signal": [
+      "https://www.reddit.com/r/bleach/comments/1thjftr/bleach_thousandyear_blood_war_the_calamity_trailer/"
+    ],
+    "competitor_check_sample": [
+      "https://www.youtube.com/watch?v=4STFRWuQAvE"
+    ],
+    "niche_format_signal": [
+      "https://oretokuranking.web.app/month_short"
+    ]
+  },
+  "avoid": [
+    "Any specific TV/streaming premiere date unless verified from official primary source.",
+    "Any detailed manga-ending mechanics (silver arrow, Aizen involvement, etc.) for this Short; not needed and increases verification burden."
+  ],
+  "notes": {
+    "github_sync": "Git pull failed due to missing GitHub auth (https remote asked for username/password).",
+    "show_holds_checked": ["Steel Ball Run", "Kagurabachi"],
+    "no_repeat_checks": "Frieren used evening on 2026-06-15; Bleach not used in evening in last 7 days per sent_scripts_log.json."
+  }
+}

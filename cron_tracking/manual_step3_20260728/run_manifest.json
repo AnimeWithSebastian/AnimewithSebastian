@@ -1,0 +1,396 @@
+{
+  "batch_id": "b3e8f2a1-7c4d-4e9a-9f21-6a8d4c5e2b17",
+  "run_ts": "2026-07-28T09:54:00-04:00",
+  "post_date": "2026-07-29",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-07-24T18:50:00-04:00",
+    "age_days": 4,
+    "status": "CURRENT"
+  },
+  "note": "MANUAL STEP-3 EXERCISE — NOT the daily_combined cron output. Separate file, separate batch_id. Not sent, not staged/committed.",
+  "packages": [
+    {
+      "package_id": "d4a91c3e-5f82-4b16-9e3a-7c2d5e8f1a90",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "Sakamoto Days",
+      "angle": "Gaku says 'the geezer who killed me' in past tense after coming back from apparent death in Chapter 263 — fans spiral from relief into dread over one grammatical detail",
+      "format_type": "THE_MOMENT",
+      "topic_class": "timely",
+      "topic_signals": [
+        "chapter"
+      ],
+      "series": null,
+      "duration_experiment": false,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "HE SAID \"THE GEEZER WHO KILLED ME\" — PAST TENSE",
+      "hook_first_second": true,
+      "hook_candidates": [
+        "Everyone thought Gaku Sakamoto died protecting Nagumo.",
+        "Gaku just came back from the dead, and the first thing he said should scare you more than his death did."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Everyone thought Gaku Sakamoto died protecting Nagumo.",
+      "opening_sentence": "Everyone thought Gaku Sakamoto died protecting Nagumo.",
+      "vo": "Everyone thought Gaku Sakamoto died protecting Nagumo. Chapter 263 proves them wrong. Gaku is back mid-fight, and his first line isn't relief. He calls his attacker the geezer who killed me. Past tense. Like he actually died and came back. Japanese fans flooded the thread crying with relief, then spiraled into dread over that line. If dying and returning is possible, fans now ask if Takamura survives being cut into pieces too. The fastest theory: his consciousness transferred into Gaku. Does Gaku know something about death now, or is he just talking tough? Leave your take. This channel exists for readers who catch details everyone scrolls past.",
+      "vo_word_count": 107,
+      "question_line": "Does Gaku know something about death now, or is he just talking tough?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Sakamoto Days Chapter 263 brings back Gaku, who fans believed was dead; upon waking, Gaku asks Kashima if 'the old man who killed me' (Takamura) is still alive, using past tense -- confirmed by an independent chapter recap transcription in addition to the Japanese fan-reaction thread",
+            "core": true,
+            "source_urls": [
+              "https://matome-anime-kaigai.jp/manga/2026-06-14-sakamoto-days-chapter-263-gaku-revival-japanese-reaction",
+              "https://www.youtube.com/watch?v=Nht70-D7YYk"
+            ],
+            "anchors_claim": "hook",
+            "claim_type": "A"
+          },
+          {
+            "claim": "Gaku refers to his attacker as 'the geezer who killed me' (past tense), which fans read as evidence he genuinely died",
+            "core": true,
+            "source_urls": [
+              "https://matome-anime-kaigai.jp/manga/2026-06-14-sakamoto-days-chapter-263-gaku-revival-japanese-reaction"
+            ],
+            "claim_type": "A"
+          },
+          {
+            "claim": "Japanese fans' top-liked reactions were emotional relief/crying ('I straight up cried', 'so glad he's alive')",
+            "core": true,
+            "source_urls": [
+              "https://matome-anime-kaigai.jp/manga/2026-06-14-sakamoto-days-chapter-263-gaku-revival-japanese-reaction"
+            ],
+            "claim_type": "A"
+          },
+          {
+            "claim": "Fans are theorizing Takamura (cut into pieces earlier in the story) may also survive, with one recurring theory that his consciousness transferred into Gaku",
+            "core": true,
+            "source_urls": [
+              "https://matome-anime-kaigai.jp/manga/2026-06-14-sakamoto-days-chapter-263-gaku-revival-japanese-reaction"
+            ],
+            "claim_type": "A"
+          },
+          {
+            "claim": "Sakamoto Days anime Season 2 teaser drew praise from Japanese fans for its animation upgrade (used only for B-roll context, not a core VO claim)",
+            "core": false,
+            "source_urls": [
+              "https://matome-anime-kaigai.jp/anime/2026-06-28-sakamoto-days-season-2-pv-animation-japanese-reaction"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Anime Clips Only",
+      "face": false,
+      "split_screen": false,
+      "sources": [
+        {
+          "claim": "Gaku revival + 'geezer who killed me' line + fan reaction",
+          "url": "https://matome-anime-kaigai.jp/manga/2026-06-14-sakamoto-days-chapter-263-gaku-revival-japanese-reaction",
+          "date": "Jun 2026"
+        },
+        {
+          "claim": "Sakamoto Days Season 2 animation reaction (B-roll context only)",
+          "url": "https://matome-anime-kaigai.jp/anime/2026-06-28-sakamoto-days-season-2-pv-animation-japanese-reaction",
+          "date": "Jun 2026"
+        },
+        {
+          "claim": "Independent chapter recap transcription confirming Gaku's actual dialogue: asks Kashima if 'the old man who killed me' (Takamura) is still alive, in past tense, upon waking",
+          "url": "https://www.youtube.com/watch?v=Nht70-D7YYk",
+          "date": "Jun 14 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Sakamoto Days anime — Gaku's entrance/arrival at JAA headquarters with Slur",
+          "reason": "Sets up who Gaku is for viewers unfamiliar with the character before the reveal lands",
+          "duration_sec": 7,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 7,
+          "scene_verified": false,
+          "verification_note": "Real aired anime footage almost certainly exists and covers this exact beat (Gaku's JAA arrival is a confirmed animated scene per Anime News Network's Episode 16 review [https://www.animenewsnetwork.com/review/sakamoto-days/episode-16/.227577] and TechWiser's episode breakdown [https://techwiser.com/who-is-takamura-in-sakamoto-days/]), and an official Netflix Anime clip titled 'Slur and Gaku Make an Entrance' exists at https://www.youtube.com/watch?v=zbKboSu_Vp0 whose transcript depicts a JAA-building entrance confrontation consistent with this beat, and whose single-frame thumbnail visually matches Gaku's character design (white hair, red eyes, bandaged sword) being confronted at gunpoint. However, the transcript itself never names the speakers as Gaku/Slur, so scene-level identity could not be independently confirmed within this pass's research budget. This is NOT a manga-only beat (the prior manga_reference on this clip was itself inaccurate) — no manga chapter stands in for this scene. Flagged per Law #73 / F20 rather than falsely marked verified or falsely routed to a nonexistent manga fallback."
+        },
+        {
+          "scene": "Sakamoto Days manga Chapter 263 ('Awakening'), page 8 — Gaku, just revived, asks Kashima 'Where's Gramps? He's still alive, ain't he? That old fart who took me out' (Takamura); Kashima replies on page 9 'No. Takamura is dead,' and Gaku realizes on page 10 Takamura's presence is inside Uzuki",
+          "reason": "Carries the past-tense line reveal beat — the actual manga panel where the quoted dialogue occurs, extended runtime so the hook's core payoff line has room to land",
+          "duration_sec": 13,
+          "timeline_start_sec": 7,
+          "timeline_end_sec": 20,
+          "scene_verified": false,
+          "manga_reference": "Sakamoto Days Chapter 263 (\"Awakening\"), page 8 (Gaku's \"Gramps\"/Takamura line), continuing through page 9 (Kashima's \"Takamura is dead\" reply) and page 10 (Gaku's Uzuki realization) — page numbers confirmed by direct visual inspection of chapter scan images at https://scans-hot.planeptune.us/manga/Sakamoto-Days/0263-008.png (page 8), -009.png (page 9), -010.png (page 10), via reader page https://www.mangzio.com/en/sakamoto-days-en-chapter-263 ; scene and dialogue also corroborated by two independent chapter recap transcriptions: https://www.youtube.com/watch?v=Nht70-D7YYk and https://www.youtube.com/watch?v=uKNNNMYmnyU"
+        },
+        {
+          "scene": "Sakamoto Days anime — Takamura confronts Slur/Gaku/Sakamoto (Episode 16, 'Slice Slice Dance')",
+          "reason": "Visually anchors the Takamura survival theory discussion to an actual, on-screen appearance of the character",
+          "duration_sec": 10,
+          "timeline_start_sec": 20,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "verification_note": "Real aired anime footage almost certainly exists and covers this exact beat (Takamura's Episode 16 fight against Slur, Gaku, and Sakamoto is extensively confirmed by written sources: Anime News Network [https://www.animenewsnetwork.com/review/sakamoto-days/episode-16/.227577], ABEMA Times [https://times.abema.tv/en/articles/-/10193179?page=1], The Direct [https://thedirect.com/article/sakamoto-days-episode-16-what-happened-takamura], and Sportskeeda [https://www.sportskeeda.com/anime/sakamoto-days-part-2-episode-5-the-slur-s-actual-identity-revealed-takamura-showcases-skills]). Two candidate video sources were checked and both failed independent verification: (1) an official Netflix clip titled 'Takamura Pest Control' (https://www.youtube.com/watch?v=4rjOp217lBk) was found to depict an unrelated earlier scene (Takamura's nap interrupted by a fly), not this fight; (2) a clip titled 'Takamura vs. Gaku & Sakamoto vs. Slur' (https://www.youtube.com/watch?v=pPjKZ4Xid5Q) visually matches this beat on frame inspection but is a fan-made AMV by a third-party channel (ABOKAI), not official footage, and is disqualified as a source regardless of content match. No independently confirmed official video source for this exact beat found this pass. Flagged per Law #73 / F20 rather than falsely marked verified or falsely routed to a nonexistent manga fallback (Takamura's Episode 16 fight is anime-original in this exact form; no manga chapter stands in for it)."
+        }
+      ],
+      "clip_plan_needs_manga_source": true,
+      "clip_plan_needs_release_delay": false,
+      "clip_descriptions": "Cut 1: Gaku intro/establishing footage from S1. Cut 2: Nagumo/Slur confrontation footage for tonal stakes. Cut 3: Dramatic close-up reaction shot timed to the 'past tense' reveal line. Cut 4: Takamura footage anchoring the survival theory beat.",
+      "captions": "EVERYONE THOUGHT / GAKU DIED — CH. 263 PROVES THEM WRONG — \"THE GEEZER WHO KILLED ME\" — PAST TENSE — FANS ARE SPIRALING — IS TAKAMURA ALIVE TOO? — LEAVE YOUR TAKE",
+      "youtube_title": "Sakamoto Days: Gaku's One Word Broke the Fanbase",
+      "tiktok_title": "Gaku Said One Word That Changed Everything",
+      "tiktok_post_text": "Everyone thought Gaku was dead. Chapter 263 says otherwise — but the way he talks about it has fans spiraling. Sakamoto Days just planted something bigger. #SakamotoDays #anime #manga #animeshorts #FYP",
+      "pinned_comment": "The wildest part nobody's talking about: if 'reattach a torso' logic holds for Gaku, that's not just a Takamura revival theory — that's a rule for how death works in this entire series now.",
+      "post_times": {
+        "youtube": "8:00 AM ET",
+        "tiktok": "8:15 AM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false
+    },
+    {
+      "package_id": "f7c2e9b4-3a61-4d8f-b527-9e4c1a6d8f32",
+      "slot": "evening",
+      "content_type": "short",
+      "show": "Blue Box (Ao no Hako)",
+      "angle": "The manga's genuinely well-received finale wasn't the real story — the issue sold out because of a bundled One Piece trading card, and the author had to publicly apologize for a shortage she didn't cause",
+      "format_type": "WRONG_TAKE",
+      "topic_class": "timely",
+      "topic_signals": [
+        "news",
+        "chapter"
+      ],
+      "series": null,
+      "duration_experiment": false,
+      "funnel_status": "standalone",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "YOU THINK FANS ARE MAD ABOUT THE ENDING. THEY'RE NOT.",
+      "hook_first_second": true,
+      "hook_candidates": [
+        "Blue Box ended after five years, and you probably think fans are mourning a rushed finale.",
+        "Blue Box's finale got five-star reactions. Then almost nobody could actually buy it."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Blue Box ended after five years, and you probably think fans are mourning a rushed finale.",
+      "opening_sentence": "Blue Box ended after five years, and you probably think fans are mourning a rushed finale.",
+      "vo": "Blue Box ended after five years, and you probably think fans are mourning a rushed finale. Wrong. Chapter 250 landed to positive reactions, graduation, a full-circle kiss in the gym where it started. The real crisis happened after. Issue 33 sold out almost instantly, and it had nothing to do with Blue Box. Shonen Jump bundled it with a One Piece trading card, so scalpers bought every copy for the card alone. Creator Kouji Miura publicly apologized for a shortage she didn't cause. Does the industry care more about card sales than the manga inside? Leave your take. Want the story behind the story? That's this channel.",
+      "vo_word_count": 108,
+      "question_line": "Does the industry care more about card sales than the manga inside?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Blue Box (Ao no Hako) manga ended with Chapter 250, published July 12, 2026, in Weekly Shonen Jump issue 33, after ~5.5 years since April 2021 serialization",
+            "core": true,
+            "source_urls": [
+              "https://www.animemanga.com/news/blue-box-original-title-ao-no-hako-manga-ends-after-nearly-five-years-final-volumes-27-and-28-to-be-released-in-october-and-december.html",
+              "https://www.crunchyroll.com/news/latest/2026/7/12/blue-box-manga-ends-with-chapter-250"
+            ],
+            "anchors_claim": "hook",
+            "claim_type": "C"
+          },
+          {
+            "claim": "The finale chapter's fan reception was genuinely positive — praised for the graduation setting and full-circle return to the gym where the story began",
+            "core": true,
+            "source_urls": [
+              "https://mystiqora.com/blue-box-manga-ends-after-five-year-shonen-jump-run-chapter-250-finale-fan-reactions-and-anime-season-2-updates/",
+              "https://www.indiatimes.com/trending/blue-box-manga-officially-ends-with-chapter-250-after-five-years-as-koji-miura-gives-taiki-and-chinatsu-a-finale-that-has-fans-in-tears/articleshow/132352003.html"
+            ],
+            "claim_type": "A"
+          },
+          {
+            "claim": "Weekly Shonen Jump issue 33 (carrying the Blue Box finale) sold out because it was bundled with a One Piece Card Game promotional card, and scalpers bought copies for the card alone, leaving many readers unable to find a physical copy",
+            "core": true,
+            "source_urls": [
+              "https://screenrant.com/one-piece-made-blue-box-creator-apologize-manga-ending/"
+            ],
+            "claim_type": "A"
+          },
+          {
+            "claim": "Blue Box creator Kouji Miura publicly apologized on X to readers who couldn't get a physical copy of the finale issue due to the shortage",
+            "core": true,
+            "source_urls": [
+              "https://screenrant.com/one-piece-made-blue-box-creator-apologize-manga-ending/",
+              "https://www.animenewsnetwork.com/interest/2026-07-17/jump-magazine-apologizes-to-fans-unable-to-buy-issue-with-blue-box-finale-one-piece-card/.239691"
+            ],
+            "claim_type": "B"
+          },
+          {
+            "claim": "Blue Box anime Season 2 is confirmed for Fall 2026 on TBS (used for pinned comment context only, not a core VO claim)",
+            "core": false,
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2025-12-20/blue-box-anime-2nd-season-debuts-in-fall-2026/.232332"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Anime Clips Only",
+      "face": false,
+      "split_screen": false,
+      "sources": [
+        {
+          "claim": "Manga ending details — Ch. 250, July 12 2026, issue 33, ~5.5 year run",
+          "url": "https://www.animemanga.com/news/blue-box-original-title-ao-no-hako-manga-ends-after-nearly-five-years-final-volumes-27-and-28-to-be-released-in-october-and-december.html",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Confirms manga ending with Chapter 250",
+          "url": "https://www.crunchyroll.com/news/latest/2026/7/12/blue-box-manga-ends-with-chapter-250",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Positive fan reception details of the finale (graduation, full-circle gym scene)",
+          "url": "https://mystiqora.com/blue-box-manga-ends-after-five-year-shonen-jump-run-chapter-250-finale-fan-reactions-and-anime-season-2-updates/",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Fan reactions and finale details",
+          "url": "https://www.indiatimes.com/trending/blue-box-manga-officially-ends-with-chapter-250-after-five-years-as-koji-miura-gives-taiki-and-chinatsu-a-finale-that-has-fans-in-tears/articleshow/132352003.html",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "One Piece trading card shortage + Miura's apology",
+          "url": "https://screenrant.com/one-piece-made-blue-box-creator-apologize-manga-ending/",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Blue Box anime Season 2 Fall 2026 confirmation (context only)",
+          "url": "https://www.animenewsnetwork.com/news/2025-12-20/blue-box-anime-2nd-season-debuts-in-fall-2026/.232332",
+          "date": "Dec 2025"
+        },
+        {
+          "claim": "Anime News Network — Miura's apology quotes + Jump editors' joint apology (second independent source for Type B claim)",
+          "url": "https://www.animenewsnetwork.com/interest/2026-07-17/jump-magazine-apologizes-to-fans-unable-to-buy-issue-with-blue-box-finale-one-piece-card/.239691",
+          "date": "Jul 17 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Blue Box anime S1, Episode 1 (\"Chinatsu Senpai\") — Taiki and Chinatsu gym establishing shot",
+          "reason": "Anchors the 'gym where it all started' detail from the finale for viewers who haven't read the manga",
+          "duration_sec": 8,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 8,
+          "scene_verified": true,
+          "verification_source_url": "https://www.thereviewgeek.com/bluebox-s1e1review/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Taiki and Chinatsu gym establishing shot cold open",
+            "source_content_confirmed": "Episode 1 begins with Taiki rushing to school and into the gymnasium, where Chinatsu accidentally hits him in the face with a basketball and offers him a chocolate bar.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1,
+            "locate_confirmed_via": "the same The Review Geek episode 1 recap cited above, which describes this as the episode cold open",
+            "approx_timestamp": "cold open, roughly 0:30-2:00"
+          }
+        },
+        {
+          "scene": "Blue Box anime S1, Episode 1 (\"Chinatsu Senpai\") — Taiki and Chinatsu evening one-on-one basketball / hand-touching moment",
+          "reason": "Visual pairing for the 'genuinely positive finale reception' beat",
+          "duration_sec": 8,
+          "timeline_start_sec": 8,
+          "timeline_end_sec": 16,
+          "scene_verified": true,
+          "verification_source_url": "https://www.thereviewgeek.com/bluebox-s1e1review/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Taiki and Chinatsu emotional/romantic moment",
+            "source_content_confirmed": "Later in Episode 1, Taiki and Chinatsu play one-on-one basketball together in the evening; Taiki helps Chinatsu with the ball and an intimate moment occurs where he notices her hand feels warm.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1,
+            "locate_confirmed_via": "the same The Review Geek episode 1 recap cited above, which places this scene later in the episode after the flashback sequence",
+            "approx_timestamp": "second half of episode, evening gym scene"
+          }
+        },
+        {
+          "scene": "Blue Box anime S1, Episode 1 (\"Chinatsu Senpai\") — Taiki confides in Kyo about Chinatsu near the gym; Hina interrupts",
+          "reason": "Carries the pivot into the real 'crisis' beat (issue shortage) with a change in visual pacing",
+          "duration_sec": 7,
+          "timeline_start_sec": 16,
+          "timeline_end_sec": 23,
+          "scene_verified": true,
+          "verification_source_url": "https://www.sportskeeda.com/anime/blue-box-episode-1-inomata-taiki-s-journey-takes-unexpected-turn-crush-starts-live-house",
+          "claim_vs_source_check": {
+            "claimed_beat": "cast group/school setting footage as a pacing transition",
+            "source_content_confirmed": "In Episode 1, Taiki confides in best friend Kyo about his feelings for Chinatsu in a school setting near the gym; childhood friend Hina overhears them and interrupts with unsolicited advice.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1,
+            "locate_confirmed_via": "the same Sportskeeda episode 1 recap cited above, which places this scene early-to-mid episode in a school setting near the gym",
+            "approx_timestamp": "early-to-mid episode"
+          }
+        },
+        {
+          "scene": "Blue Box anime S1, Episode 1 (\"Chinatsu Senpai\") — kitchen scene: Taiki discovers Chinatsu there and learns she will live with his family, closing on a city-view zoom-out",
+          "reason": "Closes on the episode's actual final beat, pairing the CTA with the story's real emotional payoff",
+          "duration_sec": 7,
+          "timeline_start_sec": 23,
+          "timeline_end_sec": 30,
+          "scene_verified": true,
+          "verification_source_url": "https://decider.com/2024/10/08/blue-box-netflix-review/",
+          "claim_vs_source_check": {
+            "claimed_beat": "kitchen scene: Taiki discovers Chinatsu there and learns she will be living with his family, closing on a city-view zoom-out",
+            "source_content_confirmed": "Closing Scene: Taiki is taken aback by the news that Chinatsu will be living with his family starting in the spring. As Taiki's mother, Chinatsu's mother, and Chinatsu smile together in Taiki's kitchen, he appears utterly astonished as the camera zooms out, capturing the city while he exclaims, 'What the heck?'",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1,
+            "locate_confirmed_via": "the same Decider 'Stream It Or Skip It' review cited above, which explicitly describes this as the episode's closing scene",
+            "approx_timestamp": "final scene, episode close"
+          }
+        }
+      ],
+      "clip_plan_needs_manga_source": false,
+      "clip_plan_needs_release_delay": false,
+      "clip_descriptions": "Cut 1: Gym establishing shot (Taiki/Chinatsu), Ep. 1. Cut 2: Evening one-on-one basketball / hand-touching moment, Ep. 1. Cut 3: Taiki-Kyo-Hina group scene near the gym, Ep. 1, pivoting into the shortage story. Cut 4: Kitchen scene — Chinatsu arrival reveal with city-view zoom-out close, Ep. 1.",
+      "captions": "BLUE BOX JUST ENDED — YOU THINK FANS ARE MAD? WRONG — THE FINALE WAS LOVED — THEN NOBODY COULD BUY IT — ONE PIECE CARD SOLD IT OUT — AUTHOR HAD TO APOLOGIZE — LEAVE YOUR TAKE",
+      "youtube_title": "Blue Box Ended, But a One Piece Card Ruined It",
+      "tiktok_title": "A One Piece Card Ruined Blue Box's Ending",
+      "tiktok_post_text": "Blue Box just ended after 5 years and the finale actually landed — so why did fans miss it in stores? A bundled One Piece card sold it out first. #BlueBox #AoNoHako #OnePiece #anime #manga #animeshorts",
+      "pinned_comment": "Worth saying clearly: Miura didn't cause this shortage and she said so herself — the anger online was aimed at scalpers buying the issue just for the card, not at her or the ending.",
+      "post_times": {
+        "youtube": "7:30 PM ET",
+        "tiktok": "7:45 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false
+    }
+  ]
+}

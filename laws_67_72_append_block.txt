@@ -1,0 +1,928 @@
+
+════════════════════════════════════════════════════════════════════
+LAWS #67–72 — LONG-FORM EQUIVALENTS
+Added: June 2026 | System v5.2
+════════════════════════════════════════════════════════════════════
+
+# LAW #67 — LONG-FORM CREATOR VOICE
+**System:** AnimeWithSebastian — v5.2
+**Added:** June 2026
+**Status:** ACTIVE
+**Source:** Law #54 (Shorts) adapted for long-form format
+**Applies to:** All long-form videos (5–8 minutes)
+
+---
+
+## THE LAW
+
+The voice in long-form is the same voice as the Shorts.
+Same person. Same tone. Same conversational register.
+
+The only difference: long-form has more time.
+More time does not mean more formal. It means more of the same person.
+
+A viewer who found the channel through a Short and clicks a long-form video
+expects to hear the same creator. If the long-form sounds like a different person —
+more polished, more scripted, more structured — they leave.
+The voice is the reason they clicked. Keep it.
+
+---
+
+## THE THREE RULES (same as Law #54, scaled for long-form)
+
+### RULE 1 — STATE A POSITION IN THE FIRST 30 SECONDS
+Shorts get 5 seconds. Long-form gets 30 — but not more.
+Do not spend the first minute explaining what the video is about.
+Do not intro yourself. Do not recap the show's plot.
+Drop directly into the claim that made you make the video.
+
+Wrong: "Today we're going to be talking about why Guts from Berserk is one of the most
+tragic characters in all of anime, and I want to break down exactly why that is."
+Right: "Guts never actually gets to grieve. Every time he gets close — something takes it
+from him. That's been sitting with me for a while."
+
+### RULE 2 — NO HEDGING LANGUAGE — EVER
+Same ban as Law #54. No exceptions for long-form.
+Banned: "arguably," "some people think," "kind of," "in a way," "you could say,"
+"it's possible that," "many fans believe."
+
+Long-form does not make hedging more acceptable. It makes it more visible.
+A 7-minute video full of hedging sounds like a Wikipedia article being read aloud.
+State the take. Own it. Let the viewer push back.
+
+### RULE 3 — THE CLOSER MUST FEEL LIKE A REAL PERSON
+Same rule as Law #54 — but harder in long-form because more time means
+more temptation to wrap it up cleanly.
+
+The long-form closer is not a summary. It is not "so as we've seen."
+It is the creator landing on one final thought that still has something unresolved in it.
+
+Wrong: "So that's why Guts remains one of the most compelling characters in anime history.
+His journey is a testament to the resilience of the human spirit."
+Right: "He keeps going. That's the whole thing. I don't know if that's strength
+or just what's left when everything else is gone."
+
+---
+
+## LONG-FORM SPECIFIC ADDITIONS
+
+### THE MID-VIDEO VOICE CHECK
+In a Short, there is no mid-video. In long-form, there is.
+
+Every 2 minutes of long-form, the voice must re-anchor.
+The viewer should be able to feel the creator's presence throughout —
+not just in the hook and closer.
+
+Signs the voice has drifted mid-video:
+- Sentences get longer and more formal
+- Claims stop being personal and become observational
+- The creator stops saying "I" and starts saying "we" or "one"
+- The pacing slows into paragraph-reading mode
+
+If any of these appear mid-video → rewrite that section.
+
+### THE PERSONALITY SIGNATURE — ONCE PER 2 MINUTES
+Law #54 requires one personality signature per Short.
+Long-form requires one per every 2 minutes of content.
+
+A personality signature is a line specific enough that another channel
+could not copy-paste it. It reveals how the creator thinks, not just what.
+
+Example: "I watched the Eclipse scene four times. Every time I focused on the wrong thing."
+Only someone who rewatched obsessively and caught where their attention went would write that.
+
+### THE CONVERSATION TEST (same as Law #54)
+Read the full script aloud in one take.
+Ask: does this sound like someone who actually watched this show
+     talking to someone who also watches anime?
+If any section sounds like a presentation → rewrite it.
+If the energy drops for more than 30 seconds → restructure that section.
+
+---
+
+## AUTO-FAIL CHECK (long-form version)
+
+Before publishing:
+[ ] Does the video open with a specific claim within 30 seconds?
+[ ] Is hedging language absent throughout the entire video?
+[ ] Does the closer feel like a real person landing on a thought — not a conclusion?
+[ ] Does the voice stay consistent throughout — or does it drift formal mid-video?
+[ ] Is there at least one personality signature per 2 minutes of content?
+[ ] Would a viewer who came from a Short feel like they found the same person?
+
+---
+
+## RELATED LAWS
+- Law #54 — Creator Voice (Shorts version — this law is the long-form equivalent)
+- Law #63 — No Lecturing (applies equally to long-form)
+- Law #72 — Long-Form Pre-Publish Checklist (enforcement gate)
+
+────────────────────────────────────────────────────────────────────
+
+# LAW #68 — LONG-FORM COMMENT ENGINEERING
+**System:** AnimeWithSebastian — v5.2
+**Added:** June 2026
+**Status:** ACTIVE
+**Source:** Law #55 (Shorts) adapted for long-form format
+**Applies to:** All long-form videos (5–8 minutes)
+
+---
+
+## THE LAW
+
+Long-form comments are deeper than Short comments.
+A viewer who watched 7 minutes has more invested. Their comment is longer,
+more specific, and more likely to start a thread.
+
+The same 5 community levers from Law #55 apply — but long-form has additional
+tools that Shorts do not have. Use them.
+
+---
+
+## THE 5 COMMUNITY LEVERS (same as Law #55 — required)
+
+Minimum 3 active per long-form video. Same rules as Law #55.
+
+**LEVER 1 — THE OPEN POSITION:** State the take clearly. A neutral take gets no comment.
+**LEVER 2 — THE DEBATE SPLIT:** Create two named sides. Both camps need something to say.
+**LEVER 3 — THE SPECIFIC DETAIL:** Drop one thing real fans either know or don't know.
+**LEVER 4 — THE UNFINISHED THOUGHT:** Closer leaves one thread open. Viewer finishes it.
+**LEVER 5 — THE PINNED COMMENT POSITION:** States the creator's position + leaves a specific open thread.
+
+---
+
+## LONG-FORM SPECIFIC ADDITIONS
+
+### THE MID-VIDEO COMMENT TRIGGER
+Shorts have one shot at triggering a comment — the closer.
+Long-form has multiple shots.
+
+Every 2–3 minutes of long-form should contain at least one line that
+could make a viewer pause the video and think "I need to respond to that."
+
+These are mid-video comment triggers. They do not replace the closer.
+They stack on top of it.
+
+Types of mid-video comment triggers:
+- A claim the viewer disagrees with strongly enough to respond mid-watch
+- A specific detail they want to confirm or correct
+- A question the creator poses to themselves and does not immediately answer
+  (setup for the answer that comes later — but the viewer starts forming their response)
+
+### THE CHAPTER DEBATE
+Long-form videos on YouTube can use chapters (timestamps).
+Each chapter title is a micro-hook — the viewer reads them before watching.
+Chapter titles that contain a stated position generate comments before the video even plays.
+
+Wrong chapter title: "Guts's Backstory"
+Right chapter title: "Why Guts Never Actually Gets to Grieve"
+
+The chapter title is a claim. Make every chapter title a claim, not a label.
+
+### THE DESCRIPTION COMMENT SEED
+The video description is read by a different viewer than the one watching.
+It is often the first thing a subscriber sees in their feed.
+
+The description must contain:
+1. The core claim of the video in one sentence (not a summary — the take)
+2. One open question that seeds the comment section before anyone watches
+
+Wrong: "In this video I break down why Guts is such a tragic character in Berserk."
+Right: "Guts never gets to grieve. Every time he gets close — something takes it from him.
+Is that strength or just what's left? Drop your answer below."
+
+### THE REPLY WINDOW
+Same rule as Law #55 — reply to every strong comment within the first hour.
+Long-form comments are longer and more thoughtful — they deserve a longer reply.
+One reply in the first hour signals to the algorithm that the comment section is active.
+
+For long-form specifically:
+- Pin the most contested comment (not the most positive — the most argued-about)
+- Heart the comments that name a specific detail from the video (signals to the algorithm
+  that viewers are watching closely)
+
+---
+
+## COMMUNITY ACTION — IN EVERY LONG-FORM PLANNING SESSION
+
+LONG-FORM COMMUNITY PLAN:
+Mid-video triggers: [list the 2–3 lines designed to generate mid-watch responses]
+Chapter titles: [confirm each chapter title is a claim, not a label]
+Description claim: [one sentence — the take, not the summary]
+Description question: [one open question to seed comments]
+Pinned comment: [position + open thread — specific to this video]
+Reply window: within 1 hour of publishing
+
+---
+
+## AUTO-FAIL CHECK
+
+Before publishing:
+[ ] Are at least 3 of the 5 community levers active?
+[ ] Are there 2–3 mid-video comment trigger lines?
+[ ] Does every chapter title state a claim — not a label?
+[ ] Does the description contain the take in one sentence + an open question?
+[ ] Is the pinned comment written — not left to post-publish?
+[ ] Is the reply window scheduled (within 1 hour of publishing)?
+
+---
+
+## RELATED LAWS
+- Law #55 — Community Comment Law (Shorts version — this law is the long-form equivalent)
+- Law #62 — CUT 7 Closer (the long-form closer is the final comment trigger)
+- Law #72 — Long-Form Pre-Publish Checklist (enforcement gate)
+
+────────────────────────────────────────────────────────────────────
+
+# LAW #69 — LONG-FORM FACT VERIFICATION
+**System:** AnimeWithSebastian — v5.2
+**Added:** June 2026
+**Status:** ACTIVE
+**Source:** Law #58 (Shorts Pre-Send Verification) adapted for long-form
+**Applies to:** All long-form videos (5–8 minutes)
+
+---
+
+## THE LAW
+
+Long-form contains more claims than a Short.
+More claims = more chances for one wrong fact to collapse the entire video.
+
+Every specific claim in a long-form video must be verified via live source
+before the video is scripted, filmed, or published.
+
+Law #52: NEVER source factual claims from memory. This applies with more
+force in long-form — a wrong fact in a 7-minute video sits on screen longer,
+reaches more of the audience, and generates more correction comments than a
+wrong fact in a 45-second Short.
+
+---
+
+## CLAIM TYPES (same as Law #58, extended for long-form volume)
+
+### TYPE A — GENERAL CHARACTER/SHOW FACT
+Example: "Guts uses a sword called the Dragonslayer."
+Verification: 1 live search minimum.
+These are everywhere in long-form. Do not skip because they seem obvious.
+Memory-confirmed ≠ verified.
+
+### TYPE B — CORE CLAIM (COLLAPSE TEST)
+The central argument of the video. If this is wrong, the whole video falls apart.
+Example: "Berserk's Eclipse arc was the turning point that defined Guts's entire trajectory."
+Verification: 2 live searches minimum. Cross-referenced.
+Every long-form has exactly one core claim. Find it. Verify it twice.
+
+### TYPE C — YEAR/TIMELINE/NUMBER CLAIM
+Example: "Berserk the manga started in 1989."
+Verification: 1 live search minimum. These fail silently — a wrong year
+in a Short gets 3 comments. A wrong year in a long-form with 1,000 views
+gets 40 comments and tanks the credibility of everything else said.
+
+### TYPE D — REAL-WORLD CONNECTION CLAIM
+Example: "Kentaro Miura based the Band of the Hawk on medieval European mercenary companies."
+Verification: 2 live searches minimum. These are the highest-risk claim type
+in long-form because they are the most impressive and the hardest to verify.
+If verification fails after 2 searches → REMOVE THE CLAIM. Do not guess.
+
+### TYPE E — COMPARISON CLAIM (long-form only)
+Example: "Guts's trauma response is more detailed than any other anime protagonist's."
+These appear frequently in long-form arguments and almost never in Shorts.
+Verification: Search specifically for counterexamples before making this claim.
+If a clear counterexample exists → qualify or remove the claim.
+"More detailed than most" is defensible. "More detailed than any" is not.
+
+---
+
+## LONG-FORM FACT BLOCK FORMAT
+
+Every long-form script must include a fact verification block before filming.
+Format:
+
+LONG-FORM FACT VERIFICATION BLOCK
+Video: [Title]
+Core claim (Type B): [claim] — Source: [URL] — Cross-check: [URL]
+
+Supporting claims:
+[Claim 1] — Type [A/C/D/E] — Source: [URL]
+[Claim 2] — Type [A/C/D/E] — Source: [URL]
+[Claim 3] — Type [A/C/D/E] — Source: [URL]
+[...]
+
+Any BLOCKED claim (unverified after 2 searches): REMOVED. Replaced with: [replacement or cut]
+
+OVERALL STATUS: PASS — all claims verified
+OR: HARD STOP — [claim] blocked, video cannot publish until resolved
+
+---
+
+## THE CORRECTION COMMENT RULE
+
+Long-form videos are watched by more invested fans than Shorts.
+Invested fans are more likely to know when a fact is wrong.
+A correction comment on a long-form video is more damaging than on a Short
+because it sits under a video people are already spending 7 minutes with.
+
+Every correction comment is a failed Law #69 check.
+If a long-form video generates a correction comment → identify which claim
+failed verification and why. Update the law with the failure case.
+
+---
+
+## AUTO-FAIL CHECK
+
+Before filming or publishing:
+[ ] Is the core claim (Type B) verified with 2 live sources?
+[ ] Are all Type C (year/number) claims verified?
+[ ] Are all Type D (real-world connection) claims verified with 2 sources?
+[ ] Are Type E (comparison) claims qualified — not absolute?
+[ ] Is the full fact verification block written and attached to the script?
+[ ] Are there zero unverified claims remaining?
+
+If any item is NO → do not film. Resolve first.
+
+---
+
+## RELATED LAWS
+- Law #52 — Never source from memory (foundational rule this law enforces)
+- Law #58 — Pre-Send Verification (Shorts version — same principle)
+- Law #60 — Dangling Claims (unverified claims often become dangling claims)
+- Law #72 — Long-Form Pre-Publish Checklist (enforcement gate)
+
+────────────────────────────────────────────────────────────────────
+
+# LAW #70 — LONG-FORM DANGLING CLAIMS
+
+**Status:** ACTIVE  
+**Version:** 1.0  
+**Channel:** AnimeWithSebastian (@animewithsebastian)  
+**Applies To:** Long-form videos ONLY  
+**Short-Form Equivalent:** Law #60 (Dangling Claims)  
+**Date Added:** 2026-06-12
+
+---
+
+## CORE RULE
+
+Every claim you open in a long-form video must be closed before the video ends.
+
+A "dangling claim" is any statement that implies a payoff the video never delivers.  
+In Shorts, this kills the video in 10 seconds.  
+In long-form, it kills watch time and tanks the end-screen retention — the one metric that determines if YouTube recommends the next video.
+
+---
+
+## WHAT A DANGLING CLAIM LOOKS LIKE
+
+**Opening a claim:**
+> "There's a reason Sasuke's design was built off Hiei — and it changes how you see the whole rivalry."
+
+**The payoff must come before the outro.**  
+If that line lives in Section 1 (hook or setup) and the video ends without addressing it — that is a dangling claim.
+
+**Dangling = the viewer sat through 8 minutes waiting for something you never delivered.**  
+They won't come back.
+
+---
+
+## HOW LONG-FORM CHANGES THE RULE
+
+In Law #60, the rule is tight: open a claim → close it within the same Short.  
+In long-form, the gap between open and close can span multiple sections.
+
+**That is allowed — with conditions:**
+
+| Condition | Rule |
+|---|---|
+| Claim opened in Hook | Must be closed no later than Section 4 (Open Closer) |
+| Claim opened in Setup | Must be closed no later than Section 4 |
+| Claim opened in Argument | Must be closed within the same section or Section 4 |
+| Claim opened in Open Closer | Must be closed in the same section — cannot be left open for "Part 2" |
+| "Part 2" setups | Only allowed if Section 4 still delivers a complete thought — the viewer must feel like they got something, not got strung along |
+
+**The rule:** The viewer must feel the loop close before the CTA.  
+They can want more — but they should not feel cheated.
+
+---
+
+## THE 5-SECTION STRUCTURE (FROM LAW #66)
+
+```
+SECTION 1: Hook         — claim may open here
+SECTION 2: Setup        — claim may open or continue here
+SECTION 3: Argument     — claim develops here
+SECTION 4: Open Closer  — ALL open claims must resolve here
+SECTION 5: CTA         — no new claims, no new loops
+```
+
+The CTA (Section 5) is not a delivery section.  
+If a claim reaches Section 5 unresolved, the law is broken.
+
+---
+
+## MULTI-CLAIM TRACKING (ENFORCEMENT)
+
+Long-form videos often open more than one claim. This law covers all of them.
+
+**Before filming or scripting, list every claim the video opens:**
+
+```
+CLAIM LOG — [Video Title]
+1. [Claim text] → Closes in Section ___
+2. [Claim text] → Closes in Section ___
+3. [Claim text] → Closes in Section ___
+```
+
+If any claim has no assigned close section — cut it or restructure before recording.
+
+---
+
+## WHAT COUNTS AS CLOSING A CLAIM
+
+A claim is closed when:
+- The answer, payoff, or verdict is delivered clearly
+- The viewer does not have to infer the resolution — it is stated
+- The section moves forward after the close, not before it
+
+A claim is NOT closed by:
+- Vague gestures ("you can see how this plays out")
+- Pivoting to a new topic without addressing the open loop
+- Saying "we'll get into that more next time" without giving something now
+
+---
+
+## PART 2 SETUPS — ALLOWED USE
+
+"Part 2" hooks at the end of Section 4 or in the CTA are allowed **only if:**
+
+1. The main argument of the current video is complete
+2. The "Part 2" tease introduces a NEW angle — not the unfinished angle from this video
+3. The viewer could stop after this video and feel satisfied
+
+**Banned:**
+> "But we'll get into why Sasuke actually lost next time."
+
+If that was the whole point of the video and it's never addressed — that is a dangling claim disguised as a Part 2 hook.
+
+**Allowed:**
+> "That's the short version — if you want the full breakdown of every fight where that dynamic shows up, that's Part 2."
+
+The current video delivered. Part 2 is an expansion, not a rescue.
+
+---
+
+## ENFORCEMENT — PRE-PUBLISH CHECK
+
+This law is one of six gates in Law #72 (Long-Form Pre-Publish Checklist).
+
+Before any long-form publishes, confirm:
+- [ ] Every claim opened is listed in the Claim Log
+- [ ] Every claim in the Claim Log has an assigned close section
+- [ ] No claim reaches Section 5 (CTA) unresolved
+- [ ] If a Part 2 hook exists — the current video still delivers a complete thought
+
+If any box is unchecked — do not publish. Restructure first.
+
+---
+
+## WHY THIS EXISTS
+
+Long-form retention graphs have a specific failure pattern: a sharp drop at the exact timestamp where the viewer realizes the payoff they came for isn't coming.
+
+That drop tells YouTube the video underdelivered.  
+Underdelivering kills recommendations.  
+Killing recommendations kills the channel's growth path.
+
+Law #66 exists to get AnimeWithSebastian to watch hours.  
+Law #70 exists to make sure every minute of those watch hours is earned.
+
+---
+
+*Law #70 — Long-Form Dangling Claims | AnimeWithSebastian v5.2*
+
+────────────────────────────────────────────────────────────────────
+
+# LAW #71 — LONG-FORM STRUCTURE LAW
+
+**Status:** ACTIVE  
+**Version:** 1.0  
+**Channel:** AnimeWithSebastian (@animewithsebastian)  
+**Applies To:** Long-form videos ONLY  
+**Short-Form Equivalent:** Law #59 (VO Length / No Essay Rule)  
+**Date Added:** 2026-06-12
+
+---
+
+## CORE RULE
+
+Long-form videos have more room than Shorts — that room does not mean academic structure is now allowed.
+
+Long-form IS longer. Long-form IS structured.  
+Long-form is NOT an essay. It is NOT a lecture. It is NOT a YouTube video disguised as a thesis paper.
+
+The 5-section structure from Law #66 exists for this reason.  
+Every long-form video follows it. No exceptions.
+
+---
+
+## THE BANNED STRUCTURE (ESSAY MODE)
+
+**This framing is permanently banned in long-form:**
+
+```
+INTRO:   "Today we're going to talk about X and here's why it matters."
+BODY 1:  "First, let's look at..."
+BODY 2:  "Second, we can see that..."
+BODY 3:  "Third, if you consider..."
+CONCLUSION: "So in conclusion, X is Y because of A, B, and C."
+```
+
+This is a five-paragraph essay. It reads like a term paper.  
+It sounds like a teacher. It doesn't sound like a person who watches anime.
+
+Law #63 bans lecturing.  
+Law #71 bans the structure that forces lecturing to happen.
+
+---
+
+## THE REQUIRED STRUCTURE (LAW #66 — 5 SECTIONS)
+
+```
+SECTION 1: HOOK          (15–30 sec)
+SECTION 2: SETUP         (60–90 sec)
+SECTION 3: ARGUMENT      (3–5 min)
+SECTION 4: OPEN CLOSER   (60–90 sec)
+SECTION 5: CTA           (15–20 sec)
+```
+
+**What each section actually sounds like:**
+
+### Section 1 — Hook
+Not: "In today's video, we'll be exploring..."  
+Yes: Drop the claim. Drop the heat. Make them stay.
+
+The hook is a conversation starter, not a table of contents.  
+It opens a loop. It does not explain what the video is about.
+
+### Section 2 — Setup
+Not: "First, let's establish the context of..."  
+Yes: Ground the argument in something the viewer already knows and cares about.
+
+Setup is the "you already know this but here's why it matters today" section.  
+It shortens the distance between where the viewer is and where the argument is going.
+
+### Section 3 — Argument
+Not: "Point one. Point two. Point three."  
+Yes: One idea, developed — with turns, contradictions, or comparisons that feel like conversation.
+
+The argument section can have multiple moves inside it.  
+It cannot feel like a numbered list being read aloud.
+
+Each move should feel like a natural transition in conversation:
+> "...and that's the part most people miss — because they're looking at X when the real answer is Y."
+
+Not:
+> "Moving on to our second point..."
+
+### Section 4 — Open Closer
+Not: "In conclusion, we've learned that..."  
+Yes: Land the idea. But leave something slightly open — a question, a comparison, a "you decide."
+
+The Open Closer is not a conclusion. It is the end of the argument with room for the viewer to have a reaction.  
+That reaction is what drives comments (Law #68).
+
+### Section 5 — CTA
+Not: "Make sure to follow and subscribe for more content!"  
+Yes: Casual. Direct. Sounds like something a real person says.
+
+Law #54 (voice) and Law #67 (long-form voice) apply here.  
+CTA must match the tone of the rest of the video — not drop into corporate promo mode.
+
+---
+
+## THE TRANSITION RULE
+
+How you move between sections determines whether the video feels like a conversation or a presentation.
+
+**Banned transitions:**
+- "Moving on..."
+- "Now let's look at..."
+- "Next up..."
+- "As we can see..."
+- "To summarize..."
+- "In conclusion..."
+- "Now that we've covered X, let's talk about Y..."
+
+**These exist in essay structure. They do not exist in conversation.**
+
+A conversation transitions by following the thought — not by announcing the next thought is coming.
+
+**Allowed transition approach:**
+End one idea with a line that naturally leads into the next.
+
+> "...so Hiei never needed to say he cared. His whole fighting style was the proof. And that's exactly why Sasuke's designers borrowed from him — they needed a character who communicated through action, not dialogue."
+
+That line closes one beat and opens the next without announcing the shift.
+
+---
+
+## PACING RULE
+
+Long-form does not mean slow.  
+The difference between a 7-minute long-form and a bloated 7-minute ramble is pacing.
+
+**Pacing check per section:**
+
+| Section | Red Flag |
+|---|---|
+| Hook | Longer than 30 seconds before the claim lands |
+| Setup | More than 90 seconds of background before the argument starts |
+| Argument | Same idea repeated more than twice in a row — no new angle added |
+| Open Closer | Starting to wrap up, then opening a new angle |
+| CTA | More than 20 seconds — gets padded and awkward |
+
+If a section is failing its pacing check — cut it down before publishing.
+
+---
+
+## WHAT LONG-FORM ALLOWS THAT SHORTS DO NOT
+
+Long-form unlocks:
+- Deeper comparisons (not just a one-line claim — a developed case)
+- Multiple examples for the same argument
+- A longer setup before the payoff
+- More than one "turn" in the argument (introducing a contradiction, then resolving it)
+- A real closer that earns the comment section
+
+Long-form does NOT unlock:
+- Academic framing
+- Thesis/evidence/conclusion structure
+- Numbered points read like a list
+- Lecturing (Law #63 still applies)
+- Padding to hit a runtime (Law #66 — publish when the idea is done)
+
+---
+
+## ENFORCEMENT — PRE-PUBLISH CHECK
+
+This law is one of six gates in Law #72 (Long-Form Pre-Publish Checklist).
+
+Before any long-form publishes, confirm:
+- [ ] Video follows the 5-section structure (Law #66)
+- [ ] No section uses essay/academic framing
+- [ ] No banned transitions appear in the script
+- [ ] Argument section develops one idea — not lists points
+- [ ] Pacing check passed for all 5 sections
+- [ ] CTA sounds like the rest of the video — not a promo drop
+
+If any box is unchecked — revise before publishing.
+
+---
+
+## WHY THIS EXISTS
+
+The reason most anime commentary long-forms fail is not that they're too long.  
+It's that they sound like homework.
+
+The viewer came to hear someone talk about anime the way they'd talk about it with a friend.  
+The second the video starts sounding like a presentation — they leave.
+
+Law #59 killed essay structure in Shorts.  
+Law #71 kills it in long-form before it has a chance to take root.
+
+The 5-section structure from Law #66 is the alternative.  
+This law governs how to use it.
+
+---
+
+*Law #71 — Long-Form Structure Law | AnimeWithSebastian v5.2*
+
+────────────────────────────────────────────────────────────────────
+
+# LAW #72 — LONG-FORM PRE-PUBLISH CHECKLIST
+
+**Status:** ACTIVE  
+**Version:** 1.0  
+**Channel:** AnimeWithSebastian (@animewithsebastian)  
+**Applies To:** Long-form videos ONLY  
+**Short-Form Equivalent:** Law #58 (Pre-Send Verification — the enforcement gate for Shorts)  
+**Date Added:** 2026-06-12
+
+---
+
+## CORE RULE
+
+No long-form video publishes without passing all six gates.
+
+This checklist is not optional. It is not a suggestion.  
+It runs before every long-form — the same way Law #58 runs before every Short gets sent.
+
+If any gate fails — the video does not publish until it is fixed.
+
+---
+
+## THE SIX GATES
+
+---
+
+### GATE 1 — VOICE CHECK (Law #67)
+
+**Question:** Does this video sound like a real person talking about anime — or does it sound like a script being performed?
+
+**Pass criteria:**
+- [ ] No formal transitions ("Moving on," "As we can see," "In conclusion")
+- [ ] No robotic phrasing or AI-sounding delivery patterns
+- [ ] The first 30 seconds sounds like the middle of a conversation, not an intro
+- [ ] The closing section sounds like a person landing an idea — not wrapping up a report
+- [ ] CTA is casual and direct — does not sound like a promo
+
+**If failed:** Rewrite the flagged sections before recording. Do not record over a script that fails the voice check.
+
+---
+
+### GATE 2 — COMMENT ENGINEERING CHECK (Law #68)
+
+**Question:** Does this video give the audience something specific to react to — a take, a comparison, a question they actually want to answer?
+
+**Pass criteria:**
+- [ ] At least one moment in Section 3 (Argument) or Section 4 (Open Closer) is designed to generate a response
+- [ ] The comment prompt is NOT a generic "What do you think?" — it is tied to the specific argument of the video
+- [ ] The closing question or statement is delivered naturally — it does not feel like a planted prompt
+- [ ] The video does not end flat — there is a hook for the comment section
+
+**If failed:** Add or rework the Open Closer (Section 4). The comment hook lives there.
+
+---
+
+### GATE 3 — FACT VERIFICATION CHECK (Law #69)
+
+**Question:** Is every specific claim in this video verified against a live source — not memory, not assumption?
+
+**Pass criteria:**
+- [ ] Every character stat, power system rule, and timeline claim is sourced to manga, anime episode, or verified wiki
+- [ ] Every creator comparison (view counts, upload frequency, format patterns) is sourced to live data from the actual channel
+- [ ] Every claim that uses specific numbers ("X times stronger," "Y seconds," "Z episodes") has a source confirmed before recording
+- [ ] No claim is included because "it sounds right" — if the source cannot be found, the claim is cut
+
+**Source log (fill before recording):**
+
+```
+FACT LOG — [Video Title]
+Claim: [exact claim text]
+Source: [URL or episode reference]
+Verified: YES / NO
+
+Claim: [exact claim text]
+Source: [URL or episode reference]
+Verified: YES / NO
+```
+
+**If failed:** Do not record. Verify the facts or cut the claims. Unverified claims are not published under any circumstances.
+
+---
+
+### GATE 4 — DANGLING CLAIMS CHECK (Law #70)
+
+**Question:** Does every claim opened in this video get resolved before the CTA?
+
+**Pass criteria:**
+- [ ] All open claims are listed in the Claim Log
+- [ ] Every claim in the Claim Log has an assigned close section (1–4)
+- [ ] No claim reaches Section 5 (CTA) unresolved
+- [ ] If a Part 2 hook exists — the current video still delivers a complete, satisfying thought
+
+**Claim log (fill before recording):**
+
+```
+CLAIM LOG — [Video Title]
+1. [Claim text] → Closes in Section ___
+2. [Claim text] → Closes in Section ___
+3. [Claim text] → Closes in Section ___
+```
+
+**If failed:** Restructure the script. Close every loop before Section 5 or cut the unresolvable claim entirely.
+
+---
+
+### GATE 5 — STRUCTURE CHECK (Law #71)
+
+**Question:** Does this video follow the 5-section structure without falling into essay or lecture mode?
+
+**Pass criteria:**
+- [ ] Video uses the 5-section structure: Hook → Setup → Argument → Open Closer → CTA
+- [ ] No section uses academic/essay framing (thesis, evidence, conclusion)
+- [ ] No banned transitions appear in the script (see Law #71 banned list)
+- [ ] Argument section develops one idea — does not list numbered points
+- [ ] Pacing check passed:
+
+| Section | Target Length | Passes? |
+|---|---|---|
+| Hook | 15–30 sec | [ ] |
+| Setup | 60–90 sec | [ ] |
+| Argument | 3–5 min | [ ] |
+| Open Closer | 60–90 sec | [ ] |
+| CTA | 15–20 sec | [ ] |
+
+**If failed:** Revise the section that failed pacing or structure before recording.
+
+---
+
+### GATE 6 — ORIGINALITY CHECK (Law #65 applied to long-form)
+
+**Question:** Is this video original — a genuine take from AnimeWithSebastian — or is it recreating something that already exists?
+
+**Pass criteria:**
+- [ ] If competitor content was reviewed as research, it was used as SIGNAL ONLY — the angle, framing, and voice are original
+- [ ] The video does not retell a story that a viewer could find on any other channel — it adds a specific take or angle
+- [ ] The channel name and content are independent — no assumption that the viewer knows the channel's branding (Law #64 applied to long-form)
+- [ ] The video does not AI-voice the VO — the creator's voice is used (Law #67)
+
+**If failed:** The video is not ready. Rework the angle before recording.
+
+---
+
+## FULL CHECKLIST — QUICK REFERENCE
+
+```
+LONG-FORM PRE-PUBLISH CHECKLIST
+Video Title: ________________________________
+Date: ______________________________________
+
+GATE 1 — VOICE CHECK (Law #67)
+[ ] No formal transitions
+[ ] No robotic phrasing
+[ ] Hook sounds like conversation
+[ ] Closer sounds like landing an idea
+[ ] CTA is casual
+
+GATE 2 — COMMENT ENGINEERING (Law #68)
+[ ] At least one specific comment hook
+[ ] Hook is tied to the argument (not generic)
+[ ] Delivered naturally in Open Closer
+[ ] Video does not end flat
+
+GATE 3 — FACT VERIFICATION (Law #69)
+[ ] All character/power claims sourced
+[ ] All creator comparisons sourced to live data
+[ ] All specific numbers confirmed
+[ ] No "sounds right" claims included
+[ ] Fact Log completed
+
+GATE 4 — DANGLING CLAIMS (Law #70)
+[ ] Claim Log completed
+[ ] Every claim has an assigned close section
+[ ] No claim reaches CTA unresolved
+[ ] Part 2 hook (if used) still delivers a complete video
+
+GATE 5 — STRUCTURE (Law #71)
+[ ] 5-section structure followed
+[ ] No essay framing
+[ ] No banned transitions
+[ ] Argument develops one idea
+[ ] All 5 sections pass pacing check
+
+GATE 6 — ORIGINALITY (Law #65 / Law #64 / Law #67)
+[ ] Competitor research used as signal only
+[ ] Original angle confirmed
+[ ] No channel-name-as-content assumption
+[ ] Creator's own voice used (no AI VO)
+
+ALL 6 GATES PASSED? → CLEAR TO PUBLISH
+ANY GATE FAILED? → DO NOT PUBLISH — FIX FIRST
+```
+
+---
+
+## WHEN THIS CHECKLIST RUNS
+
+- Before every long-form script is finalized
+- Before every long-form is recorded
+- Before every long-form is uploaded
+
+It is not an afterthought. It is not run after the video is done.  
+The earlier a gate fails, the less work is wasted.
+
+Run Gate 3 (Fact Verification) and Gate 4 (Dangling Claims) at the script stage.  
+Run Gate 1 (Voice), Gate 5 (Structure), and Gate 6 (Originality) before recording.  
+Run Gate 2 (Comment Engineering) before uploading — confirm the Open Closer still works after editing.
+
+---
+
+## WHY THIS EXISTS
+
+Law #58 exists because Shorts were going out with unverified claims.  
+Law #72 exists because long-form has more surface area for the same problems — and the consequences are larger.
+
+A Short with a bad claim is 60 seconds of damage.  
+A long-form with a bad claim is 8 minutes of damage — and it lives on the channel permanently.
+
+The checklist is the last line of defense.  
+It is not optional.
+
+---
+
+*Law #72 — Long-Form Pre-Publish Checklist | AnimeWithSebastian v5.2*
+
+════════════════════════════════════════════════════════════════════
+END LAWS #67–72
+════════════════════════════════════════════════════════════════════
+

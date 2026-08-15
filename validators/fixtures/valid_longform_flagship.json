@@ -1,0 +1,22 @@
+{
+  "content_type": "longform",
+  "recipient": "hero_or_villain@outlook.com",
+  "show": "Frieren: Beyond Journey's End",
+  "angle": "Why Frieren's combat writing rewards rewatching more than any current shounen",
+  "duration_sec": 660,
+  "face": true,
+  "model": "Claude Fable 5",
+  "primary_keywords": ["frieren", "frieren combat"],
+  "description": "Frieren combat is the most rewatchable fight writing on TV right now, and this video breaks down exactly why.\n\nWe go scene by scene through the Aura fight and the mana-measuring tells most viewers miss on the first watch.\n\nChapters below. Playlist and the follow-up video are linked.",
+  "chapters": [
+    {"title": "Intro: the rewatch claim", "start_sec": 0},
+    {"title": "Frieren vs Aura, beat by beat", "start_sec": 95},
+    {"title": "The mana-measuring tells", "start_sec": 300},
+    {"title": "Why it beats current shounen", "start_sec": 520}
+  ],
+  "playlist_link": "https://www.youtube.com/playlist?list=PLfrierendeepcuts",
+  "pinned_next_link": "https://youtu.be/frieren-longform-part-2",
+  "comment_prompt": "Which Frieren fight rewards the rewatch the most for you?",
+  "teaser_shorts_planned": 3,
+  "flagship_url": "https://youtu.be/frieren-flagship-01"
+}

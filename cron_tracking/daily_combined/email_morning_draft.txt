@@ -1,0 +1,65 @@
+SUBJECT: TOMORROW | MORNING | Saga of Tanya the Evil Season 2 | Aug 13 | Tanya's Commander Weaponized Her Own Fame
+
+━━━ MORNING — 2026-08-13 ━━━
+SHOW:    Saga of Tanya the Evil Season 2
+ANGLE:   Hans weaponizes Tanya's own reputation, turning her into deliberate bait for a no-retreat mission while a spy leak and Weiss's wounding raise the stakes
+FORMAT:  CHARACTER_DIVE
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM — Law #134 Stage 2; manga panels allowed within the anime-footage half for manga-based formats)
+TOPIC:   timely — signals: currently_airing
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK (Law #144 — on screen + spoken in second 1) ━━━
+ON-SCREEN (second 1): Her own commander used her fame as a weapon
+SPOKEN (VO first line): Tanya's own commander just used her fame as a weapon against her.
+HOOK FAMILY: revelation
+(Draft two hook candidates internally — Law #145 — publish ONLY the selected one:
+  candidate A: Tanya's own commander just used her fame as a weapon against her.
+  candidate B: The Empire's best officer just got assigned to a mission with no retreat plan — on purpose.
+  SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (235 words — fills the resolved 68s CapCut edit) ━━━
+Tanya's own commander just used her fame as a weapon against her. Hans, the one officer treating her like a person, gets reassigned to the Eastern Front after pushing leadership to reject the war entirely. They refuse. Kurt tells Hans they could still win — but he doesn't sound like he believes it. The Empire is already stretched thin across multiple fronts, and Tanya realizes the government has no intention of ending anything. Then Hans calls her back — not to protect her, but to use her. Leadership sees her as one of their biggest threats, so instead of hiding that, he weaponizes it: he sends her to defend an abandoned railway depot with no retreat route, betting the entire Eastern Front on the enemy walking into a trap built around her name alone. Tanya calls it closer to a sacrifice than a mission — a suicide assignment wearing a promotion's paperwork. Then it gets worse. A spy inside the Empire hands the Allied Kingdom exactly what they need: her position, her movements, the cracks between her command and the officers above her. Reports even suggest the Federation is watching, waiting for the moment she's exposed. The mission ends with her second-in-command, Weiss, seriously wounded in the final battlefield sequence — the episode won't say if he makes it. What would you do with a commander who protects your reputation by risking your life? Leave your take.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view — Law #134 Stage 2 two-track) ━━━
+[FACE: direct-to-camera, lean in] Tanya's own commander just used her fame as a weapon against her. [FACE: direct-to-camera] Hans, the one officer treating her like a person, gets reassigned to the Eastern Front after pushing leadership to reject the war entirely. [FACE: glance-down-at-footage] They refuse. [FACE: direct-to-camera] Kurt tells Hans they could still win — but he doesn't sound like he believes it. [FACE: glance-down-at-footage] The Empire is already stretched thin across multiple fronts, and Tanya realizes the government has no intention of ending anything. [FACE: direct-to-camera] Then Hans calls her back — not to protect her, but to use her. [FACE: glance-down-at-footage] Leadership sees her as one of their biggest threats, so instead of hiding that, he weaponizes it: [FACE: direct-to-camera] he sends her to defend an abandoned railway depot with no retreat route, betting the entire Eastern Front on the enemy walking into a trap built around her name alone. [FACE: glance-down-at-footage] Tanya calls it closer to a sacrifice than a mission — a suicide assignment wearing a promotion's paperwork. [FACE: direct-to-camera] Then it gets worse. [FACE: glance-down-at-footage] A spy inside the Empire hands the Allied Kingdom exactly what they need: [FACE: direct-to-camera] her position, her movements, the cracks between her command and the officers above her. [FACE: glance-down-at-footage] Reports even suggest the Federation is watching, waiting for the moment she's exposed. [FACE: direct-to-camera] The mission ends with her second-in-command, Weiss, seriously wounded in the final battlefield sequence — the episode won't say if he makes it. [FACE: glance-down-at-footage] What would you do with a commander who protects your reputation by risking your life? [FACE: direct-to-camera] Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings REQUIRED — Law #140) ━━━
+CUT 1 — 7 sec (0:00–0:07): Tanya on duty / battalion command establishing shot, early episode [S2E5] — Grounds the hook in Tanya's actual position of authority before the reassignment twist lands
+CUT 2 — 7 sec (0:07–0:14): Hans receiving Eastern Front reassignment orders [S2E5] — Direct visual for the reassignment beat named in the hook
+CUT 3 — 5 sec (0:14–0:19): Kurt telling Hans they could still win, unconvinced [S2E5] — Direct visual for the new Kurt farewell-line beat added to the expanded VO
+CUT 4 — 6 sec (0:19–0:25): Leadership meeting refusing to end the war despite Hans's push [S2E5] — Establishes the political-failure theme driving the whole episode
+CUT 5 — 8 sec (0:25–0:33): Hans and Tanya strategy meeting where the bait plan is proposed [S2E5] — Direct visual for the hook's central claim: fame used as a weapon
+CUT 6 — 7 sec (0:33–0:40): Tanya's horrified reaction to the bait assignment [S2E5] — Emotional beat pairing with the strategy-meeting cut, shows her actual response
+CUT 7 — 8 sec (0:40–0:48): Abandoned railway depot establishing shot, no retreat route visible [S2E5] — Direct visual for the depot setting named in the VO
+CUT 8 — 7 sec (0:48–0:55): Allied Kingdom command room reacting to leaked intelligence, Federation watching [S2E5] — Direct visual for the spy/leak beat and the Federation-watching detail added in the expanded VO
+CUT 9 (final) — 13 sec (0:55–1:08): Battlefield sequence ending with Weiss seriously wounded, cliffhanger [S2E5] — Direct visual for the cliffhanger the VO closes on
+(+ more cuts as needed; CUT 1 = first real content clip, no brand stamp)
+TOTAL CLIP TIME: 68 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+Tanya's own commander just weaponized her fame against her. #SagaOfTanyaTheEvil #AnimeShorts #TanyaDegurechaff
+
+━━━ YOUTUBE TITLE (Law #144 — punchy, searchable) ━━━
+Tanya's Commander Weaponized Her Own Fame
+
+━━━ TIKTOK TITLE (Law #144 — punchy; distinct from the caption below) ━━━
+Her Commander Used Her As Bait
+
+━━━ TIKTOK POST TEXT (caption — may be longer; hashtags live HERE, not in the title) ━━━
+Tanya's own commander just used her fame as a weapon against her — turning the Empire's most feared officer into deliberate bait. #SagaOfTanyaTheEvil #TanyaDegurechaff #AnimeTok #ShonenAnime #MilitaryAnime #AnimeEdit #PsychologicalAnime
+
+━━━ PINNED COMMENT ━━━
+Weiss got seriously hurt at the end of this one and the episode doesn't say if he pulls through. What do you think happens next?
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 8:00 AM ET | Peak 8:00 AM ET
+TikTok — post 8:15 AM ET | Peak 8:15 AM ET
+
+━━━ SOURCES (concise evidence — >=2, each dated) ━━━
+1. Full episode video confirmed as real S2E5 — https://www.youtube.com/watch?v=FaC4Sc5LzSI (Aug 2026)
+2. Detailed scene-by-scene recap of episode content — https://www.soapcentral.com/anime/saga-tanya-evil-ii-episode-5-tanya-faces-suicidal-mission-empire-begins-crumble (Aug 2026)
+3. Episode review corroboration — https://www.animenewsnetwork.com/review/saga-of-tanya-the-evil-ii/episode-5/.240318 (Aug 2026)
+4. Episode review corroboration — https://leisurebyte.com/saga-of-tanya-the-evil-season-2-episode-5-review/ (Aug 2026)
+
+━━━ END MORNING ━━━

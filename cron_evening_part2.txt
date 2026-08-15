@@ -1,0 +1,438 @@
+### STEP 1 — READ SENT LOG
+Read /home/user/workspace/sent_scripts_log.json.
+- Identify last 7 days of shows used in EVENING slot.
+- Identify last 3 formats used in EVENING slot.
+- Note: NEVER repeat the same SHOW + ANGLE (never-repeat-ANGLE, not never-repeat-show). A show MAY return sooner with a genuinely different angle. Cooldown per angle: airing shows = 7 days; evergreen shows = 21–30 days. EXCEPTION: an immediate sequel/continuation is allowed when intentionally continuing a successful arc — log the intent and the prior arc.
+- Note: avoid same format 3 nights in a row.
+- CROSS-SLOT CONFLICT CHECK (MANDATORY — Law #83):
+  Before finalizing show selection:
+  1. Pull latest log from GitHub first (morning may have just written its reservation):
+       cd /home/user/workspace/repo && git pull origin main 2>&1 | tail -1
+       cp repo/sent_scripts_log.json /home/user/workspace/sent_scripts_log.json 2>/dev/null || true
+  2. Check sent_scripts_log.json for any entry where date_sent = TODAY and slot = "morning".
+  3. The evening show MUST NOT match the morning show (including RESERVED status = morning has claimed a show).
+     If morning entry has show = "RESERVED" — treat it as unknown. Pick a different show as a precaution.
+     If morning entry has an actual show name — that show is blocked for evening.
+  4. If conflict detected: discard that show, select next best candidate from research.
+  NOTE: Both crons fire simultaneously. Morning writes a reservation at STEP 1.
+  Evening must pull fresh from GitHub to see it. This is the only reliable conflict check.
+  Reason: Both crons run the same night. Same show in both slots = duplicate content.
+- FALLBACK: If log read fails or returns 0 EVENING entries, read /home/user/workspace/blackout_state.json instead.
+  Use evening_blackout_30day for STEP 3 and evening_norepeate_7day for 7-day check. Do not escalate — proceed with package.
+
+### STEP 2 — SHOW HOLD LIST CHECK
+STEEL BALL RUN — CLEARED. Netflix September 25, 2026. Stages 2+3 confirmed, 11 episodes weekly.
+KAGURABACHI — CLEARED (April 2027). Studio: Cypic (CyberAgent/Shochiku). Director: Tetsuya Takeuchi. Crunchyroll simulcast. AX world premiere screening July 2026 first 20 min of Episode 1.
+Any show on hold: skip entirely, select next candidate.
+
+### STEP 3 — 30-DAY BLACKOUT CHECK + CROSS-SLOT HARD BLOCK
+
+MANUAL BLACKOUT CHECK (RUNS FIRST — NOT A FALLBACK — MANDATORY EVERY TIME):
+Read /home/user/workspace/blackout_state.json before touching sent_scripts_log.json.
+Any show listed in blackout_state.json with a clears date that has NOT yet passed = BLOCKED. Hard stop.
+This check runs every time regardless of whether the log parsed successfully.
+Do NOT skip this check. Do NOT treat it as optional. Manual entries are equal to log entries.
+
+30-DAY LOG CHECK:
+Do not repeat the same SHOW + ANGLE within its cooldown in this slot: airing shows = 7 days, evergreen shows = 21–30 days. A DIFFERENT angle on the same show is allowed once the 7-day airing-show cooldown has passed. EXCEPTION: an intentional sequel continuing a successful arc is exempt from cooldown (log the intent and the prior arc). This replaces the old flat 30-day never-repeat-SHOW rule.
+Check sent_scripts_log.json for post_date within last 30 days.
+If conflict: select next best show from traction research.
+
+CROSS-SLOT HARD BLOCK (MANDATORY — NO EXCEPTIONS):
+Before clearing any show, search sent_scripts_log.json for that show name across ALL slots (morning AND evening).
+If the same SHOW + ANGLE appears in ANY entry — morning or evening — within the 7-day airing-show cooldown: BLOCKED.
+A genuinely DIFFERENT angle on the same show IS allowed across slots — log both angles side by side to prove they differ.
+SAME-DAY RULE: the two slots must NEVER post the same show on the same day, even with different angles (reads as duplicate to the feed).
+Evergreen shows: 21–30 day cooldown per angle. EXCEPTION: an intentional sequel continuing a successful arc is exempt (log the intent).
+Do NOT clear a SHOW + ANGLE because it ran in a different slot. Slot difference = no exception for the SAME angle; a different angle is permitted.
+If blocked: move to the next candidate immediately. Do not attempt to justify an exception.
+
+REQUIRED LIVE RESEARCH GATE (MANDATORY BEFORE ANY SHOW IS SELECTED — NO EXCEPTIONS):
+Do NOT select a show from memory, prior session context, or summary notes.
+Every show candidate MUST be validated by live web research in STEP 4 before it can be selected.
+The 8-search stack in STEP 4 is not optional — it is the source of truth for what is trending NOW.
+If a show is not confirmed by at least 2 live search results showing active community traction this week: do NOT select it.
+Guessing or defaulting to a "known clean" show without running STEP 4 first = violation. Run the searches first, always.
+
+### STEP 4 — ANGLE GENERATION RESEARCH STACK
+Run all 8 searches. Do not skip any.
+
+SEARCH 1 — TRENDING ANIME (what is the anime community talking about right now)
+Query 1A: "anime trending Reddit YouTube [current month year]"
+Query 1B: "[current season year] anime new episodes this week site:reddit.com OR site:myanimelist.net"
+Query 1C: "most anticipated anime [current season year] premieres"
+REDDIT FALLBACK (if Reddit blocked on 1A/1B):
+  Step 1: "[current season year] anime trending site:myanimelist.net"
+  Step 2: "[current season year] anime trending site:anilist.co"
+  Step 3: "anime trending [current month year]" (open web — ANN, Crunchyroll charts, YouTube)
+  Log which source returned traction data.
+Goal: Identify 3-5 shows with active discussion. Note traction tier for each.
+Also flag: any show in its FIRST 2 WEEKS of airing — these are NEW_ANIME_INTRO eligible (Tier 3 priority).
+Also flag: any BLEACH TYBW or Ghost in the Shell activity — Tier 1 priority shows (see PRIORITY SHOWS above).
+
+SEARCH 2 — SHOW-SPECIFIC TRACTION
+Primary Query: "[selected show] anime Reddit discussion [current month year]"
+REDDIT FALLBACK (if Reddit returns no results or is blocked):
+  Step 1: "[selected show] anime discussion [current month year] site:myanimelist.net"
+  Step 2: "[selected show] anime discussion [current month year] site:anilist.co"
+  Step 3: "[selected show] anime [current month year] site:crunchyroll.com"
+  Step 4: "[selected show] anime review reaction [current month year]" (open web — YouTube comments, forum snippets)
+  Use first source that returns active fan discussion. Log which source was used.
+  If ALL fallbacks return nothing: flag show as UNVERIFIED and select a different show.
+Goal: Confirm show has active fandom discussion. Assign traction tier.
+Traction Tiers:
+  T1_AIRING — currently airing, episode-by-episode discussion
+  T2_CONTROVERSY — finished/upcoming but high active debate
+  T3_NOSTALGIA — anniversary, rewatch, or throwback wave
+  T4_EVERGREEN — stable consistent traffic, no peak event
+
+SEARCH 3 — FANDOM GAP
+Primary Query: "[show] [character/moment] overlooked detail hidden fact Reddit"
+REDDIT FALLBACK (if Reddit blocked):
+  Step 1: "[show] [character/moment] overlooked detail hidden fact site:myanimelist.net"
+  Step 2: "[show] [character/moment] hidden detail anime forum site:anilist.co"
+  Step 3: "[show] [character/moment] fan theory discussion [current month year]"
+  Use first source that returns a specific fan-identified gap. Log source used.
+Goal: Find the angle the fandom has not fully addressed.
+Gap Categories:
+  GAP_1_UNFINISHED_IMPLICATION — show established something, fandom never followed it through
+  GAP_2_MISSING_CONTEXT — viewers lack a key piece of information that reframes everything
+  GAP_3_RECONTEXTUALIZATION — known fact that means something different with new framing
+  GAP_4_ORIGIN_STORY — real-world or in-universe origin nobody has connected
+
+SEARCH 4 — CONSENSUS CHECK
+Primary Query: "[show] [angle topic] Reddit popular opinion"
+REDDIT FALLBACK (if Reddit blocked):
+  Step 1: "[show] [angle topic] popular opinion site:myanimelist.net"
+  Step 2: "[show] [angle topic] popular opinion site:anilist.co"
+  Step 3: "[show] [angle topic] fan opinion [current month year]" (open web)
+  Use first source that returns community consensus data. Log source used.
+Goal: Confirm the angle avoids fandom consensus. Arguments in VO MUST reflect what fans are actually saying from the source used — not general knowledge or memory. If consensus already covers it — find new angle.
+
+SEARCH 5 — FORMAT RESEARCH (v5.0 — REQUIRED)
+Query: "[show] YouTube Shorts [current year] most viewed format"
+Goal: Identify which of the 27 format types is performing best for this show right now. For WATCH_RANK and SEASON_RANK also query: "anime tier list YouTube Shorts [current year] engagement".
+27 Format Types: TOP10/LIST | FACT_DROP | COMMENTARY | CHARACTER_DIVE | TRIVIA | IDENTITY | ORIGIN_STORY | HIDDEN_GEM | NEW_ANIME_INTRO | PERSONAL_RATING | RECOMMENDATION | VILLAIN_DEFENSE | REWATCH_HIT | ANIME_VS_MANGA | WRONG_TAKE | FIRST_EPISODE_TEST | CHARACTER_COURT | SLEPT_ON | THE_MOMENT | SEASON_RATING | SEASON_PREVIEW | MANGA_VS_ANIME | EPISODE_MOMENT | WATCH_RANK | SEASON_RANK | EPISODE_REVIEW | EPISODE_VS_MANGA
+
+[LAW #96 FORMAT SPECS — added July 1, 2026]
+SEASON_RATING: Rate ONE currently-airing show per video. State rating in HOOK (first 3 sec). Rating must be provocative — safe takes get no comments. Show must be airing or finished within 30 days. 7-day blackout per show. One rating per show per season.
+SEASON_PREVIEW: Why you should watch a new anime/season/episode. Premiere date verified within 45 days required. Answer: why THIS show, for THIS viewer, right NOW. Do NOT recap the trailer. Competitor check required. 7-day blackout.
+MANGA_VS_ANIME: ONE specific scene where manga and anime differ meaningfully. Must take a side. Verify difference via live source (Law #52 — NEVER from memory). 14-day blackout per show.
+EPISODE_MOMENT: One scene, beat, or reveal from an episode that aired within the last 7 DAYS. SPOILER WARNING required in title or caption line 1. New enemy/power reveals are highest-priority moments. No blackout but 7-day airing window is a HARD deadline.
+WATCH_RANK: Rank 3–6 shows Sebastian is currently watching, head-to-head with placement reasoning. At least one WRONG_TAKE placement required. Shows must be currently airing or finished within 60 days. 14-day blackout per ranking.
+SEASON_RANK: Rank 4–8 shows from a specific season (current or previous, max 4 months old). Must include one underranked pick and one SLEPT_ON. 21-day blackout. One per season.
+EPISODE_REVIEW: Full episode review — what mattered, what the wrong read is, what it sets up. 5-day hard window (not 7). SPOILER WARNING required. Cannot run same episode as EPISODE_MOMENT.
+EPISODE_VS_MANGA: Compare a new episode to its manga source. 1–3 specific differences. Must take a side. 5-day hard window. SPOILER WARNING required for both anime and manga. No manga source = BLOCKED.
+PRIORITY ORDER (within slot): T1 breaking news > EPISODE_MOMENT or EPISODE_REVIEW (5-day window, tied — pick by engagement signal) > EPISODE_VS_MANGA (5-day, manga confirmed) > SEASON_PREVIEW (premiere window) > SEASON_RATING (currently airing) > WATCH_RANK (3+ shows airing) > SEASON_RANK > MANGA_VS_ANIME
+
+PERSONAL_RATING FORMAT SPEC (added June 15, 2026):
+  When to use: Creator has recently watched a show and has a genuine take on it. Works for any show — airing, finished, or classic.
+  Goal: Creator gives a real rating with a real reason. Not a review. Not a recap. A verdict with a specific argument behind it.
+  Structure:
+    Hook (5-10 sec): The rating up front — don't bury it. Start with the number or the verdict.
+    The argument (20-30 sec): ONE specific reason this rating is right. Not a list of pros and cons. One thing.
+    The honest take (10-15 sec): What it does that most shows don't — or what it fails at that kills it.
+    CTA: Ask people to rate it themselves. "What would you give it and why" drives comments.
+  Rules:
+    - This is a PERSONAL take. First person. "I think", "for me", "the way I see it."
+    - Do NOT hedge. A 7/10 with no conviction is dead content. A 7/10 with a sharp argument is a debate.
+    - The rating itself is not the content. The REASON for the rating is.
+    - No spoilers in the VO. The argument should work for someone who hasn't watched it yet.
+    - Fact Verification still applies to any specific claims made.
+    - Clip Law #73 applies. Confirm clips exist before writing them into the edit order.
+    - This format does NOT require SEARCH 2-4 (show traction/gap research). Go straight to SEARCH 5 after picking the show.
+    - Show selection: pull from creator's recent watch history if known, otherwise pick from Tier 1 or Tier 2 Priority Shows.
+
+RECOMMENDATION FORMAT SPEC (added June 15, 2026):
+  When to use: A show or manga that not enough people are talking about — or a new season/manga that just dropped and deserves attention.
+  Goal: Make someone feel like they discovered something. Not a trailer. Not hype. A specific reason this is worth their time.
+  Structure:
+    Hook (5-10 sec): Lead with the one thing about this show/manga that most people don't know. Surprising detail, creator backstory, or overlooked angle.
+    The pitch (15-20 sec): What it actually is — genre, feel, comparable — in 2 sentences max. No plot recap.
+    Why now (10-15 sec): Why this specific moment is the right time to start — new season, recent buzz, or something that just changed in the story.
+    CTA: "Have you read/watched this" — yes/no debate with a follow-up: "if not, what are you waiting for."
+  Rules:
+    - MANGA ELIGIBLE: This format applies equally to manga recommendations, not just anime.
+    - Never recap the plot. The pitch is a feeling and a reason, not a summary.
+    - "People should watch this" is not a hook. "This manga was rejected 17 times before it became [X]" is.
+    - The recommendation must feel personal — something the creator actually believes in, not just what's trending.
+    - Fact Verification applies to all specific claims (creator backstory, sales numbers, episode counts, etc.).
+    - Clip Law #73 applies. For manga recommendations: panels can be shown — confirm they exist and note chapter/volume.
+    - This format works as both Short AND long-form intro. If the show is rich enough, flag it as long-form eligible.
+
+NEW_ANIME_INTRO FORMAT SPEC (added June 15, 2026):
+  When to use: Show is in its FIRST 2 WEEKS of airing. No prior Anime With Sebastian content on this show.
+  Goal: Tell someone who hasn't watched it yet why they should — but from a specific angle, not a recap.
+  Structure:
+    Hook (5-10 sec): One specific thing about the show that most people don't know yet.
+    Setup (15-20 sec): What the show actually is — in 2-3 sentences, no spoilers.
+    The angle (20-30 sec): The one thing that makes this show different from everything else airing.
+    CTA: A question that only someone who's already watching can answer.
+  Rules:
+    - NO plot recap. Never summarize the story.
+    - Lead with something surprising — a production detail, a real-world origin, a creator backstory.
+    - The viewer should finish the video thinking "I need to watch this" OR "I already watch this and I never knew that."
+    - FACT VERIFICATION BLOCK still required. Claims about the show must be verified.
+    - Clip Law #73 applies. All clip references must be verified or flagged UNVERIFIED.
+
+VILLAIN_DEFENSE FORMAT SPEC (added June 15, 2026):
+  When to use: A character the fandom calls a villain — but you think they were right, understandable, or simply misread.
+  Goal: Make the viewer reconsider someone they already wrote off. Not a full character study — just one sharp argument.
+  Structure:
+    Hook (5-10 sec): State the defense immediately. "[Character] wasn't the villain. [One-line argument]."
+    The case (20-30 sec): Two or three specific moments that support your read. Manga/episode verified.
+    Flip (10-15 sec): Acknowledge the counterargument in one sentence — then dismiss it or flip it.
+    CTA: "Who's the real villain in [show]? Let me know."
+  Rules:
+    - Must take an actual stance. No "both sides" cop-out.
+    - Clip and panel references must be verified or flagged UNVERIFIED per Law #73.
+    - FACT VERIFICATION BLOCK required.
+
+REWATCH_HIT FORMAT SPEC (added June 15, 2026):
+  When to use: A show or arc that hits completely differently the second time — because of a detail, a callback, or a piece of foreshadowing you missed.
+  Goal: Give a rewatch reason. Make the viewer want to go back right now.
+  Structure:
+    Hook (5-10 sec): "If you rewatched [show] you already know this." Or: "The first time through, you missed this."
+    The detail (20-25 sec): One specific thing — a line, a visual, a name — that lands differently once you know the ending.
+    Why it matters (10-15 sec): What it says about the writing, the character, or the story structure.
+    CTA: "Did you catch this your first time?"
+  Rules:
+    - The detail must be real and verifiable. No invented foreshadowing.
+    - FACT VERIFICATION BLOCK required. Law #73 applies.
+
+ANIME_VS_MANGA FORMAT SPEC (added June 15, 2026):
+  When to use: A show where the manga and the anime tell the same story differently — different pacing, added scenes, cut scenes, art direction changes, or ending differences.
+  Goal: Give people a real reason to pick up the source material, OR defend the adaptation.
+  Structure:
+    Hook (5-10 sec): The specific difference — not "the manga is better," but a concrete thing that changed.
+    The comparison (20-30 sec): What the manga did vs. what the anime did. Be specific about chapter/episode.
+    Your read (10 sec): Which version works better for this particular moment — and why.
+    CTA: "Manga reader or anime only? Let me know where you're at."
+  Rules:
+    - Must cite the specific chapter or episode for every comparison.
+    - No universal "manga is always better" take — evaluate the specific moment.
+    - FACT VERIFICATION BLOCK required. Law #73 applies.
+
+WRONG_TAKE FORMAT SPEC (added June 15, 2026):
+  When to use: A popular take in the anime community that is wrong, overrated, or based on a bad read of the source material.
+  Goal: Correct the record with a specific argument. Not to be contrarian — to actually be right.
+  Structure:
+    Hook (5-10 sec): State the wrong take plainly. "The [fandom] has been saying [take] for years. They're wrong."
+    Why it's wrong (20-25 sec): Two or three specific reasons — scenes, chapters, creator interviews. Verified only.
+    The right read (10-15 sec): What the show actually says about this moment or character.
+    CTA: "Come fight me in the comments."
+  Rules:
+    - The take being challenged must actually be widespread — don't invent a strawman.
+    - Evidence must be verifiable. Law #52 and Law #73 apply.
+    - FACT VERIFICATION BLOCK required.
+
+FIRST_EPISODE_TEST FORMAT SPEC (added June 15, 2026):
+  When to use: Any show — airing, classic, or new. Evaluate the first episode only as a hook mechanism.
+  Goal: Tell the viewer whether this show earns you by episode 1 — and exactly what moment does it.
+  Structure:
+    Hook (5-10 sec): "[Show] has [X] minutes to get you. Here's the exact moment it either wins or loses you."
+    The scene (20-25 sec): Describe the specific first-episode moment that works (or doesn't). Episode 1 only.
+    The verdict (10-15 sec): Pass or fail — and why that moment works as a hook.
+    CTA: "Did episode 1 get you?"
+  Rules:
+    - Episode 1 content ONLY. No plot from later episodes.
+    - The moment cited must be verified — episode timestamp or scene description from source.
+    - FACT VERIFICATION BLOCK required.
+
+CHARACTER_COURT FORMAT SPEC (added June 15, 2026):
+  When to use: A character decision that split the fandom — sacrifice, betrayal, power-up refusal, revenge choice, anything with a "why did they do that" argument.
+  Goal: Put the decision on trial. Prosecution and defense. You deliver the verdict.
+  Structure:
+    Hook (5-10 sec): The decision. "[Character] chose [action]. Was that right?"
+    Prosecution (15 sec): The strongest argument against the choice.
+    Defense (15 sec): The strongest argument for the choice.
+    Verdict (10 sec): Your actual call — and one reason.
+    CTA: "What's your verdict?"
+  Rules:
+    - Both sides must be real arguments, not strawmen.
+    - The decision must be a real canon moment — verified per Law #73.
+    - FACT VERIFICATION BLOCK required.
+
+SLEPT_ON FORMAT SPEC (added June 15, 2026):
+  When to use: A show, arc, character, or moment that the mainstream anime community has ignored or underrated — and you have a specific reason it deserves more.
+  Goal: Shine a light on something real. Not hype — a genuine argument for why it hits.
+  Structure:
+    Hook (5-10 sec): The thing that's slept on — named immediately. "Nobody talks about [X] and that's a problem."
+    Why it's slept on (10-15 sec): One honest reason it got overlooked — release window, bad marketing, weak opening episode.
+    Why it deserves better (20-25 sec): The specific moment, arc, or character that earns it.
+    CTA: "Tell me something else that's slept on."
+  Rules:
+    - Must be genuinely under-discussed — not a show that already has 10M view Shorts.
+    - Claims about the show must be verified. Law #73 applies.
+    - FACT VERIFICATION BLOCK required.
+
+THE_MOMENT FORMAT SPEC (added June 15, 2026):
+  When to use: One single scene, panel, line, or frame from any anime or manga that changed the direction of the entire story — or the viewer's understanding of it.
+  Goal: Isolate the exact moment everything shifted. Not a "best moments" list — one moment, full focus.
+  Structure:
+    Hook (5-10 sec): Name the moment. "There is one scene in [show] that changes everything before it."
+    Setup (10-15 sec): What the viewer knew going into that moment.
+    The moment (20-25 sec): What happens — described precisely. What is said or shown.
+    Why it changes everything (10 sec): One sentence on what it reframes.
+    CTA: "What's your moment?"
+  Rules:
+    - The moment must be a real, verifiable canon event — chapter/episode cited. Law #73 applies.
+    - Do not use moments from episodes that haven't aired yet.
+    - FACT VERIFICATION BLOCK required.
+
+SEARCH 6 — TRACTION CONFIRMATION
+Primary Query: "[show] anime [current month year] site:reddit.com OR site:youtube.com"
+REDDIT FALLBACK (if Reddit blocked):
+  Step 1: "[show] anime [current month year] site:myanimelist.net OR site:youtube.com"
+  Step 2: "[show] anime [current month year] site:anilist.co OR site:youtube.com"
+  Log which source confirmed traction.
+Goal: Final confirmation show is not dormant.
+
+SEARCH 7 — NICHE FORMAT TRACTION (v5.1 — Law #65 — REQUIRED)
+Query: "anime Shorts [current month year] most viewed"
+Goal: Identify what format type is performing best across anime Shorts as a whole right now — not just for the selected show.
+Note result: Format type + source channel + approximate view count.
+This is the secondary signal for the format recommendation.
+
+SEARCH 7 VIEW COUNT FALLBACK (v1.0 — permanent rule):
+YouTube hides view counts in fetched HTML. Shorts pages do not expose them in search snippets.
+If you cannot extract a specific view count from a competitor channel, DO NOT escalate.
+DO NOT block on this. DO NOT halt the run.
+
+FALLBACK — use aggregate platform data instead of per-video counts:
+  Acceptable sources (any one is sufficient):
+  - TheMeasure.net Shorts performance studies (2025–2026)
+  - Buffer, Metricool, or Social Insider published Shorts data
+  - Tubular Labs aggregate format data
+  - Any 2025–2026 published study with a format-level finding (e.g. "commentary formats average X% higher retention")
+
+  STANDING DATA (always available — use when live search returns nothing with view counts):
+  "Anime Shorts generated 129B views on YouTube in 2025, up 125% YoY.
+  Character-driven and hot-take commentary formats drive the highest engagement.
+  Source: TheMeasure.net, April 14, 2026."
+
+  Cite format: "Format type: [type] | Source: [publication + date] | Data: [aggregate finding]"
+  This satisfies SEARCH 7. Proceed to STEP 6 on this basis.
+
+SEARCH 8 — COMPETITOR CHECK (v5.1 — Law #65)
+Query: "[show] [character or angle in 3 words] YouTube Shorts [current month year]"
+Goal: Check whether a competitor has already made a Short on this specific angle.
+If a competitor's Short on this exact angle has 500K+ views → the angle is now consensus. Find the gap beneath it.
+If no competitor hit found → proceed.
+Log result: "COMPETITOR CHECK: [result] — [action taken]"
+
+COMPETITOR REFERENCE CHANNELS (check these first — all active in anime Shorts niche):
+- @OrewaShimo (Shimo.) — 200K subs | top Short 12M views
+- @AnimeUproar — established, long-form analysis + Shorts
+- @AnimeBallsDeep — Shorts-focused, character ranking format
+- @KitoSenpai — 673K subs, faceless Shorts format
+
+COMPETITOR DATA RULE — HARD LAW (user instruction June 12, 2026):
+Competitor research is for SIGNAL ONLY. Never for recreation.
+The question is never "what did they make" — it is "what does their performance tell us"
+about what format, topic, or hook structure the audience responds to right now.
+
+WHAT SIGNAL MEANS:
+  FORMAT SIGNAL: If LIST performs at 10M+ on a competitor → LIST is a viable format this week.
+  TOPIC SIGNAL: If One Piece is getting massive views → One Piece has active audience.
+  HOOK SIGNAL: If curiosity-gap titles are outperforming statement titles → use that structure.
+
+WHAT SIGNAL DOES NOT MEAN:
+  Do NOT recreate their video.
+  Do NOT use their angle.
+  Do NOT use their specific question or framing.
+  Do NOT make the same show + same format + same hook.
+  Their video already exists. The audience already saw it.
+  Making the same thing is not competition — it is redundancy.
+
+ORIGINALITY IS NON-NEGOTIABLE (user instruction):
+  Anime With Sebastian makes original content. Always.
+  Take the format signal. Build a completely different angle.
+  Take the topic signal. Find the gap the competitor didn’t go near.
+  Take the hook structure. Apply it to a different show, character, or claim.
+
+EXAMPLE — RIGHT:
+  Signal: Orewashimo's "Don't watch these anime with your parents" (7.6M) → curiosity-gap LIST is working.
+  Application: Original curiosity-gap LIST on a completely different angle — different show, different claim.
+
+EXAMPLE — WRONG:
+  "Don't watch these anime with your parents" already exists at 7.6M.
+  Making the same video = zero original value. HARD STOP.
+
+FORMAT SIGNAL FROM COMPETITOR DATA (as of June 2026):
+LIST and FACT_DROP with curiosity-gap titles are the highest-performing format type
+across the niche. Year-by-year framing is a proven viral hook structure.
+If SEARCH 7 confirms this is still trending → weight LIST/FACT_DROP in STEP 6 recommendation
+— but the angle and content must be fully original to AnimeWithSebastian.
+
+### STEP 4 — ADDITIONAL LAWS (added July 4, 2026 | renumbered v8.3 — original #100-104 reassigned)
+AFTER running the 8-search stack, apply these laws before angle selection:
+
+NOTE: Laws originally numbered #100-#104 in this block were renumbered in v8.3 because those
+numbers were reassigned to VO quality laws (Binary Closer, Search-First Title, Identity Closer,
+RESERVED, Angle Requirement). The content below is unchanged — only the law numbers are corrected.
+
+ANNOUNCED SHOW CONTENT LAW (formerly called Law #100 in this block):
+Any officially announced show (studio, streaming, or convention reveal) is a valid
+content target regardless of air date. New movies/seasons on blacklisted franchises
+are DISTINCT content targets — not blocked by prior angle blackout.
+HOLD LIST shows (Steel Ball Run, Kagurabachi) are FULLY blocked.
+
+PRE-PREMIERE SOURCE MATERIAL LAW (formerly called Law #101 in this block):
+For any show not yet airing, the VO must anchor on verified source material:
+(1) ARC BREAKDOWN citing chapter range, (2) WHAT TO EXPECT citing chapters,
+(3) MANGA VS ANIME citing panels, or (4) CHARACTER DEEP DIVE citing arc/volume.
+Do NOT speculate without a verified source. Pre-premiere pairs best with:
+SEASON_PREVIEW | MANGA_VS_ANIME | CHARACTER_DIVE | FACT_DROP | WRONG_TAKE
+
+CONVENTION ANNOUNCEMENT WINDOW LAW (formerly called Law #102 in this block):
+Anime Expo / Jump Festa / AnimeJapan / Anime NYC announcements = 24–48 hour
+PRIORITY window. Same urgency tier as premiere window. Flag all convention drops
+in SEARCH 1 before evaluating other shows.
+
+LAW #103 — VIDEO STYLE SELECTION LAW (Law #103 confirmed — matches current numbering):
+Format → Video Style mapping (research-backed):
+  WRONG_TAKE → (C) Anime Clips Only [Law #134 — Shorts = no face cam]
+  FACT_DROP / CHARACTER_DIVE / TRIVIA / ORIGIN_STORY → (C) Anime Clips Only [Law #134 updated July 14 2026 — no face on Shorts]
+  SEASON_PREVIEW / MANGA_VS_ANIME → (C) Anime Clips Only [Law #134 updated July 14 2026 — no face on Shorts]
+  HIDDEN_GEM / COMMENTARY → (C) Anime Clips Only [Law #134 — Shorts = no face cam]
+  NEW_ANIME_INTRO → (B) or (D)
+  TOP10/LIST → (E) Anime Clips Only or (C) Manga Panels
+Style selection must be included in every script package.
+
+LAW #104 — ANGLE REQUIREMENT LAW (Law #104 confirmed — matches current numbering):
+Every VO must open with a specific angle in the first 10 words. Approved angle types:
+REFRAME | PREDICTION | SOURCE MATERIAL REVEAL | WRONG TAKE CORRECTION | OVERLOOKED DETAIL
+A VO that opens without a clear angle fails Law #104. Rewrite the hook first.
+
+### STEP 5 — ACTIVE TRACTION AUDIT
+State: Show name, Traction Tier, Reasoning, Source URL.
+State: SEARCH 7 result — Niche format trending, Source URL.
+
+SEARCH 7B — LIVE HOOK TYPE RESEARCH (REQUIRED EVERY RUN — Law #52 enforced)
+Query: "YouTube Shorts best hook type engagement [current month] [current year]"
+Alt query if no results: "anime Shorts highest retention hook structure [current year]"
+
+Goal: Identify which hook type is CURRENTLY winning on Shorts — not from memory, not from a static list.
+The hook type changes as the platform evolves. Run this search every single run.
+
+Extract from results:
+  1. Which hook type ranks #1 by composite score (retention + CTR + engagement) right now
+  2. Which hook type ranks #2
+  3. Source URL + publication date
+
+Log result as:
+  HOOK TYPE RANKING (live — [date of search]):
+  #1: [type] — [metric that makes it #1] — Source: [URL] [date]
+  #2: [type] — [metric] — Source: [URL] [date]
+  Note: [any platform-specific finding relevant to anime niche]
+
+FALLBACK (only if search returns zero results after 2 attempts):
+  Use standing data: "#1 Pattern Interrupt (72.4% 30-sec retention — Increditors June 19 2026);
+  #2 Stat/Number Lead (+34% CTR — VIralHookAnalyzer June 8 2026)."
+  Log as: HOOK TYPE RANKING (fallback — live search returned no results)
+
+DO NOT ESCALATE if search returns no results — use fallback and continue.
+
+
+>>> CONTINUE: Read cron_evening_part3.txt next

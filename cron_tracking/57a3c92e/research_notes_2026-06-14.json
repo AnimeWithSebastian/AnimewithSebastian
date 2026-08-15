@@ -1,0 +1,64 @@
+{
+  "run_date_local": "2026-06-14",
+  "slot": "evening",
+  "candidate_show": "DAN DA DAN",
+  "why_selected": "Not used in last 30-day evening log list; has active current discussion around the ongoing amnesia storyline in fandom spaces.",
+  "searches": {
+    "search1_trending_anime": {
+      "query": "anime trending reddit june 2026",
+      "notes": "Used broader ecosystem signals (weekly charts + general anime chatter) to confirm anime community is active this week.",
+      "source": "https://www.anitrendz.com/charts/top-anime"
+    },
+    "search2_show_specific_traction": {
+      "query": "Dandadan anime June 2026 discussion reddit",
+      "notes": "Active subreddit discourse on current arc and amnesia frustration/defense; indicates ongoing engagement.",
+      "source": "https://www.reddit.com/r/Dandadan/comments/1u4fvqa/why_i_think_this_current_arc_and_the_things/"
+    },
+    "search3_fandom_gap": {
+      "query": "Dandadan Momo amnesia chapter discussion June 2026",
+      "notes": "Angle gap: most fans argue whether amnesia is 'good or bad writing' — fewer connect it to the story's core theme (identity vs connection) and how it forces Okarun to change.",
+      "source": "https://www.youtube.com/watch?v=Pk6bl-p3D8o"
+    },
+    "search4_consensus_check": {
+      "query": "Dandadan amnesia arc popular opinion",
+      "notes": "Consensus is polarized: many call it frustrating/derailing; others defend it as a deliberate flip of dynamics. Our angle avoids the binary and frames it as 'the arc that proves who the real protagonist is right now.'",
+      "source": "https://www.youtube.com/watch?v=P6jHgayDL0A"
+    },
+    "search5_format_research_show": {
+      "query": "Dandadan shorts",
+      "notes": "Show-related Shorts that travel tend to be hooky fact/controversy framing (banned scene / premise shock) rather than slow character summary.",
+      "source": "https://www.youtube.com/watch?v=u3nHNwf_4bA"
+    },
+    "search6_traction_confirmation": {
+      "query": "Dandadan chapter 236 discussion",
+      "notes": "Weekly chapter discussion threads and YouTube chapter breakdowns indicate ongoing active audience attention.",
+      "source": "https://www.reddit.com/r/Dandadan/comments/1u0aezg/disc_dandadan_ch_236/"
+    },
+    "search7_niche_format_traction": {
+      "query": "anime Shorts June 2026 most viewed",
+      "notes": "Broader Shorts niche still rewards curiosity-gap hook structures; list/fact-drop remains dominant as a general pattern.",
+      "source": "https://quso.ai/blog/what-is-the-most-viewed-youtube-short"
+    },
+    "search8_competitor_check": {
+      "query": "Dandadan amnesia YouTube Shorts June 2026",
+      "notes": "No clear high-view competitor Short found on the specific 'amnesia proves the protagonist' framing; proceed with differentiated angle.",
+      "source": "https://www.youtube.com/watch?v=u3nHNwf_4bA"
+    }
+  },
+  "fact_block": [
+    {
+      "claim": "Momo has lost her memories for an extended stretch of the manga (months in real release time).",
+      "type": "B",
+      "verified_by": ["https://www.youtube.com/watch?v=P6jHgayDL0A"]
+    },
+    {
+      "claim": "The series is by Yukinobu Tatsu and is serialized on Shueisha's Shonen Jump+.",
+      "type": "A",
+      "verified_by": ["https://shonenjumpplus.com/episode/3269632237310729754"]
+    }
+  ],
+  "recommended_format": "FACT_DROP",
+  "alt_format": "COMMENTARY",
+  "gap_category": "GAP_3_RECONTEXTUALIZATION",
+  "engagement_mechanic": "Flip a hot fandom complaint into a different question: 'what if the arc is doing exactly what it needs to do?'"
+}

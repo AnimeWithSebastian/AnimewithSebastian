@@ -1,0 +1,12 @@
+{
+  "cron_id": "2bb28991",
+  "decision": "noop",
+  "reason": "zero new published video IDs since last successful analytics run",
+  "ts": "2026-07-21T23:46:19.521214+00:00",
+  "new_video_ids": 0,
+  "published_ids_seen": 0,
+  "processed_ids_cutoff": 0,
+  "connectors_called": false,
+  "model_synthesis": false,
+  "email_sent": false
+}

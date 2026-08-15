@@ -1,0 +1,67 @@
+SUBJECT: CORRECTION | MORNING | Link Click | 2026-08-14 | Link Click Just Doubled Its Own Season
+
+━━━ MORNING — 2026-08-14 ━━━
+SHOW:    Link Click
+ANGLE:   Season 3 Part One premieres August 14 on Crunchyroll as a doubled-length 24-episode story, two months earlier than announced, picking up the Bahati fire case and Xia Fei's disappearance
+FORMAT:  SEASON_PREVIEW
+STYLE:   Face-Cam Split Screen (Creator TOP / anime footage BOTTOM — Law #134 Stage 2)
+TOPIC:   timely — signals: premiere
+SERIES:  one-off
+FUNNEL:  standalone
+
+*** THIS IS A CORRECTION TO AN ALREADY-SENT PACKAGE ***
+Corrects batch_id: b03ef8b6-d254-442a-aaf9-673a6578a0c5 (package_id 7182ec38-a018-440a-b30c-64b19866eb17, originally sent as this same morning slot)
+Correction reason: source citation did not support claim; claim re-sourced
+What changed: (1) VO grew from 206 to 207 words with a new Tokyo Anime Awards Festival addition, now dually sourced; (2) the Bahati fire case / Cheng Xiaoshi's father claim was re-sourced to the Link Click Fandom wiki (linkclick.fandom.com) plus independent video corroboration, after the original citation was found not to support the claim; (3) trailer-recency framing reworded for accuracy; (4) the Jae/Vein/Qiao Ling sentence was re-verified against a direct trailer review plus text sources tonight -- "Vein returns" and "Qiao Ling's powers awakening" are re-attributed to the show's own Season 3 synopsis rather than "the trailer breakdown," since no fetched source or direct trailer review could confirm those two specifics as a Trailer-4-specific visual; CUT 5's clip description was softened from a claimed Qiao-Ling-powers payoff shot to general trailer footage, with scene_verified set to false and a verification_note explaining the gap; (5) CUT 4's clip description dropped its own unconfirmed claim that the trailer shows "Vein's return" (same investigation as item 4 found no timestamped support for this), scene_verified flipped from true to false with a verification_note, and CUT 5 was reworded to a distinct case-escalation beat so it no longer overlaps with CUT 4's character-introduction purpose; (6) this correction is being finalized on the premiere day itself (Aug 14), so "Season 3 returns tomorrow" in the hook/opening/VO was corrected to "returns today"; separately, the TikTok post text's "two days before it even airs" was found to be a pre-existing miscount and corrected to "three days before it even airs"; (7) the exact Trailer 4 date was subsequently pinned down to August 11, 2026 (sourced to Outlook Respawn: "The new preview, unveiled on Aug 11..."), confirming Aug 11 to Aug 14 = 3 days and that "three days before it even airs" is correct as shipped.
+If you already produced/posted the original version of this Short, this corrected script should replace it going forward.
+
+━━━ FIRST-SECOND HOOK (Law #144) ━━━
+ON-SCREEN (second 1): LINK CLICK JUST DOUBLED ITS OWN SEASON
+SPOKEN (VO first line): Link Click just dropped its final trailer before Season 3 returns today, and it confirms this mystery traces back to Cheng Xiaoshi's own father.
+HOOK FAMILY: revelation
+(candidate A: Link Click just dropped its final trailer before Season 3 returns today, and it confirms this mystery traces back to Cheng Xiaoshi's own father.
+ candidate B: A donghua rated 8.77 on MyAnimeList just moved its premiere up two months.
+ SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (207 words — fills the resolved 60s CapCut edit) ━━━
+Link Click just dropped its final trailer before Season 3 returns today, and it confirms this mystery traces back to Cheng Xiaoshi's own father. Season 3 Part One drops August 14 on Crunchyroll as the front half of a full twenty-four episode story, doubling the length of every prior season combined, with Part Two expected in 2027. Season 2 ended with Cheng Xiaoshi and Lu Guang chasing the Bahati fire case, which the show's own synopsis ties directly to Xiaoshi's father Cheng Weimin and mother Shao Yuanyuan, while Xia Fei's disappearance stayed unresolved. Part One picks that exact thread up immediately. A new Bridon officer named Jae joins the investigation, and Season 3 also brings back Vein as Qiao Ling's photograph-based powers keep on awakening, per the show's own synopsis. This is also the donghua sitting at an eight point seven seven average on MyAnimeList, praised for doing something Chinese animation rarely gets credit for internationally, and it's already been nominated for multiple international animation awards, including the Crunchyroll Anime Awards and the Tokyo Anime Awards Festival. So does doubling the episode count change how deep this mystery goes, or does it just double how long you're stuck waiting to find out? Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings — Law #140) ━━━
+CUT 1 — 10 sec (0:00–0:10): Trailer 4 cold open, Cheng Xiaoshi and Lu Guang in the photo studio — establishes the duo for the hook (S3E1)
+CUT 2 — 10 sec (0:10–0:20): Trailer end-card revealing the Part One/Part Two 24-episode split — visual proof of the doubled format (S3E1)
+CUT 3 — 10 sec (0:20–0:30): Trailer flashback insert tied to the Bahati fire case — carries the Season 2 case thread forward (S3E1)
+CUT 4 — 10 sec (0:30–0:40): Trailer footage introducing new Bridon officer Jae — new character stakes (S3E1, scene not individually verified — see approval notes)
+CUT 5 — 10 sec (0:40–0:50): Trailer footage of the Bahati case investigation escalating toward Part One's central threat — raises stakes ahead of the closer, distinct from CUT 4's character-introduction beat (S3E1, scene not individually verified — see approval notes)
+CUT 6 — 10 sec (0:50–0:60): Crunchyroll's official closing date card confirming the August 14 release — closer beat reinforcing the CTA
+TOTAL CLIP TIME: 60 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+LINK CLICK / DOUBLED THE SEASON / PART ONE: AUG 14 / BAHATI CASE RETURNS / NEW OFFICER: JAE / QIAO LING'S POWER GROWS / LEAVE YOUR TAKE
+
+━━━ YOUTUBE TITLE ━━━
+Link Click Just Doubled Its Own Season
+
+━━━ TIKTOK TITLE ━━━
+This Mystery Anime Just Got Twice As Long
+
+━━━ TIKTOK POST TEXT ━━━
+Link Click just doubled its own season three days before it even airs. Season 3 Part One hits Crunchyroll August 14 as the front half of a full 24-episode story picking up the Bahati case. #linkclick #donghua #crunchyroll #animenews #mysteryanime
+
+━━━ PINNED COMMENT ━━━
+The part that gets me: Part Two isn't even close yet, this is genuinely 2027. They're not padding, they're telling us this case needed 24 episodes minimum.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 8:00 AM ET
+TikTok — post 8:15 AM ET
+
+━━━ SOURCES ━━━
+1. Premiere moved up to Aug 14, 2026, two months early — https://comicbook.com/anime/news/crunchyrolls-biggest-mystery-series-reveals-final-trailer-ahead-of-anticipated-return/ (Aug 2026)
+2. 24-episode doubled format, Part Two in 2027 — https://wibux.com/link-click-season-3-drops-august-14-two-months-early-twice-as-long-and-the-trailer-has-everyone-spinning/ (Aug 2026)
+3. Official Crunchyroll release date announcement — https://www.crunchyroll.com/news/latest/2026/6/19/link-click-season-3-donghua-august-14-release-date-trailer-visual (Jun 2026)
+4. 8.77 MAL average, donghua ceiling discussion — https://www.cbr.com/link-click-donghua-popularity-structure-themes-time-travel/ (2026)
+5. 8.5 IMDb; nominated for Crunchyroll Anime Awards and Tokyo Anime Awards Festival — https://www.soapcentral.com/anime/link-click-anime-review-a-thrilling-digital-mystery-will-keep-hooked (2026)
+6. Official Trailer 4 footage / studio CMC Media — https://www.youtube.com/watch?v=-Uu80NtLAdc (Aug 2026)
+7. Bahati fire case ties directly to Cheng Xiaoshi's father Cheng Weimin and mother Shao Yuanyuan — https://linkclick.fandom.com/wiki/Link_Click_(Donghua)/Season_3 (2026)
+8. Video corroboration of Bahati case / Cheng family connection — https://www.youtube.com/watch?v=V9i2sv1vXvU (2026)
+
+━━━ END MORNING ━━━

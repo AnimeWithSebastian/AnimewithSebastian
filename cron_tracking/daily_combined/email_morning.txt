@@ -1,0 +1,63 @@
+SUBJECT: TOMORROW | MORNING | Link Click | 2026-08-14 | Link Click Just Doubled Its Own Season
+
+━━━ MORNING — 2026-08-14 ━━━
+SHOW:    Link Click
+ANGLE:   Season 3 Part One premieres August 14 on Crunchyroll as a doubled-length 24-episode story, two months earlier than announced, picking up the Bahati fire case and Xia Fei's disappearance
+FORMAT:  SEASON_PREVIEW
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM)
+TOPIC:   timely — signals: premiere
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK ━━━
+ON-SCREEN (second 1): LINK CLICK JUST DOUBLED ITS OWN SEASON
+SPOKEN (VO first line): Link Click just moved its Season 3 premiere up two months, and the new plan is bigger than the new date.
+HOOK FAMILY: revelation
+(candidate A: Link Click just moved its Season 3 premiere up two months, and the new plan is bigger than the new date.
+ candidate B: A donghua rated 8.77 on MyAnimeList just moved its premiere up two months.
+ SELECTED: 0)
+
+━━━ VO (206 words — fills the resolved 60s CapCut edit) ━━━
+Link Click just moved its Season 3 premiere up two months, and the new plan is bigger than the new date. Season 3 Part One drops August 14 on Crunchyroll, and instead of repeating a twelve-episode run, this is the front half of a full twenty-four episode story, doubling the length of every prior season combined, with Part Two expected in 2027. Season 2 ended with Cheng Xiaoshi and Lu Guang chasing the Bahati fire case, a case that traces directly back to Xiaoshi's own father, while Xia Fei's disappearance was left completely unresolved. Part One picks that thread up immediately. A new Bridon police officer named Jae joins the investigation, Vein returns, and Qiao Ling's photograph-based powers move into territory the show has never let her use before, according to the show's own trailer breakdown. This is also the donghua sitting at an eight point seven seven average on MyAnimeList, praised by critics for doing something Chinese animation rarely gets credit for internationally, and it's already been nominated for a Crunchyroll Anime Award. So does doubling the episode count actually change how deep this mystery goes, or does it just double how long you're stuck waiting to find out? Leave your take.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view) ━━━
+[FACE: direct-to-camera, lean in] Link Click just moved its Season 3 premiere up two months, and the new plan is bigger than the new date. [FACE: glance-down-at-footage] Season 3 Part One drops August 14 on Crunchyroll, and instead of repeating a twelve-episode run, this is the front half of a full twenty-four episode story, doubling the length of every prior season combined, with Part Two expected in 2027. [FACE: glance-down-at-footage] Season 2 ended with Cheng Xiaoshi and Lu Guang chasing the Bahati fire case, a case that traces directly back to Xiaoshi's own father, while Xia Fei's disappearance was left completely unresolved. [FACE: glance-down-at-footage] Part One picks that thread up immediately. [FACE: glance-down-at-footage] A new Bridon police officer named Jae joins the investigation, Vein returns, and Qiao Ling's photograph-based powers move into territory the show has never let her use before, according to the show's own trailer breakdown. [FACE: glance-down-at-footage] This is also the donghua sitting at an eight point seven seven average on MyAnimeList, praised by critics for doing something Chinese animation rarely gets credit for internationally, and it's already been nominated for a Crunchyroll Anime Award. [FACE: glance-down-at-footage] So does doubling the episode count actually change how deep this mystery goes, or does it just double how long you're stuck waiting to find out? Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings) ━━━
+CUT 1 — 10 sec (0:00–0:10): Trailer 4 cold open - Cheng Xiaoshi and Lu Guang in the photo studio, moody premiere-tone visuals — Establishes the duo and premiere framing for the hook
+CUT 2 — 10 sec (0:10–0:20): Trailer shot revealing the season's expanded episode count / Part One-Part Two split card — Visually supports the doubled-length claim
+CUT 3 — 10 sec (0:20–0:30): Trailer flashback/callback shot referencing the Bahati fire case and Xiaoshi's father — Sets up the unresolved Season 2 case thread
+CUT 4 — 10 sec (0:30–0:40): New trailer shot of Jae (new Bridon officer) and Vein's return — Introduces new character stakes
+CUT 5 — 10 sec (0:40–0:50): Trailer shot of Qiao Ling using her photograph power in an expanded/new way — Payoff beat for the powers-expansion claim
+CUT 6 (final) — 10 sec (0:50–0:60): Trailer closing logo card / August 14 Crunchyroll release date stamp — Closer beat reinforcing CTA and premiere urgency
+TOTAL CLIP TIME: 60 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+LINK CLICK / DOUBLED THE SEASON / PART ONE: AUG 14 / BAHATI CASE RETURNS / NEW OFFICER: JAE / QIAO LING'S POWER GROWS / LEAVE YOUR TAKE
+
+━━━ YOUTUBE TITLE ━━━
+Link Click Just Doubled Its Own Season
+
+━━━ TIKTOK TITLE ━━━
+This Mystery Anime Just Got Twice As Long
+
+━━━ TIKTOK POST TEXT (caption) ━━━
+Link Click just doubled its own season two days before it even airs. Season 3 Part One hits Crunchyroll August 14 as the front half of a full 24-episode story picking up the Bahati case. #linkclick #donghua #crunchyroll #animenews #mysteryanime
+
+━━━ PINNED COMMENT ━━━
+The part that gets me: Part Two isn't even close yet, this is genuinely 2027. They're not padding, they're telling us this case needed 24 episodes minimum.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 8:00 AM ET
+TikTok — post 8:15 AM ET
+
+━━━ SOURCES ━━━
+1. Premiere moved up to Aug 14, 2026, two months early — https://comicbook.com/anime/news/crunchyrolls-biggest-mystery-series-reveals-final-trailer-ahead-of-anticipated-return/ (Aug 2026)
+2. 24-episode doubled format, Part Two in 2027 — https://wibux.com/link-click-season-3-drops-august-14-two-months-early-twice-as-long-and-the-trailer-has-everyone-spinning/ (Aug 2026)
+3. Official Crunchyroll release date announcement — https://www.crunchyroll.com/news/latest/2026/6/19/link-click-season-3-donghua-august-14-release-date-trailer-visual (Jun 2026)
+4. Season 2 finale plot recap / Bahati case setup — https://www.anime.com/news/link-click-season-3-part-one-august-2026 (Jun 2026)
+5. 8.77 MAL average, donghua ceiling discussion — https://www.cbr.com/link-click-donghua-popularity-structure-themes-time-travel/ (2026)
+6. 8.5 IMDb, Crunchyroll Anime Award nomination — https://www.soapcentral.com/anime/link-click-anime-review-a-thrilling-digital-mystery-will-keep-hooked (2026)
+7. Official Trailer 4 footage / studio CMC Media — https://www.youtube.com/watch?v=-Uu80NtLAdc (Aug 2026)
+
+━━━ END MORNING ━━━

@@ -1,0 +1,24 @@
+{
+  "date_local": "2026-06-13",
+  "slot": "evening",
+  "candidate_show": "Witch Hat Atelier",
+  "traction_sources": [
+    {
+      "source": "Anime News Network weekly ranking (Spring 2026, June 3-9)",
+      "url": "https://www.animenewsnetwork.com/weekly-ranking/2026/spring/.238465",
+      "signal": "Ranked #2 in ANN reader weekly ranking"
+    },
+    {
+      "source": "MyAnimeList anime entry",
+      "url": "https://myanimelist.net/anime/51553/Tongari_Boushi_no_Atelier",
+      "signal": "Currently airing (Apr 6, 2026 to Jun 22, 2026), 13 eps, studio BUG FILMS"
+    }
+  ],
+  "core_premise_facts": [
+    {
+      "claim": "Coco believes magic is for witches only, but learns the secret after seeing Qifrey cast a spell; a disastrous spell harms her mother; Qifrey takes her in as an apprentice.",
+      "url": "https://myanimelist.net/anime/51553/Tongari_Boushi_no_Atelier"
+    }
+  ],
+  "angle_seed": "The world sells magic as 'bloodline-only'—but the real gatekeeping is education + enforcement. Is that protection… or oppression?"
+}

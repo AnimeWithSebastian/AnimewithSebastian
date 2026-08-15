@@ -1,0 +1,41 @@
+{
+  "status": "REFRESHED",
+  "generated": "2026-08-13T22:40:59.876136+00:00",
+  "sweep_run_for_post_date": "2026-08-14",
+  "searches_run": 8,
+  "topics": [
+    "anime trending August 2026 top shows",
+    "anime episode reaction discourse this week August 2026",
+    "manga chapter release August 13 2026 anime news",
+    "Link Click Season 3 premiere August 14 2026 plot",
+    "Slime Season 4 episode 18/19 August 2026",
+    "Ghost in the Shell 2026 episode reaction August",
+    "anime YouTuber Shorts trending topic this week August 2026 / underrated hidden gem",
+    "Link Click anime why acclaimed deep dive"
+  ],
+  "candidates": {
+    "link_click_s3": {
+      "signal": "premiere Aug 14 2026, moved up from October, Bilibili + Crunchyroll intl, 24-ep split-cour",
+      "sources": [
+        "https://comicbook.com/anime/news/crunchyrolls-biggest-mystery-series-reveals-final-trailer-ahead-of-anticipated-return/",
+        "https://wibux.com/link-click-season-3-drops-august-14-two-months-early-twice-as-long-and-the-trailer-has-everyone-spinning/",
+        "https://www.anime.com/news/link-click-season-3-part-one-august-2026"
+      ],
+      "blackout_status": "clear (last sent 2026-08-04 evening, 10 days ago; not in any 30-day or 7-day blackout list)",
+      "topic_class": "timely_premiere"
+    },
+    "slime_s4_ep18": {
+      "signal": "Ep18 aired Aug 7 2026 - Diablo confronts and overwhelms Rain after insult to Rimuru; ends on cliffhanger",
+      "sources": [
+        "https://www.aol.com/articles/time-got-reincarnated-slime-season-153000000.html",
+        "https://www.comicbasics.com/that-time-i-got-reincarnated-as-a-slime-season-4-episode-18-release-date-and-time/"
+      ],
+      "blackout_status": "clear (last sent 2026-07-28 morning, 16 days ago; not in blackout list)",
+      "topic_class": "timely_ongoing"
+    },
+    "ghost_in_the_shell_2026": {
+      "signal": "Ep6 Aug 11 assassination attempt on the Major; strong reaction content",
+      "blackout_status": "BLACKED OUT - morning_blackout_30day, evening_blackout_30day, morning_norepeat_7day - EXCLUDED"
+    }
+  }
+}

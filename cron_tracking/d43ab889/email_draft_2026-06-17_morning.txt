@@ -1,0 +1,146 @@
+SUBJECT
+TOMORROW | MORNING | Re:ZERO S4 | 2026-06-17 | The Cruel Tower Rule Subaru Can’t Remember
+
+1) RESEARCH STACK (8 searches)
+SEARCH 1 — TRENDING ANIME
+- Spring 2026 chart signal still has Re:ZERO S4 leading weekly rankings. https://anitrendz.net/news/2026/06/06/spring-2026-anime-trending-chart-recap-week-7/
+- ABEMA weekly ranking (week of June 1 viewing) has Re:ZERO #1 for 3 consecutive weeks. https://times.abema.tv/en/articles/-/10252137
+- Summer 2026 schedule list (for NEW_ANIME_INTRO pipeline later). https://gigazine.net/gsc_news/en/20260613-anime-2026summer/
+
+SEARCH 2 — SHOW-SPECIFIC TRACTION
+- ABEMA weekly ranking: Re:ZERO ranks #1; also notes other strong Spring 2026 titles. https://times.abema.tv/en/articles/-/10252137
+
+SEARCH 3 — FANDOM GAP
+- Thread consensus centers on Subaru breaking the tower rule and Shaula awakening, plus Subaru’s lost context. We flip this into: “the story sets a rule your protagonist literally can’t remember.” https://www.reddit.com/r/anime/comments/1tp6hoo/rezero_starting_life_in_another_world_season_4/
+
+SEARCH 4 — CONSENSUS CHECK
+- Top themes in the episode 8 thread: rule violation triggers Shaula; the twist is extra brutal because Subaru lacks Return-by-Death context. https://www.reddit.com/r/anime/comments/1tp6hoo/rezero_starting_life_in_another_world_season_4/
+
+SEARCH 5 — FORMAT RESEARCH
+- Re:ZERO Season 4 Shorts exist (official platform playlist), suggesting fast hook / fact framing works right now for this show. https://www.youtube.com/watch?v=sVa749ZFoeE&list=PLwLSw1_eDZl0IjZvS5_v70R5wrfHSJueQ
+
+SEARCH 6 — TRACTION CONFIRMATION
+- Re:ZERO S4 still generating fresh Shorts and reaction/analysis uploads in June. https://www.youtube.com/watch?v=sVa749ZFoeE&list=PLwLSw1_eDZl0IjZvS5_v70R5wrfHSJueQ
+
+SEARCH 7 — NICHE FORMAT TRACTION
+- Could not locate a clean June 2026 niche-wide dataset naming anime Shorts channels + view counts within this run.
+- Fallback: rely on show-specific Shorts signal + locked runtime note that curiosity-gap LIST/FACT_DROP is still top niche format.
+
+SEARCH 8 — COMPETITOR CHECK
+- No clear 500K+ competitor Short found on the exact “tower rule as engineered narrative trap” framing.
+- Keep the hook + framing original (system-design trap, not episode recap).
+Example search surface (angle-adjacent clip exists, but not the framing): https://www.youtube.com/watch?v=WT0DM1oi5dM
+
+2) ACTIVE TRACTION AUDIT
+- Show: Re:ZERO -Starting Life in Another World- Season 4
+- Traction Tier: T1_AIRING
+- Reasoning: ABEMA weekly ranking has Re:ZERO #1 for three consecutive weeks + r/anime episode thread volume.
+  - ABEMA: https://times.abema.tv/en/articles/-/10252137
+  - r/anime Episode 8 discussion: 4,861 upvotes / 2,220 comments. https://www.reddit.com/r/anime/comments/1tp6hoo/rezero_starting_life_in_another_world_season_4/
+- SEARCH 7 note: No better niche-wide dataset found today; default weight to FACT_DROP.
+
+3) RESEARCH NOTE
+- Gap Category: GAP_2_MISSING_CONTEXT
+- Engagement Mechanic: “engineered trap” framing → debate prompt: is this the meanest twist of the season, or the smartest?
+- Consensus Avoided: NOT “Shaula woke up because Subaru left.” Instead: “the story makes the protagonist forget the one rule that keeps everyone alive.”
+- Source Verified: r/anime thread themes confirm what the audience is already talking about. https://www.reddit.com/r/anime/comments/1tp6hoo/rezero_starting_life_in_another_world_season_4/
+- Gap Identified: people are reacting to the event; we package why the event is structurally cruel.
+
+4) FACT VERIFICATION BLOCK
+Claims used in VO (verify by source):
+A) Re:ZERO Season 4 is #1 on ABEMA’s anime weekly ranking for the week of June 1 viewing, and it’s the third consecutive week at #1. (Source: ABEMA) https://times.abema.tv/en/articles/-/10252137
+B) The r/anime Episode 8 discussion thread shows 4,861 upvotes and 2,220 comments (traction proof). (Source: Reddit thread header) https://www.reddit.com/r/anime/comments/1tp6hoo/rezero_starting_life_in_another_world_season_4/
+B) Thread themes explicitly mention Subaru breaking a tower rule leading to Shaula awakening/turning dangerous, and that Subaru lacks context because of Return by Death / memory loss. (Source: extracted top-comment themes) https://www.reddit.com/r/anime/comments/1tp6hoo/rezero_starting_life_in_another_world_season_4/
+BLOCKED (do not use): exact wording of the “tower rule,” episode timestamps, or any specific episode-number plot beats beyond what’s visible in the above sources.
+
+5) FORMAT RECOMMENDATION
+- Recommended Format: FACT_DROP
+- Why this format for this show today: Re:ZERO S4 is mid-arc and heavily discussed; a one-rule “cruel trap” reveal is an instant hook that doesn’t require recap.
+- Primary source signal: official Re:ZERO S4 Shorts playlist exists (Short-form packaging is active). https://www.youtube.com/watch?v=sVa749ZFoeE&list=PLwLSw1_eDZl0IjZvS5_v70R5wrfHSJueQ
+- Secondary source signal: r/anime thread shows the exact moment is driving debate; FACT_DROP captures it in 45-60 seconds. https://www.reddit.com/r/anime/comments/1tp6hoo/rezero_starting_life_in_another_world_season_4/
+- Alternative format (if you want more personality): COMMENTARY ("this twist is cruel but perfect")
+- COMPETITOR CHECK: No 500K+ overlap on this framing found. Proceed, keep framing original.
+
+6) DRAFT VO (FACT_DROP)
+(Opening line must drop viewer in immediately)
+
+“Re:ZERO just pulled the cruelest trick in Season 4.
+
+It sets up a rule that keeps everyone alive…
+and then it wipes the one person’s memory who NEEDS to remember it.
+
+So when Subaru panics and tries to leave, it isn’t ‘bad decision-making’.
+It’s the story putting him in a perfect trap: no context, no safety net, and one step that makes everything worse.
+
+And that’s why this twist hits harder than a normal death loop.
+Because it’s not just ‘Subaru suffers’.
+It’s ‘Subaru can’t even use his own information anymore.’
+
+Meanest twist of the season… or smartest?
+Which one is it?”
+
+7) VO QUALITY CHECK (5 points)
+1. First line drops viewer in immediately? YES
+2. Closer lands on specific point? YES (meanest vs smartest)
+3. All facts confirmed in Fact Verification Block? YES (no timestamps, no exact rule wording)
+4. VO matches recommended format? YES (single hook + one argument)
+5. Sounds like conversation, not script? 4/5 (minor tighten: cut 1-2 filler lines during record)
+RESULT: 4/5 — PASS
+
+8) CLIP INSTRUCTIONS (5 cuts minimum)
+NOTE: Because we did not verify exact timestamps today, keep clip plan high-level and pull the exact moments during edit.
+CUT 1 (0:00-0:03)
+- Visual: Re:ZERO Season 4 title card / key art / tower exterior (non-spoiler establishing)
+- Why: immediate show ID + searchable
+- Protection: mute audio, VO only
+
+CUT 2 (0:03-0:12)
+- Visual: Subaru in distress / disoriented face close-up (any non-violent shot)
+- Why: sells “no context” premise
+- Protection: mute audio, VO only
+
+CUT 3 (0:12-0:25)
+- Visual: watchtower interior / staircase / corridor atmosphere
+- Why: reinforces “rule-space” without explaining plot
+- Protection: mute audio, VO only
+
+CUT 4 (0:25-0:40)
+- Visual: Shaula eyes / transformation tease / menace framing (keep it spoiler-light)
+- Why: matches the “one step makes everything worse” line
+- Protection: mute audio, VO only
+
+CUT 5 (0:40-0:58)
+- Visual: group tension / characters reacting / wide shot
+- Why: supports debate ending without new plot info
+- Protection: mute audio, VO only
+
+Caption spec: Anton | ALL CAPS | White | Black outline | Size 15 | Outline 3-4
+Position: bottom 60-70% | Highlight: Orange #FF6B00 | word-by-word timing
+CUT 1: series brand stamp top of frame first 2-3 seconds
+KEY SHOT overlay (center, size 18-20): “THE RULE HE CAN’T REMEMBER”
+
+9) TITLES
+- YouTube title: Re:ZERO’s Cruelest Season 4 Trick (The Rule Subaru Can’t Remember)
+- TikTok title: The rule Subaru can’t remember is the whole trap
+- Backup title: Re:ZERO made Subaru forget the one thing that keeps him alive
+
+10) CAPTION (Pinned Comment)
+“Meanest twist of the season… or smartest? One word: MEAN or SMART — and why.”
+
+11) HASHTAGS
+#ReZero #anime #animeshorts #TheDeepCut #Subaru
+
+12) CONTENT ID PROTECTION AUDIT
+- All clips muted; VO only.
+- Avoid long uncut action sequences; keep cuts moving every 1-2 lines.
+
+13) CHANNEL IDENTITY AUDIT
+- Does this feel like ‘anime after the episode ends’? YES — it’s about story design, not recap.
+- Avoids failures: not a clean conclusion, not a reaction-only clip, not a consensus take.
+
+14) SEARCH CONTENT BALANCE CHECK
+- Slot: MORNING (SEARCH-RANKED)
+- Title leads with searchable show name: YES (Re:ZERO)
+- Active show confirmed: YES (ABEMA ranking + r/anime volume)
+- Format matches traction: YES (Short-form packaging + debate moment)
+- Competitor overlap checked: YES (no clear 500K+ overlap on this exact framing)

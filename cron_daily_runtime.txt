@@ -1,0 +1,1404 @@
+================================================================================
+ANIMEWITHSEBASTIAN — COMBINED DAILY DUAL-PACKAGE RUNTIME
+CRON: daily_combined | Schedule: ONE daily run (replaces the two separate
+      morning d43ab889 + evening 57a3c92e runs; ~one lower-credit run/day)
+VERSION: v1.2 — July 27, 2026 | Governed by Law #139 (Combined Daily Dual-Package)
+         + Law #147 (Credit-Safe Mode: one-pass semantic QA before return)
+         + Laws #148-150 (added July 24, 2026: source authority/attribution/conflict
+           handling; VO writing craft; execution and verification integrity)
+         + Law #141 RESCINDED July 27, 2026 (seamless loop no longer required; see
+           laws/law_141_seamless_loop_mechanics.md); Law #151 correspondingly moot
+================================================================================
+
+WHY THIS FILE EXISTS (credit reduction — creative quality unchanged)
+The old system fired TWO scheduled runs ~1 hour apart. Each reloaded large split
+runtimes, ran a full 8-search stack, launched a model, drafted a long audit-heavy
+email, validated, sent and logged. That is ~2x the model launches, ~2x the research
+sweeps and ~2x the file loading per day.
+
+This ONE run produces BOTH next-day Shorts packages (MORNING + EVENING) in a single
+model context, with ONE shared market research sweep, ONE model launch, a compact
+actionable email per slot, a deterministic preflight validator (no model revision
+for mechanical issues), and a single atomic dual-event log append. Weekly analytics
+(cron 2bb28991) is UNCHANGED and still runs on its own Sunday cadence.
+
+CREATIVE STANDARDS ARE NOT RELAXED. Every law that governed the morning/evening
+runs still governs both packages here. This file REFERENCES the durable law prose in
+hero_or_villain_master_laws_final.txt and laws/ instead of re-pasting it every day —
+enforcement is unchanged; only the daily token load is reduced.
+
+MODEL GOVERNANCE (Law #137): This daily run = Claude Sonnet 5.0, invoked ONCE for
+idea selection, research synthesis, format selection, and drafting BOTH VOs/packages.
+No Claude Fable 5 for routine daily generation. Log MODEL COMPLIANCE to state/run log
+(NOT the email): MODEL: Claude Sonnet 5.0 | CATEGORY: none (routine daily) | PASS.
+
+--------------------------------------------------------------------------------
+FILES THIS RUN TOUCHES (keep the loaded surface small)
+--------------------------------------------------------------------------------
+READ (authoritative, small):
+  - this file (cron_daily_runtime.txt)
+  - templates/package_template.txt        (compact email/package shape)
+  - sent_scripts_log.json                  (recent sends, cross-slot + cooldown)
+  - blackout_state.json                    (30-day blackout + 7-day no-repeat)
+  - cron_traction_cache.json               (broad traction; refresh >=3 days old)
+  - laws/law_139_combined_daily_dual_package.md  (this workflow's governance)
+LAW REFERENCE (grep on demand only — do NOT read in full):
+  - hero_or_villain_master_laws_final.txt  (grep the specific law number + read ~80 lines)
+DO NOT load cron_morning_rework.txt / cron_evening_rework.txt or the part1-4 splits
+for routine generation — they are superseded for daily use (see MIGRATION doc).
+WRITE:
+  - cron_tracking/daily_combined/run_manifest.json   (both packages, machine-readable)
+  - cron_tracking/sent_scripts_events.jsonl          (2 appended rows, one batch_id)
+  - sent_scripts_log.json                            (2 appended legacy entries)
+  - cron_tracking/daily_combined/state.json          (atomic per-run state)
+  - cron_traction_cache.json                         (only when refreshed)
+
+================================================================================
+STEP 0 — RESTORE (soft gate) + LOAD LAWS BY REFERENCE
+================================================================================
+Attempt GitHub restore exactly as the legacy runtimes do (soft gate — a git failure
+is NEVER a blocker; log github_sync and CONTINUE). See MIGRATION doc for the restore
+snippet; it is unchanged. Then read the small READ set above. Do NOT expand the law
+prose into context — grep hero_or_villain_master_laws_final.txt only when a specific
+law's exact text is needed for a judgment call.
+
+ENFORCED LAW SET (referenced, not re-pasted — full prose in master laws / laws/):
+  Creative: #59/#79/#131->#138 (VO fills the resolved CapCut edit at the calibrated
+  fill rate, open-ended [20,180]s per Law #138 Stage 1/2 — length is a per-content
+  judgment call per STEP 3.5 below, not a fixed default),
+  #82 (no brand stamp, CUT 1 = content), #86/#87/#104/#105 (hook states+breaks the
+  point in first 2 lines; no setup/lecturing), #88 (conversion audit), #89/#100/#102
+  (comment system: binary/identity closer), #92 (fan voice), #140 (clip plan REQUIRES
+  per-cut timings tiling the resolved edit length; supersedes the old #77 no-timings
+  rule; the old fixed-30s/M1-experiment split is retired — see Stage 2, 62dbc56),
+  #141 RESCINDED July 27, 2026 (was: explicit seamless loop mandate; now: VOs may end
+  on any clean, complete, natural closing thought -- a loop-style ending is still
+  allowed if it arises naturally and passes every other register check, but it is no
+  longer required or specially scored; opening_sentence remains required, independent
+  of looping, for the Law #144/#145 hook_line equality check; see
+  laws/law_141_seamless_loop_mechanics.md for the full rescission notice),
+  #147 (credit-safe mode: STEP 4.5 one-pass semantic QA self-audit of BOTH packages before
+  return — claim-to-source matrix, dated non-encyclopedic support for core claims;
+  stored in manifest semantic_qa, NOT the email; validator checks presence/shape;
+  colon-handoff loop check removed 2026-07-27, see Law #141 rescission),
+  #134 (Shorts REQUIRE face-cam split screen — Creator TOP / anime footage BOTTOM —
+  updated Stage 2, 2026-08-09, superseding the July 14, 2026 anime-only rule; manga
+  panels allowed for manga-based formats within the anime-footage half; long-form
+  keeps its separate Anime TOP / Face BOTTOM layout, unchanged),
+  #76/#95/#97/#101 (separate titles/caption/post text; searchable title), #80/#81
+  (caption + hashtag limits), #99 (separate per-platform post times), #78 (source date),
+  #83 (cross-slot reservation), #84 (deep research), #85/#93/#94 (monetization/brand),
+  #125-#130 (format diversity + rotations + 3-day traction refresh), #137 (model),
+  #139 (THIS combined workflow),
+  #143 (topic portfolio: per-package topic_class/topic_signals + recurring series
+  metadata + M2 viewer-facing series_public_name/series_next_line when recurring;
+  weekly ≥9/14 timely & ≥2 recurring-series targets live in analytics),
+  #144 (Shorts packaging + first-second hook: hook_onscreen_text, hook_first_second,
+  hook_line==opening_sentence, hook_family; PUNCHY no-hashtag titles — youtube_title
+  ≤60 chars + distinct tiktok_title ≤55 chars, one idea each, distinct from the hook
+  and from each other/across packages),
+  #145 (measurement/attribution + single-variant experiment: draft 2 hook_candidates,
+  publish exactly ONE selected; funnel_status; never publish duplicate Shorts).
+  #148 (source authority/attribution accuracy/no silent conflict resolution on core
+  claims -- claim-verification searches under #148 are separate from and do NOT count
+  against the Step 3 one-sweep idea-discovery limit),
+  #149 (VO writing craft: no redundant sentences, specificity over gesture, hedge
+  strength matches source confidence, the closing line lands as a genuine complete
+  thought rather than a padded one, read as speech not prose),
+  #150 (execution/verification integrity: actually run the validator and capture real
+  output, actually read live blackout_state.json/sent_scripts_log.json rather than
+  assuming their contents, cross-check both packages together before either sends,
+  never soften or rubber-stamp a genuinely failing check).
+  #157 (added August 6, 2026 — POST-SEND REAL-DATA PERFORMANCE VERIFICATION: every
+  batch gets a delayed real-API performance check once 24h+ has elapsed since
+  publish, classified against the real baseline patterns established August 6, 2026
+  -- "real test audience, moderate conversion" (JJK 452/53, Tanya 654-738/34-35) vs.
+  "near-zero impressions, no real test at all" (Chainsaw Man 28-33/0-1, Solo Leveling
+  8/0); see STEP 9 below and hero_or_villain_master_laws_final.txt Law #157 for full
+  text. This is a POST-send follow-up, not a pre-send gate -- it never blocks STEP
+  5/6/7 of a same-day run).
+  #58/#52 (pre-send fact verification / never source from memory — satisfied today by
+  the claim_source_matrix/claim_type/semantic_qa mechanism above, not by a separate
+  literal Fact Verification Block; crosswalk documented in
+  laws/law_58_pre_send_verification.md).
+  Long-form (#66/#136/#146) and Fable governance (#137) are UNCHANGED and out of scope
+  for this Shorts run (long-form uses validators/validate_longform_flagship.py).
+
+================================================================================
+STEP 1 — RESERVE THE DAY (single batch; Law #83 adapted)
+================================================================================
+Because ONE run now owns BOTH slots, there is no cross-cron race. Read
+sent_scripts_log.json. If an entry already has status "sent" for BOTH morning and
+evening with date_sent = today: NO-OP (already done today) — write state no_op and
+exit.
+
+PENDING-BATCH CHECK (Law #166, added 2026-08-13, part of the Law #164 approval
+gate): BEFORE reserving a new batch, check cron_tracking/daily_combined/pending/
+for any batch directory whose state.json still reads status="AWAITING_APPROVAL"
+(i.e. approval.json was never written for it). If ANY such batch exists:
+  - Do NOT generate a new batch today. Generating a second batch on top of an
+    unreviewed one defeats the purpose of the approval gate — it creates a
+    backlog that's easier to skim past, and a second batch risks assuming
+    different show/blackout state than whatever the first batch's approval
+    (if it happens) will actually reflect.
+  - Send ONE in-app notification (no push, no email — Law #164) restating that
+    batch_id, its post_date, both shows, and the pending path, so a multi-day
+    gap in review surfaces loudly rather than being buried under fresh
+    batches. Reuse the same notification text pattern STEP 6 uses for a fresh
+    AWAITING_APPROVAL batch; do not create new content or hit STEP 2 onward.
+  - Write state.json for today's run as status="skipped_pending_batch" with a
+    reference to the still-open batch_id, so this is distinguishable from a
+    normal no_op (already sent) or a failure.
+  - STOP. Exit this run here.
+If NO pending unapproved batch exists, continue normally: write a single
+reservation note (batch reserved, shows TBD) and continue. Generate ONE batch_id
+(uuid) for this run now; you will assign a distinct package_id (uuid) to each of
+the two packages.
+
+================================================================================
+STEP 2 — ONE SHARED CURRENT-MARKET RESEARCH SWEEP (Law #84, #129)
+================================================================================
+Run the 8-search stack ONCE for the whole run (trending, show traction, fandom gap,
+consensus, format, traction confirmation, niche format, competitor). Do NOT run the
+broad sweeps twice. The two ideas draw candidate-specific detail from this one sweep.
+
+BROAD TRACTION CACHE (Law #129 — refresh AT MOST once every 3 days):
+  Read cron_traction_cache.json. If missing OR timestamp older than 3 days: run the
+  refresh stack (Crunchyroll top 10, MAL seasonal, AniList trending, open-web trending)
+  and rewrite the cache with a fresh timestamp. If under 3 days: reuse it, do NOT
+  refresh. Log: "Traction cache: CURRENT [date] / REFRESHED [date]" to the run log.
+
+PER-IDEA VERIFICATION (still mandatory for BOTH ideas — no shortcut):
+  Each of the two ideas must get current candidate-specific FACT VERIFICATION and at
+  least TWO credible live sources each (Law #78 dates required). Shared sweep covers
+  the market; per-idea verification is still done for each package. Avoid repeating an
+  identical query already run in the shared sweep — reuse those results.
+
+================================================================================
+STEP 3 — SELECT TWO INDEPENDENT IDEAS IN ONE CONTEXT (Law #125-#128, Law #85)
+================================================================================
+  - MONETIZATION FILTER (Law #85 — reconfirmed ACTIVE, policy decision July 24,
+    2026): monetization / brand-deal positioning is the channel's top-priority filter
+    and applies to BOTH ideas before anything else in this step. Score each candidate
+    idea on Law #85's three axes (Sub Conversion / Brand Attractiveness / Viral
+    Potential — HIGH/MED/LOW) using the shared sweep's traction/fandom signals; an
+    idea needs >=2 of 3 axes HIGH or MED to be eligible, and an idea scoring LOW on
+    all three is BLOCKED regardless of creative quality. Prefer formats high on Law
+    #85's monetization hierarchy (WRONG_TAKE, CHARACTER_DIVE, THE_MOMENT, COMMENTARY,
+    VILLAIN_DEFENSE rank above FACT_DROP/ORIGIN_STORY/SLEPT_ON when candidates are
+    otherwise close). This filter narrows the candidate pool BEFORE the diversity/
+    blackout rules below are applied to the survivors.
+Pick BOTH ideas together so you can guarantee cross-slot diversity in one pass:
+  - DIFFERENT shows, DIFFERENT angles, DIFFERENT formats, independent sourcing.
+  - No blackout conflict (blackout_state.json) and no recent-send conflict
+    (sent_scripts_log.json cooldowns) for EITHER idea. Same-day same-show is BANNED.
+  - Apply format diversity + rotation laws across the pair AND the recent window
+    (#125 blocked-format check, #126 blueprint, #127 manga, #128 ranking).
+  - Assign slots: MORNING = search-ranked (lead with searchable show/character),
+    EVENING = trending-ranked (lead with current traction). Either idea may take
+    either slot; choose the fit that maximizes searchability (morning) and timeliness
+    (evening).
+  - TOPIC PORTFOLIO (Law #143 — use the ONE shared sweep + cache; no extra searches):
+    prefer currently-airing / premiere / chapter / news / seasonal-ranking ideas. Set
+    topic_class = "timely" (with >=1 topic_signals) or "evergreen" per package. The
+    WEEKLY target is >=9 of 14 slots timely (evergreen/experiments fill up to 5) — that
+    aggregate is checked by the weekly analytics cron, not enforced per single run; a
+    run may legitimately be evergreen for a durable idea/experiment.
+  - ACTIVE EVERGREEN WEIGHTING (additive to TOPIC PORTFOLIO above, not a replacement —
+    the weekly analytics cron remains the sole ENFORCER of the >=9/14 timely target and
+    the <=5/14 evergreen ceiling; this step only makes evergreen candidates compete
+    fairly instead of being passively allowed and never actually picked): before
+    selecting the two ideas, read the trailing 14 entries' topic_class from the
+    already-open sent_scripts_log.json (same file already read above for blackout/
+    cooldown checks — no new file access) and count how many of the last 14 populated
+    entries are "evergreen". If that count is BELOW 5 (the Law #143 ceiling is under-
+    used), an eligible evergreen-fitting candidate (ORIGIN_STORY or SLEPT_ON/HIDDEN_GEM
+    from the Law #85 hierarchy below; these are Law #85's own stated evergreen/
+    brand-authority formats) that also clears the MONETIZATION FILTER above (>=2 of 3
+    axes HIGH/MED) is upweighted to compete on equal footing with timely candidates for
+    ONE of the two daily slots — it does not override the monetization filter, the
+    blackout rules, or the same-day-same-show ban, and it never forces both slots
+    evergreen in one run. If the trailing-14 evergreen count is already at or above 5,
+    this weighting does not apply and TOPIC PORTFOLIO's existing timely-preference
+    language above governs as before. Tracking note: this mechanism currently has no
+    audit trail in run_manifest.json (no field records the trailing-14 count or
+    whether upweighting was applied for a given run) — see
+    docs/EVERGREEN_WEIGHTING_TRACKING.md for known real-world (non-)confirmation
+    status before citing any send as evidence this mechanism fired.
+  - ACTIVE FORMAT-DIVERSITY WEIGHTING (additive to the MONETIZATION FILTER and Law
+    #85 hierarchy above, never a replacement — an idea must still clear the >=2/3
+    axes HIGH/MED eligibility gate first; this step only adjusts which ELIGIBLE
+    format wins when multiple eligible candidates are otherwise close): before
+    finalizing format_type for either slot, read the trailing 14 entries'
+    format_type from the already-open sent_scripts_log.json (same file already
+    read above for blackout/cooldown/evergreen checks — no new file access). Count
+    how many of the last 14 populated entries used each of the 14 controlled
+    format_type tokens. If any single format_type accounts for 5 or more of the
+    trailing 14 (>=1/3 of recent sends), that format is downweighted for this run:
+    among otherwise-eligible, otherwise-close candidates, prefer a different
+    eligible format_type instead, even if the overused format ranks higher on Law
+    #85's hierarchy. This downweighting only breaks ties among candidates that
+    already cleared the MONETIZATION FILTER — it never promotes an ineligible
+    (LOW/LOW/LOW) idea, never overrides the blackout or same-day-same-show rules,
+    and never forces avoiding a format if no other eligible candidate exists (an
+    overused format may still be used if it is the ONLY eligible option for that
+    slot). Tracking note: this mechanism currently has no audit trail in
+    run_manifest.json — see docs/FORMAT_DIVERSITY_WEIGHTING_TRACKING.md for known
+    real-world (non-)confirmation status before citing any send as evidence this
+    mechanism fired.
+  - FORMAT VOCABULARY — LAW #96 + WATCH_RANK (Law #98) PORT (restored into this step;
+    same restoration pattern as Law #58/#84/#73 tonight — these were previously ACTIVE
+    on paper but absent from this runtime): format_type MUST be one of the controlled
+    tokens below (validator now enforces this — see validate_dual_package.py). No
+    free-text or compound format labels (e.g. "industry controversy hybrid",
+    "SEASON_PREVIEW / dub-cast reveal") — pick the single closest controlled token.
+    NOTE ON TOKEN COUNT (corrected 2026-08-11 — the prior "16 tokens" note was stale;
+    real count independently verified against validate_dual_package.py's live
+    FORMAT_TYPES tuple): the validator's FORMAT_TYPES enum has 17 tokens as of
+    2026-08-10 (Law #158/#159/#160), but only 15 are selectable from this runtime
+    step, for TWO separate reasons:
+      1. SEASON_ROUNDUP is deliberately withheld — see the SEASON_ROUNDUP callout at
+         the end of this list for the documented reason (validator lacks a per-show
+         source-count cross-check for roundups).
+      2. THEORY_SPECULATION (Law #160) is simply absent from this runtime step —
+         Law #160 is still status: DRAFT (laws/law_160_theory_speculation_draft.md),
+         and that law's own item 7 ("cron_daily_runtime.txt: add THEORY_SPECULATION
+         to format-selection guidance") is explicitly NOT YET DONE. This is not a
+         deliberate withholding like SEASON_ROUNDUP's — it is an outstanding porting
+         gap, tracked as a separate future step, not a design decision to exclude it.
+      Law #85 hierarchy (9 tokens covering 8 ranks — rank 8 is written in Law #85's
+      text as one combined format "SLEPT_ON / HIDDEN_GEM", but real production history
+      used both as distinct format_type strings, so both are kept as separate tokens
+      here; law text should be corrected to match next time it's touched): WRONG_TAKE,
+      CHARACTER_DIVE, THE_MOMENT, FACT_DROP, COMMENTARY, VILLAIN_DEFENSE, ORIGIN_STORY,
+      SLEPT_ON, HIDDEN_GEM.
+      Law #96 rotation (4): SEASON_RATING (rate one currently-airing show; state the
+      rating in the hook; provocative enough to be wrong; airing or finished <=30 days;
+      7-day blackout per show), SEASON_PREVIEW (why watch a new/upcoming season or
+      episode; verified premiere within 45 days; competitor check required; 7-day
+      blackout from send + 45-day premiere window), MANGA_VS_ANIME (one SPECIFIC scene
+      where manga/anime differ; must take a side; live-source verified per Law #52;
+      14-day blackout per show), EPISODE_MOMENT (one scene/beat/reveal from an episode
+      aired within 7 days; spoiler warning required; no blackout but the 7-day airing
+      window is a hard deadline).
+      Law #98 WATCH_RANK (1 of that law's 4 codes — only this one is ported; SEASON_RANK,
+      EPISODE_REVIEW, EPISODE_VS_MANGA remain UNPORTED, out of scope): rank 3-6 shows
+      Sebastian is currently watching, head-to-head, each placement with a one-line
+      reason; at least one placement must be a WRONG_TAKE the audience will argue; shows
+      airing or finished <=60 days; live-source verified per Law #52; 14-day blackout per
+      ranking (may return with an updated ranking if episodes drop).
+      Law #158 WORTH_WATCHING (added 2026-08-10, selectable as of this runtime update):
+      a persuasive case for ONE show, on its own merits — no restriction on how
+      well-known the show already is (this is the explicit differentiator from
+      SLEPT_ON/HIDDEN_GEM, which are scoped to underrated/overlooked shows only), and
+      NO comparative or ranking language anywhere in vo, hook_line, hook_onscreen_text,
+      youtube_title, tiktok_title, or tiktok_post_text (this is the explicit
+      differentiator from WATCH_RANK, which is comparative by definition). Set
+      no_comparative_language=true (self-attestation — the validator also runs an
+      independent mechanical BANNED_COMPARATIVE_LANGUAGE scan over the same fields and
+      fails closed on a match regardless of what this flag claims, so do not set it
+      true unless the draft genuinely contains zero comparative/ranking phrasing).
+      Length maps directly onto STEP 3.5's existing bands with no new logic: 1 verified
+      reason -> SINGLE-FACT/QUICK-TAKE (20-30s); 2-3 connected reasons -> MULTI-BEAT
+      ARGUMENT (45-75s). Sourcing uses the existing claim_source_matrix machinery
+      (Laws #147/#148) unchanged — real, source-verified specific reasons, not vague
+      praise. Blackout: 7 days per show (same as SEASON_RATING, the closest structural
+      sibling), self-attested via blackout_conflict/recent_send_conflict same as every
+      other format. No change to Law #134 Stage 2 face-cam split screen — required
+      here same as every other format, no anime-only exception.
+      None of these 6 formats are recap videos, essay-voice, or general/unspecific takes
+      (Law #92 fan-voice test applies to all).
+      SEASON_ROUNDUP (Law #159) IS NOT YET SELECTABLE FROM THIS STEP, even though it is
+      live in the validator's FORMAT_TYPES enum as of 2026-08-10. Named, explicit
+      blocker: the validator does not yet cross-check claim_source_matrix entry count
+      against the number of shows covered in a roundup (Law #159 implementation-status
+      item 3), so a SEASON_ROUNDUP package could pass validation today with a single
+      source waved across multiple shows' claims, undetected — a direct structural
+      echo of the real Gachiakuta incident (Law #73 UPDATE 7) that motivated the
+      per-clip verification discipline in the first place. Do not select SEASON_ROUNDUP
+      for a real send until that per-show source-count check exists and this runtime
+      section is updated to remove this blocker note.
+  - RECURRING SERIES (Law #143): where an idea fits a proven recurring structure
+    (seasonal ranking, episode/scene test), tag series={"id":<machine-id>,
+    "recurring":true} to serve returning viewers. Do NOT force the same show; blackout /
+    diversity / same-day-same-show rules still win. Weekly target >=2 recurring-series
+    packages is a weekly-analytics flag. Use null/omit series for one-offs.
+    VIEWER-FACING MARKER (M2 — REQUIRED when series.recurring=true): a machine-only
+    series id is invisible to viewers, so a returning viewer cannot form around it. Also
+    set series_public_name (a short viewer-facing series name that MUST appear in the
+    youtube_title or the first-second hook_onscreen_text) and series_next_line (a
+    next-installment cue that MUST appear in captions, pinned_comment, or tiktok_post_text).
+    The validator fails closed if a recurring series lacks either marker.
+Record blackout_conflict=false and recent_send_conflict=false per package in the
+manifest (the validator fails closed if either is true or missing).
+
+================================================================================
+STEP 3.5 — LENGTH SELECTION (Law #138 Stage 1/2 — content-driven, not fixed)
+================================================================================
+Edit length is now an open per-content judgment call in [20,180]s (Law #138,
+Stage 1 rebuild 7851d85 / Stage 2 62dbc56) — there is no fixed 30s default and no
+format_type/series gate. The validator only enforces the outer [20,180]s bound and
+the CTA/VO-band math against whatever capcut_target_sec is actually set; the BAND
+an idea should target is a drafting decision, made HERE, right after idea selection
+and before drafting begins, using the real content of the two ideas just picked in
+STEP 3.
+
+The gate is the number of independently source-verified beats the topic actually
+has — NOT a length picked first and padded to fit. Count the distinct, separately-
+sourced factual/narrative beats the verified research (STEP 2/3) actually supports
+for this idea before choosing a band:
+  - SINGLE-FACT / QUICK-TAKE (1 verified beat) -> 20-30s. One clean claim, one
+    reaction. Reserve this band for ideas that are genuinely single-fact AND
+    where YouTube-only distribution is acceptable for that package — this band
+    produces content that cannot earn TikTok Creator Rewards (TikTok requires
+    videos to be at least one minute long to qualify for any Creator Rewards
+    payout, per TikTok's own Creator Rewards Program support page; sub-60s
+    videos earn $0 regardless of views). This is no longer the default
+    assumption; it is a deliberate exception, and the package's
+    length_rationale must say so explicitly (e.g. "YouTube-only — single
+    verified beat, does not support 60s+").
+  - MULTI-BEAT ARGUMENT (2-3 verified beats building one throughline) -> 45-75s.
+    Unless the package is explicitly marked YouTube-only (see above), TikTok
+    Creator Rewards eligibility is the DEFAULT assumption for this channel —
+    TikTok is the platform with confirmed real traction. TikTok pays $0 on any
+    video under 60 seconds regardless of views, full stop (TikTok Support,
+    confirmed). That means "somewhere in 45-75s" is NOT sufficient by itself:
+    for a TikTok-eligible package, the resolved capcut_target_sec must be
+    >=60s specifically, not merely inside this band's outer range.
+    At idea selection, once an idea's verified beat count places it in this
+    band, resolve it one of two ways — do not let it land silently at 45-59s:
+      (a) If the idea's verified beats genuinely support pushing the resolved
+          length to 60s+ within this same band, do so. Using room the real
+          beats justify is not padding — the anti-padding rule below still
+          governs how much content actually fills that time; it just means
+          don't round down to 50-55s when the sourced material could
+          legitimately fill 60+.
+      (b) If the verified beats genuinely do NOT support 60s+ — the idea is
+          real 2-3-beat content but thin enough that stretching to 60s would
+          require padding — mark the package YouTube-only in length_rationale,
+          the same explicit carve-out used for the 20-30s band, and resolve
+          capcut_target_sec anywhere in 45-59s that honestly fits the content.
+          Do not resolve at 45-59s while treating the package as if it were
+          still TikTok-eligible; a package is either >=60s or explicitly
+          YouTube-only — there is no silent middle state.
+  - FULL CHARACTER DEEP-DIVE (multiple verified beats tracing one character/arc
+    across time) -> 90-150s.
+  - MULTI-CLAIM EXPLAINER (several independently-verified claims that don't reduce
+    to one throughline — e.g. a news roundup or multi-thread update) -> up to 180s.
+Pick the SHORTEST band that genuinely fits the verified beat count for this idea,
+with 60s+ (reached via the MULTI-BEAT ARGUMENT band or higher) as the practical
+floor for ordinary, TikTok-eligible content — do not default upward past what the
+verified beat count supports, but do not default down into 20-30s, or stop short
+at 45-59s, out of habit either. A single-fact idea forced into a 90s band will
+pad; a genuine explainer squeezed into 30s will drop sourced beats. Set
+capcut_target_sec to a specific numeric value inside the chosen band (not just the
+band's edges) based on how much verified content the idea actually carries.
+Record the chosen band and the beat count that justified it in the manifest per
+package (e.g. a `length_rationale` note) so the choice is auditable, not just a
+number that appears with no reasoning attached. Every package's length_rationale
+must make its status legible: either the specific verified-beat justification for
+a resolved length >=60s, or an explicit YouTube-only mark with the reason 60s+
+wasn't genuinely supported. Never resolve a length in the 45-59s dead zone without
+the YouTube-only mark attached — that combination gets neither the honesty of the
+20-30s exception nor actual TikTok eligibility, and defeats the purpose of this
+change.
+
+================================================================================
+STEP 4 — DRAFT BOTH PACKAGES (one model pass; all creative laws apply)
+================================================================================
+Draft each package to templates/package_template.txt. Both VOs must satisfy the SAME
+standards the legacy runs enforced (nothing relaxed):
+  - The RESOLVED CapCut edit length (capcut_target_sec, set in STEP 3.5 above) is the
+    controlling input; VO FILLS it (Law #138). Length is open-ended [20,180]s per
+    content — there is no fixed 30s default and no separate "experiment" tier; every
+    package sets capcut_target_sec to its own resolved length the same way.
+  - VO WORD COUNT SCALES TO THE RESOLVED LENGTH at the calibrated fill rate of
+    3.3-3.6 words/sec (Law #138): 20s ≈ 66-72 words, 30s = 100-108 words (target
+    ~104), 45s ≈ 148-162 words, 90s ≈ 297-324 words, 150s ≈ 495-540 words, 180s ≈
+    594-648 words. Compute the exact band from the ACTUAL capcut_target_sec chosen in
+    STEP 3.5, not from a lookup table entry alone — show the math (resolved length ->
+    required word range -> actual VO words -> estimated VO duration -> delta to
+    target). No filler, no dead air, no padded pauses regardless of length; a longer
+    edit is filled with more verified beats, never with padding. vo_word_count is
+    computed from the pkg["vo"] field exactly as it always has been — that field
+    stays pure, tag-free spoken text, identical in shape to every existing manifest.
+    The [FACE: <direction>] notes (see the two-track direction-note bullet below) are
+    NEVER written into vo itself; they exist only as a separate, parallel set of
+    notes that gets interleaved with vo's sentences at RENDER TIME, when building the
+    actual email body text. Every validator check that reads vo — word count, the
+    exact CTA phrase, opening_sentence's match against vo's first sentence, and every
+    Law #149 closer rule — continues reading this same clean field, completely
+    unaffected by direction notes.
+  - Strong assumption-breaking HOOK; the point is present in the first 2 lines.
+  - A SPECIFIC question immediately followed by the EXACT phrase "Leave your take."
+  - ON-SCREEN CTA TIMING (Law #62 addendum, 2026-07-27; generalized Stage 1,
+    2026-08-09): set onscreen_cta_start_sec to a real numeric second value satisfying
+    onscreen_cta_start_sec >= target_sec - max(5.0, target_sec * 0.15), where
+    target_sec is the resolved capcut_target_sec from STEP 3.5. This formula
+    reproduces the original 5-second floor exactly at 30s (floor=25.0s) while scaling
+    to 15% of the edit for longer lengths, so the CTA always lands within the edit's
+    closing window rather than a fixed final-5-seconds band regardless of length.
+    This marks when the CTA/question line's on-screen text appears in the CapCut
+    edit; the validator fails closed if this field is missing or falls below that
+    floor.
+  - CLOSING LINE (Law #141 RESCINDED July 27, 2026): the VO ends on any clean, complete,
+    natural closing thought — the same plain-statement register as the rest of the VO.
+    set opening_sentence = the VO's EXACT first sentence (still required, independent of
+    looping, because the published hook_line must equal it — Law #144/#145). A loop-style
+    ending (a final line that hands naturally into the opening) is NOT banned if it arises
+    naturally and passes every other register check, but it is no longer required, no
+    longer scored, and the validator no longer fails a manifest for lacking one. Do NOT
+    force an incomplete colon setup, a manufactured keyword callback, or any other
+    artificial loop mechanic just to produce one — a normal, well-written ending that
+    doesn't loop is fully acceptable. See laws/law_141_seamless_loop_mechanics.md for the
+    full rescission rationale (no platform-confirmed ranking benefit was ever found, and
+    the forced mechanic produced real register violations in production).
+  - FACE-CAM SPLIT SCREEN REQUIRED (Law #134, updated Stage 2, 2026-08-09 —
+    supersedes the July 14, 2026 anime-only rule): every Short is Creator TOP / anime
+    footage BOTTOM, full horizontal width, no border or gap. Manga panels are allowed
+    for manga-based formats within the anime-footage half.
+  - TWO-TRACK SCRIPT: DIRECTION-NOTE LAYER (Law #134, same drafting pass as the VO
+    above — reuses the long-form face-delivery-note pattern from Law #134's LONG-FORM
+    LAYOUT section, applied to Shorts now that face-cam is required there too).
+    Alongside the single VO text, produce a second, parallel track: one direction
+    note per VO line/sentence, classifying HOW Sebastian delivers that line on
+    camera. Each note is one of:
+      - DIRECT-TO-CAMERA: direct eye contact, the default for most of the VO,
+        especially CUT 1 (lean in, zero warmup) and the hook/closing lines.
+      - GLANCE-DOWN-AT-FOOTAGE: a brief, intentional eye-contact break toward the
+        anime footage in the bottom half — used to visually cue the viewer toward a
+        specific clip/beat the line is describing, not a default state.
+      - REACTION BEAT: a non-verbal or short interjecting beat (a reaction expression,
+        a pause, a laugh) that isn't a spoken line addition but marks a moment the
+        face-cam should carry emotional weight distinct from plain delivery.
+    Store this track as its own separate list in the manifest (one note per VO
+    line/sentence, in order) — NEVER written into the pkg["vo"] field itself. vo
+    stays pure, tag-free spoken text, identical in shape to every existing manifest;
+    every validator check that reads vo (word count, exact CTA phrase,
+    opening_sentence's match against vo's first sentence, every Law #149 closer
+    rule) continues reading that same clean field, completely unaffected by this
+    track. The [FACE: <direction>] bracket tag (same convention as the original
+    pre-July-14 Shorts face-cam spec) is a RENDER-TIME-ONLY presentation: when
+    building the email body, interleave each note immediately before the VO
+    sentence it governs — e.g. "[FACE: direct-to-camera, lean in] <VO sentence>" or
+    "[FACE: glance-down-at-footage] <VO sentence>" — so Sebastian reads one
+    continuous performance script, but the underlying vo field the validator checks
+    never contains bracket characters. Direct eye contact is the
+    default — only mark GLANCE-DOWN or REACTION BEAT where the line specifically
+    calls for it, the same restraint the long-form spec already applies (no filler
+    mugging; expression matches the emotional weight of the line, not exaggerated for
+    its own sake). CUT 1 is always DIRECT-TO-CAMERA with zero warmup. This direction-
+    note track is additive — it never changes the VO's words, word count, or timing;
+    it only tells Sebastian how to deliver what's already written.
+  - CLIP VERIFICATION (Law #73, restored and extended July 25, 2026 — RUN THIS
+    BEFORE finalizing the clip plan): every clips[] entry must be checked against
+    all three dimensions — AIRED (the scene occurs in an episode that has genuinely
+    broadcast/streamed as of the run date; not unaired/announced-only; not a
+    manga-only moment mistaken for anime content), ACCURATE (confirmed via a live
+    source checked in the current session — official episode guide, MAL/AniList
+    episode list, per-episode wiki summary, or a source already fetched earlier in
+    this same research pass; memory is not verification), and CURRENTLY AVAILABLE
+    (still accessible on a real platform now, not delisted/pulled/region-locked —
+    "it aired once" is not the same claim as "it's obtainable today"). The
+    verification must be scene-level: a source confirming only that the SHOW
+    exists, or that the moment exists in the MANGA, does NOT satisfy this — it must
+    confirm this specific scene as broadcast anime footage. Set scene_verified
+    (true|false) on every clip; verification_source_url is REQUIRED whenever
+    scene_verified is true. MANGA FALLBACK, NEVER SILENT SUBSTITUTION: if a moment
+    cannot be verified as aired/available anime footage, mark that clip
+    scene_verified=false with a manga_reference naming the specific verified
+    chapter/page, OR — where no manga source applies either (F20,
+    docs/KNOWN_ISSUES.md) — a verification_note documenting that real aired
+    footage almost certainly exists but no clip-level video source could be
+    independently confirmed this pass. Exactly one of manga_reference /
+    verification_note is required whenever scene_verified=false; never silently
+    swap in a different clip or write an unverified moment into the plan as if it
+    were real footage. If NO clip plan can be built
+    entirely from verified, currently-available anime footage, set the top-level
+    clip_plan_needs_manga_source=true and say so plainly in the manifest/email
+    rather than sending an unverifiable clip plan. A manga-panel fallback is a
+    flagged exception requiring Sebastian's own editing judgment — it never counts
+    as satisfying the anime-footage-only rule above.
+  - REAL VIDEO-PLATFORM SEARCH BEFORE ANY scene_verified=false (Law #73 UPDATE 8,
+    added August 10-11, 2026 — same-day fix after the Re:ZERO / Love Unseen
+    footage-location correction incident, docs/KNOWN_ISSUES.md F21; RUN THIS BEFORE
+    a clip can be finalized as scene_verified=false, immediately after the AIRED/
+    ACCURATE/CURRENTLY-AVAILABLE check above fails to confirm the clip): stopping at
+    a single fetched TEXT page (an episode-guide entry, a news writeup, an official
+    synopsis) and concluding "no footage available" is NOT a real search — it is
+    exactly the shortcut that produced both corrected packages tonight, where a real,
+    findable video (an Ani-One India upload, in that incident) existed the whole time
+    and was never checked because the drafting pass never looked at an actual video
+    platform. Before a clip may be marked scene_verified=false, you must actually
+    search at least one real, named video platform for this specific scene/episode —
+    at minimum the show's official YouTube channel or the show's official/regional
+    simulcast platform (Crunchyroll, HIDIVE, Netflix, Ani-One, etc., whichever
+    actually carries this show), not merely a text article ABOUT the episode. Record
+    the outcome honestly as footage_status, one of:
+      - "aired_and_located": the real search found and confirmed actual video
+        footage of this scene on a named platform. Set scene_verified=true instead
+        (this is not a scene_verified=false case at all — if the search succeeds,
+        the clip is verified, not routed through this fallback).
+      - "aired_not_located": the episode has genuinely aired, but a clip-level video
+        source for THIS SPECIFIC scene could not be pinned down after a real search
+        of the platforms above. This is the honest "the video probably exists but I
+        could not find it" state — it is NOT a license to submit anyway. Per the
+        validator's own hard block (Law #73 UPDATE 8), footage_status=
+        aired_not_located BLOCKS the manifest outright with no rescue path — no
+        manga_reference or verification_note can clear it. If a clip search resolves
+        to aired_not_located, SEARCH AGAIN before considering the manifest done:
+        try the platform search once more with a different query (character name +
+        episode number, a distinctive visual beat described in the source, the
+        show's official channel's own episode-upload page/playlist), or, if a second
+        real attempt still fails, replace this clip with a different verified or
+        manga-sourced moment instead of leaving an aired_not_located clip in the
+        manifest. Do not submit and let the validator catch it — the validator
+        catching it is a safety net for a mistake, not step two of the drafting
+        process.
+      - "unaired_trailer_only": the episode/content has not aired yet, and the only
+        real material found via the platform search is trailer/PV footage (not
+        SEASON_ROUNDUP's separate trailer_reference mechanism — this is the general
+        pre-air state for any other format_type).
+      - "unaired_no_footage": the episode/content has not aired yet and even trailer
+        material could not be found via a real platform search.
+    Record footage_search_performed as a plain-language, non-empty account of the
+    ACTUAL search performed and its real result — naming the specific platform(s)
+    checked (the validator mechanically requires this string to name a recognizable
+    video platform: YouTube, Crunchyroll, Funimation, HIDIVE, Ani-One, Netflix, Hulu,
+    Amazon/Prime Video, Disney+, Bilibili, Niconico, Muse Asia, Toei, TikTok,
+    Instagram, Twitter/X, or Facebook) — e.g. "Searched the show's official YouTube
+    channel and Crunchyroll's episode page for a clip of this beat; no matching
+    video-level source located this pass," never a vague, platform-less, or
+    copy-pasted placeholder like "searched around for footage" (this exact pattern
+    is mechanically rejected — see FOOTAGE_SEARCH_DOMAINS in
+    validators/validate_dual_package.py). If the real search does locate a specific
+    candidate video worth flagging for Sebastian's own confirmation (even if not
+    confident enough to mark scene_verified=true outright), record it as:
+      "location_pointer": { "url": "<the real URL found during this search>",
+                             "description": "<one sentence: what this URL shows and
+                              why it wasn't confident enough to mark verified>" }
+    location_pointer is OPTIONAL, but whenever set, its url MUST also be added to
+    this package's own sources[] list — the validator mechanically cross-checks this
+    (Law #73 UPDATE 8) and blocks the manifest if location_pointer cites a URL never
+    listed as a source. footage_status and footage_search_performed are REQUIRED on
+    every clip with scene_verified=false, in addition to (never instead of) the
+    manga_reference/verification_note fallback above — this is a second, independent
+    layer, not a replacement for it.
+  - SCENE-CONTENT SELF-AUDIT (Law #73 UPDATE 4, added July 28, 2026 — RUN BEFORE
+    marking any clip scene_verified=true): a plausible-sounding, topically-relevant
+    verification_source_url is NOT sufficient on its own. For every clip you intend
+    to mark scene_verified=true, record a claim_vs_source_check object BEFORE
+    setting scene_verified=true:
+      { "claimed_beat": "<one sentence: the specific action/moment this clip claims
+         to show, not the general topic or character>",
+        "source_content_confirmed": "<one sentence: what the cited
+         verification_source_url was actually checked against and found to show,
+         based on its transcript, captions, official synopsis, or a frame directly
+         inspected this session — never based on the source's title or description
+         alone>",
+        "match": true|false }
+    Set match=true ONLY if claimed_beat and source_content_confirmed describe the
+    same specific moment. If match is false, or no transcript/caption/frame could be
+    obtained to check at all, that clip's scene_verified MUST be false — route it to
+    the manga_reference fallback or the verification_note pattern above instead.
+    scene_verified=true can never coexist with a self-reported match=false; the
+    validator mechanically enforces this contradiction. A title or description that
+    merely sounds topically right is metadata, not content, and must never be the
+    sole basis for match=true.
+  - CLIP LOCATE GROUNDING (Law #73 UPDATE 5, added July 28, 2026 — RUN
+    IMMEDIATELY AFTER the SCENE-CONTENT SELF-AUDIT above, same clip, same pass):
+    for every clip you mark scene_verified=true, also record a clip_locate object:
+      { "season": <int or string>, "episode": <int>,
+        "locate_confirmed_via": "<one sentence: exactly how the SAME source cited
+         in this clip's claim_vs_source_check.source_content_confirmed establishes
+         this season/episode — never a new, separately introduced source>",
+        "approx_timestamp": "<OPTIONAL — only if the SAME source explicitly states
+         or shows a specific in-episode time; never estimated or guessed>" }
+    locate_confirmed_via must point back to the exact same source already used for
+    this clip's claim_vs_source_check — not a fresh citation. If that source never
+    stated a season/episode, that is information, not an obstacle to paper over:
+    either find a real source that states both the scene content AND the season/
+    episode together, or the clip's location is not actually confirmed and
+    clip_locate cannot be filled in — do not estimate a plausible-sounding episode
+    number. When no real source can be found, route the clip to scene_verified=
+    false with the manga_reference/verification_note fallback instead, same as any
+    other clip that fails verification.
+  - PRE-DRAFT STORY-POINT GATE (Law #73 UPDATE 4, added July 28, 2026 — RUN BEFORE
+    drafting any clip plan for manga-only, recently-released, or currently-airing-
+    adjacent core content): before drafting clips for a package whose core hook or
+    claim rests on manga content, recently-released chapters, or story beats at or
+    beyond the anime's current broadcast point, first determine and record whether
+    the anime adaptation has actually reached this story point as of the run date,
+    checked via a LIVE source in this session (an official episode list, MAL/
+    AniList, a studio announcement, or a per-episode wiki) — never from memory or
+    from "the anime has probably caught up by now." Record at the top level:
+      "story_point_gate": { "anime_has_reached_this_point": true|false,
+                             "checked_via": "<source URL checked this session>" }
+    If the anime has NOT reached this story point, every clip drawn from this
+    package's core content MUST go through the manga_reference or verification_note
+    fallback — never cite tonally-similar or same-character footage from an earlier
+    point in the story as if it depicted this content (the exact undisclosed-
+    substitution failure this law exists to close). If the anime HAS reached this
+    story point, the SCENE-CONTENT SELF-AUDIT above still applies in full per clip —
+    the anime being caught up on the arc in general does not itself verify any
+    specific clip within it. Only set story_point_gate when the manga-only/
+    recently-released condition actually applies; it is not required on every
+    package.
+  - Clip plan (any clip count — F22, docs/KNOWN_ISSUES.md, no fixed minimum) with
+    PER-CUT TIMINGS REQUIRED (Law #140): each cut has
+    duration_sec + timeline_start_sec + timeline_end_sec; cuts tile the RESOLVED edit
+    length (capcut_target_sec, set in STEP 3.5) contiguously — first starts 0, each
+    end = next start, last ends at capcut_target_sec, durations sum to
+    capcut_target_sec; set total_clip_time_sec=capcut_target_sec (the two fields
+    always match). Email shows each cut as "CUT N — X sec (0:00–0:06): scene — why"
+    plus "TOTAL CLIP TIME: <capcut_target_sec> seconds" — the same rendering shape as
+    before, just against whatever length STEP 3.5 actually resolved instead of a fixed
+    30.
+    CLIP SOURCE LABELED LINE (Law #73, manga-panel addition, added August 3, 2026):
+    immediately below each cut's line, render one additional labeled line stating
+    exactly where Sebastian pulls that clip from, matched to the clip's own
+    scene_verified value — never guessed or left implicit:
+      - scene_verified=true (anime-sourced): "SEASON <clip_locate.season> EPISODE
+        <clip_locate.episode>" (e.g. "SEASON 2 EPISODE 4").
+      - scene_verified=false with a manga_reference (manga-sourced — a supported,
+        permanent content type per Law #73, not a degraded fallback): "CHAPTER
+        <chapter number from manga_reference>" (e.g. "CHAPTER 126"), same visual
+        prominence as the season/episode line above — its own line, not folded into
+        the scene/why text.
+      - scene_verified=false with a verification_note instead (F20, no manga source
+        applies either): "UNVERIFIED [<footage_status>] — <verification_note>"
+        (Law #73 UPDATE 8: the footage_status value is now rendered inline so
+        Sebastian sees WHY it's unverified — e.g. "UNVERIFIED [aired_not_located]"
+        tells a materially different story than "UNVERIFIED [unaired_no_footage]" —
+        rather than a single flat "UNVERIFIED" label that collapses "footage
+        probably exists but wasn't found" and "nothing exists yet" into the same
+        text, which is exactly what made the Re:ZERO/Love Unseen incident harder to
+        catch before send.
+    This is a rendering instruction only — it does not change scene_verified,
+    manga_reference, clip_locate, or footage_status's own field requirements above,
+    and manga-sourced cuts are never relabeled or minimized to look anime-sourced.
+  - Separate YouTube title, TikTok post text, on-screen captions, clip descriptions,
+    pinned comment, and per-platform post times (YouTube and TikTok on their own lines).
+  - FIRST-SECOND HOOK (Law #144): set hook_line = opening_sentence (the assumption
+    being broken is the VO's first spoken sentence) AND hook_onscreen_text = the same
+    break shown on screen in the first second; set hook_first_second=true. Record
+    hook_family (question/revelation/contradiction/observation/...) for attribution.
+  - PUNCHY SEARCHABLE TITLES (Law #144, revised July 2026 on production feedback —
+    titles were too long): set TWO distinct short title fields. youtube_title = ONE
+    punchy idea/curiosity gap, NO explanatory subtitle or stacked clauses, NO hashtags,
+    <=60 chars HARD (target 35-50), show/anime search keyword early where natural
+    (punchiness wins over awkward keyword stuffing). tiktok_title = a DISTINCT field:
+    ONE punchy idea, NO hashtags, <=55 chars HARD (target 30-45). Both titles must be
+    distinct from the published hook line and from each other, and distinct across the
+    two same-day packages. The separate tiktok_post_text caption may stay longer and
+    keep its hashtag pyramid — the no-hashtag/length rules bind the tiktok_title FIELD,
+    not the caption; never truncate the caption to fake a title.
+  - SINGLE-VARIANT EXPERIMENT (Law #145): draft exactly TWO distinct hook_candidates
+    per package, pick selected_hook_index, and set hook_line to the selected candidate.
+    Publish exactly ONE Short per slot — NEVER publish duplicate Shorts of one insight
+    (the two packages must have distinct shows AND distinct published hooks).
+  - ATTRIBUTION (Law #145): set funnel_status = standalone | teaser | flagship_followup.
+    A "teaser" package MUST carry flagship_url (teasers only after a flagship exists).
+  - CONTENT TYPE: set content_type="short" (this pipeline is Shorts-only; long-form
+    flagships go through validators/validate_longform_flagship.py — Law #146).
+  - QUALITY OVER QUOTA (M5): the weekly targets (>=9/14 timely, >=2 recurring series,
+    cadence) are FLAGS, not a mandate to ship a weak package. Never weaken the hook,
+    downgrade the idea, or mislabel an evergreen take as "timely" just to help a weekly
+    quota — a missed quota with strong hooks beats a hit quota with a weak Short. The
+    weekly cron treats a quota missed for quality reasons as acceptable.
+  - ATTESTATION FIELDS ARE SELF-REPORTS (M6): hook_first_second,
+    isolation_test_pass, and the topic_class/topic_signals labels are
+    attestations the validator can only check for PRESENCE, not truth. Set them HONESTLY — a weekly human spot-check samples
+    packages and verifies the first-second render and label truthfulness. Do not set an
+    attestation true to clear a check if it is not actually true. (loop_read_aloud_pass
+    is no longer a checked attestation — Law #141 rescinded July 27, 2026; the field may
+    still appear on a manifest but nothing reads or enforces it.)
+Emit ALL packages into ONE machine-readable run manifest at
+  cron_tracking/daily_combined/run_manifest.json
+following the schema printed by:  python3 validators/validate_dual_package.py --schema
+The full audit (VO quality checks, conversion audit, format-window block, model
+routing, search logs, compliance matrices) is computed and stored in the manifest /
+run log — it is NOT pasted into the recipient emails (Law #139 email-slimming).
+
+================================================================================
+STEP 4.5 — ONE-PASS SEMANTIC QA SELF-AUDIT (Law #147 — credit-safe mode)
+
+  - REJECTED VO CONSTRUCTIONS (Law #149 — targeted blocklist, not a style
+    template; these two patterns are banned wherever found, independent of
+    format/show/register — confirmed present in real sent VOs, not
+    hypothetical):
+
+    1. EXPLANATORY SIGNIFICANCE TACK-ON: a sentence that explains what a
+       just-stated fact MEANS or why it matters, immediately after stating
+       it, instead of adding a new fact. REJECT example (Gachiakuta, sent
+       2026-07-27 morning): "That is the entire point of the show. The
+       thing the world threw away becomes the thing that fights back
+       against it." Both sentences restate the significance of the prior
+       fact rather than adding new information. ACCEPT rewrite: cut the
+       tack-on and let the prior fact stand alone, or replace it with a
+       NEW fact that extends the sequence (e.g. "So the story hands him
+       actual garbage as his only weapon, scrap turned into gear through
+       his Trash Cleaner ability. That gear is why the surface world
+       still hasn't caught him.") — the test is whether the next sentence
+       adds information or just narrates the meaning of the last one.
+
+    2. NARRATING THE REVEAL INSTEAD OF MAKING IT: announcing that
+       something "is revealed" (or equivalent formal-announcement
+       phrasing) rather than just stating the thing directly. REJECT
+       example (Dr. Stone, sent 2026-07-26 evening, post_date 2026-07-28):
+       "Then the real project is revealed: a time machine built to undo
+       the tragedy you spent seven years watching them survive." ACCEPT
+       rewrite: state the fact directly without the announcement frame,
+       e.g. "Then comes the real project: a time machine built to undo
+       the tragedy you spent seven years watching them survive." — the
+       test is whether the sentence uses passive-announcement language
+       ("is revealed," "turns out," "here's what's revealed") as a
+       formal frame around the fact, versus just stating the fact with a
+       plain lead-in.
+
+    Self-audit for these two at the same point as the existing
+    checks{...} object; record pass/fail honestly per the existing
+    self-attestation standard (M6) — do not mark a check true merely to
+    clear the gate.
+
+  - MANDATORY CONSOLIDATED RESUBMISSION AUDIT (Law #168, added
+    2026-08-14, after a real 6-round correction cycle on a single
+    package where each fix was checked in isolation instead of
+    together — a word count, then a citation, then a different
+    citation, then a cross-field inconsistency where CUT 4 still
+    contradicted a fix already applied to the VO and CUT 5). This
+    EXTENDS Law #147's self-audit scope: it applies not only to the
+    FIRST draft but to EVERY subsequent rework/resubmission pass after
+    reviewer feedback. Whenever ANY field is changed in response to
+    feedback and the package is being resubmitted, run ALL FIVE of the
+    following together, in the SAME pass, before presenting the
+    corrected version. Do not resubmit after fixing only the one thing
+    that was flagged — audit the whole package fresh:
+
+    1. REAL WORD COUNT: run the exact validator regex
+       (re.findall(r"[\w']+", text)) against the CURRENT, FINAL vo
+       text — never an estimate, never carried over from a prior
+       round.
+
+    2a. CROSS-FIELD STRING CONSISTENCY: if any claim, name, date, or
+        number changed anywhere in this round, grep every OTHER field
+        in the same package (clip plan, captions, pinned comment,
+        TikTok text, YouTube title) for the OLD version of that claim.
+        A fix applied to the VO but left standing in a clip
+        description is not a completed fix.
+
+    2b. CROSS-CLIP VERIFICATION-STATUS CONSISTENCY: for every
+        clip/claim touched this round, check whether any OTHER clip or
+        claim about the SAME subject (character, scene, event) still
+        asserts a different verification status or a different
+        version of the fact. A string-level grep (2a) does not catch
+        this class of bug — e.g. CUT 4 asserting "Vein returns" as a
+        verified, scene_verified=true visual while CUT 5 and the VO
+        had already been downgraded to scene_verified=false /
+        unconfirmed for that same subject. Two clips about the same
+        subject must agree on what is and is not confirmed.
+
+    3. CITATION RE-VERIFICATION: re-fetch and quote-match every
+       citation touched THIS round — not assumed still-valid from an
+       earlier round's fetch.
+
+    4. FULL VALIDATOR RE-RUN: attach the real, raw PASS output.
+
+    5. DELIVERY RELIABILITY (Part B): content over ~500 words must be
+       pasted directly in the message body, not sent as an attachment.
+       If an attachment is genuinely unavoidable, state its real size
+       (bytes or line count) in the same message before it is claimed
+       as sent — never assert a file was delivered without stating
+       what is actually in it.
+
+    Report all five together, once, in the SAME message as the
+    corrected content — never as separate discoveries across multiple
+    follow-up messages. If any of the five surfaces a new problem, fix
+    it BEFORE presenting anything for review, not after the reviewer
+    catches it.
+================================================================================
+STILL INSIDE THIS SAME SINGLE Sonnet context (no second model launch, no extra
+research sweep): before returning the manifest, SELF-AUDIT BOTH packages and record the
+result in each package's `semantic_qa` object in the manifest (NOT the email). This is
+the human-judgment layer the deterministic validator cannot perform — do it once, here,
+while the drafting context is still loaded. For EACH package produce:
+
+  1. CLAIM-TO-SOURCE SUPPORT MATRIX (`claim_source_matrix`): list every core factual or
+     narrative claim in the VO/packaging. For each: {claim, core:true/false,
+     source_urls:[...]}. A "core" claim is one the video's premise depends on. RULES:
+       - every CORE claim must be supported by >=1 CREDIBLE, DATED source that is ALSO in
+         the package `sources` list (sources require url + date);
+       - Wikipedia / MyAnimeList / Fandom / wikia are ENCYCLOPEDIC and may NOT be the SOLE
+         support for a core claim — pair them with at least one non-encyclopedic dated
+         source (news, official site, creator/publisher, substantive community thread);
+       - if a core claim cannot be supported this way, FIX THE CLAIM or cut it — do not ship it.
+  1.5 HOOK CLAIM COVERAGE (Laws #148/#150 -- closes a real gap found in
+      production audit, 2026-07-25; renamed from "HOOK/LOOP CLAIM COVERAGE" and the
+      loop half dropped 2026-07-27 per the Law #141 rescission): the specific factual
+      claim underlying hook_line/opening_sentence must appear as its OWN core:true
+      entry in claim_source_matrix, tagged anchors_claim="hook", with a real listed
+      source -- not just satisfied by ">=1 core claim exists somewhere in the
+      matrix." If the hook rests on an assertion with no direct citation, either
+      source it or rewrite the hook to rest on a claim that is genuinely sourced.
+      (anchors_claim="loop" is still an accepted value on any entry for continuity
+      with older manifests, but it is no longer required or checked.)
+  1.6 NUMERIC CROSS-CHECK: any count stated in the VO ("three more," "seven
+      classics," "eight-year hiatus") must be verified against the actual
+      enumeration in the cited source, not estimated or reconstructed from memory of
+      what was drafted. If the VO names N specific items and then claims "X more,"
+      confirm N + X arithmetically matches the source's total count.
+  1.7 SOURCE CONTENT VERIFICATION (added 2026-07-26, Gachiakuta "Trash Cleaner"
+      incident -- see cron_tracking/daily_combined/INCIDENT_20260727_gachiakuta_terminology.md):
+      for every CORE claim's cited URL, the URL must actually be fetched and its
+      content read during THIS audit pass, with the claim checked against what the
+      page actually says -- not merely confirmed present as a URL string in
+      claim_source_matrix. A source being listed is not evidence it was read. If a
+      core claim's cited page does not, in fact, contain or support the claim
+      attached to it, FIX THE CLAIM (reword to what the source actually supports, or
+      cut it and re-source) before returning the manifest -- do not ship a claim on
+      the strength of an unopened URL. This closes the same gap as the Demon Slayer
+      incident (Law #73 3B) and the Gachiakuta incident above: both were sources
+      cited and trusted by description/URL presence alone, never actually opened at
+      citation time.
+  2. VO WORD COUNT + CTA ADJACENCY: confirm the VO word count is in-band for the edit and
+     the exact phrase "Leave your take." immediately follows the specific question.
+  3. TITLE / SEARCH RULES: confirm BOTH punchy no-hashtag titles are within their hard
+     caps (youtube_title <=60 leading with the show search keyword where natural;
+     tiktok_title <=55), each carries ONE idea, and each is distinct from the published
+     hook line and from the other title.
+  4. BLACKOUT / RECENT-SEND CONFLICTS: re-confirm neither package conflicts with
+     blackout_state.json or recent sends.
+  5. CLIP TIMING TILING: confirm the cuts tile the fixed edit contiguously (0 -> target).
+  6. CLOSING LINE CHECK (Law #141 rescission, 2026-07-27; replaces the old "LOOP COLON
+     HANDOFF" check): confirm the VO's closing line is a clean, complete, natural
+     thought in the same register as the rest of the script -- no forced incomplete
+     colon setup required. If a loop-style ending arose naturally, confirm it also
+     reads well and doesn't feel manufactured; if not, no action needed.
+  7. SOURCE AUTHORITY / ATTRIBUTION / CONFLICT CHECK (Law #148 -- applies within this
+     same audit, not an extra sweep): for each core claim in the claim_source_matrix,
+     prefer the stronger of any competing sources found during Step 3's sweep (primary/
+     trade-press over fan aggregator/roundup), attribute exactly as the source states
+     (do not blend credit across a party the source never names), and never silently
+     resolve a cross-source conflict on a hook-central number/date/name -- either flag
+     it in the pinned comment or note in the matrix why the better-sourced version was
+     chosen. Targeted claim-verification searches for THIS purpose are explicitly
+     exempt from the Step 3 one-shared-sweep limit (Law #148 note).
+  7.5 CONFLICT-OF-INTEREST SOURCE EXCLUSION (Law #154, added 2026-07-28): before citing
+      any source, confirm it is not a conflict-of-interest source -- a site that sells
+      the product/service/engagement/views the claim is about, or a vendor's own
+      marketing content for a tool/platform the claim describes. If it is, the source
+      is EXCLUDED entirely, even paired with another source -- cut or rewrite the claim
+      to rely on independent sourcing instead. Self-attested; no validator blocklist
+      exists for this check by deliberate design (the category is too open-ended for a
+      maintained list to stay current).
+  8. REDUNDANT SENTENCE CHECK (Law #149 point 1 -- NO REDUNDANT SENTENCES): confirm
+     no VO sentence merely restates a prior sentence in different words. Every
+     sentence must add new information; word-count pressure toward the 100-108 floor
+     is never a valid reason to keep a sentence that adds nothing new -- expand with
+     a genuinely new, sourced detail instead, per Law #149 point 1 directly.
+  9. AI-SLOP PATTERN CHECK (new, 2026-07-26 -- distinct from point 8; catches
+     hollow-sounding phrasing even when no sentence literally repeats another).
+     Confirm the VO contains NONE of the following seven patterns. For each,
+     if found, REWRITE the line to a concrete, sourced claim before returning
+     the manifest -- do not attest this check true with an instance present.
+       a. HOLLOW SIGNIFICANCE STATEMENT -- a sentence that asserts importance
+          without stating what the importance IS.
+          Reject: "This moment changes everything about how we see him."
+          Accept: "This is the first time the manga confirms he lied to Zoro's face."
+       b. POETIC RESTATEMENT AS NEW INSIGHT -- a single sentence that sounds
+          like a discovery but only rephrases the prior sentence's own claim
+          in more evocative language (narrower than point 8: this catches ONE
+          sentence performing insight with no new fact, not just literal
+          repetition across two sentences).
+          Reject: "It's not just a fight. It's a reckoning."
+          Accept: "He's not fighting Gaban to win. He's fighting him to earn
+          the key Gaban was never going to hand over for free."
+       c. RULE-OF-THREE PADDING -- three parallel words/phrases stacked for
+          rhythm where the sources support at most one or two of them.
+          Reject: "Bold. Brutal. Unforgettable."
+          Accept: (state the one specific, sourced claim the rhythm was
+          standing in for, or cut the line).
+       d. GENERIC RHETORICAL SCAFFOLDING PHRASES -- banned regardless of
+          context: "here's the thing," "but that's not all," "and it gets
+          better," "here's where it gets interesting," "little did we know."
+          These add zero information and exist only to fake momentum.
+          Reject: "But here's the thing: Gaban was never planning to lose."
+          Accept: "Gaban was never planning to lose."
+       e. STACKED INTENSIFIERS WITH NO ATTACHED FACT -- intensifying
+          adjectives/adverbs ("absolutely," "completely," "utterly,"
+          "shockingly," "insanely") used to carry a sentence's weight instead
+          of a specific fact.
+          Reject: "This is an absolutely shocking twist."
+          Accept: "This flips the fight's entire premise: Gaban was the one
+          being tested, not Luffy."
+       f. THE "IT'S NOT JUST X, IT'S Y" FORMULA -- banned as a fixed
+          construction regardless of what fills X and Y.
+          Reject: "It's not just a key. It's a verdict."
+          Accept: state the verdict directly as its own sourced claim.
+       g. GENERIC URGENCY FRAMING WITH NO SPECIFIC CONSEQUENCE -- urgency
+          language ("you need to see this," "this changes everything," "you
+          won't believe") with no stated, specific consequence attached.
+          Reject: "You need to see how this fight ends."
+          Accept: "The fight ends with Gaban handing over the exact thing
+          Luffy spent the whole episode trying to take by force."
+     This check is a self-audit judgment call like point 8 -- Law #149's
+     point 2 (Specificity Over Gesture) and Law #54's banned-hedge-phrase
+     mechanism are the closest existing precedent, but neither law names
+     these seven forms or supplies reject/accept pairs for them; this point
+     closes that naming gap rather than duplicating either law.
+
+     GRAMMAR CORRECTNESS IS NOT PART OF THIS CHECK (Law #149 point 7, added
+     2026-08-06): this point 9 check is scoped to the seven hollow-phrasing
+     patterns above -- it is NOT a formality/properness filter, and basic
+     grammar (subject-verb agreement, correct verb forms after perception verbs
+     like "see"/"hear"/"watch" + object + bare infinitive, e.g. "we see him get
+     his moment," not "gets") must never be flagged or softened under this
+     check regardless of how casual the VO's register is. A genuine grammar
+     error (subject-verb agreement, wrong verb form) is always a mistake to fix
+     outright -- correct it on its own correctness grounds, separately from this
+     point's seven patterns, never by rewriting toward a more formal register.
+     Conversely, casual/repetitive/informal phrasing that is grammatically sound
+     must NOT be "corrected toward properness" under this or any other point --
+     this law's entire purpose is sounding like a real person, not sounding
+     polished. Real example (Gachiakuta, 2026-08-06): "the preview show us
+     three new enemies" and "we also see Enjin gets his moment" were initially
+     flagged as too formal/proper, but the actual defects were subject-verb
+     agreement ("show" -> "shows") and verb form after "see" ("gets" -> "get")
+     -- grammar mistakes independent of register, not AI-slop or formality
+     issues. Full text: Law #149 point 7 in hero_or_villain_master_laws_final.txt
+     and laws/law_149_vo_writing_craft.md.
+  9.5 ISOLATION TEST (new, 2026-08-05, Law #144 point 4): for hook_onscreen_text
+     and hook_line, isolate them from the rest of the VO and ask: does a reasonable
+     viewer, seeing ONLY the on-screen text and the spoken first line -- nothing
+     else -- walk away with an accurate understanding of what was actually
+     confirmed or happened? Most Shorts viewers decide whether to keep watching
+     within the first 1-2 seconds, before any later disambiguation can land, so a
+     hook that is technically defensible by the end of a fully-watched VO can still
+     be misleading to that majority. FAIL if the hook implies something stronger,
+     different, or more definitive than what the full VO ultimately delivers --
+     even if a later sentence explicitly corrects or caveats it; a correction
+     arriving after the misleading impression has landed does not cure the
+     failure. Worked example (real, caught 2026-08-05): "Jujutsu Kaisen Season 4's
+     Date Just Got Real" implied a release date was confirmed; the actual content
+     was a convention/event date (Juju Fest, Aug 29-30) with an explicit "No
+     release date yet" five sentences later -- FAILED and was rewritten to lead
+     with the event ("Juju Fest") instead of the ambiguous word "date". Second
+     worked example (real, caught 2026-08-06): "This 'easy' battle wasn't the
+     real fight" (Tanya S2 Ep4) implied a bigger combat payoff via the word
+     "fight"; the actual content was a political peace-deal rejection, no second
+     battle -- FAILED and rewritten to "They won the war. Then they voted against
+     peace." GENERAL PATTERN (both instances): a single word's most likely
+     isolated reading ("date" -> confirmed date; "fight" -> combat) promised
+     something the content didn't deliver -- not a rule about dates or combat
+     language specifically. Check a hook's key word against its single most
+     likely reading, not just a defensible one. Like point
+     9, this is a self-audit judgment call, not validator-enforced -- if FAIL,
+     rewrite the hook/title before returning the manifest; do not attest a pass
+     with a known instance present. Record isolation_test_pass=true/false on the
+     package after running this check; if false, rewrite the hook before returning
+     the manifest -- the validator checks this field is PRESENT and true (Law
+     #144.1 attestation, added 2026-08-06, same PRESENCE-only pattern as
+     hook_first_second), not that the judgment itself was correct. Full text: Law
+     #144.1 in hero_or_villain_master_laws_final.txt and
+     laws/law_144_shorts_packaging_and_first_second_hook.md.
+  9.6 LOAD-BEARING VS. SUPPORTING-CAST IDENTITY (new, 2026-08-06, Law #144.1
+     point 5): for every named character mentioned anywhere in the VO body (not
+     just hook_line/hook_onscreen_text), ask whether the video's core claim is
+     unfollowable without identifying context for that name. LOAD-BEARING (the
+     name's relationship to the hook/core claim is REQUIRED for the story to make
+     sense at all -- e.g. whether a named person IS the person the hook referred
+     to) must ALWAYS be clarified, regardless of audience familiarity. Real
+     example (2026-08-06): Kagurabachi's Kunishige required "Chihiro's dad"
+     because the entire premise depended on that identity link. SUPPORTING-CAST
+     (adds color/specificity but isn't required for the core claim to be
+     understood) is the creator's judgment call based on their own read of
+     audience anime-literacy -- self-audits must NOT flag either choice as an
+     error. Real example (2026-08-06): Gachiakuta's "Enjin" in a new-footage
+     fact-drop is supporting-cast, not load-bearing -- leaving it unclarified is
+     not a defect. DISTINCT from Law #133 (general audience jargon standard,
+     e.g. "cour"/"sakuga") -- that law governs vocabulary comprehension for
+     industry/fan-culture terms; this point governs narrative dependency for
+     character names within the show itself. The two checks are independent;
+     neither supersedes the other. Like point 9.5, this is a self-audit judgment
+     call, not validator-enforced -- no new boolean is added to the `checks`
+     object below; record the judgment honestly in the package notes/pinned
+     comment reasoning where relevant. Full text: Law #144.1 point 5 in
+     hero_or_villain_master_laws_final.txt and
+     laws/law_144_shorts_packaging_and_first_second_hook.md.
+  9.7 ZERO-VERIFIED-CLIPS TITLE GATE (new, 2026-08-06, Law #144.1 point 6,
+     tied to Law #73 UPDATE 7): if the hook/title claims content from an
+     unaired or not-yet-released source (a PV, trailer, latest chapter,
+     upcoming episode) and video_level_claim_check (Law #73 UPDATE 7) shows
+     zero clips verified against that specific source -- i.e. every clip in
+     the package is an honest stand-in from a different, already-aired
+     source once correctly classified under UPDATE 7 -- then youtube_title
+     and hook_line must NOT use words that promise a "breakdown," "footage,"
+     or "look" at that unaired content. Reframe around what IS actually
+     delivered (e.g. a recap building toward confirmed news) instead. Real
+     example (2026-08-06): Gachiakuta package 88dff475-d267-46d1-946f-
+     f65bdaf5c785, corrected live on YouTube (video ID OiVOi2wjVcI) from
+     "Gachiakuta Season 2: First Footage Breakdown" to "Gachiakuta Season 2:
+     What We Actually Know." Before drafting the hook/title for any package
+     whose content claims unaired/not-yet-released material, first run the
+     Law #73 UPDATE 7 video-level check: any clip citing footage from a
+     different, already-aired source than what the hook/title claims CANNOT
+     be scene_verified: true even if its own claim_vs_source_check.match is
+     honestly true for its own narrower beat -- mark it scene_verified: false
+     with a verification_note disclosing the stand-in source, and populate
+     video_level_claim_check ({claims_unaired_specific_source,
+     clips_from_that_specific_source, clips_from_different_aired_source}) on
+     the package before this point is checked. Like point 9.6, this is a
+     self-audit judgment call, not validator-enforced beyond the presence/
+     shape check on video_level_claim_check itself -- record the judgment
+     honestly. Full text: Law #144.1 point 6 and Law #73 UPDATE 7 in
+     hero_or_villain_master_laws_final.txt.
+  9.8 CLOSER-QUESTION SYMMETRICAL-DEBATE CHECK (new, 2026-08-07, Law #149
+     point 8): confirm question_line is a genuine reaction question tied to
+     the specific claim/scene this VO just delivered, not a symmetrical
+     "[abstract claim A], or [abstract claim B]?" essay-debate prompt where
+     either half could be swapped into a different show's package unchanged.
+     A real audit of 28 logged question_line entries in sent_scripts_log.json
+     found 10 using this banned construction (over a third of the sampled
+     population) -- e.g. "So does that metaphor actually hold up, or is it
+     just a gimmick?" (Gachiakuta) and "Was that choice ever a victory, or
+     just a bigger cage?" (Berserk), both of which never require the VO's
+     specific content to answer. The test: could a viewer answer this
+     question_line accurately using ONLY the show's general premise, without
+     having just heard this VO's specific claim? If yes, REWRITE it before
+     returning the manifest -- do not attest this check true with a known
+     instance present. Like points 9.5-9.7, this is a self-audit judgment
+     call, not validator-enforced beyond presence of question_line itself.
+     Full text: Law #149 point 8 in hero_or_villain_master_laws_final.txt and
+     laws/law_149_vo_writing_craft.md.
+  9.9 CLOSER-QUESTION ALREADY-ANSWERED CHECK (new, 2026-08-08, Law #149
+     point 10): confirm the VO's own body has NOT already stated or proven the
+     answer to question_line before it's asked. Distinct from point 9.8/Law #149
+     point 8 (which catches abstract, noun-swappable A-or-B frames that never
+     depend on this VO's content at all): this check catches questions that ARE
+     specific to this VO's content, but where that same content already closed
+     off the answer, leaving nothing genuinely open to argue. A real audit found
+     FOUR real instances of this exact pattern across sent packages (Hunter x
+     Hunter, Black Clover, Black Torch, Saga of Tanya the Evil Season 2) -- a
+     recurring failure mode, not a rare edge case. The test: has the VO's own
+     body already stated or proven the answer to this question before it's
+     asked? If yes, REWRITE it before returning the manifest -- do not attest
+     this check true with a known instance present. Specificity to the VO's
+     content does not save a question if that content already answered it.
+     Like points 9.5-9.8, this is a self-audit judgment call, not
+     validator-enforced beyond presence of question_line itself. Full text:
+     Law #149 point 10 in hero_or_villain_master_laws_final.txt and
+     laws/law_149_vo_writing_craft.md.
+Record a `checks` object with all TEN mechanical booleans true (five original Law
+#147 keys plus hook_claim_coverage and numeric_cross_check added 2026-07-25, plus
+source_content_verification and law_149_redundancy_check added 2026-07-26, plus
+ai_slop_pattern_check added 2026-07-26 -- the Law
+#148 authority/attribution/conflict check remains qualitative and lives in the
+claim_source_matrix entries themselves, not as its own boolean), and
+`audited_before_return: true`. (loop_colon_handoff was REMOVED and
+hook_loop_claim_coverage RENAMED to hook_claim_coverage on 2026-07-27, Law #141
+rescission; final_to_opening_readaloud is likewise REMOVED -- neither is read or
+checked by the validator anymore.) hook_claim_coverage is partly MECHANICAL (the
+validator independently confirms a core, sourced, anchors_claim-tagged entry exists
+for the hook, not just the self-attested boolean); numeric_cross_check is a
+self-attestation like the other five (the validator checks presence/shape only; truth
+is verified here and at the weekly human spot-check, same as M6). If ANY check is
+honestly false, FIX THE DRAFT in this same context and re-audit — do not attest a
+check true to clear it (M6: the deterministic validator also enforces the mechanical
+laws independently, and the weekly human spot-check verifies truth; a false
+attestation is caught and is a violation). The `semantic_qa` object is stored in the
+manifest only.
+
+MANIFEST SCHEMA for semantic_qa is printed by:
+  python3 validators/validate_dual_package.py --schema
+
+================================================================================
+STEP 5 — DETERMINISTIC PREFLIGHT VALIDATION (FAIL CLOSED — no model revision)
+================================================================================
+Run:
+  cd /home/user/workspace/repo
+  python3 validators/validate_dual_package.py cron_tracking/daily_combined/run_manifest.json
+This checks (at minimum): both packages exist; distinct shows AND formats;
+blackout/recent-conflict inputs clear; VO word counts 100-108; CTA is exactly
+"Leave your take." placed immediately after the specific question; OPENING SENTENCE
+(Law #144/#145, retained independent of Law #141's July 27, 2026 rescission):
+opening_sentence is present and is the VO's exact first sentence, since the published
+hook_line must equal it. (Law #141's forced seamless-loop mandate -- the exact-final-
+sentence requirement, the colon-ending requirement, the loop_transition equality
+check, and the "exactly the final cut carries_loop_back" clip-plan requirement -- is
+RESCINDED as of 2026-07-27; see laws/law_141_seamless_loop_mechanics.md. A loop-style
+ending is still allowed if it arises naturally, but the validator no longer requires
+or checks for one.) SEMANTIC QA PRESENT + WELL-SHAPED (Law #147): semantic_qa.audited_
+before_return true, all ten checks true (final_to_opening_readaloud is no longer
+checked -- removed alongside the loop mandate), and a claim_source_matrix with >=1
+core claim where every core claim cites a listed dated source and no core claim relies
+SOLELY on Wikipedia/MAL/Fandom (the validator checks the matrix SHAPE + these
+mechanical source-domain properties only — it does NOT and CANNOT prove a claim is
+TRUE or the writing is good; source truth + semantic quality remain the model
+self-audit above plus the weekly human spot-check); face-cam split screen present
+(Creator TOP / anime footage BOTTOM, Law #134 Stage 2) with the direction-note
+track alongside the VO; PER-CUT TIMINGS present and tiling the RESOLVED edit length
+contiguously (duration_sec + timeline_start_sec + timeline_end_sec per cut;
+capcut_target_sec and total_clip_time_sec numeric, equal to each other, and within
+[20,180]s per Law #138 Stage 1; Law #140);
+all required production sections present; >=2 dated sources per package;
+separate YouTube+TikTok post-time lines; recipient exactly hero_or_villain@outlook.com;
+content_type="short"; topic_class valid (timely => >=1 topic_signal); series metadata
+well-formed if present, and when series.recurring=true the M2 viewer-facing markers
+(series_public_name in title/on-screen, series_next_line in a published close) are
+present; first-second hook (hook_onscreen_text, hook_first_second=true,
+isolation_test_pass=true, hook_line==opening_sentence, hook_family); exactly 2
+distinct hook_candidates with the
+published hook == selected candidate; distinct published hooks across the two packages;
+funnel_status valid (teaser => flagship_url); PUNCHY no-hashtag titles — youtube_title
+<=60 chars leading with the show keyword AND a distinct tiktok_title <=55 chars, each
+title distinct from the published hook line and from each other, and distinct across
+the two packages (Laws #143-#146). Every check that depends on edit length (VO word
+band, CTA timing floor, capcut_target_sec/total_clip_time_sec equality, and the
+timeline tiling) is computed against whatever capcut_target_sec each package actually
+resolved in STEP 3.5 — there is no separate fixed-30s default tier or capped
+experiment tier to reconcile; every package is checked the same way at its own
+resolved length.
+  EXIT 0 = cleared to send.  EXIT non-zero = BLOCKED.
+If BLOCKED: fix the specific mechanical field(s) in the manifest and re-run the
+validator. Do NOT send. Only routine mechanical fixes here — no creative rewrite loop
+is needed for mechanics. Never send on a non-zero exit.
+
+================================================================================
+STEP 6 — HOLD FOR APPROVAL (only after STEP 5 passes; replaces auto-send,
+         Law #164, added 2026-08-13 after a same-night audit found two real
+         issues — a mis-cited source and a wrong clip timestamp — that had
+         already shipped with zero review between validator PASS and dispatch)
+================================================================================
+AUTONOMOUS RUNS NO LONGER SEND EMAILS AUTOMATICALLY. A validator PASS means the
+manifest is MECHANICALLY sound — it does NOT mean the content is approved for
+dispatch. This run must STOP here, every time, scheduled or manually triggered,
+with no exception for a clean validator run.
+
+On STEP 5 PASS, do the following instead of sending:
+  1. Render both emails exactly as the old auto-send step used to (same
+     templates/subjects), but write them to:
+       cron_tracking/daily_combined/pending/<batch_id>/email_morning.txt
+       cron_tracking/daily_combined/pending/<batch_id>/email_evening.txt
+       cron_tracking/daily_combined/pending/<batch_id>/run_manifest.json
+  2. Write cron_tracking/daily_combined/pending/<batch_id>/state.json with:
+       status: "AWAITING_APPROVAL"   (never "success" at this point)
+       emails_sent: false
+       batch_id, post_date, packages[] (same shape as the old state.json)
+       pending_path: "cron_tracking/daily_combined/pending/<batch_id>/"
+     Also mirror status/batch_id/pending_path into the top-level
+     cron_tracking/daily_combined/state.json so STEP 1's pending-batch check
+     (Law #166 below) can find it without scanning every pending/ subfolder.
+  3. Send ONE in-app notification ONLY (no push, no email — this is a
+     deliberate, confirmed choice, not an oversight) to Sebastian stating a
+     new dual package is AWAITING_APPROVAL, with the batch_id and pending
+     path, and that nothing will be sent until it is reviewed.
+  4. STOP. Do not call send_email. Do not proceed to STEP 7 or STEP 8.
+
+REQUIRED REVIEW STEP BEFORE ANY APPROVAL (Law #165 — folds in the intent of
+the withdrawn Law #163 validator heuristic, see laws/law_163_source_confirmation_attempt_and_withdrawal.md
+for why that heuristic was abandoned rather than shipped): whoever approves —
+Sebastian directly, or Claude acting as reviewer in an interactive session —
+MUST, for EVERY core claim in BOTH packages' claim_source_matrix:
+  a. Actually fetch the cited URL (not re-read the manifest's own
+     claim_vs_source_check.source_content_confirmed text — that field is the
+     drafting pass's self-report, not evidence).
+  b. Confirm the fetched page's REAL content actually states or supports the
+     specific claim it's cited for.
+  c. If it does not: this is a Law #163-class failure (exactly the
+     Bahati/father case). Do not approve. Either find a real supporting
+     source and correct the citation, or cut/soften the claim, before this
+     package may be approved.
+  d. Record which URLs were actually fetched and what was found, in the
+     approval note (STEP 6.5 below) — an approval with no fetch record is not
+     a completed review, it's the same rubber stamp this law exists to
+     prevent.
+This fetch-and-confirm step is NOT optional and NOT satisfied by re-reading
+manifest fields, however detailed they look. It is the one thing a mechanical
+validator structurally cannot do.
+
+================================================================================
+AUTOMATIC SLOT REPLACEMENT ON UNRESOLVABLE CORE-CLAIM CONTRADICTION
+(Law #169, added 2026-08-14, generalizing the F36 Slime hold into a repeatable
+rule instead of a one-off manual decision)
+================================================================================
+If the fetch-and-confirm review above (Law #165) finds a core-claim
+contradiction — the fetched source content does not actually support a core
+claim, the same class of failure as F36's Slime package — and that specific
+claim cannot be resolved by the normal correction path (find a real
+supporting source, correct the citation, or cut/soften the claim per Law
+#165.c) within a reasonable same-session investigation window, do NOT leave
+that slot held indefinitely by default. Follow this order:
+
+  1. REPLACE, DON'T PATCH. Immediately research and draft a genuinely
+     DIFFERENT idea for that same slot (morning or evening) — a different
+     show, angle, AND format from the broken package. This is a fresh idea
+     for the slot, not a rewritten version of the contradicted one.
+
+  2. FULL PIPELINE, ZERO SHORTCUTS. The replacement idea goes through every
+     step this file already requires for any package: real current-market
+     research, drafting (STEP 3/3.5), the semantic self-audit (STEP 4.5,
+     including Law #168's consolidated resubmission audit if it goes through
+     more than one round), STEP 5's deterministic validator, and STEP 6's
+     full Law #165 fetch-and-confirm review — run with the same rigor as any
+     other package, precisely because it is filling a gap, not despite it.
+     No step above may be skipped or abbreviated for a replacement.
+
+  3. BOTH-OR-NEITHER SEND GATE (unchanged from existing practice, stated
+     explicitly here for this path): the batch only reaches STEP 6.5/7 once
+     BOTH packages — the clean original from the other slot and the newly
+     verified replacement — pass their own STEP 6 review independently. A
+     verified replacement never ships alongside a still-unresolved package
+     in the other slot.
+
+  4. TRUE LAST RESORT — HOLD, DON'T GUESS. Only if a fresh replacement
+     cannot ALSO be researched, drafted, and verified in time, fall back to
+     holding the whole batch: no email sends for either slot, and log the
+     specific contradiction as its own dated docs/KNOWN_ISSUES.md entry in
+     the same evidence format F36 already established (batch_id, package_id,
+     the exact claim, the exact fetched source text that contradicts it,
+     and an explicit "not resolved tonight" note if an open hypothesis
+     exists). This full-hold outcome is now the RARE fallback, not the
+     default response to a contradiction.
+
+  5. DISCLOSED COST TRADE-OFF (state this plainly wherever this law is
+     referenced, same disclosure standard as Law #164/#165's own limitations
+     sections): this rule trades more real work per incident — a full
+     second research-draft-validate-review cycle, not a quick patch — for
+     consistently shipping two trustworthy emails instead of zero. It does
+     not reduce review rigor anywhere in the pipeline; it only changes what
+     happens to the SLOT after a contradiction is found in one package.
+
+================================================================================
+STEP 6.5 — EXPLICIT APPROVAL (only after the STEP 6 review step is done)
+================================================================================
+Approval happens in an interactive session, never inside an unattended
+background run. When Sebastian (or Claude with Sebastian present) approves:
+  1. Write cron_tracking/daily_combined/pending/<batch_id>/approval.json:
+       {"approved_by": "...", "approved_at": "<ISO ts>",
+        "fetch_review": [{"claim": "...", "url": "...",
+          "fetched_content_supports_claim": true/false, "note": "..."}, ...
+          one entry per core claim across both packages...],
+        "changes_made_before_approval": "none" | "<description>"}
+  2. If any fetch_review entry has fetched_content_supports_claim=false, the
+     package CANNOT be approved as-is — go fix the citation/claim, re-run
+     STEP 5's validator, and restart this review from (a). Approval can never
+     be recorded alongside a known-unsupported core claim.
+  3. Only after approval.json is written with all entries true, proceed to
+     STEP 7's send.
+
+================================================================================
+STEP 7 — SEND TWO SEPARATE PLAIN-TEXT EMAILS (only after STEP 6.5 approval.json exists)
+================================================================================
+Recipient: hero_or_villain@outlook.com ONLY (both emails). Plain text.
+  Email 1 subject:  TOMORROW | MORNING | [Show] | [Post Date] | [Title]
+  Email 2 subject:  TOMORROW | EVENING | [Show] | [Post Date] | [Title]
+Body = the exact pending/<batch_id>/email_*.txt files approved in STEP 6.5 — or
+their corrected replacements if STEP 6.5 required changes, in which case
+re-render, re-validate, and get a fresh approval.json before sending. Confirm
+BOTH sends succeed before STEP 8.
+If EITHER email fails to send: write failure state (STEP 8 helper without
+--emails-sent) and STOP. Never log a send that did not happen.
+
+================================================================================
+STEP 8 — ATOMIC DUAL-EVENT LOG APPEND (only after BOTH emails confirmed sent)
+================================================================================
+Run once, after both sends succeed:
+  python3 tools/append_send_batch.py cron_tracking/daily_combined/run_manifest.json \
+      --tree /home/user/workspace/repo --emails-sent --approval-file \
+      cron_tracking/daily_combined/pending/<batch_id>/approval.json [--git-pushed]
+This appends BOTH "sent" events to cron_tracking/sent_scripts_events.jsonl in ONE
+merge-safe write (shared batch_id, distinct package_id per row), appends the two
+matching entries to legacy sent_scripts_log.json (atomic), and writes
+cron_tracking/daily_combined/state.json atomically with accurate
+emails_sent/log_appended/git_pushed flags. status="success" is written ONLY when
+both emails are sent AND both log destinations are appended. Never mark success
+before both emails and both log events complete.
+RE-VALIDATION GATE (defense in depth): the helper itself re-runs
+validators/validate_dual_package.py on the manifest before appending, AND now
+also requires --approval-file to point at an approval.json whose fetch_review
+entries are all fetched_content_supports_claim=true — it FAILS CLOSED on either
+check failing: it appends NOTHING to either log and writes status="failed" with
+the failing checks. This binds STEP 8 logging to the same mechanical gate as
+STEP 5, PLUS the Law #164/#165 approval record, so a manifest that never passed
+(or was overwritten after passing, or never got a real reviewed approval) can
+never be recorded as a successful send in the logs/ledger the weekly analytics
+cron reads. If this gate blocks, STEP 5 or STEP 6.5 was skipped or drifted:
+re-run the relevant step, fix the flagged fields, and do not treat the run as a
+success.
+HONEST LIMITATION (Law #164/#165, disclosed the same way as the existing
+blackout_conflict/recent_send_conflict self-attestation limitation elsewhere in
+this file): this gate protects the INTEGRITY OF THE LOG, not the send action
+itself. By the time append_send_batch.py runs, STEP 7 has already sent the
+emails — the --approval-file check here can refuse to LOG a send as successful,
+and can catch a missing/incomplete approval after the fact, but it cannot retroactively
+unsend an email that STEP 7 already dispatched without a real approval.json in
+place. The actual barrier against sending without review is STEP 7's own
+precondition ("only after STEP 6.5 approval.json exists") and the discipline of
+following STEPS 6/6.5/7 in order — same as blackout_conflict's own disclosed
+limitation that whether an input is truthfully self-attested still depends on
+the model doing the generation checking honestly, not on independent mechanical
+verification. Do not describe this gate to Sebastian or in future docs as a hard
+technical barrier that makes an unreviewed send impossible; it is a fail-closed
+LOGGING gate plus a documented step order, not a runtime lock on the send call.
+
+================================================================================
+STEP 9 — GITHUB PUSH (rebase-safe; non-blocking)
+================================================================================
+In the repo working tree, pull --rebase BEFORE staging (never reset --hard —
+append-only JSONL replays cleanly). Stage: cron_tracking/sent_scripts_events.jsonl,
+sent_scripts_log.json, cron_tracking/daily_combined/state.json,
+cron_tracking/daily_combined/run_manifest.json, and cron_traction_cache.json if
+refreshed. Commit ("cron daily_combined — [morning show] + [evening show] [date]")
+and push origin HEAD:main. If push fails: save the error under
+cron_tracking/daily_combined/, record git_pushed:false in state.json, and stop —
+the emails were already sent; never record a git failure as a git success. Re-run the
+append helper is NOT required (it already wrote state); just update git_pushed if a
+later push succeeds.
+
+================================================================================
+STEP 9 — POST-SEND REAL-DATA PERFORMANCE CHECK (Law #157, added August 6, 2026)
+================================================================================
+This step runs on a DELAY, checking a PRIOR batch's real performance — it never
+blocks or delays the CURRENT run's own STEP 1-8 send cycle. Run this step for
+any prior batch that (a) has been marked "published" in
+cron_tracking/publication_ledger.jsonl (sent != published — same distinction the
+weekly analytics cron enforces) and (b) has not yet received a Law #157 real-data
+check AND is at least 24 hours past its publish timestamp.
+
+REAL BASELINE (established August 6, 2026, docs/PERFORMANCE_DATA.md — update this
+baseline going forward as more real batches are checked, do not treat it as frozen):
+  - "REAL TEST AUDIENCE, MODERATE CONVERSION" pattern: JJK 452 impr/53 views,
+    Tanya the Evil 654-738 impr/34-35 views.
+  - "NEAR-ZERO IMPRESSIONS, NO REAL TEST AT ALL" pattern: Chainsaw Man 28-33
+    impr/0-1 views, Solo Leveling 8 impr/0 views.
+
+PROCEDURE:
+  1. Resolve the real published video_id for the package via youtube_data_api
+     (never assume/guess from the sent title).
+  2. Pull real impressions + views via youtube_analytics_api-get-video-metrics
+     (or query-custom-analytics) against that real video_id. Note F30
+     (docs/KNOWN_ISSUES.md): the dedicated thumbnail-impressions field 400s on
+     this channel — use whichever impressions/CTR figure the working query path
+     actually returns.
+  3. If <24h since publish and numbers read as flat zero: this is "no data yet"
+     (known 24-48h reporting delay) — do NOT record a pattern classification yet;
+     re-check on a later run once genuinely 24h+ old.
+  4. If 24h+ old: classify plainly against the two named patterns above. Do not
+     invent a third bucket; if genuinely ambiguous, say so plainly.
+  5. NEAR-ZERO PATTERN -> report as one more real data point for the still-open
+     platform-side-issue question (already raised and submitted as YouTube
+     feedback) — state exactly that framing, no speculation beyond it.
+  6. MODERATE-CONVERSION PATTERN WITH WEAK VIEW-THROUGH -> re-run the Isolation
+     Test (Law #144.1) on that package's hook_line/hook_onscreen_text using the
+     now-real audience behavior; record whether it CONFIRMS or CONTRADICTS the
+     original pre-send isolation_test_pass attestation.
+  7. Append the result as a new dated entry in docs/PERFORMANCE_DATA.md (package_id,
+     video_id, real numbers, pattern classification, Isolation Test re-run result
+     if applicable). This is ongoing for EVERY future batch, not a one-time check.
+  8. Commit and push docs/PERFORMANCE_DATA.md the same way as any other tracked
+     doc change (pull --rebase before staging, never reset --hard).
+Full rationale and requirements: hero_or_villain_master_laws_final.txt Law #157.
+
+================================================================================
+END OF COMBINED DAILY RUNTIME v1.0  (governed by Law #139)
+================================================================================

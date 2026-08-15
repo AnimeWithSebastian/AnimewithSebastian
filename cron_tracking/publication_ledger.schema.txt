@@ -1,0 +1,97 @@
+================================================================================
+PUBLICATION / EXPERIMENT LEDGER — SCHEMA + RULES
+Added: July 14, 2026
+File: cron_tracking/publication_ledger.jsonl  (append-only, one JSON object per line)
+================================================================================
+
+WHY THIS EXISTS
+The sent log (sent_scripts_log.json / cron_tracking/sent_scripts_events.jsonl)
+records that a SCRIPT PACKAGE was emailed. It does NOT mean a video went live.
+Analytics must never treat status="sent" as "published". This ledger is the ONLY
+source of truth for what actually published to YouTube, and it is the join target
+for the weekly analytics cron (joined by youtube_video_id).
+
+SEPARATION OF CONCERNS
+  - sent_scripts_events.jsonl  → "a package was produced and emailed" (pipeline)
+  - publication_ledger.jsonl   → "a video is LIVE on YouTube" (ground truth)
+A package_id links the two. A package can exist with NO ledger row (sent but not
+yet published). A ledger row must always carry the real youtube_video_id.
+
+FORMAT
+  - JSON Lines: exactly one JSON object per line. Append-only (>>). Never rewrite.
+  - Append-only makes it merge-safe under concurrent morning/evening/analytics
+    pushes: git rebase replays new lines on top of remote lines with no conflict.
+  - One row = one published video. Metric fields are filled in progressively
+    (24h, then 72h, then 7d) by appending a NEW row with event="metrics_update"
+    referencing the same youtube_video_id — never mutate a prior line in place.
+
+ROW SCHEMA (event="published")
+{
+  "event": "published",
+  "package_id": "string  — links to the sent event/package (uuid)",
+  "youtube_video_id": "string — REAL YouTube 11-char id (JOIN KEY)",
+  "youtube_url": "https://www.youtube.com/watch?v=<id> or /shorts/<id>",
+  "publish_ts": "ISO8601 — actual publish time on YouTube (not send time)",
+  "format": "short | long_form",
+  "slot": "morning | evening | null",
+  "show": "string",
+  "angle": "string",
+  "objective": "REACH | ENGAGEMENT | SUBSCRIBER_CONVERSION | LONG_FORM_CONVERSION",
+  "verification_source": "api | human — which confirmation path granted this row's
+    public-status check (added F9, 2026-07-25): 'api' means a real videos.list
+    response's status.privacyStatus == 'public'; 'human' means the API path was
+    genuinely unavailable/inconclusive and a human directly confirmed public status
+    via YouTube's own interface (e.g. Studio) instead, recorded via a complete
+    human_attestation block. The two paths are never blended -- a present, explicit,
+    disagreeing API status always wins over any human_attestation and is rejected
+    outright, so 'human' rows only exist where the API signal was truly absent, not
+    where it disagreed. Read this field before trusting any row's 'public' status
+    equally -- it tells you which kind of confirmation actually backs it.",
+  "runtime_sec": number,
+  "hook": "string — first line / hook actually used",
+  "cta": "string — the single CTA line actually used",
+  "loop": "string — loop-back / closer line actually used",
+  "related_video_used": true | false,   /* long-form companion Short or Related Video link */
+  "title": "string — title at publish time (informational only; NOT a join key)",
+  "notes": "string | null"
+}
+
+METRICS ROW SCHEMA (event="metrics_update") — appended at 24h / 72h / 7d
+{
+  "event": "metrics_update",
+  "youtube_video_id": "string — JOIN KEY, must match a published row",
+  "window": "24h | 72h | 7d",
+  "captured_ts": "ISO8601",
+  "views": number,
+  "viewed_vs_swiped_pct": number,   /* % of impressions that became a view (viewed / (viewed+swiped)) */
+  "apv_pct": number,                /* averageViewPercentage — retention */
+  "avg_view_duration_sec": number,
+  "engagement_per_1k": number,      /* (likes+comments+shares) / views * 1000 */
+  "comments_per_1k": number,
+  "subscribers_per_1k": number,     /* subscribersGained / views * 1000 */
+  "likes": number,
+  "comments": number,
+  "shares": number,
+  "subscribers_gained": number
+}
+
+RULES FOR PRODUCERS (daily crons)
+  - Write a "published" row ONLY after the video is actually live and you have the
+    real youtube_video_id. Do NOT pre-create rows at send time.
+  - If the daily cron only emails a package (does not publish), it writes NOTHING
+    here — it writes the sent event to sent_scripts_events.jsonl instead.
+  - Fill hook/cta/loop/objective/runtime_sec/related_video_used from the package
+    that was actually published so experiments can be analyzed later.
+
+RULES FOR THE CONSUMER (weekly analytics cron, cron_analytics_runtime STEP 2)
+  - JOIN on youtube_video_id ONLY. Never match by title, show name, date, or slot.
+  - status="sent" is NOT "published". A sent package with no ledger row =
+    SENT-NOT-PUBLISHED (pipeline gap) — never graded.
+  - Report exact reconciliation buckets with counts AND ids: JOINED,
+    PUBLISHED-NO-ANALYTICS, ANALYTICS-NO-LEDGER, SENT-NOT-PUBLISHED.
+  - For each video, prefer the latest metrics_update window available (7d > 72h > 24h).
+
+GIT
+  - Lives in the repo working tree; committed and pushed with pull --rebase (never
+    reset --hard). Append-only JSONL means concurrent appends do not clobber.
+================================================================================

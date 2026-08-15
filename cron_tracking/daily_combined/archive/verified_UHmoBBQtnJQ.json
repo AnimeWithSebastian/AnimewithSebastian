@@ -1,0 +1,8 @@
+{
+  "id": "UHmoBBQtnJQ",
+  "snippet": {
+    "publishedAt": "2026-07-26T00:03:19Z",
+    "title": "Inept Villainess Dub Cast Has a VTuber"
+  },
+  "_metadata_provenance_note": "This is NOT a raw videos.list API response. The 'id', 'snippet.publishedAt', and 'snippet.title' fields above were independently confirmed via two real YouTube Data API calls (youtube_data_api-search-videos and youtube_data_api-list-activities, both via the youtube_data_api__pipedream connector) that returned this exact video id, title, and publish timestamp in agreement. The connector's videos.list tool (youtube_data_api-list-videos) is currently broken -- every call fails with an identical 'Missing required parameters: part' error regardless of the value, type, or key name supplied for 'part', including when zero optional fields are supplied at all -- so no live status.privacyStatus value could be obtained from the API for this video. That field is deliberately NOT included below (not set to null, not guessed, not inferred from the video's page being publicly viewable). This file exists to let record_publication.py's fail-closed check run against the true state of available evidence, including a legitimate rejection if privacyStatus is required and absent."
+}

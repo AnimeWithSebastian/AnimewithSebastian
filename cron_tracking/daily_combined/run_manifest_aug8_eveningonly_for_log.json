@@ -1,0 +1,237 @@
+{
+  "batch_id": "cb10a88e-da1d-4238-94a8-9258eb49b16e",
+  "run_ts": "2026-08-08T20:37:48.465154+00:00",
+  "post_date": "2026-08-08",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-08-03T00:00:00Z",
+    "age_days": 5,
+    "status": "REFRESHED"
+  },
+  "packages": [
+    {
+      "package_id": "cdb73fa3-6e76-45eb-87fb-da3b4f55397f",
+      "slot": "evening",
+      "content_type": "short",
+      "show": "Black Torch",
+      "angle": "Black Torch's manga predates Chainsaw Man, Jujutsu Kaisen, and Kaiju No. 8 with an almost identical fusion power-system, got cancelled after 5 volumes, and its creator is now personally finishing the story as an anime",
+      "format_type": "COMMENTARY",
+      "topic_class": "timely",
+      "topic_signals": [
+        "currently_airing"
+      ],
+      "series": null,
+      "duration_experiment": false,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "This came BEFORE Chainsaw Man, Jujutsu Kaisen, AND Kaiju No. 8",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Before Chainsaw Man, before Jujutsu Kaisen, and before Kaiju Number 8, there was Black Torch.",
+        "This manga got cancelled before any of shonen's biggest modern hits even existed."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Before Chainsaw Man, before Jujutsu Kaisen, and before Kaiju Number 8, there was Black Torch.",
+      "opening_sentence": "Before Chainsaw Man, before Jujutsu Kaisen, and before Kaiju Number 8, there was Black Torch.",
+      "vo": "Before Chainsaw Man, before Jujutsu Kaisen, and before Kaiju Number 8, there was Black Torch. A manga where a teenage punk named Jiro takes a killing blow, and a monster cat named Rago fuses into the wound to save him, using a power system almost identical to the ones that made those three shows massive. It got cancelled after just five volumes — low sales, nobody watching. Now it's finally an anime, and the original creator is personally supervising every storyboard, calling this version \"something even better.\" Now that you know Black Torch came first, does Chainsaw Man's power system still feel as original? Leave your take.",
+      "vo_word_count": 107,
+      "question_line": "Now that you know Black Torch came first, does Chainsaw Man's power system still feel as original?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Black Torch (2016 manga) predates Chainsaw Man, Jujutsu Kaisen, and Kaiju No. 8",
+            "core": true,
+            "claim_type": "E",
+            "source_urls": [
+              "https://www.polygon.com/black-torch-anime-review-chainsaw-man-shonen-comparison/",
+              "https://en.wikipedia.org/wiki/Black_Torch"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Black Torch shares a near-identical human-monster-fusion power system with Chainsaw Man, Jujutsu Kaisen, and Kaiju No. 8 (genre-ancestor comparison)",
+            "core": true,
+            "claim_type": "E",
+            "source_urls": [
+              "https://www.polygon.com/black-torch-anime-review-chainsaw-man-shonen-comparison/",
+              "https://leisurebyte.com/black-torch-episode-1-review/"
+            ]
+          },
+          {
+            "claim": "Black Torch was cancelled after 5 volumes/19 chapters due to lackluster sales",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://en.wikipedia.org/wiki/Black_Torch",
+              "https://www.polygon.com/black-torch-anime-review-chainsaw-man-shonen-comparison/"
+            ]
+          },
+          {
+            "claim": "Original creator Tsuyoshi Takaki personally confirmed he is supervising the anime's settings and storyboards, calling the result 'something even better' while staying true to the original story",
+            "core": true,
+            "claim_type": "B",
+            "source_urls": [
+              "https://www.polygon.com/black-torch-anime-review-chainsaw-man-shonen-comparison/",
+              "https://www.awn.com/news/viz-media-greenlights-black-torch-anime-series"
+            ]
+          },
+          {
+            "claim": "Episode 1 death/fusion/recruitment sequence (Jiro stabbed, Rago fuses with him, Bureau recruits them)",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://en.wikipedia.org/wiki/Black_Torch",
+              "https://butwhytho.net/2026/07/black-torch-episode-1-review/",
+              "https://leisurebyte.com/black-torch-episode-1-review/"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Anime footage only",
+      "face": false,
+      "split_screen": false,
+      "sources": [
+        {
+          "claim": "Black Torch predates and shares power-system parallels with Chainsaw Man/JJK/Kaiju No. 8; creator personally supervising the anime",
+          "url": "https://www.polygon.com/black-torch-anime-review-chainsaw-man-shonen-comparison/",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Series plot summary, cancellation-adjacent chapter/volume facts, episode 1 death/fusion/recruitment beats",
+          "url": "https://en.wikipedia.org/wiki/Black_Torch",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Episode 1 synopsis corroboration (Bureau of Espionage recruitment)",
+          "url": "https://myanimelist.net/anime/61169/Black_Torch",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Takaki's verbatim quote confirming he is supervising settings and storyboards ('something even better')",
+          "url": "https://www.awn.com/news/viz-media-greenlights-black-torch-anime-series",
+          "date": "Mar 2025"
+        },
+        {
+          "claim": "Episode 1 recap confirming Jiro's death, Rago's fusion, and the Bureau of Espionage's arrival; independently notes the Chainsaw Man parallel",
+          "url": "https://butwhytho.net/2026/07/black-torch-episode-1-review/",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Episode 1 recap confirming the same death/fusion sequence; explicitly compares the fusion moment to Chainsaw Man",
+          "url": "https://leisurebyte.com/black-torch-episode-1-review/",
+          "date": "Jul 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Jiro Azuma introduced: shinobi teen who can talk to animals, finds injured black cat Rago in the forest",
+          "reason": "Establishes the protagonist and the inciting encounter the VO's premise depends on",
+          "duration_sec": 7,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 7,
+          "scene_verified": true,
+          "verification_source_url": "https://en.wikipedia.org/wiki/Black_Torch",
+          "claim_vs_source_check": {
+            "claimed_beat": "Jiro Azuma, a shinobi-trained teenager who can talk to animals, encounters an injured black cat (Rago) in the forest",
+            "source_content_confirmed": "Wikipedia's Black Torch plot summary: \"Jiro Azuma is a teenage punk, trained in the art of the ninja, who has the incredible ability to talk to animals... One day, Jiro is led into the woods by some birds and encounters a gravely injured cat\"",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1,
+            "locate_confirmed_via": "the same Wikipedia Black Torch article cited above, which states the anime premiered July 4, 2026 and describes this as the series' opening plot beat"
+          }
+        },
+        {
+          "scene": "Hostile mononoke attacks; Jiro is fatally stabbed through the chest",
+          "reason": "Delivers the VO's specific 'takes a killing blow' claim, not just the general premise",
+          "duration_sec": 8,
+          "timeline_start_sec": 7,
+          "timeline_end_sec": 15,
+          "scene_verified": true,
+          "verification_source_url": "https://en.wikipedia.org/wiki/Black_Torch",
+          "claim_vs_source_check": {
+            "claimed_beat": "Jiro is stabbed through the chest and killed by a hostile mononoke while Rago tries to escape",
+            "source_content_confirmed": "Wikipedia: \"Rago attempts to escape from Jiro's house, but they are attacked by one of the mononoke Rago encountered earlier. This mononoke kills Jiro by stabbing him through the chest with his immense claws\"",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1,
+            "locate_confirmed_via": "the same Wikipedia Black Torch article cited above"
+          }
+        },
+        {
+          "scene": "Rago fuses with dying Jiro, transferring his power and reviving him as the merged Black Torch",
+          "reason": "Delivers the VO's core 'fuses into the wound to save him' claim — the exact power-system beat being compared to Chainsaw Man",
+          "duration_sec": 8,
+          "timeline_start_sec": 15,
+          "timeline_end_sec": 23,
+          "scene_verified": true,
+          "verification_source_url": "https://en.wikipedia.org/wiki/Black_Torch",
+          "claim_vs_source_check": {
+            "claimed_beat": "Rago fuses with Jiro to revive him and grant him combined power, out of gratitude for Jiro saving him earlier",
+            "source_content_confirmed": "Wikipedia: \"Feeling pity and indebted to Jiro for saving him earlier, Rago fuses with Jiro to give him a second chance at life. With their combined power, they kill the mononoke\"; corroborated by Polygon's review describing \"the image of Rago... filling a hole in the center of Jiro's chest is virtually identical to Pochita replacing Denji's heart\"",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1,
+            "locate_confirmed_via": "the same Wikipedia Black Torch article cited above, cross-referenced with the Polygon review's description of the same fusion scene"
+          }
+        },
+        {
+          "scene": "Bureau of Espionage (Ryousuke Shiba) arrives and recruits Jiro and Rago into the squad",
+          "reason": "Closes the episode 1 arc the VO is anchored to and sets up the ongoing premise (the Bureau, the squad)",
+          "duration_sec": 7,
+          "timeline_start_sec": 23,
+          "timeline_end_sec": 30,
+          "scene_verified": true,
+          "verification_source_url": "https://myanimelist.net/anime/61169/Black_Torch",
+          "claim_vs_source_check": {
+            "claimed_beat": "Ryousuke Shiba, a Bureau of Espionage officer, witnesses the fusion and recruits Jiro (and his grandfather) into the Bureau's new squad, Black Torch",
+            "source_content_confirmed": "MyAnimeList synopsis: \"This act is witnessed by Ryousuke Shiba, an officer in the Bureau of Espionage... Shiba extends Jirou and his grandfather an offer: to join the Bureau's new squad, Black Torch, and help them battle powerful mononoke\"",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 1,
+            "locate_confirmed_via": "the same MyAnimeList Black Torch synopsis cited above, describing this as the resolution of the series' first-episode setup"
+          }
+        }
+      ],
+      "clip_descriptions": "CUT 1 — 7 sec (0:00–0:07): Jiro meets Rago, S1E1 — the inciting encounter. CUT 2 — 8 sec (0:07–0:15): Jiro is stabbed, S1E1 — the killing blow. CUT 3 — 8 sec (0:15–0:23): Rago fuses with Jiro, S1E1 — the power-system beat. CUT 4 — 7 sec (0:23–0:30): The Bureau recruits them, S1E1 — the squad is formed. TOTAL CLIP TIME: 30 seconds.",
+      "captions": "This came before Chainsaw Man. / Before Jujutsu Kaisen. Before Kaiju No. 8. / It got cancelled after 5 volumes. / Now the creator is finishing it himself.",
+      "youtube_title": "Black Torch Came Before Chainsaw Man",
+      "tiktok_title": "The Manga That Predates Chainsaw Man",
+      "tiktok_post_text": "Black Torch got cancelled after 5 volumes... before Chainsaw Man, Jujutsu Kaisen, or Kaiju No. 8 even existed. Now the creator is finishing it himself as an anime. #BlackTorch #ChainsawMan #JujutsuKaisen #KaijuNo8 #anime #manga #shonen #animeshorts #animetok",
+      "pinned_comment": "Now that you know Black Torch came first, does Chainsaw Man's power system still feel as original? Leave your take below.",
+      "post_times": {
+        "youtube": "6:00 PM ET",
+        "tiktok": "6:15 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false
+    }
+  ],
+  "draft_status": "PENDING_USER_REVIEW — not yet sent, not yet logged, not the production run_manifest.json",
+  "single_package_reason": "Morning package (Draw This, Then Die!, package_id 87f7b103-c9bf-4818-91fc-90fbc37150f0) was archived and held per explicit decision on 2026-08-08 (Law #148 Tier-4-only sourcing gap on 2 of 4 clips; see ARCHIVED_20260808_drawthisthendie_law148_singlesource_held.md and docs/KNOWN_ISSUES.md F34). Never sent — 0 sent_scripts_log.json entries for that package_id both before and after this decision. Only the evening package (Black Torch, package_id cdb73fa3-6e76-45eb-87fb-da3b4f55397f) was actually emailed tonight; this single-package manifest exists solely so the logger records exactly what happened (one real send) instead of falsely logging an archived, never-sent package as sent."
+}

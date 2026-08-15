@@ -1,0 +1,86 @@
+[
+  {
+    "scene": "Kunishige forging at the furnace, focused and undisturbed",
+    "reason": "Establishes the forge setting and Kunishige's single-minded focus before the threat arrives",
+    "duration_sec": 6,
+    "timeline_start_sec": 0,
+    "timeline_end_sec": 6,
+    "scene_verified": true,
+    "verification_source_url": "https://www.youtube.com/watch?v=yqAGZyIPPbo",
+    "claim_vs_source_check": {
+      "claimed_beat": "Kunishige is mid-forge, working to complete an enchanted blade",
+      "source_content_confirmed": "Syvduck's Chapter 128 breakdown video confirms \"Kunishige locks in on smithing the Enchanted Blades\"",
+      "match": true
+    }
+  },
+  {
+    "scene": "Masumi leader slips past defenses and puts a blade to Kunishige's neck",
+    "reason": "Direct visual for the hook's central image",
+    "duration_sec": 6,
+    "timeline_start_sec": 6,
+    "timeline_end_sec": 12,
+    "scene_verified": true,
+    "verification_source_url": "https://www.aol.com/articles/kagurabachi-chapter-128-shiba-makes-183500000.html",
+    "claim_vs_source_check": {
+      "claimed_beat": "The Masumi leader reaches Kunishige and places a blade against his neck while he is focused on the furnace",
+      "source_content_confirmed": "AOL recap confirms \"There is a blade placed against his neck\" and \"The Masumi leader reaches Kunishige while he is focused on the furnace\"",
+      "match": true
+    }
+  },
+  {
+    "scene": "Kunishige refuses to look away from the fire as the blade draws blood",
+    "reason": "The core hook beat -- his reaction (non-reaction) to the threat",
+    "duration_sec": 7,
+    "timeline_start_sec": 12,
+    "timeline_end_sec": 19,
+    "scene_verified": true,
+    "verification_source_url": "https://www.aol.com/articles/kagurabachi-chapter-128-shiba-makes-183500000.html",
+    "claim_vs_source_check": {
+      "claimed_beat": "Kunishige keeps forging and does not look away from the fire despite the blade at his throat",
+      "source_content_confirmed": "AOL recap confirms Kunishige \"maintains his focus on the furnace\" and \"refused to look away from the fire\" despite the threat, and Syvduck's video confirms \"nothing, absolutely nothing can avert his eyes from the fire\"",
+      "match": true
+    }
+  },
+  {
+    "scene": "Kunishige's internal motivation moment -- thinking of Chiaki",
+    "reason": "Gives the emotional \"why\" behind his refusal to react, tied to the question CTA",
+    "duration_sec": 5,
+    "timeline_start_sec": 19,
+    "timeline_end_sec": 24,
+    "scene_verified": true,
+    "verification_source_url": "https://www.youtube.com/watch?v=yqAGZyIPPbo",
+    "claim_vs_source_check": {
+      "claimed_beat": "Kunishige is focused on protecting Chiaki, referencing a past failure to protect her or his mother",
+      "source_content_confirmed": "Syvduck's video confirms Kunishige is \"focused on protecting Chiaki, recalling that Chiaki is everything to him, that he could not protect his mother or Chiaki in the past\"",
+      "match": true
+    }
+  },
+  {
+    "scene": "Shiba teleports in, critically wounded, and pulls the attacker off Kunishige",
+    "reason": "Direct visual for the rescue beat and Shiba's condition",
+    "duration_sec": 6,
+    "timeline_start_sec": 24,
+    "timeline_end_sec": 30,
+    "scene_verified": true,
+    "verification_source_url": "https://www.aol.com/articles/kagurabachi-chapter-128-shiba-makes-183500000.html",
+    "claim_vs_source_check": {
+      "claimed_beat": "Shiba, severely injured from a previous battle and barely standing, teleports in and removes the Masumi leader from Kunishige's location",
+      "source_content_confirmed": "AOL recap confirms Shiba is \"severely injured from his previous battle,\" \"barely standing,\" and \"teleports into the area and removes the Masumi leader from Kunishige's location\"",
+      "match": true
+    }
+  },
+  {
+    "scene": "Shiba delivers his defiant line to the attacker",
+    "reason": "Direct visual/quote for the VO's closing dialogue beat",
+    "duration_sec": 4,
+    "timeline_start_sec": 30,
+    "timeline_end_sec": 34,
+    "scene_verified": true,
+    "verification_source_url": "https://www.youtube.com/watch?v=yqAGZyIPPbo",
+    "claim_vs_source_check": {
+      "claimed_beat": "Shiba says \"So, what if I do? Even if you cut my stomach up and even if you kill me, there are those we will not give up this fight\" while protecting Kunishige",
+      "source_content_confirmed": "Syvduck's video transcript directly quotes this exact line from Shiba in Chapter 128",
+      "match": true
+    }
+  }
+]

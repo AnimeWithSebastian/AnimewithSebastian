@@ -1,0 +1,290 @@
+### STEP 11 — CLIP INSTRUCTIONS (LAW #77 — REQUIRED)
+State at top: FIXED CAPCUT EDIT DURATION: ~XX sec (CONTROLLING input) — REQUIRED VO WORD RANGE: [fixed edit sec × 3.3–3.6] — the VO FILLS the edit. Max Short length 45 sec (Law #138, corrected July 15 2026).
+LAW #138: the clip plan is built to the FIXED CapCut edit duration; the VO word count is DERIVED from it (required words = fixed edit sec × 3.3–3.6). If the VO is too short to fill the edit, EXPAND with substance (never filler); do NOT shorten the edit. BLOCK a VO that is too short.
+Word targets by fixed edit duration (Law #138 calibrated 3.3–3.6 w/s): ~20 sec ≈ 66–72w | ~30 sec ≈ 100–108w (target ~104) | ~45 sec ≈ 148–162w. MAX SHORT LENGTH 45 sec. The old 2.4 w/s / 72-word default / 108-word cap model is RETIRED.
+
+LAW #138 VO-TO-FIXED-EDIT FILL (SHORTS — corrected July 15, 2026): The FIXED CapCut edit duration is CONTROLLING; the VO fills it at 3.3–3.6 w/s. Check the actual VO word count against the required range; if short, EXPAND with substance (analysis/receipts/contrast/stakes) — NEVER filler, repeated phrasing, or padded pauses. Do NOT shorten the edit to fit a short VO. An intentional beat is part of the fixed edit and does NOT excuse a short VO unless explicitly scripted. Once the actual VO is rendered/recorded, verify final audio vs the fixed edit within ±0.25 sec — if mismatched, REVISE/RE-RECORD the VO; do NOT retime the established edit unless the user explicitly asks. No unintended dead air, frozen padding, held outro, or empty tail. Micro-pauses 0.2–0.4s allowed. ONE deliberate reaction/key-shot beat ≤0.5s allowed ONLY with clear visual purpose + continuous music/ambience/sound design, labeled INTENTIONAL BEAT here. Silence/padding ≥1.0s PROHIBITED. Sound bed stays active under any intentional pause. Keep the "Leave your take" CTA and loop; final loop line connects straight into the opening — no empty tail. Emit this compliance line in the final package:
+  CAPCUT TARGET DURATION: [fixed edit sec] | CALIBRATED RATE: 3.3–3.6 w/s | REQUIRED WORD RANGE: [fixed edit sec × 3.3–3.6] | ACTUAL VO WORDS: [count] | ESTIMATED VO DURATION RANGE: [words ÷ 3.6 to ÷ 3.3 sec] | DELTA TO TARGET: [est VO duration − fixed edit, signed sec] | STATUS: PASS (VO fills the edit within range, no silence ≥1s, loop connects) or BLOCKED (VO too short — expand with substance, re-check). A 30-sec edit with only 72 words BLOCKS — expand to ~104.
+Law #82: NO brand stamp. CUT 1 = first real content clip. Most cuts 3–8 sec. No single cut over 8 sec.
+4 cuts minimum. For each cut:
+- Scene description and episode reference
+- Why this frame (visual hook, contrast, confirmation)
+- Duration: X sec (REQUIRED on every cut — missing = LAW #77 VIOLATION)
+- Content ID Protection: Audio muted + VO only, Speed altered if needed, Caption overlay
+Caption Spec: Anton | ALL CAPS | White | Black outline | Size 15 | Outline 3-4
+Position: BOTTOM 60-70% | Highlight: Orange #FF6B00 | Timing: word-by-word
+Law #82: CUT 1 = first real content clip. NO brand stamp. NO intro graphic.
+KEY SHOT — CENTRAL QUESTION overlay center frame size 18-20
+
+SHORTS LAYOUT SPEC [Law #134 — UPDATED July 14 2026 — SUPERSEDES July 12 version]
+SHORTS = ANIME FOOTAGE ONLY. NO face-cam. NO split screen. NO face inset.
+Rationale: Face-cam signals video completion — viewer sees a person sign off and swipes. Anime-only footage loops invisibly. HYPOTHESIS: rewatch may be a strong velocity signal (framed as #1 in ReelForge AI April 2026 / Postcrest June 2026, but not verified on this channel).
+Caption overlay: Anton | ALL CAPS | White fill | Black outline | Size 15 | Outline 3-4 | Bottom 60-70% | Orange highlight #FF6B00 | Word-by-word timing.
+Do NOT include [FACE: ...] direction lines in Shorts clip plans. Anime clip descriptions only.
+
+LONG-FORM LAYOUT (long-form videos only — NOT Shorts):
+Anime footage TOP row (60% height) | Sebastian's face BOTTOM row (40% height) | Full horizontal width | No border or gap.
+Face delivery notes apply to long-form sections only.
+Rules:
+  - CUT 1 face direction must hold the hook energy — lean in, direct eye contact, zero warmup.
+  - Expression must MATCH the emotional weight of the VO line for that cut — do not give a flat note for an intense line.
+  - Eye contact breaks are allowed (brief glance upward toward anime footage to guide viewer to clip) but eye contact is the default.
+  - No smiling unless the VO tone earns it. No filler mugging.
+  - Delivery note allowed: flag if a line needs a pause, emphasis on a specific word, or tempo change.
+Research basis (HYPOTHESIS — not verified on this channel): 7,431-video 2026 study (The Content Labs, April 2026) framed face-on-camera median views at ~1.9x faceless and 30-40% face presence as optimal. Applies to long-form only. Added July 12 2026.
+
+### STEP 11A [Law #99] — RECOMMENDED POST TIME (REQUIRED IN EVERY EMAIL)
+Law #99: Every email MUST include this block. Missing = CANNOT SEND.
+YouTube Shorts and TikTok MUST each have their own separate line with their own time.
+Combining both into one line = LAW #99 VIOLATION.
+All times in Eastern Time (ET) — channel is Miami, FL.
+
+Step 1: Identify the day of the week from the post_date.
+Step 2: Look up the correct post time from EACH platform table below.
+Step 3: Write the required email block with both lines filled in separately.
+
+━━━ YOUTUBE SHORTS TABLE (ET) ━━━
+Source: Buffer 1.8M Shorts (May 2026) + SocialPilot 301k+ study + Schedulala 2026 | Post 60 min before peak
+  MONDAY    → Post at: 6:30 PM ET | Peak: 7–8 PM ET
+  TUESDAY   → Post at: 6:30 PM ET | Peak: 7–8 PM ET
+  WEDNESDAY → Post at: 5:30 PM ET | Peak: 6–7 PM ET
+  THURSDAY  → Post at: 5:30 PM ET | Peak: 6–7 PM ET
+  FRIDAY ★  → Post at: 3:00–3:30 PM ET | Peak: 4–7 PM ET  ← STRONGEST Shorts day of week (Buffer #1)
+  SATURDAY  → Post at: 6:00 PM ET | Peak: 7 PM ET  (Alt morning: 9:30 AM ET | Peak: 11 AM ET)
+  SUNDAY    → Post at: 4:00 PM ET | Peak: 5–8 PM ET
+
+━━━ TIKTOK TABLE (ET) ━━━
+Source: Buffer 7.1M posts (May 2026) + Sprout Social + SendOwl 2026 | Post 30–60 min before peak
+  MONDAY    → Post at: 7:00–7:30 PM ET | Peak: 8 PM ET
+  TUESDAY   → Post at: 7:00–7:30 PM ET | Peak: 8 PM ET
+  WEDNESDAY → Post at: 6:30–7:00 PM ET | Peak: 7–8 PM ET
+  THURSDAY  → Post at: 7:00 PM ET | Peak: 8 PM ET
+  FRIDAY    → Post at: 5:00–5:30 PM ET | Peak: 6 PM ET
+  SATURDAY  → Post at: 5:30–6:00 PM ET | Peak: 6–7 PM ET
+  SUNDAY ★  → Post at: 7:30 AM ET | Peak: 8–9 AM ET  ← Buffer #1 global TikTok slot
+              (Alt evening: 4:00–4:30 PM ET | Peak: 5–8 PM ET)
+
+Required format in email:
+━━━ RECOMMENDED POST TIME ━━━
+Post Date: [Day of week, full date]
+YouTube Shorts — post at [time] ET | Peak: [time] ET | Source: Buffer 1.8M Shorts
+TikTok — post at [time] ET | Peak: [time] ET | Source: Buffer/Metricool 7.1M+ posts
+Rule: Post before peak so the algorithm has runway before your audience arrives.
+
+### STEP 11B [Law #80 + Law #97] — THREE CAPTION BLOCKS (ALL REQUIRED IN EVERY EMAIL)
+Law #97: Three separate blocks required. Use EXACTLY these headers — no variation, no combining.
+If Sebastian cannot find the on-screen text at a glance = the email failed. CANNOT SEND.
+
+━━━ ON-SCREEN CAPTION TEXT ━━━
+BREAK THE VO BY CUT — label every cut number before its caption lines.
+Each cut's caption lines must map to the clip listed in STEP 11 (same cut number, same clip).
+Max 2 caption lines visible on screen at once. Max 3 words per caption segment.
+Timing: word-by-word. Orange highlight on the ONE word or phrase that carries the most weight per line.
+
+CAUTION — DO NOT MAKE CAPTIONS SOUND AI:
+Caption lines are NOT a dry subtitle dump. They are the voice of the video.
+Every line must sound like something a person would actually say — not generated text.
+Apply the same laws the VO follows:
+  Law #86: Only write it if it is WORTH saying. If the word does not add tension, weight, or meaning — cut it.
+  Law #87: The first caption line on CUT 1 must carry the same hook tension as the VO opener.
+           It breaks an assumption. It does not ease the viewer in.
+  Law #92: Fan voice standard. Write for someone who has seen the show.
+           Do not over-explain. Do not state what is already on screen.
+If the caption lines sound like they were auto-generated from a script — rewrite them.
+
+FORMAT (required):
+--- CUT 1 ---
+[word] [ORANGE: word] /
+[word word] /
+(continue word-by-word for all VO lines that fall on this cut)
+
+--- CUT 2 ---
+[word] [ORANGE: word] /
+[word word] /
+(continue)
+
+--- CUT 3 ---
+(continue for every cut in the edit order)
+
+Note: CUT 1 also carries the SERIES NAME STAMP overlay (top of frame, 2-3 sec) —
+mark it in this block as: [SERIES STAMP: SHOW NAME — top frame, 2.5s]
+Key Shot cut also carries the CENTRAL QUESTION overlay —
+mark it as: [CENTRAL QUESTION: “[3-6 word question]” — center frame, size 18-20, full cut duration]
+Missing = CANNOT SEND.
+
+━━━ ON-SCREEN CAPTION SPEC ━━━
+Font: Anton | ALL CAPS | White fill | Black outline | Size 15 | Outline weight 3-4
+Position: Bottom 60-70% screen height
+Highlight: ONE word or short phrase per line in Orange #FF6B00
+Timing: Word-by-word — each word appears alone or in a group of 2–3 MAX
+Max 2 lines visible simultaneously on screen at any point
+Key Shot (KEY SHOT cut): 1 caption layer only — remove subtitle layer, keep CENTRAL QUESTION overlay
+Series name stamp: Anton | ALL CAPS | same caption style | top of frame | CUT 1 only | 2-3 sec
+Central question overlay: Anton | ALL CAPS | White | Black outline | Size 18-20 | center frame
+Missing = CANNOT SEND.
+
+[PINNED COMMENT goes in STEP 13 — not here. Keep these blocks separate.]
+
+### STEP 12 — VIDEO TITLE + POST TEXT (LAW #95 + Law #97 — REQUIRED)
+These are TWO different things. Label them exactly as shown below. Do not combine.
+
+━━━ YOUTUBE VIDEO TITLE ━━━
+Format: [Show Name]: [Broken Assumption or Curiosity Hook]
+Show name in first 50 chars | 55–70 chars total | Title Case | NO hashtags
+Backup YouTube title (also labeled: YOUTUBE VIDEO TITLE — BACKUP)
+Missing = CANNOT SEND.
+
+━━━ TIKTOK POST TEXT ━━━
+Hook sentence in first 100 chars + show name in text body + 3–5 hashtags pyramid
+This is the TikTok description field — NOT on-screen text.
+Missing = CANNOT SEND.
+
+VIOLATION: One generic title for both platforms = LAW #76 VIOLATION | Hashtags in YouTube title = LAW #95 VIOLATION | Combining YouTube title and TikTok post text = LAW #97 VIOLATION
+
+### STEP 13 — PINNED COMMENT (Law #89 + Law #97 — REQUIRED)
+━━━ PINNED COMMENT ━━━
+[This is NOT on-screen text. This is posted on YouTube/TikTok immediately after upload.]
+Must NOT restate the VO. Must ADD a second angle, harder question, or direct challenge.
+Choose one format:
+  POLARIZING_Q: Harder version of the closer. "I’ll start: [Sebastian’s take]. Now come prove me wrong."
+  MICRO_POLL: A vs B framing. Viewer answers in one word. "Team [X] or Team [Y] — no fence-sitting."
+  DEBATE_SEED: Pin a counterargument to the video’s main claim. Forces audience to pick a side.
+  WRONG_ANSWER_TRAP: State something slightly off. Anime audiences correct immediately. Max once per 8–10 videos.
+Post pinned comment immediately after upload. Reply promptly to early comments (HYPOTHESIS — early replies MAY help reach; not a guaranteed algorithmic gain).
+BINARY CLOSER still required in VO (STEP 10 Check 6). Pinned comment is the follow-through, not a replacement.
+
+### STEP 14 — HASHTAGS (LAW #95 + LAW #81 — PLATFORM SPLIT REQUIRED)
+LAW #95 + LAW #81 — TITLE & HASHTAG LIMITS (ENFORCED)
+YOUTUBE: NO hashtags in title. Format: [Show Name]: [Broken Assumption or Curiosity Hook] | Show name in first 50 chars | 55–70 chars total
+TIKTOK: 3-5 hashtags max | Pyramid: show tag + #animeshorts + angle tag + #anime + #FYP | Hook sentence first 100 chars + show name in post text body
+TIKTOK (in post text, max 5): 1 mega tag (#anime) + 1-2 mid tags + 1 niche show tag
+BANNED: #HeroOrVillain, #Shorts, #AnimeTikTok, any series slot tag
+VIOLATION: YouTube hashtags in title = LAW #95 VIOLATION | Hashtags without platform label = LAW #81 VIOLATION
+
+### STEP 15 — CONTENT ID PROTECTION AUDIT
+Every clip: audio muted + VO only minimum. Zero-transformation clips NOT ALLOWED.
+
+### STEP 16 — CHANNEL IDENTITY AUDIT
+For people who think about anime after the episode ends?
+Avoids three failures: correct take nobody needed / reaction with no person / clean conclusion?
+
+### STEP 17 — SEARCH CONTENT BALANCE CHECK
+Slot: MORNING (SEARCH-RANKED)
+Title must lead with searchable show/character name.
+Evergreen or active show confirmed in SEARCH 1-2.
+Format must match traction data from SEARCH 5 (show-specific) + SEARCH 7 (niche-wide).
+Competitor angle check confirmed clean in SEARCH 8.
+
+================================================================================
+EMAIL ASSEMBLY — 15 BLOCKS (exact order)
+================================================================================
+1. Subject | 2. Research Stack | 3. Active Traction Audit | 4. Research Note
+5. Fact Verification | 6. Format Recommendation | 7. Draft VO
+8. VO Quality Check (12-point — Core Checks 1–10 + Monetization Score + Content Loop result X/12)
+8B. VO CONVERSION AUDIT BLOCK (REQUIRED — separate block in email body)
+    Format:
+    ─── VO CONVERSION AUDIT ───
+    TRIGGER 1 (Re-Watch Confession): YES / NO
+    TRIGGER 2 (Specific Feeling Named): YES / NO
+    TRIGGER 3 (Community Signal): YES / NO
+    TRIGGER 4 (Open Question Closer): YES / NO
+    TRIGGER 5 (Personality Signature): YES / NO
+    TRIGGERS HIT: X/5 | STATUS: PASS / REVISE
+    ─────────────────────────
+    Missing block = CANNOT SEND (Law #88).
+9. Clip Instructions
+9B. On-Screen Caption Text (word-by-word VO with [ORANGE] markers — for CapCut)
+9C. On-Screen Caption Spec (font/size/color/position — for CapCut)
+10. YouTube Video Title + TikTok Post Text (two separate labeled blocks — Law #97)
+11. Pinned Comment (post to YouTube/TikTok after upload — NOT on-screen text)
+12. Hashtags
+13. Content ID Audit | 14. Channel Identity Audit | 15. Search Content Balance Check
+
+Send to: hero_or_villain@outlook.com ONLY
+Subject format: TOMORROW | MORNING | [Show] | [Post Date] | [Title]
+
+================================================================================
+POST-SEND LOG + ATOMIC STATE — RUN ONLY AFTER THE EMAIL IS CONFIRMED SENT
+================================================================================
+ORDERING IS MANDATORY. Do these steps in this exact order. Never write the run
+summary as "success" before the log append has completed. Post time: 12:00 PM ET.
+
+STEP A — APPEND THE SEND EVENT (merge-safe, append-only ledger):
+  The source of truth for sends is an APPEND-ONLY JSON Lines ledger:
+    /home/user/workspace/repo/cron_tracking/sent_scripts_events.jsonl
+  Append exactly ONE line — a single JSON object — for this send. One line per
+  event means concurrent morning/evening appends never clobber each other.
+  Event object fields:
+    {"event":"sent","cron":"d43ab889","slot":"morning","date_sent":"[ISO8601]",
+     "post_date":"[YYYY-MM-DD]","show":"[show]","angle":"[angle]",
+     "format_type":"[type]","format_reason":"[reason]","title":"[title]",
+     "traction_tier":"[tier]","gap_type":"[gap]","fact_count":[int],
+     "vo_draft_included":true,"status":"sent","package_id":"[uuid]"}
+  Append with a single shell redirect (>>). Do NOT rewrite the whole file.
+
+  sent_scripts_log.json (legacy array) is ALSO maintained for back-compat, but it
+  is edited IN THE REPO WORKING TREE only: read the in-tree file, append this one
+  object to the array, write it back. NEVER copy the workspace copy over the repo
+  copy — that overwrites appends other runs already pushed to the remote.
+
+STEP B — WRITE ATOMIC STATE + RUN SUMMARY (temp file + rename):
+  Write the per-cron state and the current-run summary ATOMICALLY so a crash can
+  never leave a half-written or stale file. Use temp file + rename (rename is
+  atomic on the same filesystem):
+    D=/home/user/workspace/cron_tracking/d43ab889
+    printf '%s' "$STATE_JSON"   > "$D/state.json.tmp"   && mv -f "$D/state.json.tmp"   "$D/state.json"
+    printf '%s' "$SUMMARY_JSON" > "$D/run_summary_latest.json.tmp" && mv -f "$D/run_summary_latest.json.tmp" "$D/run_summary_latest.json"
+  run_summary_latest.json MUST include: {"cron":"d43ab889","slot":"morning",
+    "run_ts":"[ISO8601]","post_date":"[date]","show":"[show]","angle":"[angle]",
+    "package_id":"[uuid]","status":"success","email_sent":true,
+    "log_appended":true,"git_pushed":true|false,"error":null}
+  Write the SAME state.json object into the repo tree copy for the git push.
+
+FAILURE / BLOCKER HANDLING (applies to every step above and the email step):
+  If the email did NOT send, or a hard blocker stopped the run at any point:
+  IMMEDIATELY write run_summary_latest.json atomically with
+    {"status":"failed","email_sent":false|true,"log_appended":false|true,
+     "git_pushed":false,"error":"[what blocked it]","run_ts":"[ISO8601]"}
+  NEVER leave run_summary_latest.json reflecting a previous successful run when the
+  current run failed. A stale "success" summary is treated as a real success by the
+  analytics cron and must never be allowed to persist. Writing the failed summary
+  is the LAST thing the run does before stopping.
+
+================================================================================
+GITHUB SYNC — RUN AFTER LOG + STATE ARE WRITTEN (operate ONLY in the repo tree)
+================================================================================
+All git operations run inside the repository working tree. Pull/rebase BEFORE
+appending so the local tree already contains the newest remote events, then the
+append is a fast-forward. Never reset --hard (it discards remote appends).
+
+Run via bash (api_credentials=["github"]):
+  cd /home/user/workspace/repo || { echo "NO REPO TREE"; exit 1; }
+  git config user.email "hero_or_villain@outlook.com"
+  git config user.name "Anime With Sebastian"
+  # 1) Sync to latest remote FIRST, rebasing local work on top.
+  git fetch origin 2>&1 | tail -2
+  git pull --rebase origin main 2>&1 | tail -3
+  # 2) NOW append this run's event line + update the in-tree legacy array + state
+  #    (STEP A / STEP B above operate on the files in THIS tree).
+  git add cron_tracking/sent_scripts_events.jsonl sent_scripts_log.json cron_tracking/d43ab889/state.json
+  git commit -m "cron d43ab889 — [Show] [Date] morning sent"
+  git push origin HEAD:main 2>&1 | tail -3
+
+If push is rejected (non-fast-forward) — resolve by rebasing, NEVER by reset --hard:
+  git pull --rebase origin main 2>&1 | tail -5
+  # The events ledger is append-only JSONL: rebase replays your one new line on top
+  # of remote lines with no conflict. If sent_scripts_log.json conflicts, keep BOTH
+  # sides' appended entries (union the arrays — never drop a remote entry), then:
+  git add -A && git rebase --continue 2>&1 | tail -3
+  git push origin HEAD:main 2>&1 | tail -3
+  If it STILL fails: append the error to cron_tracking/d43ab889/git_push_error_[date].txt,
+  set git_pushed:false in run_summary_latest.json (status stays "success" — the email
+  and local log are done), and stop. The parent agent resolves next session.
+  Email was already sent — never block the run on git, but never mask a git failure
+  as a git success in the run summary either.
+
+================================================================================
+END OF MORNING RUNTIME v8.7
+================================================================================
+
+>>> END OF RUNTIME — all steps complete
