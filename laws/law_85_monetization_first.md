@@ -18,6 +18,45 @@ No video idea gets recommended unless it can be evaluated against monetization p
 ## The Three Revenue Paths (Priority Order)
 
 ### PATH 1 — YouTube Partner Program (YPP) Eligibility
+
+> **THRESHOLDS CHANGE 2027-02-01 — banner added 2026-08-14. NUMBERS ONLY; no strategy
+> in this law has been rewritten.** YouTube announced on 2026-08-10 that YPP entry
+> requirements DOUBLE for new applicants, effective **February 1, 2027** (verified
+> against YouTube's own announcement blog, not from memory — sources below):
+>
+> | | Now (until 2027-01-31) | From 2027-02-01 |
+> |---|---|---|
+> | Subscribers | 1,000 | 1,000 (**unchanged**) |
+> | Watch hours (365d) | 4,000 | **8,000** |
+> | OR Shorts views (90d) | 10,000,000 | **20,000,000** |
+>
+> - **The figures below remain accurate for applications filed before 2027-02-01.**
+>   They are not wrong today; they are time-limited.
+> - **Existing partners are grandfathered** — YouTube: "This update won't impact
+>   creators already in YPP." Partners review/sign updated terms in YouTube Studio at
+>   the changeover.
+> - **NOTE ON THE DATE — the year is 2027, not 2026.** Flagged explicitly because this
+>   change was reported into the repo as "February 1" with no year. As of this banner
+>   that is ~5.5 months out: not imminent, and not already past. Any decision taken on
+>   the assumption of a 2026 date would be wrong.
+> - **Strategy decision deliberately NOT made here**, per the instruction accompanying
+>   this banner: whether the doubled Shorts-views path is still the intended route, or
+>   whether the 8,000-hour path changes the long-form calculus, is the channel owner's
+>   call. Law #66's watch-hours math and Law #94 Stage 1 carry matching banners.
+>
+> Sources: [YouTube announcement blog, 2026-08-10](https://blog.youtube/news-and-events/youtube-partner-program-updates-2027-new-opportunities-earn/);
+> [Engadget, 2026-08-10](https://www.engadget.com/2233900/youtube-is-making-it-harder-for-creators-to-start-getting-a-cut-of-ad-revenue/);
+> [TechCrunch, 2026-08-10](https://techcrunch.com/2026/08/10/youtube-now-requires-creators-to-have-twice-as-many-watch-hours-to-start-earning-money/).
+
+> **500-SUBSCRIBER TIER IS INCOMPLETE AS WRITTEN — correction added 2026-08-14.** The
+> line below lists only the subscriber count. The actual tier-1 (fan-funding) gate is
+> **500 subscribers AND 3 public uploads in the last 90 days AND (3,000 valid public
+> watch hours in 12 months OR 3 million valid public Shorts views in 90 days)**. A plan
+> sized against "500 subs" alone understates this tier by two further requirements.
+> This is a pre-existing gap in the law, independent of the 2027-02-01 change above —
+> YouTube's 2026-08-10 announcement does not address this tier. Original line preserved
+> verbatim below, unchanged.
+
 **Target thresholds:**
 - 500 subscribers (YPP Lite — channel memberships + Super Thanks)
 - 1,000 subscribers + 4,000 watch hours OR 10M Shorts views (Full YPP — ad revenue)

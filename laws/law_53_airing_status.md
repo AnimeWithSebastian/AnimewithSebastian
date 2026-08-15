@@ -38,6 +38,19 @@ as currently airing with a hard episode ceiling per stage.
 STEEL BALL RUN — CURRENT STATUS:
 Only Stage 1 (Episode 1) has aired on Netflix.
 Stage 2 begins Fall 2026.
+  ^^^ DATE SHARPENED 2026-08-14: "Fall 2026" is not wrong, but it is too vague to
+  enforce an episode ceiling against. The confirmed date is SEPTEMBER 25, 2026 — 11
+  episodes, weekly on Fridays (Netflix Tudum). Corroborated inside this repo: the same
+  2026-09-25 date and "11 episodes weekly" already appear in the SHOW HOLD LIST blocks
+  of the daily runtime files, and 2026-09-25 is in fact a Friday, consistent with the
+  weekly-Friday cadence.
+  THE REST OF THIS BLOCK IS UNCHANGED AND STILL ACCURATE as of 2026-08-14: Stage 1
+  (Episode 1) remains the only episode aired, so every item in the BLOCKED CONTENT list
+  below is still manga-only and still blocked. Nothing has moved out of that status.
+  ACTION AT CHANGEOVER: from 2026-09-25 this block and the list below MUST be
+  re-verified under this law's own rules as episodes actually air — content becomes
+  usable only once the episode containing it has aired, never on the premiere date
+  alone.
 BLOCKED CONTENT (manga-only, not yet animated):
   - D4C (Dirty Deeds Done Dirt Cheap)
   - Love Train

@@ -176,6 +176,28 @@ The titles do not need to match. They need to feel like the same conversation.
 
 ## LONG-FORM AND WATCH HOURS
 
+> **THE MATH BELOW IS SIZED AGAINST A THRESHOLD THAT DOUBLES 2027-02-01 — banner added
+> 2026-08-14. NUMBERS ONLY; the long-form strategy is NOT rewritten.** YouTube announced
+> 2026-08-10 that, for applications filed from **February 1, 2027**, YPP entry requires
+> **8,000 qualified watch hours in 365 days** (up from 4,000) **OR 20 million qualified
+> Shorts views in 90 days** (up from 10M). The 1,000-subscriber bar is unchanged, and
+> existing partners are grandfathered.
+>
+> **Direct consequence for the arithmetic below:** the "34 long-form videos at ~1,000
+> viewers each" target is derived from the 4,000-hour figure. Against the post-2027-02-01
+> bar the same arithmetic **doubles to ~68 videos** at the same assumptions (~117 watch
+> hours per video → 8,000 ÷ 117 ≈ 68). The per-video estimate itself is unchanged; only
+> the total required changes.
+>
+> **The figures below remain correct for an application filed before 2027-02-01** — they
+> are time-limited, not wrong. **The year is 2027, not 2026**, flagged because this was
+> reported into the repo as "February 1" with no year.
+>
+> Whether to raise the long-form cadence, re-aim at the Shorts path, or hold as-is is a
+> **strategy decision left to the channel owner** and is deliberately not made here.
+> Cross-refs: Law #85 PATH 1, Law #94 Stage 1. Source:
+> [YouTube blog, 2026-08-10](https://blog.youtube/news-and-events/youtube-partner-program-updates-2027-new-opportunities-earn/).
+
 YouTube monetization requires 4,000 watch hours (long-form path) OR 10M Shorts views.
 
 Shorts do not count toward the 4,000 watch hours requirement.

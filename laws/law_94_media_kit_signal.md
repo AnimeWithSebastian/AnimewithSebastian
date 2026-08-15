@@ -8,6 +8,26 @@
 
 Based on live analytics:
 
+> **STAGE 1 IS SIZED AGAINST A THRESHOLD THAT DOUBLES 2027-02-01 — banner added
+> 2026-08-14. NUMBERS ONLY; the strategy below is NOT rewritten.** YouTube announced
+> 2026-08-10 that YPP entry requirements double for new applicants from **February 1,
+> 2027**: the Shorts path goes **10M → 20M qualified views in 90 days**, the watch-hour
+> path **4,000 → 8,000 hours in 365 days**, and the 1,000-subscriber bar is unchanged.
+> Existing partners are grandfathered ("This update won't impact creators already in
+> YPP").
+>
+> This matters more here than in Law #85 because Stage 1 below calls YPP eligibility the
+> **"active goal"** and sizes the whole path against the 10M figure. If this channel
+> does not reach the bar before 2027-02-01, the target it is being steered toward
+> **doubles**, and the "volume + conversion" plan below was sized against the old
+> number. **The year is 2027, not 2026** — flagged because the change was reported into
+> the repo as "February 1" with no year.
+>
+> Whether to re-plan Stage 1 around 20M Shorts views, pivot toward the 8,000-hour
+> long-form path, or hold the current approach is a **strategy decision left to the
+> channel owner** — deliberately not made in this banner. Cross-refs: Law #85 PATH 1,
+> Law #66 watch-hours math. Source: [YouTube blog, 2026-08-10](https://blog.youtube/news-and-events/youtube-partner-program-updates-2027-new-opportunities-earn/).
+
 **Stage 1 — YPP Eligibility (active goal):**
 - Need: 1,000 subscribers + 10M Shorts views in 90 days
 - Current: ~69K total views, sub count in early growth
