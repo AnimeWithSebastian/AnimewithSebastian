@@ -8,6 +8,13 @@ to read the full historical conversation transcript.
 **Status as of:** 2026-07-23. **Authoritative main commit at time of writing:**
 `8a4798c9e45b54ed7a187de79e9133311c82aad5` (merge of PR #5, publication-ledger repair tool + this handoff doc).
 
+> **UPDATED 2026-08-15 — see §16 for the 2026-08-14/15 session record.** Current
+> `origin/main` is **`e063e53`**; the three commits from that session are listed in §16.
+> Note that the `8a4798c9...` commit named above is NOT reachable in this repository's
+> history — this tree begins at `4153a2d` ("Initial migration of files"), so that hash
+> refers to the pre-migration repo. Treat §16's hashes as the live ones. The 2026-07-23
+> body below is preserved as-written; where §16 contradicts it, **§16 is newer**.
+
 **Publication-ledger repair status:** DEPLOYED, NOT YET USED. `tools/record_publication.py`
 and its 21 unit tests merged to `main` via PR #5
 (https://github.com/SEBLABHRIS/AnimeWithSebastian/pull/5, merge commit `8a4798c9e...`).
@@ -348,3 +355,136 @@ historical — the IDs above are current.
 changes, so it stays a reliable single-file recovery point. It summarizes; it does
 not override the actual law/runtime/validator files listed in §2 — when in doubt,
 read those.*
+
+---
+
+## 16. Session record — 2026-08-14/15 (law audit, Law #159 item 3, YPP, point 9)
+
+Three commits, all on `origin/main`. Suites went from **RED** (one failure standing
+~2.5 weeks) to **480 green**: `validators` 365 + `tools` 115.
+
+| Commit | Summary |
+|---|---|
+| `e98805b` | Landed the 2026-08-14 law audit — fixed the red suite, resolved law contradictions (17 files) |
+| `6eef982` | Built Law #159 item 3 — per-show sourcing for `SEASON_ROUNDUP` (7 files) |
+| `e063e53` | YPP threshold banners + Law #53 date sharpening (4 files) |
+
+Run both suites with (pytest is NOT installed; these are stdlib unittest):
+```
+python3 -m unittest discover -s validators -p "test_*.py" -q   # Ran 365 tests ... OK
+python3 -m unittest discover -s tools -p "test_*.py" -q        # Ran 115 tests ... OK
+```
+
+### 16.1 Law audit (`e98805b`) — see `docs/LAW_AUDIT_2026-08-14.md`
+24 issues found: 14 fixed, 10 flagged. The breaking one: `tools/test_append_send_batch.py`
+still asserted a Law #141 forced-loop rule rescinded 2026-07-27, so the manifest correctly
+PASSED and the test FAILED. Repointed at `opening_sentence` (the one check from that block
+still enforced, under Laws #144/#145) rather than deleted, preserving gate coverage. Also
+corrected: Law #160's DRAFT-vs-shipped status, Law #149 point 4's dependence on the
+rescinded loop, Law #140's internal 30s contradiction, the #77/#82 and #81/#144 conflicts,
+and stale cron IDs in nine law headers. **All law edits additive** — dated banners or
+superseded markers; original text preserved verbatim.
+
+### 16.2 Law #159 item 3 (`6eef982`) — `SEASON_ROUNDUP` per-show sourcing
+`_validate_season_roundup_sourcing()` in `validators/validate_dual_package.py`. New schema:
+`roundup_shows` (REQUIRED + fail-closed on `SEASON_ROUNDUP`, **must be absent** on the other
+16 tokens) supplies the authoritative show list; core `claim_source_matrix` entries carry a
+`show` tag. Five fail-closed checks: shape, tagging, coverage, per-show sourcing (listed +
+dated + non-encyclopedic), and **distinctness** (no source URL reused across shows — the
+check that actually implements "never one source waved across all shows").
+**Clip count is deliberately NOT used** to infer the show count: nothing enforces
+1 clip == 1 show, so it would fail OPEN exactly when a show is under-covered.
+New fixture `validators/fixtures/valid_season_roundup.json` (3-show; the format's first).
+Tests: `TestSeasonRoundupPerShowSourcingLaw159` (17).
+**The runtime blocker is now lifted — `SEASON_ROUNDUP` IS selectable**, and the
+`cron_daily_runtime.txt` selectable-token count went 15 -> 16.
+**Gotcha for future work:** any new `SEASON_ROUNDUP` test data MUST declare
+`roundup_shows`; omitting it correctly turned four existing tests red mid-build.
+
+### 16.3 YPP entry thresholds DOUBLE on 2027-02-01 (`e063e53`)
+YouTube announced 2026-08-10, effective **February 1, 2027** — verified against YouTube's
+own blog, not a relayed snippet:
+
+| | Until 2027-01-31 | From 2027-02-01 |
+|---|---|---|
+| Subscribers | 1,000 | 1,000 (unchanged) |
+| Watch hours (365d) | 4,000 | **8,000** |
+| OR Shorts views (90d) | 10,000,000 | **20,000,000** |
+
+Existing partners grandfathered. **The year is 2027** — it reached this repo as
+"February 1" with no year, and was about to be inscribed into three law files as a dated
+fact. Dated banners added to **Law #85 PATH 1**, **Law #94 Stage 1** (which names YPP the
+"active goal" and sizes the plan against 10M), and **Law #66** (whose "34 long-form videos"
+math becomes **~68** against the 8,000-hour bar). Also corrected: Law #85's 500-subscriber
+tier was incomplete — the real gate is 500 subs AND 3 public uploads/90d AND (3,000 watch
+hours/12mo OR 3M Shorts views/90d). And Law #53's "Stage 2 begins Fall 2026" sharpened to
+**2026-09-25**, 11 episodes weekly on Fridays; its blocked-content list is unchanged and
+still fully valid (Stage 1 remains the only aired episode), with a re-verification trigger
+at changeover.
+**Strategy deliberately NOT decided** — the banners state numbers only. Whether to re-plan
+around 20M Shorts views or pivot to the 8,000-hour long-form path is an open owner
+decision, and the clock runs to 2027-02-01.
+
+### 16.4 The "point 9" resolution and the citation convention
+**Law #149 has no point 9 and never did** — grep-verified at baseline `4153a2d` (pre-audit):
+its clauses run 1,2,3,4,5,6,7,8,**10**. The jump is original, not audit-introduced.
+Point 9 is real but lives in `cron_daily_runtime.txt` STEP 4.5 (the AI-slop pattern check,
+seven hollow-phrasing patterns); `ai_slop_pattern_check` is one of the ten
+`SEMANTIC_QA_CHECK_KEYS`, commented "runtime STEP 4.5 point 9" at
+`validators/validate_dual_package.py:304`.
+
+**Root cause — two interleaved numbering schemes that cross-cite each other by number,
+aligned just closely enough to mislead:**
+
+| `cron_daily_runtime.txt` STEP 4.5 | cites |
+|---|---|
+| point 8 | Law #149 **point 1** |
+| point 9 | **no Law #149 counterpart** (the phantom) |
+| point 9.8 | Law #149 **point 8** |
+| point 9.9 | Law #149 **point 10** |
+
+The runtime also carries sub-points 9.5, 9.6, 9.7, 9.8, 9.9 — so "point 9" is ambiguous even
+*within* that file.
+
+Consequences already observed: (a) an earlier session numbered a new Law #149 rule "10" to
+avoid colliding with "point 9", believing 9 was a Law #149 clause — right answer, false
+premise; (b) Law #158's citation of "Law #149 point 9's enumerated-pattern approach" most
+likely meant the **runtime's** point 9 (literally an enumerated seven-pattern list) with the
+document mislabelled. **The point-6 guess is retired; owner confirmation still required —
+audit item 16 remains OPEN.**
+
+**Binding convention now recorded in `cron_daily_runtime.txt`'s STEP 4.5 preamble:** always
+name the document in a cross-reference ("`cron_daily_runtime.txt` STEP 4.5 point 9", never a
+bare "point 9"). When a citation looks dangling, check the *other* document's numbering
+before concluding the clause is missing. Never renumber to close a gap — it silently
+invalidates every existing external citation.
+
+### 16.5 Open items carried forward
+1. **`2bb28991` vs `12200bb4`** — §3 above says the weekly analytics task is `12200bb4` and
+   that `2bb28991` was deleted. But `2bb28991` is a LIVE hardcoded `CRON_ID` at
+   `tools/weekly_noop_gate.py:42`, an active `cron_tracking/2bb28991/` state dir, and the ID
+   named in `cron_analytics_runtime.txt` and Laws #61/#65/#66/#89/#139/#147. **Deliberately
+   untouched across all three commits — needs its own commit after the owner confirms which
+   is the scheduled-task ID and which is the state/logical ID.** A blanket rename would break
+   the no-op gate.
+2. **Law #160 item 7** — `THEORY_SPECULATION` is validator-live but absent from the runtime's
+   selection step; now the ONLY thing keeping the token unselectable.
+3. **Law #159 item 4** — the `TRAILER:` clip-label rendering, self-declared unbuilt. Grep the
+   validator before believing it: item 6 in that same file was wrong.
+4. **Eight other flagged audit items**, six needing an owner decision.
+5. **`cron_analytics_runtime.txt:529`** — a do-not-send guard naming a real personal address.
+   Left deliberately: a do-not-send guard must name the real address or it stops being a
+   guard. Removing the exposure means rewording an instruction on a live send path — its own
+   change, its own review. (The three *test-fixture* occurrences were swapped to
+   `wrong@example.com` in `6eef982`.)
+6. **YPP strategy decision** — see §16.3.
+
+### 16.6 Working principle worth keeping
+Twice in this session, going to the primary source corrected something an intermediate had
+asserted: fetching YouTube's own blog fixed the missing year, and reading
+`cron_daily_runtime.txt` directly disproved Law #159's own item 6 ("NOT YET DONE") and
+corrected the framing that `SEASON_ROUNDUP` was a live production gap — the runtime already
+blocked selection. **A law's own status text is an intermediate too, not ground truth.** The
+authority order in §2 already says this: running runtimes and validators outrank law text.
+Apply it to the remaining flagged items, several of which rest on self-reported status
+rather than on the code.

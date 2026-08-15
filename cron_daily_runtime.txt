@@ -749,6 +749,49 @@ run log — it is NOT pasted into the recipient emails (Law #139 email-slimming)
 ================================================================================
 STEP 4.5 — ONE-PASS SEMANTIC QA SELF-AUDIT (Law #147 — credit-safe mode)
 
+  *** CITATION CONVENTION — BINDING ON ANYONE DRAFTING AGAINST THIS FILE ***
+  (added 2026-08-15 after a real cross-session numbering error, described below)
+
+  ALWAYS NAME THE DOCUMENT IN A CROSS-REFERENCE. Write "cron_daily_runtime.txt
+  STEP 4.5 point 9" or "Law #149 point 8" — NEVER a bare "point 9". Bare point
+  numbers are genuinely ambiguous in this repo, and this is not a hypothetical
+  tidiness rule: it has already produced one wrong inference and one dangling
+  citation that is still unresolved.
+
+  WHY — this file's STEP 4.5 points and laws/law_149_vo_writing_craft.md's points
+  are TWO SEPARATE SEQUENCES that cross-cite each other by number, and they are
+  near-misses rather than aligned:
+
+      THIS FILE (STEP 4.5)        ->  CITES
+      -----------------------------------------------------------
+      point 8   (redundant sent.) ->  Law #149 point 1
+      point 9   (AI-slop, 7 pat.) ->  (nothing — Law #149 has NO point 9)
+      point 9.8 (symm. debate)    ->  Law #149 point 8
+      point 9.9 (already-answered)->  Law #149 point 10
+
+  So this file's point 8 points at Law #149's point 1, while this file's point
+  9.8 points at Law #149's point 8. The numbers nearly line up without ever
+  actually lining up — which is precisely what makes a bare number unsafe.
+  This file also carries sub-points 9.5, 9.6, 9.7, 9.8 and 9.9, so even "point 9"
+  alone is ambiguous WITHIN this file.
+
+  LAW #149 HAS NO POINT 9 AND NEVER DID — grep-verified at baseline commit
+  4153a2d (pre-audit): its clauses run 1,2,3,4,5,6,7,8,10. "Point 9" in this
+  repo means THIS FILE's point 9 (the AI-slop check) unless a document is named.
+
+  DAMAGE ALREADY DONE BY BARE NUMBERS:
+    - An earlier session numbered a new Law #149 rule "10" to avoid colliding
+      with "point 9", believing 9 was a Law #149 clause. Right answer, wrong
+      reasoning.
+    - Law #158 cites "Law #149 point 9's enumerated-pattern approach" — almost
+      certainly meaning THIS FILE's point 9 (an enumerated seven-pattern list),
+      with the document mislabelled. Still unconfirmed; see
+      docs/LAW_AUDIT_2026-08-14.md item 16.
+
+  WHEN A CITATION LOOKS DANGLING: check the OTHER document's numbering before
+  concluding the clause is missing. Do not renumber anything to close a gap —
+  renumbering silently invalidates every existing external citation.
+
   - REJECTED VO CONSTRUCTIONS (Law #149 — targeted blocklist, not a style
     template; these two patterns are banned wherever found, independent of
     format/show/register — confirmed present in real sent VOs, not

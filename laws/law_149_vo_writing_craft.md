@@ -132,10 +132,48 @@
    "Law #149 point 9's enumerated-pattern approach" as the model for its
    `BANNED_COMPARATIVE_LANGUAGE` list — a reference to a clause that does not exist.**
    Left as an explicit placeholder rather than renumbering points 10+ (renumbering would
-   silently invalidate every existing external citation of "point 10"). The dangling
-   Law #158 reference needs the owner to confirm which clause was intended — the closest
-   candidates are point 6 (the fragment budget, this law's only other enumerated-pattern
-   rule) or the runtime's own point 9.
+   silently invalidate every existing external citation of "point 10").
+
+   **GREP-VERIFIED 2026-08-14, recorded 2026-08-15 — the gap is ORIGINAL, not
+   audit-introduced.** Checked at baseline commit `4153a2d` (pre-audit, untouched): this
+   law's numbered points there run 1, 2, 3, 4, 5, 6, 7, 8, **10**. No point 9 has ever
+   existed in this file. The 2026-08-14 audit neither created the jump nor renumbered
+   anything.
+
+   **Point 9 is real — it just lives in the OTHER document.** `cron_daily_runtime.txt`
+   STEP 4.5 **point 9** is the AI-SLOP PATTERN CHECK (seven named hollow-phrasing
+   patterns). It is live and enforced: `ai_slop_pattern_check` is one of the ten
+   `SEMANTIC_QA_CHECK_KEYS`, commented "runtime STEP 4.5 point 9" at
+   `validators/validate_dual_package.py:304`. This law's own line 48 already attributes
+   point 9 to the runtime explicitly — the two documents WERE correctly distinguished at
+   the time of writing.
+
+   **REVISED READING of the dangling Law #158 citation (supersedes and retires the
+   earlier point-6 guess).** Law #158 cites "Law #149 point 9's enumerated-pattern
+   approach" as the model for `BANNED_COMPARATIVE_LANGUAGE`. The strongest candidate is
+   the **runtime's STEP 4.5 point 9**, with the source document mislabelled — that point
+   is literally an enumerated seven-pattern list, which is exactly the
+   "enumerated-pattern approach" being invoked. Point 6 (the fragment budget) is no
+   longer considered the likely referent.
+   **This is the best available reading, NOT a certainty — owner confirmation is still
+   required before it is treated as settled.**
+
+   **WHY THIS IS AN EASY MISTAKE (and why bare "point N" is unsafe here):** the runtime's
+   STEP 4.5 points and this law's points are two separate sequences that cross-cite each
+   other by number, and they are near-misses rather than aligned:
+     - runtime point 8   -> cites Law #149 **point 1**
+     - runtime point 9   -> **no** Law #149 counterpart (the phantom)
+     - runtime point 9.8 -> cites Law #149 **point 8**
+     - runtime point 9.9 -> cites Law #149 **point 10**
+   The runtime also carries sub-points 9.5, 9.6, 9.7, 9.8 and 9.9. Always name the
+   document in a cross-reference — binding convention recorded in
+   `cron_daily_runtime.txt`'s STEP 4.5 preamble.
+
+   **CROSS-SESSION NOTE:** an earlier session numbered a new rule "10" to avoid colliding
+   with "point 9", believing point 9 to be a clause of THIS law. The outcome was correct
+   (10 was the right next number, because 9 was skipped) but the reasoning rested on a
+   false premise. Recorded so the numbering decision is not later re-derived from that
+   same false premise.
 
 10. THE CLOSER QUESTION MUST NOT BE ONE THE VO'S OWN BODY ALREADY ANSWERED (added August 8,
     2026). Distinct from point 8 (which catches abstract, noun-swappable A-or-B debate frames that
