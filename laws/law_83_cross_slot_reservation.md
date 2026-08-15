@@ -1,8 +1,34 @@
 # Law #83 — Morning Slot Reservation + Cross-Slot Conflict Check
 
-**Status:** ACTIVE
+> **SUPERSEDED / INERT as of 2026-07-15 — marker added 2026-08-15 during a law audit.
+> Original text below preserved unchanged.**
+>
+> **The mechanism this law exists to protect no longer exists.** Law #83 solves a race
+> between TWO simultaneously-firing crons: the morning cron writes a `RESERVED` entry so
+> the evening cron can pull it and pick a different show. **Law #139 (2026-07-15)
+> collapsed both slots into ONE `daily_combined` run** that selects both ideas in a
+> single model context — so there is no second cron to race with, and nothing to reserve
+> against. The morning cron `d43ab889` named in the header line below, and the evening
+> cron `57a3c92e` this law deconflicts against, are both retired.
+>
+> **DO NOT execute the STEP 1 / STEP 4B Python below.** Beyond being unnecessary, it
+> writes to `/home/user/workspace/sent_scripts_log.json` — a path that does not exist in
+> this repo-based layout (see the workspace-path note further down) — and it appends
+> `status: "reserved"` rows to the live send log, which the weekly analytics cron reads.
+>
+> **What still applies, and where it lives now:** the *same-day same-show ban* and the
+> cross-slot diversity requirement this law protected are preserved in Law #139 §4 and
+> enforced by `validators/validate_dual_package.py`'s distinct-shows / distinct-formats
+> checks — a package pair that repeats a show now fails validation outright, which is a
+> stronger guarantee than the reservation handshake ever provided.
+>
+> Kept rather than deleted for the historical record and because the reasoning still
+> documents *why* same-day duplication is unacceptable.
+
+**Status:** ~~ACTIVE~~ **SUPERSEDED by Law #139 (2026-07-15)** — see banner above.
 **Added:** June 2026
-**Applies to:** Morning cron runtime (d43ab889) — STEP 1
+**Applies to:** ~~Morning cron runtime (d43ab889) — STEP 1~~ — retired cron; no current
+runtime executes this law. [Cron ID and applicability corrected 2026-08-15.]
 
 ## Rule
 
