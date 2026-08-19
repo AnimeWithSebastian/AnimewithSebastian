@@ -61,7 +61,7 @@ def load_json(path: str) -> dict:
 
 def failed_names(manifest: dict) -> list[str]:
     r = v.validate_manifest(manifest)
-    return [name for name, ok, _ in r.checks if not ok]
+    return [name for name, ok, _ in r.checks if ok == "FAIL"]
 
 
 class TestValidDualPackage(unittest.TestCase):
@@ -128,7 +128,7 @@ class TestCrashInsteadOfCleanFailFixes(unittest.TestCase):
     def assertFailsCleanly(self, manifest: dict, needle: str):
         # must not raise -- that IS the regression being guarded against
         r = v.validate_manifest(manifest)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(any(needle in n for n in names),
                         msg=f"expected a clean failure containing {needle!r}; got failures={names}")
         self.assertFalse(r.ok)
@@ -160,7 +160,7 @@ class TestCrashInsteadOfCleanFailFixes(unittest.TestCase):
         m["packages"][0]["content_type"] = "short"
         r = v.validate_manifest(m)
         content_type_failures = [n for n, ok, _ in r.checks
-                                 if not ok and "content_type is 'short'" in n]
+                                 if ok == "FAIL" and "content_type is 'short'" in n]
         self.assertEqual(content_type_failures, [])
 
 
@@ -956,15 +956,21 @@ class TestSemanticQA(unittest.TestCase):
         m["packages"][0]["semantic_qa"]["audited_before_return"] = False
         self.assertFailsOn(m, "audited_before_return attested true")
 
+    # NEEDLE UPDATED 2026-08-16 (VO-handoff split), not weakened. The single
+    # "semantic_qa.checks all attested true" check was split into a VO-independent
+    # half (always enforced) and a VO-dependent half (skipped only when
+    # vo_status == 'pending'). These tests still assert a real FAIL on the same
+    # mutated key -- only the check's NAME changed, so the needle follows it to
+    # whichever half owns that key.
     def test_missing_check_flag_rejected(self):
         m = load_valid()
         m["packages"][0]["semantic_qa"]["checks"].pop("hook_claim_coverage", None)
-        self.assertFailsOn(m, "semantic_qa.checks all attested true")
+        self.assertFailsOn(m, "semantic_qa.checks VO-dependent attested true")
 
     def test_false_check_flag_rejected(self):
         m = load_valid()
         m["packages"][1]["semantic_qa"]["checks"]["clip_timing_tiling"] = False
-        self.assertFailsOn(m, "semantic_qa.checks all attested true")
+        self.assertFailsOn(m, "semantic_qa.checks VO-independent attested true")
 
     # test_readaloud_mismatch_rejected REMOVED (2026-07-27, Law #141 rescission) --
     # final_to_opening_readaloud is no longer checked; a mismatch (or its absence) no
@@ -1123,22 +1129,22 @@ class TestHookClaimCoverageAndNumericCrossCheck(unittest.TestCase):
     def test_missing_hook_claim_coverage_check_flag_rejected(self):
         m = load_valid()
         m["packages"][0]["semantic_qa"]["checks"].pop("hook_claim_coverage", None)
-        self.assertFailsOn(m, "semantic_qa.checks all attested true")
+        self.assertFailsOn(m, "semantic_qa.checks VO-dependent attested true")
 
     def test_false_hook_claim_coverage_check_flag_rejected(self):
         m = load_valid()
         m["packages"][1]["semantic_qa"]["checks"]["hook_claim_coverage"] = False
-        self.assertFailsOn(m, "semantic_qa.checks all attested true")
+        self.assertFailsOn(m, "semantic_qa.checks VO-dependent attested true")
 
     def test_missing_numeric_cross_check_flag_rejected(self):
         m = load_valid()
         m["packages"][0]["semantic_qa"]["checks"].pop("numeric_cross_check", None)
-        self.assertFailsOn(m, "semantic_qa.checks all attested true")
+        self.assertFailsOn(m, "semantic_qa.checks VO-dependent attested true")
 
     def test_false_numeric_cross_check_flag_rejected(self):
         m = load_valid()
         m["packages"][1]["semantic_qa"]["checks"]["numeric_cross_check"] = False
-        self.assertFailsOn(m, "semantic_qa.checks all attested true")
+        self.assertFailsOn(m, "semantic_qa.checks VO-dependent attested true")
 
     # test_hook_and_loop_anchors_can_be_the_same_entry_if_it_is_both REMOVED
     # (2026-07-27, Law #141 rescission) -- there is no longer a separate loop-anchor
@@ -1154,7 +1160,7 @@ class TestClipVerificationLaw73(unittest.TestCase):
     def assertFailsCleanly(self, manifest: dict, needle: str):
         # must not raise -- that IS the regression being guarded against
         r = v.validate_manifest(manifest)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(any(needle in n for n in names),
                         msg=f"expected a clean failure containing {needle!r}; got failures={names}")
         self.assertFalse(r.ok)
@@ -1214,7 +1220,7 @@ class TestClipVerificationLaw73(unittest.TestCase):
             "clip-level video source located this pass."
         )
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     def test_scene_verified_false_empty_verification_note_still_fails_cleanly(self):
@@ -1256,7 +1262,7 @@ class TestFootageStatusLaw73Update8(unittest.TestCase):
 
     def assertFailsCleanly(self, manifest: dict, needle: str):
         r = v.validate_manifest(manifest)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(any(needle in n for n in names),
                         msg=f"expected a clean failure containing {needle!r}; got failures={names}")
         self.assertFalse(r.ok)
@@ -1310,7 +1316,7 @@ class TestFootageStatusLaw73Update8(unittest.TestCase):
         clip["footage_status"] = "aired_and_located"
         clip["footage_search_performed"] = self._valid_footage_search_performed()
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     def test_footage_status_unaired_trailer_only_passes(self):
@@ -1319,7 +1325,7 @@ class TestFootageStatusLaw73Update8(unittest.TestCase):
         clip["footage_status"] = "unaired_trailer_only"
         clip["footage_search_performed"] = self._valid_footage_search_performed()
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     def test_footage_status_unaired_no_footage_passes(self):
@@ -1328,7 +1334,7 @@ class TestFootageStatusLaw73Update8(unittest.TestCase):
         clip["footage_status"] = "unaired_no_footage"
         clip["footage_search_performed"] = self._valid_footage_search_performed()
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     # --- footage_status enum: aired_not_located HARD-BLOCKS ---
@@ -1417,7 +1423,7 @@ class TestFootageStatusLaw73Update8(unittest.TestCase):
             "channel; no matching clip-level source found for this beat."
         )
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     def test_footage_search_performed_case_insensitive_match_passes(self):
@@ -1426,7 +1432,7 @@ class TestFootageStatusLaw73Update8(unittest.TestCase):
         clip["footage_status"] = "unaired_no_footage"
         clip["footage_search_performed"] = "SEARCHED YOUTUBE, no matching clip located."
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     def test_footage_search_performed_sentence_initial_x_dot_com_passes(self):
@@ -1448,7 +1454,7 @@ class TestFootageStatusLaw73Update8(unittest.TestCase):
             "clip-level video source located this pass."
         )
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     # --- location_pointer: optional, shape-checked when present ---
@@ -1460,7 +1466,7 @@ class TestFootageStatusLaw73Update8(unittest.TestCase):
         clip["footage_search_performed"] = self._valid_footage_search_performed()
         clip.pop("location_pointer", None)
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     def test_location_pointer_missing_url_fails_cleanly(self):
@@ -1517,7 +1523,7 @@ class TestFootageStatusLaw73Update8(unittest.TestCase):
             "description": "The same official upload already listed in this package's sources.",
         }
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     def test_location_pointer_url_matches_listed_source_case_and_whitespace_insensitively(self):
@@ -1536,7 +1542,7 @@ class TestFootageStatusLaw73Update8(unittest.TestCase):
             "description": "Same upload, different case/whitespace than the sources[] entry.",
         }
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     def test_multiple_unverified_clips_each_independently_checked_for_footage_status(self):
@@ -1564,12 +1570,12 @@ class TestFootageStatusLaw73Update8(unittest.TestCase):
         clip1.pop("footage_status", None)
         clip1["footage_search_performed"] = self._valid_footage_search_performed()
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         matches = [n for n in names_failed if "footage_status present and a valid enum value" in n]
         self.assertEqual(len(matches), 1, msg=f"expected exactly one footage_status failure line; got {matches}")
         # the detail string embeds the 1-based clip index list -- clip1 is
         # index 1 (0-based) in the clips array, so it must be reported as [2].
-        detail = [detail for name, ok, detail in r.checks if not ok and "footage_status present and a valid enum value" in name][0]
+        detail = [detail for name, ok, detail in r.checks if ok == "FAIL" and "footage_status present and a valid enum value" in name][0]
         self.assertIn("[2]", detail, msg=f"expected clip index 2 (1-based) flagged; got detail={detail!r}")
 
 
@@ -1584,7 +1590,7 @@ class TestClaimVsSourceCheckAndStoryPointGateLaw73Update4(unittest.TestCase):
 
     def assertFailsCleanly(self, manifest: dict, needle: str):
         r = v.validate_manifest(manifest)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(any(needle in n for n in names),
                         msg=f"expected a clean failure containing {needle!r}; got failures={names}")
         self.assertFalse(r.ok)
@@ -1606,7 +1612,7 @@ class TestClaimVsSourceCheckAndStoryPointGateLaw73Update4(unittest.TestCase):
         clip.pop("verification_note", None)
         clip["claim_vs_source_check"] = self._valid_cvsc()
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     # 2. scene_verified=true, claim_vs_source_check missing entirely -- fails.
@@ -1654,7 +1660,7 @@ class TestClaimVsSourceCheckAndStoryPointGateLaw73Update4(unittest.TestCase):
         cvsc["match"] = False  # well-formed shape, but internally contradictory
         clip["claim_vs_source_check"] = cvsc
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertFalse(r.ok)
         # must fail the contradiction check specifically...
         self.assertTrue(
@@ -1672,7 +1678,7 @@ class TestClaimVsSourceCheckAndStoryPointGateLaw73Update4(unittest.TestCase):
         m = load_valid()
         self.assertNotIn("story_point_gate", m["packages"][0])
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
         gate_checks = [name for name, ok, _ in r.checks if "story_point_gate" in name]
         self.assertEqual(gate_checks, [], msg=f"expected no story_point_gate check attempted when field absent; got {gate_checks}")
@@ -1685,7 +1691,7 @@ class TestClaimVsSourceCheckAndStoryPointGateLaw73Update4(unittest.TestCase):
             "checked_via": "https://example.com/official-episode-list-checked-this-session",
         }
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     # 7. story_point_gate present but malformed -- fails, both variants.
@@ -1825,7 +1831,7 @@ class TestRealSakamotoDaysBlueBoxManifestLaw73Update4(unittest.TestCase):
         sakamoto_slot_prefix = f"[{pkg.get('slot')}]"
         failed_update4_for_sakamoto = [
             name for name, ok, _ in r.checks
-            if not ok and "UPDATE 4" in name and name.startswith(sakamoto_slot_prefix)
+            if ok == "FAIL" and "UPDATE 4" in name and name.startswith(sakamoto_slot_prefix)
         ]
         self.assertEqual(failed_update4_for_sakamoto, [],
                           msg=f"expected zero Update 4 failures scoped to the Sakamoto Days ({pkg.get('slot')}) package; got {failed_update4_for_sakamoto}")
@@ -1857,7 +1863,7 @@ class TestRealSakamotoDaysBlueBoxManifestLaw73Update4(unittest.TestCase):
         blue_box_slot_prefix = f"[{pkg.get('slot')}]"
         failed = [
             name for name, ok, _ in r.checks
-            if not ok and name.startswith(blue_box_slot_prefix)
+            if ok == "FAIL" and name.startswith(blue_box_slot_prefix)
         ]
         # EXPECTED failure: exactly the new presence/shape check, for exactly
         # this reason. This is intended, forward-looking enforcement -- not a
@@ -1887,7 +1893,7 @@ class TestTheatricalFilmReleaseDelayLaw73_3B(unittest.TestCase):
     def assertFailsCleanly(self, manifest: dict, needle: str):
         # must not raise -- that IS the regression being guarded against
         r = v.validate_manifest(manifest)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(any(needle in n for n in names),
                         msg=f"expected a clean failure containing {needle!r}; got failures={names}")
         self.assertFalse(r.ok)
@@ -1914,7 +1920,7 @@ class TestTheatricalFilmReleaseDelayLaw73_3B(unittest.TestCase):
         m["packages"][0]["clip_plan_needs_release_delay"] = True
         m["packages"][0]["film_release_gap_note"] = "theatrical-only as of run date, no home/streaming release yet"
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     def test_release_delay_false_gap_note_not_required(self):
@@ -1922,7 +1928,7 @@ class TestTheatricalFilmReleaseDelayLaw73_3B(unittest.TestCase):
         m["packages"][0]["clip_plan_needs_release_delay"] = False
         m["packages"][0].pop("film_release_gap_note", None)
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     def test_release_delay_absent_no_check_attempted_existing_fixtures_unaffected(self):
@@ -1933,7 +1939,7 @@ class TestTheatricalFilmReleaseDelayLaw73_3B(unittest.TestCase):
         self.assertNotIn("clip_plan_needs_release_delay", m["packages"][0])
         self.assertNotIn("film_release_gap_note", m["packages"][0])
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
         release_delay_checks = [name for name, ok, _ in r.checks if "clip_plan_needs_release_delay" in name or "film_release_gap_note" in name]
         self.assertEqual(release_delay_checks, [], msg=f"expected no 3B checks attempted when field absent; got {release_delay_checks}")
@@ -2001,7 +2007,7 @@ class TestClipCountFloorRemovedF22(unittest.TestCase):
         m = load_valid()
         self._retile(m, [7, 13, 10])
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     def test_valid_2cut_manifest_also_passes_no_arbitrary_floor(self):
@@ -2010,7 +2016,7 @@ class TestClipCountFloorRemovedF22(unittest.TestCase):
         m = load_valid()
         self._retile(m, [15, 15])
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     def test_empty_clips_still_fails_cleanly_no_new_hole(self):
@@ -2019,7 +2025,7 @@ class TestClipCountFloorRemovedF22(unittest.TestCase):
         m = load_valid()
         m["packages"][0]["clips"] = []
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(any("clip plan is non-empty" in n for n in names),
                         msg=f"expected a clean failure containing 'clip plan is non-empty'; got failures={names}")
         self.assertFalse(r.ok)
@@ -2037,7 +2043,7 @@ class TestFormatTypeEnumLaw85Law96WatchRank(unittest.TestCase):
     def assertFailsCleanly(self, manifest: dict, needle: str):
         # must not raise -- that IS the regression being guarded against
         r = v.validate_manifest(manifest)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(any(needle in n for n in names),
                         msg=f"expected a clean failure containing {needle!r}; got failures={names}")
         self.assertFalse(r.ok)
@@ -2078,7 +2084,7 @@ class TestFormatTypeEnumLaw85Law96WatchRank(unittest.TestCase):
         # would violate the distinct-formats check, so confirm this specific check passes
         # rather than asserting the whole manifest is ok
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertNotIn("[morning] format_type is one of the controlled tokens",
                           [n for n in names_failed if "controlled tokens" in n])
 
@@ -2088,7 +2094,7 @@ class TestFormatTypeEnumLaw85Law96WatchRank(unittest.TestCase):
         # controlled-token failure is raised for it specifically
         r = v.validate_manifest(m)
         token_failures = [name for name, ok, _ in r.checks
-                           if not ok and "controlled tokens" in name]
+                           if ok == "FAIL" and "controlled tokens" in name]
         self.assertEqual(token_failures, [], f"unexpected token failures: {token_failures}")
 
     def test_law_98_unported_formats_rejected(self):
@@ -2110,7 +2116,7 @@ class TestFormatTypeEnumLaw85Law96WatchRank(unittest.TestCase):
                 m["packages"][0]["format_type"] = tok
                 r = v.validate_manifest(m)
                 token_failures = [name for name, ok, _ in r.checks
-                                   if not ok and "controlled tokens" in name]
+                                   if ok == "FAIL" and "controlled tokens" in name]
                 self.assertEqual(token_failures, [], f"unexpected token failures: {token_failures}")
 
 
@@ -2364,7 +2370,7 @@ class TestClipLocateGroundingLaw73Update5(unittest.TestCase):
 
     def assertFailsCleanly(self, manifest: dict, needle: str):
         r = v.validate_manifest(manifest)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(any(needle in n for n in names),
                         msg=f"expected a clean failure containing {needle!r}; got failures={names}")
         self.assertFalse(r.ok)
@@ -2439,7 +2445,7 @@ class TestClipLocateGroundingLaw73Update5(unittest.TestCase):
         clip["clip_locate"] = self._valid_clip_locate()
         self._sync_clip_descriptions(m)
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     # 2. scene_verified=true, clip_locate missing entirely -- fails.
@@ -2470,7 +2476,7 @@ class TestClipLocateGroundingLaw73Update5(unittest.TestCase):
         clip["clip_locate"] = self._valid_clip_locate(episode=16, via_text="the same official episode 16 transcript cited above")
         self._sync_clip_descriptions(m)
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
 
     # 5. mismatched episode tokens in both fields -- fails, and the failure
@@ -2482,7 +2488,7 @@ class TestClipLocateGroundingLaw73Update5(unittest.TestCase):
         clip["claim_vs_source_check"] = self._valid_cvsc(episode_text="episode 16")
         clip["clip_locate"] = self._valid_clip_locate(episode=17, via_text="the same official episode 17 transcript cited above")
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertFalse(r.ok)
         self.assertTrue(
             any("clip_locate episode number does not contradict claim_vs_source_check when both state one" in n
@@ -2507,7 +2513,7 @@ class TestClipLocateGroundingLaw73Update5(unittest.TestCase):
         clip["clip_locate"] = self._valid_clip_locate(episode=16, via_text="the same official transcript cited above, which does not itself state an episode number in prose")
         self._sync_clip_descriptions(m)
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass (cross-check silently skipped, no other issues); got failures={names}")
         # The cross-check name itself is still present in the checks list (it always
         # runs, once per package -- [morning] here is the clip under test), but
@@ -2515,8 +2521,8 @@ class TestClipLocateGroundingLaw73Update5(unittest.TestCase):
         morning_cross_check_results = [ok for name, ok, _ in r.checks
                                         if name.startswith("[morning]")
                                         and "clip_locate episode number does not contradict claim_vs_source_check when both state one" in name]
-        self.assertEqual(morning_cross_check_results, [True],
-                          msg="cross-check must report ok=True when skipped, not silently absent or failing")
+        self.assertEqual(morning_cross_check_results, [v.STATUS_PASS],
+                          msg="cross-check must report PASS when skipped, not silently absent or failing")
 
     # 7. locate_confirmed_via as a bare URL must fail the shape check --
     #    the field's own spec requires "one sentence" naming how the same
@@ -2604,7 +2610,7 @@ class TestClipDescriptionsSurfaceLocationLaw73Update6(unittest.TestCase):
         ]
         pkg["clip_descriptions"] = self._five_cut_text(tag_cut_3="S1E10")
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(r.ok, msg=f"expected pass; got failures={names}")
         passing_names = [name for name, ok, _ in r.checks if ok and self.CHECK_NAME in name]
         self.assertTrue(any("[morning]" in n for n in passing_names),
@@ -2625,7 +2631,7 @@ class TestClipDescriptionsSurfaceLocationLaw73Update6(unittest.TestCase):
         # CUT3's segment carries no location token at all -- omitted.
         pkg["clip_descriptions"] = self._five_cut_text(tag_cut_3=None)
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertFalse(r.ok)
         matching = [n for n in names_failed if self.CHECK_NAME in n and "[morning]" in n]
         self.assertTrue(matching, msg=f"expected the UPDATE 6 check to fail for morning; got failures={names_failed}")
@@ -2647,7 +2653,7 @@ class TestClipDescriptionsSurfaceLocationLaw73Update6(unittest.TestCase):
             "CUT5: Frieren, resolved and merciless, declares she will kill Aura.",
         ])
         r = v.validate_manifest(m)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         update6_failed = [n for n in names if self.CHECK_NAME in n]
         self.assertEqual(update6_failed, [], msg=f"UPDATE 6 check must not fail when no clip is scene_verified=true; got failures={names}")
 
@@ -2679,7 +2685,7 @@ class TestClipDescriptionsSurfaceLocationLaw73Update6(unittest.TestCase):
             "CUT5: Frieren, resolved and merciless, declares she will kill Aura. \u2014 S1E9.",
         ])
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertFalse(r.ok)
         matching = [n for n in names_failed if self.CHECK_NAME in n and "[morning]" in n]
         self.assertTrue(matching, msg=f"expected the UPDATE 6 check to fail closed on an over-split; got failures={names_failed}")
@@ -2687,6 +2693,161 @@ class TestClipDescriptionsSurfaceLocationLaw73Update6(unittest.TestCase):
         self.assertIn("does not match", detail, msg=f"expected a segment-count-mismatch message, not a per-cut mismap; got {detail!r}")
 
 
+
+
+class TestVoPendingSkipBehavior(unittest.TestCase):
+    """vo_status="pending" -- the Perplexity -> Claude VO handoff draft stage.
+
+    Added 2026-08-16. The contract under test: VO-dependent checks SKIP, everything
+    else still runs and attests for real, and a skipped manifest is never sendable.
+    """
+
+    def _pending(self):
+        """Valid fixture with the evening package flipped to vo_status=pending."""
+        m = load_valid()
+        m["packages"][1]["vo_status"] = "pending"
+        return m
+
+    @staticmethod
+    def _statuses(r):
+        return {name: status for name, status, _ in r.checks}
+
+    # --- the five VO-dependent semantic_qa keys skip; the five others do not --------
+    def test_vo_dependent_qa_half_skips_and_independent_half_still_runs(self):
+        r = v.validate_manifest(self._pending())
+        st = self._statuses(r)
+        dep = [n for n in st if "VO-dependent attested true" in n and n.startswith("[evening]")]
+        indep = [n for n in st if "VO-independent attested true" in n and n.startswith("[evening]")]
+        self.assertEqual(len(dep), 1)
+        self.assertEqual(len(indep), 1)
+        self.assertEqual(st[dep[0]], v.STATUS_SKIP)
+        self.assertEqual(st[indep[0]], v.STATUS_PASS,
+                         "VO-independent attestations must still be enforced for real")
+
+    def test_key_partition_is_five_and_five_derived_not_hardcoded(self):
+        self.assertEqual(len(v.VO_DEPENDENT_QA_KEYS), 5)
+        self.assertEqual(len(v.VO_INDEPENDENT_QA_KEYS), 5)
+        # derived by subtraction: no key may be lost or duplicated
+        self.assertEqual(set(v.VO_DEPENDENT_QA_KEYS) | set(v.VO_INDEPENDENT_QA_KEYS),
+                         set(v.SEMANTIC_QA_CHECK_KEYS))
+        self.assertEqual(set(v.VO_DEPENDENT_QA_KEYS) & set(v.VO_INDEPENDENT_QA_KEYS), set())
+
+    # --- the six VO-dependent mechanical checks skip --------------------------------
+    def test_all_six_vo_dependent_mechanical_checks_skip(self):
+        r = v.validate_manifest(self._pending())
+        st = self._statuses(r)
+        needles = [
+            "vo_word_count matches VO text",
+            "words",                                   # the VO word-band check
+            "in VO",                                   # question+CTA contiguity
+            "exact CTA phrase present in VO",
+            "opening_sentence is the VO's exact first sentence",
+            "VO contains no banned word",
+            "hook_line equals opening_sentence",
+        ]
+        for needle in needles:
+            hits = [n for n in st if n.startswith("[evening]") and needle in n]
+            self.assertTrue(hits, f"no evening check matching {needle!r}")
+            for n in hits:
+                self.assertEqual(st[n], v.STATUS_SKIP,
+                                 f"{n} should SKIP while vo_status=pending")
+
+    def test_structural_checks_still_pass_for_real_on_a_pending_package(self):
+        r = v.validate_manifest(self._pending())
+        st = self._statuses(r)
+        # a representative spread of non-VO checks must still be PASS, not SKIP
+        for needle in ("format_type is one of the controlled tokens",
+                       "clip timings tile", "YouTube title within",
+                       "recipient is exactly", "sources"):
+            hits = [n for n in st if needle in n]
+            if hits:
+                self.assertNotIn(v.STATUS_SKIP, [st[n] for n in hits],
+                                 f"{needle!r} must not be skipped -- it does not read the VO")
+
+    # --- ok vs fully_passed ---------------------------------------------------------
+    def test_pending_manifest_is_ok_but_not_fully_passed(self):
+        r = v.validate_manifest(self._pending())
+        self.assertTrue(r.ok, f"no real failures expected; got {r.failures()}")
+        self.assertFalse(r.fully_passed, "skips must keep fully_passed False")
+        self.assertTrue(r.skips())
+
+    def test_complete_manifest_is_both_ok_and_fully_passed(self):
+        r = v.validate_manifest(load_valid())
+        self.assertTrue(r.ok)
+        self.assertTrue(r.fully_passed, "a clean complete manifest must be fully_passed")
+        self.assertEqual(r.skips(), [])
+
+    # --- default and malformed values -----------------------------------------------
+    def test_absent_vo_status_defaults_to_complete_and_enforces_everything(self):
+        m = load_valid()
+        for pkg in m["packages"]:
+            pkg.pop("vo_status", None)
+        r = v.validate_manifest(m)
+        self.assertEqual(r.skips(), [], "absent vo_status must mean full enforcement")
+        self.assertTrue(r.fully_passed)
+
+    # Every malformed shape must FAIL the enum check AND buy zero skips. Looped
+    # rather than spot-checked because "pending" is the only value that unlocks
+    # skipping: anything that is merely pending-ish must not, and a near-miss
+    # (case, whitespace, typo) is exactly how that would regress unnoticed.
+    MALFORMED_VO_STATUS = (
+        ("wrong case", "PENDING"),
+        ("surrounding whitespace", " pending "),
+        ("typo", "pendign"),
+        ("non-string int", 1),
+        ("None", None),
+        ("bool True", True),          # note: True is not a str, and must not pass
+        ("empty string", ""),
+        ("unrelated word", "draft"),
+    )
+
+    def test_malformed_vo_status_fails_and_buys_no_skips(self):
+        for label, bad in self.MALFORMED_VO_STATUS:
+            with self.subTest(value=label):
+                m = load_valid()
+                m["packages"][1]["vo_status"] = bad
+                r = v.validate_manifest(m)
+                names = [n for n, s, _ in r.checks if s == v.STATUS_FAIL]
+                self.assertTrue(any("vo_status is one of" in n for n in names),
+                                f"{label}: expected a vo_status failure; got {names}")
+                self.assertEqual(r.skips(), [],
+                                 f"{label}: a malformed vo_status must never buy "
+                                 f"VO-dependent skips")
+
+    def test_only_exact_pending_unlocks_skipping(self):
+        # The positive half of the guard above: the ONE value that must work.
+        m = load_valid()
+        m["packages"][1]["vo_status"] = "pending"
+        r = v.validate_manifest(m)
+        self.assertTrue(r.skips(), "exact 'pending' must unlock VO-dependent skips")
+        self.assertFalse(any("vo_status is one of" in n
+                             for n, s, _ in r.checks if s == v.STATUS_FAIL),
+                         "'pending' is a valid enum value and must not fail the check")
+
+    # --- exit codes -----------------------------------------------------------------
+    def test_exit_code_three_for_partial_and_zero_for_complete(self):
+        import json as _json, tempfile as _tf, os as _os
+        d = _tf.mkdtemp()
+        pend = _os.path.join(d, "pending.json")
+        comp = _os.path.join(d, "complete.json")
+        with open(pend, "w", encoding="utf-8") as fh:
+            _json.dump(self._pending(), fh)
+        with open(comp, "w", encoding="utf-8") as fh:
+            _json.dump(load_valid(), fh)
+        self.assertEqual(v.main(["prog", pend]), 3, "PARTIAL must exit 3, not 0 or 1")
+        self.assertEqual(v.main(["prog", comp]), 0, "fully_passed must exit 0")
+
+    def test_report_shows_skip_and_partial_verdict(self):
+        r = v.validate_manifest(self._pending())
+        out = v.format_report(r)
+        self.assertIn("[SKIP]", out)
+        self.assertIn("PARTIAL", out)
+        # NB: the PARTIAL verdict legitimately contains the substring "cleared to
+        # send" as part of "NOT cleared to send", so assert on the POSITIVE clearance
+        # string specifically rather than the substring.
+        self.assertNotIn("PASS — cleared to send", out,
+                         "a PARTIAL report must never carry the positive send clearance")
+        self.assertIn("NOT cleared to send", out)
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
@@ -3005,7 +3166,7 @@ class TestFormatTypeEnumLaw158Law159Law160(unittest.TestCase):
 
     def assertFailsCleanly(self, manifest: dict, needle: str):
         r = v.validate_manifest(manifest)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(any(needle in n for n in names),
                         msg=f"expected a clean failure containing {needle!r}; got failures={names}")
         self.assertFalse(r.ok)
@@ -3060,7 +3221,7 @@ class TestWorthWatchingComparativeLanguageLaw158(unittest.TestCase):
 
     def assertFailsCleanly(self, manifest: dict, needle: str):
         r = v.validate_manifest(manifest)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(any(needle in n for n in names),
                         msg=f"expected a clean failure containing {needle!r}; got failures={names}")
         self.assertFalse(r.ok)
@@ -3069,7 +3230,7 @@ class TestWorthWatchingComparativeLanguageLaw158(unittest.TestCase):
         m = load_valid()
         m["packages"][0] = _make_worth_watching_package(m["packages"][0])
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         comp_failures = [n for n in names_failed if "Law #158" in n]
         self.assertEqual(comp_failures, [], f"unexpected Law #158 failures: {comp_failures}")
 
@@ -3119,7 +3280,7 @@ class TestWorthWatchingComparativeLanguageLaw158(unittest.TestCase):
         self.assertNotEqual(m["packages"][0]["format_type"], "WORTH_WATCHING")
         m["packages"][0]["vo"] = m["packages"][0]["vo"] + " This is better than the last season."
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         comp_failures = [n for n in names_failed if "Law #158" in n]
         self.assertEqual(comp_failures, [], f"comparative check should not fire for non-WORTH_WATCHING: {comp_failures}")
 
@@ -3145,7 +3306,7 @@ class TestWorthWatchingComparativeLanguageLaw158(unittest.TestCase):
         pkg["vo"] = pkg["vo"] + " " + phrase
         m["packages"][0] = pkg
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         comp_failures = [n for n in names_failed if "Law #158" in n]
         self.assertEqual(comp_failures, [], f"innocent phrase {phrase!r} incorrectly triggered Law #158: {comp_failures}")
 
@@ -3301,7 +3462,7 @@ class TestSeasonRoundupClipSourcingLaw159(unittest.TestCase):
 
     def assertFailsCleanly(self, manifest: dict, needle: str):
         r = v.validate_manifest(manifest)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(any(needle in n for n in names),
                         msg=f"expected a clean failure containing {needle!r}; got failures={names}")
         self.assertFalse(r.ok)
@@ -3310,7 +3471,7 @@ class TestSeasonRoundupClipSourcingLaw159(unittest.TestCase):
         m = load_valid()
         m["packages"][0] = _make_season_roundup_package(m["packages"][0], ["anime", "anime"])
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         law159_failures = [n for n in names_failed if "Law #159" in n]
         self.assertEqual(law159_failures, [], f"unexpected Law #159 failures: {law159_failures}")
 
@@ -3318,7 +3479,7 @@ class TestSeasonRoundupClipSourcingLaw159(unittest.TestCase):
         m = load_valid()
         m["packages"][0] = _make_season_roundup_package(m["packages"][0], ["manga", "manga"])
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         law159_failures = [n for n in names_failed if "Law #159" in n]
         self.assertEqual(law159_failures, [], f"unexpected Law #159 failures: {law159_failures}")
 
@@ -3326,7 +3487,7 @@ class TestSeasonRoundupClipSourcingLaw159(unittest.TestCase):
         m = load_valid()
         m["packages"][0] = _make_season_roundup_package(m["packages"][0], ["trailer", "trailer"])
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         law159_failures = [n for n in names_failed if "Law #159" in n]
         self.assertEqual(law159_failures, [], f"unexpected Law #159 failures: {law159_failures}")
 
@@ -3344,7 +3505,7 @@ class TestSeasonRoundupClipSourcingLaw159(unittest.TestCase):
         ]
         m["packages"][0] = pkg
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         law159_failures = [n for n in names_failed if "Law #159" in n]
         self.assertEqual(law159_failures, [], f"unexpected Law #159 failures: {law159_failures}")
 
@@ -3444,7 +3605,7 @@ class TestSeasonRoundupClipSourcingLaw159(unittest.TestCase):
         del pkg["clips"][0]["clip_locate"]
         m["packages"][0] = pkg
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(
             any("clip_locate present and well-formed" in n for n in names_failed),
             msg=f"expected clip_locate check to fail; got failures={names_failed}")
@@ -3459,7 +3620,7 @@ class TestSeasonRoundupClipSourcingLaw159(unittest.TestCase):
         m = load_valid()
         m["packages"][0] = _make_season_roundup_package(m["packages"][0], ["manga", "trailer"])
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         clip_locate_failures = [n for n in names_failed if "clip_locate present and well-formed" in n]
         self.assertEqual(clip_locate_failures, [], f"manga/trailer clips should not trigger clip_locate check: {clip_locate_failures}")
 
@@ -3598,7 +3759,7 @@ class TestEpisodeSourceDisclosureLaw167(unittest.TestCase):
         # deliberately no episode_source key
         clip["clip_locate"] = cl
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertFalse(r.ok)
         self.assertTrue(
             any("clip_locate present and well-formed wherever scene_verified is true" in n for n in names_failed),
@@ -3639,7 +3800,7 @@ class TestTheorySpeculationLaw160(unittest.TestCase):
 
     def assertFailsCleanly(self, manifest: dict, needle: str):
         r = v.validate_manifest(manifest)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(any(needle in n for n in names),
                         msg=f"expected a clean failure containing {needle!r}; got failures={names}")
         self.assertFalse(r.ok)
@@ -3650,7 +3811,7 @@ class TestTheorySpeculationLaw160(unittest.TestCase):
         m = load_valid()
         m["packages"][0] = _make_theory_speculation_package(m["packages"][0])
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         law160_failures = [n for n in names_failed if "Law #160" in n]
         self.assertEqual(law160_failures, [], f"unexpected Law #160 failures: {law160_failures}")
 
@@ -3745,7 +3906,7 @@ class TestTheorySpeculationLaw160(unittest.TestCase):
         self.assertNotEqual(m["packages"][0]["format_type"], "THEORY_SPECULATION")
         m["packages"][0]["vo"] = m["packages"][0]["vo"] + " This is confirmed by the official site."
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         law160_failures = [n for n in names_failed if "Law #160" in n]
         self.assertEqual(law160_failures, [], f"Law #160 checks should not fire for non-THEORY_SPECULATION: {law160_failures}")
 
@@ -3760,7 +3921,7 @@ class TestTheorySpeculationLaw160(unittest.TestCase):
         pkg["vo"] = pkg["vo"] + " The official site confirmed the chapter's release date."
         m["packages"][0] = pkg
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         certainty_failures = [n for n in names_failed if "no banned certainty language" in n]
         self.assertEqual(certainty_failures, [], f"innocent source-confirmation language incorrectly triggered Law #160: {certainty_failures}")
 
@@ -3820,7 +3981,7 @@ class TestTheorySpeculationLaw160(unittest.TestCase):
         pkg["pinned_comment"] = pkg.get("pinned_comment", "") + " A popular theory already covers part of this -- here's the new piece."
         m["packages"][0] = pkg
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         credit_failures = [n for n in names_failed if "existing-theory credit surfaced" in n]
         self.assertEqual(credit_failures, [], f"unexpected credit-check failure: {credit_failures}")
 
@@ -3832,7 +3993,7 @@ class TestTheorySpeculationLaw160(unittest.TestCase):
         self.assertEqual(pkg["related_existing_theories"], [])
         m["packages"][0] = pkg
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         credit_failures = [n for n in names_failed if "existing-theory credit surfaced" in n]
         self.assertEqual(credit_failures, [], f"credit check should not fire with an empty related_existing_theories list: {credit_failures}")
 
@@ -3856,7 +4017,7 @@ class TestTheorySpeculationLaw160(unittest.TestCase):
         }
         m["packages"][0] = pkg
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         revisit_failures = [n for n in names_failed if "revisit_justification present and well-formed" in n]
         self.assertEqual(revisit_failures, [], f"unexpected revisit_justification failure: {revisit_failures}")
 
@@ -3866,7 +4027,7 @@ class TestTheorySpeculationLaw160(unittest.TestCase):
         # blackout_conflict/recent_send_conflict remain False (inherited from base fixture)
         m["packages"][0] = pkg
         r = v.validate_manifest(m)
-        names_failed = [name for name, ok, _ in r.checks if not ok]
+        names_failed = [name for name, ok, _ in r.checks if ok == "FAIL"]
         revisit_failures = [n for n in names_failed if "revisit_justification present and well-formed" in n]
         self.assertEqual(revisit_failures, [], f"revisit_justification check should not fire without a blackout/recent-send flag: {revisit_failures}")
 
@@ -3895,11 +4056,11 @@ class TestSeasonRoundupPerShowSourcingLaw159(unittest.TestCase):
 
     def law159_failures(self, manifest: dict) -> list[str]:
         r = v.validate_manifest(manifest)
-        return [n for n, ok, _ in r.checks if not ok and "Law #159" in n]
+        return [n for n, ok, _ in r.checks if ok == "FAIL" and "Law #159" in n]
 
     def assertFailsCleanly(self, manifest: dict, needle: str):
         r = v.validate_manifest(manifest)
-        names = [name for name, ok, _ in r.checks if not ok]
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(any(needle in n for n in names),
                         msg=f"expected a clean failure containing {needle!r}; got failures={names}")
         self.assertFalse(r.ok)

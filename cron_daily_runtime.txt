@@ -144,7 +144,15 @@ gate; CARVE-OUT + PARSING RULE ADDED 2026-08-15, docs/KNOWN_ISSUES.md F37/F38)
   on batch 32e0fcb9. Only the value of the top-level "status" field counts.
 
   A pending batch BLOCKS today's run only if BOTH are true:
-    (a) its state.json "status" field is exactly "AWAITING_APPROVAL", AND
+    (a) its state.json "status" field is exactly "AWAITING_APPROVAL"
+        ~~AND~~
+        OR exactly "AWAITING_VO"   [ADDED 2026-08-16, VO-handoff workflow:
+        a batch waiting on Claude to write the VO is exactly as open a backlog
+        item as one waiting on Sebastian to approve. Both mean "a real batch is
+        staged and unfinished"; generating a fresh one on top would create two
+        competing open batches for the same slot. Treated identically here --
+        same blocking behavior, same carve-outs, same terminal-status escape.],
+        AND
     (b) it has no confirmed send — i.e. no row for its batch_id in
         cron_tracking/sent_scripts_events.jsonl, and the top-level
         cron_tracking/daily_combined/state.json does not record that batch_id
@@ -1372,6 +1380,108 @@ manifest only.
 
 MANIFEST SCHEMA for semantic_qa is printed by:
   python3 validators/validate_dual_package.py --schema
+
+================================================================================
+STEP 4.7 — VO HANDOFF: PERPLEXITY RESEARCHES, CLAUDE WRITES
+================================================================================
+ADDED 2026-08-16. Perplexity no longer writes VO text. It does the research and
+sourcing, proposes a DRAFT hook/opening line, and hands the package to Claude,
+who writes the actual VO. This step documents that handoff end to end.
+
+WHY THE SPLIT: sourcing and prose are different jobs with different failure
+modes. Merging them meant a sourcing pass under pressure to produce finished
+copy, which is exactly when a claim gets asserted a shade harder than its source
+supports. Splitting them makes the sourcing artifact reviewable BEFORE any prose
+exists to be persuaded by.
+
+WHAT PERPLEXITY HANDS OFF (all of it validated first, none of it optional):
+  - the full package MINUS the VO body: format, angle, clips, sources,
+    claim_source_matrix, titles, captions, post times, everything structural
+  - vo_status: "pending"        <- the field that turns on the skip behavior
+  - the WORD-COUNT BAND for the resolved edit length (e.g. 100-108 at 30s,
+    200-216 at 60s). Claude must hit the band; it is not a suggestion.
+  - the CLOSING STRUCTURE: the exact question_line, and the requirement that the
+    VO end "<question?> Leave your take." contiguously.
+  - a DRAFT hook_line / opening_sentence. Draft is the operative word -- Claude
+    may refine the wording, which is why hook==opening equality is not enforced
+    until after insertion.
+
+WHAT THE VALIDATOR DOES WITH vo_status="pending" (validate_dual_package.py):
+  SKIPS EXACTLY 8 CHECKS PER PENDING PACKAGE. Counted from a real run against the
+  standard fixture, not estimated:
+
+    7 mechanical checks that read the VO body --
+      1. vo_word_count matches VO text
+      2. VO within <band> words
+      3. question immediately followed by "Leave your take." in VO
+      4. exact CTA phrase present in VO
+      5. opening_sentence is the VO's exact first sentence
+      6. VO contains no banned word
+      7. hook_line equals opening_sentence
+
+    1 semantic_qa attestation covering the 5 VO-DEPENDENT KEYS --
+      vo_word_count, cta_adjacency, hook_claim_coverage, numeric_cross_check,
+      ai_slop_pattern_check
+      (5 keys, but ONE check: the attestation is asserted as a single grouped
+      check, so the skip count is 8, not 12. The five VO-INDEPENDENT keys --
+      title_search, blackout_recent_conflicts, clip_timing_tiling,
+      source_content_verification, law_149_redundancy_check -- are asserted as
+      their own separate check, which is still ENFORCED.)
+
+  EVERYTHING ELSE STILL RUNS AND STILL ATTESTS FOR REAL. A draft-stage package
+  gets no discount on sourcing, clip verification, timing, titles or blackout.
+
+  A SKIP IS NOT A PASS. The report prints [SKIP] distinctly and the verdict line
+  reads PARTIAL, never "cleared to send".
+
+EXIT CODES (note 2 is PRE-EXISTING: usage / manifest load error):
+  0  fully_passed -- zero FAILs AND zero SKIPs. The ONLY code that clears
+     AWAITING_APPROVAL or a send.
+  1  at least one real FAIL.
+  3  PARTIAL -- no FAILs but >=1 SKIP. This is the normal, healthy draft state.
+
+THE SEQUENCE:
+  1. Perplexity finishes STEP 4/4.5, sets vo_status="pending", runs STEP 5.
+     Expected result: exit 3 / PARTIAL. Exit 1 here means a REAL structural
+     problem that has nothing to do with the missing VO -- fix it before handing
+     off, never hand off a failing package.
+  2. Stage the batch with state.json status="AWAITING_VO" and log a
+     vo_requested event (tools/vo_handoff_log.py), carrying the word band.
+  3. Claude writes the VO to the band and closing structure.
+  4. Log vo_received. Insert the VO, set vo_status="complete", RE-RUN STEP 5.
+  5a. Exit 0 -> log vo_inserted, move the batch to AWAITING_APPROVAL, continue
+      into STEP 6 exactly as any other batch.
+  5b. NOT exit 0 -> the VO is REJECTED. See the failure path below.
+
+FAILED RE-VALIDATION (explicit, because this is the case that invites drift):
+  - The batch STAYS at AWAITING_VO. A rejected VO does not close the batch and
+    does not fall back to AWAITING_APPROVAL -- it returns to the writer.
+  - Log vo_received AND vo_rejected. Both. The received line is what makes a
+    retry loop legible later; dropping it would make the log read as though the
+    writer never responded.
+  - The redo REUSES the same batch_id and package_id. It is the same batch.
+  - Do NOT log a second vo_requested. One handoff was requested; a duplicate
+    would read as two separate handoffs for one package.
+  - vo_rejected carries the specific failed check names, so the redo request is
+    concrete rather than "it failed".
+
+HARD GUARD IN CODE, NOT CONVENTION: tools/vo_handoff_log.py's log_vo_inserted
+REFUSES to write unless validator_exit_code == 0. Exit 3 (still skipping) and
+exit 1 (real failures) both raise. "The VO went in" is precisely the claim a
+later reader would trust without re-checking, so it is enforced mechanically.
+
+THE HANDOFF LOG IS OBSERVABILITY ONLY. cron_tracking/daily_combined/
+vo_handoff_log.jsonl is NOT read by Law #166's pending-batch check, nor by any
+blackout, cooldown, recent-send or overlap check, nor by anything in the send
+path. A batch's blocking state lives in state.json; this log only records what
+happened. Deleting it entirely must never change what the pipeline decides. Do
+not let it become a source of truth -- that is how a record turns into a gate
+nobody reviewed.
+
+SEND GATE UNCHANGED IN SPIRIT, TIGHTENED IN CODE: tools/append_send_batch.py now
+blocks a manifest with ANY skips, writing a real failure state rather than
+logging a send. `ok` (zero FAILs) is NOT the gate; `fully_passed` (zero FAILs AND
+zero SKIPs) is.
 
 ================================================================================
 STEP 5 — DETERMINISTIC PREFLIGHT VALIDATION (FAIL CLOSED — no model revision)

@@ -83,9 +83,19 @@ SHORTS_ONLY_FIELDS = ("capcut_target_sec", "total_clip_time_sec", "loop_line",
                       "loop_transition", "loop_read_aloud_pass")
 
 
+# --- check status vocabulary (added 2026-08-16, parity with validate_dual_package) ---
+# This validator has no VO-dependent checks and nothing here currently calls .skip().
+# The vocabulary and fully_passed are added anyway so BOTH validators expose the same
+# Result contract: any caller (or future check) that gains a skip cannot silently be
+# read as a pass, and `ok`-vs-`fully_passed` means the same thing in both files.
+STATUS_PASS = "PASS"
+STATUS_FAIL = "FAIL"
+STATUS_SKIP = "SKIP"
+
+
 @dataclass
 class Result:
-    checks: list[tuple[str, bool, str]] = field(default_factory=list)
+    checks: list[tuple[str, str, str]] = field(default_factory=list)
     # ADVISORIES (added 2026-08-15): non-blocking notes that are reported but do NOT
     # affect `ok`. This channel exists because Law #146's 8:00 length target is
     # explicitly "a revenue-optimization recommendation, not a hard gate" -- it cannot
@@ -95,7 +105,12 @@ class Result:
     advisories: list[str] = field(default_factory=list)
 
     def add(self, name: str, ok: bool, detail: str = "") -> None:
-        self.checks.append((name, bool(ok), detail))
+        self.checks.append((name, STATUS_PASS if ok else STATUS_FAIL, detail))
+
+    def skip(self, name: str, detail: str = "") -> None:
+        """Record a check that could not be evaluated. Precautionary parity with
+        validate_dual_package -- no flagship check calls this today."""
+        self.checks.append((name, STATUS_SKIP, detail))
 
     def advise(self, note: str) -> None:
         """Record a non-blocking recommendation. Never affects `ok`."""
@@ -103,10 +118,19 @@ class Result:
 
     @property
     def ok(self) -> bool:
-        return all(ok for _, ok, _ in self.checks)
+        """PERMISSIVE: zero FAILs. Skips do not count against it."""
+        return all(status != STATUS_FAIL for _, status, _ in self.checks)
 
-    def failures(self) -> list[tuple[str, bool, str]]:
-        return [c for c in self.checks if not c[1]]
+    @property
+    def fully_passed(self) -> bool:
+        """THE REAL GATE: zero FAILs AND zero SKIPs."""
+        return all(status == STATUS_PASS for _, status, _ in self.checks)
+
+    def failures(self) -> list[tuple[str, str, str]]:
+        return [c for c in self.checks if c[1] == STATUS_FAIL]
+
+    def skips(self) -> list[tuple[str, str, str]]:
+        return [c for c in self.checks if c[1] == STATUS_SKIP]
 
 
 def _norm(s: str) -> str:
@@ -251,10 +275,9 @@ def validate_flagship(m: dict[str, Any]) -> Result:
 
 def format_report(r: Result) -> str:
     lines = ["LONG-FORM FLAGSHIP PREFLIGHT VALIDATION", "=" * 40]
-    for name, ok, detail in r.checks:
-        tag = "PASS" if ok else "FAIL"
-        suffix = f"  ({detail})" if detail and not ok else ""
-        lines.append(f"[{tag}] {name}{suffix}")
+    for name, status, detail in r.checks:
+        suffix = f"  ({detail})" if detail and status != STATUS_PASS else ""
+        lines.append(f"[{status}] {name}{suffix}")
     # Advisories print separately and never change the verdict (Law #146's 8:00 target
     # is a recommendation, not a gate). Tagged [ADVISORY] so it can't be misread as a
     # check that ran.

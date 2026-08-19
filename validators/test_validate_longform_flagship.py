@@ -34,7 +34,7 @@ def load_valid() -> dict:
 
 
 def failed_names(m: dict) -> list[str]:
-    return [name for name, ok, _ in v.validate_flagship(m).checks if not ok]
+    return [name for name, ok, _ in v.validate_flagship(m).checks if ok == "FAIL"]
 
 
 class TestValidFlagship(unittest.TestCase):
@@ -170,7 +170,7 @@ class TestInvalidFlagship(unittest.TestCase):
         m["chapters"] = m["chapters"][:2] + ["not a dict"]
         r = v.validate_flagship(m)
         self.assertFalse(r.ok)
-        names = [n for n, ok, _ in r.checks if not ok]
+        names = [n for n, ok, _ in r.checks if ok == "FAIL"]
         self.assertTrue(any("at least 3 chapters" in n for n in names),
                         msg=f"expected a clean failure; got failures={names}")
 

@@ -56,21 +56,73 @@ CRON_ID_DEFAULT = "daily_combined"
 _VALIDATORS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "validators")
 
 
-def validate_manifest_failures(manifest: dict[str, Any]) -> list[str]:
-    """Re-run the deterministic preflight validator against the manifest.
+def _run_validator(manifest: dict[str, Any]):
+    """Import the validator and run it. Returns (result, error_string).
 
-    Returns the list of failed check names (empty list == manifest is clean). If the
-    validator module cannot be imported, returns a single synthetic failure so the
-    caller fails closed rather than logging a send it could not verify.
+    On import failure returns (None, msg) so every caller can fail closed rather than
+    logging a send it was unable to verify.
     """
     if _VALIDATORS_DIR not in sys.path:
         sys.path.insert(0, _VALIDATORS_DIR)
     try:
         import validate_dual_package as _v
     except Exception as e:  # noqa: BLE001 — cannot verify → fail closed
-        return [f"validator import failed: {e}"]
-    result = _v.validate_manifest(manifest)
-    return [name for name, ok, _ in result.checks if not ok]
+        return None, f"validator import failed: {e}"
+    return _v.validate_manifest(manifest), None
+
+
+def validate_manifest_failures(manifest: dict[str, Any]) -> list[str]:
+    """Re-run the deterministic preflight validator; return failed check names.
+
+    Empty list == no FAILs. If the validator cannot be imported, returns a single
+    synthetic failure so the caller fails closed.
+
+    ============================ REAL BUG FIXED 2026-08-16 ============================
+    This function previously ended with:
+
+        return [name for name, ok, _ in result.checks if not ok]
+
+    That was correct while checks[1] was a BOOL. It became SILENTLY, TOTALLY BROKEN the
+    moment checks[1] became a status STRING, because every non-empty string is truthy
+    in Python -- `not "FAIL"` and `not "PASS"` are BOTH False. The comprehension
+    therefore matched NOTHING and this function returned an EMPTY LIST FOR EVERY
+    MANIFEST, ALWAYS.
+
+    The consequence was not cosmetic. main()'s send gate reads `if failures:` -- so a
+    manifest failing any number of real preflight checks would have sailed through the
+    gate and been written into the send log as a clean send, with no error state and no
+    warning. A broken package could be logged as successfully sent.
+
+    The fix is to compare the status explicitly. Anything else iterating these tuples
+    must do the same; `if not ok` is never correct against a status string.
+    ===================================================================================
+    """
+    result, err = _run_validator(manifest)
+    if result is None:
+        return [err]
+    return [name for name, status, _ in result.checks if status == "FAIL"]
+
+
+def validate_manifest_skips(manifest: dict[str, Any]) -> list[str]:
+    """Return the names of checks the validator SKIPPED (could not evaluate).
+
+    A skip means a VO-pending package: Perplexity has handed off validated facts and
+    Claude has not written the VO yet, so the VO-dependent checks cannot be evaluated.
+    Such a manifest is a legitimate draft, but it is NOT sendable and must never be
+    written to the send log.
+
+    Mirrors the explicit-status comparison in validate_manifest_failures above, for the
+    same reason: `if not ok` would match nothing here too.
+
+    On validator import failure this returns an empty list rather than a synthetic
+    entry -- the import failure is already reported as a FAILURE by
+    validate_manifest_failures, which main() checks first, so reporting it twice would
+    double-count one problem.
+    """
+    result, err = _run_validator(manifest)
+    if result is None:
+        return []
+    return [name for name, status, _ in result.checks if status == "SKIP"]
 
 
 def _now_iso() -> str:
@@ -537,6 +589,24 @@ def main(argv: list[str]) -> int:
         print(f"[BLOCKED] manifest failed preflight validation "
               f"({len(failures)} check(s)); appended nothing; wrote failure state to {path}",
               file=sys.stderr)
+        return 1
+
+    # FAIL CLOSED ON SKIPS TOO (2026-08-16, VO handoff). `ok` (zero FAILs) is NOT the
+    # send gate -- `fully_passed` (zero FAILs AND zero SKIPs) is. A manifest with
+    # vo_status="pending" has real, unevaluated VO-dependent checks; it is a legitimate
+    # draft but it has no finished VO, so logging it as a send would record an email
+    # that could not have gone out. Blocked here as a distinct, named condition rather
+    # than folded into the failure branch, so the state file says what actually happened.
+    skips = validate_manifest_skips(manifest)
+    if skips:
+        detail = "; ".join(skips[:8]) + (f"; +{len(skips) - 8} more" if len(skips) > 8 else "")
+        path = write_state(manifest, args.tree, args.cron_id,
+                           emails_sent=args.emails_sent, log_appended=False,
+                           git_pushed=args.git_pushed,
+                           error=f"manifest has {len(skips)} unevaluated (SKIPPED) check(s) "
+                                 f"-- VO not written yet, not sendable: {detail}")
+        print(f"[BLOCKED] manifest has {len(skips)} SKIPPED check(s) (VO pending); "
+              f"appended nothing; wrote failure state to {path}", file=sys.stderr)
         return 1
 
     try:

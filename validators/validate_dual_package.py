@@ -306,6 +306,34 @@ SEMANTIC_QA_CHECK_KEYS = (
                                      # literal-restatement-only check.
 )
 
+# --- VO-dependent vs VO-independent semantic_qa keys (2026-08-16, VO handoff) ----
+# Under the handoff workflow Perplexity does NOT write the VO; it hands validated
+# facts to Claude, who writes it. Between those two steps a package legitimately has
+# no VO, so the five checks below cannot be evaluated -- they are SKIPPED, never
+# assumed. The other five are fully evaluable without a VO and still run for real.
+#
+# VO_INDEPENDENT is computed by SET SUBTRACTION from the live SEMANTIC_QA_CHECK_KEYS
+# tuple rather than being written out by hand: if a key is ever added to that tuple
+# and not classified here, it lands in VO_INDEPENDENT and is therefore still ENFORCED
+# rather than silently skipped -- the fail-closed direction.
+VO_DEPENDENT_QA_KEYS = (
+    "vo_word_count",            # counts words in a VO that does not exist yet
+    "cta_adjacency",            # CTA placement inside the VO
+    "hook_claim_coverage",      # the hook line is part of the VO
+    "numeric_cross_check",      # verifies counts as spoken in the VO
+    "ai_slop_pattern_check",    # scans VO phrasing
+)
+VO_INDEPENDENT_QA_KEYS = tuple(
+    k for k in SEMANTIC_QA_CHECK_KEYS if k not in VO_DEPENDENT_QA_KEYS
+)
+assert len(VO_DEPENDENT_QA_KEYS) + len(VO_INDEPENDENT_QA_KEYS) == len(SEMANTIC_QA_CHECK_KEYS)
+
+# vo_status values. Default is "complete" so every pre-existing manifest keeps its
+# current meaning and full enforcement -- the new draft stage is strictly opt-in.
+VO_STATUS_VALUES = ("pending", "complete")
+VO_STATUS_DEFAULT = "complete"
+
+
 # claim_source_matrix entries that anchor the hook must say so via this field so 1.5
 # (hook claim coverage) is mechanically checkable, not merely self-attested.
 # NOTE (2026-07-27): previously also covered "loop" -- removed when the forced
@@ -363,19 +391,87 @@ FOOTAGE_STATUS_VALUES = (
 FOOTAGE_STATUS_HARD_BLOCK = ("aired_not_located",)
 
 
+# --- check status vocabulary (added 2026-08-16, VO-handoff workflow) ------------
+# Result.checks[1] is one of these THREE strings, replacing the old bool. SKIP exists
+# because a VO-pending package cannot evaluate its VO-dependent checks yet; folding
+# that into PASS would make a draft manifest look sendable, and folding it into FAIL
+# would make the normal draft stage look broken.
+STATUS_PASS = "PASS"
+STATUS_FAIL = "FAIL"
+STATUS_SKIP = "SKIP"
+
 @dataclass
 class Result:
-    checks: list[tuple[str, bool, str]] = field(default_factory=list)
+    """A list of (name, status, detail) checks.
+
+    STATUS IS A STRING, NOT A BOOL (changed 2026-08-16 for the VO-handoff workflow).
+    checks[1] is one of STATUS_PASS / STATUS_FAIL / STATUS_SKIP. The third state is
+    required because a VO-pending package legitimately cannot evaluate its VO-dependent
+    checks yet -- and "cannot evaluate yet" is neither a pass nor a failure. Collapsing
+    it into either one is what makes a draft-stage manifest look sendable.
+
+    CALLERS BEWARE: any code doing `if not ok` over these tuples is now WRONG, because
+    every non-empty string is truthy -- `not "FAIL"` and `not "PASS"` are both False.
+    Compare explicitly against STATUS_FAIL / STATUS_SKIP. This exact bug existed in
+    tools/append_send_batch.py's validate_manifest_failures() and would have silently
+    reported zero failures for every manifest; see that file's dated fix note.
+    """
+
+    checks: list[tuple[str, str, str]] = field(default_factory=list)
 
     def add(self, name: str, ok: bool, detail: str = "") -> None:
-        self.checks.append((name, bool(ok), detail))
+        self.checks.append((name, STATUS_PASS if ok else STATUS_FAIL, detail))
+
+    def skip(self, name: str, detail: str = "") -> None:
+        """Record a check that could not be evaluated yet (VO not written).
+
+        A skip is NOT a pass. `fully_passed` -- the real send/approval gate -- is
+        False whenever any skip is present.
+        """
+        self.checks.append((name, STATUS_SKIP, detail))
 
     @property
     def ok(self) -> bool:
-        return all(ok for _, ok, _ in self.checks)
+        """PERMISSIVE: zero FAILs. Skips do NOT count against it.
 
-    def failures(self) -> list[tuple[str, bool, str]]:
-        return [c for c in self.checks if not c[1]]
+        Kept for backward compatibility with existing callers and tests. This is
+        deliberately NOT the send gate -- a VO-pending manifest is `ok` while still
+        carrying unevaluated checks. Use `fully_passed` to gate a send or an approval.
+        """
+        return all(status != STATUS_FAIL for _, status, _ in self.checks)
+
+    @property
+    def fully_passed(self) -> bool:
+        """THE REAL GATE: zero FAILs AND zero SKIPs -- every check actually evaluated
+        and actually passed. This is what clears AWAITING_APPROVAL or a send."""
+        return all(status == STATUS_PASS for _, status, _ in self.checks)
+
+    def failures(self) -> list[tuple[str, str, str]]:
+        return [c for c in self.checks if c[1] == STATUS_FAIL]
+
+    def skips(self) -> list[tuple[str, str, str]]:
+        return [c for c in self.checks if c[1] == STATUS_SKIP]
+
+
+def _vo_status(pkg: dict[str, Any]) -> str:
+    """Read a package's vo_status, defaulting to "complete".
+
+    Defaulting to "complete" (not "pending") is deliberate and fail-closed: every
+    manifest written before this field existed keeps FULL enforcement. Only a package
+    that explicitly opts in to "pending" gets VO-dependent checks skipped.
+    """
+    raw = pkg.get("vo_status", VO_STATUS_DEFAULT)
+    return raw if isinstance(raw, str) else raw
+
+
+def _vo_is_pending(pkg: dict[str, Any]) -> bool:
+    """True only when vo_status is exactly "pending".
+
+    A malformed vo_status returns False, so the package keeps full enforcement AND
+    separately fails the vo_status-is-valid check -- it can never buy skips by being
+    malformed.
+    """
+    return _vo_status(pkg) == "pending"
 
 
 def _words(text: str) -> int:
@@ -1297,11 +1393,30 @@ def _validate_semantic_qa(pkg: dict[str, Any], p: str, r: Result) -> None:
     # required self-attested check flags present and true (the validator ALSO enforces
     # the mechanical laws independently; this records the model's own audit result).
     checks = qa.get("checks")
-    checks_ok = isinstance(checks, dict) and all(checks.get(k) is True for k in SEMANTIC_QA_CHECK_KEYS)
-    missing = [k for k in SEMANTIC_QA_CHECK_KEYS
-               if not (isinstance(checks, dict) and checks.get(k) is True)]
-    r.add(f"{p} semantic_qa.checks all attested true ({', '.join(SEMANTIC_QA_CHECK_KEYS)})",
-          checks_ok, f"missing/false={missing}")
+    # VO-handoff split (2026-08-16): when vo_status == "pending" the VO does not exist
+    # yet, so the five VO-dependent attestations cannot honestly be made and are
+    # SKIPPED. The five VO-independent ones are still ENFORCED for real -- a draft-stage
+    # package gets no discount on sourcing, timing, titles or clip structure.
+    vo_pending = _vo_is_pending(pkg)
+
+    indep_ok = isinstance(checks, dict) and all(
+        checks.get(k) is True for k in VO_INDEPENDENT_QA_KEYS)
+    indep_missing = [k for k in VO_INDEPENDENT_QA_KEYS
+                     if not (isinstance(checks, dict) and checks.get(k) is True)]
+    r.add(f"{p} semantic_qa.checks VO-independent attested true "
+          f"({', '.join(VO_INDEPENDENT_QA_KEYS)})",
+          indep_ok, f"missing/false={indep_missing}")
+
+    dep_label = (f"{p} semantic_qa.checks VO-dependent attested true "
+                 f"({', '.join(VO_DEPENDENT_QA_KEYS)})")
+    if vo_pending:
+        r.skip(dep_label, "vo_status=pending -- VO not written yet, cannot attest")
+    else:
+        dep_ok = isinstance(checks, dict) and all(
+            checks.get(k) is True for k in VO_DEPENDENT_QA_KEYS)
+        dep_missing = [k for k in VO_DEPENDENT_QA_KEYS
+                       if not (isinstance(checks, dict) and checks.get(k) is True)]
+        r.add(dep_label, dep_ok, f"missing/false={dep_missing}")
 
     # RESCINDED 2026-07-27 (Law #141 rescission): final_to_opening_readaloud
     # consistency check removed along with the rest of the forced-loop mandate.
@@ -1433,17 +1548,31 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
     # vo_word_count (e.g. a string "104") previously crashed the `abs(counted - wc)`
     # comparison with an unhandled TypeError instead of producing a named check
     # failure. Guard the type before doing arithmetic.
-    if wc is not None and not _is_num(wc):
-        r.add(f"{p} vo_word_count matches VO text", False,
-              f"vo_word_count is not numeric: {wc!r}")
+    # VO-HANDOFF SKIP GATE (2026-08-16). When vo_status == "pending" the VO has not been
+    # written yet, so every check that reads `vo` is SKIPPED rather than evaluated
+    # against an empty string -- which would otherwise produce a pile of meaningless
+    # FAILs and hide any real structural problem. The word BAND is still reported as the
+    # target Claude must hit, in the skip detail, so the handoff carries it.
+    vo_pending = _vo_is_pending(pkg)
+
+    if vo_pending:
+        r.skip(f"{p} vo_word_count matches VO text",
+               "vo_status=pending -- no VO to count yet")
+        r.skip(f"{p} VO within {vo_min}-{vo_max} words",
+               f"vo_status=pending -- target band for the writer is "
+               f"{vo_min}-{vo_max} words at {int(target_sec)}s")
     else:
-        if wc is None:
-            wc = counted
-        # the manifest's declared count must match the actual VO text (no fudging)
-        r.add(f"{p} vo_word_count matches VO text", abs(counted - wc) <= 1,
-              f"declared={wc} counted={counted}")
-    r.add(f"{p} VO within {vo_min}-{vo_max} words", vo_min <= counted <= vo_max,
-          f"words={counted} (edit={int(target_sec)}s)")
+        if wc is not None and not _is_num(wc):
+            r.add(f"{p} vo_word_count matches VO text", False,
+                  f"vo_word_count is not numeric: {wc!r}")
+        else:
+            if wc is None:
+                wc = counted
+            # the manifest's declared count must match the actual VO text (no fudging)
+            r.add(f"{p} vo_word_count matches VO text", abs(counted - wc) <= 1,
+                  f"declared={wc} counted={counted}")
+        r.add(f"{p} VO within {vo_min}-{vo_max} words", vo_min <= counted <= vo_max,
+              f"words={counted} (edit={int(target_sec)}s)")
 
     # --- CTA exact placement: a specific question immediately followed by "Leave your take." ---
     # F15 fix (2026-07-25): a non-string cta_line previously crashed _norm()'s
@@ -1455,13 +1584,24 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
     q = _str(pkg, "question_line").strip()
     r.add(f"{p} question_line is a question", q.endswith("?") and len(q) > 5, f"question_line={q!r}")
     # the exact phrase must appear in the VO, immediately after the question
-    combined_ok = False
-    if q:
-        pat = re.escape(q) + r"\s+" + re.escape(CTA_EXACT)
-        combined_ok = re.search(pat, vo) is not None
-    r.add(f"{p} question immediately followed by '{CTA_EXACT}' in VO", combined_ok,
-          "expected '<question?> Leave your take.' contiguous in VO")
-    r.add(f"{p} exact CTA phrase present in VO", CTA_EXACT in vo, "")
+    # Both of these read the VO body, so both skip while it is pending. cta_line and
+    # question_line themselves are still enforced above -- the handoff carries the
+    # closing STRUCTURE even though the prose does not exist yet.
+    if vo_pending:
+        r.skip(f"{p} question immediately followed by '{CTA_EXACT}' in VO",
+               "vo_status=pending -- writer must place '<question?> Leave your take.' "
+               "contiguously at the close")
+        r.skip(f"{p} exact CTA phrase present in VO",
+               f"vo_status=pending -- writer must include the exact phrase "
+               f"'{CTA_EXACT}'")
+    else:
+        combined_ok = False
+        if q:
+            pat = re.escape(q) + r"\s+" + re.escape(CTA_EXACT)
+            combined_ok = re.search(pat, vo) is not None
+        r.add(f"{p} question immediately followed by '{CTA_EXACT}' in VO", combined_ok,
+              "expected '<question?> Leave your take.' contiguous in VO")
+        r.add(f"{p} exact CTA phrase present in VO", CTA_EXACT in vo, "")
 
     # --- CTA on-screen text must appear inside the closing window (Law #62 addendum,
     # added 2026-07-27, per YouTube's July 14, 2026 guidance naming a final-5-second
@@ -1507,9 +1647,16 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
     r.add(f"{p} opening_sentence present",
           bool(_str(pkg, "opening_sentence") or _str(pkg, "opening_line")),
           "provide opening_sentence (or opening_line)")
-    r.add(f"{p} opening_sentence is the VO's exact first sentence",
-          bool(opening) and _norm(opening.rstrip(".!?")) == _norm(first_sent.rstrip(".!?")),
-          f"opening={opening!r} first={first_sent!r}")
+    if _vo_is_pending(pkg):
+        # The proposed opening line IS part of the handoff (Perplexity drafts it),
+        # so its PRESENCE stays enforced above. What cannot be checked yet is
+        # whether it matches a VO that has not been written.
+        r.skip(f"{p} opening_sentence is the VO's exact first sentence",
+               "vo_status=pending -- writer must open the VO with this exact sentence")
+    else:
+        r.add(f"{p} opening_sentence is the VO's exact first sentence",
+              bool(opening) and _norm(opening.rstrip(".!?")) == _norm(first_sent.rstrip(".!?")),
+              f"opening={opening!r} first={first_sent!r}")
 
     # --- STAGE 1 REBUILD (2026-08-09): face-cam split-screen (creator TOP / anime
     # BOTTOM, per Sebastian's confirmed permanent decision) is now the REQUIRED
@@ -1633,7 +1780,11 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
     hook = (_str(pkg, "hook_line") or opening).strip()
     r.add(f"{p} assumption-breaking hook present", len(hook.split()) >= 3, f"hook={hook!r}")
     r.add(f"{p} CTA not a banned phrase", not any(b in _norm(cta) for b in BANNED_CTA), f"cta={cta!r}")
-    r.add(f"{p} VO contains no banned word 'bro'", not re.search(r"\bbro\b", vo, re.I), "")
+    if _vo_is_pending(pkg):
+        r.skip(f"{p} VO contains no banned word 'bro'",
+               "vo_status=pending -- re-checked for real once the VO is inserted")
+    else:
+        r.add(f"{p} VO contains no banned word 'bro'", not re.search(r"\bbro\b", vo, re.I), "")
 
     # --- Shorts-pipeline guard: this validator governs 30s Shorts only (Law #146) ---
     # Long-form flagships are governed by validators/validate_longform_flagship.py and
@@ -1649,6 +1800,17 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
           "content_type" in pkg and _norm(_str(pkg, "content_type")) == "short",
           f"content_type={pkg.get('content_type')!r}")
 
+    # --- vo_status (2026-08-16, VO-handoff workflow) --------------------------------
+    # "complete" (default) = VO is written, everything enforced as before.
+    # "pending"            = Perplexity has handed off validated facts and Claude has
+    #                        not written the VO yet. VO-dependent checks SKIP.
+    # Absent is fine and means "complete". Present-but-invalid FAILS -- a malformed
+    # value must never be readable as "pending" and must never buy a skip.
+    vo_status_raw = pkg.get("vo_status", VO_STATUS_DEFAULT)
+    r.add(f"{p} vo_status is one of {VO_STATUS_VALUES} (absent == '{VO_STATUS_DEFAULT}')",
+          isinstance(vo_status_raw, str) and vo_status_raw in VO_STATUS_VALUES,
+          f"vo_status={pkg.get('vo_status')!r}")
+
     # --- first-second hook: on-screen assumption-break + spoken hook lead (Law #144) ---
     # The assumption being broken must be visible on screen AND spoken as the very first
     # sentence (the swipe-decision point). Relative watch time dominates Shorts, so the
@@ -1660,9 +1822,16 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
           pkg.get("hook_first_second", None) is True, f"hook_first_second={pkg.get('hook_first_second')}")
     r.add(f"{p} isolation_test_pass attested true (Law #144.1)",
           pkg.get("isolation_test_pass", None) is True, f"isolation_test_pass={pkg.get('isolation_test_pass')}")
-    r.add(f"{p} hook_line equals opening_sentence (break spoken first)",
-          bool(hook) and bool(opening) and _norm(hook.rstrip(".!?")) == _norm(opening.rstrip(".!?")),
-          f"hook={hook!r} opening={opening!r}")
+    if _vo_is_pending(pkg):
+        # Both hook_line and opening_sentence are DRAFT proposals at handoff time;
+        # the writer may refine wording, so equality is enforced after insertion.
+        # Presence of both stays enforced elsewhere, unconditionally.
+        r.skip(f"{p} hook_line equals opening_sentence (break spoken first)",
+               "vo_status=pending -- equality enforced once the VO is inserted")
+    else:
+        r.add(f"{p} hook_line equals opening_sentence (break spoken first)",
+              bool(hook) and bool(opening) and _norm(hook.rstrip(".!?")) == _norm(opening.rstrip(".!?")),
+              f"hook={hook!r} opening={opening!r}")
     hf = pkg.get("hook_family", "")
     r.add(f"{p} hook_family present (attribution)",
           isinstance(hf, str) and bool(hf.strip()), "hook_family empty/missing")
@@ -2073,13 +2242,24 @@ def validate_manifest(m: dict[str, Any]) -> Result:
 
 def format_report(r: Result) -> str:
     lines = ["DUAL-PACKAGE PREFLIGHT VALIDATION", "=" * 40]
-    for name, ok, detail in r.checks:
-        tag = "PASS" if ok else "FAIL"
-        suffix = f"  ({detail})" if detail and not ok else ""
-        lines.append(f"[{tag}] {name}{suffix}")
+    for name, status, detail in r.checks:
+        # SKIP prints its detail too -- for a VO-pending package that detail carries
+        # the instruction to the writer (target word band, required closing phrase),
+        # so suppressing it would throw away the useful half of the handoff.
+        suffix = f"  ({detail})" if detail and status != STATUS_PASS else ""
+        lines.append(f"[{status}] {name}{suffix}")
     lines.append("=" * 40)
     n_fail = len(r.failures())
-    verdict = "PASS — cleared to send both emails" if r.ok else f"BLOCKED — {n_fail} check(s) failed; DO NOT SEND"
+    n_skip = len(r.skips())
+    if n_fail:
+        verdict = f"BLOCKED — {n_fail} check(s) failed; DO NOT SEND"
+    elif n_skip:
+        # PARTIAL is the normal, healthy draft state -- not an error. Every evaluable
+        # check passed; the VO-dependent ones are waiting on the writer.
+        verdict = (f"PARTIAL — {n_skip} check(s) SKIPPED pending VO; 0 failed. "
+                   f"NOT cleared to send — re-run after VO insertion")
+    else:
+        verdict = "PASS — cleared to send both emails"
     lines.append(f"RESULT: {verdict}")
     return "\n".join(lines)
 
@@ -2286,7 +2466,19 @@ def main(argv: list[str]) -> int:
         return 2
     r = validate_manifest(manifest)
     print(format_report(r))
-    return 0 if r.ok else 1
+    # EXIT CODES (2026-08-16, VO handoff). 2 is PRE-EXISTING (usage / load error)
+    # and is deliberately NOT reused here.
+    #   0 = fully_passed -- zero FAILs AND zero SKIPs. The ONLY code that clears
+    #       AWAITING_APPROVAL or a send.
+    #   1 = at least one real FAIL.
+    #   3 = PARTIAL -- no FAILs but >=1 SKIP (the vo_status='pending' draft stage).
+    #       Distinct from 1 so a caller can tell 'waiting on the writer' from
+    #       'genuinely broken', and distinct from 0 so nothing reads it as sendable.
+    if r.failures():
+        return 1
+    if r.skips():
+        return 3
+    return 0
 
 
 if __name__ == "__main__":
