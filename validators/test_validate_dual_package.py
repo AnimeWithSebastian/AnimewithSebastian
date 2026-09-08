@@ -5368,7 +5368,7 @@ class TestDaysSinceLastConsideredProductionData(unittest.TestCase):
                 gap,
                 msg=f"{fmt} unexpectedly shows days_since_last_considered=None "
                     f"against the real repo log -- this format was confirmed "
-                    f"genuinely logged as of 2026-09-08 (batch af6c90bf), so a "
+                    f"genuinely logged with real history as of 2026-09-08, so a "
                     f"reversion to None would itself be a real regression worth "
                     f"investigating, not something to silently update away",
             )
