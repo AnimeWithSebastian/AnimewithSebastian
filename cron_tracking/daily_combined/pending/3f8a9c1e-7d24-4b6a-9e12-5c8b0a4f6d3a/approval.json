@@ -1,0 +1,83 @@
+{
+  "approved_by": "Sebastian",
+  "approved_at": "2026-08-21T21:05:51-04:00",
+  "approval_status": "APPROVED",
+  "approval_pending_note": "This file was originally constructed after Sebastian's own verbatim VO insertion (Lara 108 words, Kaiju Girl Caramelise 107 words, both already committed at 734d9d1), after filling in the three fields that were still literal PENDING_VO placeholders (captions, pinned_comment, tiktok_post_text on both packages -- these had slipped through the VO-completion step because the validator does not check them against a not-PENDING_VO rule the way it does question_line, now logged as F62 in docs/KNOWN_ISSUES.md), and after a fresh independent re-verification pass on both flagged core claims that surfaced and resolved a real sourcing gap on the Lara foam-again claim (two additional sources added to the morning package's sources array per that finding). Sebastian has now explicitly reviewed both rendered emails and this approval.json and given his final sign-off (approved_by/approved_at/approval_status set 2026-08-21T21:05:51-04:00) -- this was his own explicit instruction to write the approval fields, not model self-attestation. This batch is cleared for STEP 7 (email dispatch) and STEP 8 (log append) by whoever has real mail access; those steps have NOT been performed by this agent (Rule/Golden-rule: this agent cannot send email itself without explicit per-batch authorization, per SS15A).",
+  "batch_id": "3f8a9c1e-7d24-4b6a-9e12-5c8b0a4f6d3a",
+  "corrects_batch_id": null,
+  "scope_note": "This batch contains TWO packages, both post_date 2026-08-21: Goodbye, Lara (morning, EPISODE_MOMENT, package_id b1e4a2d0-1a3c-4e5f-9a7b-2c6d8e1f4a5b, Episode 7) and Kaiju Girl Caramelise (evening, WRONG_TAKE, package_id c2f5b3e1-2b4d-4f6a-8b8c-3d7e9f2a5b6c, Episode 7). Neither package corrects a prior sent batch. VO was written by Sebastian and inserted verbatim in the prior session segment (108 and 107 words respectively, both within the validator's 100-108 band). This review pass independently re-fetched the sources behind the two flagged core claims rather than reusing the original drafting session's self-reported fetch claims.",
+  "fetch_review": [
+    {
+      "claim": "[CORE, anchors_claim=hook, evening] Episode 7 of Kaiju Girl Caramelise triggers Kuroe's kaiju transformation through despair at being separated from Arata (Minami) in a festival crowd, rather than through romantic love -- and a published review calls this the first time the trigger was non-romantic.",
+      "url": "https://www.animenewsnetwork.com/review/kaiju-girl-caramelise/episode-7/.240627",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh in this review pass. Exact quote confirmed verbatim: \"I believe this is a first, as it is not her crush on Minami that triggers it, but rather her despair at being alone and missing out on the fireworks.\" The review describes the crowd separating Kuroe from Minami during the festival, her overwhelmed emotional state causing a full transformation into Harugon, and frames this as a defensive retreat that (incidentally) lets her enjoy the fireworks. This fully corroborates the VO's claim and the review's own 'first' framing -- no discrepancy found. Note: the manifest's pinned_comment and VO both slightly compress the reviewer's actual clause ('despair at being alone and missing out on the fireworks' vs. VO's 'panic of being alone') -- an acceptable compression of the same claim, not a contradiction."
+    },
+    {
+      "claim": "[CORE, anchors_claim=hook, morning] Episode 7 of Goodbye, Lara ends with Lara dissolving into sea foam again -- the same imagery/fate that killed her in Episode 1 -- right after a fireworks date with Luca.",
+      "url": "https://angryanimebitches.com/2026/08/16/goodbye-lara-episode-7/",
+      "fetched_content_supports_claim": false,
+      "note": "Independently re-fetched fresh in this review pass. This source does NOT state or show Lara dissolving into sea foam at the end of Episode 7. It only describes Lara having 'soaked shoes and feet' after the fireworks outing, framed by the reviewer as an open question: 'Is it a sign that she's falling in love again... or is it a warning sign of time running out?' The review treats this as ambiguous foreshadowing, not a depicted foam-dissolve event. See verification_gaps_and_caveats below for the full resolution across all sources checked."
+    },
+    {
+      "claim": "[CORE, cross-check, morning] Second cited source for the same foam-again claim.",
+      "url": "https://www.animenewsnetwork.com/review/goodbye-lara/episode-7/.240655",
+      "fetched_content_supports_claim": false,
+      "note": "Independently re-fetched fresh in this review pass. Also does NOT state Lara dissolves into sea foam on screen at Episode 7's end. States: 'the presence of seawater on Lara's shoes after the fireworks show suggests that now that she's on that path again, her days are numbered' -- again framed as foreshadowing/suggestion, not a depicted event. Confirms Luca is likely the reborn prince. This source, like the AngryAnimeBitches review, independently uses the 'wet shoes' detail rather than an explicit foam-dissolve visual."
+    },
+    {
+      "claim": "[CORE, third independent source, morning] Encyclopedic synopsis check for Episode 7's actual events.",
+      "url": "https://en.wikipedia.org/wiki/Goodbye,_Lara",
+      "fetched_content_supports_claim": true,
+      "note": "Newly fetched in this review pass (not one of the original two cited sources). Wikipedia's own Episode 7 synopsis states verbatim: 'Lara is comforted by Luca's words and joins him at a fireworks festival, unaware that she is gradually turning back to foam like Lisa and Kota.' Grammatically confirmed Lara herself (not Lisa/Kota) is the subject turning back to foam; 'like Lisa and Kota' is a comparison to two other characters who underwent the same fate. This supports the VO's underlying claim (Lara is turning back to foam after the fireworks date with Luca) but describes it as GRADUAL and IN-PROGRESS ('unaware that she is gradually turning back'), not a completed on-screen dissolve shown explicitly in the end credits."
+    },
+    {
+      "claim": "[SUPPORTING, fan viewing reports, morning] Real-viewer descriptions of what Episode 7 actually showed on screen.",
+      "url": "https://www.reddit.com/r/anime/comments/1vq02pj/goodbye_lara_sayonara_lara_episode_7_discussion/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh in this review pass (this source was already cited in the manifest). Two named commenters who watched the episode explicitly describe seeing foam on screen: shad79 -- 'we saw sea foam after she returned from the fireworks'; Altruistic_Hour_3596 -- 'the end credits suggest that Lara is once again transforming into foam, indicating that he is not her genuine love.' These are first-hand viewer accounts of the actual broadcast, and they corroborate a depicted (not merely foreshadowed) foam-transformation beat in the end credits, which the two professional written reviews described more cautiously via the 'wet shoes' detail. This resolves the apparent gap: the VO's 'foam again' framing is accurate to what aired, even though the two originally-cited professional reviews under-described it."
+    }
+  ],
+  "verification_gaps_and_caveats": [
+    {
+      "issue": "The morning package's original two cited sources for the 'foam again' hook claim do not, on their own, state that Episode 7 shows Lara dissolving into foam -- they only describe ambiguous 'wet shoes' foreshadowing.",
+      "detail": "On independent re-fetch, neither https://angryanimebitches.com/2026/08/16/goodbye-lara-episode-7/ nor https://www.animenewsnetwork.com/review/goodbye-lara/episode-7/.240655 explicitly confirms an on-screen foam-dissolve in Episode 7. Both only mention Lara's shoes/feet being wet/soaked after the fireworks outing, framed as an open question or foreshadowing ('her days are numbered'), not a depicted transformation. Resolving this required two additional sources not in the original citation set: Wikipedia's own synopsis ('gradually turning back to foam like Lisa and Kota' -- confirmed Lara is the grammatical subject) and the Reddit discussion thread, where two named viewers who watched the episode explicitly describe seeing foam on screen and the end credits suggesting a foam transformation. Taken together, the claim is accurate as a description of the episode -- but the VO's phrasing ('the end credits show Lara dissolving into foam again') describes it more definitively/completely than either professional review does; the professional reviews treat it as foreshadowing/symptom (wet shoes) while Wikipedia and fan viewers describe an actual (gradual) foam transformation depicted on screen. Sebastian should decide whether this level of confidence is acceptable given his VO is now final and he said no rewrite is needed -- the underlying claim holds up across independent sources, but it rests on a broader source set than the two originally cited in the manifest's sources array.",
+      "recommendation": "No VO change made, since Sebastian explicitly said his VO text is final and should be inserted as-is. DONE: per Sebastian's explicit follow-up instruction, added the Wikipedia Episode 7 synopsis entry to the morning package's sources array and clarified the existing Reddit entry to tie it directly to the foam-again claim -- the sources array now lists 8 entries and directly cites the strongest support for this claim. Re-validated clean after the edit."
+    },
+    {
+      "issue": "Kaiju Girl Caramelise Episode 8 air-date ambiguity, originally flagged in the fact package for this batch.",
+      "detail": "The fact package (fact_package_3f8a9c1e.md, shared earlier this session) flagged that Episode 8's air date could not be confirmed with full certainty at the time of drafting. This does not affect the Episode 7 claims used in the VO or hook, which are fully sourced and independently reconfirmed above, but is noted here for completeness since it was an open item from the original research pass.",
+      "recommendation": "No action needed before send -- Episode 8 is not referenced in either package's VO, hook, or claims. Flagging only for the record."
+    },
+    {
+      "issue": "Stray untracked file new_batch_build.py in the working tree.",
+      "detail": "cron_tracking/daily_combined/new_batch_build.py is leftover scaffolding referencing an unrelated earlier batch ('The Iceblade Sorcerer Shall Rule the World'). It has been left unstaged/uncommitted throughout this session since it is irrelevant to batch 3f8a9c1e and touching it is out of scope for this approval.",
+      "recommendation": "No action needed for this batch's send decision. Consider deleting it in a future housekeeping pass."
+    },
+    {
+      "issue": "captions, pinned_comment, and tiktok_post_text were literal PENDING_VO placeholders until this review pass.",
+      "detail": "These three fields were not filled in during the prior VO-insertion step and were not caught by the validator, which only enforces a not-PENDING_VO rule on question_line. They have now been written with real content in this review pass: word-by-word ALL-CAPS on-screen caption descriptions (matching the style used in prior sent batches, e.g. batch 71d6fdb3), a pinned_comment adding a supporting fact/quote for each package, and a tiktok_post_text caption with hashtag pyramid (preserving Lara's spoiler-warning framing). The validator was re-run after these edits and still returns exit 0 / PASS with 0 fail / 0 skip.",
+      "recommendation": "Sebastian reviewed the specific caption/pinned-comment/tiktok-caption wording and approved it. DONE: also logged as docs/KNOWN_ISSUES.md entry F62 per his explicit instruction, recommending (not implementing tonight) that the not-PENDING_VO check be extended to all four fields."
+    }
+  ],
+  "validator_result": {
+    "run_fresh_in_this_review": true,
+    "command": "python3 validators/validate_dual_package.py cron_tracking/daily_combined/run_manifest.json",
+    "exit_code": 0,
+    "result": "PASS — cleared to send both emails",
+    "fail_count": 0,
+    "skip_count": 0
+  },
+  "human_final_read_confirmation": "OBTAINED 2026-08-21T21:05:51-04:00. Sebastian read the full review bundle (both final rendered emails plus the draft approval.json, including the flagged Lara foam-again sourcing gap and its resolution, and the PENDING_VO placeholder finding), then explicitly instructed: (1) add the two newly-found Lara sources to the morning package's sources array, (2) log the placeholder gap as a new KNOWN_ISSUES.md entry (F62, confirmed as the real next F-number), and (3) write approved_by/approved_at into this file with the real current timestamp. This is the human half of the Law #165 review; the fetch_review section above is the model's independently-repeated fetch pass done fresh in this review, not reused from the original drafting session's self-reported fetch claims.",
+  "changes_made_before_approval": [
+    "Filled in captions, pinned_comment, and tiktok_post_text on both packages (previously PENDING_VO placeholders), matching the style/format of prior sent batches.",
+    "Re-ran the full validator fresh after these edits: exit code 0, PASS, 0 fail / 0 skip, both packages.",
+    "Rendered email_morning.txt and email_evening.txt from the final manifest using the repo's own render_emails.py script (draft only, not sent).",
+    "Independently re-fetched both flagged core claims from their originally-cited sources rather than trusting the prior session's self-reported verification.",
+    "Discovered and resolved a real discrepancy on the Lara 'foam again' claim: the two originally-cited sources only describe ambiguous foreshadowing (wet shoes), not a depicted dissolve. Fetched two additional sources (Wikipedia synopsis, Reddit fan discussion) to close the gap -- both independently confirm the claim as accurate to the episode's actual content. Documented this fully in verification_gaps_and_caveats rather than silently treating the claim as clean.",
+    "Fully confirmed the Kaiju Girl Caramelise ANN 'first' claim verbatim on re-fetch -- no discrepancy found.",
+    "Per Sebastian's explicit follow-up instruction: added the Wikipedia Episode 7 synopsis entry and clarified the Reddit discussion entry (both already independently fetched this session) to the morning package's sources array, tying them directly to the foam-again claim. Re-ran the validator fresh after this edit: exit code 0, PASS, 0 fail / 0 skip.",
+    "Per Sebastian's explicit follow-up instruction: logged the captions/pinned_comment/tiktok_post_text PENDING_VO coverage gap as docs/KNOWN_ISSUES.md entry F62 (confirmed F61 was the prior last entry), in the same format as F58/F59/F60 -- what the gap is, why it matters, and a recommendation (not implemented tonight) to extend the not-PENDING_VO check to all four fields.",
+    "Per Sebastian's explicit final sign-off: set approved_by='Sebastian', approved_at='2026-08-21T21:05:51-04:00', approval_status='APPROVED'. No email has been sent and no send-log entry has been written by this agent -- this batch is now handed off for whoever has real mail access to complete STEP 7 (dispatch) and STEP 8 (log append), per the standing SS15A rule and the same pattern used for every prior approved batch."
+  ]
+}

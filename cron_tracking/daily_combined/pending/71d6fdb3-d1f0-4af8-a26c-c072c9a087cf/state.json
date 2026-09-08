@@ -1,0 +1,43 @@
+{
+  "status": "sent",
+  "emails_sent": true,
+  "batch_id": "71d6fdb3-d1f0-4af8-a26c-c072c9a087cf",
+  "post_date": "2026-08-22",
+  "workflow": "step_4_7_claude_writes_vo",
+  "packages": [
+    {
+      "package_id": "ef2318ab-7b1f-439b-b334-ba17b22b0e64",
+      "slot": "morning",
+      "show": "Victoria of Many Faces",
+      "format_type": "EPISODE_MOMENT",
+      "youtube_title": "SPOILER: Victoria of Many Faces Just Left Everyone",
+      "tiktok_title": "Victoria Got Her Family, Then Vanished",
+      "vo_status": "complete"
+    },
+    {
+      "package_id": "2e619614-b27d-489a-a149-e2257516f4a9",
+      "slot": "evening",
+      "show": "Clevatess",
+      "format_type": "THE_MOMENT",
+      "youtube_title": "Clevatess Just Outed the Princess as a Villain's Asset",
+      "tiktok_title": "Clevatess: The Princess Was In On It",
+      "vo_status": "complete"
+    }
+  ],
+  "pending_path": "/home/user/workspace/repo/cron_tracking/daily_combined/pending/71d6fdb3-d1f0-4af8-a26c-c072c9a087cf",
+  "validator": {
+    "exit_code": 0,
+    "result": "PASS",
+    "pass_count": 194,
+    "fail_count": 0,
+    "skip_count": 0,
+    "note": "Full PASS after VO insertion. Zero skips, zero fails, both packages, 194 total checks -- includes the new F60 spoiler-warning check (_validate_spoiler_warning), which both packages pass (morning EPISODE_MOMENT correctly requires and has the flag in both youtube_title and tiktok_post_text first line; evening THE_MOMENT is correctly out of scope for this rule and unchecked). VO written by Sebastian, inserted verbatim (morning 108 words, evening 106 words, independently recounted). Morning youtube_title shortened from Sebastian's originally provided 64-char text to a 50-char version to satisfy the existing 60-char hard cap while preserving the spoiler flag and meaning -- flagged in approval.json for his review. Evening question_line punctuation (em-dash to comma) adjusted to exactly match Sebastian's final VO text, satisfying the CTA-adjacency contiguous-match check."
+  },
+  "review_note": "VO inserted verbatim as provided by Sebastian on both packages (morning 108 words, evening 106 words -- independently recounted and confirmed in the 100-108 band via direct word-count, matching the validator's own regex). Applied Sebastian's exact spoiler-flag tiktok_post_text to the morning package; shortened his youtube_title from 64 to 50 chars to satisfy the pre-existing 60-char hard cap (flagged for his review in approval.json, not silently changed without notice). Filled semantic_qa.checks VO-dependent keys (vo_word_count, cta_adjacency, hook_claim_coverage, numeric_cross_check, ai_slop_pattern_check) to true on both packages after independent verification, replacing the pending-VO note with a VO-complete note. Formally logged the F60 gap (EPISODE_MOMENT/EPISODE_REVIEW/EPISODE_VS_MANGA spoiler-warning rule, zero prior mechanical enforcement) in docs/KNOWN_ISSUES.md and closed it with a new validator check (_validate_spoiler_warning) plus 8 new unit tests -- full suite 445/445 passing. Re-ran the full validator fresh: exit 0, 194 PASS / 0 FAIL / 0 SKIP, both packages. Rendered email_morning.txt and email_evening.txt from the final manifest (draft only). Sebastian reviewed approval.json (fetch_review, verification_gaps_and_caveats, validator_result, flagged title-shortening and question_line punctuation fix) and gave explicit sign-off 2026-08-21T20:14:07-04:00 -- approved_by/approved_at/approval_status written into approval.json per his own explicit instruction. STEP 7 (email dispatch) and STEP 8 (log append) NOT performed by this agent -- this agent cannot send email itself; handed off for whoever has real mail access, same pattern as every prior approved batch. emails_sent/log_appended/git_pushed(for the send-and-log commit) remain false/pending until that dispatch actually happens.",
+  "log_appended": true,
+  "git_pushed": true,
+  "error": null,
+  "terminal_state_written_at": "2026-08-22T00:30:16.330310+00:00",
+  "terminal_state_written_by": "tools/append_send_batch.py (F38)",
+  "approval_status": "APPROVED"
+}

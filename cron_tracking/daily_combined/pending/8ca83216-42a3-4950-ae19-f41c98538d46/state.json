@@ -1,0 +1,65 @@
+{
+  "status": "sent",
+  "emails_sent": true,
+  "human_approval": {
+    "approved_by": "Sebastian",
+    "approved_at": "2026-08-19T00:52:00+00:00",
+    "approval_file": "approval.json",
+    "note": "Law #165 review complete and approved. status remains AWAITING_APPROVAL and emails_sent remains false because dispatch (STEP 7) and log-append (STEP 8) have not yet been performed -- this session has no mail-sending capability. This field records human sign-off only, distinct from send state. Ready for whoever has real mail access to complete STEP 7/8."
+  },
+  "batch_id": "8ca83216-42a3-4950-ae19-f41c98538d46",
+  "corrects_batch_id": null,
+  "post_date": "2026-08-19",
+  "packages": [
+    {
+      "package_id": "3fa10c2e-8b4e-4c1a-9d2f-1a2b3c4d5e01",
+      "slot": "morning",
+      "show": "Mushoku Tensei: Jobless Reincarnation",
+      "format_type": "EPISODE_MOMENT",
+      "youtube_title": "Mushoku Tensei: Perugius Can't Save Zenith",
+      "tiktok_title": "The Hero Who Can't Fix Rudeus's Mom",
+      "vo_word_count": 103,
+      "vo_status": "complete",
+      "email_file": "email_morning.txt"
+    },
+    {
+      "package_id": "3fa10c2e-8b4e-4c1a-9d2f-1a2b3c4d5e02",
+      "slot": "evening",
+      "show": "The Apothecary Diaries",
+      "format_type": "SEASON_PREVIEW",
+      "youtube_title": "Apothecary Diaries S3 Leaves the Palace",
+      "tiktok_title": "Apothecary Diaries S3's New Visual Is Not the Palace",
+      "vo_word_count": 108,
+      "vo_status": "complete",
+      "email_file": "email_evening.txt"
+    }
+  ],
+  "pending_path": "cron_tracking/daily_combined/pending/8ca83216-42a3-4950-ae19-f41c98538d46/",
+  "vo_handoff": {
+    "vo_requested_logged": true,
+    "vo_received_logged": true,
+    "vo_inserted_logged": true,
+    "log_file": "cron_tracking/daily_combined/vo_handoff_log.jsonl"
+  },
+  "validator": {
+    "exit_code": 0,
+    "result": "PASS",
+    "summary": "186 PASS / 0 FAIL / 0 SKIP",
+    "confirmed_via": "two independent fresh process runs this session"
+  },
+  "law_165_review": {
+    "performed": true,
+    "reviewer": "Claude (model, fetch-and-confirm work) + Sebastian (human sign-off, approved 2026-08-19T00:52:00+00:00)",
+    "fetch_review_file": "approval.json",
+    "correction_made": "Evening package's TOHO Animation / Summer Garden Party 2026 hook claim and 'muted winter palette' wording were re-sourced with newly fetched corroborating URLs (anime.com, hypebeast.com, soapcentral.com) after the original single citation did not itself contain those specifics.",
+    "known_unsupported_entries": 1,
+    "known_unsupported_detail": "One non-core evening claim (two-cours/April 2027 timing) cites a URL (CBR) that does not itself state the April 2027 date. The date is independently confirmed elsewhere in the package's own citations (animenewsnetwork.com). Recorded honestly as fetched_content_supports_claim: false in approval.json rather than mislabeled true."
+  },
+  "approval_state_note": "approval.json in this directory now carries Sebastian's human sign-off: approved_by='Sebastian', approved_at='2026-08-19T00:52:00+00:00'. This batch is APPROVED but NOT YET SENT -- dispatch (STEP 7) and log-append (STEP 8) still need to be run by whoever has real mail access, per the standard handoff pattern used for every prior approved batch.",
+  "review_note": "Drafted and validated only. No email was sent and no send log was modified.",
+  "log_appended": true,
+  "git_pushed": false,
+  "error": null,
+  "terminal_state_written_at": "2026-08-19T01:17:21.385566+00:00",
+  "terminal_state_written_by": "tools/append_send_batch.py (F38)"
+}

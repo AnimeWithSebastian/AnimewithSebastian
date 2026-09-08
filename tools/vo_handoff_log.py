@@ -1,44 +1,70 @@
 #!/usr/bin/env python3
-"""Append-only observability log for the Perplexity -> Claude VO handoff.
+"""Append-only observability log for the Claude-writes-VO handoff workflow
+(standing process change, 2026-08-19).
 
-WHAT THIS IS
-------------
-Under the VO-handoff workflow, Perplexity no longer writes VO text. It does the
-research and sourcing, proposes a draft hook/opening line, and hands off a validated
-package plus a word-count band and closing structure. Claude writes the actual VO,
-which is then inserted and re-validated.
+Distinct from sent_scripts_log.json / sent_scripts_events.jsonl (which record
+CONFIRMED SENDS and are read by Law #166's blackout/recent-send-conflict checks).
+This file is PURE OBSERVABILITY: it is explicitly NEVER read by Law #166's
+pending-batch check, NEVER read by any blackout/recent-send/overlap check, and
+NEVER used as a gating input anywhere in validate_dual_package.py,
+validate_longform_flagship.py, or append_send_batch.py. Its only purpose is
+reconstructing the real handoff timeline for a batch/package after the fact
+(e.g. "did we ask Claude twice for this package, and why").
 
-That is a multi-step, multi-actor sequence, and previously nothing recorded it. This
-module records four events so the sequence is auditable after the fact:
+Location: cron_tracking/daily_combined/vo_handoff_log.jsonl (one JSON object
+per line, append-only, safe under concurrent git rebases the same way
+sent_scripts_events.jsonl is).
 
-    vo_requested  -- handoff sent to the writer (package staged with vo_status=pending)
-    vo_received   -- a VO came back from the writer
-    vo_inserted   -- the VO was written into the manifest AND re-validation passed
-    vo_rejected   -- a returned VO failed re-validation and was not accepted
+Four event types, in the state-machine sequence a package moves through:
 
-WHAT THIS IS NOT
-----------------
-PURE OBSERVABILITY. This log is deliberately NOT an input to any gate:
+  vo_requested  -- draft/email stage: the package was emailed to Sebastian with
+                   VO: [PENDING -- Claude to write]. Written when state.json
+                   transitions a package's status to AWAITING_VO.
+                   Fields: batch_id, package_id, slot, show, timestamp,
+                            vo_status ("pending").
 
-  * Law #166's pending-batch check does NOT read it. That check reads state.json's
-    `status` field, and it must keep doing so -- a batch's blocking state lives in
-    state.json, not here.
-  * No blackout, cooldown, recent-send, or overlap check reads it.
-  * Nothing in the send path reads it.
+  vo_received   -- Sebastian pasted Claude's VO text back for this package.
+                   Written BEFORE the full validator re-run, regardless of
+                   whether that re-run will pass or fail -- this event fires
+                   on receipt of the text, not on a passing outcome.
+                   Fields: batch_id, package_id, slot, show, timestamp,
+                            vo_word_count.
 
-The reason is a failure mode this project has already hit: a log that starts as a
-record and quietly becomes a source of truth. If this file were consulted by a gate,
-a missing or malformed line would change production behavior. Deleting this entire
-file must never change what the pipeline decides -- only what can be reconstructed
-about what happened. Keep it that way.
+  vo_inserted   -- the pasted VO was inserted into the manifest AND the full,
+                   unskipped validator re-run came back fully_passed=True.
+                   This is the ONLY event that accompanies an AWAITING_VO ->
+                   AWAITING_APPROVAL transition. A vo_received event with no
+                   matching vo_inserted event means that attempt did not clear
+                   validation (see vo_rejected).
+                   Fields: batch_id, package_id, slot, show, timestamp,
+                            validator_exit_code (must be 0 for this event to
+                            be written at all -- 0 is the only fully_passed
+                            exit code).
 
-THE ONE HARD GUARD
-------------------
-`log_vo_inserted` REFUSES to write unless validator_exit_code == 0. This is enforced
-in code, not documented as a convention, because "the VO went in" is exactly the claim
-someone would later trust without re-checking. Exit code 0 is fully_passed (zero FAILs
-AND zero SKIPs); exit 3 (PARTIAL, VO still pending) and exit 1 (real failures) both
-raise. See validators/validate_dual_package.py's main() for the code contract.
+  vo_rejected   -- the pasted VO was inserted into the manifest but the full
+                   validator re-run came back with a real FAIL (exit code 1)
+                   or is still PARTIAL (exit code 3, e.g. a residual skip).
+                   The batch/package stays at AWAITING_VO (no transition).
+                   A NEW vo_requested event is NOT logged for the redo round
+                   trip -- the existing vo_requested for this package_id still
+                   stands, and the corrected VO that comes back next is just
+                   another vo_received for the SAME batch_id/package_id.
+                   Fields: batch_id, package_id, slot, show, timestamp,
+                            validator_exit_code, failed_checks (list of check
+                            names with status FAIL, from Result.failures()).
+
+Explicit failed-revalidation case (per user's confirmed design, answered
+2026-08-18): if Sebastian's VO is pasted back and the full validator run
+comes back with a real FAIL:
+  - the batch stays at AWAITING_VO (never transitions to AWAITING_APPROVAL)
+  - vo_received is logged (receipt is unconditional)
+  - vo_inserted is NOT logged (only a fully_passed re-run logs it)
+  - vo_rejected IS logged, carrying the failed check names
+  - the redo round trip reuses the SAME batch_id and package_id; the ORIGINAL
+    vo_requested event stands -- no second vo_requested is written when the
+    corrected VO comes back. That corrected text is simply a second
+    vo_received event for the same package_id, and if it passes, the
+    (only) vo_inserted event follows it.
 """
 
 from __future__ import annotations
@@ -48,152 +74,118 @@ import json
 import os
 from typing import Any
 
-# Path is relative to the repo root, matching how cron_tracking/ is addressed elsewhere.
-_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-LOG_PATH = os.path.join(_REPO_ROOT, "cron_tracking", "daily_combined", "vo_handoff_log.jsonl")
+LOG_RELATIVE_PATH = os.path.join("cron_tracking", "daily_combined", "vo_handoff_log.jsonl")
 
-# The four event types. Anything else is rejected -- a typo'd event name in an
-# append-only log is unfixable after the fact without rewriting history.
-EVENT_VO_REQUESTED = "vo_requested"
-EVENT_VO_RECEIVED = "vo_received"
-EVENT_VO_INSERTED = "vo_inserted"
-EVENT_VO_REJECTED = "vo_rejected"
+EVENT_TYPES = ("vo_requested", "vo_received", "vo_inserted", "vo_rejected")
 
-EVENT_TYPES = (
-    EVENT_VO_REQUESTED,
-    EVENT_VO_RECEIVED,
-    EVENT_VO_INSERTED,
-    EVENT_VO_REJECTED,
-)
+# Fields required on every event regardless of type.
+_COMMON_REQUIRED = ("batch_id", "package_id", "slot", "show")
 
-# Exit code that means "every check evaluated and passed" (see the validator's main()).
-VALIDATOR_EXIT_FULLY_PASSED = 0
+# Type-specific required fields, per the schema documented in the module
+# docstring above.
+_TYPE_REQUIRED: dict[str, tuple[str, ...]] = {
+    "vo_requested": ("vo_status",),
+    "vo_received": ("vo_word_count",),
+    "vo_inserted": ("validator_exit_code",),
+    "vo_rejected": ("validator_exit_code", "failed_checks"),
+}
 
 
-def _now_iso() -> str:
-    return dt.datetime.now(dt.timezone.utc).isoformat()
+def _log_path(tree: str) -> str:
+    return os.path.join(tree, LOG_RELATIVE_PATH)
 
 
-def _append_line(record: dict[str, Any], path: str | None = None) -> str:
-    """Append one JSON object as a line. Creates the file/dir if absent.
-
-    Append-only by construction: opened in "a" mode, never "w". Nothing in this module
-    rewrites or deletes an existing line.
-    """
-    target = path or LOG_PATH
-    os.makedirs(os.path.dirname(target) or ".", exist_ok=True)
-    with open(target, "a", encoding="utf-8") as fh:
-        fh.write(json.dumps(record, ensure_ascii=False) + "\n")
-    return target
-
-
-def _base_record(event: str, batch_id: str, package_id: str,
-                 **extra: Any) -> dict[str, Any]:
-    if event not in EVENT_TYPES:
-        raise ValueError(f"unknown event type {event!r}; expected one of {EVENT_TYPES}")
-    if not isinstance(batch_id, str) or not batch_id.strip():
-        raise ValueError(f"batch_id must be a non-empty string, got {batch_id!r}")
-    if not isinstance(package_id, str) or not package_id.strip():
-        raise ValueError(f"package_id must be a non-empty string, got {package_id!r}")
-    rec = {
-        "event": event,
-        "ts": _now_iso(),
+def build_event(event_type: str, *, batch_id: str, package_id: str, slot: str,
+                 show: str, timestamp: str | None = None, **fields: Any) -> dict[str, Any]:
+    """Construct one schema-valid event dict. Raises ValueError if the event
+    type is unknown or a type-specific required field is missing -- this
+    keeps a malformed event from ever reaching the log file."""
+    if event_type not in EVENT_TYPES:
+        raise ValueError(f"unknown vo_handoff event type: {event_type!r}; expected one of {EVENT_TYPES}")
+    required = _TYPE_REQUIRED[event_type]
+    missing = [f for f in required if f not in fields]
+    if missing:
+        raise ValueError(f"{event_type} event missing required field(s): {missing}")
+    if event_type == "vo_inserted" and fields.get("validator_exit_code") != 0:
+        raise ValueError(
+            "vo_inserted must only be logged when the full validator re-run is "
+            f"fully_passed (exit code 0); got validator_exit_code={fields.get('validator_exit_code')!r}. "
+            "A non-zero exit code belongs to a vo_rejected event instead.")
+    event = {
+        "event": event_type,
         "batch_id": batch_id,
         "package_id": package_id,
+        "slot": slot,
+        "show": show,
+        "timestamp": timestamp or dt.datetime.now(dt.timezone.utc).isoformat(),
     }
-    rec.update(extra)
-    return rec
+    event.update(fields)
+    return event
 
 
-def log_vo_requested(batch_id: str, package_id: str, *, word_band: str = "",
-                     note: str = "", path: str | None = None) -> str:
-    """Record that a handoff was sent to the writer.
-
-    `word_band` is the target the writer must hit (e.g. "200-216"), carried here so the
-    request is reconstructable without re-deriving it from the manifest's edit length.
-
-    Deliberately logged ONCE per handoff. A redo after a rejected VO reuses the same
-    batch_id/package_id and does NOT log a second vo_requested -- see the
-    failed-revalidation path in cron_daily_runtime.txt STEP 4.7.
-    """
-    return _append_line(
-        _base_record(EVENT_VO_REQUESTED, batch_id, package_id,
-                     word_band=word_band, note=note), path)
+def append_event(tree: str, event: dict[str, Any]) -> None:
+    """Append one already-built event as one JSON line. Append-only, no
+    read-modify-write of prior lines -- safe under concurrent git rebases the
+    same way sent_scripts_events.jsonl is. Creates the parent directory and
+    file on first use."""
+    path = _log_path(tree)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "a", encoding="utf-8") as fh:
+        fh.write(json.dumps(event, sort_keys=True) + "\n")
 
 
-def log_vo_received(batch_id: str, package_id: str, *, vo_word_count: int | None = None,
-                    note: str = "", path: str | None = None) -> str:
-    """Record that a VO came back from the writer.
-
-    Logged BEFORE re-validation, and logged regardless of whether the VO turns out to
-    be acceptable. A received-then-rejected VO leaves both a vo_received and a
-    vo_rejected line, which is what makes a retry loop legible after the fact.
-    """
-    return _append_line(
-        _base_record(EVENT_VO_RECEIVED, batch_id, package_id,
-                     vo_word_count=vo_word_count, note=note), path)
+def log_vo_requested(tree: str, *, batch_id: str, package_id: str, slot: str,
+                      show: str, timestamp: str | None = None) -> dict[str, Any]:
+    event = build_event("vo_requested", batch_id=batch_id, package_id=package_id,
+                         slot=slot, show=show, timestamp=timestamp, vo_status="pending")
+    append_event(tree, event)
+    return event
 
 
-def log_vo_inserted(batch_id: str, package_id: str, *, validator_exit_code: int,
-                    note: str = "", path: str | None = None) -> str:
-    """Record that a VO was inserted AND the manifest re-validated clean.
-
-    HARD GUARD: raises ValueError unless validator_exit_code == 0.
-
-    This is enforced rather than documented because this specific line is the one a
-    later reader would trust as "the VO is in and the package is good." Exit 3 means
-    PARTIAL -- checks are still skipped, the VO is not actually complete. Exit 1 means
-    real failures. Neither may be recorded as an insertion; the correct call in those
-    cases is log_vo_rejected.
-    """
-    if validator_exit_code != VALIDATOR_EXIT_FULLY_PASSED:
-        raise ValueError(
-            f"refusing to log {EVENT_VO_INSERTED}: validator_exit_code="
-            f"{validator_exit_code!r}, expected {VALIDATOR_EXIT_FULLY_PASSED} "
-            f"(fully_passed: zero FAILs and zero SKIPs). Exit 3 means checks are still "
-            f"skipped and the VO is not complete; exit 1 means real failures. "
-            f"Use log_vo_rejected instead."
-        )
-    return _append_line(
-        _base_record(EVENT_VO_INSERTED, batch_id, package_id,
-                     validator_exit_code=validator_exit_code, note=note), path)
+def log_vo_received(tree: str, *, batch_id: str, package_id: str, slot: str,
+                     show: str, vo_word_count: int, timestamp: str | None = None) -> dict[str, Any]:
+    event = build_event("vo_received", batch_id=batch_id, package_id=package_id,
+                         slot=slot, show=show, timestamp=timestamp, vo_word_count=vo_word_count)
+    append_event(tree, event)
+    return event
 
 
-def log_vo_rejected(batch_id: str, package_id: str, *, validator_exit_code: int | None = None,
-                    reason: str = "", failed_checks: list[str] | None = None,
-                    note: str = "", path: str | None = None) -> str:
-    """Record that a returned VO failed re-validation and was NOT accepted.
-
-    The batch stays at AWAITING_VO after this -- a rejection does not close the batch,
-    it returns it to the writer. `failed_checks` carries the specific check names so the
-    redo request can be concrete instead of "it failed".
-    """
-    return _append_line(
-        _base_record(EVENT_VO_REJECTED, batch_id, package_id,
-                     validator_exit_code=validator_exit_code,
-                     reason=reason,
-                     failed_checks=list(failed_checks or []),
-                     note=note), path)
+def log_vo_inserted(tree: str, *, batch_id: str, package_id: str, slot: str,
+                     show: str, validator_exit_code: int, timestamp: str | None = None) -> dict[str, Any]:
+    event = build_event("vo_inserted", batch_id=batch_id, package_id=package_id,
+                         slot=slot, show=show, timestamp=timestamp,
+                         validator_exit_code=validator_exit_code)
+    append_event(tree, event)
+    return event
 
 
-def read_events(path: str | None = None) -> list[dict[str, Any]]:
-    """Read every logged event. Convenience for inspection and tests ONLY.
+def log_vo_rejected(tree: str, *, batch_id: str, package_id: str, slot: str, show: str,
+                     validator_exit_code: int, failed_checks: list[str],
+                     timestamp: str | None = None) -> dict[str, Any]:
+    event = build_event("vo_rejected", batch_id=batch_id, package_id=package_id,
+                         slot=slot, show=show, timestamp=timestamp,
+                         validator_exit_code=validator_exit_code, failed_checks=list(failed_checks))
+    append_event(tree, event)
+    return event
 
-    Nothing in the production path calls this, and nothing should start: see the
-    "WHAT THIS IS NOT" note at the top of this module. Malformed lines are skipped
-    rather than raising, so one bad line cannot make the whole log unreadable.
-    """
-    target = path or LOG_PATH
-    if not os.path.exists(target):
+
+def read_events(tree: str, *, batch_id: str | None = None, package_id: str | None = None) -> list[dict[str, Any]]:
+    """Read back events, optionally filtered by batch_id and/or package_id.
+    Used only for reconstructing the timeline / human inspection -- NEVER
+    called from any gating path in the validators or append_send_batch.py."""
+    path = _log_path(tree)
+    if not os.path.exists(path):
         return []
-    out: list[dict[str, Any]] = []
-    with open(target, encoding="utf-8") as fh:
+    events = []
+    with open(path, encoding="utf-8") as fh:
         for line in fh:
             line = line.strip()
             if not line:
                 continue
-            try:
-                out.append(json.loads(line))
-            except json.JSONDecodeError:
+            e = json.loads(line)
+            if batch_id is not None and e.get("batch_id") != batch_id:
                 continue
-    return out
+            if package_id is not None and e.get("package_id") != package_id:
+                continue
+            events.append(e)
+    return events

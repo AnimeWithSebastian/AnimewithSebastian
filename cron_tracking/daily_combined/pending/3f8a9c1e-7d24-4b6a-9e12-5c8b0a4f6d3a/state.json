@@ -1,0 +1,34 @@
+{
+  "cron_id": "daily_combined",
+  "workflow": "combined_daily_dual_package",
+  "batch_id": "3f8a9c1e-7d24-4b6a-9e12-5c8b0a4f6d3a",
+  "run_ts": "2026-08-22T00:38:00+00:00",
+  "post_date": "2026-08-21",
+  "status": "sent",
+  "emails_sent": true,
+  "log_appended": true,
+  "git_pushed": false,
+  "error": null,
+  "pending_path": "cron_tracking/daily_combined/pending/3f8a9c1e-7d24-4b6a-9e12-5c8b0a4f6d3a/",
+  "note": "Independent replacement batch for post_date 2026-08-21. Sebastian chose not to produce the two shows in batch f27f02a6 (Iceblade Sorcerer S2, Reincarnated as a Sword S2) for production-preference reasons only -- that content was fully verified, approved, and sent correctly, so f27f02a6's send record is untouched and this batch does NOT set corrects_batch_id. Both VOs written by Sebastian, inserted verbatim. Full validator re-run (zero skips required) returned exit code 0 (fully_passed): 192 checks passed, 0 failed. AWAITING Sebastian's explicit per-batch send authorization per Standing Rule / doc section 15A -- not yet sent.",
+  "packages": [
+    {
+      "package_id": "b1e4a2d0-1a3c-4e5f-9a7b-2c6d8e1f4a5b",
+      "slot": "morning",
+      "show": "Goodbye, Lara",
+      "format_type": "EPISODE_MOMENT",
+      "vo_status": "complete",
+      "vo_word_count": 108
+    },
+    {
+      "package_id": "c2f5b3e1-2b4d-4f6a-8b8c-3d7e9f2a5b6c",
+      "slot": "evening",
+      "show": "Kaiju Girl Caramelise",
+      "format_type": "WRONG_TAKE",
+      "vo_status": "complete",
+      "vo_word_count": 107
+    }
+  ],
+  "log_appended_manually": true,
+  "manual_log_note": "Logged manually -- both emails confirmed genuinely sent (real sent_email records + mailbox verification, confirmed earlier this session). The automated append_send_batch.py gate blocked on approval.json's fetch_review: two entries tied to the morning package's 'foam again' hook claim show fetched_content_supports_claim: false because they are the ORIGINAL cited sources, which only implied the claim. Two additional sources (Wikipedia synopsis, Reddit eyewitness accounts) were independently fetched in the same review and DO directly confirm the claim -- see docs/KNOWN_ISSUES.md F63 for the full, real investigation. This is a gate limitation (can't recognize a claim resolved across multiple citations), not an unresolved factual question. Recorded manually per Sebastian's explicit confirmation."
+}

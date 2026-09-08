@@ -83,18 +83,17 @@ SHORTS_ONLY_FIELDS = ("capcut_target_sec", "total_clip_time_sec", "loop_line",
                       "loop_transition", "loop_read_aloud_pass")
 
 
-# --- check status vocabulary (added 2026-08-16, parity with validate_dual_package) ---
-# This validator has no VO-dependent checks and nothing here currently calls .skip().
-# The vocabulary and fully_passed are added anyway so BOTH validators expose the same
-# Result contract: any caller (or future check) that gains a skip cannot silently be
-# read as a pass, and `ok`-vs-`fully_passed` means the same thing in both files.
-STATUS_PASS = "PASS"
-STATUS_FAIL = "FAIL"
-STATUS_SKIP = "SKIP"
-
-
 @dataclass
 class Result:
+    # STATUS SCHEMA PARITY FIX (2026-08-19): this Result class is a SEPARATE, INDEPENDENT
+    # copy from validate_dual_package.py's Result -- confirmed via grep that this file
+    # defines its own class rather than importing the shared one, so the Shorts
+    # pipeline's Claude-writes-VO / SKIP status change does NOT itself touch flagship
+    # validation. This class is extended in parallel purely for CONTRACT PARITY (so
+    # both validator files' Result objects behave identically if anyone ever needs to
+    # treat them uniformly) -- NOT because flagship manifests have a vo_status concept
+    # today. No code path in this file ever calls .skip(); fully_passed therefore always
+    # equals ok in current practice, and this is a no-op change for real flagship runs.
     checks: list[tuple[str, str, str]] = field(default_factory=list)
     # ADVISORIES (added 2026-08-15): non-blocking notes that are reported but do NOT
     # affect `ok`. This channel exists because Law #146's 8:00 length target is
@@ -105,12 +104,13 @@ class Result:
     advisories: list[str] = field(default_factory=list)
 
     def add(self, name: str, ok: bool, detail: str = "") -> None:
-        self.checks.append((name, STATUS_PASS if ok else STATUS_FAIL, detail))
+        self.checks.append((name, "PASS" if ok else "FAIL", detail))
 
-    def skip(self, name: str, detail: str = "") -> None:
-        """Record a check that could not be evaluated. Precautionary parity with
-        validate_dual_package -- no flagship check calls this today."""
-        self.checks.append((name, STATUS_SKIP, detail))
+    def skip(self, name: str, reason: str) -> None:
+        """Present for contract parity with validate_dual_package.py's Result. No
+        current flagship check calls this -- Law #146 manifests have no VO-pending
+        concept."""
+        self.checks.append((name, "SKIP", reason))
 
     def advise(self, note: str) -> None:
         """Record a non-blocking recommendation. Never affects `ok`."""
@@ -118,19 +118,20 @@ class Result:
 
     @property
     def ok(self) -> bool:
-        """PERMISSIVE: zero FAILs. Skips do not count against it."""
-        return all(status != STATUS_FAIL for _, status, _ in self.checks)
+        return all(status != "FAIL" for _, status, _ in self.checks)
 
     @property
     def fully_passed(self) -> bool:
-        """THE REAL GATE: zero FAILs AND zero SKIPs."""
-        return all(status == STATUS_PASS for _, status, _ in self.checks)
+        """Parity with validate_dual_package.py. Equals ok today since nothing calls
+        .skip() in this file; kept so `if not r.fully_passed` is safe/future-proof
+        here too, per explicit design requirement."""
+        return all(status == "PASS" for _, status, _ in self.checks)
 
     def failures(self) -> list[tuple[str, str, str]]:
-        return [c for c in self.checks if c[1] == STATUS_FAIL]
+        return [c for c in self.checks if c[1] == "FAIL"]
 
     def skips(self) -> list[tuple[str, str, str]]:
-        return [c for c in self.checks if c[1] == STATUS_SKIP]
+        return [c for c in self.checks if c[1] == "SKIP"]
 
 
 def _norm(s: str) -> str:
@@ -276,7 +277,7 @@ def validate_flagship(m: dict[str, Any]) -> Result:
 def format_report(r: Result) -> str:
     lines = ["LONG-FORM FLAGSHIP PREFLIGHT VALIDATION", "=" * 40]
     for name, status, detail in r.checks:
-        suffix = f"  ({detail})" if detail and status != STATUS_PASS else ""
+        suffix = f"  ({detail})" if detail and status != "PASS" else ""
         lines.append(f"[{status}] {name}{suffix}")
     # Advisories print separately and never change the verdict (Law #146's 8:00 target
     # is a recommendation, not a gate). Tagged [ADVISORY] so it can't be misread as a
@@ -285,8 +286,8 @@ def format_report(r: Result) -> str:
         lines.append(f"[ADVISORY] {note}")
     lines.append("=" * 40)
     n_fail = len(r.failures())
-    verdict = "PASS — flagship cleared" if r.ok else f"BLOCKED — {n_fail} check(s) failed"
-    if r.ok and r.advisories:
+    verdict = "PASS — flagship cleared" if r.fully_passed else f"BLOCKED — {n_fail} check(s) failed"
+    if r.fully_passed and r.advisories:
         verdict += f" ({len(r.advisories)} advisory note(s), none blocking)"
     lines.append(f"RESULT: {verdict}")
     return "\n".join(lines)
@@ -350,7 +351,7 @@ def main(argv: list[str]) -> int:
         return 2
     r = validate_flagship(manifest)
     print(format_report(r))
-    return 0 if r.ok else 1
+    return 0 if r.fully_passed else 1
 
 
 if __name__ == "__main__":

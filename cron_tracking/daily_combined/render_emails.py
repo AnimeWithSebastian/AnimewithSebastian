@@ -1,3 +1,17 @@
+"""render_emails.py -- renders BOTH packages of the SHARED top-level
+cron_tracking/daily_combined/run_manifest.json into email text.
+
+WARNING (added 2026-09-08 audit): this script always reads the shared
+top-level manifest, by design -- it is NOT scoped to any specific batch.
+If you're working on a specific batch that has its own
+pending/<batch_id>/render_emails_scoped.py, use THAT script instead; running
+this one by mistake will silently render whatever batch currently happens to
+be at the top-level path, which may be unrelated to the batch you're actually
+working on, and can overwrite email_morning.txt/email_evening.txt with the
+wrong content. This already happened once for real (2026-09-02 session) when
+this script was run by mistake and briefly overwrote an unrelated batch's
+tracked email file before being caught and reverted.
+"""
 import json
 
 m = json.load(open("cron_tracking/daily_combined/run_manifest.json"))
@@ -20,7 +34,14 @@ def render(pkg):
     fs = pkg["funnel_status"]
     lines.append(f"FUNNEL:  {fs}")
     if pkg.get("spoiler_warning"):
-        lines.append("SPOILER WARNING: Yes — covers Episode 18 content aired Aug 7, 2026")
+        # 2026-09-08 audit fix: this line was hardcoded to one specific past
+        # batch (Slime S4E18, Aug 7 2026) and would have silently rendered
+        # that same wrong show/episode/date into any future package's spoiler
+        # warning. Several per-batch render_emails_scoped.py copies had
+        # already independently worked around this by parameterizing or
+        # genericizing it; fixed here at the shared source so future copies
+        # don't inherit the stale hardcoded text again.
+        lines.append(f"SPOILER WARNING: Yes — covers {pkg['show']} episode content")
     lines.append("")
     lines.append("━━━ FIRST-SECOND HOOK ━━━")
     lines.append(f"ON-SCREEN (second 1): {pkg['hook_onscreen_text']}")

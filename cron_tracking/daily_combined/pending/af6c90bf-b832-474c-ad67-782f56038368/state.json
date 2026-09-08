@@ -1,0 +1,46 @@
+{
+  "cron_id": "daily_combined",
+  "workflow": "step_4_7_claude_writes_vo",
+  "batch_id": "af6c90bf-b832-474c-ad67-782f56038368",
+  "run_ts": "2026-08-23T00:33:19Z",
+  "post_date": "2026-08-23",
+  "status": "sent",
+  "emails_sent": true,
+  "log_appended": true,
+  "git_pushed": false,
+  "packages": [
+    {
+      "package_id": "76c51349-bdb9-4456-a947-aa54883e74b7",
+      "slot": "morning",
+      "show": "Kingdom Hearts",
+      "format_type": "FACT_DROP",
+      "youtube_title": "Disney Just Announced a Kingdom Hearts Anime",
+      "tiktok_title": "Kingdom Hearts Is Getting an Anime",
+      "vo_status": "complete",
+      "vo_word_count": 108
+    },
+    {
+      "package_id": "36aafe53-98d9-420e-9c93-d5d9f0214b0e",
+      "slot": "evening",
+      "show": "Bleach: Thousand-Year Blood War - The Calamity",
+      "format_type": "EPISODE_MOMENT",
+      "youtube_title": "SPOILER: Bleach Just Gave Ichigo a New Form",
+      "tiktok_title": "Ichigo's New Form Isn't in the Manga",
+      "vo_status": "complete",
+      "vo_word_count": 107
+    }
+  ],
+  "pending_path": "/home/user/workspace/repo_restore/cron_tracking/daily_combined/pending/af6c90bf-b832-474c-ad67-782f56038368",
+  "validator": {
+    "exit_code": 0,
+    "result": "PASS",
+    "note": "Full PASS after Sebastian's real VOs were inserted verbatim (108 words morning / 107 words evening). Zero SKIPPED, zero FAILED checks across both packages, including all 5 VO-dependent semantic_qa checks. Cleared to send per validator output -- awaiting Sebastian's explicit send/approval decision; not auto-sent."
+  },
+  "review_note": "Evening package replaced this run: original evening candidate (Fate/strange Fake, package_id a2005957-be8e-4b04-9171-cb4f6dde3ed8) was dropped per Sebastian's explicit direction due to a same-batch FACT_DROP format collision with Kingdom Hearts -- not a content-quality rejection. Fate/strange Fake research preserved at research_backlog/fate_strange_fake_new_season_20260822.md for a future night. Replacement evening candidate (Bleach TYBW Ep. 45, EPISODE_MOMENT) sourced, double-method conflict-checked, and drafted fresh this run. Kingdom Hearts morning package unchanged in original content; two flagged structural gaps (clip_locate on 3 verified clips, footage_status/footage_search_performed on 1 unverified clip) fixed in this rebuild. Sebastian's VO for Kingdom Hearts added one new sourced claim not in the original draft (Helgi/Dark Road fan theory per Complex.com, independently re-fetched and confirmed) plus a revised question_line to match; VO also updated hook_line/opening_sentence to the VO's real first sentence. Bleach VO uses cour-relative 'Episode 5 of The Calamity' framing (== absolute episode 45, confirmed via CBR's stated +40 offset and GamesRadar+'s Aug 22 air-date listing) for consistency with this channel's prior Bleach sends (batch d4a8f107 used the same per-cour convention).",
+  "error": null,
+  "approval_status": "approved",
+  "approved_by": "Sebastian",
+  "approved_at": "2026-08-23T02:24:00Z",
+  "terminal_state_written_at": "2026-08-23T02:37:16.636821+00:00",
+  "terminal_state_written_by": "tools/append_send_batch.py (F38)"
+}

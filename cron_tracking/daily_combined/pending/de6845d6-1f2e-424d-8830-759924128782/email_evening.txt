@@ -1,0 +1,64 @@
+Subject: TOMORROW | EVENING | Kaiju No. 8 | 2026-08-16 | Kaiju No. 8's Next Anime Isn't About Kafka
+
+━━━ EVENING — 2026-08-16 ━━━
+SHOW:    Kaiju No. 8
+ANGLE:   The confirmed Sept 5 premiere of 'Narumi's Week at Work' shifts the spotlight from Kafka to Gen Narumi -- Japan's strongest anti-kaiju combatant -- with a real trailer, four confirmed episode titles, and a locked weekly schedule, giving a stale 8-month-old Final Chapter announcement a genuinely current news hook.
+FORMAT:  SEASON_PREVIEW
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM — Law #134 Stage 2; manga panels allowed within the anime-footage half for manga-based formats)
+TOPIC:   timely — signals: premiere/news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK (Law #144 — on screen + spoken in second 1) ━━━
+ON-SCREEN (second 1): KAIJU NO.8 IS BACK. NOT WITH KAFKA.
+SPOKEN (VO first line): Kaiju Number 8 is coming back, but not with Kafka.
+HOOK FAMILY: revelation
+(Draft two hook candidates internally — Law #145 — publish ONLY the selected one:
+  candidate A: Kaiju Number 8 is coming back, but not with Kafka.
+  candidate B: Kaiju Number 8's next anime isn't about Kafka at all.
+  SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (106 words — fills the resolved 30s CapCut edit) ━━━
+Kaiju Number 8 is coming back, but not with Kafka. The new trailer confirms Narumi's Week at Work, a four-episode short premiering September 5th, and this time the spotlight is on Gen Narumi, the captain everyone calls Japan's strongest anti-kaiju combatant. Off the battlefield he is lazy, obsessed with video games, and constantly late. On it, he predicts every enemy move before it happens. This short finally answers what his actual week looks like between fights. Production I.G is animating all four episodes, dropping weekly through September 26th on Crunchyroll. Is Narumi's downtime going to be funnier than his fights? Leave your take.
+
+━━━ CLOSING LINE NOTE (Law #141 rescinded 2026-07-27) ━━━
+Law #141 rescinded 2026-07-27 -- no forced colon-handoff loop attempted. VO closes on its own complete, natural thought ('Leave your take.').
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings REQUIRED — Law #140) ━━━
+CUT 1 — 6 sec (0:00–0:06): Official 'Narumi's Week at Work' trailer title card (unaired_trailer_only) — Front-loads the confirmed premiere announcement without claiming unaired short-anime footage.
+CUT 2 — 7 sec (0:06–0:13): Gen Narumi official Season 2 promotional/trailer footage (First Division captain) (unaired_trailer_only) — Establishes who Narumi is using official Season 2 promotional footage, since no single source gave a specific episode/timestamp for a located combat introduction scene.
+CUT 3 — 6 sec (0:13–0:19): Official trailer footage of Narumi's off-duty/comedic side (Trailer described by Silime and Outlook Respawn as spotlighting Narumi's daily life; Gen's off-duty personality (video games, laziness, tardiness) is documented across GameWith, MyAnimeList, and Beebom character profiles.) — Supports the VO's 'lazy, obsessed with video games, constantly late' beat with the actual trailer's tonal contrast.
+CUT 4 — 6 sec (0:19–0:25): Gen Narumi combat/promotional footage (precognitive ability) (unaired_trailer_only) — Supports the VO's 'predicts every enemy move' claim using his established combat ability.
+CUT 5 (final) — 5 sec (0:25–0:30): Official trailer end card with premiere date and CTA overlay (unaired_trailer_only) — Closes on the confirmed premiere date and schedule while showing the CTA.
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+KAIJU NO. 8 IS BACK / NOT WITH KAFKA / GEN NARUMI'S SPOTLIGHT / SEPT 5 PREMIERE / JAPAN'S STRONGEST COMBATANT / LAZY OFF DUTY, LETHAL ON IT / FUNNIER THAN THE FIGHTS? / LEAVE YOUR TAKE
+
+━━━ YOUTUBE TITLE (Law #144 — punchy, searchable) ━━━
+Kaiju No. 8's Next Anime Isn't About Kafka
+
+━━━ TIKTOK TITLE (Law #144 — punchy; distinct from the caption below) ━━━
+Kaiju No. 8 Is Back, Just Not With Kafka
+
+━━━ TIKTOK POST TEXT (caption — may be longer; hashtags live HERE, not in the title) ━━━
+Kaiju No. 8's next anime drops September 5th, and it's not about Kafka -- it's a full week inside Gen Narumi's chaotic life off the battlefield. #kaijuno8 #gennarumi #anime #animenews #crunchyroll
+
+━━━ PINNED COMMENT ━━━
+The four episode titles are already out -- 'The Platoon Leader's True Feelings,' 'The Vice Captain's Worries,' 'That Guy From the West,' and 'The Bond Between Classmates' -- and none of them mention a single kaiju. This might be the most character-focused thing Production I.G has done with this franchise.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 5:30 PM ET | Peak 7:00 PM ET
+TikTok — post 8:00 PM ET | Peak 9:00 PM ET
+
+━━━ SOURCES (concise evidence — >=2, each dated) ━━━
+1. Fetched ANN news report: the official trailer for 'Narumi's Week at Work' was released, confirming a 4-episode run premiering September 5, with episodes launching Saturdays at 8:00 PM JST on TOHO Animation's YouTube channel, final episode streaming September 26; Crunchyroll will also stream it. — https://www.animenewsnetwork.com/news/2026-08-05/new-kaiju-no-8-anime-short-trailer-reveals-4-episode-run-starting-on-september-5/.240303 (Aug 5, 2026)
+2. Fetched Anime.com report confirming the same September 5 premiere date, weekly Saturday 8:00 PM JST episodes on TOHO Animation YouTube, and Crunchyroll international simulcast. — https://www.anime.com/news/kaiju-no-8-narumis-week-at-work-september-5-premiere (Aug 5, 2026)
+3. Fetched Wikipedia's Kaiju No. 8 page confirming 'Narumi's Week at Work' details: announced December 2025, premiere date September 5 2026, 4 episodes, director Shigeyuki Miya, Production I.G, licensed by Crunchyroll. — https://en.wikipedia.org/wiki/Kaiju_No._8 (Aug 2026 (page checked))
+4. Fetched Wikipedia's List of Kaiju No. 8 characters page confirming Gen Narumi is the First Division captain, described as the anime's strongest active human combatant, voiced by Koki Uchiyama. — https://en.wikipedia.org/wiki/List_of_Kaiju_No._8_characters (Aug 2026 (page checked))
+5. Fetched Silime report listing the four confirmed episode titles: 'The Platoon Leader's True Feelings,' 'The Vice Captain's Worries,' 'That Guy From the West,' 'The Bond Between Classmates.' — https://www.silime.in/news/kaiju-no-8-narumi-short-trailer-four-episodes-september (Aug 13, 2026)
+6. Fetched MyAnimeList character profile confirming Gen Narumi's off-duty personality: likes video games, online shopping, ego surfing; unprofessional, lazy, and childish off the battlefield despite being 'Japan's Strongest Anti-Kaiju Combatant.' — https://myanimelist.net/character/198940/Gen_Narumi (checked Aug 2026)
+7. Fetched The Mary Sue explainer confirming Narumi's precognitive ability via his retinal implant (from Kaiju No. 1's remains), letting him visualize brain signals and predict enemy movements before they happen. — https://www.themarysue.com/who-is-gen-narumi-in-kaiju-no-8-explained/ (Jul 2024)
+8. Fetched Game Rant's foresight explainer, independently confirming Gen Narumi's 'strongest' status: 'The First Division is led by none other than Gen Narumi, the Anti-Kaiju's strongest Captain and the best chance at success in every mission.' — https://gamerant.com/kaiju-no-8-gen-narumis-foresight/ (Aug 1, 2024)
+
+━━━ END EVENING ━━━

@@ -1,0 +1,471 @@
+{
+  "batch_id": "9a7d935f-95e6-40ac-8dfc-a6dd1d9a3eb7",
+  "run_ts": "2026-08-26T00:00:22.395619+00:00",
+  "post_date": "2026-08-26",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-08-26T00:00:22.395619+00:00",
+    "age_days": 0,
+    "status": "REFRESHED"
+  },
+  "packages": [
+    {
+      "package_id": "3f5e2c81-6a4d-4b7c-9e1a-0d8f7b6c5a4e",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "Hunter x Hunter",
+      "angle": "Tserriednich fakes his own death using his new Nen ability to escape Room 1004 undetected",
+      "format_type": "THE_MOMENT",
+      "topic_class": "timely",
+      "topic_signals": [
+        "chapter",
+        "news"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "He's not dead. Everyone just watched him die.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Everyone in the room just watched Tserriednich die.",
+        "Hunter x Hunter just revealed the ability that fakes a death in front of witnesses."
+      ],
+      "selected_hook_index": 0,
+      "hook_line": "Everyone in the room just watched Tserriednich die.",
+      "opening_sentence": "Everyone in the room just watched Tserriednich die.",
+      "vo_status": "complete",
+      "vo": "Everyone in the room just watched Tserriednich die. He didn't. Chapter 418 has him activate Parallel Future in Zetsu, hiding his aura completely -- a ten-second window to see ahead, unable to touch anyone physically, but able to move objects. Using that illusion, he fakes his own death in Room 1004, and Benjamin genuinely believes he killed him. Special Martial Law reaches his quarters while he simply walks past the guards, undetected. The chapter ends on real ambiguity: Theta turns her head toward him as he nears the exit. Chapter 419 releases August 30th. Did Theta actually sense him, or was that just her nerves? Leave your take.",
+      "vo_word_count": 108,
+      "question_line": "Did Theta actually sense him, or was that just her nerves?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 55,
+      "video_style": "Face-cam split screen (creator TOP / manga panels BOTTOM, Law #134 Stage 2 -- required default, no anime-only exception)",
+      "face": true,
+      "split_screen": true,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "length_rationale": "Standard 30s edit, 100-108 word band (Law #138 default path). Rebuilt from the original 60s draft at user direction to match tonight's batch convention; same 3 confirmed beats (Parallel Future mechanics/escape, martial law + Benjamin's false belief, Theta cliffhanger) compressed to fit 30s without adding or dropping any previously-verified fact.",
+      "sources": [
+        {
+          "claim": "Chapter 418 reveals Tserriednich faked his death via Parallel Future to fool Benjamin and escape Room 1004",
+          "url": "https://nuxgameguides.com/entertainment/hunter-x-hunter-chapter-418-spoilers-release-date-and-recap/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Parallel Future's mechanical rules: 10-second future vision via Zetsu, cannot alter others' physical state, can move objects, aura-fueled illusion beyond the initial 10 seconds",
+          "url": "https://www.animeexplained.com/spoilers/hxh-418/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Chapter ends with Theta turning toward Tserriednich as he passes, an ambiguous cliffhanger over whether she senses him",
+          "url": "https://noscriptneeded.com/hunter-x-hunter-418-theta-tserriednich-escape-explained/",
+          "date": "Aug 2026"
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/List_of_Hunter_%C3%97_Hunter_chapters",
+          "claim": "Chapter 418's official English title is 'Hypothesis' (listed in the chapter index; Nux Game Guides independently confirms the official translation uses 'Hypothesis')"
+        },
+        {
+          "url": "https://www.thepopverse.com/comics-manga-hunter-x-hunter-release-schedule-updated-hiatus-new-chapter-date",
+          "claim": "Hunter x Hunter Chapter 419 is scheduled for release on August 30, 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Manga panel: Tserriednich entering Zetsu, activating Parallel Future ability",
+          "reason": "Establishes the ability the entire hook depends on",
+          "duration_sec": 10,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 10,
+          "scene_verified": false,
+          "manga_reference": "Hunter x Hunter Chapter 418, 'Hypothesis' -- opening pages",
+          "verification_note": "Chapter 418 has not aired in anime form; this cut uses the real manga panel art, not an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Hunter x Hunter anime adaptation of Chapter 418 -- none exists; the anime has not caught up to this arc point.",
+          "claim_vs_source_check": null
+        },
+        {
+          "scene": "Manga panel: Benjamin's forces enforcing martial law, believing Tserriednich dead",
+          "reason": "Shows the false death Benjamin believes he witnessed",
+          "duration_sec": 10,
+          "timeline_start_sec": 10,
+          "timeline_end_sec": 20,
+          "scene_verified": false,
+          "manga_reference": "Hunter x Hunter Chapter 418, 'Hypothesis' -- mid-chapter execution scene",
+          "verification_note": "Chapter 418 has not aired in anime form; this cut uses the real manga panel art, not an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Hunter x Hunter anime adaptation of Chapter 418 -- none exists; the anime has not caught up to this arc point.",
+          "claim_vs_source_check": null
+        },
+        {
+          "scene": "Manga panel: Theta turning her head toward Tserriednich as he nears the exit",
+          "reason": "Delivers the cliffhanger that sets up the question/CTA",
+          "duration_sec": 10,
+          "timeline_start_sec": 20,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "manga_reference": "Hunter x Hunter Chapter 418, 'Hypothesis' -- closing page",
+          "verification_note": "Chapter 418 has not aired in anime form; this cut uses the real manga panel art, not an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Hunter x Hunter anime adaptation of Chapter 418 -- none exists; the anime has not caught up to this arc point.",
+          "claim_vs_source_check": null
+        }
+      ],
+      "clip_plan_needs_manga_source": true,
+      "clip_descriptions": "Four manga-panel cuts tracing Tserriednich's Parallel Future activation, Benjamin's false-kill moment, the undetected escape, and the Theta cliffhanger.",
+      "captions": "Hunter x Hunter Chapter 418 just revealed the ability that lets Tserriednich fake his own death in front of witnesses.",
+      "youtube_title": "Hunter x Hunter 418: He Faked His Death",
+      "tiktok_title": "He didn't actually die (HxH 418)",
+      "pinned_comment": "Chapter 418 'Hypothesis' is officially out on VIZ/Manga Plus. Full breakdown of Parallel Future's real limits in the video. Chapter 419 drops August 30.",
+      "tiktok_post_text": "Everyone in Room 1004 believes Tserriednich is dead. He isn't. #HunterxHunter #HxH #Togashi #Tserriednich #AnimeManga #ShonenJump #AnimeTok #MangaSpoilers #AnimeShorts #AnimeCommentary",
+      "roundup_shows": null,
+      "series_public_name": null,
+      "series_next_line": null,
+      "flagship_url": null,
+      "flagship_opening_hook_match": null,
+      "post_times": {
+        "youtube": "2026-08-26T08:00:00-04:00",
+        "tiktok": "2026-08-26T08:15:00-04:00"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Tserriednich uses Parallel Future to fake his own death; Special Martial Law is declared and reaches his quarters while Benjamin believes he personally executed him",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://nuxgameguides.com/entertainment/hunter-x-hunter-chapter-418-spoilers-release-date-and-recap/"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Parallel Future's rules: 10-second Zetsu-based future vision, cannot alter others physically, can move objects; separately, total illusion persists for hours (source states ~3h48m) tied to aura/Zetsu",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.animeexplained.com/spoilers/hxh-418/"
+            ]
+          },
+          {
+            "claim": "Chapter ends on Theta turning toward Tserriednich, an ambiguous near-detection",
+            "core": true,
+            "claim_type": "D",
+            "source_urls": [
+              "https://noscriptneeded.com/hunter-x-hunter-418-theta-tserriednich-escape-explained/"
+            ]
+          },
+          {
+            "claim": "Chapter is officially titled 'Hypothesis,' released Aug 23, 2026",
+            "core": false,
+            "source_urls": [
+              "https://www.viz.com/shonenjump/hunter-x-hunter-chapter-418/chapter/51055"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "format_diversity_weighting": {
+        "trailing_format_counts": {
+          "FACT_DROP": 4,
+          "EPISODE_MOMENT": 4,
+          "THE_MOMENT": 3,
+          "SEASON_PREVIEW": 1,
+          "WORTH_WATCHING": 1,
+          "WRONG_TAKE": 1
+        },
+        "threshold": 5,
+        "overused_format": null,
+        "downweighting_applied": true,
+        "eligible_candidates": [
+          "THE_MOMENT",
+          "FACT_DROP",
+          "CHARACTER_DIVE"
+        ],
+        "selected_format": "THE_MOMENT",
+        "changed_outcome": false
+      },
+      "evergreen_weighting": {
+        "trailing_evergreen_count": 0,
+        "threshold": 5,
+        "upweighting_eligible": true,
+        "eligible_candidate_format": null,
+        "upweighting_applied": false,
+        "selected_topic_class": "timely",
+        "changed_outcome": false
+      },
+      "vo_script": "Everyone in the room just watched Tserriednich die. He didn't. Chapter 418 has him activate Parallel Future in Zetsu, hiding his aura completely -- a ten-second window to see ahead, unable to touch anyone physically, but able to move objects. Using that illusion, he fakes his own death in Room 1004, and Benjamin genuinely believes he killed him. Special Martial Law reaches his quarters while he simply walks past the guards, undetected. The chapter ends on real ambiguity: Theta turns her head toward him as he nears the exit. Chapter 419 releases August 30th. Did Theta actually sense him, or was that just her nerves? Leave your take."
+    },
+    {
+      "package_id": "7c2a9d34-1e5b-4f8a-b6c3-2d9e8f7a6b5c",
+      "slot": "evening",
+      "content_type": "short",
+      "show": "Kagurabachi",
+      "angle": "Kunishige pushes through his forging limit for Chiaki, revealing why he keeps risking his life at the furnace",
+      "format_type": "CHARACTER_DIVE",
+      "topic_class": "timely",
+      "topic_signals": [
+        "chapter",
+        "news"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "He was about to give up. Then he thought of her.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Kagurabachi just showed why Kunishige keeps forging even when it's killing him.",
+        "He was seconds from losing control at the furnace."
+      ],
+      "selected_hook_index": 1,
+      "hook_line": "He was seconds from losing control at the furnace.",
+      "opening_sentence": "He was seconds from losing control at the furnace.",
+      "vo_status": "complete",
+      "vo": "He was seconds from losing control at the furnace. One memory stopped him. Kagurabachi Chapter 129 pushes Kunishige to his physical and emotional limit as flames threaten to consume everything around him. Right as he's about to lose it, a flashback reveals why: an abusive father and his mother's death left him convinced he's unworthy of Chiaki. But his real motivation was never revenge -- it's protecting her that keeps him forging despite the risk. Just as his eyes seem ready to close, his memories shift to Chiaki, and he regains control. Chapter 130 releases August 30th. Is Chiaki actually Kunishige's hope, or his biggest weakness? Leave your take.",
+      "vo_word_count": 108,
+      "question_line": "Is Chiaki actually Kunishige's hope, or his biggest weakness?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 55,
+      "video_style": "Face-cam split screen (creator TOP / manga panels BOTTOM, Law #134 Stage 2 -- required default, no anime-only exception)",
+      "face": true,
+      "split_screen": true,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "length_rationale": "Standard 30s edit, 100-108 word band (Law #138 default path). Rebuilt from the original 60s draft at user direction to match tonight's batch convention; same 3 confirmed beats (furnace breakdown, abusive-father/mother flashback and unworthiness belief, Chiaki-driven recovery) compressed to fit 30s without adding or dropping any previously-verified fact.",
+      "sources": [
+        {
+          "claim": "Kunishige nears his physical and emotional limit at the furnace as flames threaten to overwhelm him, then regains control after thinking of Chiaki",
+          "url": "https://www.soapcentral.com/anime/kagurabachi-chapter-129-chiaki-becomes-kunishige-s-source-hope",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Flashback shows Kunishige believes he is unworthy of Chiaki due to his family background, including memories of an abusive father and his mother's death",
+          "url": "https://www.soapcentral.com/anime/kagurabachi-chapter-129-chiaki-becomes-kunishige-s-source-hope",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Kunishige's motivation to keep forging despite the risk is protecting Chiaki, not simply revenge or ambition",
+          "url": "https://www.soapcentral.com/anime/kagurabachi-chapter-129-release-date-everything-need-know",
+          "date": "Aug 2026"
+        },
+        {
+          "url": "https://www.soapcentral.com/anime/kagurabachi-chapter-130-release-date-everything-need-know",
+          "claim": "Kagurabachi Chapter 130 is confirmed for release on Sunday, August 30, 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Manga panel: Kunishige at the furnace, flames rising and threatening to consume him",
+          "reason": "Establishes the physical stakes of the forging process",
+          "duration_sec": 10,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 10,
+          "scene_verified": false,
+          "manga_reference": "Kagurabachi Chapter 129 -- opening forging sequence",
+          "verification_note": "Chapter 129 has not aired in anime form; this cut uses the real manga panel art, not an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Kagurabachi anime adaptation of Chapter 129 -- none exists; the anime has not caught up to this arc point.",
+          "claim_vs_source_check": null
+        },
+        {
+          "scene": "Manga panel flashback: young Kunishige with his abusive father, memories of his mother's death",
+          "reason": "Delivers the emotional backstory driving his self-doubt",
+          "duration_sec": 10,
+          "timeline_start_sec": 10,
+          "timeline_end_sec": 20,
+          "scene_verified": false,
+          "manga_reference": "Kagurabachi Chapter 129 -- flashback panels",
+          "verification_note": "Chapter 129 has not aired in anime form; this cut uses the real manga panel art, not an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Kagurabachi anime adaptation of Chapter 129 -- none exists; the anime has not caught up to this arc point.",
+          "claim_vs_source_check": null
+        },
+        {
+          "scene": "Manga panel: Kunishige regaining control at the furnace, thinking of Chiaki, flames settling",
+          "reason": "Pays off the hook and sets up the CTA question",
+          "duration_sec": 10,
+          "timeline_start_sec": 20,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "manga_reference": "Kagurabachi Chapter 129 -- closing panels",
+          "verification_note": "Chapter 129 has not aired in anime form; this cut uses the real manga panel art, not an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Kagurabachi anime adaptation of Chapter 129 -- none exists; the anime has not caught up to this arc point.",
+          "claim_vs_source_check": null
+        }
+      ],
+      "clip_plan_needs_manga_source": true,
+      "clip_descriptions": "Four manga-panel cuts tracing Kunishige's near-collapse at the furnace, his abusive-past flashback, the turning point, and his recovery driven by thoughts of Chiaki.",
+      "captions": "Kagurabachi Chapter 129 just revealed why Kunishige keeps forging even when it's killing him. Load-bearing note: Kunishige is the swordsmith bound to protecting Chiaki, the Soga clan's princess.",
+      "youtube_title": "Kagurabachi 129: Kunishige's Breaking Point",
+      "tiktok_title": "One memory saved him at the furnace (Kagurabachi 129)",
+      "pinned_comment": "Kagurabachi Chapter 129 is out now. Kunishige = the swordsmith forging the Enchanted Blades, bound to protecting Chiaki. Chapter 130 drops August 30.",
+      "tiktok_post_text": "He was seconds from losing control at the furnace. Then he thought of her. #Kagurabachi #ShonenJump #Kunishige #Chiaki #AnimeManga #MangaSpoilers #AnimeTok #AnimeShorts #AnimeCommentary",
+      "roundup_shows": null,
+      "series_public_name": null,
+      "series_next_line": null,
+      "flagship_url": null,
+      "flagship_opening_hook_match": null,
+      "post_times": {
+        "youtube": "2026-08-26T18:00:00-04:00",
+        "tiktok": "2026-08-26T18:15:00-04:00"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Kunishige nears his limit at the furnace, then regains control after thinking of Chiaki",
+            "core": true,
+            "claim_type": "D",
+            "source_urls": [
+              "https://www.soapcentral.com/anime/kagurabachi-chapter-129-chiaki-becomes-kunishige-s-source-hope"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Flashback reveals Kunishige believes he is unworthy of Chiaki due to family background and an abusive father",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.soapcentral.com/anime/kagurabachi-chapter-129-chiaki-becomes-kunishige-s-source-hope"
+            ]
+          },
+          {
+            "claim": "Kunishige's forging is motivated by protecting Chiaki, not revenge or ambition",
+            "core": true,
+            "claim_type": "D",
+            "source_urls": [
+              "https://www.soapcentral.com/anime/kagurabachi-chapter-129-release-date-everything-need-know"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "format_diversity_weighting": {
+        "trailing_format_counts": {
+          "FACT_DROP": 4,
+          "EPISODE_MOMENT": 4,
+          "THE_MOMENT": 3,
+          "SEASON_PREVIEW": 1,
+          "WORTH_WATCHING": 1,
+          "WRONG_TAKE": 1
+        },
+        "threshold": 5,
+        "overused_format": null,
+        "downweighting_applied": true,
+        "eligible_candidates": [
+          "CHARACTER_DIVE",
+          "FACT_DROP",
+          "THE_MOMENT"
+        ],
+        "selected_format": "CHARACTER_DIVE",
+        "changed_outcome": false
+      },
+      "evergreen_weighting": {
+        "trailing_evergreen_count": 0,
+        "threshold": 5,
+        "upweighting_eligible": true,
+        "eligible_candidate_format": null,
+        "upweighting_applied": false,
+        "selected_topic_class": "timely",
+        "changed_outcome": false
+      },
+      "vo_script": "He was seconds from losing control at the furnace. One memory stopped him. Kagurabachi Chapter 129 pushes Kunishige to his physical and emotional limit as flames threaten to consume everything around him. Right as he's about to lose it, a flashback reveals why: an abusive father and his mother's death left him convinced he's unworthy of Chiaki. But his real motivation was never revenge -- it's protecting her that keeps him forging despite the risk. Just as his eyes seem ready to close, his memories shift to Chiaki, and he regains control. Chapter 130 releases August 30th. Is Chiaki actually Kunishige's hope, or his biggest weakness? Leave your take."
+    }
+  ],
+  "minimum_frequency_floor": {
+    "floor_formats": [
+      "THEORY_SPECULATION",
+      "SEASON_ROUNDUP",
+      "WORTH_WATCHING",
+      "WATCH_RANK",
+      "SEASON_RATING"
+    ],
+    "window_days": 21,
+    "evaluations": [
+      {
+        "format_type": "THEORY_SPECULATION",
+        "days_since_last_considered": 3,
+        "must_force_consider": false,
+        "was_considered_this_run": true,
+        "format_eligibility_result": "ineligible",
+        "tie_break_applied": false,
+        "outcome": "rejected",
+        "_rejection_reason": "Today's two verified ideas (HxH Ch418 death-fake reveal, Kagurabachi Ch129 furnace flashback) are both confirmed, already-resolved manga beats, not open unresolved story questions \u2014 neither fits a speculative theory about an unresolved mystery.",
+        "_note": "Not floor-mandated this run (real gap=3, well inside 21-day window; see KNOWN_ISSUES F69). Evaluated anyway; entries reflect genuine evaluations against today's actual candidates."
+      },
+      {
+        "format_type": "SEASON_ROUNDUP",
+        "days_since_last_considered": 3,
+        "must_force_consider": false,
+        "was_considered_this_run": true,
+        "format_eligibility_result": "ineligible",
+        "tie_break_applied": false,
+        "outcome": "rejected",
+        "_rejection_reason": "No verified multi-show roundup content was gathered this run (Law #159 requires >=2 distinct shows each with their own core-claim source); today's sweep produced two single-show, single-scene ideas instead.",
+        "_note": "Not floor-mandated this run (real gap=3, well inside 21-day window; see KNOWN_ISSUES F69). Evaluated anyway; entries reflect genuine evaluations against today's actual candidates."
+      },
+      {
+        "format_type": "WORTH_WATCHING",
+        "days_since_last_considered": 3,
+        "must_force_consider": false,
+        "was_considered_this_run": true,
+        "format_eligibility_result": "ineligible",
+        "tie_break_applied": false,
+        "outcome": "rejected",
+        "_rejection_reason": "WORTH_WATCHING requires a persuasive whole-show case with zero comparative/ranking language; today's verified material is scene-specific chapter reveals, not a full-show pitch for either title.",
+        "_note": "Not floor-mandated this run (real gap=3, well inside 21-day window; see KNOWN_ISSUES F69). Evaluated anyway; entries reflect genuine evaluations against today's actual candidates."
+      },
+      {
+        "format_type": "WATCH_RANK",
+        "days_since_last_considered": 3,
+        "must_force_consider": false,
+        "was_considered_this_run": true,
+        "format_eligibility_result": "ineligible",
+        "tie_break_applied": false,
+        "outcome": "rejected",
+        "_rejection_reason": "WATCH_RANK requires ranking 3-6 shows from Sebastian's own currently-watching list with individual placement reasoning; no such multi-show ranking research was conducted this run \u2014 only two single-show ideas were verified.",
+        "_note": "Not floor-mandated this run (real gap=3, well inside 21-day window; see KNOWN_ISSUES F69). Evaluated anyway; entries reflect genuine evaluations against today's actual candidates."
+      },
+      {
+        "format_type": "SEASON_RATING",
+        "days_since_last_considered": 3,
+        "must_force_consider": false,
+        "was_considered_this_run": true,
+        "format_eligibility_result": "ineligible",
+        "tie_break_applied": false,
+        "outcome": "rejected",
+        "_rejection_reason": "SEASON_RATING requires rating one currently-airing anime season/episode; today's verified ideas are both manga chapter beats (no adaptation episode has aired for either scene), so this format's own airing-content requirement isn't met.",
+        "_note": "Not floor-mandated this run (real gap=3, well inside 21-day window; see KNOWN_ISSUES F69). Evaluated anyway; entries reflect genuine evaluations against today's actual candidates."
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "status": "sent",
+  "emails_sent": true,
+  "log_appended": true,
+  "git_pushed": true,
+  "error": null,
+  "batch_id": "ca067f78-ab10-4f58-9630-15b2f5381bc8",
+  "terminal_state_written_at": "2026-08-25T23:38:26.119566+00:00",
+  "terminal_state_written_by": "tools/append_send_batch.py (F38)"
+}

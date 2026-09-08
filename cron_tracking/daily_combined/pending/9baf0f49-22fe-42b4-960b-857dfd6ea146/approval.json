@@ -1,0 +1,88 @@
+{
+  "batch_id": "9baf0f49-22fe-42b4-960b-857dfd6ea146",
+  "post_date": "2026-08-18",
+  "reviewed_at": "2026-08-17T19:45:00-04:00",
+  "review_standard": "Law #165 — Sebastian personally fetches every cited URL for every core claim and confirms real support; validator PASS means mechanically sound only, not approved for dispatch.",
+  "approved_by": "Sebastian",
+  "approved_at": "2026-08-17T19:50:00-04:00",
+  "corrections_applied_this_review": [
+    {
+      "package_id": "a7c857e4-d0ce-4dd3-b974-ffb05de5dc93",
+      "slot": "morning",
+      "field": "vo_word_count",
+      "note": "No manifest correction was needed. The manifest's stored value was already 221, not 218. The '218' figure reported earlier in review was the agent's own transcription error (a plain .split() on a retyped copy of the VO text miscounted the em-dash token '7—he' as one word instead of two). Verified using the validator's own exact counting function (validators/validate_dual_package.py, _words(): re.findall(r\"[\\w']+\", text)) run directly against the manifest's actual stored VO string: result = 221, exact match, 0 diff. Confirmed within the 214.5–234 word band for a 65s edit."
+    },
+    {
+      "package_id": "a7c857e4-d0ce-4dd3-b974-ffb05de5dc93",
+      "slot": "morning",
+      "field": "hook_onscreen_text",
+      "before": "KENGO SWITCHES SIDES MID-CHASE",
+      "after": "SPOILERS: KENGO SWITCHES SIDES MID-CHASE",
+      "note": "Added a real, viewer-facing spoiler warning to the second-1 on-screen hook text before the reveal, per EPISODE_MOMENT format's stated (but validator-unenforced) spoiler-warning requirement. Confirmed identical in both run_manifest.json (hook_onscreen_text field) and the staged email_morning.txt (line 13, 'ON-SCREEN (second 1):' line) after the edit. Re-ran validators/validate_dual_package.py after this change: PASS, exit code 0."
+    }
+  ],
+  "cta_placement_review": {
+    "question_raised": "Is content appearing after 'Leave your take.' in the VO a sanctioned structural choice, or an unintended leftover pattern that should be trimmed?",
+    "finding": "Sanctioned. No trim applied.",
+    "citation": "cron_daily_runtime.txt lines 640-663. Line 641 requires only that a SPECIFIC question be immediately followed by the EXACT phrase 'Leave your take.' Line 652 ('CLOSING LINE (Law #141 RESCINDED July 27, 2026)') requires only that 'the VO ends on any clean, complete, natural closing thought' and explicitly states a forced stop/loop-back at the CTA is 'no longer required, no longer scored.' No line anywhere requires the CTA phrase to be the VO's literal final sentence; grep for that constraint returned zero matches. The validator's onscreen_cta_start_sec check is a numeric on-screen-caption-timing field unrelated to VO transcript word order.",
+    "trailing_sentences_left_unchanged": [
+      "Morning: \"Spoilers aside, Kengo's choice gives this escape a new direction.\"",
+      "Evening: \"Grand Blue gets the laugh by letting the misunderstanding do all the work.\""
+    ]
+  },
+  "fetch_review": [
+    {
+      "package_id": "a7c857e4-d0ce-4dd3-b974-ffb05de5dc93",
+      "slot": "morning",
+      "show": "Sparks of Tomorrow",
+      "core_claim": "Kengo Kuga joins Yosuke's pursuit of Sasaki and Inako, boards their riverboat, nearly apprehends them, then switches sides to support them when Sasaki invokes Seiroku (Sasaki's brother, Kengo's war buddy).",
+      "cited_url": "https://www.animenewsnetwork.com/review/sparks-of-tomorrow/episode-7/.240653",
+      "flagged_concern": "Sebastian raised a serious, specific counter-hypothesis before accepting the claim: that the review might actually describe a character named Kihachi as the one helping Inako, with Kengo remaining grouped with Yosuke as a pursuer (i.e. the package's entire hook/VO/premise could be built on a reversed or fabricated plot beat). This was treated as the single most important item to resolve in the batch and explicitly blocked all further fetch verification (including the evening package) until settled.",
+      "verification_method": "Direct fetch_url call against the exact cited URL, force_fetch=true (bypassing cache) to guarantee a live, non-stale read, performed independently by the agent after the concern was raised.",
+      "resolution": "CONFIRMED — the package's narrative is accurate; the alternate Kihachi/Kengo-stays-pursuer hypothesis is NOT supported by this source. No occurrence of 'Kihachi' anywhere in the fetched content.",
+      "supporting_quote": "\"Joining Yosuke in his pursuit of Sasaki and Inako is the physically capable soft-boi Kengo Kuga who nearly apprehends the youths when he manages to get onto their riverboat…but then he decides to support them instead when Sasaki reminds him (for like the fifth time now) of Sasaki's brother and Kengo's war buddy Seiroku.\"",
+      "corroborating_quotes": [
+        "\"I understand characters having a change of heart and their allegiances shifting as a result is an established narrative beat in fiction and a part of the human condition, but change of heart for Kengo fails to work as the emotional crux of this episode for a couple of reasons.\"",
+        "\"...it doesn't feel at all like the character reaches a tipping point and decides to ally himself with Sasaki in this episode.\""
+      ],
+      "note": "The review's own criticism of the episode presupposes the switch happened (it argues the writing didn't earn it) — this independently corroborates the switch is the real plot event, not the agent's misreading of an ambiguous recap.",
+      "fetched_content_supports_claim": true
+    },
+    {
+      "package_id": "79bbef25-6967-422f-b430-31c9b9c05da5",
+      "slot": "evening",
+      "show": "Grand Blue Dreaming Season 3",
+      "core_claim": "Episode 6: Kohei tries to help Aina get closer to Iori by playing an obvious, clumsy matchmaker; his attempts backfire and Maki misreads the situation as Iori and Kohei being romantically involved; separately, Aina and Chisa have an emotionally open conversation.",
+      "cited_url": "https://www.soapcentral.com/anime/grand-blue-dreaming-season-3-episode-7-release-date-everything-need-know",
+      "flagged_concern": "None specific to this claim. General standing concern carried into this review: whether the package's scope is safely confined to Episode 6 given Episode 7's air-timing ambiguity (already checked earlier in this review pass — confirmed zero 'episode 7' references anywhere in the evening VO/clip plan/email body).",
+      "verification_method": "Direct fetch_url call against the exact cited URL, force_fetch=true (bypassing cache), performed independently by the agent.",
+      "resolution": "CONFIRMED — clean match, no discrepancy found.",
+      "supporting_quotes": [
+        "\"In the recent installment, we saw how Kohei just tried to help Aina by not subtly hinting to Iori as trying to set them up.\"",
+        "\"But it turns out Maki somehow misunderstood that the two boys are romantically involved.\"",
+        "\"In this week's episode, we see how Kohei became obsessed with helping Aina get closer to Iori.\"",
+        "\"He kept on trying to be a matchmaker, but his attempts were so painfully obvious that they just created more misunderstanding.\"",
+        "\"In the middle of all this, Chisa and Aina had a major misunderstanding about the boy over an absurd problem, and tried to give them space.\"",
+        "\"Everything escalated when Maki started to believe that these two boys were romantically involved.\"",
+        "\"...this episode also had a more emotionally charged moment when Chisa and Aina had an open conversation about their feelings.\""
+      ],
+      "note": "This is the source cited in the package's manifest sources list for this exact claim. Confirms Kohei-as-wingman, Maki's misunderstanding, and the Aina/Chisa conversation beat, matching the package's clip-plan framing.",
+      "fetched_content_supports_claim": true
+    }
+  ],
+  "validator": {
+    "exit_code": 0,
+    "result": "PASS",
+    "output_path": "/home/user/workspace/cron_tracking/daily_combined/validator_pass_9baf0f49-22fe-42b4-960b-857dfd6ea146.txt",
+    "note": "Re-run after the hook_onscreen_text spoiler-warning fix. No re-run was required for the CTA-placement review since no edit was made (finding was 'sanctioned, no trim')."
+  },
+  "related_issues_context_only": [
+    {
+      "id": "F52",
+      "title": "Orphaned duplicate pending-batch directory (18f4f77a) left behind when tonight's daily_combined run re-drafted under a second batch_id",
+      "location": "docs/KNOWN_ISSUES.md",
+      "relationship_to_this_batch": "Context only — does NOT block this batch's approval. F52 describes a separate, never-sent, never-git-tracked duplicate of this same batch's packages (batch_id 18f4f77a-abe6-4ec2-941f-41795c3b3b76) left over from an earlier draft pass tonight. It has no bearing on the correctness or send-readiness of batch 9baf0f49 itself, which is the sole batch referenced by the authoritative top-level state.json. Logged separately, staged (not committed/pushed) at the time of this approval review."
+    }
+  ],
+  "next_step": "APPROVED by Sebastian at 2026-08-17T19:50:00-04:00. Ready for whoever has real mail access to complete STEP 7 (dispatch of both emails to hero_or_villain@outlook.com) and STEP 8 (atomic send-log append via tools/append_send_batch.py) separately. No email has been sent yet; no send log has been modified. This file's approval does not itself send anything."
+}

@@ -1,0 +1,63 @@
+RESULT: PASS — cleared to send both emails (186 PASS / 0 FAIL / 0 SKIP, exit code 0)
+
+TOMORROW | MORNING | Mushoku Tensei: Jobless Reincarnation | 2026-08-19 | Mushoku Tensei: Perugius Can't Save Zenith
+
+batch_id: 8ca83216-42a3-4950-ae19-f41c98538d46
+package_id: 3fa10c2e-8b4e-4c1a-9d2f-1a2b3c4d5e01
+
+VO (complete, 103 words):
+"Perugius Dola can't cure Zenith—and the show wants you to notice that. In Episode 8, Rudeus finally reaches the Armored Dragon King inside his floating fortress, thanks to Nanahoshi. He's there for one reason: cure his mother's trance. Perugius doesn't have one. Instead, he redirects Rudeus toward someone nobody expected to matter—Elinalise. The strongest hero in the room is a dead end, on purpose. Meanwhile, Nanahoshi's condition turns dangerous: she coughs up blood right after Sylphie's healing magic misfires. Is Elinalise about to become the most important side character in this arc, or a dead end like Perugius? Leave your take."
+
+FORMAT: EPISODE_MOMENT | content_type: short | topic_class: timely (currently_airing)
+ANGLE: Season 3 Episode 8 makes Perugius a dead-end on purpose, so Elinalise becomes the real lead.
+
+HOOK / PACKAGING:
+hook_line = opening_sentence: "Perugius Dola can't cure Zenith—and the show wants you to notice that."
+hook_onscreen_text: SCENE TEST: PERUGIUS CAN'T HELP RUDEUS
+hook_family: revelation | hook_first_second: true | isolation_test_pass: true
+hook_candidates (2, selected index 0):
+ 1. "Perugius Dola can't cure Zenith—and the show wants you to notice that." (SELECTED)
+ 2. "The strongest of the Three Heroes just told Rudeus he's not the answer."
+
+question_line: "Is Elinalise about to become the most important side character in this arc, or a dead end like Perugius?"
+cta_line: "Leave your take." (confirmed immediately adjacent to question_line in the real VO)
+
+series: recurring=true | series_public_name="Scene Test" | series_next_line="New Scene Test drops tomorrow."
+funnel_status: standalone
+
+VIDEO STYLE: Face-Cam Split Screen (creator top / anime footage bottom). face=true, split_screen=true.
+CapCut target: 30s | Total clip time: 30s
+
+CLIP PLAN (all 5 clips scene_verified=true, clip_locate S3E8):
+CUT 1 — 6 sec (0:00–0:06): Chaos Breaker floating fortress establishing shot as Rudeus and Nanahoshi arrive — hook frame, sets the location for the dead-end reveal
+CUT 2 — 6 sec (0:06–0:12): Rudeus asks Perugius Dola for help curing Zenith's trance-like condition — sets the stakes/goal that gets denied
+CUT 3 — 6 sec (0:12–0:18): Perugius Dola tells Rudeus he doesn't have a cure, then names Elinalise — the actual hook payoff, the dead end that redirects the plot
+CUT 4 — 6 sec (0:18–0:24): Sylphie attempts healing magic on Nanahoshi — sets up the misfire cliffhanger
+CUT 5 — 6 sec (0:24–0:30): Nanahoshi coughs up blood, episode-ending cliffhanger — closing beat, payoff hook for next episode, holds on the shock
+TOTAL CLIP TIME: 30 seconds
+
+CAPTIONS: CUT 1: THE STRONGEST / HERO ALIVE. CUT 2: CAN'T CURE / ZENITH. CUT 3: HE POINTS RUDEUS / SOMEWHERE ELSE.
+
+TITLES:
+youtube_title: "Mushoku Tensei: Perugius Can't Save Zenith"
+tiktok_title: "The Hero Who Can't Fix Rudeus's Mom"
+
+tiktok_post_text: "Perugius Dola, one of the Three Heroes, still can't cure Zenith -- and points Rudeus to Elinalise instead. Mushoku Tensei Season 3 Episode 8 just dropped. #MushokuTensei #JoblessReincarnation #Anime #ChaosBreaker #AnimeTok"
+
+pinned_comment: "The real twist isn't that Perugius can't help -- it's WHO he sends Rudeus to next. Elinalise hasn't mattered like this in seasons. New Scene Test drops tomorrow."
+
+POST TIMES:
+YouTube Shorts — post 8:15 AM ET | Peak 8-9 AM ET
+TikTok — post 8:45 AM ET | Peak 9-10 AM ET
+
+SOURCES (real, fetched, dated — re-fetched and independently confirmed again during this session's Law #165 review):
+- Anime Corner (Aug 16, 2026): https://animecorner.me/rudy-meets-perugius-in-mushoku-tensei-season-3-episode-8-preview/
+- Indiatimes full episode recap (Aug 17, 2026): https://www.indiatimes.com/trending/mushoku-tensei-season-3-episode-8-recap-rudeus-meets-perugius-as-nanahoshis-health-takes-a-shocking-turn-in-the-flying-fortress/amp_articleshow/133298473.html
+- Tech Times (Aug 17, 2026): https://www.techtimes.com/articles/324709/20260817/mushoku-tensei-season-3-episode-8-debuts-chaos-breaker-levitation-quantum-neuroscience.htm
+- Comic Book Co, new cast names (Aug 12, 2026): https://comicbookco.com/anime/mushoku-tensei-chaos-breaker-arc/
+
+blackout_conflict: false | recent_send_conflict: false (last Mushoku Tensei morning send Aug 5, 13 days clear)
+
+semantic_qa: all 10 checks (5 VO-independent + 5 VO-dependent) attested true after direct verification against the real VO text this session.
+
+--- END OF PACKAGE — AWAITING_APPROVAL (staged, NOT sent, NOT committed) ---

@@ -1,92 +1,94 @@
 {
-  "batch_id": "b03ef8b6-d254-442a-aaf9-673a6578a0c5",
-  "run_ts": "2026-08-13T22:40:00+00:00",
-  "post_date": "2026-08-14",
+  "batch_id": "CORRECTION-714d87e0-2a04aaa5-79f0-427f-a699-4da6701ba3d4",
+  "run_ts": "2026-09-07T22:55:00Z",
+  "post_date": "2026-09-08",
   "recipient": "hero_or_villain@outlook.com",
   "traction_cache": {
-    "timestamp": "2026-08-13T22:40:00+00:00",
+    "timestamp": "2026-09-07T22:32:59Z",
     "age_days": 0,
     "status": "REFRESHED"
   },
   "packages": [
     {
-      "package_id": "7182ec38-a018-440a-b30c-64b19866eb17",
+      "package_id": "9f87e555-b2d8-4123-adf0-1f645f020929",
       "slot": "morning",
       "content_type": "short",
-      "show": "Link Click",
-      "angle": "Season 3 Part One premieres August 14 on Crunchyroll as a doubled-length 24-episode story, two months earlier than announced, picking up the Bahati fire case and Xia Fei's disappearance",
-      "format_type": "SEASON_PREVIEW",
+      "show": "Hunter x Hunter",
+      "angle": "Chapter 420 (published Sept 6, WSJ Issue #41) caps a 10-chapter run that began in late June with Chapter 411, ending an 18-month hiatus. Shueisha confirmed Sept 4 that Hunter x Hunter is going back on indefinite hiatus again -- but Togashi has already fully finished chapters 421-423 and reports production progress out to chapter 430, a materially different situation than the prior silence.",
+      "format_type": "FACT_DROP",
       "topic_class": "timely",
       "topic_signals": [
-        "premiere"
+        "chapter",
+        "news"
       ],
       "series": null,
       "funnel_status": "standalone",
-      "hook_family": "revelation",
-      "hook_onscreen_text": "LINK CLICK JUST DOUBLED ITS OWN SEASON",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "HUNTER X HUNTER IS ON HIATUS AGAIN -- BUT 3 CHAPTERS ARE ALREADY FINISHED",
       "hook_first_second": true,
       "isolation_test_pass": true,
       "hook_candidates": [
-        "Link Click just moved its Season 3 premiere up two months, and the new plan is bigger than the new date.",
-        "A donghua rated 8.77 on MyAnimeList just moved its premiere up two months."
+        "Hunter x Hunter just went back on hiatus again, but Togashi already has three more chapters finished.",
+        "Shueisha just confirmed Hunter x Hunter's hiatus has no return date, but three chapters are already finished."
       ],
       "selected_hook_index": 0,
-      "capcut_target_sec": 60,
-      "total_clip_time_sec": 60,
-      "hook_line": "Link Click just moved its Season 3 premiere up two months, and the new plan is bigger than the new date.",
-      "opening_sentence": "Link Click just moved its Season 3 premiere up two months, and the new plan is bigger than the new date.",
-      "vo": "Link Click just moved its Season 3 premiere up two months, and the new plan is bigger than the new date. Season 3 Part One drops August 14 on Crunchyroll, and instead of repeating a twelve-episode run, this is the front half of a full twenty-four episode story, doubling the length of every prior season combined, with Part Two expected in 2027. Season 2 ended with Cheng Xiaoshi and Lu Guang chasing the Bahati fire case, a case that traces directly back to Xiaoshi's own father, while Xia Fei's disappearance was left completely unresolved. Part One picks that thread up immediately. A new Bridon police officer named Jae joins the investigation, Vein returns, and Qiao Ling's photograph-based powers move into territory the show has never let her use before, according to the show's own trailer breakdown. This is also the donghua sitting at an eight point seven seven average on MyAnimeList, praised by critics for doing something Chinese animation rarely gets credit for internationally, and it's already been nominated for a Crunchyroll Anime Award. So does doubling the episode count actually change how deep this mystery goes, or does it just double how long you're stuck waiting to find out? Leave your take.",
-      "vo_word_count": 206,
-      "question_line": "So does doubling the episode count actually change how deep this mystery goes, or does it just double how long you're stuck waiting to find out?",
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Hunter x Hunter just went back on hiatus again, but Togashi already has three more chapters finished.",
+      "opening_sentence": "Hunter x Hunter just went back on hiatus again, but Togashi already has three more chapters finished.",
+      "vo_status": "complete",
+      "vo": "Hunter x Hunter just went back on hiatus again, but Togashi already has three more chapters finished. Chapter 420 published September sixth in Weekly Shonen Jump, capping a ten-chapter run that started in June after an eighteen-month break ended with chapter 411. Shueisha confirmed on September fourth that no return date is set this time. Chapters four twenty-one through four twenty-three are already complete, and Togashi's reported making real progress toward chapter four thirty. So is finishing chapters ahead of time actually a better kind of wait, or is this still just hiatus with extra steps? Leave your take.",
+      "vo_word_count": 103,
+      "question_line": "So is finishing chapters ahead of time actually a better kind of wait, or is this still just hiatus with extra steps?",
       "cta_line": "Leave your take.",
-      "onscreen_cta_start_sec": 52,
-      "length_rationale": "3 solid beats verified (premiere date moved up + format doubled to 24 episodes, Season 2 cliffhangers carried forward, new character/power reveals plus critical acclaim) -> MULTI-BEAT ARGUMENT band (45-75s), resolved at 60s to give each beat room without padding.",
+      "onscreen_cta_start_sec": 26,
       "semantic_qa": {
         "audited_before_return": true,
         "claim_source_matrix": [
           {
-            "claim": "Link Click Season 3 Part One premieres August 14, 2026 on Crunchyroll, moved up from an originally announced October 2026 window.",
+            "claim": "Hunter x Hunter Chapter 420 published September 6, 2026 in Weekly Shonen Jump Issue #41, and Shueisha confirmed September 4 that the series is returning to indefinite hiatus after that chapter",
             "core": true,
             "claim_type": "C",
             "source_urls": [
-              "https://comicbook.com/anime/news/crunchyrolls-biggest-mystery-series-reveals-final-trailer-ahead-of-anticipated-return/",
-              "https://wibux.com/link-click-season-3-drops-august-14-two-months-early-twice-as-long-and-the-trailer-has-everyone-spinning/"
+              "https://gamerant.com/hunter-x-hunter-hiatus-september-6/",
+              "https://en.as.com/meristation/news/hunter-x-hunter-heads-back-into-hiatus-after-chapter-420-but-togashi-has-already-prepared-more-chapters-f202609-n/"
             ],
-            "anchors_claim": "hook"
+            "anchors_claim": "hook",
+            "show": "Hunter x Hunter"
           },
           {
-            "claim": "Season 3 is a 24-episode split-cour with Part One covering the first 12 episodes and Part Two expected in 2027.",
+            "claim": "Chapter 420 capped a 10-chapter consecutive run that began with Chapter 411 in late June 2026, ending an 18-month hiatus that started when Chapter 410 ran in December 2024",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://www.gametrader.sg/blog/tag/manga-plus/",
+              "https://en.as.com/meristation/news/hunter-x-hunter-heads-back-into-hiatus-after-chapter-420-but-togashi-has-already-prepared-more-chapters-f202609-n/"
+            ],
+            "show": "Hunter x Hunter"
+          },
+          {
+            "claim": "No return date has been announced for the new hiatus, as stated directly by Shonen Jump News (Shueisha) on X/Twitter",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://x.com/WSJ_manga/status/2095369879788339451"
+            ],
+            "show": "Hunter x Hunter"
+          },
+          {
+            "claim": "Togashi has already completed manuscript work through Chapter 423 (chapters 421-423 fully prepared) and reports production progress on chapters as far out as Chapter 430",
             "core": true,
             "claim_type": "A",
             "source_urls": [
-              "https://wibux.com/link-click-season-3-drops-august-14-two-months-early-twice-as-long-and-the-trailer-has-everyone-spinning/",
-              "https://www.crunchyroll.com/news/latest/2026/6/19/link-click-season-3-donghua-august-14-release-date-trailer-visual"
-            ]
+              "https://en.as.com/meristation/news/hunter-x-hunter-heads-back-into-hiatus-after-chapter-420-but-togashi-has-already-prepared-more-chapters-f202609-n/",
+              "https://www.gametrader.sg/blog/tag/manga-plus/"
+            ],
+            "show": "Hunter x Hunter"
           },
           {
-            "claim": "Season 2 ended with the Bahati fire case tied to Cheng Xiaoshi's father and Xia Fei's disappearance left unresolved.",
-            "core": true,
-            "claim_type": "D",
-            "source_urls": [
-              "https://www.anime.com/news/link-click-season-3-part-one-august-2026"
-            ]
-          },
-          {
-            "claim": "New Bridon officer Jae joins the investigation and Qiao Ling's photograph powers expand, per the official trailer.",
+            "claim": "This is a manga-only news story with no corresponding anime episode or footage to adapt",
             "core": false,
-            "claim_type": "A",
-            "source_urls": [
-              "https://www.youtube.com/watch?v=-Uu80NtLAdc"
-            ]
-          },
-          {
-            "claim": "Link Click holds an 8.77 average on MyAnimeList and has been nominated for a Crunchyroll Anime Award.",
-            "core": true,
-            "claim_type": "A",
-            "source_urls": [
-              "https://www.cbr.com/link-click-donghua-popularity-structure-themes-time-travel/",
-              "https://www.soapcentral.com/anime/link-click-anime-review-a-thrilling-digital-mystery-will-keep-hooked"
-            ]
+            "source_urls": []
           }
         ],
         "checks": {
@@ -102,270 +104,206 @@
           "ai_slop_pattern_check": true
         }
       },
-      "video_style": "Face-Cam Split Screen",
+      "video_style": "Face-Cam Split-Screen (creator TOP / manga panels + official cover art BOTTOM -- manga-only news story, no anime footage exists for this content; manga panels used per the face-cam split-screen requirement)",
       "face": true,
       "split_screen": true,
       "sources": [
         {
-          "claim": "Premiere moved up to Aug 14, 2026, two months early",
-          "url": "https://comicbook.com/anime/news/crunchyrolls-biggest-mystery-series-reveals-final-trailer-ahead-of-anticipated-return/",
-          "date": "Aug 2026"
+          "claim": "Shueisha confirmed Sept 4 that Hunter x Hunter returns to indefinite hiatus after Chapter 420 (Sept 6, WSJ Issue #41)",
+          "url": "https://gamerant.com/hunter-x-hunter-hiatus-september-6/",
+          "date": "Sep 2026"
         },
         {
-          "claim": "24-episode doubled format, Part Two in 2027",
-          "url": "https://wibux.com/link-click-season-3-drops-august-14-two-months-early-twice-as-long-and-the-trailer-has-everyone-spinning/",
-          "date": "Aug 2026"
+          "claim": "10-chapter run since Chapter 411's late-June return; no return date announced; Togashi's production progress through Ch. 430",
+          "url": "https://www.gametrader.sg/blog/tag/manga-plus/",
+          "date": "Sep 2026"
         },
         {
-          "claim": "Official Crunchyroll release date announcement",
-          "url": "https://www.crunchyroll.com/news/latest/2026/6/19/link-click-season-3-donghua-august-14-release-date-trailer-visual",
-          "date": "Jun 2026"
+          "claim": "Chapters 421-423 fully manuscript-complete; background on the prior 18-month hiatus since Dec 2024",
+          "url": "https://en.as.com/meristation/news/hunter-x-hunter-heads-back-into-hiatus-after-chapter-420-but-togashi-has-already-prepared-more-chapters-f202609-n/",
+          "date": "Sep 2026"
         },
         {
-          "claim": "Season 2 finale plot recap / Bahati case setup",
-          "url": "https://www.anime.com/news/link-click-season-3-part-one-august-2026",
-          "date": "Jun 2026"
-        },
-        {
-          "claim": "8.77 MAL average, donghua ceiling discussion",
-          "url": "https://www.cbr.com/link-click-donghua-popularity-structure-themes-time-travel/",
-          "date": "2026"
-        },
-        {
-          "claim": "8.5 IMDb, Crunchyroll Anime Award nomination",
-          "url": "https://www.soapcentral.com/anime/link-click-anime-review-a-thrilling-digital-mystery-will-keep-hooked",
-          "date": "2026"
-        },
-        {
-          "claim": "Official Trailer 4 footage / studio CMC Media",
-          "url": "https://www.youtube.com/watch?v=-Uu80NtLAdc",
-          "date": "Aug 2026"
+          "claim": "Official Shonen Jump News confirmation: hiatus after Ch. 420, chapters 428-430 in production, no return date set",
+          "url": "https://x.com/WSJ_manga/status/2095369879788339451",
+          "date": "Sep 2026"
         }
       ],
       "clips": [
         {
-          "scene": "Trailer 4 cold open - Cheng Xiaoshi and Lu Guang in the photo studio, moody premiere-tone visuals",
-          "reason": "Establishes the duo and premiere framing for the hook",
-          "duration_sec": 10,
+          "scene": "Manga panel/cover art -- Weekly Shonen Jump Issue #41 cover featuring Chapter 420",
+          "reason": "establishes the hook: this is the real, dated chapter that triggered the new hiatus",
+          "duration_sec": 6,
           "timeline_start_sec": 0,
-          "timeline_end_sec": 10,
-          "scene_verified": true,
-          "verification_source_url": "https://www.youtube.com/watch?v=-Uu80NtLAdc",
+          "timeline_end_sec": 6,
+          "scene_verified": false,
+          "manga_reference": "Weekly Shonen Jump Issue #41 cover / Chapter 420 title page",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Checked YouTube and Crunchyroll for any anime adaptation -- Hunter x Hunter's current anime does not cover this arc; this is a manga-only news story",
           "claim_vs_source_check": {
-            "claimed_beat": "Opening trailer shots of Cheng Xiaoshi and Lu Guang used to frame the premiere-date hook",
-            "source_content_confirmed": "Trailer 4 (uploaded 2026-08-11) opens on Cheng Xiaoshi/Lu Guang studio shots before cutting to season branding and the August 14 date card",
+            "claimed_beat": "Chapter 420 published September 6, 2026 in Weekly Shonen Jump Issue #41",
+            "source_content_confirmed": "GameRant and GameTrader.SG both confirm the September 6 publication date and issue number",
             "match": true
-          },
-          "footage_status": "unaired_trailer_only",
-          "footage_search_performed": "Searched YouTube for Link Click Season 3 official trailer and PV uploads; located Trailer 4 (2026-08-11) and an earlier July PV directly on the show's associated official upload, both pre-air promotional footage since the season itself has not aired yet.",
-          "clip_locate": {
-            "season": 3,
-            "episode": 1,
-            "locate_confirmed_via": "The same Trailer 4 upload cited in claim_vs_source_check is explicitly labeled as the Season 3 Part One premiere trailer, placing this shot at the season/Part One opener.",
-            "approx_timestamp": null
           }
         },
         {
-          "scene": "Trailer shot revealing the season's expanded episode count / Part One-Part Two split card",
-          "reason": "Visually supports the doubled-length claim",
-          "duration_sec": 10,
-          "timeline_start_sec": 10,
-          "timeline_end_sec": 20,
-          "scene_verified": true,
-          "verification_source_url": "https://www.youtube.com/watch?v=-Uu80NtLAdc",
+          "scene": "Manga panel -- Gon and Killua or another recognizable HxH cast shot from the recent Ch. 411-420 run, used as a visual anchor for 'the ten-chapter run'",
+          "reason": "gives viewers a concrete visual for the just-concluded run before the hiatus reveal",
+          "duration_sec": 7,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 13,
+          "scene_verified": false,
+          "manga_reference": "Hunter x Hunter Chapters 411-420, general run imagery",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Checked YouTube and Crunchyroll -- no anime footage exists for this manga-only period",
           "claim_vs_source_check": {
-            "claimed_beat": "Trailer displays the Part One / 2027 Part Two split confirming the doubled 24-episode format",
-            "source_content_confirmed": "Trailer 4 includes end-card text confirming the two-part 24-episode structure with Part Two dated for 2027",
+            "claimed_beat": "A 10-chapter consecutive run occurred from Chapter 411 (late June) through Chapter 420 (Sept 6)",
+            "source_content_confirmed": "GameTrader.SG confirms the run started with Ch. 411 on June 28 and continued on a mostly weekly cadence through Ch. 420",
             "match": true
-          },
-          "footage_status": "unaired_trailer_only",
-          "footage_search_performed": "Same YouTube search as CUT 1; confirmed via the same Trailer 4 upload's end-card text.",
-          "clip_locate": {
-            "season": 3,
-            "episode": 1,
-            "locate_confirmed_via": "The same Trailer 4 upload cited in claim_vs_source_check carries the Part One/Part Two end-card, placing this shot at the season/Part One opener.",
-            "approx_timestamp": null
           }
         },
         {
-          "scene": "Trailer flashback/callback shot referencing the Bahati fire case and Xiaoshi's father",
-          "reason": "Sets up the unresolved Season 2 case thread",
-          "duration_sec": 10,
-          "timeline_start_sec": 20,
+          "scene": "Manga panel -- Togashi's official statement / Shueisha announcement graphic (text card treatment over manga art)",
+          "reason": "delivers the specific 'no return date' confirmation quote as an on-screen text moment",
+          "duration_sec": 9,
+          "timeline_start_sec": 13,
+          "timeline_end_sec": 22,
+          "scene_verified": false,
+          "manga_reference": "Shueisha/Shonen Jump News official statement, Sept 4, 2026",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Checked YouTube and Crunchyroll for video coverage of this announcement -- none exists as clippable footage; sourced from the official Shonen Jump News X/Twitter post text instead",
+          "claim_vs_source_check": {
+            "claimed_beat": "Shueisha confirmed no return date has been announced, with chapters 428-430 in production",
+            "source_content_confirmed": "The official Shonen Jump News X/Twitter post states this verbatim",
+            "match": true
+          }
+        },
+        {
+          "scene": "Manga panel -- a forward-looking shot (e.g. Gon/Killua silhouette or chapter-count graphic showing 421-430) for the closing question",
+          "reason": "visually reinforces the closing question about whether finished chapters change the wait",
+          "duration_sec": 8,
+          "timeline_start_sec": 22,
           "timeline_end_sec": 30,
-          "scene_verified": true,
-          "verification_source_url": "https://www.youtube.com/watch?v=-Uu80NtLAdc",
+          "scene_verified": false,
+          "manga_reference": "General Hunter x Hunter cast imagery, forward-looking framing",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Checked YouTube and Crunchyroll -- no anime footage exists for this manga-only story",
           "claim_vs_source_check": {
-            "claimed_beat": "Trailer includes a flashback-style shot tied to the Bahati case investigation carrying over from Season 2",
-            "source_content_confirmed": "Trailer 4 includes a brief archival/flashback-styled insert consistent with the ongoing Bahati case thread referenced in official season-recap copy",
+            "claimed_beat": "Togashi has finished chapters 421-423 and reports progress through chapter 430",
+            "source_content_confirmed": "AS.com and GameTrader.SG both confirm this exact production-progress detail",
             "match": true
-          },
-          "footage_status": "unaired_trailer_only",
-          "footage_search_performed": "Same YouTube search as CUT 1; cross-checked against the Anime.com season recap for the Bahati case context.",
-          "clip_locate": {
-            "season": 3,
-            "episode": 1,
-            "locate_confirmed_via": "The same Trailer 4 upload cited in claim_vs_source_check is the Season 3 Part One premiere trailer, placing this shot at the season/Part One opener.",
-            "approx_timestamp": null
-          }
-        },
-        {
-          "scene": "New trailer shot of Jae (new Bridon officer) and Vein's return",
-          "reason": "Introduces new character stakes",
-          "duration_sec": 10,
-          "timeline_start_sec": 30,
-          "timeline_end_sec": 40,
-          "scene_verified": true,
-          "verification_source_url": "https://www.youtube.com/watch?v=-Uu80NtLAdc",
-          "claim_vs_source_check": {
-            "claimed_beat": "Trailer introduces a new Bridon officer character and shows Vein returning",
-            "source_content_confirmed": "Trailer 4 features new character introduction shots consistent with promotional materials naming Jae and confirming Vein's return",
-            "match": true
-          },
-          "footage_status": "unaired_trailer_only",
-          "footage_search_performed": "Same YouTube search as CUT 1.",
-          "clip_locate": {
-            "season": 3,
-            "episode": 1,
-            "locate_confirmed_via": "The same Trailer 4 upload cited in claim_vs_source_check is the Season 3 Part One premiere trailer, placing this shot at the season/Part One opener.",
-            "approx_timestamp": null
-          }
-        },
-        {
-          "scene": "Trailer shot of Qiao Ling using her photograph power in an expanded/new way",
-          "reason": "Payoff beat for the powers-expansion claim",
-          "duration_sec": 10,
-          "timeline_start_sec": 40,
-          "timeline_end_sec": 50,
-          "scene_verified": true,
-          "verification_source_url": "https://www.youtube.com/watch?v=-Uu80NtLAdc",
-          "claim_vs_source_check": {
-            "claimed_beat": "Trailer shows Qiao Ling actively using her photograph-based power in a new context",
-            "source_content_confirmed": "Trailer 4 includes a sequence showing Qiao Ling engaging her ability, matching promotional descriptions of her expanded role in Part One",
-            "match": true
-          },
-          "footage_status": "unaired_trailer_only",
-          "footage_search_performed": "Same YouTube search as CUT 1.",
-          "clip_locate": {
-            "season": 3,
-            "episode": 1,
-            "locate_confirmed_via": "The same Trailer 4 upload cited in claim_vs_source_check is the Season 3 Part One premiere trailer, placing this shot at the season/Part One opener.",
-            "approx_timestamp": null
-          }
-        },
-        {
-          "scene": "Trailer closing logo card / August 14 Crunchyroll release date stamp",
-          "reason": "Closer beat reinforcing CTA and premiere urgency",
-          "duration_sec": 10,
-          "timeline_start_sec": 50,
-          "timeline_end_sec": 60,
-          "scene_verified": true,
-          "verification_source_url": "https://www.crunchyroll.com/news/latest/2026/6/19/link-click-season-3-donghua-august-14-release-date-trailer-visual",
-          "claim_vs_source_check": {
-            "claimed_beat": "Closing date card confirms August 14, 2026 Crunchyroll release",
-            "source_content_confirmed": "Official Crunchyroll News announcement states the August 14, 2026 release date and Crunchyroll's international carriage of the season",
-            "match": true
-          },
-          "footage_status": "aired_and_located",
-          "footage_search_performed": "Confirmed directly via Crunchyroll's own official news announcement page, which embeds the release-date visual/trailer.",
-          "clip_locate": {
-            "season": 3,
-            "episode": 1,
-            "locate_confirmed_via": "The same Crunchyroll News announcement cited in claim_vs_source_check is the official Season 3 Part One premiere-date reveal, placing this shot at the season/Part One opener.",
-            "approx_timestamp": null
           }
         }
       ],
-      "clip_descriptions": "CUT 1 (0:00-0:10): Trailer 4 cold open, Cheng Xiaoshi and Lu Guang in the photo studio -- establishes the duo for the hook \u2014 S3E1. CUT 2 (0:10-0:20): Trailer end-card revealing the Part One/Part Two 24-episode split -- visual proof of the doubled format \u2014 S3E1. CUT 3 (0:20-0:30): Trailer flashback insert tied to the Bahati fire case -- carries the Season 2 case thread forward \u2014 S3E1. CUT 4 (0:30-0:40): Trailer introduction of new Bridon officer Jae and Vein's return -- new character stakes \u2014 S3E1. CUT 5 (0:40-0:50): Trailer shot of Qiao Ling using her photograph power in an expanded way -- payoff for the powers-expansion claim \u2014 S3E1. CUT 6 (0:50-0:60): Crunchyroll's official closing date card confirming the August 14 release -- closer beat reinforcing the CTA. All six cuts are pulled from Link Click's official Season 3 Trailer 4 (YouTube, 2026-08-11) and the Crunchyroll official announcement visual for the closing date-card cut. No manga or stand-in footage used; this is a SEASON_PREVIEW where trailer footage is the expected and standard source, not a substitution for aired episode content \u2014 S3E1.",
-      "captions": "LINK CLICK / DOUBLED THE SEASON / PART ONE: AUG 14 / BAHATI CASE RETURNS / NEW OFFICER: JAE / QIAO LING'S POWER GROWS / LEAVE YOUR TAKE",
-      "youtube_title": "Link Click Just Doubled Its Own Season",
-      "tiktok_title": "This Mystery Anime Just Got Twice As Long",
-      "tiktok_post_text": "Link Click just doubled its own season two days before it even airs. Season 3 Part One hits Crunchyroll August 14 as the front half of a full 24-episode story picking up the Bahati case. #linkclick #donghua #crunchyroll #animenews #mysteryanime",
-      "pinned_comment": "The part that gets me: Part Two isn't even close yet, this is genuinely 2027. They're not padding, they're telling us this case needed 24 episodes minimum.",
+      "story_point_gate": {
+        "anime_has_reached_this_point": false,
+        "checked_via": "https://gamerant.com/hunter-x-hunter-hiatus-september-6/"
+      },
+      "clip_descriptions": "CUT 1 -- 6 sec (0:00-0:06): Weekly Shonen Jump Issue #41 cover/Chapter 420 title page -- establishes the real, dated chapter. CUT 2 -- 7 sec (0:06-0:13): Manga panel from the Ch. 411-420 run -- visual anchor for the just-concluded 10-chapter stretch. CUT 3 -- 9 sec (0:13-0:22): Shueisha's official statement text card -- delivers the 'no return date' confirmation. CUT 4 -- 8 sec (0:22-0:30): Forward-looking cast shot / chapter-count graphic -- reinforces the closing question about chapters 421-430.",
+      "captions": "HIATUS / AGAIN -> 3 CHAPTERS / ALREADY / FINISHED -> NO RETURN / DATE SET -> WORTH / THE WAIT?",
+      "youtube_title": "Hunter x Hunter's Hiatus Isn't What You Think",
+      "tiktok_title": "HxH Hiatus... But 3 Chapters Are Done",
+      "tiktok_post_text": "Hunter x Hunter is back on hiatus after Chapter 420, but Togashi already has chapters 421-423 finished and real progress toward 430. Different kind of wait this time. #HunterxHunter #HxH #Togashi #ShonenJump #MangaNews #AnimeManga",
+      "pinned_comment": "The real story isn't the hiatus -- it's that Togashi already has three chapters finished ahead of time and is still making real progress toward the next seven.",
       "post_times": {
-        "youtube": "8:00 AM ET",
-        "tiktok": "8:15 AM ET"
+        "youtube": "9:00 AM ET",
+        "tiktok": "9:15 AM ET"
       },
       "blackout_conflict": false,
       "recent_send_conflict": false
     },
     {
-      "package_id": "8cf962b9-786a-42ab-9888-8de397136784",
+      "package_id": "db3a4ac3-3ef3-4eb3-88a3-f287f7ed60bc",
       "slot": "evening",
       "content_type": "short",
-      "show": "That Time I Got Reincarnated as a Slime",
-      "angle": "Season 4 Episode 18 (aired Aug 7): Diablo overwhelms the Primordial Demon Rain after she insults Rimuru, revealing his true loyalty mid-fight, while Granbell Rosso overwhelms Hinata's Paladins on a separate front",
+      "show": "Bleach: Thousand-Year Blood War",
+      "angle": "Episode 47, \"The End 2,\" aired Sept 5, 2026 -- almost entirely anime-original, adapting only fragments of manga chapters 679-680. Tier Harribel, Nelliel, Pesche, and Dondochakka return to the fight (an anime-original expansion of their manga roles), backing Uryu Ishida's Antithesis-powered plan to trap Yhwach beside the Seed of Destruction, while Ukitake's remaining power transfers to Shunsui through Mimihagi.",
       "format_type": "EPISODE_MOMENT",
+      "episode_air_date_iso": "2026-09-05",
       "topic_class": "timely",
       "topic_signals": [
-        "currently_airing"
+        "premiere",
+        "news"
       ],
       "series": null,
       "funnel_status": "standalone",
       "hook_family": "revelation",
-      "hook_onscreen_text": "ONE INSULT MADE DIABLO SNAP",
+      "hook_onscreen_text": "BLEACH'S NEWEST EPISODE IS ALMOST ENTIRELY ANIME-ORIGINAL",
       "hook_first_second": true,
       "isolation_test_pass": true,
       "hook_candidates": [
-        "That Time I Got Reincarnated as a Slime just let Diablo snap, and it took exactly one insult aimed at Rimuru to do it.",
-        "It took Rimuru getting insulted once for Diablo to overwhelm a Primordial Demon."
+        "Bleach's newest episode is almost entirely anime-original, adapting barely a single manga chapter's worth of real content.",
+        "Bleach's newest episode is almost entirely anime-original, and it just rewrote how Yhwach gets beaten."
       ],
       "selected_hook_index": 0,
-      "capcut_target_sec": 60,
-      "total_clip_time_sec": 60,
-      "hook_line": "That Time I Got Reincarnated as a Slime just let Diablo snap, and it took exactly one insult aimed at Rimuru to do it.",
-      "opening_sentence": "That Time I Got Reincarnated as a Slime just let Diablo snap, and it took exactly one insult aimed at Rimuru to do it.",
-      "vo": "That Time I Got Reincarnated as a Slime just let Diablo snap, and it took exactly one insult aimed at Rimuru to do it. Episode eighteen aired August 7th, and the moment everyone's talking about is Diablo turning on the Primordial Demon Rain after she disrespects Rimuru directly to his face in front of everyone. He doesn't argue with her. He opens with Holy Magic Multi Layered Disintegration and starts overwhelming her almost immediately, and it's only once he's already winning that Rain drops her disguise and reveals her true form as a Primordial Demon herself. That's when Guy Crimson steps in and watches Diablo explain, in the middle of the fight, exactly why he chose to serve Rimuru in the first place instead of ruling on his own. On a completely separate front in that same episode, the legendary Hero Granbell Rosso tears through Hinata's own Paladins like they're nothing at all, which means Guy Crimson isn't just watching one demon lose his composure, he's watching Rimuru's entire orbit of power become impossible to ignore anymore. So was that Diablo protecting his master, or Diablo finally getting the fight he'd been waiting for this whole time? Leave your take.",
-      "vo_word_count": 200,
-      "question_line": "So was that Diablo protecting his master, or Diablo finally getting the fight he'd been waiting for this whole time?",
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Bleach's newest episode is almost entirely anime-original, adapting barely a single manga chapter's worth of real content.",
+      "opening_sentence": "Bleach's newest episode is almost entirely anime-original, adapting barely a single manga chapter's worth of real content.",
+      "vo_status": "complete",
+      "vo": "Bleach's newest episode is almost entirely anime-original, adapting barely a single manga chapter's worth of real content. Episode forty-seven, 'The End 2,' brings back four separate fighters at once: Tier Harribel, Nelliel, Pesche, and Dondochakka, all converging together to back Uryu Ishida. His Antithesis Schrift swaps fates with Yhwach, trapping him beside the Seed of Destruction inside the collapsing throne room. Ukitake's remaining power then passes to Shunsui through Mimihagi right before the blast goes off. Did the anime actually improve on the manga's original ending, or does it water down Ishida's biggest win? Leave your take.",
+      "vo_word_count": 100,
+      "question_line": "Did the anime actually improve on the manga's original ending, or does it water down Ishida's biggest win?",
       "cta_line": "Leave your take.",
-      "onscreen_cta_start_sec": 52,
-      "length_rationale": "2-3 solid beats verified (Diablo overwhelms Rain after the insult, Rain's true-form reveal plus Diablo's mid-fight loyalty explanation, Granbell Rosso overwhelming Hinata's Paladins on a parallel front) -> MULTI-BEAT ARGUMENT band (45-75s), resolved at 60s.",
-      "spoiler_warning": true,
+      "onscreen_cta_start_sec": 26,
       "semantic_qa": {
         "audited_before_return": true,
         "claim_source_matrix": [
           {
-            "claim": "Slime Season 4 Episode 18 aired August 7, 2026.",
+            "claim": "Bleach: Thousand-Year Blood War Episode 47, \"The End 2,\" is almost entirely anime-original, adapting only fragments of manga chapters 679-680 (broadcast date not independently confirmed by a primary streaming source as of this review)",
             "core": true,
             "claim_type": "C",
             "source_urls": [
-              "https://www.aol.com/articles/time-got-reincarnated-slime-season-153000000.html",
-              "https://www.comicbasics.com/that-time-i-got-reincarnated-as-a-slime-season-4-episode-18-release-date-and-time/"
+              "https://www.youtube.com/watch?v=8x4kEGb3Id8",
+              "https://thegeekiary.com/bleach-thousand-year-blood-war-1x46-and-1x47-review-the-end-and-the-end-2/139431"
             ],
-            "anchors_claim": "hook"
+            "anchors_claim": "hook",
+            "show": "Bleach: Thousand-Year Blood War"
           },
           {
-            "claim": "Diablo confronts and overwhelms the Primordial Demon Rain after she insults Rimuru, opening with Holy Magic Multi-Layered Disintegration.",
+            "claim": "Tier Harribel, Nelliel, Pesche, and Dondochakka return in this episode to join Uryu Ishida's plan, an anime-original expansion beyond their manga appearances",
             "core": true,
             "claim_type": "A",
             "source_urls": [
-              "https://www.youtube.com/watch?v=_4xtVj881w4"
-            ]
+              "https://thegeekiary.com/bleach-thousand-year-blood-war-1x46-and-1x47-review-the-end-and-the-end-2/139431",
+              "https://www.youtube.com/watch?v=kafRdZTSbrw"
+            ],
+            "show": "Bleach: Thousand-Year Blood War"
           },
           {
-            "claim": "Rain reveals her true form as a Primordial Demon once she is losing, and Guy Crimson appears.",
+            "claim": "Uryu Ishida's Antithesis Schrift swaps conditions/fates between targets; in this episode he uses it to position Yhwach beside the Seed of Destruction inside the collapsing throne room, with Dondochakka and Pesche using Bawabawa to rescue Ichigo, Orihime, Rukia, Renji, Chad, and Ganju",
             "core": true,
-            "claim_type": "A",
+            "claim_type": "C",
             "source_urls": [
-              "https://www.youtube.com/watch?v=_4xtVj881w4"
-            ]
+              "https://thegeekiary.com/bleach-thousand-year-blood-war-1x46-and-1x47-review-the-end-and-the-end-2/139431"
+            ],
+            "show": "Bleach: Thousand-Year Blood War"
           },
           {
-            "claim": "Diablo explains mid-fight why he chose to serve Rimuru.",
+            "claim": "The final Auswahlen absorbed Mimihagi, which Ukitake had bestowed on Shunsui, transferring Ukitake's remaining power to Shunsui",
             "core": true,
-            "claim_type": "D",
+            "claim_type": "C",
             "source_urls": [
-              "https://www.youtube.com/watch?v=_4xtVj881w4"
-            ]
+              "https://thegeekiary.com/bleach-thousand-year-blood-war-1x46-and-1x47-review-the-end-and-the-end-2/139431"
+            ],
+            "show": "Bleach: Thousand-Year Blood War"
           },
           {
-            "claim": "On a separate front in the same episode, Granbell Rosso overwhelms Hinata's Paladins.",
+            "claim": "The Seed of Destruction plan did not work exactly as expected and the episode does not confirm Yhwach was defeated by it",
             "core": false,
-            "claim_type": "A",
             "source_urls": [
-              "https://www.youtube.com/watch?v=_4xtVj881w4"
+              "https://thegeekiary.com/bleach-thousand-year-blood-war-1x46-and-1x47-review-the-end-and-the-end-2/139431"
             ]
+          },
+          {
+            "claim": "Episode 47 ('The End 2') premiered/aired September 5, 2026",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://animecorner.me/bleach-thousand-year-blood-war-episode-47-preview-images-and-synopsis-revealed/"
+            ],
+            "note": "Confirmed via Anime Corner (published 2026-09-04, before the claimed air date, ruling out upload-date ambiguity): \"The fifth episode is titled 'THE END 2,' and it will premiere on Saturday, September 5.\" Backs the structured episode_air_date_iso field; the spoken VO omits the date line by editorial choice.",
+            "show": "Bleach: Thousand-Year Blood War"
           }
         ],
         "checks": {
@@ -381,154 +319,133 @@
           "ai_slop_pattern_check": true
         }
       },
-      "video_style": "Face-Cam Split Screen",
+      "video_style": "Face-Cam Split-Screen (creator TOP / anime footage BOTTOM -- real Episode 47 aired footage)",
       "face": true,
       "split_screen": true,
       "sources": [
         {
-          "claim": "Episode 18 aired August 7, 2026",
-          "url": "https://www.aol.com/articles/time-got-reincarnated-slime-season-153000000.html",
-          "date": "Aug 2026"
+          "claim": "Episode 47 is almost entirely anime-original, adapting only fragments of chapters 679-680",
+          "url": "https://www.youtube.com/watch?v=8x4kEGb3Id8",
+          "date": "Sep 2026"
         },
         {
-          "claim": "Episode 18 release date/time confirmation",
-          "url": "https://www.comicbasics.com/that-time-i-got-reincarnated-as-a-slime-season-4-episode-18-release-date-and-time/",
-          "date": "Aug 2026"
+          "claim": "Full breakdown: Ukitake/Mimihagi/Shunsui transfer, Ishida's Antithesis vs. Yhwach's Almighty, Seed of Destruction plan, Harribel/Nel/Pesche/Dondochakka returns",
+          "url": "https://thegeekiary.com/bleach-thousand-year-blood-war-1x46-and-1x47-review-the-end-and-the-end-2/139431",
+          "date": "Sep 2026"
         },
         {
-          "claim": "Timestamped scene recap of the Diablo vs Rain fight, Guy Crimson appearance, Granbell vs Hinata's Paladins",
-          "url": "https://www.youtube.com/watch?v=_4xtVj881w4",
-          "date": "May 2026"
+          "claim": "Episode synopsis confirming Ukitake's life reaching its limit, Harribel/Nel/Pesche/Dondochakka rescue team, and the Leiden Scherben/Antithesis plan against Yhwach",
+          "url": "https://www.youtube.com/watch?v=kafRdZTSbrw",
+          "date": "Sep 2026"
+        },
+        {
+          "claim": "Post-air fan discussion thread confirming Episode 47 (\"The End 2\") aired Sept 5, 2026 and streaming availability",
+          "url": "https://www.reddit.com/r/bleach/comments/1w81m0v/bleach_thousand_year_blood_war_episode_47_open/",
+          "date": "Sep 2026"
+        },
+        {
+          "claim": "Episode 47 will premiere Saturday, September 5 (pre-air preview/synopsis article)",
+          "url": "https://animecorner.me/bleach-thousand-year-blood-war-episode-47-preview-images-and-synopsis-revealed/",
+          "date": "Sep 4, 2026"
+        },
+        {
+          "claim": "Bleach: TYBW is not carried by Crunchyroll; streams weekly on Hulu (US) and Disney+ (select international markets)",
+          "url": "https://animatedtimes.com/how-many-episodes-are-in-bleach-thousand-year-blood-war-the-calamity/",
+          "date": "Jul 26, 2026"
         }
       ],
       "clips": [
         {
-          "scene": "Rain insults Rimuru directly, provoking Diablo (recap 5:04-5:54)",
-          "reason": "Sets up the inciting insult for the hook",
-          "duration_sec": 10,
+          "scene": "Episode 47 -- opening dream-sequence beat between Shunsui and a weakened Ukitake",
+          "reason": "sets up the Ukitake/Mimihagi/Shunsui stakes before the hook's reveal lands",
+          "duration_sec": 6,
           "timeline_start_sec": 0,
-          "timeline_end_sec": 10,
+          "timeline_end_sec": 6,
           "scene_verified": true,
-          "verification_source_url": "https://www.youtube.com/watch?v=_4xtVj881w4",
+          "verification_source_url": "https://www.youtube.com/watch?v=8x4kEGb3Id8",
           "claim_vs_source_check": {
-            "claimed_beat": "Rain insults Rimuru directly, which is what triggers Diablo's response",
-            "source_content_confirmed": "Recap video timestamped section beginning ~5:04 shows Rain's confrontation and insult toward Rimuru immediately before Diablo engages at 5:54",
+            "claimed_beat": "The episode opens on an anime-original dream sequence between Shunsui and a dying/weakened Ukitake",
+            "source_content_confirmed": "The YouTube breakdown transcript confirms the episode begins with this exact anime-original dream sequence",
             "match": true
           },
           "clip_locate": {
-            "season": 4,
-            "episode": 18,
-            "locate_confirmed_via": "The same YouTube recap video cited in claim_vs_source_check explicitly timestamps this beat within Episode 18's scene-by-scene breakdown.",
-            "approx_timestamp": "5:04"
+            "season": 1,
+            "episode": 47,
+            "locate_confirmed_via": "the same YouTube episode breakdown cited above, which discusses this scene as the opening beat of Bleach TYBW Episode 47",
+            "approx_timestamp": "0:00-1:30",
+            "episode_source": "explicitly_stated"
           }
         },
         {
-          "scene": "Diablo opens with Holy Magic Multi-Layered Disintegration (recap 7:03)",
-          "reason": "Delivers the specific named attack beat from the VO",
-          "duration_sec": 10,
-          "timeline_start_sec": 10,
-          "timeline_end_sec": 20,
+          "scene": "Episode 47 -- Tier Harribel, Nelliel, Pesche, and Dondochakka's on-screen return at Wahrwelt",
+          "reason": "the core visual payoff of the hook -- three-plus fighters resurfacing on screen",
+          "duration_sec": 8,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 14,
           "scene_verified": true,
-          "verification_source_url": "https://www.youtube.com/watch?v=_4xtVj881w4",
+          "verification_source_url": "https://www.youtube.com/watch?v=kafRdZTSbrw",
           "claim_vs_source_check": {
-            "claimed_beat": "Diablo casts Holy Magic Multi-Layered Disintegration against Rain",
-            "source_content_confirmed": "Recap video timestamp 7:03 shows Diablo casting this specific named spell against Rain",
+            "claimed_beat": "Uryu Ishida crosses paths with an unexpected rescue team of Tier Harribel, Nelliel, Pesche, and Dondochakka",
+            "source_content_confirmed": "The official episode synopsis confirms this exact team reunion at Wahrwelt",
             "match": true
           },
           "clip_locate": {
-            "season": 4,
-            "episode": 18,
-            "locate_confirmed_via": "The same YouTube recap video cited in claim_vs_source_check explicitly timestamps this beat within Episode 18's scene-by-scene breakdown.",
-            "approx_timestamp": "7:03"
+            "season": 1,
+            "episode": 47,
+            "locate_confirmed_via": "the same official-style episode synopsis video cited above, which covers this team reunion as part of Bleach TYBW Episode 47's synopsis",
+            "approx_timestamp": "12:44-17:54",
+            "episode_source": "explicitly_stated"
           }
         },
         {
-          "scene": "Diablo overwhelms Rain (recap 8:09)",
-          "reason": "Shows the one-sided nature of the fight",
-          "duration_sec": 10,
-          "timeline_start_sec": 20,
+          "scene": "Episode 47 -- Uryu Ishida activating Antithesis and swapping positions to place Yhwach beside the Seed of Destruction",
+          "reason": "the core strategic payoff referenced directly in the VO's closing question",
+          "duration_sec": 9,
+          "timeline_start_sec": 14,
+          "timeline_end_sec": 23,
+          "scene_verified": true,
+          "verification_source_url": "https://thegeekiary.com/bleach-thousand-year-blood-war-1x46-and-1x47-review-the-end-and-the-end-2/139431",
+          "claim_vs_source_check": {
+            "claimed_beat": "Ishida uses Antithesis to swap his teammates and position Yhwach beside the Seed of Destruction as the throne room collapses",
+            "source_content_confirmed": "The Geekiary's review confirms this exact sequence as a notable moment in the episode",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 47,
+            "locate_confirmed_via": "the same TheGeekiary review cited above, which is explicitly labeled as covering Bleach Thousand-Year Blood War anime Season 1 Episode 47 ('1x47') and discusses this Antithesis/Seed of Destruction sequence directly",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Episode 47 -- closing beat, the throne room collapse and Dondochakka/Pesche's Bawabawa rescue",
+          "reason": "closes on the visual payoff of the rescue and the ambiguous outcome, reinforcing the closing question",
+          "duration_sec": 7,
+          "timeline_start_sec": 23,
           "timeline_end_sec": 30,
           "scene_verified": true,
-          "verification_source_url": "https://www.youtube.com/watch?v=_4xtVj881w4",
+          "verification_source_url": "https://thegeekiary.com/bleach-thousand-year-blood-war-1x46-and-1x47-review-the-end-and-the-end-2/139431",
           "claim_vs_source_check": {
-            "claimed_beat": "Diablo is overwhelming Rain in the fight",
-            "source_content_confirmed": "Recap timestamp 8:09 shows Rain visibly losing ground against Diablo",
+            "claimed_beat": "Dondochakka and Pesche use Bawabawa to rescue Ichigo, Orihime, Rukia, Renji, Chad, and Ganju from the falling throne room",
+            "source_content_confirmed": "The Geekiary's review confirms this exact rescue beat",
             "match": true
           },
           "clip_locate": {
-            "season": 4,
-            "episode": 18,
-            "locate_confirmed_via": "The same YouTube recap video cited in claim_vs_source_check explicitly timestamps this beat within Episode 18's scene-by-scene breakdown.",
-            "approx_timestamp": "8:09"
-          }
-        },
-        {
-          "scene": "Rain reveals her true Primordial Demon form (recap 9:41) and Guy Crimson appears (9:53)",
-          "reason": "Escalation beat that raises the stakes",
-          "duration_sec": 10,
-          "timeline_start_sec": 30,
-          "timeline_end_sec": 40,
-          "scene_verified": true,
-          "verification_source_url": "https://www.youtube.com/watch?v=_4xtVj881w4",
-          "claim_vs_source_check": {
-            "claimed_beat": "Rain reveals her true form and Guy Crimson appears on the scene",
-            "source_content_confirmed": "Recap timestamps 9:41 (true form reveal) and 9:53 (Guy Crimson's appearance) confirm both beats in sequence",
-            "match": true
-          },
-          "clip_locate": {
-            "season": 4,
-            "episode": 18,
-            "locate_confirmed_via": "The same YouTube recap video cited in claim_vs_source_check explicitly timestamps this beat within Episode 18's scene-by-scene breakdown.",
-            "approx_timestamp": "9:41"
-          }
-        },
-        {
-          "scene": "Diablo explains why he chose to serve Rimuru (recap 11:39)",
-          "reason": "Delivers the emotional/loyalty beat referenced in the VO",
-          "duration_sec": 10,
-          "timeline_start_sec": 40,
-          "timeline_end_sec": 50,
-          "scene_verified": true,
-          "verification_source_url": "https://www.youtube.com/watch?v=_4xtVj881w4",
-          "claim_vs_source_check": {
-            "claimed_beat": "Diablo explains mid-fight why he chose to serve Rimuru",
-            "source_content_confirmed": "Recap timestamp 11:39 shows Diablo's explanation of his loyalty to Rimuru during the confrontation",
-            "match": true
-          },
-          "clip_locate": {
-            "season": 4,
-            "episode": 18,
-            "locate_confirmed_via": "The same YouTube recap video cited in claim_vs_source_check explicitly timestamps this beat within Episode 18's scene-by-scene breakdown.",
-            "approx_timestamp": "11:39"
-          }
-        },
-        {
-          "scene": "Granbell Rosso overwhelming Hinata's Paladins on the parallel front",
-          "reason": "Closer beat reinforcing the episode-wide power-shift theme",
-          "duration_sec": 10,
-          "timeline_start_sec": 50,
-          "timeline_end_sec": 60,
-          "scene_verified": true,
-          "verification_source_url": "https://www.youtube.com/watch?v=_4xtVj881w4",
-          "claim_vs_source_check": {
-            "claimed_beat": "Granbell Rosso overwhelms Hinata's Paladins in the same episode",
-            "source_content_confirmed": "Recap video's later timestamped section covers the Granbell Rosso vs Hinata's Paladins confrontation occurring in the same episode",
-            "match": true
-          },
-          "clip_locate": {
-            "season": 4,
-            "episode": 18,
-            "locate_confirmed_via": "The same YouTube recap video cited in claim_vs_source_check explicitly timestamps this beat within Episode 18's scene-by-scene breakdown.",
-            "approx_timestamp": "18:00-24:49"
+            "season": 1,
+            "episode": 47,
+            "locate_confirmed_via": "the same TheGeekiary review cited above ('1x47'), which confirms Dondochakka and Pesche's Bawabawa rescue as part of this episode's closing beats",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
           }
         }
       ],
-      "clip_descriptions": "CUT 1 (0:00-0:10): Rain insults Rimuru directly, provoking Diablo -- sets up the inciting insult for the hook \u2014 S4E18. CUT 2 (0:10-0:20): Diablo opens with Holy Magic Multi-Layered Disintegration -- delivers the named attack beat \u2014 S4E18. CUT 3 (0:20-0:30): Diablo overwhelms Rain -- shows the one-sided nature of the fight \u2014 S4E18. CUT 4 (0:30-0:40): Rain reveals her true Primordial Demon form and Guy Crimson appears -- escalation beat \u2014 S4E18. CUT 5 (0:40-0:50): Diablo explains why he chose to serve Rimuru -- the loyalty beat referenced in the VO \u2014 S4E18. CUT 6 (0:50-0:60): Granbell Rosso overwhelming Hinata's Paladins on the parallel front -- closer beat reinforcing the episode-wide power-shift theme. All six cuts are pulled from Slime Season 4 Episode 18's aired footage (Aug 7, 2026), located and timestamped via a YouTube recap video that breaks down the episode scene-by-scene. No manga or stand-in substitution needed; episode has aired and is on Crunchyroll.",
-      "captions": "ONE INSULT / DIABLO SNAPPED / MULTI-LAYERED DISINTEGRATION / RAIN'S TRUE FORM / GUY CRIMSON WATCHING / LEAVE YOUR TAKE",
-      "youtube_title": "Slime: One Insult Made Diablo Snap",
-      "tiktok_title": "Diablo Didn't Even Argue, He Just Attacked",
-      "tiktok_post_text": "It took one insult aimed at Rimuru for Diablo to overwhelm a literal Primordial Demon. Slime Season 4 Episode 18 spoilers ahead. #tensura #slime #rimuru #diablo #animemoments",
-      "pinned_comment": "What gets me is Guy Crimson didn't step in to help Rain. He just watched Diablo explain himself mid-fight, like he already knew how this was going to end.",
+      "clip_descriptions": "CUT 1 -- 6 sec (0:00-0:06): Anime-original dream sequence, Shunsui and a weakened Ukitake -- sets up the stakes — S1E47. CUT 2 -- 8 sec (0:06-0:14): Harribel/Nel/Pesche/Dondochakka's on-screen return at Wahrwelt -- the core hook payoff — S1E47. CUT 3 -- 9 sec (0:14-0:23): Ishida's Antithesis swap trapping Yhwach beside the Seed of Destruction -- the strategic payoff — S1E47. CUT 4 -- 7 sec (0:23-0:30): Throne room collapse and the Bawabawa rescue -- closes on the ambiguous outcome for the CTA — S1E47.",
+      "captions": "90% ANIME / ORIGINAL / EPISODE -> 4 FIGHTERS / CONVERGE ON / ISHIDA -> ISHIDA TRAPS / YHWACH -> BETTER THAN / THE MANGA?",
+      "youtube_title": "SPOILER: Bleach Episode 47 Changed the Ending",
+      "tiktok_title": "Bleach Ep. 47 Is Almost All Original",
+      "tiktok_post_text": "SPOILER WARNING: Bleach TYBW Episode 47 is almost entirely anime-original and brings Harribel, Nel, Pesche, and Dondochakka together to back Ishida's biggest move yet. #Bleach #BleachTYBW #ThousandYearBloodWar #UryuIshida #AnimeNews #Shonen",
+      "pinned_comment": "The wildest part isn't the returns -- it's that this episode is barely adapting the manga at all and might be better for it.",
       "post_times": {
         "youtube": "7:00 PM ET",
         "tiktok": "7:15 PM ET"
@@ -536,5 +453,18 @@
       "blackout_conflict": false,
       "recent_send_conflict": false
     }
-  ]
+  ],
+  "minimum_frequency_floor": {
+    "floor_formats": [
+      "THEORY_SPECULATION",
+      "SEASON_ROUNDUP",
+      "WORTH_WATCHING",
+      "WATCH_RANK",
+      "SEASON_RATING"
+    ],
+    "window_days": 21,
+    "evaluations": []
+  },
+  "corrects_batch_id": "714d87e0-6efa-4e32-8aee-3650147b1620",
+  "correction_reason": "Law #165 fetch-and-confirm review found the sent VOs/hooks for both packages contained inaccurate core claims: HxH overclaimed 'ten chapters fully written' (verified: 3 chapters finished, 421-423, with progress toward 430); Bleach undercounted returning characters at 'three' (verified: four -- Harribel, Nelliel, Pesche, Dondochakka) and asserted a fabricated 'assumed gone for good' stakes framing with no source support. This is an internal/production-record correction only -- batch 714d87e0 was never committed to GitHub or logged as a confirmed production send; only the two Outlook emails went out."
 }

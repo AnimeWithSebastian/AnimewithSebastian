@@ -1,0 +1,60 @@
+Subject: TOMORROW | MORNING | Victoria of Many Faces | 2026-08-22 | SPOILER: Victoria of Many Faces Just Left Everyone
+
+━━━ MORNING — 2026-08-22 ━━━
+SHOW:    Victoria of Many Faces
+ANGLE:   Episode 7 ("I Made Great Memories," Aug 19) ends with Victoria disappearing on horseback after writing goodbye letters to everyone who loves her -- right after the show spent the whole episode proving she'd finally found a family worth staying for
+FORMAT:  EPISODE_MOMENT
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM — Law #134 Stage 2; manga panels allowed within the anime-footage half for manga-based formats)
+TOPIC:   timely — signals: currently_airing
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK (Law #144 — on screen + spoken in second 1) ━━━
+ON-SCREEN (second 1): Victoria just got everything she wanted, then rode away from it.
+SPOKEN (VO first line): Victoria just got everything she wanted, then rode away from it.
+HOOK FAMILY: contradiction
+(Draft two hook candidates internally — Law #145 — publish ONLY the selected one:
+  candidate A: Victoria just got everything she wanted, then rode away from it.
+  candidate B: Victoria of Many Faces just spent an entire episode proving she has a family, then had her disappear anyway.
+  SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (108 words — fills the resolved 30s CapCut edit) ━━━
+Victoria just got everything she wanted, then rode away from it. Episode 7 resolves the Baron household arc: Nonna escapes using spy skills Victoria taught her, and the family thanks Victoria instead of blaming her. Jeffrey has figured out she's a rival kingdom's spy and says he'd give up his title for her. His brother, a Third Order Knight, has separately connected her to a prison break. With suspicion closing in, Victoria takes a horse and leaves, writing goodbye letters to everyone who loves her. Was Victoria protecting the people she loves by leaving, or just running from the first real family she ever had? Leave your take.
+
+━━━ CLOSING LINE NOTE (Law #141 rescinded 2026-07-27) ━━━
+
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings REQUIRED — Law #140) ━━━
+CUT 1 — 6 sec (0:00–0:06): Official Crunchyroll trailer -- Victoria/Chloe key visual opening beat (S 1 E1) — directly visualizes the hook (Victoria's double life, the emotional stakes)
+CUT 2 — 6 sec (0:06–0:12): Victoria and Nonna short trailer -- adoption/found-family beat (S 1 E1) — establishes the mother-daughter bond the episode's ending threatens
+CUT 3 — 6 sec (0:12–0:18): Episode 7 full episode upload -- Ani-One Philippines official channel (S 1 E7) — the actual episode containing the ending beat being described (departure/letters)
+CUT 4 — 6 sec (0:18–0:24): Official trailer continued -- supporting-cast beat (Jeffrey/Miles/household) (S 1 E1) — shows the people Victoria is leaving behind before the CTA
+CUT 5 (final) — 6 sec (0:24–0:30): Title card / wide shot, held for CTA text overlay (S 1 E1) — clean beat for on-screen CTA + question text
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+Word-by-word ALL CAPS captions, one orange keyword per line (e.g. EVERYTHING / SHE / WANTED / RODE / AWAY), max 2 lines on screen, Anton font, white text, black outline.
+
+━━━ YOUTUBE TITLE (Law #144 — punchy, searchable) ━━━
+SPOILER: Victoria of Many Faces Just Left Everyone
+
+━━━ TIKTOK TITLE (Law #144 — punchy; distinct from the caption below) ━━━
+Victoria Got Her Family, Then Vanished
+
+━━━ TIKTOK POST TEXT (caption — may be longer; hashtags live HERE, not in the title) ━━━
+SPOILERS for Episode 7: Victoria of Many Faces just spent a whole episode proving she finally has a family — then had her ride off and disappear anyway. #anime #victoriaofmanyfaces #isekai #animenews #crunchyroll
+
+━━━ PINNED COMMENT ━━━
+She wrote letters to everyone before she left -- Jeffrey's the one who has to deliver them to the people who will never understand why she's gone.
+
+━━━ RECOMMENDED POST TIME ━━━
+7:30 AM ET
+7:45 AM ET
+
+━━━ SOURCES (concise evidence — >=2, each dated) ━━━
+1. Episode 7 plot: Nonna/Baron arc resolution, Jeffrey and his brother's deductions, Victoria's departure on horseback with goodbye letters — https://www.reddit.com/r/anime/comments/1vrrnvh/victoria_of_many_faces_tefuda_ga_oome_no_victoria/ (Aug 18-19, 2026)
+2. Episode 7 title, air date, director/writer/storyboard credits; series premise, studio, streaming platform — https://en.wikipedia.org/wiki/Victoria_of_Many_Faces (checked Aug 21, 2026)
+3. Corroborating Episode 7 air date (Aug 19, 2026) — https://watch.rdd.media/shows/victoria-of-many-faces/ (Aug 8, 2026 (page), episode date confirmed Aug 19)
+4. Series reception/tone context — https://www.animenewsnetwork.com/preview-guide/2026/summer/victoria-of-many-faces/.237677 (Jul 7, 2026)
+
+━━━ END MORNING ━━━

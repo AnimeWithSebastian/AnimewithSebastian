@@ -1,0 +1,60 @@
+SUBJECT: TOMORROW | MORNING | The Iceblade Sorcerer Shall Rule the World | 2026-08-21 | Iceblade Sorcerer S2 Just Recast a Main Character
+
+━━━ MORNING — 2026-08-21 ━━━
+SHOW:    The Iceblade Sorcerer Shall Rule the World
+ANGLE:   Season 2 is recasting a main heroine because the original voice actress retired for her health -- a real-world reason the cast is changing, not a story twist
+FORMAT:  FACT_DROP
+STYLE:   Face-Cam Split Screen (Creator TOP / anime footage BOTTOM — Law #134 Stage 2)
+TOPIC:   timely — signals: premiere, news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK (Law #144) ━━━
+ON-SCREEN (second 1): Iceblade Sorcerer Season 2 just recast one of its leads.
+SPOKEN (VO first line): Iceblade Sorcerer Season 2 just recast one of its leads.
+HOOK FAMILY: contradiction
+(candidate A: Iceblade Sorcerer Season 2 just recast one of its leads.
+ candidate B: One of Iceblade Sorcerer's main girls sounds completely different in Season 2, and the reason isn't a story twist.
+ SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (106 words — fills the resolved 30s CapCut edit) ━━━
+Iceblade Sorcerer Season 2 just recast one of its leads. Elisa Griffith is now voiced by Miyu Kubota, replacing original actor Nana Harumura, who retired from voice acting in January for health reasons. This isn't a story twist. It's a real cast change, and every other principal actor is returning exactly as before. Season 2 also brings a new character, Olivia Arnold, and a studio change from Cloud Hearts to Zero-G. The season premieres October eighth on TBS, with Crunchyroll simulcasting. Would you want a full recast, or would you rather the studio just delay the season until the original actor could return? Leave your take.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view) ━━━
+[FACE: direct-to-camera, lean in] Iceblade Sorcerer Season 2 just recast one of its leads. [FACE: glance-down-at-footage] Elisa Griffith is now voiced by Miyu Kubota, replacing original actor Nana Harumura, who retired from voice acting in January for health reasons. [FACE: direct-to-camera] This isn't a story twist. [FACE: direct-to-camera] It's a real cast change, and every other principal actor is returning exactly as before. [FACE: glance-down-at-footage] Season 2 also brings a new character, Olivia Arnold, and a studio change from Cloud Hearts to Zero-G. [FACE: glance-down-at-footage] The season premieres October eighth on TBS, with Crunchyroll simulcasting. [FACE: direct-to-camera, lean in] Would you want a full recast, or would you rather the studio just delay the season until the original actor could return? [FACE: direct-to-camera] Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings REQUIRED) ━━━
+CUT 1 — 6 sec (0:00–0:06): Season 2 official teaser key visual (S2E1) — directly visualizes the hook (the new season, the cast change)
+CUT 2 — 6 sec (0:06–0:12): Ray reveals his Iceblade Sorcerer powers (S1E4) — establishes Ray and the friend-group dynamic the recast affects
+CUT 3 — 6 sec (0:12–0:18): Friend-group school-life beat (S1E3) — shows the ensemble cast, including the character being recast, before the change
+CUT 4 — 6 sec (0:18–0:24): Season 2 teaser continued (S2E1) — keeps momentum on new-season visuals into the CTA
+CUT 5 (final) — 6 sec (0:24–0:30): Title card / wide shot (S2E1), held for CTA text overlay
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+Word-by-word ALL CAPS captions, one orange keyword per line (e.g. RECAST / SEASON 2 / RETIRED / HEALTH), max 2 lines on screen, Anton font, white text, black outline.
+
+━━━ YOUTUBE TITLE (Law #144) ━━━
+Iceblade Sorcerer S2 Just Recast a Main Character
+
+━━━ TIKTOK TITLE (Law #144) ━━━
+Iceblade Sorcerer S2 Recast Explained
+
+━━━ TIKTOK POST TEXT (caption) ━━━
+Iceblade Sorcerer Season 2 just recast one of its leads -- and it's not a story twist, it's real life. #anime #iceblade #isekai #animenews #crunchyroll
+
+━━━ PINNED COMMENT ━━━
+The actress being replaced, Nana Harumura, retired from voice acting entirely in January for health reasons -- this isn't a creative choice, it's a real-life exit.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 7:30 AM ET | Peak 7:30 AM ET
+TikTok — post 7:45 AM ET | Peak 7:45 AM ET
+
+━━━ SOURCES (concise evidence) ━━━
+1. Season 2 debut date/time, streaming, recast, studio change, theme songs, cast — https://www.animenewsnetwork.com/news/2026-08-20/the-iceblade-sorcerer-shall-rule-the-world-tv-anime-2nd-season-reveals-october-8-debut-theme-song-/.240752 (Aug 2026)
+2. Corroborating cast/date confirmation — https://www.senpairanks.com/news/iceblade-sorcerer-shall-rule-the-world-season-2-october-2026-cast-pv (Aug 2026)
+3. Corroborating studio-change explainer — https://animegamemusic.com/the-iceblade-sorcerer-shall-rule-the-world-season-2-release-date-teaser-trailer-and-studio-change-explained/ (Aug 2026)
+4. Season 1 episode/plot detail — https://www.imdb.com/title/tt25531288/episodes/ (checked Aug 2026)
+5. Season 1 plot summary — https://www.animenewsnetwork.com/encyclopedia/anime.php?id=25582 (checked Aug 2026)
+
+━━━ END MORNING ━━━

@@ -1,0 +1,522 @@
+{
+  "batch_id": "71d6fdb3-d1f0-4af8-a26c-c072c9a087cf",
+  "run_ts": "2026-08-21T23:55:00Z",
+  "post_date": "2026-08-22",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-08-21T23:00:00Z",
+    "age_days": 0,
+    "status": "FRESH_SWEEP_THIS_RUN"
+  },
+  "packages": [
+    {
+      "package_id": "ef2318ab-7b1f-439b-b334-ba17b22b0e64",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "Victoria of Many Faces",
+      "angle": "Episode 7 (\"I Made Great Memories,\" Aug 19) ends with Victoria disappearing on horseback after writing goodbye letters to everyone who loves her -- right after the show spent the whole episode proving she'd finally found a family worth staying for",
+      "format_type": "EPISODE_MOMENT",
+      "episode_air_date_iso": "2026-08-19",
+      "topic_class": "timely",
+      "topic_signals": [
+        "currently_airing"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "Victoria just got everything she wanted, then rode away from it.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Victoria just got everything she wanted, then rode away from it.",
+        "Victoria of Many Faces just spent an entire episode proving she has a family, then had her disappear anyway."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Victoria just got everything she wanted, then rode away from it.",
+      "opening_sentence": "Victoria just got everything she wanted, then rode away from it.",
+      "vo": "Victoria just got everything she wanted, then rode away from it. Episode 7 resolves the Baron household arc: Nonna escapes using spy skills Victoria taught her, and the family thanks Victoria instead of blaming her. Jeffrey has figured out she's a rival kingdom's spy and says he'd give up his title for her. His brother, a Third Order Knight, has separately connected her to a prison break. With suspicion closing in, Victoria takes a horse and leaves, writing goodbye letters to everyone who loves her. Was Victoria protecting the people she loves by leaving, or just running from the first real family she ever had? Leave your take.",
+      "vo_status": "complete",
+      "vo_fact_beats": [
+        "Episode 7, \"I Made Great Memories\" (Suteki na Omoide ga Dekita no wa), aired August 19, 2026, directed by Naoki Murata, written by Naohiro Fukushima, storyboarded by Kiyotaka Ohata (Wikipedia episode list, https://en.wikipedia.org/wiki/Victoria_of_Many_Faces).",
+        "The episode resolves the Baron-household arc: Nonna escaped the Baron's estate using spy skills Victoria taught her, and the family had been trying to mold her into their deceased daughter Dolores -- locking her room and calling her by the dead girl's name (Reddit r/anime Episode 7 discussion thread, Aug 18-19, 2026, https://www.reddit.com/r/anime/comments/1vrrnvh/victoria_of_many_faces_tefuda_ga_oome_no_victoria/).",
+        "After Nonna is returned, the Baron's family thanks Victoria instead of only focusing on getting Nonna back, and hands over the belongings set aside for Dolores; Nonna's indifference to them makes Victoria reflect on her own past (same Reddit thread).",
+        "Jeffrey has deduced Victoria is likely a spy for a rival kingdom and says he would give up his noble status to be with her; his brother, a member of the Third Order of Knights, has separately deduced she is probably behind a prison break, and is torn between loyalty to the kingdom and love for his brother (same Reddit thread).",
+        "The episode ends with Victoria taking a horse and leaving without returning, after writing letters to everyone close to her for Jeffrey to deliver -- Nonna, who had wanted Victoria and Jeffrey to live together as a family, is left without her adoptive mother again (same Reddit thread).",
+        "Premise/background: Chloe was a spy for the Kingdom of Hagl until her boss betrayed her; she retired to civilian life in the Kingdom of Ashbury under the alias Victoria Sellers and adopted an abandoned girl, Nonna, discovering her spy skills apply to civilian life too (Wikipedia, https://en.wikipedia.org/wiki/Victoria_of_Many_Faces).",
+        "The anime is a Studio Deen adaptation directed by Nobukage Kimura, premiered July 8, 2026 on TV Tokyo/AT-X, streams on Crunchyroll; based on Syuu's web novel and Komo Ushino's manga (Wikipedia, same source)."
+      ],
+      "vo_target_word_band": "100-108 (target ~104)",
+      "question_line": "Was Victoria protecting the people she loves by leaving, or just running from the first real family she ever had?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "video_style": "Face-Cam Split Screen (Creator TOP / anime footage BOTTOM)",
+      "face": true,
+      "split_screen": true,
+      "no_comparative_language": true,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Episode 7 ends with Victoria leaving on horseback after writing goodbye letters, right after the Nonna/Baron arc resolves and Jeffrey and his brother separately deduce she's a spy.",
+            "core": true,
+            "claim_type": "F",
+            "source_urls": [
+              "https://www.reddit.com/r/anime/comments/1vrrnvh/victoria_of_many_faces_tefuda_ga_oome_no_victoria/"
+            ],
+            "anchors_claim": "hook",
+            "show": null
+          },
+          {
+            "claim": "Episode 7 title, air date (Aug 19, 2026), director/writer/storyboard credits.",
+            "core": true,
+            "claim_type": "F",
+            "source_urls": [
+              "https://en.wikipedia.org/wiki/Victoria_of_Many_Faces",
+              "https://www.reddit.com/r/anime/comments/1vrrnvh/victoria_of_many_faces_tefuda_ga_oome_no_victoria/"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Nonna was being molded into the Baron family's deceased daughter Dolores; the family thanks Victoria in the end.",
+            "core": true,
+            "claim_type": "F",
+            "source_urls": [
+              "https://www.reddit.com/r/anime/comments/1vrrnvh/victoria_of_many_faces_tefuda_ga_oome_no_victoria/"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Series premise -- Chloe/Victoria's spy background, adoption of Nonna, Studio Deen production, Crunchyroll streaming.",
+            "core": false,
+            "source_urls": [
+              "https://en.wikipedia.org/wiki/Victoria_of_Many_Faces"
+            ],
+            "show": null
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        },
+        "note": "VO inserted verbatim as provided by Sebastian (108 words, independently recounted and confirmed in-band 100-108). Opening sentence matches hook_line exactly. Question line immediately followed by the exact CTA phrase 'Leave your take.' with nothing between. No banned word 'bro' (only 'brother', word-boundary safe). Every claim in the VO (Baron household arc resolution, Jeffrey's deduction, the brother's separate suspicion, the departure/letters) is directly supported by vo_fact_beats and sources -- no fabricated or unsupported claims. Core claim 'Episode 7 ends with Victoria leaving...' is sourced from a Reddit episode-discussion thread (non-encyclopedic, dated, first-hand plot recap) paired with Wikipedia's encyclopedic episode-list entry for the same episode, satisfying the no-solely-encyclopedic rule."
+      },
+      "sources": [
+        {
+          "claim": "Episode 7 plot: Nonna/Baron arc resolution, Jeffrey and his brother's deductions, Victoria's departure on horseback with goodbye letters",
+          "url": "https://www.reddit.com/r/anime/comments/1vrrnvh/victoria_of_many_faces_tefuda_ga_oome_no_victoria/",
+          "date": "Aug 18-19, 2026"
+        },
+        {
+          "claim": "Episode 7 title, air date, director/writer/storyboard credits; series premise, studio, streaming platform",
+          "url": "https://en.wikipedia.org/wiki/Victoria_of_Many_Faces",
+          "date": "checked Aug 21, 2026"
+        },
+        {
+          "claim": "Corroborating Episode 7 air date (Aug 19, 2026)",
+          "url": "https://watch.rdd.media/shows/victoria-of-many-faces/",
+          "date": "Aug 8, 2026 (page), episode date confirmed Aug 19"
+        },
+        {
+          "claim": "Series reception/tone context",
+          "url": "https://www.animenewsnetwork.com/preview-guide/2026/summer/victoria-of-many-faces/.237677",
+          "date": "Jul 7, 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Official Crunchyroll trailer -- Victoria/Chloe key visual opening beat",
+          "reason": "directly visualizes the hook (Victoria's double life, the emotional stakes)",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=2LotdklGqKA",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube for official Victoria of Many Faces trailer; located Crunchyroll's 'Victoria of Many Faces | Official Trailer', published Jun 3, 2026.",
+          "clip_locate": {
+            "season": 1,
+            "episode": 1,
+            "locate_confirmed_via": "the same Crunchyroll official trailer cited above, which previews the series premise and premiere-episode content",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Victoria's double life as spy-turned-civilian, establishing the emotional stakes.",
+            "source_content_confirmed": "Official trailer shows Victoria/Chloe's dual identity and civilian life setup.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Victoria and Nonna short trailer -- adoption/found-family beat",
+          "reason": "establishes the mother-daughter bond the episode's ending threatens",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": true,
+          "verification_source_url": "https://www.crunchyroll.com/news/latest/2026/6/12/victoria-of-many-faces-anime-victoria-and-nonna-short-trailer",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched for an official Victoria-and-Nonna focused trailer; located Crunchyroll News' coverage of the official 'Victoria and Nonna' short trailer, published Jun 12, 2026.",
+          "clip_locate": {
+            "season": 1,
+            "episode": 1,
+            "locate_confirmed_via": "the same Crunchyroll News article cited above, describing the official short trailer focused on Victoria and Nonna's bond",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "The found-family bond between Victoria and Nonna.",
+            "source_content_confirmed": "Official short trailer is explicitly built around Victoria and Nonna's relationship.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Episode 7 full episode upload -- Ani-One Philippines official channel",
+          "reason": "the actual episode containing the ending beat being described (departure/letters)",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=L9a4eg2mnu4",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube for Episode 7; located Ani-One Philippines' official 'Victoria of Many Faces | Episode #7 (EN Sub / JP Dub)' upload, published Aug 18, 2026.",
+          "clip_locate": {
+            "season": 1,
+            "episode": 7,
+            "locate_confirmed_via": "the same Ani-One Philippines official Episode 7 upload cited above, explicitly labeled Episode 7",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Episode 7's ending: Victoria's departure and the emotional fallout.",
+            "source_content_confirmed": "Official Episode 7 upload is the exact episode described in the sourced Reddit recap.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Official trailer continued -- supporting-cast beat (Jeffrey/Miles/household)",
+          "reason": "shows the people Victoria is leaving behind before the CTA",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": true,
+          "verification_source_url": "https://www.crunchyroll.com/news/latest/2026/6/26/victoria-of-many-faces-anime-supporting-characters-trailer",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched for an official supporting-cast trailer; located Crunchyroll News' coverage of the official supporting-characters trailer, published Jun 26, 2026.",
+          "clip_locate": {
+            "season": 1,
+            "episode": 1,
+            "locate_confirmed_via": "the same Crunchyroll News article cited above, describing the official supporting-characters trailer",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "The supporting cast (Jeffrey, Miles, the household) Victoria is leaving behind.",
+            "source_content_confirmed": "Official trailer explicitly highlights the supporting characters.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Title card / wide shot, held for CTA text overlay",
+          "reason": "clean beat for on-screen CTA + question text",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=2LotdklGqKA",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Reused verified official trailer's closing frame for CTA hold.",
+          "clip_locate": {
+            "season": 1,
+            "episode": 1,
+            "locate_confirmed_via": "the same Crunchyroll official trailer cited above, its closing frame",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Clean CTA hold frame.",
+            "source_content_confirmed": "Same verified trailer, closing segment.",
+            "match": true
+          }
+        }
+      ],
+      "clip_plan_needs_manga_source": false,
+      "clip_descriptions": "CUT 1 -- 6 sec (0:00-0:06): Official trailer key visual (S1E1), Victoria/Chloe dual identity -- visualizes the hook. CUT 2 -- 6 sec (0:06-0:12): Victoria-and-Nonna short trailer (S1E1) -- establishes the found-family bond. CUT 3 -- 6 sec (0:12-0:18): Episode 7 official upload (S1E7) -- the actual ending beat (departure/letters). CUT 4 -- 6 sec (0:18-0:24): Supporting-characters trailer (S1E1) -- the people she's leaving behind. CUT 5 -- 6 sec (0:24-0:30): Title card / wide shot (S1E1), held for CTA text overlay. TOTAL CLIP TIME: 30 seconds.",
+      "captions": "Word-by-word ALL CAPS captions, one orange keyword per line (e.g. EVERYTHING / SHE / WANTED / RODE / AWAY), max 2 lines on screen, Anton font, white text, black outline.",
+      "youtube_title": "SPOILER: Victoria of Many Faces Just Left Everyone",
+      "tiktok_title": "Victoria Got Her Family, Then Vanished",
+      "tiktok_post_text": "SPOILERS for Episode 7: Victoria of Many Faces just spent a whole episode proving she finally has a family \u2014 then had her ride off and disappear anyway. #anime #victoriaofmanyfaces #isekai #animenews #crunchyroll",
+      "pinned_comment": "She wrote letters to everyone before she left -- Jeffrey's the one who has to deliver them to the people who will never understand why she's gone.",
+      "post_times": {
+        "youtube": "7:30 AM ET",
+        "tiktok": "7:45 AM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "vo_word_count": 108
+    },
+    {
+      "package_id": "2e619614-b27d-489a-a149-e2257516f4a9",
+      "slot": "evening",
+      "content_type": "short",
+      "show": "Clevatess",
+      "angle": "Season 2 Episode 7 (Aug 19) reveals the academy's Dean and the disguised princess are both tied to the villain Vorden, and the princess's obsession with dark magic and the mysterious Book of Toah is quietly steering her onto the same path -- while Alicia, still recovering, chooses to investigate a new underground crack alone",
+      "format_type": "THE_MOMENT",
+      "topic_class": "timely",
+      "topic_signals": [
+        "currently_airing"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "Clevatess just revealed the princess has been working for the villain the whole time.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Clevatess just revealed the princess has been working for the villain the whole time.",
+        "Everyone at Clevatess's academy is hiding something, and Episode 7 just proved the princess is one of them."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Clevatess just revealed the princess has been working for the villain the whole time.",
+      "opening_sentence": "Clevatess just revealed the princess has been working for the villain the whole time.",
+      "vo": "Clevatess just revealed the princess has been working for the villain the whole time. Episode 7 exposes the academy's Dean as connected to the disguised princess, whose fixation on the Book of Toah has pulled her toward Vorden's plan. The twins infiltrate a secret underground gathering tied to the Union, obsessed with reviving the Hero legend. Alicia, still recovering from her last battle, finds a new crack underground and investigates alone instead of waiting for backup. Vorden's reach extends past one kingdom. If the princess is choosing this path herself, does that make her more dangerous than Vorden, or just his easiest target? Leave your take.",
+      "vo_status": "complete",
+      "vo_fact_beats": [
+        "Season 2 Episode 7 aired August 19, 2026, and shifts focus from the academy setting toward a secret underground gathering connected to a group called the Union, which is obsessed with magic, ancient legends, and reviving the legendary Hero (AOL, Aug 20, 2026, https://www.aol.com/articles/clevatess-season-2-episode-7-053000000.html).",
+        "The academy's Dean is revealed to have a connection to the disguised princess, who is closely tied to the villain Vorden; her obsession with dark magic and the mysterious Book of Toah appears to be steering her toward his agenda, driven by her own desire to find purpose (same AOL source).",
+        "The twins use their appearance-replicating ability to infiltrate hidden areas of the academy and discover the underground gathering tied to the Union (same AOL source).",
+        "Alicia, still recovering from the prior battle and in poor physical condition, discovers a new red crack leading further underground and chooses to investigate it alone rather than wait for help -- described as reckless but consistent with her character (same AOL source).",
+        "Vorden's influence is shown extending beyond a single character or kingdom, with powerful figures becoming involved in his plans; the episode does not reveal his precise motivation for reviving the Hero-era history (same AOL source).",
+        "Background: Clevatess is one of the world's Four Beast Kings who killed thirteen heroes, then resurrected one of them, Alicia Glenfall, binding her to him with dark ichor that animates her corpse and lets him issue commands to her body -- though her will and personality remain her own (Tech Times, Aug 12, 2026, https://www.techtimes.com/articles/324117/20260812/clevatess-season-2-episode-6-airs-undead-hero-grows-stronger-injury.htm).",
+        "In Season 2, Alicia is undercover inside Solsein Divine Academy while Clevatess poses as human instructor 'Klen'; Season 1 ended with the villain General Dorel dead and Clevatess obtaining the Book of Toah, which revealed the original Hero Legend was politically manufactured (same Tech Times source)."
+      ],
+      "vo_target_word_band": "100-108 (target ~104)",
+      "question_line": "If the princess is choosing this path herself, does that make her more dangerous than Vorden, or just his easiest target?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "video_style": "Face-Cam Split Screen (Creator TOP / anime footage BOTTOM)",
+      "face": true,
+      "split_screen": true,
+      "no_comparative_language": true,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Episode 7 reveals the Dean's connection to the disguised princess, who is tied to Vorden and drawn toward dark magic via the Book of Toah.",
+            "core": true,
+            "claim_type": "F",
+            "source_urls": [
+              "https://www.aol.com/articles/clevatess-season-2-episode-7-053000000.html"
+            ],
+            "anchors_claim": "hook",
+            "show": null
+          },
+          {
+            "claim": "Alicia discovers a new underground crack and chooses to investigate alone while still recovering.",
+            "core": true,
+            "claim_type": "F",
+            "source_urls": [
+              "https://www.aol.com/articles/clevatess-season-2-episode-7-053000000.html"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Episode 7 air date (Aug 19, 2026) and shift in focus toward the Union conspiracy.",
+            "core": true,
+            "claim_type": "F",
+            "source_urls": [
+              "https://www.aol.com/articles/clevatess-season-2-episode-7-053000000.html",
+              "https://en.wikipedia.org/wiki/Clevatess"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Series premise -- Clevatess resurrects hero Alicia Glenfall via dark ichor; Season 2's academy-undercover setup; Book of Toah backstory.",
+            "core": false,
+            "source_urls": [
+              "https://www.techtimes.com/articles/324117/20260812/clevatess-season-2-episode-6-airs-undead-hero-grows-stronger-injury.htm"
+            ],
+            "show": null
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        },
+        "note": "VO inserted verbatim as provided by Sebastian (106 words, independently recounted and confirmed in-band 100-108). Opening sentence matches hook_line exactly. Question line immediately followed by the exact CTA phrase 'Leave your take.' with nothing between. No banned word 'bro'. Every claim in the VO (Dean/princess/Vorden connection, Book of Toah, Union infiltration, Alicia's solo investigation) is directly supported by vo_fact_beats and sources -- no fabricated or unsupported claims. Core claims sourced from AOL (non-encyclopedic, dated episode recap) paired with Wikipedia's encyclopedic episode-list entry, satisfying the no-solely-encyclopedic rule."
+      },
+      "sources": [
+        {
+          "claim": "Episode 7 plot: Union conspiracy, Dean/princess/Vorden connection, Alicia's solo underground investigation",
+          "url": "https://www.aol.com/articles/clevatess-season-2-episode-7-053000000.html",
+          "date": "Aug 20, 2026"
+        },
+        {
+          "claim": "Episode 7 title (\"The Surface World and the Hidden World\") and air date confirmation",
+          "url": "https://en.wikipedia.org/wiki/Clevatess",
+          "date": "checked Aug 21, 2026"
+        },
+        {
+          "claim": "Series premise, Season 1 resolution, Season 2 academy-undercover setup, Book of Toah backstory, Alicia's dark-ichor resurrection",
+          "url": "https://www.techtimes.com/articles/324117/20260812/clevatess-season-2-episode-6-airs-undead-hero-grows-stronger-injury.htm",
+          "date": "Aug 12, 2026"
+        },
+        {
+          "claim": "Episode 7 community discussion corroboration",
+          "url": "https://www.reddit.com/r/anime/comments/1vskfnh/clevatess_season_2_clevatess_ii_majuu_no_ou_to/",
+          "date": "Aug 19, 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Official Season 2 trailer -- Clevatess/academy key visual opening beat",
+          "reason": "directly visualizes the hook (hidden agendas inside the academy)",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=qsbyAix6lUY",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube for official Clevatess Season 2 trailer; located Crunchyroll's 'Clevatess II | Official Trailer', published Jun 5, 2026.",
+          "clip_locate": {
+            "season": 2,
+            "episode": 1,
+            "locate_confirmed_via": "the same Crunchyroll official trailer cited above, which previews the Season 2 academy setting and cast",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "The academy setting where the Dean/princess conspiracy unfolds.",
+            "source_content_confirmed": "Official trailer establishes the Season 2 academy setting.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Alicia Blackmailing Naie -- official Crunchyroll Episode 3 clip",
+          "reason": "establishes Alicia's undercover role inside the academy this season",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=vVqTkEUBULw",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube for official Season 2 clips; located Crunchyroll's 'Alicia is Blackmailing Naie | Clevatess II' clip, explicitly labeled Episode 3, published Aug 19, 2026.",
+          "clip_locate": {
+            "season": 2,
+            "episode": 3,
+            "locate_confirmed_via": "the same Crunchyroll official clip cited above, explicitly labeled Episode 3",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Alicia operating undercover inside the academy this season.",
+            "source_content_confirmed": "Official clip shows Alicia maneuvering inside the academy in Season 2.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Alicia Got Launched Into Orbit -- official Crunchyroll Episode 8 clip (Season 1)",
+          "reason": "shows Alicia's combat resilience, establishing why her solo underground choice tracks with her character",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=1aRglpBlxuc",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube for official Alicia combat clips; located Crunchyroll's 'Alicia Got Launched Into Orbit | Clevatess' clip, explicitly labeled Episode 8.",
+          "clip_locate": {
+            "season": 1,
+            "episode": 8,
+            "locate_confirmed_via": "the same Crunchyroll official clip cited above, explicitly labeled Episode 8",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Alicia's resilience and willingness to take physical risks.",
+            "source_content_confirmed": "Official clip shows Alicia surviving extreme physical punishment in combat.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Official Season 2 trailer continued -- Vorden/villain-network beat",
+          "reason": "visualizes Vorden's growing influence and the conspiracy scope before the CTA",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=I0hg5ve_rIY",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Located a second official Season 2 trailer upload (Trailer 2) for a distinct villain-focused beat.",
+          "clip_locate": {
+            "season": 2,
+            "episode": 1,
+            "locate_confirmed_via": "the same official Trailer 2 cited above, which previews Season 2's antagonist-network arc",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "The conspiracy's scope extending beyond the academy.",
+            "source_content_confirmed": "Official Trailer 2 shows the wider antagonist network.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Title card / logo hold, held for CTA text overlay",
+          "reason": "clean beat for on-screen CTA + question text",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=qsbyAix6lUY",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Reused verified official Season 2 trailer's closing logo card for CTA hold.",
+          "clip_locate": {
+            "season": 2,
+            "episode": 1,
+            "locate_confirmed_via": "the same Crunchyroll official trailer cited above, its closing logo card",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Clean CTA hold frame.",
+            "source_content_confirmed": "Same verified trailer, closing segment.",
+            "match": true
+          }
+        }
+      ],
+      "clip_plan_needs_manga_source": false,
+      "clip_descriptions": "CUT 1 -- 6 sec (0:00-0:06): Official Season 2 trailer (S2E1), academy key visual -- visualizes the hook. CUT 2 -- 6 sec (0:06-0:12): 'Alicia is Blackmailing Naie' official clip (S2E3) -- establishes Alicia's undercover role. CUT 3 -- 6 sec (0:12-0:18): 'Alicia Got Launched Into Orbit' official clip (S1E8) -- shows her combat resilience. CUT 4 -- 6 sec (0:18-0:24): Official Season 2 Trailer 2 (S2E1), Vorden/villain-network beat. CUT 5 -- 6 sec (0:24-0:30): Title card / logo hold (S2E1) for CTA text overlay. TOTAL CLIP TIME: 30 seconds.",
+      "captions": "Word-by-word ALL CAPS captions, one orange keyword per line (e.g. PRINCESS / WORKING / FOR / VILLAIN), max 2 lines on screen, Anton font, white text, black outline.",
+      "youtube_title": "Clevatess Just Outed the Princess as a Villain's Asset",
+      "tiktok_title": "Clevatess: The Princess Was In On It",
+      "tiktok_post_text": "Clevatess Season 2 Episode 7 just revealed the academy's own princess has been quietly steered toward the villain's plan the entire time. #anime #clevatess #darkfantasy #animenews #crunchyroll",
+      "pinned_comment": "Alicia's still recovering from nearly getting decapitated last episode, and she chose to go explore a new hole in the ground alone anyway.",
+      "post_times": {
+        "youtube": "6:00 PM ET",
+        "tiktok": "6:15 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "vo_word_count": 106
+    }
+  ]
+}

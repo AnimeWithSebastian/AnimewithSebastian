@@ -1,0 +1,119 @@
+{
+  "batch_id": "CORRECTION-714d87e0-2a04aaa5-79f0-427f-a699-4da6701ba3d4",
+  "corrects_batch_id": "714d87e0-6efa-4e32-8aee-3650147b1620",
+  "correction_type": "internal_production_record_correction",
+  "correction_scope_note": "Batch 714d87e0 was never committed to GitHub and never logged as a confirmed production send in sent_scripts_log.json / sent_scripts_events.jsonl / vo_handoff_log.jsonl (all confirmed zero matches for this batch_id via direct grep). Only the two Outlook emails to hero_or_villain@outlook.com went out. This correction therefore covers: (1) two correction emails superseding the inaccurate claims in those sent emails, and (2) the historical/production record (manifest, KNOWN_ISSUES.md, git commit) documenting what was wrong and why -- there is no repo-committed content to correct.",
+  "status": "APPROVED",
+  "approved_by": "Sebastian",
+  "approved_at": "2026-09-08T00:21:53Z",
+  "created_at": "2026-09-07T23:48:00-04:00",
+  "law_165_fetch_review": {
+    "description": "Full independent fetch-and-confirm review of every core claim in both packages of batch 714d87e0, performed this session per Law #165. Every source below was fetched directly in this session; none of these findings are from memory or unverified snippets.",
+    "hunter_x_hunter": [
+      {
+        "claim": "Shueisha confirmed on September 4, 2026 that the series returns to hiatus with no set return date",
+        "verdict": "confirmed_accurate",
+        "sources": [
+          "https://en.as.com/meristation/news/hunter-x-hunter-heads-back-into-hiatus-after-chapter-420-but-togashi-has-already-prepared-more-chapters-f202609-n/",
+          "https://gamerant.com/hunter-x-hunter-hiatus-september-6/"
+        ]
+      },
+      {
+        "claim": "Chapter 420 published September 6, 2026 in Weekly Shonen Jump Issue #41",
+        "verdict": "confirmed_accurate",
+        "sources": [
+          "https://en.as.com/meristation/news/hunter-x-hunter-heads-back-into-hiatus-after-chapter-420-but-togashi-has-already-prepared-more-chapters-f202609-n/",
+          "https://gamerant.com/hunter-x-hunter-hiatus-september-6/",
+          "https://www.gametrader.sg/blog/tag/manga-plus/"
+        ]
+      },
+      {
+        "claim": "10-chapter consecutive run starting with Chapter 411 on June 28, 2026",
+        "verdict": "confirmed_accurate",
+        "sources": [
+          "https://en.as.com/meristation/news/hunter-x-hunter-heads-back-into-hiatus-after-chapter-420-but-togashi-has-already-prepared-more-chapters-f202609-n/",
+          "https://gamerant.com/hunter-x-hunter-hiatus-september-6/",
+          "https://www.gametrader.sg/blog/tag/manga-plus/"
+        ]
+      },
+      {
+        "claim": "Prior hiatus was approximately 18 months (Dec 2024 to June 2026)",
+        "verdict": "partially_accurate",
+        "gap": "GameRant says 'about a year and a half' (consistent with ~18mo). GameTrader gives a precise 567-day figure (~18.6mo). AS.com states the hiatus began in Dec 2024 but gives no duration. '18 months' is a reasonable rounding, not fabricated, but is not stated verbatim in any single source.",
+        "sources": [
+          "https://gamerant.com/hunter-x-hunter-hiatus-september-6/",
+          "https://www.gametrader.sg/blog/tag/manga-plus/"
+        ]
+      },
+      {
+        "claim": "ORIGINAL SENT CLAIM (INACCURATE): 'Togashi already has ten more chapters fully written' / on-screen '10 CHAPTERS ARE ALREADY WRITTEN'",
+        "verdict": "confirmed_inaccurate",
+        "gap": "Two internally-consistent sources (AS.com, GameRant) both explicitly state only 3 chapters (421-423) are complete manuscripts; chapters 424-430 are explicitly described as still in progress / varying stages of completion, never as finished. A third source (GameTrader) is internally self-contradictory on this exact figure (cites 421, 423, and 431 as completion points in different passages) and was excluded as unreliable for this claim. A fourth source (@WSJ_manga/X) explicitly states chapters 428-430 are still 'in their latest stages of production.' The correct, well-supported figure is 3 chapters finished, not 10.",
+        "sources": [
+          "https://en.as.com/meristation/news/hunter-x-hunter-heads-back-into-hiatus-after-chapter-420-but-togashi-has-already-prepared-more-chapters-f202609-n/",
+          "https://gamerant.com/hunter-x-hunter-hiatus-september-6/",
+          "https://x.com/WSJ_manga/status/2095369879788339451"
+        ],
+        "correction_applied": "Hook, VO, on-screen text, YouTube title area, TikTok title, captions, TikTok post text, and pinned comment all rewritten to state '3 chapters finished (421-423), with progress continuing toward chapter 430.'"
+      }
+    ],
+    "bleach_tybw": [
+      {
+        "claim": "Episode 47 ('The End 2') aired/premiered September 5, 2026",
+        "verdict": "confirmed_accurate_on_dedicated_recheck",
+        "sources": [
+          "https://animecorner.me/bleach-thousand-year-blood-war-episode-47-preview-images-and-synopsis-revealed/"
+        ],
+        "correction_applied": "episode_air_date_iso retained as 2026-09-05 in the manifest (EPISODE_MOMENT format_type remains valid; post_date 2026-09-08 is 3 days later, within the 7-day window), sourced solely to Anime Corner's explicit premiere-date statement. The corrected VO itself still omits the spoken date line by editorial choice (tighter 100-word hook focused on the anime-original ratio).",
+        "recheck_note": "Original review found the date unconfirmed from the four sources used for the count/framing correction. Sebastian directed a dedicated re-check specifically against Crunchyroll's official pages and other primary/official sources. Crunchyroll's own official news pages for this title do not carry a per-episode schedule; Animated Times (published 2026-07-26) directly states Crunchyroll does not carry any part of this show at all -- it streams on Hulu (US, confirmed via VIZ's official blog) and Disney+ (select international markets) -- so no Crunchyroll schedule page exists to check for this title. The air date itself is confirmed by Anime Corner (published 2026-09-04, before the claimed date, ruling out upload-date ambiguity): \"The fifth episode is titled 'THE END 2,' and it will premiere on Saturday, September 5.\" Wikipedia and a French entertainment outlet were checked in an earlier pass of this recheck but are dropped from the final source list here since Anime Corner alone is unambiguous and sufficient; no need to pad the citation list."
+      },
+      {
+        "claim": "Episode is almost entirely anime-original, adapting only fragments of manga chapters 679-680",
+        "verdict": "confirmed_accurate",
+        "sources": [
+          "https://www.youtube.com/watch?v=8x4kEGb3Id8"
+        ]
+      },
+      {
+        "claim": "Ukitake's remaining power passes to Shunsui through Mimihagi",
+        "verdict": "confirmed_accurate",
+        "sources": [
+          "https://www.youtube.com/watch?v=8x4kEGb3Id8",
+          "https://thegeekiary.com/bleach-thousand-year-blood-war-1x46-and-1x47-review-the-end-and-the-end-2/139431"
+        ]
+      },
+      {
+        "claim": "Ishida's Antithesis Schrift swaps fates/conditions, used to trap Yhwach beside the Seed of Destruction",
+        "verdict": "confirmed_accurate",
+        "sources": [
+          "https://thegeekiary.com/bleach-thousand-year-blood-war-1x46-and-1x47-review-the-end-and-the-end-2/139431"
+        ]
+      },
+      {
+        "claim": "ORIGINAL SENT CLAIM (INACCURATE): 'three fighters everyone assumed were gone for good'",
+        "verdict": "confirmed_inaccurate",
+        "gap": "Both the count and the framing are wrong. Count: all three detailed sources (DBZimran, TheGeekiary, sensei先生) independently agree the number is four -- Harribel, Nelliel, Pesche, Dondochakka -- not three. Framing: none of the four were ever established as dead, presumed dead, missing, or 'gone' in any fetched source. Harribel was injured but alive/active since earlier in the arc. Nelliel was already actively participating, having just rescued other characters. Pesche and Dondochakka were simply displaced elsewhere (transported via black eyeballs to the Gate of the Sun), not presumed dead. There is no source-supported version of an 'assumed gone' stakes claim for any of the four.",
+        "sources": [
+          "https://www.youtube.com/watch?v=8x4kEGb3Id8",
+          "https://thegeekiary.com/bleach-thousand-year-blood-war-1x46-and-1x47-review-the-end-and-the-end-2/139431",
+          "https://www.youtube.com/watch?v=kafRdZTSbrw"
+        ],
+        "correction_applied": "Hook, VO, on-screen text, YouTube title area, TikTok title, captions, TikTok post text, and pinned comment all rewritten. New hook leads with the anime-original ratio (the strongest-sourced claim) instead of the fabricated stakes framing; character count corrected to four throughout."
+      }
+    ]
+  },
+  "vo_word_count_reconciliation": {
+    "method": "Ran the actual validators/validate_dual_package.py._words() function directly (re.findall(r\"[\\w']+\", text)) against both corrected VO strings -- not a reimplementation or manual recount.",
+    "hunter_x_hunter": 103,
+    "bleach_tybw": 100,
+    "band_required": "100-108 (30s edit, Law #138)",
+    "result": "Both in-band, no padding needed."
+  },
+  "mechanical_checks": {
+    "validator_run": "python3 validators/validate_dual_package.py <corrected_run_manifest.json>",
+    "result": "PASS — cleared to send (exit code 0)"
+  },
+  "known_issues_entry_pending": "docs/KNOWN_ISSUES.md new entry documenting the STEP 4.7 bypass incident: vo_status was recorded as 'complete' for batch 714d87e0 despite the standing 2026-08-19 process change requiring Perplexity to set vo_status='pending' and stop for Claude's VO. Zero entries exist in vo_handoff_log.jsonl for this batch_id, confirming the VO was never genuinely handed off before both emails sent with self-authored, insufficiently-verified copy.",
+  "sign_off_required_from": "Sebastian Lemos",
+  "sign_off_note": "Nothing will be sent or committed until explicit approval is given on this approval.json and the rendered correction emails below."
+}

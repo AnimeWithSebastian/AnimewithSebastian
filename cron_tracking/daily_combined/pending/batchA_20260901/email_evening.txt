@@ -1,0 +1,56 @@
+SUBJECT: TOMORROW | EVENING | Chainsaw Man | 2026-09-01 | Chainsaw Man Reze Arc: New Streaming Date
+
+━━━ EVENING — 2026-09-01 ━━━
+SHOW:    Chainsaw Man
+ANGLE:   The Reze Arc movie is coming to Prime Video Japan Sept 19, 2026 -- exactly one year after its theatrical debut -- a fresh distribution/news angle independent of any prior Chainsaw Man send
+FORMAT:  FACT_DROP
+STYLE:   Face-cam split screen (creator TOP / anime footage BOTTOM, Law #134 Stage 2 required default)
+TOPIC:   timely — signals: news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK ━━━
+ON-SCREEN (second 1): The Reze Arc movie is about to disappear from theaters — and reappear somewhere free.
+SPOKEN (VO first line): The Reze Arc movie is about to disappear from theaters — and reappear somewhere free.
+HOOK FAMILY: contradiction
+(candidate A: The Reze Arc movie is about to disappear from theaters — and reappear somewhere free.
+ candidate B: Chainsaw Man's Reze Arc movie just got a release date nobody expected.
+ SELECTED: 0)
+
+━━━ VO (104 words — fills the resolved 30s CapCut edit) ━━━
+The Reze Arc movie is about to disappear from theaters — and reappear somewhere free. Chainsaw Man: The Movie starts streaming exclusively on Prime Video in Japan on September nineteenth, exactly one year after it first hit theaters there. By the time it left theatrical release, the film had pulled in more than twenty-nine point seven billion yen worldwide. Crunchyroll already picked it up outside Japan back in April, so international fans got early access while Japan waited a full year for a home option. Should Reze Arc have gone to streaming sooner, or did the theatrical run earn its year? Leave your take.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view) ━━━
+[FACE: direct-to-camera, lean in] The Reze Arc movie is about to disappear from theaters — and reappear somewhere free. [FACE: glance-down-at-footage] Chainsaw Man: The Movie starts streaming exclusively on Prime Video in Japan on September nineteenth, exactly one year after it first hit theaters there. [FACE: glance-down-at-footage] By the time it left theatrical release, the film had pulled in more than twenty-nine point seven billion yen worldwide. [FACE: glance-down-at-footage] Crunchyroll already picked it up outside Japan back in April, so international fans got early access while Japan waited a full year for a home option. [FACE: glance-down-at-footage] Should Reze Arc have gone to streaming sooner, or did the theatrical run earn its year? Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings) ━━━
+CUT 1 — 10 sec (0:00–0:10): Promotional still / key visual: Denji meeting Reze at the cafe — Establishes the central relationship the film revolves around
+CUT 2 — 10 sec (0:10–0:20): Promotional still / trailer footage: Reze Arc action sequence (devil-hunter conflict) — Shows the stakes of the war between devils and hunters framing the film
+CUT 3 (final) — 10 sec (0:20–0:30): New key visual revealed for the Sept 19 Prime Video Japan streaming announcement — Delivers the concrete streaming-date reveal to close the hook
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+Chainsaw Man's Reze Arc movie just got a streaming date -- exactly one year after it hit theaters.
+
+━━━ YOUTUBE TITLE ━━━
+Chainsaw Man Reze Arc: New Streaming Date
+
+━━━ TIKTOK TITLE ━━━
+Reze Arc just left theaters (kind of)
+
+━━━ TIKTOK POST TEXT (caption) ━━━
+One year after its theatrical debut, Chainsaw Man's Reze Arc movie is heading to Prime Video Japan. #ChainsawMan #Denji #RezeArc #AnimeManga #ShonenJump #AnimeTok #AnimeNews #AnimeShorts #AnimeCommentary
+
+━━━ PINNED COMMENT ━━━
+Reze Arc streams on Prime Video Japan Sept 19, 2026. Already on Crunchyroll outside Japan since April.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 2026-09-01T18:00:00-04:00
+TikTok — post 2026-09-01T18:15:00-04:00
+
+━━━ SOURCES ━━━
+1. Chainsaw Man -- The Movie: Reze Arc begins streaming exclusively for Prime Video members in Japan on September 19, 2026, exactly one year after its September 19, 2025 theatrical debut — https://animecorner.me/chainsaw-man-reze-arc-movie-new-visual-revealed-heads-to-prime-video-in-japan-on-september-19/ (Aug 2026)
+2. The film had recorded more than ¥29.7 billion in worldwide box office revenue as of June 19, 2026 — https://www.anime.com/news/chainsaw-man-reze-arc-prime-video-september-19 (Aug 2026)
+3. Crunchyroll began streaming the film outside Japan on April 30, 2026 — https://animecorner.me/chainsaw-man-reze-arc-movie-new-visual-revealed-heads-to-prime-video-in-japan-on-september-19/ (Aug 2026)
+
+━━━ END EVENING ━━━

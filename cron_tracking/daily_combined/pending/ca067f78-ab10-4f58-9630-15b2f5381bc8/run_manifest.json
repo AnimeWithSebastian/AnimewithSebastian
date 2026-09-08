@@ -1,0 +1,398 @@
+{
+  "batch_id": "ca067f78-ab10-4f58-9630-15b2f5381bc8",
+  "run_ts": "2026-08-25T00:23:00Z",
+  "post_date": "2026-08-25",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-08-25T00:15:00Z",
+    "age_days": 0,
+    "status": "REFRESHED"
+  },
+  "packages": [
+    {
+      "package_id": "730b0a82-edcd-4980-afd8-6a2c73b3d634",
+      "slot": "morning",
+      "content_type": "short",
+      "vo_status": "complete",
+      "show": "Wind Breaker",
+      "angle": "Chapter 227 opens with Rakta confronting Sakura's group directly -- he already knows they aren't really part of Red Chanpuru's cleaning crew, and separates them from the rest of the group before a tense standoff over whether he's about to help them or expose them.",
+      "format_type": "THE_MOMENT",
+      "topic_class": "timely",
+      "topic_signals": [
+        "chapter",
+        "news"
+      ],
+      "series": null,
+      "series_public_name": null,
+      "series_next_line": null,
+      "funnel_status": "standalone",
+      "flagship_url": null,
+      "hook_family": "revelation",
+      "hook_onscreen_text": "Rakta just called their bluff.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Wind Breaker Chapter 227 opens with Rakta doing the one thing Sakura's group didn't plan for: calling their bluff.",
+        "Sakura's group infiltrated Red Chanpuru as a fake cleaning crew. Rakta just told them he knows."
+      ],
+      "selected_hook_index": 0,
+      "hook_line": "Wind Breaker Chapter 227 opens with Rakta doing the one thing Sakura's group didn't plan for: calling their bluff.",
+      "opening_sentence": "Wind Breaker Chapter 227 opens with Rakta doing the one thing Sakura's group didn't plan for: calling their bluff.",
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "vo": "Wind Breaker Chapter 227 opens with Rakta doing the one thing Sakura's group didn't plan for: calling their bluff. Rakta and Umemiya helped a boy named Dasha, tied to his mother's frequent disappearances with a man giving shelter. Rakta then called Sakura's group what they were pretending to be: a cleaning crew. He checked Umemiya's pass, confirmed it was real, and offered to lead the operation. The group followed in silence, unsure if their cover was blown. Now Rakta separates them from the rest of Red Chanpuru and confronts them directly. Is Rakta actually on their side, or is this the setup to expose them? Leave your take.",
+      "vo_word_count": 108,
+      "question_line": "Is Rakta actually on their side, or is this the setup to expose them?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Wind Breaker Chapter 227 releases August 25, 2026 internationally (Aug 26 JST), continuing the regular Tuesday/JST release cadence.",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://www.aol.com/articles/wind-breaker-chapter-227-release-183500000.html",
+              "https://cyber.sports.ru/cinema/blogs/3269804.html"
+            ],
+            "anchors_claim": "hook",
+            "show": null
+          },
+          {
+            "claim": "Chapter 227 opens with Rakta informing Sakura's group why he is separating them from the rest, and it becomes clear Rakta already knows they are not genuinely part of the cleaning crew.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.aol.com/articles/wind-breaker-chapter-227-release-183500000.html"
+            ],
+            "show": null
+          },
+          {
+            "claim": "The setup for Chapter 227 comes from Chapter 226 (\"All Under Control\"): Rakta and Umemiya helped a boy named Dasha after he was chased for stealing; Dasha explained he and his mother were new in town, living with a man who provided shelter and work, and that his mother frequently disappeared while with this man. After Dasha left, Rakta addressed Sakura, Hiragi, Sugishita, Nirei, and Umemiya -- who had been posing as a cleaning crew -- calling them exactly that, and other Red Chanpuru members played along. Rakta then examined Umemiya's access pass, confirmed it matched the real business-visit pass, and proposed leading the cleanup operation himself; the chapter ended with the group silently following him, with no certainty whether their disguise was truly blown.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.aol.com/articles/wind-breaker-chapter-227-release-183500000.html"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Characters confirmed present in the Chapter 227 setup/expected content: Rakta, Sakura, Suo, Dasha, Dasha's mother, Hiragi, Sugishita, Nirei, Umemiya, and other Red Chanpuru members; the gang has not yet reunited with Suo since going deep into Red Chanpuru territory, raising the possibility of a Suo appearance in this chapter.",
+            "core": false,
+            "source_urls": [
+              "https://www.aol.com/articles/wind-breaker-chapter-227-release-183500000.html"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Face-cam split screen -- creator top / anime footage bottom (Law #134 required default)",
+      "face": true,
+      "split_screen": true,
+      "sources": [
+        {
+          "claim": "Chapter 227 release date/time (Aug 25, 2026 international / Aug 26 JST), opening beat (Rakta separating and confronting Sakura's group over their fake cleaning-crew cover), full Chapter 226 recap setup, and character list",
+          "url": "https://www.aol.com/articles/wind-breaker-chapter-227-release-183500000.html",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Independent confirmation of Chapter 227's August 25, 2026 international release date",
+          "url": "https://cyber.sports.ru/cinema/blogs/3269804.html",
+          "date": "Aug 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Wind Breaker Manga Chapter 226/227, panel -- Rakta and Umemiya helping Dasha after he is chased for stealing",
+          "reason": "Cold open using the real manga panel to establish Dasha and the setup that leads directly into Chapter 227's confrontation",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": false,
+          "manga_reference": "Chapter 226, Dasha rescue panels",
+          "verification_note": "This chapter has not aired in anime form; this cut uses the real manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Wind Breaker anime adaptation reaching Chapter 226/227's arc -- none exists yet; the anime has not caught up to this point in the manga."
+        },
+        {
+          "scene": "Wind Breaker Manga Chapter 226, panel -- Rakta calling Sakura's group \"the cleaning crew he had been expecting\"",
+          "reason": "Visualizes the moment Rakta first plays along with the cover story, setting up Chapter 227's direct confrontation",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": false,
+          "manga_reference": "Chapter 226, \"cleaning crew\" panels",
+          "verification_note": "This beat is manga-only as of Chapter 226; this cut uses the real manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for this exact beat in anime form -- not found; this beat has only appeared in the manga so far."
+        },
+        {
+          "scene": "Wind Breaker Manga Chapter 226, panel -- Rakta examining Umemiya's access pass and confirming it matches the real business-visit pass",
+          "reason": "Visualizes the tension beat where Rakta's scrutiny suggests he may already see through the disguise",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": false,
+          "manga_reference": "Chapter 226, access-pass panels",
+          "verification_note": "This beat is manga-only as of Chapter 226; this cut uses the real manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for this exact beat in anime form -- not found; this beat has only appeared in the manga so far."
+        },
+        {
+          "scene": "Wind Breaker Manga Chapter 227, panel -- Rakta separating Sakura's group from the rest and beginning the direct confrontation",
+          "reason": "Payoff shot for the chapter's central reveal -- Rakta making clear he knows they are not a real cleaning crew",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": false,
+          "manga_reference": "Chapter 227, opening confrontation panels",
+          "verification_note": "Chapter 227 released same-day as this drafting pass; this cut uses the real manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for Chapter 227 anime footage -- none exists; the chapter is manga-only as of its release."
+        },
+        {
+          "scene": "Wind Breaker Manga Chapter 226, panel -- the group's silent, uncertain reaction as they follow Rakta into the cleanup operation",
+          "reason": "Closing beat that lands on the open question -- ally or exposure -- driving directly into the CTA",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "manga_reference": "Chapter 226, closing panels",
+          "verification_note": "This beat is manga-only as of Chapter 226; this cut uses the real manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for this exact beat in anime form -- not found; this beat has only appeared in the manga so far."
+        }
+      ],
+      "clip_plan_needs_manga_source": true,
+      "clip_plan_needs_release_delay": false,
+      "story_point_gate": {
+        "anime_has_reached_this_point": false,
+        "checked_via": "https://www.aol.com/articles/wind-breaker-chapter-227-release-183500000.html"
+      },
+      "clip_descriptions": "CUT 1 -- 6 sec (0:00-0:06): Chapter 226 opening -- Rakta and Umemiya helping Dasha after he is chased for stealing (manga panel, Ch. 226). CUT 2 -- 6 sec (0:06-0:12): Chapter 226 -- Rakta calling Sakura's group \"the cleaning crew he had been expecting\" (manga panel, Ch. 226). CUT 3 -- 6 sec (0:12-0:18): Chapter 226 -- Rakta examining Umemiya's access pass (manga panel, Ch. 226). CUT 4 -- 6 sec (0:18-0:24): Chapter 227 -- Rakta separating Sakura's group and beginning the direct confrontation -- payoff shot (manga panel, Ch. 227). CUT 5 -- 6 sec (0:24-0:30): Chapter 226 -- the group's silent, uncertain reaction following Rakta (manga panel, Ch. 226). TOTAL CLIP TIME: 30 seconds. All 5 cuts use real manga panels (this arc has not aired in anime form yet); footage_status=unaired_no_footage on every cut.",
+      "captions": "Wind Breaker Chapter 227 is out and Rakta just called Sakura's group exactly what they were pretending to be -- a cleaning crew. He checked Umemiya's pass, confirmed it was real, and now he's separating them from the rest of Red Chanpuru. Is he helping them or about to expose them? #WindBreaker #WindBreakerManga #Rakta #Umemiya #AnimeShorts",
+      "youtube_title": "Wind Breaker Ch. 227: Rakta Already Knows",
+      "tiktok_title": "Wind Breaker: Their Cover Is Blown",
+      "tiktok_post_text": "Wind Breaker Chapter 227 opens with Rakta doing the one thing Sakura's group didn't plan for -- calling their bluff. He already knows they're not really part of the cleaning crew, checks Umemiya's pass, confirms it's real, and separates them from the rest of Red Chanpuru for a direct confrontation. Full breakdown in the video. #WindBreaker #WindBreakerManga #WindBreakerTheory #Rakta #Umemiya #SakuraKazamatsuri #AnimeManga #AnimeShorts #WeeklyShonenJump",
+      "pinned_comment": "Chapter 227 spoilers in this video. Real question: is Rakta about to help Sakura's group finish the job, or hand them over to the rest of Red Chanpuru? Drop your read below.",
+      "post_times": {
+        "youtube": "7:30 AM ET",
+        "tiktok": "7:35 AM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false
+    },
+    {
+      "package_id": "3a66f4cc-22f3-4791-980b-92e6602b1523",
+      "slot": "evening",
+      "content_type": "short",
+      "vo_status": "complete",
+      "show": "Blue Lock",
+      "angle": "Chapter 358 (\"Heaven-Piercing Bullet\") -- Aiku's unexpected long, twisting pass springs Japan's comeback counterattack, Isagi steals the ball off Shidou and Agi in the same instant, and after the England goalkeeper's punch-clear backfires, Yukimiya scores from outside the box to equalize against England right before halftime. (Note: sources disagree on the causal mechanism of Isagi's steal -- SoapCentral attributes it to Isagi recalling Kiyora's earlier steal; OtakuKart's scene-by-scene recap attributes it to Isagi reading Shidou's decoy role and Agi's impatience, with no Kiyora reference. VO/hook describe only the undisputed physical outcome, not the disputed mechanism.)",
+      "format_type": "FACT_DROP",
+      "topic_class": "timely",
+      "topic_signals": [
+        "chapter",
+        "news"
+      ],
+      "series": null,
+      "series_public_name": null,
+      "series_next_line": null,
+      "funnel_status": "standalone",
+      "flagship_url": null,
+      "hook_family": "revelation",
+      "hook_onscreen_text": "Shidou and Agi both lose the ball to Isagi in the same instant.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Blue Lock Chapter 358 has Isagi stealing the ball off two players at once -- Shidou and Agi both lose it to him in the same instant.",
+        "England thought they cleared the danger. Blue Lock Chapter 358 says otherwise."
+      ],
+      "selected_hook_index": 0,
+      "hook_line": "Blue Lock Chapter 358 has Isagi stealing the ball off two players at once -- Shidou and Agi both lose it to him in the same instant.",
+      "opening_sentence": "Blue Lock Chapter 358 has Isagi stealing the ball off two players at once -- Shidou and Agi both lose it to him in the same instant.",
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "vo": "Blue Lock Chapter 358 has Isagi stealing the ball off two players at once -- Shidou and Agi both lose it to him in the same instant. Shidou, pressured by three defenders, passes off instead of forcing the play. The ball works back to him, but Isagi takes it from both Shidou and Agi. England blocks his advance and the ball bounces loose. Zantetsu beats the goalkeeper to it, gets punched away, but it lands in front of Yukimiya, who scores to equalize. Isagi notices something off about Agi right before he's subbed off. Does Japan have enough on England's defense to keep this up? Leave your take.",
+      "vo_word_count": 107,
+      "question_line": "Does Japan have enough on England's defense to keep this up?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Blue Lock Chapter 358, titled \"Heaven-Piercing Bullet,\" releases August 25, 2026 internationally (Aug 26 JST) via K MANGA/Kodansha.",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://www.soapcentral.com/anime/blue-lock-chapter-358-spoilers-japan-levels-score-england",
+              "https://www.aol.com/articles/blue-lock-chapter-358-release-043840000.html"
+            ],
+            "anchors_claim": "hook",
+            "show": null
+          },
+          {
+            "claim": "Aiku starts Japan's counterattack with a long, twisting pass that gets past the England captain and another defender undetected by announcers; the ball reaches Shidou, who is pressured by three England defenders and passes to Hiori instead of forcing a play himself.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.soapcentral.com/anime/blue-lock-chapter-358-spoilers-japan-levels-score-england"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Karasu forms a three-chain link (compared to Cerberus) connecting to Shidou, Zantetsu, and Yukimiya to enable a two-sided attack; Hiori returns the ball to Shidou, Agi contests the pass, and Isagi swoops in to intercept the ball from both Shidou and Agi in the same instant.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.soapcentral.com/anime/blue-lock-chapter-358-spoilers-japan-levels-score-england",
+              "https://otakukart.com/blue-lock-chapter-358-spoilers-recap/"
+            ],
+            "show": null,
+            "disputed_detail_note": "SoapCentral attributes Isagi's interception trigger to his memory of Kiyora's earlier steal. OtakuKart's independent scene-by-scene recap (with quoted dialogue) attributes it instead to Isagi reading Shidou's decoy role and Agi's impatience/forced play, and explicitly does not mention Kiyora. No tiebreaker exists among the four originally-fetched sources for this batch. VO/hook/captions describe only the physical outcome both sources agree on (Isagi takes the ball from both Shidou and Agi in the same instant); the disputed causal mechanism is omitted rather than asserted as fact."
+          },
+          {
+            "claim": "Teddy blocks Isagi's advance toward goal, the ball bounces loose, Zantetsu outraces the England goalkeeper to it, the goalkeeper punches it away, but the clearance lands back in a dangerous area in front of Yukimiya, who scores from outside the box to equalize; Isagi notices unusual movement from Agi just before Fox substitutes Agi off, ending the chapter with the second half about to begin and the exact numerical score not stated beyond \"equalized.\"",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.soapcentral.com/anime/blue-lock-chapter-358-spoilers-japan-levels-score-england"
+            ],
+            "show": null
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Face-cam split screen -- creator top / anime footage bottom (Law #134 required default)",
+      "face": true,
+      "split_screen": true,
+      "sources": [
+        {
+          "claim": "Full Chapter 358 spoiler breakdown -- title, match sequence beat-by-beat (Aiku's pass, Shidou/Hiori, Karasu's three-chain formation, Isagi's interception, Teddy's block, Zantetsu's race, the goalkeeper's punch-clear, Yukimiya's equalizer, Agi's substitution), and the confirmation that the exact numerical score is not stated",
+          "url": "https://www.soapcentral.com/anime/blue-lock-chapter-358-spoilers-japan-levels-score-england",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Chapter 358 release date and regional release-time breakdown for Aug 25, 2026",
+          "url": "https://www.aol.com/articles/blue-lock-chapter-358-release-043840000.html",
+          "date": "Aug 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Blue Lock Manga Chapter 358, opening panel -- Aiku controlling the ball at midfield before his long pass",
+          "reason": "Cold open using the real manga panel to establish the counterattack's origin",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": false,
+          "manga_reference": "Chapter 358, Aiku's opening pass panels",
+          "verification_note": "Chapter 358 releases same-day as this drafting pass and has not aired in anime form; this cut uses the real manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Blue Lock Season 3 anime footage reaching Chapter 358's content -- none exists yet; the anime has not caught up to this arc point."
+        },
+        {
+          "scene": "Blue Lock Manga Chapter 358, panel -- Shidou pressured by three England defenders and passing to Hiori",
+          "reason": "Visualizes the buildup pressure that forces the ball into Karasu's three-chain formation",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": false,
+          "manga_reference": "Chapter 358, Shidou/Hiori panels",
+          "verification_note": "This beat is manga-only as of Chapter 358; this cut uses the real manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for this exact beat in anime form -- not found; this beat has only appeared in the manga so far."
+        },
+        {
+          "scene": "Blue Lock Manga Chapter 358, panel -- Isagi intercepting the ball from Shidou and Agi",
+          "reason": "Visualizes the hook's central claim -- Isagi taking the ball from both Shidou and Agi in the same instant",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": false,
+          "manga_reference": "Chapter 358, Isagi interception panels",
+          "verification_note": "This beat is manga-only as of Chapter 358; this cut uses the real manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for this exact beat in anime form -- not found; this beat has only appeared in the manga so far."
+        },
+        {
+          "scene": "Blue Lock Manga Chapter 358, panel -- the England goalkeeper's punch-clear bouncing back into danger",
+          "reason": "Visualizes the turning point where England's clearance fails",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": false,
+          "manga_reference": "Chapter 358, goalkeeper punch-clear panels",
+          "verification_note": "This beat is manga-only as of Chapter 358; this cut uses the real manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for this exact beat in anime form -- not found; this beat has only appeared in the manga so far."
+        },
+        {
+          "scene": "Blue Lock Manga Chapter 358, panel -- Yukimiya's equalizing shot from outside the box",
+          "reason": "Payoff shot for the chapter title and the equalizer, landing directly into the CTA question about the second half",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "manga_reference": "Chapter 358, Yukimiya goal panels",
+          "verification_note": "Chapter 358 releases same-day as this drafting pass; this cut uses the real manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for Chapter 358 anime footage -- none exists; the chapter is manga-only as of its release."
+        }
+      ],
+      "clip_plan_needs_manga_source": true,
+      "clip_plan_needs_release_delay": false,
+      "story_point_gate": {
+        "anime_has_reached_this_point": false,
+        "checked_via": "https://www.soapcentral.com/anime/blue-lock-chapter-358-spoilers-japan-levels-score-england"
+      },
+      "clip_descriptions": "CUT 1 -- 6 sec (0:00-0:06): Chapter 358 opening -- Aiku controlling the ball before his long pass (manga panel, Ch. 358). CUT 2 -- 6 sec (0:06-0:12): Chapter 358 -- Shidou pressured by three England defenders, passing to Hiori (manga panel, Ch. 358). CUT 3 -- 6 sec (0:12-0:18): Chapter 358 -- Isagi intercepting the ball from Shidou and Agi (manga panel, Ch. 358). CUT 4 -- 6 sec (0:18-0:24): Chapter 358 -- the England goalkeeper's punch-clear bouncing back into danger (manga panel, Ch. 358). CUT 5 -- 6 sec (0:24-0:30): Chapter 358 -- Yukimiya's equalizing shot from outside the box -- payoff shot (manga panel, Ch. 358). TOTAL CLIP TIME: 30 seconds. All 5 cuts use real manga panels (this chapter has not aired in anime form yet); footage_status=unaired_no_footage on every cut.",
+      "captions": "Blue Lock Chapter 358 is out and Isagi just stole the ball off two players at once -- Shidou and Agi both lose it to him in the same instant. England's punch-clear backfires and Yukimiya equalizes from outside the box. Does Japan have enough to hold this? #BlueLock #BlueLockManga #Isagi #Yukimiya #AnimeShorts",
+      "youtube_title": "Blue Lock Ch. 358: Isagi's Steal Changes Everything",
+      "tiktok_title": "Blue Lock: Japan Just Equalized",
+      "tiktok_post_text": "Blue Lock Chapter 358 has Isagi stealing the ball off two players at once -- Shidou and Agi both lose it to him in the same instant. England's clearance bounces right back into danger and Yukimiya equalizes from outside the box. Isagi also notices something off about Agi right before he's subbed. Full breakdown in the video. #BlueLock #BlueLockManga #BlueLockTheory #Isagi #Yukimiya #Shidou #AnimeManga #AnimeShorts #WeeklyShonenJump",
+      "pinned_comment": "Chapter 358 spoilers in this video. Real question: does Japan actually have the read on England's defense now, or did they just get lucky on the equalizer? Drop your take below.",
+      "post_times": {
+        "youtube": "7:30 PM ET",
+        "tiktok": "7:35 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false
+    }
+  ],
+  "minimum_frequency_floor": {
+    "floor_formats": [
+      "THEORY_SPECULATION",
+      "SEASON_ROUNDUP",
+      "WORTH_WATCHING",
+      "WATCH_RANK",
+      "SEASON_RATING"
+    ],
+    "window_days": 21,
+    "evaluations": []
+  }
+}

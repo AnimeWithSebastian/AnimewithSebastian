@@ -34,7 +34,18 @@ short:
    >=9/14 timely and >=2 recurring-series targets are checked by the weekly analytics
    cron, not this run — a single run may legitimately be evergreen.
 5. Draft both packages to templates/package_template.txt, preserving every creative
-   law: fixed 30s CapCut edit; 100-108-word VO (~104); assumption-breaking hook;
+   law EXCEPT the VO text itself: STEP 4.7 of cron_daily_runtime.txt (standing
+   process change, added 2026-08-19) requires that Perplexity NEVER writes the vo
+   field — set pkg["vo_status"] = "pending" instead, leave vo empty, and the email
+   carries a "VO: [PENDING — Claude to write]" disclosure. Do NOT draft VO text in
+   this step regardless of how complete the rest of the package is. Read STEP 4.7
+   in full (cron_daily_runtime.txt) before this step, every run — do not rely on
+   this summary alone, it is not a substitute for the full STEP 4.7 procedure. (A
+   real incident, F75, shipped two batches with self-authored, unreviewed VO text
+   because this scheduler summary previously described VO drafting here with no
+   mention that STEP 4.7 supersedes it — see docs/KNOWN_ISSUES.md.)
+   fixed 30s CapCut edit; 100-108-word VO (~104, once handed back by Claude);
+   assumption-breaking hook;
    specific question immediately followed by the exact phrase "Leave your take.";
    CLOSING LINE (Law #141 RESCINDED July 27, 2026): opening_sentence = exact first VO
    sentence (still required, independent of looping, for the Law #144/#145 hook_line
@@ -44,7 +55,11 @@ short:
    carries_loop_back=true" clip-plan requirement, and the mandatory "LOOP-BACK:" email line)
    is no longer required or specially scored. A loop-style ending is still allowed if
    it arises naturally and reads well, but do not force one artificially;
-   anime footage only (no face/split/inset);
+   face-cam split-screen (creator TOP / anime footage BOTTOM — Law #134 Stage 2;
+   manga/manhwa panels allowed within the anime-footage half for manga-based
+   formats) is the required default video_style — NOT anime-footage-only (that
+   line here was stale against Law #134 Stage 2's real, current inversion; found
+   during the 2026-09-08 full repo audit, see docs/KNOWN_ISSUES.md F68);
    clip plan with PER-CUT TIMINGS REQUIRED (Law #140) — every cut carries duration_sec
    + timeline_start_sec + timeline_end_sec, the cuts tile the fixed 30s edit
    contiguously (first starts 0, each end = next start, last ends 30, durations sum to

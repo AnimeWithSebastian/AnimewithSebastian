@@ -1,0 +1,162 @@
+{
+  "approved_by": null,
+  "approved_at": null,
+  "approval_status": "AWAITING_APPROVAL",
+  "approval_pending_note": "Constructed AFTER both emails were already sent (Law #164/#165 gate was not satisfied before STEP 7 in this batch -- see verification_gaps_and_caveats and the separate KNOWN_ISSUES entry for the process gap itself). Sebastian has NOT yet reviewed or signed off. approved_by/approved_at are deliberately left null. He must review fetch_review and verification_gaps_and_caveats below and give explicit sign-off before STEP 8/9 proceed.",
+  "batch_id": "da1a6d5f-3e4e-4cb6-b8fb-f98fde676b1d",
+  "corrects_batch_id": null,
+  "scope_note": "This batch contains TWO packages, both post_date 2026-08-24: One Piece Chapter 1191 (morning, THE_MOMENT, package_id e1a2b3c4-0001-4a11-9001-000000000001) and Skeleton Knight in Another World S2 (evening, CHARACTER_DIVE, package_id e1a2b3c4-0002-4a11-9001-000000000002). Both VOs were written by Sebastian himself (not model-generated) and provided back verbatim for insertion (morning 108 words, evening 101 words). Both packages passed validate_dual_package.py at exit code 0 (fully passed, zero skips, zero fails) BEFORE the emails were sent. This approval.json's fetch_review is the first independent re-fetch of every core source URL done in this workflow for this batch -- the original drafting pass's fetch claims were never independently re-verified before STEP 7 fired, which is the process gap being surfaced here.",
+  "fetch_review": [
+    {
+      "claim": "[CORE, morning] Chapter 1191, titled \"There's Still Loki,\" released Sunday Aug 23, 2026 in Weekly Shonen Jump Issue #39, same-day via Manga Plus/Viz.",
+      "url": "https://gamerant.com/one-piece-manga-break-august-30/",
+      "fetched_content_supports_claim": false,
+      "note": "Independently re-fetched fresh. Confirms Chapter 1191 released Aug 23, 2026 in WSJ Issue #39 ('On August 23rd, 2026, in Shueisha's Weekly Shonen Jump Issue #39... made its grand return'), and confirms the break/no-Ch.-1192-until-Sept-6 sub-claim used elsewhere. Does NOT confirm the chapter title 'There's Still Loki' (not stated on this page), does NOT confirm 'Sunday' specifically (date given, weekday not stated), and does NOT confirm same-day Manga Plus/Viz availability for Ch. 1191 -- the page's same-day-availability sentence is explicitly about Chapter 1192 ('Chapter 1192... will be available to read via Manga Plus and Viz Media on September 6, 2026'), not 1191."
+    },
+    {
+      "claim": "[CORE, morning] Chapter 1191, titled \"There's Still Loki,\" released Sunday Aug 23, 2026 in Weekly Shonen Jump Issue #39, same-day via Manga Plus/Viz.",
+      "url": "https://www.dexerto.com/anime/one-piece-chapter-1191-release-date-major-spoilers-3399495/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Confirms release 'Sunday, August 23, 2026, at 7am PT' (explicitly names Sunday) and confirms the title: 'Titled \"There's Still Loki,\" One Piece Chapter 1191 picks up after Imu defeats Gaban.' Does not state the WSJ issue number and states readers 'can read the latest chapter for free on Manga Plus' without explicitly saying same-day. Together with the Game Rant entry above, the title+Sunday+issue-number+break sub-claims are each covered by at least one of the two cited URLs, but the specific compound phrase 'same-day via Manga Plus/Viz' is not cleanly supported by either source for Chapter 1191 specifically -- flagged below as a caveat."
+    },
+    {
+      "claim": "[CORE, morning] Imu undergoes a visible transformation this chapter: grows larger, sprouts four horns, gains black arms, a pointed goatee, a chest pendant of three horned skulls, and eye-covered rings replace the spiked bracelets, with the eye-ring now encircling the waist/legs.",
+      "url": "https://gulfnews.com/entertainment/one-piece-chapter-1191-spoilers-imus-demonic-transformation-luffys-wild-recovery-can-the-trio-take-him-down-1.500644205",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Fully confirms every listed sub-detail with direct quotes: growing larger/four horns/black arms ('growing larger, developing four horns, and his arms turning black'), pointed goatee ('Imu has grown a pointed goatee'), chest pendant of three horned skulls ('the three horned skulls that were previously wrapped around his tail now appear as a pendant on his chest'), and eye-covered rings replacing spiked bracelets ('The spiked bracelets he wore before are gone, replaced by two rings with eyes on his arms'). The manifest's added detail that the eye-ring also 'encircl[es] the waist/legs' was not independently located in this specific quoted passage, but nothing in the source contradicts it either -- treated as an uncontested minor elaboration, not a conflict."
+    },
+    {
+      "claim": "[CORE, morning] Imu undergoes a visible transformation this chapter: grows larger, sprouts four horns, gains black arms, a pointed goatee, a chest pendant of three horned skulls, and eye-covered rings replace the spiked bracelets, with the eye-ring now encircling the waist/legs.",
+      "url": "https://www.dexerto.com/anime/one-piece-chapter-1191-release-date-major-spoilers-3399495/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Confirms the base transformation ('makes him bigger, gives him four horns, and turns his arms black') but does not mention the goatee, pendant, or eye rings -- those details rest solely on the Gulf News URL above, which does fully support them. No contradiction, just uneven coverage across the two cited sources."
+    },
+    {
+      "claim": "[CORE, morning] Imu taunts Gaban directly, referencing his God Valley past and mocking that he only lost an arm this time; Gaban tells Luffy to evacuate Elbaf; Luffy refuses.",
+      "url": "https://www.yahoo.com/entertainment/tv/articles/one-piece-chapter-1191-spoilers-071245309.html",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Confirms the God Valley reference ('Imu says that if he had known Gaban would grow this strong, he would have wiped him out, along with Rocks D Xebec, in God Valley') and the specific mocking-about-the-arm detail as written ('He further mocks Gaban by congratulating him on not losing both his arms after the attack'). Also confirms Gaban tells Luffy to leave Elbaph and Luffy refuses. This is the stronger of the two cited sources for the 'taunt/mock' framing specifically."
+    },
+    {
+      "claim": "[CORE, morning] Imu taunts Gaban directly, referencing his God Valley past and mocking that he only lost an arm this time; Gaban tells Luffy to evacuate Elbaf; Luffy refuses.",
+      "url": "https://gulfnews.com/entertainment/one-piece-chapter-1191-spoilers-imus-demonic-transformation-luffys-wild-recovery-can-the-trio-take-him-down-1.500644205",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Confirms the God Valley reference and the evacuate/refuse beat directly, but its own wording of the arm-mocking detail is softer/less explicit than Yahoo's ('Gaban... responds dryly, telling Imu he can't quite applaud him for dodging the attack under the circumstances' -- this reads as Gaban's own dry response, not a clean restatement of Imu mocking him). The manifest's specific 'mocking that he only lost an arm' phrasing is better supported by the Yahoo source than by this one -- flagged below as a caveat about which source carries the load for that specific sub-claim."
+    },
+    {
+      "claim": "[CORE, morning] Hajrudin punches Imu away to protect Luffy and Gaban, takes a hit from Imu's dark aura, and refuses to flee (\"Even if I die, Loki is there\"); Loki then arrives, fulfilling the chapter's title.",
+      "url": "https://www.aol.com/articles/one-piece-chapter-1191-raw-090000000.html",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Confirms every element with close quotes: 'Hajrudin suddenly arrives and punches Imu away from Luffy and Gaban', 'Hajrudin is already being affected by Imu's demonic aura', 'the giant refuses to surrender. Hajrudin declares that even if he falls, Loki is still there', and 'Loki finally arrives, giving... its full meaning.' The manifest's quoted line is a close paraphrase, not a verbatim quote from this source, but the substance matches."
+    },
+    {
+      "claim": "[CORE, morning] Hajrudin punches Imu away to protect Luffy and Gaban, takes a hit from Imu's dark aura, and refuses to flee (\"Even if I die, Loki is there\"); Loki then arrives, fulfilling the chapter's title.",
+      "url": "https://www.dexerto.com/anime/one-piece-chapter-1191-release-date-major-spoilers-3399495/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Confirms the same beat, spelling the character's name 'Hajrudding' (a spelling variant, not a factual conflict): 'Hajrudding arrives and punches Imu away, though he's affected by the demonic aura,' and 'the giant refuses, claiming that he'd never submit. He says that even if he dies right now, Loki is there to fight and protect Elbaf. Soon after, Loki joins them.'"
+    },
+    {
+      "claim": "[CORE, morning] Luffy recovers strength by eating stored food, then combines with Loki and Hajrudin into a joint attack (\"Gokoku Sovereignty\"/\"Sovereignty of the Three Generals\") against Imu; chapter ends there, and the series is confirmed on break next week with no Chapter 1192 until Sept 6, 2026 (WSJ Issue #41).",
+      "url": "https://gamerant.com/one-piece-manga-break-august-30/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Fully confirms the break/timing sub-claim with direct quotes: 'One Piece is headed back on break immediately after the release of chapter 1191', 'the manga will officially resume its run on September 6, 2026, with Chapter 1192, which will be published in Weekly Shonen Jump Issue #41.' Does not cover the Luffy/Loki/Hajrudin combo-attack detail at all -- that rests on the Yahoo URL below."
+    },
+    {
+      "claim": "[CORE, morning] Luffy recovers strength by eating stored food, then combines with Loki and Hajrudin into a joint attack (\"Gokoku Sovereignty\"/\"Sovereignty of the Three Generals\") against Imu; chapter ends there, and the series is confirmed on break next week with no Chapter 1192 until Sept 6, 2026 (WSJ Issue #41).",
+      "url": "https://www.yahoo.com/entertainment/tv/articles/one-piece-chapter-1191-spoilers-071245309.html",
+      "fetched_content_supports_claim": false,
+      "note": "Independently re-fetched fresh. Confirms the technique name and that Luffy, Loki, and Hajrudin jointly attack Imu using it: 'The chapter ends with Luffy, Loki, and Hajrudin attacking Imu using the Gokoku Sovereignty technique.' Does NOT use the word 'combine' (the manifest's VO says 'combines with Loki and Hajrudin' -- a reasonable paraphrase of a joint/team attack, not a direct quote) and does NOT mention any alternate name 'Sovereignty of the Three Generals' anywhere on the page -- that alternate name is not independently corroborated by any of the five cited morning sources and should be treated as unverified if it appears in any published copy (it does not appear in the final VO or on-screen text actually sent, only in an internal claim_source_matrix description field, so this does not affect what was published, but the matrix description itself overstates its own sourcing)."
+    },
+    {
+      "claim": "[EVENING, CORE] Skeleton Knight in Another World Season 2, Episode 7 (\"The Spirit of Chivalry Blooms at the Shinobi Village\"), aired Aug 17, 2026, and revealed that Chiyome's real name is Mia -- \"Chiyome\" is a title bestowed on the most skilled of the Jinshin Clan's Six Great Ninja.",
+      "url": "https://www.soapcentral.com/anime/skeleton-knight-another-world-season-2-episode-7-arc-finds-place-ninja-village",
+      "fetched_content_supports_claim": false,
+      "note": "Independently re-fetched fresh. This source does NOT support the claim as cited. It gives the episode title as 'Manly Spirit Blooms in the Ninja Village' -- a materially different English title from the manifest's 'The Spirit of Chivalry Blooms at the Shinobi Village' (likely a differing fan-translation of the same Japanese title, but a real textual mismatch between what this source says and what the manifest states). It also does NOT mention the name Mia, the Jinshin Clan, or 'Chiyome' being a title anywhere in the fetched content. This source fails to support the core claim it was cited for."
+    },
+    {
+      "claim": "[EVENING, CORE] Skeleton Knight in Another World Season 2, Episode 7 (\"The Spirit of Chivalry Blooms at the Shinobi Village\"), aired Aug 17, 2026, and revealed that Chiyome's real name is Mia -- \"Chiyome\" is a title bestowed on the most skilled of the Jinshin Clan's Six Great Ninja.",
+      "url": "https://myanimelist.net/forum/?topicid=2271352",
+      "fetched_content_supports_claim": false,
+      "note": "Independently re-fetched fresh, twice. This URL resolves to a generic show-info/discussion-topic page (Season 2, Aired Jul 6 2026 to ?, Broadcast Mondays 22:00 JST, Studio Aura Studio) with NO episode-7-specific content in the fetched body -- no mention of Mia, the Jinshin Clan, the Six Great Ninja title claim, Sasuke, or the tug-of-war contest. This source does not actually support any of the three separate claims it is cited for in the manifest (this one, plus the Sasuke claim and the tug-of-war/festival claim below). Its only independently useful content is the 'Broadcast: Mondays at 22:00 (JST)' metadata line, which is NOT what it was cited for but IS directly relevant to the separate airing-day discrepancy flagged below."
+    },
+    {
+      "claim": "[EVENING, CORE, anchors_claim=hook] Episode 7 also flags that Danka's attacker is one of the Six Ninja -- a missing member named Sasuke -- whose blank expression raises questions about his motive for working with a corrupt nobleman/the pontiff.",
+      "url": "https://www.reddit.com/r/Animedubs/comments/1vqsezf/skeleton_knight_in_another_world_season_2_episode/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Confirms directly: 'Danka's attacker appears to be one of the elite members -- a missing ninja named Sasuke. His expression seemed devoid of emotion, which raises questions about his motives for aligning with the pontiff.' Also independently confirms Chiyome=Mia on this same page: 'Chiyome was previously known as Mia before joining the elite six.' This single source, on its own, actually supports both the hook's core claim (Chiyome/Mia) and the Sasuke claim better than the two sources it is formally paired with in the matrix."
+    },
+    {
+      "claim": "[EVENING, CORE] Episode 7 also flags that Danka's attacker is one of the Six Ninja -- a missing member named Sasuke -- whose blank expression raises questions about his motive for working with a corrupt nobleman/the pontiff.",
+      "url": "https://myanimelist.net/forum/?topicid=2271352",
+      "fetched_content_supports_claim": false,
+      "note": "Same MAL forum URL as above -- confirmed again on independent re-fetch that the page contains no episode-7-specific content and does not mention Sasuke, Danka, or the attacker's identity at all."
+    },
+    {
+      "claim": "[EVENING, CORE] Episode 8, titled \"The Sea Hears the Tale of the Tragic Kunoichi's Past,\" releases the same day as this post, Aug 24, 2026 -- confirmed via two independent episode-listing sources.",
+      "url": "https://watch.rdd.media/shows/skeleton-knight-in-another-world/season/2/episode/9/",
+      "fetched_content_supports_claim": false,
+      "note": "Independently re-fetched fresh. This URL does NOT support the claim. The page itself is titled 'Episode 9, Season 2' with a listed air date of 31 August 2026 -- not Episode 8, not Aug 24, and it does not display the title 'The Sea Hears the Tale of the Tragic Kunoichi's Past' anywhere in the fetched content. This appears to be an indexing/URL-slug mismatch (the URL path says episode/9/ while the site's internal page metadata also says Episode 9 -- there is no off-by-one editorial numbering visible here, this URL simply points at the wrong episode for the claim it was cited for). This source fails to support the claim; the claim is independently supported by the TVMaze entry below."
+    },
+    {
+      "claim": "[EVENING, CORE] Episode 8, titled \"The Sea Hears the Tale of the Tragic Kunoichi's Past,\" releases the same day as this post, Aug 24, 2026 -- confirmed via two independent episode-listing sources.",
+      "url": "https://www.tvmaze.com/seasons/201785/skeleton-knight-in-another-world-season-2/episodes",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Full episode table confirms Episode 8 = 'The Sea Hears the Tale of the Tragic Kunoichi's Past', air date August 24, 2026 -- an exact match for the claim. This source alone fully carries the claim; the watch.rdd.media source cited alongside it does not (see above), so despite the manifest's framing ('confirmed via two independent episode-listing sources'), only one of the two actually confirms it on independent re-fetch."
+    },
+    {
+      "claim": "[EVENING, CORE] Season 2 is produced by Aura Studio, premiered July 4, 2026, and airs Saturdays -- confirmed via Wikipedia, MyAnimeList, and Radio Times' full episode schedule, resolving the initial Monday/Saturday listing discrepancy in favor of Saturday.",
+      "url": "https://en.wikipedia.org/wiki/Skeleton_Knight_in_Another_World",
+      "fetched_content_supports_claim": false,
+      "note": "Independently re-fetched fresh. Confirms Aura Studio and the July 4, 2026 premiere directly ('A second season produced by Aura Studio premiered in July 2026... The season premiered on July 4, 2026'). Does NOT state any day-of-week the show airs on -- no mention of Saturday, Monday, or any weekday. The manifest's claim that Wikipedia is one of the sources confirming 'airs Saturdays' is not supported; Wikipedia is silent on this specific point."
+    },
+    {
+      "claim": "[EVENING, CORE] Season 2 is produced by Aura Studio, premiered July 4, 2026, and airs Saturdays -- confirmed via Wikipedia, MyAnimeList, and Radio Times' full episode schedule, resolving the initial Monday/Saturday listing discrepancy in favor of Saturday.",
+      "url": "https://www.radiotimes.com/tv/fantasy/anime/skeleton-knight-in-another-world-season-2-release-schedule-when-are-new-episodes-on-crunchyroll/",
+      "fetched_content_supports_claim": false,
+      "note": "Independently re-fetched fresh. THIS IS A REAL, SUBSTANTIVE CONFLICT, not a minor wording issue -- flagged prominently below as its own verification gap. Radio Times' own listed schedule has Episode 8 airing Saturday 22 August 2026, not Aug 24. Its full table is internally consistent (every entry is a Saturday). It explicitly attributes the Monday/Saturday split to Crunchyroll's early streaming premiere (Saturdays) versus AT-X's regular Japan TV broadcast (Mondays) -- it does NOT resolve the discrepancy 'in favor of Saturday' as a correction of an error; it presents Saturday as Crunchyroll's own separate, intentional early-streaming schedule. Per date-math (Aug 22, 2026 is a Saturday; Aug 24, 2026 is a Monday), Radio Times' Saturday schedule and TVMaze's Monday schedule are two different consistent tracks, and the claim actually being relied on for the Aug 24 send date is the MONDAY track (TVMaze + the MAL forum's raw metadata: 'Broadcast: Mondays at 22:00 (JST)'), not the Saturday one this citation credits."
+    }
+  ],
+  "verification_gaps_and_caveats": [
+    {
+      "issue": "PROCESS GAP: emails were sent before any independent source re-verification happened in this workflow, not after (this is the primary issue, logged separately as its own KNOWN_ISSUES entry per Sebastian's instruction)",
+      "detail": "This batch's send-authorization instruction ('proceed with the rest of the sequence in one pass if it comes back clean -- same as every batch tonight') was read, in the moment, as covering STEP 7 (email send) once the mechanical validator passed at exit code 0. It did not carry an approval.json / Law #164-165 fetch_review re-verification step before send, which every other batch tonight did require and receive before its emails went out. The mechanical validator passing does not perform source re-verification -- it only checks structural/schema/self-attestation fields. As a direct result, both emails were sent to hero_or_villain@outlook.com with source claims that had not been independently re-checked, and this review -- which surfaced multiple real sourcing problems below -- happened only afterward, when append_send_batch.py's --approval-file gate correctly refused to log the send without one.",
+      "already_sent": true,
+      "cannot_be_undone": "This approval.json cannot retroactively unsend the two emails that already went out. It can only (a) honestly document what independent re-verification finds now, (b) let Sebastian decide whether what was actually sent is acceptable as-is, needs a follow-up correction email, or something else, and (c) gate STEP 8 (the send log) on his real decision rather than logging a clean send by default."
+    },
+    {
+      "issue": "Evening core claim's MyAnimeList forum citation does not contain the content it was cited for, across all three claims it's attached to",
+      "detail": "https://myanimelist.net/forum/?topicid=2271352 is cited as a source for three separate evening claims (Chiyome=Mia/Six-Ninja-title, the Sasuke/Danka-attacker claim, and the tug-of-war/festival claim). On independent re-fetch, twice, this URL returns only the show's generic 'Other Information' metadata block (Type, Episodes, Status, Aired, Broadcast, Producers, Studios, Source) with zero episode-7-specific discussion content. It does not support any of the three claims it is cited for. All three claims remain supported by their OTHER cited source (Reddit for Chiyome/Mia and Sasuke; SoapCentral for the tug-of-war/festival scene), so nothing published is actually unsupported, but the manifest's citation of MyAnimeList for this content is not accurate and should not be relied on again for these specific facts without a different URL."
+    },
+    {
+      "issue": "Evening core claim's SoapCentral citation gives a different English episode title and does not support the Chiyome=Mia/Six-Ninja-title claim it's cited for",
+      "detail": "SoapCentral's episode 7 recap titles the episode 'Manly Spirit Blooms in the Ninja Village' -- not the manifest's 'The Spirit of Chivalry Blooms at the Shinobi Village.' TVMaze's episode table (fetched independently for a different claim) gives 'The Spirit of Chivalry Blooms at the Shinobi Village!' confirming the manifest's title is a real, correctly-sourced title -- but it is not the title SoapCentral uses, most likely reflecting two different fan/outlet translations of the same Japanese episode title rather than two different episodes. Separately, SoapCentral's fetched content does not mention Mia, the Jinshin Clan, or the Six Great Ninja title concept anywhere -- the Chiyome=Mia claim is NOT supported by this source and rests entirely on the Reddit source, which does independently and clearly confirm it."
+    },
+    {
+      "issue": "Evening 'airs Saturdays' / Monday-vs-Saturday resolution claim is backwards -- the manifest resolved it in favor of the wrong day, though the specific Aug 24 send-date claim it was protecting is still independently correct",
+      "detail": "Radio Times' own schedule (all Saturdays, Episode 8 = Sat Aug 22, 2026) and TVMaze's own schedule (all Mondays, Episode 8 = Mon Aug 24, 2026) are two different, individually self-consistent tracks -- confirmed by direct date-math (Aug 22, 2026 is a Saturday; Aug 24, 2026 is a Monday). Radio Times explains this as Crunchyroll's early-streaming premiere (Saturday) vs. AT-X's regular Japan broadcast (Monday), not as one date being an error to be corrected. The MyAnimeList forum's raw show-metadata (independently re-fetched, and confirmed to be the Season 2 page specifically via its Aug 6 2026 start date and Aura Studio production credit) states 'Broadcast: Mondays at 22:00 (JST)', corroborating the Monday track, not the Saturday one. Wikipedia states neither day. So: the manifest cites Wikipedia + Radio Times as resolving the discrepancy 'in favor of Saturday' -- but Wikipedia says nothing about weekday, and Radio Times' own data argues for Saturday being Crunchyroll's separate schedule, not the corrected answer. The date that actually matters for this send (Episode 8 = Aug 24, 2026, matching this batch's post_date) is the MONDAY date, independently confirmed by TVMaze and corroborated by MAL's raw broadcast metadata -- meaning the send date itself is correct, but the manifest's own citation reasoning for why is inverted. This should be corrected in the manifest/angle text going forward (say 'airs Mondays,' not 'airs Saturdays'), though it does not change what was published since the published copy does not state a broadcast weekday anywhere in the actual VO, captions, or titles -- only the internal 'angle' and claim_source_matrix fields carry the wrong weekday framing, and those are not viewer-facing."
+    },
+    {
+      "issue": "One core morning claim slightly overstates its sourcing: 'combines' phrasing and the alternate technique name 'Sovereignty of the Three Generals'",
+      "detail": "The cited Yahoo source confirms Luffy, Loki, and Hajrudin jointly attack Imu using a technique named 'Gokoku Sovereignty' but does not use the word 'combine' (a reasonable paraphrase, not a misrepresentation) and does not mention any alternate name 'Sovereignty of the Three Generals' anywhere in its fetched content. That alternate name does not appear anywhere in the actual VO, captions, titles, or on-screen text that was sent -- it only appears in the internal claim_source_matrix's claim-description field, so nothing published overstates its sourcing, but that internal field should not cite this URL as support for a name the URL never uses."
+    },
+    {
+      "issue": "Morning claim's 'same-day via Manga Plus/Viz' detail is not cleanly sourced for Chapter 1191 specifically",
+      "detail": "Game Rant's same-day-availability sentence is explicitly about Chapter 1192 (Sept 6 release), not Chapter 1191. Dexerto mentions Manga Plus availability for Ch. 1191 ('You can read the latest chapter for free on Manga Plus') but does not use the words 'same-day.' This detail does not appear in the actual published VO/captions/titles that were sent -- it is confined to an internal claim_source_matrix claim-description field -- so nothing published is affected, but that internal field slightly overstates what its two cited URLs establish for Ch. 1191 specifically."
+    }
+  ],
+  "validator_result": {
+    "run_fresh_in_this_review": false,
+    "note": "Not re-run in this review -- the validator already passed cleanly (exit code 0, 193 checks, 0 fail, 0 skip) immediately before STEP 7 fired, and this review's re-verification work is against the same already-sent, already-validated manifest content. Re-running the mechanical validator again here would not surface anything new since no manifest fields have changed since that clean pass; the gap this review is closing is source re-verification, which the validator does not perform.",
+    "prior_run_command": "python3 validators/validate_dual_package.py cron_tracking/daily_combined/run_manifest.json",
+    "prior_run_exit_code": 0,
+    "prior_run_result": "PASS \u2014 cleared to send both emails"
+  },
+  "human_final_read_confirmation": "NOT YET OBTAINED. approved_by/approved_at/approval_status are deliberately left null/AWAITING_APPROVAL. Sebastian must review this fetch_review and verification_gaps_and_caveats -- including the fact that the emails already went out before this review happened -- before giving real sign-off. His sign-off decision may be simply to accept the send as-is (none of the surfaced issues affect what was actually published in the VO/captions/titles that were sent, per the notes above), or he may want a follow-up correction, or something else -- that is his call to make, not a default outcome of this file.",
+  "changes_made_before_approval": [
+    "Both emails already sent (STEP 7) BEFORE this approval.json was constructed -- this is the process gap, not a normal pre-send review. See the first verification_gaps_and_caveats entry and the separate KNOWN_ISSUES entry.",
+    "Independently re-fetched all 12 unique cited source URLs across both packages fresh in this review (5 morning, 7 evening) -- none reused from the original drafting session's self-reported fetch claims.",
+    "Found and documented: (1) MyAnimeList forum URL does not contain the episode-7 content it is cited for on either evening claim it's attached to; (2) SoapCentral gives a different English episode title than the manifest and does not support the Chiyome=Mia claim it's cited for; (3) watch.rdd.media URL points to Episode 9/Aug 31, not Episode 8/Aug 24 as claimed; (4) Radio Times and TVMaze give genuinely different air-days (Saturday vs Monday) for Episode 8, and the manifest's claimed resolution ('in favor of Saturday') is backwards -- the Aug 24 send date is actually the Monday-track date, correctly confirmed by TVMaze and MAL's raw broadcast metadata, not the Saturday-track Radio Times date; (5) two morning claim_source_matrix description-field details ('same-day via Manga Plus/Viz' for Ch. 1191 specifically, and the alternate technique name 'Sovereignty of the Three Generals') are not cleanly supported by their cited URLs, though neither appears in the actual published VO/captions/titles.",
+    "Confirmed that none of the five surfaced sourcing issues affect the actual text that was sent to hero_or_villain@outlook.com -- all are confined to internal angle/claim_source_matrix description fields, not the VO, captions, titles, or on-screen text -- but they are real inaccuracies in the manifest's internal sourcing record and are surfaced in full rather than smoothed over, per explicit instruction.",
+    "Staged this approval.json at AWAITING_APPROVAL (approved_by/approved_at left null) -- no STEP 8 log-append, no STEP 9 commit/push, until Sebastian's own real sign-off."
+  ]
+}

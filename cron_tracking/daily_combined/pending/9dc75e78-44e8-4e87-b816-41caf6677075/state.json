@@ -1,0 +1,32 @@
+{
+  "cron_id": "daily_combined",
+  "workflow": "combined_daily_dual_package",
+  "batch_id": "9dc75e78-44e8-4e87-b816-41caf6677075",
+  "run_ts": "2026-08-16T19:05:00-04:00",
+  "post_date": "2026-08-17",
+  "status": "sent",
+  "emails_sent": true,
+  "log_appended": true,
+  "git_pushed": true,
+  "error": null,
+  "packages": [
+    {
+      "package_id": "ef43eed6-d6fe-4804-877e-2a79317bd0f1",
+      "slot": "morning",
+      "show": "Though I Am an Inept Villainess",
+      "format_type": "CHARACTER_DIVE",
+      "vo_word_count": 100
+    },
+    {
+      "package_id": "f14aa919-278d-4921-a2b3-9d5959d51cd2",
+      "slot": "evening",
+      "show": "Jaadugar: A Witch in Mongolia",
+      "format_type": "SEASON_RATING",
+      "vo_word_count": 103
+    }
+  ],
+  "pending_path": "cron_tracking/daily_combined/pending/9dc75e78-44e8-4e87-b816-41caf6677075/",
+  "model_compliance": "MODEL: Claude Sonnet 5.0 | CATEGORY: none (routine daily) | PASS.",
+  "terminal_state_written_at": "2026-08-17T00:35:58.445392+00:00",
+  "terminal_state_written_by": "tools/append_send_batch.py (F38)"
+}

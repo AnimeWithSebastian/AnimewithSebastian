@@ -1,0 +1,92 @@
+{
+  "approved_by": "Sebastian",
+  "approved_at": "2026-08-23T22:28:19Z",
+  "approval_status": "approved",
+  "batch_id": "7b36ad7c-beeb-401b-b434-b1b8981f052d",
+  "corrects_batch_id": "af6c90bf-b832-474c-ad67-782f56038368",
+  "scope_note": "This is a real correction to batch af6c90bf-b832-474c-ad67-782f56038368's morning Kingdom Hearts package (package_id 76c51349-bdb9-4456-a947-aa54883e74b7, originally sent as the morning slot for post_date 2026-08-23). The evening Bleach: Thousand-Year Blood War package from af6c90bf is unaffected and is not part of this correction batch -- see single_package_reason in run_manifest.json. Same real single-package correction pattern as batch 32e0fcb9 (Link Click, corrects b03ef8b6).",
+  "correction_summary": "The original morning send described the D23 2026 Kingdom Hearts anime teaser key visual as a 'cloaked/hooded figure... identity unconfirmed.' This traces back to an inaccurate secondary-source description (Hypebeast's own article prose calls it a 'cloaked figure holding a Keyblade') that was never checked against the actual promotional image itself before the original send. Sebastian directly inspected the real, actual promotional image and confirmed this description is wrong: the figure has fully visible dark hair (no hood covering it) and fur-trimmed clothing across the shoulders (no cloak anywhere in the image). Corrected VO, hook_line/opening_sentence, question_line, hook_candidates, angle, vo_required_beats, claim_source_matrix, all four clips (scene text and claim_vs_source_check fields), clip_descriptions, and tiktok_post_text to describe the real image (dark hair, fur-trimmed clothing) instead of the inaccurate cloaked/hooded framing. The still-live Helgi/Dark Road fan theory is preserved and re-worded to match the corrected visual description ('fans comparing the fur trim and outfit think it's Helgi') rather than removed, since that theory itself remains real, sourced (Complex.com), and appropriately hedged as unconfirmed.",
+  "fetch_review": [
+    {
+      "claim": "[CORE, anchors_claim=hook, morning] Disney officially announced an original Kingdom Hearts anime series for Disney+ and Disney Channel at D23 2026.",
+      "url": "https://hypebeast.com/2026/8/disney-plus-channel-kingdom-hearts-anime-series-official-d23-announcement",
+      "fetched_content_supports_claim": true,
+      "note": "Unchanged from the original af6c90bf approval -- this core claim is not affected by the correction. Carried forward as still-verified."
+    },
+    {
+      "claim": "[CORE, anchors_claim=hook, morning] Disney officially announced an original Kingdom Hearts anime series for Disney+ and Disney Channel at D23 2026 (corroborating source).",
+      "url": "https://abcnews.com/GMA/Culture/kingdom-hearts-anime-series-announced-d23/story?id=135659603",
+      "fetched_content_supports_claim": true,
+      "note": "Unchanged from the original af6c90bf approval -- this core claim is not affected by the correction. Carried forward as still-verified."
+    },
+    {
+      "claim": "[CORE, morning] The project involves Tetsuya Nomura and Square Enix and is an original story, not adapting the games.",
+      "url": "https://www.anime.com/news/kingdom-hearts-first-animated-series-disney-plus",
+      "fetched_content_supports_claim": true,
+      "note": "Unchanged from the original af6c90bf approval -- this core claim is not affected by the correction. Carried forward as still-verified."
+    },
+    {
+      "claim": "[CORE, morning] No premiere date, episode count, studio, or cast has been announced yet.",
+      "url": "https://wdwnt.com/2026/08/kingdom-hearts-anime-series-announced-for-disney-and-disney-channel/",
+      "fetched_content_supports_claim": true,
+      "note": "Unchanged from the original af6c90bf approval -- this core claim is not affected by the correction. Carried forward as still-verified."
+    },
+    {
+      "claim": "[NON-CORE, morning -- CORRECTED THIS BATCH] The key visual shows a cloaked figure from behind whose identity is not confirmed as Sora.",
+      "url": "https://hypebeast.com/2026/8/disney-plus-channel-kingdom-hearts-anime-series-official-d23-announcement",
+      "fetched_content_supports_claim": false,
+      "note": "THIS IS THE CLAIM BEING CORRECTED. The original af6c90bf approval marked this claim as fetched_content_supports_claim=true, on the basis that Hypebeast's own article prose describes the visual as 'a cloaked, hooded figure holding a Keyblade... shown from behind.' That description accurately reflected what the ARTICLE'S TEXT said, but the article's text itself is an inaccurate secondary-source description of the actual image -- it was never checked against the real promotional image directly. Sebastian directly inspected the real, actual promotional image (not a re-fetched URL -- this is a direct visual review, since the inaccuracy is in how a real image was described in prose, not in whether a URL loads or what a page's text says) and confirmed: the figure has fully visible dark hair, not covered by any hood, and fur-trimmed clothing across the shoulders, not a cloak. There is no cloak or hood anywhere in the actual image. Marking fetched_content_supports_claim=false here because the claim as originally worded ('cloaked figure... identity unconfirmed') is not supported by the real image, even though it was supported by a secondary source's inaccurate prose description of that image. The claim has been corrected in this batch's run_manifest.json to: 'The key visual shows a figure with dark hair and fur-trimmed clothing, not Sora's usual look, whose identity is not confirmed (CORRECTED from an earlier inaccurate 'cloaked/hooded figure' description).' This corrected claim is verified via Sebastian's direct visual inspection of the real image, logged in run_manifest.json's sources[] as verification_method='direct_visual_inspection_by_sebastian', url=null (intentionally null -- there is no new URL to cite; the correction basis is direct visual review of the same image, not a different or re-fetched source)."
+    },
+    {
+      "claim": "[NON-CORE, morning] A fan theory holds the figure could be Helgi from Kingdom Hearts Dark Road, based on Reddit outfit comparisons -- not confirmed by Disney.",
+      "url": "https://www.complex.com/pop-culture/a/treyalston/kingdom-hearts-4-coco-trailer-d23-watch",
+      "fetched_content_supports_claim": true,
+      "note": "Unchanged from the original af6c90bf approval -- the fan theory itself, and its sourcing to Complex.com, is not affected by the visual-description correction. Only the SURROUNDING description of what the figure looks like (previously 'cloaked Keyblade wielder,' now 'fur trim and outfit') was updated in this batch's sources[] entry and claim_source_matrix to stay consistent with the corrected visual description -- the underlying fan-theory claim and its Complex.com sourcing are identical to the original approval."
+    },
+    {
+      "claim": "[Correction basis, morning -- NEW this batch] The teaser key visual actually shows dark hair and fur-trimmed clothing, not a cloaked/hooded figure.",
+      "url": null,
+      "fetched_content_supports_claim": true,
+      "note": "New entry for this correction batch. Verification method is Sebastian's own direct visual inspection of the actual, real promotional image -- explicitly NOT a re-fetched URL, since the error being corrected is in how a real image was described in secondary-source prose, not in a URL's availability or content. url is intentionally null; verification_method='direct_visual_inspection_by_sebastian' is recorded in run_manifest.json's sources[] entry for this claim, dated 2026-08-23."
+    }
+  ],
+  "verification_gaps_and_caveats": [
+    {
+      "issue": "The original af6c90bf approval's fetch_review entry for the cloaked/hooded claim technically had fetched_content_supports_claim=true, because Hypebeast's own article prose does describe the image that way -- the gap was never in the URL fetch itself, but in never independently checking that secondary-source prose description against the actual image it was describing.",
+      "detail": "This is a distinct failure mode from a bad or stale URL: the source was fetched correctly, the fetch accurately reflected what the source said, and the source's text did say 'cloaked, hooded figure.' The problem is that Hypebeast's own prose description was itself an inaccurate characterization of the image it was reporting on. No amount of re-fetching the same URL would have caught this -- catching it required looking at the actual image, which Sebastian did directly. Recording this here so a future reviewer understands why this correction's basis is a visual inspection rather than a corrected or replacement URL citation.",
+      "core_matrix_source_pairing_note": "This claim remains core=false in claim_source_matrix (as it was in the original approval) -- it is a supporting visual-description detail, not one of the four core D23-announcement facts (announcement itself, Nomura/Square Enix/original-story framing, missing release details, dual-platform release), none of which are affected by this correction."
+    },
+    {
+      "issue": "This correction touches CUT 4's scene description and claim_vs_source_check fields, and the sources[] entry describing the Helgi fan theory, beyond just the VO/hook/question_line fields the user's original correction request explicitly named.",
+      "detail": "While building this correction, a full case-insensitive sweep of the manifest for 'cloak'/'hood' found three genuinely stale leftover instances that had not actually been corrected in an earlier drafting pass, despite this batch's own correction_reason field claiming clips had been corrected: CUT 4's scene text ('Return to the teaser key visual (cloaked figure)...'), CUT 4's claim_vs_source_check.claimed_beat ('The same cloaked Keyblade wielder key visual...'), and the sources[] Helgi entry's summary phrasing ('the cloaked Keyblade wielder could be Helgi'). Surfaced to Sebastian directly rather than silently patched; he approved fixing all three using the same accurate language already established in the corrected VO ('dark hair and fur-trimmed clothing'). All three fixed, re-swept afterward to confirm no further stale instances remain (6 remaining 'cloak'/'hood' mentions in the manifest, all explicitly framed as describing the correction itself -- none are uncorrected leftover claims).",
+      "core_matrix_source_pairing_note": "Not applicable -- these are scene/description fields, not claim_source_matrix entries requiring Law #58 pairing. The claim_vs_source_check.claimed_beat wording was aligned to the corrected visual description as a matter of internal consistency, since it directly restates the same claim the claim_source_matrix and VO now describe accurately."
+    },
+    {
+      "issue": "A real validator bug (corrects_batch_id never injected onto per-package copies during the mechanical conflict check, same bug class as F61's batch_id gap) was discovered and fixed while validating this correction manifest.",
+      "detail": "See docs/KNOWN_ISSUES.md F66 for the full writeup. Fixed in validators/validate_dual_package.py by mirroring F61's existing pattern (pkg_for_validation.setdefault('corrects_batch_id', m.get('corrects_batch_id'))), with two new regression tests added to TestMechanicalConflictCheckWiring. This was a direct mirror of an already-approved pattern applied to a missed spot, not new design, so the manual-override fallback Sebastian authorized for this send was not needed.",
+      "core_matrix_source_pairing_note": "Not applicable -- this is a validator/tooling fix, not a content claim."
+    }
+  ],
+  "validator_result": {
+    "run_fresh_in_this_review": true,
+    "command": "python3 validators/validate_dual_package.py cron_tracking/daily_combined/pending/7b36ad7c-beeb-401b-b434-b1b8981f052d/run_manifest.json",
+    "exit_code": 0,
+    "result": "PASS \u2014 cleared to send both emails",
+    "note": "Re-run after the corrects_batch_id validator fix (F66) and after fixing the three leftover 'cloaked' instances found during the post-fix review sweep. Both the mechanical conflict check (no more false-positive angle_similarity block against af6c90bf) and the minimum_frequency_floor check (real recomputed gap=0 data for all 5 floor formats) pass cleanly."
+  },
+  "human_final_read_confirmation": "OBTAINED. Sebastian reviewed this approval.json (raw content pasted directly in chat), caught and required a real fix to the STYLE field (was drifted to 'Anime Footage Only' -- confirmed against every real committed email across formats that the channel's actual standing convention is Face-Cam Split Screen per Law #134 Stage 2, reverted to match af6c90bf), and gave explicit final sign-off at 2026-08-23T22:28:19Z.",
+  "changes_made_before_approval": [
+    "Built this correction batch (batch_id 7b36ad7c-beeb-401b-b434-b1b8981f052d, corrects_batch_id af6c90bf-b832-474c-ad67-782f56038368) following the real 32e0fcb9/b03ef8b6 (Link Click) correction precedent: single-package manifest, same package_id as the batch being corrected (76c51349-bdb9-4456-a947-aa54883e74b7), single_package_reason explaining the unaffected evening Bleach package, per-package correction_reason field.",
+    "Inserted Sebastian's exact 104-word corrected VO verbatim; updated hook_line/opening_sentence and question_line to exactly match the VO's actual first and closing-question sentences.",
+    "Discovered a real validator bug while first validating this manifest: the mechanical conflict check false-positived an angle_similarity block against af6c90bf, because validate_manifest never threaded the manifest's corrects_batch_id onto per-package copies before the check ran (same bug class as F61's batch_id gap, just for the other field _excluded_batch_ids reads). Flagged to Sebastian per his explicit instruction rather than silently patched or worked around; he approved a direct mirror of F61's existing fix pattern.",
+    "Fixed validators/validate_dual_package.py: added pkg_for_validation.setdefault('corrects_batch_id', m.get('corrects_batch_id')) immediately after the existing batch_id line in the per-package mechanical-checks loop, with a documenting comment block.",
+    "Added two new regression tests to TestMechanicalConflictCheckWiring in test_validate_dual_package.py: one using this real Kingdom Hearts correction as the fixture (confirmed to genuinely fail against the pre-fix code, then pass after the fix), one confirming a correction manifest still correctly blocks against a genuinely unrelated historical conflict (so the fix excludes only the named batch, not all conflict-checking for corrections).",
+    "Ran the full validators/ test suite: no regressions from this fix. Pre-existing, unrelated failures exist from date-sensitive minimum_frequency_floor fixtures drifting against the real, continuously-advancing candidate_selection_log.jsonl -- confirmed identically present at HEAD before this session's changes, not introduced by this fix.",
+    "Logged this bug as docs/KNOWN_ISSUES.md F66 (next sequential number after F65), following F61's exact writeup structure.",
+    "Re-ran the validator against this correction manifest after the fix: mechanical conflict check and minimum_frequency_floor both now pass cleanly.",
+    "During a full end-to-end re-read of the corrected manifest, found three genuinely stale 'cloaked' leftover instances not actually fixed in an earlier drafting pass (CUT 4 scene text, CUT 4 claim_vs_source_check.claimed_beat, sources[] Helgi entry summary phrasing) despite the correction_reason field claiming clips had been corrected. Surfaced to Sebastian directly rather than silently patched; he approved fixing all three plus a full case-insensitive re-sweep to confirm no further stale instances remain.",
+    "Fixed all three flagged instances using the same accurate language already established in the corrected VO ('dark hair and fur-trimmed clothing'). Re-swept the full manifest case-insensitively for 'cloak'/'hood': 6 remaining mentions, all explicitly framed as describing the correction itself (CORRECTED/CORRECTION language or quoting what the original inaccurate source said) -- none are uncorrected leftover claims.",
+    "Re-ran the validator a final time after these three fixes: exit code 0, full PASS, unchanged from before -- none of the three fixed fields are validator-checked directly, so this required manual verification (the grep sweep above) that the fixes are genuinely complete, not just a validator pass.",
+    "Staged this approval.json at NOT YET APPROVED (approved_by/approved_at/approval_status left null) -- no send, no STEP 7/8, no GitHub commit until Sebastian reviews this file, the validator diff, the test results, and the drafted correction email, and gives explicit final sign-off."
+  ]
+}

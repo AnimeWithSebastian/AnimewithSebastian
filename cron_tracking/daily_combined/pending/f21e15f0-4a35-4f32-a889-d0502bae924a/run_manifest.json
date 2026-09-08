@@ -1,0 +1,442 @@
+{
+  "batch_id": "f21e15f0-4a35-4f32-a889-d0502bae924a",
+  "run_ts": "2026-08-15T22:14:00-04:00",
+  "post_date": "2026-08-16",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-08-15T22:14:00-04:00",
+    "age_days": 0,
+    "status": "REFRESHED"
+  },
+  "research_sweep": {
+    "run_date": "2026-08-15",
+    "queries": [
+      "anime news August 2026",
+      "anime releases August 15 2026",
+      "currently airing anime August 2026 episode",
+      "manga chapter release August 2026 anime news",
+      "anime trending August 2026 rankings",
+      "Crunchyroll anime August 2026 news",
+      "anime episode reviews August 2026",
+      "new anime trailers August 2026"
+    ],
+    "evidence_artifacts": [
+      "/home/user/workspace/anime_market_sweep_20260815.md",
+      "/home/user/workspace/anime_package_evidence_20260815.md",
+      "/home/user/workspace/chained_soldier_candidate_search_20260815.md"
+    ]
+  },
+  "overlap_review": {
+    "sent_log_reviewed": "all 203 entries in sent_scripts_log.json; indexed in /home/user/workspace/recent_send_overlap_review_20260816.txt",
+    "morning": "No historical The Dangers in My Heart/BokuYaba entry found. The closest generic ending posts (Black Clover, Dr. Stone, Blue Box) are different shows and angles; no near-duplicate title or episode/chapter repeat.",
+    "evening": "No historical Chained Soldier/Mato Seihei no Slave entry found. Generic sequel-confirmation posts (JJK, Black Clover) are not same-show or near-duplicate title/angle; this package centers the absence of date/studio/platform details."
+  },
+  "staleness_review": {
+    "morning": "Not a forward-looking preview. Fetched sources say Chapter 196 has three chapters left and Season 3 is in 2027; this remains true on the 2026-08-16 post date.",
+    "evening": "Not framed as an upcoming release. It reports the already-announced August 2 production decision and explicitly avoids an air-date claim, so there is no pre-air event that can become stale by 2026-08-16."
+  },
+  "packages": [
+    {
+      "package_id": "82148ead-4e29-460f-aee4-b3fa9a7f9dfd",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "The Dangers in My Heart",
+      "angle": "Manga-vs-anime timing: Chapter 196 leaves three chapters, so the manga concludes before the confirmed 2027 anime Season 3 can adapt the ending.",
+      "format_type": "MANGA_VS_ANIME",
+      "topic_class": "timely",
+      "topic_signals": [
+        "chapter",
+        "news"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "THE MANGA ENDS FIRST.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "The Dangers in My Heart will end on the page before Season 3 even returns.",
+        "The Dangers in My Heart has three manga chapters left, but its anime won't return until 2027."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "The Dangers in My Heart will end on the page before Season 3 even returns.",
+      "opening_sentence": "The Dangers in My Heart will end on the page before Season 3 even returns.",
+      "vo": "The Dangers in My Heart will end on the page before Season 3 even returns. Chapter 196 says it has three chapters left, while the anime's third season is coming in 2027. So Kyotaro and Anna's ending will not be a weekly anime surprise. Manga readers get there first, while the adaptation waits. That changes the finale conversation: there is no race to avoid spoilers when the page reaches the finish line first. The story ends in print before the next season begins. Do you read the last three chapters now, or wait for the anime to catch up? Leave your take.",
+      "vo_word_count": 102,
+      "question_line": "Do you read the last three chapters now, or wait for the anime to catch up?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 25,
+      "face": true,
+      "split_screen": true,
+      "video_style": "Face-cam split-screen: creator top, licensed anime/promotional footage bottom.",
+      "clips": [
+        {
+          "scene": "Kyotaro and Anna in HIDIVE’s official series trailer",
+          "reason": "Establishes the anime’s central pair without claiming it depicts Chapter 196.",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": false,
+          "verification_note": "Use only the official HIDIVE trailer as non-spoiler b-roll; it does not establish the Chapter 196 claim.",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube and HIDIVE for licensed promotional footage; use only the cited official/promotional material.",
+          "location_pointer": {
+            "url": "https://www.youtube.com/watch?v=x-cTWEpQu_A",
+            "description": "Cited source used to locate the permitted promotional visual or clarify that no adaptation footage can establish the new manga/announcement claim."
+          }
+        },
+        {
+          "scene": "Official manga cover / Chapter 196 end-notice panel",
+          "reason": "Puts the three-chapter source on screen with a clear manga label.",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": false,
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and HIDIVE for licensed promotional footage; use only the cited official/promotional material.",
+          "location_pointer": {
+            "url": "https://www.animenewsnetwork.com/news/2026-08-04/the-dangers-in-my-heart-manga-ends-in-3-chapters/.240281",
+            "description": "Cited source used to locate the permitted promotional visual or clarify that no adaptation footage can establish the new manga/announcement claim."
+          },
+          "manga_reference": "The Dangers in My Heart, Chapter 196 end-of-chapter notice: three chapters remaining."
+        },
+        {
+          "scene": "Kyotaro and Anna trailer reaction shot",
+          "reason": "Supports the “manga readers get there first” contrast while remaining generic b-roll.",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": false,
+          "verification_note": "Use only official HIDIVE trailer b-roll; no story beat from it is asserted in the VO.",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube and HIDIVE for licensed promotional footage; use only the cited official/promotional material.",
+          "location_pointer": {
+            "url": "https://www.youtube.com/watch?v=x-cTWEpQu_A",
+            "description": "Cited source used to locate the permitted promotional visual or clarify that no adaptation footage can establish the new manga/announcement claim."
+          }
+        },
+        {
+          "scene": "Manga page / Chapter 196 end-notice panel",
+          "reason": "Returns to the print source while the VO explains the anime timing.",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": false,
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and HIDIVE for licensed promotional footage; use only the cited official/promotional material.",
+          "location_pointer": {
+            "url": "https://www.animenewsnetwork.com/news/2026-08-04/the-dangers-in-my-heart-manga-ends-in-3-chapters/.240281",
+            "description": "Cited source used to locate the permitted promotional visual or clarify that no adaptation footage can establish the new manga/announcement claim."
+          },
+          "manga_reference": "The Dangers in My Heart, Chapter 196 end-of-chapter notice: three chapters remaining."
+        },
+        {
+          "scene": "Kyotaro and Anna in the official HIDIVE trailer with CTA overlay",
+          "reason": "Leaves the viewer on the couple rather than inventing unaired ending footage.",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "verification_note": "Use official HIDIVE trailer b-roll only; show CTA text from 25 seconds.",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube and HIDIVE for licensed promotional footage; use only the cited official/promotional material.",
+          "location_pointer": {
+            "url": "https://www.youtube.com/watch?v=x-cTWEpQu_A",
+            "description": "Cited source used to locate the permitted promotional visual or clarify that no adaptation footage can establish the new manga/announcement claim."
+          }
+        }
+      ],
+      "clip_plan_needs_manga_source": true,
+      "story_point_gate": {
+        "anime_has_reached_this_point": false,
+        "checked_via": "https://www.animenewsnetwork.com/news/2026-08-04/the-dangers-in-my-heart-manga-ends-in-3-chapters/.240281"
+      },
+      "clip_descriptions": "CUT 1 0:00-0:06 official HIDIVE trailer b-roll of Kyotaro and Anna; CUT 2 0:06-0:12 clearly labeled Chapter 196 end-notice panel; CUT 3 0:12-0:18 official trailer b-roll; CUT 4 0:18-0:24 labeled Chapter 196 end-notice panel; CUT 5 0:24-0:30 official trailer b-roll plus CTA. Creator remains top-half throughout.",
+      "captions": "THE MANGA ENDS FIRST / CHAPTER 196: 3 LEFT / SEASON 3: 2027 / MANGA READERS GET THERE FIRST / NO WEEKLY SURPRISE / READ OR WAIT? / LEAVE YOUR TAKE",
+      "pinned_comment": "The key detail is the order: the manga’s last three chapters land before Season 3’s 2027 return. That makes every finale spoiler a choice, not an accident.",
+      "tiktok_post_text": "The Dangers in My Heart manga has three chapters left, while the anime returns in 2027. Read the finale now or wait? #thedangersinmyheart #bokuyaba #manga #anime #romanceanime",
+      "youtube_title": "Dangers in My Heart Will End Before Season 3",
+      "tiktok_title": "The Manga Will End Before Its Anime Returns",
+      "post_times": {
+        "youtube": "YouTube Shorts — post 10:15 AM ET | Peak 12:00 PM ET",
+        "tiktok": "TikTok — post 7:15 PM ET | Peak 8:00 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "sources": [
+        {
+          "claim": "Fetched ANN report title: “The Dangers in My Heart Manga Ends in 3 Chapters”; it also states the manga ends in its 14th compiled volume and the anime gets a third season in 2027.",
+          "url": "https://www.animenewsnetwork.com/news/2026-08-04/the-dangers-in-my-heart-manga-ends-in-3-chapters/.240281",
+          "date": "Aug 4, 2026"
+        },
+        {
+          "claim": "Fetched ComicBook.com report: “the manga is ending in three chapters” and “Season 3 is expected to drop in 2027.”",
+          "url": "https://comicbook.com/anime/news/8-years-later-hidives-critically-acclaimed-series-confirms-finale/",
+          "date": "Aug 7, 2026"
+        },
+        {
+          "claim": "Fetched official HIDIVE YouTube trailer description: “Antisocial boy meets popular girl,” used only as licensed/promotional b-roll, not as evidence for the ending claim.",
+          "url": "https://www.youtube.com/watch?v=x-cTWEpQu_A",
+          "date": "Mar 31, 2023"
+        }
+      ],
+      "semantic_qa": {
+        "audited_before_return": true,
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        },
+        "claim_source_matrix": [
+          {
+            "claim": "Hook claim: The Dangers in My Heart manga has three chapters remaining, while the anime’s third season is scheduled for 2027; the manga will therefore finish before that season returns.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2026-08-04/the-dangers-in-my-heart-manga-ends-in-3-chapters/.240281",
+              "https://comicbook.com/anime/news/8-years-later-hidives-critically-acclaimed-series-confirms-finale/"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Chapter 196 says the manga ends in three chapters and the final collected book is volume 14.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2026-08-04/the-dangers-in-my-heart-manga-ends-in-3-chapters/.240281",
+              "https://comicbook.com/anime/news/8-years-later-hidives-critically-acclaimed-series-confirms-finale/"
+            ]
+          },
+          {
+            "claim": "The anime has a third season coming in 2027.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2026-08-04/the-dangers-in-my-heart-manga-ends-in-3-chapters/.240281",
+              "https://comicbook.com/anime/news/8-years-later-hidives-critically-acclaimed-series-confirms-finale/"
+            ]
+          },
+          {
+            "claim": "HIDIVE’s official trailer is available for non-spoiler promotional b-roll.",
+            "core": false,
+            "source_urls": [
+              "https://www.youtube.com/watch?v=x-cTWEpQu_A"
+            ]
+          }
+        ]
+      },
+      "loop_line": null,
+      "loop_transition": null,
+      "final_to_opening": null,
+      "loop_read_aloud_pass": null,
+      "loop_transition_note": "Law #141 rescinded 2026-07-27 -- no forced colon-handoff loop attempted. VO closes on its own complete, natural thought ('Leave your take.')."
+    },
+    {
+      "package_id": "ecae0b48-e8a4-4552-a631-da61ed0cc705",
+      "slot": "evening",
+      "content_type": "short",
+      "show": "Chained Soldier",
+      "angle": "The Season 3 announcement is a genuine green light, but the announcement deliberately contains no premiere date or confirmed studio.",
+      "format_type": "FACT_DROP",
+      "topic_class": "timely",
+      "topic_signals": [
+        "news"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "SEASON 3. NO DATE.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Chained Soldier got a third season, but it did not get a date or a studio.",
+        "Chained Soldier’s Season 3 is real—the release details are not."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Chained Soldier got a third season, but it did not get a date or a studio.",
+      "opening_sentence": "Chained Soldier got a third season, but it did not get a date or a studio.",
+      "vo": "Chained Soldier got a third season, but it did not get a date or a studio. The August second event gave fans an announcement video and a new visual, then stopped there. That restraint is the story: this is a green light, not a trailer cycle pretending the season is around the corner. Season two character designer Keiya Nakano also drew the celebratory illustration, giving the news a real handoff from the last season. But the next production team is still unknown. Is that enough to get excited, or do you wait for the first real details? Leave your take.",
+      "vo_word_count": 100,
+      "question_line": "Is that enough to get excited, or do you wait for the first real details?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 25,
+      "face": true,
+      "split_screen": true,
+      "video_style": "Face-cam split-screen: creator top, official announcement PV and visual bottom.",
+      "clips": [
+        {
+          "scene": "Official Season 3 production-decision PV title card",
+          "reason": "Front-loads the confirmed announcement without making a story-footage claim.",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": false,
+          "verification_note": "Use only the official August 2 production-decision PV title card and visual; no future story scene is claimed.",
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "Searched YouTube and HIDIVE for licensed promotional footage; use only the cited official/promotional material.",
+          "location_pointer": {
+            "url": "https://www.youtube.com/watch?v=m-gn28edpIc",
+            "description": "Cited source used to locate the permitted promotional visual or clarify that no adaptation footage can establish the new manga/announcement claim."
+          }
+        },
+        {
+          "scene": "Official Season 3 announcement visual",
+          "reason": "Matches the sourced green-light confirmation.",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": false,
+          "verification_note": "The fetched ANN report confirms an announcement video and visual; the visual itself is not used to infer a release date.",
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "Searched YouTube and HIDIVE for licensed promotional footage; use only the cited official/promotional material.",
+          "location_pointer": {
+            "url": "https://www.animenewsnetwork.com/news/2026-08-02/chained-soldier-tv-anime-gets-3rd-season/.240191",
+            "description": "Cited source used to locate the permitted promotional visual or clarify that no adaptation footage can establish the new manga/announcement claim."
+          }
+        },
+        {
+          "scene": "Official PV title card / door imagery",
+          "reason": "Shows the announced asset while the VO lists the still-unconfirmed details.",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": false,
+          "verification_note": "The official PV description states “3期制作決定” (Season 3 production decided); do not call it a dated trailer.",
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "Searched YouTube and HIDIVE for licensed promotional footage; use only the cited official/promotional material.",
+          "location_pointer": {
+            "url": "https://www.youtube.com/watch?v=m-gn28edpIc",
+            "description": "Cited source used to locate the permitted promotional visual or clarify that no adaptation footage can establish the new manga/announcement claim."
+          }
+        },
+        {
+          "scene": "Keiya Nakano celebratory illustration",
+          "reason": "Supports the named artist credit from the announcement report.",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": false,
+          "verification_note": "The fetched ANN report says Season 2 character designer Keiya Nakano drew an illustration to celebrate the announcement.",
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "Searched YouTube and HIDIVE for licensed promotional footage; use only the cited official/promotional material.",
+          "location_pointer": {
+            "url": "https://www.animenewsnetwork.com/news/2026-08-02/chained-soldier-tv-anime-gets-3rd-season/.240191",
+            "description": "Cited source used to locate the permitted promotional visual or clarify that no adaptation footage can establish the new manga/announcement claim."
+          }
+        },
+        {
+          "scene": "Official Season 3 PV end card with CTA overlay",
+          "reason": "Closes on the confirmed decision and the question, without inventing a release window.",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "verification_note": "Use the official PV end card only; show CTA text from 25 seconds.",
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "Searched YouTube and HIDIVE for licensed promotional footage; use only the cited official/promotional material.",
+          "location_pointer": {
+            "url": "https://www.youtube.com/watch?v=m-gn28edpIc",
+            "description": "Cited source used to locate the permitted promotional visual or clarify that no adaptation footage can establish the new manga/announcement claim."
+          }
+        }
+      ],
+      "clip_descriptions": "CUT 1 0:00-0:06 official Season 3 PV title card; CUT 2 0:06-0:12 official announcement visual; CUT 3 0:12-0:18 PV title/door imagery; CUT 4 0:18-0:24 Nakano celebratory illustration; CUT 5 0:24-0:30 PV end card with CTA. Creator remains top-half throughout.",
+      "captions": "SEASON 3: CONFIRMED / NO DATE / NO STUDIO / THE PV IS REAL / WAIT FOR DETAILS? / LEAVE YOUR TAKE",
+      "pinned_comment": "The confirmation is real, but “Season 3 is in production” is not the same thing as a premiere window. The official announcement still leaves the studio and date open.",
+      "tiktok_post_text": "Chained Soldier Season 3 is confirmed, but no date or studio was announced. Is the PV enough? #chainedsoldier #matoseiheinoslave #anime #animeannouncement #hidive",
+      "youtube_title": "Chained Soldier Has Season 3, Not a Date",
+      "tiktok_title": "Season 3 Is Real. The Details Aren’t.",
+      "post_times": {
+        "youtube": "YouTube Shorts — post 5:45 PM ET | Peak 7:00 PM ET",
+        "tiktok": "TikTok — post 8:15 PM ET | Peak 9:00 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "sources": [
+        {
+          "claim": "Fetched ANN report: the Season 2 special event announced Season 3 “is in the works” and “revealed an announcement video and visual”; it also says Keiya Nakano drew a celebratory illustration.",
+          "url": "https://www.animenewsnetwork.com/news/2026-08-02/chained-soldier-tv-anime-gets-3rd-season/.240191",
+          "date": "Aug 2, 2026"
+        },
+        {
+          "claim": "Fetched Anime.com report: “No release date, broadcast window, or staff list for Season 3 has been given,” and it says no studio has been attached.",
+          "url": "https://www.anime.com/news/chained-soldier-season-3-production-confirmed",
+          "date": "Aug 3, 2026"
+        },
+        {
+          "claim": "Fetched official YouTube PV title is “TVアニメ『魔都精兵のスレイブ3』制作決定PV”; its description says “3期制作決定” (Season 3 production decided).",
+          "url": "https://www.youtube.com/watch?v=m-gn28edpIc",
+          "date": "Aug 2, 2026"
+        }
+      ],
+      "semantic_qa": {
+        "audited_before_return": true,
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        },
+        "claim_source_matrix": [
+          {
+            "claim": "Hook claim: Chained Soldier Season 3 is confirmed, but no release date or studio has been announced.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2026-08-02/chained-soldier-tv-anime-gets-3rd-season/.240191",
+              "https://www.anime.com/news/chained-soldier-season-3-production-confirmed"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "The August 2 special event announced Season 3 and revealed an announcement video and visual.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2026-08-02/chained-soldier-tv-anime-gets-3rd-season/.240191",
+              "https://www.anime.com/news/chained-soldier-season-3-production-confirmed"
+            ]
+          },
+          {
+            "claim": "Season 2 character designer Keiya Nakano drew a celebratory illustration for the Season 3 announcement.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2026-08-02/chained-soldier-tv-anime-gets-3rd-season/.240191"
+            ]
+          },
+          {
+            "claim": "The official YouTube PV is explicitly a Season 3 production-decision PV.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.youtube.com/watch?v=m-gn28edpIc"
+            ]
+          }
+        ]
+      },
+      "loop_line": null,
+      "loop_transition": null,
+      "final_to_opening": null,
+      "loop_read_aloud_pass": null,
+      "loop_transition_note": "Law #141 rescinded 2026-07-27 -- no forced colon-handoff loop attempted. VO closes on its own complete, natural thought ('Leave your take.')."
+    }
+  ]
+}

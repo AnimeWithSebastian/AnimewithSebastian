@@ -1,0 +1,72 @@
+{
+  "approved_by": null,
+  "approved_at": null,
+  "approval_status": "AWAITING_APPROVAL",
+  "approval_pending_note": "This file was constructed after VO insertion and a full fresh validator PASS (exit 0, 0 fails, both packages) but BEFORE Sebastian's personal review. Per Law #165, approved_by/approved_at/approval_status remain null/AWAITING_APPROVAL until Sebastian personally reads both complete rendered packages and the fetch_review evidence below, and gives explicit sign-off. This file must not be marked APPROVED by model self-attestation.",
+  "batch_id": "d08fde73-73e5-4b21-9acf-81d47a5b115f",
+  "corrects_batch_id": null,
+  "scope_note": "This batch contains TWO packages, both post_date 2026-08-21: Black Torch (morning, WORTH_WATCHING, package_id f0b2714e-7f2f-4263-ba9a-5094e1bef6ab) and Solo Leveling Season 3 (evening, THEORY_SPECULATION, package_id 2023b360-4574-4c87-8495-265db751aa7b). Neither package corrects a prior sent batch. VO was written by Sebastian and inserted verbatim this session (morning 100 words, evening 106 words, both confirmed via the validator's real _words() regex). The fetch_review below is the model's fresh, independent re-fetch of the core sourced claims, done in this same review pass -- not reused from any earlier self-reported fetch claim.",
+  "fetch_review": [
+    {
+      "claim": "[CORE, anchors_claim=hook, morning] Black Torch's manga was cancelled (implicitly, after a short run); its anime adaptation became one of the biggest shows on streaming this season.",
+      "url": "https://www.cbr.com/crunchyroll-new-shonen-hit-black-torch-anime/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session (2026-08-21). Article title itself is 'Crunchyroll's New Shonen Hit Revives a Manga That Ended 8 Years Ago,' framing it as a revival of an ended/cancelled manga now succeeding as a streaming hit."
+    },
+    {
+      "claim": "[CORE, morning] Black Torch's anime is produced by 100studio, and this is their fourth production, after Quality Assurance in Another World, The Mononoke Lecture Logs of Chuzenji-sensei, and the film A Few Moments of Cheer.",
+      "url": "https://www.cbr.com/crunchyroll-new-shonen-hit-black-torch-anime/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. CBR (published 2026-07-25) explicitly states Black Torch is produced by 100studio and is their fourth anime production, naming the same three prior titles used in the package's pinned_comment. Exact match, no paraphrase drift."
+    },
+    {
+      "claim": "[CORE, anchors_claim=hook, evening] Solo Leveling Season 3 is officially confirmed and in production.",
+      "url": "https://gamerant.com/solo-leveling-season-3-officially-confirmed-dc-media/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. Confirms D&C Media officially confirmed Season 3 is in production on 2026-06-09, via an investment materials report. IMPORTANT SCOPE NOTE: this source does NOT mention or support a bridge-film-caused holdup -- it explicitly does not state a reason for the wait. That claim is sourced separately below; this source is used ONLY for the base 'confirmed and in production' claim, matching the claim_source_matrix's own separation of these two claim_type entries (A vs F)."
+    },
+    {
+      "claim": "[CORE/THEORY, evening] Crunchyroll is holding Solo Leveling Season 3 back until the 'Beyond the System' bridge film releases first -- described by the source as the 'real Season 3 holdup.'",
+      "url": "https://thedirect.com/article/solo-leveling-season-3-crunchyroll-release",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. The Direct (published 2026-08-18) explicitly frames Beyond the System as the 'real Season 3 holdup' and states Season 3 will wait while the film is developed and released. This is the ONLY one of the three evening sources that supports the sequencing/holdup causal claim -- confirmed this is correctly the sole citation for that specific claim_source_matrix entry (claim_type F) rather than being over-attributed to all three sources."
+    },
+    {
+      "claim": "[SUPPORTING, evening -- existing-theory credit / Law #160] Crunchyroll's July 2026 Anime Expo trailer was initially labeled 'Solo Leveling Season 3: The Movie,' leading some fans to believe it meant Season 3 itself, before the 'Season 3' label was removed in August.",
+      "url": "https://gamerant.com/solo-leveling-season-3-release-update/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. Game Rant (published 2026-08-14) confirms Crunchyroll initially labeled the trailer 'Solo Leveling Season 3: The Movie' then removed the 'Season 3' label in August, and that this relabeling plus the June 2026 investment report indicate Season 3 is a separate project from the film. This directly supports the pinned_comment's existing-theory credit line about fans believing the trailer meant Season 3 was imminent."
+    }
+  ],
+  "verification_gaps_and_caveats": [
+    {
+      "issue": "Evening theory_claim_line's causal-sequencing claim rests on a single source (The Direct), not two",
+      "detail": "Independently re-confirmed in this review: only thedirect.com's Aug 18 article states the bridge film is deliberately sequenced first as 'the real Season 3 holdup.' The other two evening sources (Game Rant Jun 9, Game Rant Aug 14) confirm Season 3 is in production and confirm the bridge film's existence/trailer relabeling, but do NOT state or support a deliberate-sequencing rationale -- Game Rant Jun 9 explicitly says the article does not give an official reason for the wait. The claim_source_matrix already reflects this correctly (the sequencing claim, claim_type F, cites only The Direct). Flagging here so this single-source dependency on the THEORY_SPECULATION format's core causal claim is visible to Sebastian rather than presented as multiply-corroborated."
+    },
+    {
+      "issue": "Clip source URLs (6 verified clips across both packages) were not re-fetched fresh in this specific review pass",
+      "detail": "The 5 scene_verified=true clip URLs (3 morning, 3 evening) were verified with real dated YouTube sources in an earlier segment of this session, per Law #73 UPDATE 4/5/8, and the validator's own Law #73 checks (claim_vs_source_check.match, clip_locate consistency) passed cleanly in this fresh run. This review's fetch_review section focused on the core narrative/hook claims and the Law #160 theory-credit claim, not a second re-fetch of the clip URLs themselves. Recommend Sebastian spot-check at least the two anchor clips (hook-adjacent CUT 1 on each package) himself as part of his Law #165 sign-off, since this file does not independently re-confirm those specific URLs today."
+    },
+    {
+      "issue": "Morning package's non-core broadcast-schedule claim (premiere date, director) remains MAL/Wikipedia-sourced only",
+      "detail": "Per this session's earlier F58-adjacent fix, the premiere-date/director detail was deliberately split out and marked core:false specifically because it has no non-encyclopedic corroboration -- this is by design (Law #58 only requires 2+ sources incl. non-encyclopedic for CORE claims), not an oversight. Restated here for visibility rather than silently relying on the earlier fix being remembered."
+    }
+  ],
+  "validator_result": {
+    "run_fresh_in_this_review": true,
+    "command": "python3 validators/validate_dual_package.py cron_tracking/daily_combined/run_manifest.json",
+    "exit_code": 0,
+    "result": "PASS \u2014 cleared to send both emails"
+  },
+  "human_final_read_confirmation": null,
+  "changes_made_before_approval": [
+    "Inserted Sebastian's verbatim VO on both packages (morning 100 words, evening 106 words per the validator's real _words() regex).",
+    "Set vo_status: 'complete' on both packages.",
+    "Updated opening_sentence, hook_line, hook_onscreen_text, and question_line on both packages to match the real first/question sentences of the inserted VO verbatim (previous draft-stage hook text was superseded per Sebastian's explicit instruction that his VO's actual first sentence is authoritative).",
+    "Updated hook_candidates[selected_hook_index] on both packages to match the new hook_line.",
+    "Filled semantic_qa.checks.vo_word_count, cta_adjacency, and ai_slop_pattern_check (previously null pending VO) with real, freshly-verified attestations -- vo_word_count/cta_adjacency confirmed via direct text inspection matching the validator's own checks; ai_slop_pattern_check confirmed via a fresh scan of both VOs against all seven banned patterns in cron_daily_runtime.txt STEP 4.5 point 9, none found.",
+    "Re-ran the full validator fresh: exit code 0, full PASS, zero skips, zero fails, both packages.",
+    "Logged vo_received + vo_inserted events for both packages to vo_handoff_log.jsonl.",
+    "Built this approval.json with approval_status left as AWAITING_APPROVAL (not APPROVED) since Sebastian has not yet personally reviewed the rendered content -- staging only, per his explicit instruction and per Law #165."
+  ]
+}

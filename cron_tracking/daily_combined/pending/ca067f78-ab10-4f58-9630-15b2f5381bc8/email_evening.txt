@@ -1,0 +1,58 @@
+Subject: TOMORROW | EVENING | Blue Lock | 2026-08-25 | Blue Lock Ch. 358: Isagi's Steal Changes Everything
+
+━━━ EVENING — 2026-08-25 ━━━
+SHOW:    Blue Lock
+ANGLE:   Chapter 358 ("Heaven-Piercing Bullet") -- Aiku's unexpected long, twisting pass springs Japan's comeback counterattack, Isagi steals the ball off Shidou and Agi in the same instant, and after the England goalkeeper's punch-clear backfires, Yukimiya scores from outside the box to equalize against England right before halftime. (Note: sources disagree on the causal mechanism of Isagi's steal -- SoapCentral attributes it to Isagi recalling Kiyora's earlier steal; OtakuKart's scene-by-scene recap attributes it to Isagi reading Shidou's decoy role and Agi's impatience, with no Kiyora reference. VO/hook describe only the undisputed physical outcome, not the disputed mechanism.)
+FORMAT:  FACT_DROP
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM — Law #134 Stage 2; manga panels allowed within the anime-footage half for manga-based formats)
+TOPIC:   timely — signals: chapter/news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK (Law #144 — on screen + spoken in second 1) ━━━
+ON-SCREEN (second 1): Shidou and Agi both lose the ball to Isagi in the same instant.
+SPOKEN (VO first line): Blue Lock Chapter 358 has Isagi stealing the ball off two players at once -- Shidou and Agi both lose it to him in the same instant.
+HOOK FAMILY: revelation
+(Draft two hook candidates internally — Law #145 — publish ONLY the selected one:
+  candidate A: Blue Lock Chapter 358 has Isagi stealing the ball off two players at once -- Shidou and Agi both lose it to him in the same instant.
+  candidate B: England thought they cleared the danger. Blue Lock Chapter 358 says otherwise.
+  SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (107 words — fills the resolved 30s CapCut edit) ━━━
+Blue Lock Chapter 358 has Isagi stealing the ball off two players at once -- Shidou and Agi both lose it to him in the same instant. Shidou, pressured by three defenders, passes off instead of forcing the play. The ball works back to him, but Isagi takes it from both Shidou and Agi. England blocks his advance and the ball bounces loose. Zantetsu beats the goalkeeper to it, gets punched away, but it lands in front of Yukimiya, who scores to equalize. Isagi notices something off about Agi right before he's subbed off. Does Japan have enough on England's defense to keep this up? Leave your take.
+
+━━━ CLOSING LINE NOTE (Law #141 rescinded 2026-07-27) ━━━
+
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings REQUIRED — Law #140) ━━━
+CUT 1 — 6 sec (0:00–0:06): Blue Lock Manga Chapter 358, opening panel -- Aiku controlling the ball at midfield before his long pass (Chapter 358, Aiku's opening pass panels) — Cold open using the real manga panel to establish the counterattack's origin
+CUT 2 — 6 sec (0:06–0:12): Blue Lock Manga Chapter 358, panel -- Shidou pressured by three England defenders and passing to Hiori (Chapter 358, Shidou/Hiori panels) — Visualizes the buildup pressure that forces the ball into Karasu's three-chain formation
+CUT 3 — 6 sec (0:12–0:18): Blue Lock Manga Chapter 358, panel -- Isagi intercepting the ball from Shidou and Agi (Chapter 358, Isagi interception panels) — Visualizes the hook's central claim -- Isagi taking the ball from both Shidou and Agi in the same instant
+CUT 4 — 6 sec (0:18–0:24): Blue Lock Manga Chapter 358, panel -- the England goalkeeper's punch-clear bouncing back into danger (Chapter 358, goalkeeper punch-clear panels) — Visualizes the turning point where England's clearance fails
+CUT 5 (final) — 6 sec (0:24–0:30): Blue Lock Manga Chapter 358, panel -- Yukimiya's equalizing shot from outside the box (Chapter 358, Yukimiya goal panels) — Payoff shot for the chapter title and the equalizer, landing directly into the CTA question about the second half
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+Blue Lock Chapter 358 is out and Isagi just stole the ball off two players at once -- Shidou and Agi both lose it to him in the same instant. England's punch-clear backfires and Yukimiya equalizes from outside the box. Does Japan have enough to hold this? #BlueLock #BlueLockManga #Isagi #Yukimiya #AnimeShorts
+
+━━━ YOUTUBE TITLE (Law #144 — punchy, searchable) ━━━
+Blue Lock Ch. 358: Isagi's Steal Changes Everything
+
+━━━ TIKTOK TITLE (Law #144 — punchy; distinct from the caption below) ━━━
+Blue Lock: Japan Just Equalized
+
+━━━ TIKTOK POST TEXT (caption — may be longer; hashtags live HERE, not in the title) ━━━
+Blue Lock Chapter 358 has Isagi stealing the ball off two players at once -- Shidou and Agi both lose it to him in the same instant. England's clearance bounces right back into danger and Yukimiya equalizes from outside the box. Isagi also notices something off about Agi right before he's subbed. Full breakdown in the video. #BlueLock #BlueLockManga #BlueLockTheory #Isagi #Yukimiya #Shidou #AnimeManga #AnimeShorts #WeeklyShonenJump
+
+━━━ PINNED COMMENT ━━━
+Chapter 358 spoilers in this video. Real question: does Japan actually have the read on England's defense now, or did they just get lucky on the equalizer? Drop your take below.
+
+━━━ RECOMMENDED POST TIME ━━━
+7:30 PM ET
+7:35 PM ET
+
+━━━ SOURCES (concise evidence — >=2, each dated) ━━━
+1. Full Chapter 358 spoiler breakdown -- title, match sequence beat-by-beat (Aiku's pass, Shidou/Hiori, Karasu's three-chain formation, Isagi's interception, Teddy's block, Zantetsu's race, the goalkeeper's punch-clear, Yukimiya's equalizer, Agi's substitution), and the confirmation that the exact numerical score is not stated — https://www.soapcentral.com/anime/blue-lock-chapter-358-spoilers-japan-levels-score-england (Aug 2026)
+2. Chapter 358 release date and regional release-time breakdown for Aug 25, 2026 — https://www.aol.com/articles/blue-lock-chapter-358-release-043840000.html (Aug 2026)
+
+━━━ END EVENING ━━━

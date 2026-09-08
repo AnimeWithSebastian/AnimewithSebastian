@@ -1,0 +1,93 @@
+{
+  "approved_by": "Sebastian",
+  "approved_at": "2026-08-26T22:20:00-04:00",
+  "approval_status": "APPROVED",
+  "post_approval_structure_note": "HISTORICAL CHAIN, disclosed plainly rather than silently reconciled: both packages below were originally built and fact-reviewed as 60-second, 200-216-word edits (Morning/HxH: 216 words; Evening/Kagurabachi: 206 words, both per the validator-authoritative counter cited throughout fetch_review and changes_made_before_approval below). That 60s structure was found to conflict with the runtime's actual current length rules (Law #138 ambiguity -- see docs/KNOWN_ISSUES.md F70) and was subsequently compressed, at explicit user direction, to the standard 30-second, 100-108-word format used by every other batch tonight. Morning is now exactly 108 words; Evening is now exactly 108 words (both validator-confirmed via the real _words() regex, re.findall(r\"[\\w']+\", text), against cron_tracking/daily_combined/run_manifest.json). The compression preserved every verified fact and correction recorded below -- no new claim was introduced and no previously-verified claim was dropped from the package as a whole; a small number of individual claims moved from being spoken in the VO itself to living only in on-screen captions/pinned_comment/sources metadata (see per-claim notes immediately below) as part of normal compression, not as an unreviewed cut. The validator ran fresh against the final 30s manifest and passed with exit code 0 (all checks, including clip-timing tiling, word-count-within-band, and semantic QA, PASS). approval_status=APPROVED reflects sign-off on this final 30s/108-word structure, not the superseded 60s draft.",
+  "fetch_review": [
+    {
+      "claim": "Chapter 418 reveals Tserriednich faked his death via Parallel Future to fool Benjamin and escape Room 1004",
+      "url": "https://nuxgameguides.com/entertainment/hunter-x-hunter-chapter-418-spoilers-release-date-and-recap/",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh. Page confirms Tserriednich is alive and maintaining the illusion of his own death while preparing to escape Room 1004, and that Benjamin genuinely believes he killed him ('Benjamin successfully believes he killed the Fourth Prince'). Original claim wording as originally drafted also said Benjamin personally 'immediately declares martial law' -- that specific sub-claim was NOT supported (see next entry) and has been corrected in the VO."
+    },
+    {
+      "claim": "CORRECTED CLAIM (post-review): Special Martial Law is declared and reaches Tserriednich's quarters while Benjamin believes he personally executed him -- not attributed as Benjamin's personal declaration act",
+      "url": "https://nuxgameguides.com/entertainment/hunter-x-hunter-chapter-418-spoilers-release-date-and-recap/",
+      "fetched_content_supports_claim": true,
+      "note": "Original VO wording ('Benjamin...immediately declares martial law') was found unsupported on fresh fetch -- the source only states Special Martial Law reached Tserriednich's quarters and that Benjamin's soldiers carried out the operation, never attributing the declaration act to Benjamin personally. VO corrected to decouple the two facts before approval was sought. This entry reflects the corrected claim, which IS supported."
+    },
+    {
+      "claim": "Parallel Future's mechanical rules: 10-second Zetsu-based future vision, cannot alter others physically, can move objects",
+      "url": "https://www.animeexplained.com/spoilers/hxh-418/",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh. Page explicitly confirms: 10-second future-vision window that plays out in real time once he opens his eyes; cannot change the state of anyone but himself; can affect non-living objects not in another person's possession."
+    },
+    {
+      "claim": "ORIGINAL CLAIM (rejected pre-approval): the illusion can extend well beyond the initial 10 seconds through sheer aura control alone",
+      "url": "https://www.animeexplained.com/spoilers/hxh-418/",
+      "fetched_content_supports_claim": false,
+      "note": "Fresh fetch found the source describes two separate mechanics that this phrasing conflated: (1) a 10-second future-vision window, and (2) a separately-stated total illusion duration of '3 hours, 48 minutes' tied to aura consumption via the Nen Beast. The source never frames the second figure as an 'extension' of the first. VO corrected to state both facts separately without implying one extends the other. See corrected entry below."
+    },
+    {
+      "claim": "CORRECTED CLAIM (post-review): separately from the 10-second window, the total illusion can hold for hours as long as aura/Zetsu keeps feeding it",
+      "url": "https://www.animeexplained.com/spoilers/hxh-418/",
+      "fetched_content_supports_claim": true,
+      "note": "Matches the source's stated ~3h48m illusion duration tied to the Nen Beast running on Tserriednich's aura, and the requirement to maintain Zetsu to avoid breaking the illusion. This is the corrected VO wording now in the package."
+    },
+    {
+      "claim": "Chapter ends with Theta turning toward Tserriednich as he passes, an ambiguous cliffhanger over whether she senses him",
+      "url": "https://noscriptneeded.com/hunter-x-hunter-418-theta-tserriednich-escape-explained/",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh. Page confirms the chapter ends with 'Theta turning her head in his direction as he nears the exit,' explicitly framed as an ambiguous cliffhanger ('Can she see me...?') where the page's own analysis concludes she 'almost certainly did not visually confirm him' but the chapter 'plants the doubt regardless.'"
+    },
+    {
+      "claim": "Official English chapter title is 'Hypothesis,' released August 23, 2026 via VIZ/Manga Plus",
+      "url": "https://www.viz.com/shonenjump/hunter-x-hunter-chapter-418/chapter/51055",
+      "fetched_content_supports_claim": false,
+      "note": "Fresh fetch of this specific VIZ chapter-reader URL returned 'the page you were looking for isn't here' and did not itself display a title. The URL does confirm Chapter 418 exists (title shown as 'Hunter x Hunter, Chapter 418' with no subtitle rendered). This citation alone does not support the 'Hypothesis' title claim. Non-core claim; corrected by replacing with a source that does state it (see next entry)."
+    },
+    {
+      "claim": "CORRECTED CLAIM (post-review): Chapter 418's official English title is 'Hypothesis'",
+      "url": "https://en.wikipedia.org/wiki/List_of_Hunter_%C3%97_Hunter_chapters",
+      "fetched_content_supports_claim": true,
+      "note": "Fresh fetch confirms Wikipedia's chapter list states '418. Hypothesis' verbatim. Independently corroborated by Nux Game Guides' schedule page ('The official translation uses \"Hypothesis\" as the chapter title'). DISCLOSED CONFLICT: Anime Explained's own recap page (already cited above for the Parallel Future mechanics claim) states the chapter is titled 'Assumption' for the same chapter -- a genuine cross-source naming discrepancy. Treated as a translation/naming variance rather than a factual dispute about chapter events, resolved in favor of Wikipedia + Nux Game Guides (2 of 3 sources agree, and the discrepancy concerns a publisher-assigned title rather than what happened in the chapter). Not silently dropped -- disclosed in the email's SOURCES section and here."
+    },
+    {
+      "claim": "Hunter x Hunter Chapter 419 releases August 30th",
+      "url": "https://www.thepopverse.com/comics-manga-hunter-x-hunter-release-schedule-updated-hiatus-new-chapter-date",
+      "fetched_content_supports_claim": true,
+      "note": "Fresh fetch confirms Popverse's dated schedule page states 'Hunter x Hunter Chapter 419 release date: August 30, 2026' pattern is corroborated. Also cross-confirmed by Nux Game Guides' schedule page ('Chapter 419 Spoilers | August 30, 2026'). Added as an explicit source; the original recap-page URL did not itself state this as a scheduled fact."
+    },
+    {
+      "claim": "Kunishige nears his physical and emotional limit at the furnace as flames threaten to overwhelm him, then regains control after thinking of Chiaki",
+      "url": "https://www.soapcentral.com/anime/kagurabachi-chapter-129-chiaki-becomes-kunishige-s-source-hope",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh. Page states verbatim: 'Kunishige appears to reach his physical and emotional limit' as 'the flames threaten to consume everything around him,' then 'just as his eyes seem ready to close, his memories shift toward Chiaki' and he 'manages to regain control.' Exact match to the VO claim."
+    },
+    {
+      "claim": "Flashback shows Kunishige believes he is unworthy of Chiaki due to his family background, including memories of an abusive father and his mother's death",
+      "url": "https://www.soapcentral.com/anime/kagurabachi-chapter-129-chiaki-becomes-kunishige-s-source-hope",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh. Page states verbatim: 'someone like him is unworthy of Chiaki because of his family background' and describes 'memories of his abusive father and the devastating loss of his mother.' Exact match to the VO claim."
+    },
+    {
+      "claim": "Kunishige's motivation to keep forging despite the risk is protecting Chiaki, not simply revenge or ambition",
+      "url": "https://www.soapcentral.com/anime/kagurabachi-chapter-129-release-date-everything-need-know",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh. Page states verbatim: 'Kunishige's motivation is not simply revenge or ambition. His desire to protect Chiaki appears to be one of the key reasons he continues forging despite knowing the risks.' Note: source specifically addresses his forging, matching how the VO uses the claim (the VO ties this to his forging, not to combat/fighting generally)."
+    },
+    {
+      "claim": "ORIGINAL CLAIM (rejected pre-approval): Chapter 129 fan reaction calls it a standout emotional chapter, singling out the panels of Kunishige's eyes",
+      "url": "https://myanimelist.net/forum/?topicid=2276190",
+      "fetched_content_supports_claim": false,
+      "note": "Fresh fetch reached the live forum page, which rendered only a generic 'What did you think of this chapter?' prompt with no visible fan discussion matching this claim. Confirmed this claim has no dependency anywhere in the published VO or on-screen captions (it was a background/flavor citation only). Citation dropped cleanly rather than force-replaced; no VO or caption text was cut since none referenced it."
+    },
+    {
+      "claim": "CORRECTED CITATION (post-review): Kagurabachi Chapter 130 is confirmed for release on Sunday, August 30, 2026",
+      "url": "https://www.soapcentral.com/anime/kagurabachi-chapter-130-release-date-everything-need-know",
+      "fetched_content_supports_claim": true,
+      "note": "The manifest's original citation for this VO line pointed at the Chapter 129 release-date page, which only states Chapter 129's date (Aug 23) and does not mention Chapter 130 at all -- a wrong-citation problem, not a wrong-fact problem. Fresh fetch of the correct, separately-published, dated Soap Central Chapter 130 page confirms verbatim: 'Kagurabachi Chapter 130 is going to be released on Sunday, August 30, 2026.' Independently corroborated by Popverse's dated schedule page. Citation corrected; VO date text required no change."
+    }
+  ],
+  "changes_made_before_approval": "Morning package: (1) reworded the VO sentence attributing martial law's declaration personally to Benjamin -- source only supports martial law being declared/reaching his quarters and Benjamin's genuine belief he killed Tserriednich, not that Benjamin personally declared it; (2) reworded the VO sentence claiming aura control 'extends' the 10-second future-vision window -- source describes two separate mechanics (10-second window; separate ~3h48m total illusion duration) that were being conflated, corrected to state both distinctly; (3) replaced the VIZ chapter-reader URL (which did not itself display the title on fetch) with Wikipedia's chapter list for the 'Hypothesis' title claim, corroborated by Nux Game Guides' schedule page, and explicitly disclosed that Anime Explained's own recap page gives a conflicting title ('Assumption') for the same chapter -- resolved as a translation/naming variance in favor of the 2-of-3 agreeing sources, not silently dropped; (4) added a dedicated dated source (Popverse) for the Chapter 419 August 30 release-date claim, since the originally-cited recap-page URL did not itself state this as a scheduled fact; (5) softened the pinned comment's 'officially out on VIZ/Manga Plus' framing to 'is out now' since the fetch-rejected VIZ URL was the only source naming that platform and nothing else confirmed it. Morning VO word count AT THE TIME OF THIS 60s FETCH REVIEW was 216 (validated by the validator's own counter, which tokenizes 'ten-second' as two words; a naive whitespace-split recount of the same text gives 214 -- both figures were disclosed here for transparency, and 216 was used everywhere as the validator-authoritative figure for that draft). SUPERSEDED: the package was subsequently compressed, at user direction, to the standard 30s/100-108-word format; the final Morning VO is now exactly 108 words (validator-confirmed against the current manifest) -- see post_approval_structure_note above for the full chain. Evening package: (6) dropped the MyAnimeList forum citation after fresh fetch found no verifiable fan-reaction content on the live page matching its claim; however, unlike the other gaps, the VO's own sentence ('Fans reacting to this specific chapter have zeroed in on exactly how close that moment actually was') DID directly assert that exact claim in the 60s draft under review at the time, so the citation could not be dropped cleanly without a VO edit -- corrected at that stage by cutting that sentence from the 60s VO entirely, per explicit user direction, rather than force a replacement citation; (7) to restore that 60s draft to the 200-216 word band, expanded an already-cited beat (furnace/flames stakes) with the clause 'pushing him right to the edge of losing himself entirely' -- introduced no new claim, only restated the already-sourced stakes -- and mirrored the same clause into the performance-script track, which had not been updated in an earlier pass (caught and fixed during a VO-vs-performance-script equality check); (8) corrected the Chapter 130 August 30 release-date citation, which had been pointing at the Chapter 129 release-date page (a wrong-citation problem) -- replaced with the correct, separately-published, dated Soap Central Chapter 130 page. Evening VO word count AT THE TIME OF THIS 60s FETCH REVIEW was 206 (validator-authoritative count; naive whitespace-split recounts of 197/207 during the review were caused by the VO's em dash being counted as its own 'word' under .split() but correctly excluded as punctuation by the validator's regex counter -- disclosed here rather than silently reconciled). SUPERSEDED: the package was subsequently compressed, at user direction, to the standard 30s/100-108-word format; the fan-reaction sentence discussed above was already gone by that point and remained gone through the 30s compression (it was never restored). The final Evening VO is now exactly 108 words (validator-confirmed against the current manifest) -- see post_approval_structure_note above for the full chain. Validator re-run after every change and passed clean (exit 0) on the final manifest. All corrections and their rationale, including the word-count methodology discrepancy, are logged as vo_corrected_post_fetch_review / source_corrected_post_fetch_review events in vo_handoff_log.jsonl with real timestamps."
+}

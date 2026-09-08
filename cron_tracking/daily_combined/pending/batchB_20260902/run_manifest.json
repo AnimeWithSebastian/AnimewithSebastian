@@ -1,0 +1,348 @@
+{
+  "batch_id": "bd5bda60-98a3-4376-8060-3ec9422b9674",
+  "run_ts": "2026-09-02T00:05:24.201853+00:00",
+  "post_date": "2026-09-02",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-09-02T00:05:24.201853+00:00",
+    "age_days": 0,
+    "status": "REFRESHED"
+  },
+  "packages": [
+    {
+      "package_id": "2fc49176-32b7-4166-8224-a99e5bb57dc3",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "Kagurabachi",
+      "angle": "The Soga Clan plans a forbidden anesthesia technique on Chiaki before her handover to the Mikaboshi at Airashima, while the Sorcery Bureau scrambles over the Datenseki crisis -- a distinct plot angle from the prior Kagurabachi send about Kunishige's furnace breakthrough",
+      "format_type": "THE_MOMENT",
+      "topic_class": "timely",
+      "topic_signals": [
+        "chapter",
+        "news"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "They're about to erase her mind — and calling it a mercy.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "They're about to erase her mind — and calling it a mercy.",
+        "Kagurabachi's Soga Clan just revealed the technique that erases who you are."
+      ],
+      "selected_hook_index": 0,
+      "hook_line": "They're about to erase her mind — and calling it a mercy.",
+      "opening_sentence": "They're about to erase her mind — and calling it a mercy.",
+      "vo_status": "complete",
+      "vo": "They're about to erase her mind — and calling it a mercy. Chapter 130 has Japan agreeing to hand Chiaki over to the Mikaboshi at Airashima on April first, with the story's present timeline sitting at March twenty-ninth. Before that handover happens, the Soga Clan restrains Akemura and moves forward with a forbidden technique on Chiaki: a form of anesthesia that paralyzes her sense of self and makes her obedient. Their justification is that it will spare her from experiencing whatever cruelty comes after she's handed over. Chapter 131 releases September sixth. Is the Soga Clan actually protecting Chiaki, or just controlling her? Leave your take.",
+      "vo_word_count": 106,
+      "question_line": "Is the Soga Clan actually protecting Chiaki, or just controlling her?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "video_style": "Face-cam split screen (creator TOP / anime manga panels BOTTOM, Law #134 Stage 2 required default)",
+      "face": true,
+      "split_screen": true,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "length_rationale": "Standard 30s edit, 100-108 word band (Law #138 default).",
+      "sources": [
+        {
+          "claim": "Kagurabachi Chapter 130: Japan accepts the Mikaboshi's demands and confirms Chiaki will be handed over at Airashima on April 1 at noon; the story's present timeline is March 29",
+          "url": "https://www.soapcentral.com/anime/kagurabachi-chapter-130-chiaki-reunites-kunishige-datenseki-breakthrough-changes-everything",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "The Soga Clan restrains Akemura and plans to use a forbidden technique on Chiaki described as a form of anesthesia that paralyzes her sense of self and turns her obedient, justified as preventing her from experiencing cruelty after the handover",
+          "url": "https://www.soapcentral.com/anime/kagurabachi-chapter-130-chiaki-reunites-kunishige-datenseki-breakthrough-changes-everything",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Kagurabachi Chapter 131 is scheduled to release Sunday, September 6, 2026",
+          "url": "https://www.soapcentral.com/anime/kagurabachi-chapter-131-release-date-everything-need-know",
+          "date": "Sep 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Manga panel: Japan/the Mikaboshi confirming Chiaki's handover terms at Airashima",
+          "reason": "Establishes the ticking-clock stakes for the hook",
+          "duration_sec": 8,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 8,
+          "scene_verified": false,
+          "manga_reference": "Kagurabachi Chapter 130, opening handover-confirmation pages",
+          "verification_note": "Kagurabachi anime does not premiere until April 2027 (confirmed); this chapter is well ahead of any adaptation, so real manga panel art is used per the unaired-content exception.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Kagurabachi anime footage -- none exists; the anime adaptation has not premiered yet (confirmed April 2027 start).",
+          "claim_vs_source_check": null
+        },
+        {
+          "scene": "Manga panel: the Soga Clan restraining Akemura and preparing the forbidden anesthesia technique on Chiaki",
+          "reason": "Delivers the core 'erasing her mind' hook claim",
+          "duration_sec": 14,
+          "timeline_start_sec": 8,
+          "timeline_end_sec": 22,
+          "scene_verified": false,
+          "manga_reference": "Kagurabachi Chapter 130, Soga Clan forbidden-technique scene",
+          "verification_note": "Kagurabachi anime has not premiered; manga panel art used per unaired-content exception.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Kagurabachi anime footage -- none exists; anime adaptation not yet premiered.",
+          "claim_vs_source_check": null
+        },
+        {
+          "scene": "Manga panel: Chiaki's resolve despite her world crumbling",
+          "reason": "Closes on the emotional stakes tied to the question/CTA",
+          "duration_sec": 8,
+          "timeline_start_sec": 22,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "manga_reference": "Kagurabachi Chapter 130, Chiaki's resolve panel",
+          "verification_note": "Kagurabachi anime has not premiered; manga panel art used per unaired-content exception.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Kagurabachi anime footage -- none exists; anime adaptation not yet premiered.",
+          "claim_vs_source_check": null
+        }
+      ],
+      "clip_plan_needs_manga_source": true,
+      "clip_plan_needs_release_delay": false,
+      "story_point_gate": {
+        "anime_has_reached_this_point": false,
+        "checked_via": "https://www.animenewsnetwork.com/news/2026-04-27/takeru-hokazono-kagurabachi-manga-gets-tv-anime-in-april-2027/.236804"
+      },
+      "clip_descriptions": "CUT 1 -- 8 sec (0:00-0:08): handover terms confirmed at Airashima -- sets the ticking clock. CUT 2 -- 14 sec (0:08-0:22): Soga Clan's forbidden anesthesia technique on Chiaki -- delivers the hook. CUT 3 -- 8 sec (0:22-0:30): Chiaki's resolve -- closes on the emotional stakes. TOTAL CLIP TIME: 30 seconds.",
+      "captions": "Kagurabachi Chapter 130 just revealed the technique the Soga Clan wants to use on Chiaki -- and they're calling it mercy.",
+      "youtube_title": "Kagurabachi 130: They're Calling This Mercy",
+      "tiktok_title": "This 'mercy' erases who you are (Kagurabachi 130)",
+      "pinned_comment": "Chapter 130 is out now on Shueisha Manga Plus / Viz. Chapter 131 drops September 6.",
+      "tiktok_post_text": "The Soga Clan wants to erase Chiaki's mind before handing her over -- and they're calling it protection. Kagurabachi Chapter 130 breakdown. #Kagurabachi #Chiaki #AnimeManga #ShonenJump #AnimeTok #MangaSpoilers #AnimeShorts #AnimeCommentary",
+      "roundup_shows": null,
+      "series_public_name": null,
+      "series_next_line": null,
+      "flagship_url": null,
+      "flagship_opening_hook_match": null,
+      "post_times": {
+        "youtube": "2026-09-02T09:00:00-04:00",
+        "tiktok": "2026-09-02T09:15:00-04:00"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "The Soga Clan plans a forbidden anesthesia technique on Chiaki that paralyzes her sense of self, justified as preventing her from experiencing cruelty after her handover to the Mikaboshi",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.soapcentral.com/anime/kagurabachi-chapter-130-chiaki-reunites-kunishige-datenseki-breakthrough-changes-everything"
+            ],
+            "anchors_claim": "hook",
+            "show": null
+          },
+          {
+            "claim": "Chiaki's handover to the Mikaboshi is confirmed for April 1 at noon at Airashima; story's present timeline is March 29",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.soapcentral.com/anime/kagurabachi-chapter-130-chiaki-reunites-kunishige-datenseki-breakthrough-changes-everything"
+            ]
+          },
+          {
+            "claim": "Chapter 131 releases September 6, 2026",
+            "core": false,
+            "claim_type": "F",
+            "source_urls": [
+              "https://www.soapcentral.com/anime/kagurabachi-chapter-131-release-date-everything-need-know"
+            ]
+          }
+        ],
+        "checks": {
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "ai_slop_pattern_check": true
+        },
+        "note": "VO complete. All semantic_qa checks (structural + VO-dependent) audited and attested true this pass."
+      },
+      "format_diversity_weighting": null,
+      "evergreen_weighting": null
+    },
+    {
+      "package_id": "a37c63b8-76fa-4a7a-b910-c7b417be9146",
+      "slot": "evening",
+      "content_type": "short",
+      "show": "Solo Leveling: Ragnarok",
+      "angle": "The Ragnarok light novel returns Aug 12, 2026 after an indefinite hiatus tied to artist Jin's mandatory South Korean military service, following Sung Suho -- a genuinely new spin-off angle, independent of the prior original-series Crunchyroll-ranking send",
+      "format_type": "FACT_DROP",
+      "topic_class": "timely",
+      "topic_signals": [
+        "news"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "Solo Leveling: Ragnarok just came back from a hiatus -- but only half of it.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "The Solo Leveling spin-off just came back from a hiatus caused by real military service — but only half of it.",
+        "Solo Leveling's sequel went dark for real-world reasons, not story ones."
+      ],
+      "selected_hook_index": 0,
+      "hook_line": "The Solo Leveling spin-off just came back from a hiatus caused by real military service — but only half of it.",
+      "opening_sentence": "The Solo Leveling spin-off just came back from a hiatus caused by real military service — but only half of it.",
+      "vo_status": "complete",
+      "vo": "The Solo Leveling spin-off just came back from a hiatus caused by real military service — but only half of it. Ragnarok follows Sung Suho, son of Sung Jinwoo and Cha Haein. The manhwa, illustrated by Jin, went on hiatus in January when Jin was called up for mandatory South Korean service, and it still hasn't returned. What did come back on August twelfth is the separate Ragnarok light novel, written by Daul. The manhwa itself is confirmed to eventually return with a different artist, but that hasn't happened yet. Does a hiatus this long change how you feel about picking the story back up? Leave your take.",
+      "vo_word_count": 108,
+      "question_line": "Does a hiatus this long change how you feel about picking the story back up?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "video_style": "Face-cam split screen (creator TOP / anime manga panels BOTTOM, Law #134 Stage 2 required default)",
+      "face": true,
+      "split_screen": true,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "length_rationale": "Standard 30s edit, 100-108 word band (Law #138 default).",
+      "sources": [
+        {
+          "claim": "Solo Leveling: Ragnarok is a spin-off (not a direct continuation) following Sung Suho, son of Sung Jinwoo and Cha Haein, written by Daul with art by Jin; the manhwa entered an unexpected hiatus in January 2026 due to Jin's mandatory South Korean military service (18-21 months)",
+          "url": "https://comicbook.com/anime/news/solo-leveling-ragnarok-finally-confirms-its-return-after-indefinite-hiatus-but-theres-a-catch/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Tapas's official X handle confirmed the Ragnarok light novel returns August 12, 2026; the manhwa itself has yet to confirm its return and is separately confirmed to eventually come back with a different artist since Jin remains on military service; English manhwa Volume 1 is out and Volume 2 is scheduled for October 20",
+          "url": "https://comicbook.com/anime/news/solo-leveling-ragnarok-finally-confirms-its-return-after-indefinite-hiatus-but-theres-a-catch/",
+          "date": "Aug 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Manga/manhwa panel: Sung Suho introduced in the Solo Leveling epilogue setup",
+          "reason": "Establishes who the spin-off follows for viewers unfamiliar with Ragnarok",
+          "duration_sec": 8,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 8,
+          "scene_verified": false,
+          "manga_reference": "Solo Leveling: Ragnarok manhwa, Vol. 1 introduction of Sung Suho",
+          "verification_note": "Ragnarok has no anime adaptation; this is a manhwa/light novel spin-off, so real manhwa panel art is used per the unaired-content exception.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Solo Leveling: Ragnarok anime footage -- none exists; the spin-off has no anime adaptation.",
+          "claim_vs_source_check": null
+        },
+        {
+          "scene": "Manga/manhwa panel: the hiatus-era Season 2 finale artwork",
+          "reason": "Visualizes the point where the hiatus began, for the 'came back from a hiatus' hook",
+          "duration_sec": 10,
+          "timeline_start_sec": 8,
+          "timeline_end_sec": 18,
+          "scene_verified": false,
+          "manga_reference": "Solo Leveling: Ragnarok manhwa, Season 2 finale artwork",
+          "verification_note": "No anime adaptation exists for Ragnarok; manhwa panel art used per unaired-content exception.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Solo Leveling: Ragnarok anime footage -- none exists.",
+          "claim_vs_source_check": null
+        },
+        {
+          "scene": "Manga/manhwa panel or cover art: Volume 1 English cover art (pre-hiatus chapters, not new content)",
+          "reason": "Visualizes the light-novel-return / manhwa-still-on-hold contrast to close the hook",
+          "duration_sec": 12,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "manga_reference": "Solo Leveling: Ragnarok Volume 1 English cover art",
+          "verification_note": "No anime adaptation exists for Ragnarok; cover/panel art used per unaired-content exception.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Solo Leveling: Ragnarok anime footage -- none exists.",
+          "claim_vs_source_check": null
+        }
+      ],
+      "clip_plan_needs_manga_source": true,
+      "clip_plan_needs_release_delay": false,
+      "story_point_gate": {
+        "anime_has_reached_this_point": false,
+        "checked_via": "https://comicbook.com/anime/news/solo-leveling-ragnarok-finally-confirms-its-return-after-indefinite-hiatus-but-theres-a-catch/"
+      },
+      "clip_descriptions": "CUT 1 -- 8 sec (0:00-0:08): Sung Suho introduced -- establishes who the spin-off follows. CUT 2 -- 10 sec (0:08-0:18): Season 2 finale artwork -- marks where the hiatus began. CUT 3 -- 12 sec (0:18-0:30): Volume 1 English cover art -- visualizes the light-novel-return / manhwa-still-on-hold contrast. TOTAL CLIP TIME: 30 seconds.",
+      "captions": "Solo Leveling: Ragnarok's light novel just came back from a hiatus caused by its artist's real military service -- the manhwa itself is still on hold.",
+      "youtube_title": "Solo Leveling Ragnarok: Light Novel Returns",
+      "tiktok_title": "Only Half of Ragnarok Is Back",
+      "pinned_comment": "The Ragnarok light novel returned August 12 -- the manhwa itself is still on hiatus while artist Jin completes his military service. English manhwa Volume 1 and 2 collect the pre-hiatus chapters, not new content.",
+      "tiktok_post_text": "Solo Leveling: Ragnarok's light novel is back after its artist got drafted -- but the manhwa itself is still on hold. #SoloLeveling #SoloLevelingRagnarok #SungJinwoo #AnimeManga #Manhwa #AnimeTok #AnimeNews #AnimeShorts #AnimeCommentary",
+      "roundup_shows": null,
+      "series_public_name": null,
+      "series_next_line": null,
+      "flagship_url": null,
+      "flagship_opening_hook_match": null,
+      "post_times": {
+        "youtube": "2026-09-02T18:00:00-04:00",
+        "tiktok": "2026-09-02T18:15:00-04:00"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Ragnarok manhwa entered an unexpected hiatus in January 2026 due to artist Jin's mandatory South Korean military service (18-21 months); the light novel returns August 12, 2026",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://comicbook.com/anime/news/solo-leveling-ragnarok-finally-confirms-its-return-after-indefinite-hiatus-but-theres-a-catch/"
+            ],
+            "anchors_claim": "hook",
+            "show": null
+          },
+          {
+            "claim": "Ragnarok follows Sung Suho, son of Sung Jinwoo and Cha Haein, introduced in the original series epilogue; the manhwa itself has yet to confirm its return and is separately confirmed to eventually come back with a different artist",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://comicbook.com/anime/news/solo-leveling-ragnarok-finally-confirms-its-return-after-indefinite-hiatus-but-theres-a-catch/"
+            ]
+          },
+          {
+            "claim": "English Volume 1 already released; Volume 2 scheduled October 20",
+            "core": false,
+            "claim_type": "F",
+            "source_urls": [
+              "https://comicbook.com/anime/news/solo-leveling-ragnarok-finally-confirms-its-return-after-indefinite-hiatus-but-theres-a-catch/"
+            ]
+          }
+        ],
+        "checks": {
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "ai_slop_pattern_check": true
+        },
+        "note": "VO complete. All semantic_qa checks (structural + VO-dependent) audited and attested true this pass."
+      },
+      "format_diversity_weighting": null,
+      "evergreen_weighting": null
+    }
+  ],
+  "minimum_frequency_floor": {
+    "floor_formats": [
+      "THEORY_SPECULATION",
+      "SEASON_ROUNDUP",
+      "WORTH_WATCHING",
+      "WATCH_RANK",
+      "SEASON_RATING"
+    ],
+    "window_days": 21,
+    "evaluations": []
+  }
+}

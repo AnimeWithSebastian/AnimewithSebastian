@@ -1,0 +1,88 @@
+{
+  "approved_by": "Sebastian",
+  "approved_at": "2026-08-16T02:49:41.727431911+00:00",
+  "approval_status": "APPROVED",
+  "approval_pending_note": "RESOLVED. Law #165 approval granted by Sebastian based on the full independent verification performed across this review thread: direct re-checks of send-log overlap (sent_scripts_log.json, 203 records, zero matches for either show), three independent VO word-count checks against the validator's real _words() regex (before and after the Law #141 fragment fix), all 8 fetch_review entries independently re-fetched and confirmed in this session, and the render_emails.py post-time-doubling bug (F46) mechanically verified and worked around. approved_by/approved_at were left null throughout drafting and only filled in now, at the moment of actual human approval -- consistent with the discipline documented in docs/KNOWN_ISSUES.md F41 (never report a workflow step complete before the event occurred).",
+  "batch_id": "f21e15f0-4a35-4f32-a889-d0502bae924a",
+  "corrects_batch_id": null,
+  "scope_note": "This batch contains TWO packages: The Dangers in My Heart (morning, MANGA_VS_ANIME) and Chained Soldier (evening, FACT_DROP), both post_date 2026-08-16. Neither package corrects a prior batch. Both were generated fresh this session by a general_purpose subagent under five explicit standing rules dictated by Sebastian (independent fetch requirement, fandom.com HTTP 402 caution, permanent batch_id retirement, explicit send-log overlap re-check, air-time staleness re-check), then independently re-verified in this review pass: (1) send-log overlap re-checked directly against sent_scripts_log.json (203 records, zero matches for either show), (2) VO word counts re-checked against the validator's real _words() regex after a content fix (see changes_made_before_approval), (3) all four core-claim source URLs independently re-fetched in THIS session (not reused from the subagent's self-reported fetch content) and confirmed to support their attached claims.",
+  "fetch_review": [
+    {
+      "claim": "[CORE, anchors_claim=hook, morning] The Dangers in My Heart manga will end in three (more) chapters.",
+      "url": "https://www.animenewsnetwork.com/news/2026-08-04/the-dangers-in-my-heart-manga-ends-in-3-chapters/.240281",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session (not reused from the subagent's self-reported source-fetch artifact). Exact quote: 'The series will end in three chapters.' Article headline itself states the same fact ('The Dangers in My Heart Manga Ends in 3 Chapters')."
+    },
+    {
+      "claim": "[CORE, morning] The Dangers in My Heart manga will end in three chapters (independent second source).",
+      "url": "https://comicbook.com/anime/news/8-years-later-hidives-critically-acclaimed-series-confirms-finale/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. Exact quote: 'the manga is ending in three chapters.' Doubly confirms the ANN claim from a second, non-encyclopedic, independent outlet -- satisfies Law #58 pairing requirement without relying on any encyclopedic source."
+    },
+    {
+      "claim": "[CORE, morning] The Dangers in My Heart anime's Season 3 is expected in 2027, with no exact date announced.",
+      "url": "https://comicbook.com/anime/news/8-years-later-hidives-critically-acclaimed-series-confirms-finale/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. Exact quote: 'Season 3 is expected to drop in 2027, although an exact release date hasn't been announced yet.' Cross-checked against the ANN source, also fetched fresh, which independently states: 'The anime is getting a third season in 2027.' Doubly confirmed. VO correctly hedges ('is coming in 2027') rather than asserting a specific date, matching both sources' own hedge."
+    },
+    {
+      "claim": "[NON-CORE, morning, promotional b-roll only] YouTube video is HIDIVE's official The Dangers in My Heart trailer.",
+      "url": "https://www.youtube.com/watch?v=x-cTWEpQu_A",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. Confirmed official HIDIVE channel upload titled 'The Dangers in my Heart Trailer | HIDIVE', dated March 31, 2023. States only the original Season 1 premiere date ('premieres Saturday, April 1'), nothing about the manga ending or Season 3 -- used correctly in the package as licensed b-roll only, not as evidentiary support for any core claim."
+    },
+    {
+      "claim": "[CORE, anchors_claim=hook, evening] Chained Soldier's third season was announced as in-the-works at an August 2 special event, with an announcement video and visual, but no release date or studio.",
+      "url": "https://www.animenewsnetwork.com/news/2026-08-02/chained-soldier-tv-anime-gets-3rd-season/.240191",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. Exact quote: 'The special event for the second season... on Sunday announced that the series' third season is in the works, and revealed an announcement video and visual.' Confirmed the page states no release date and no confirmed Season 3 studio -- it only names Season 2's studio (Passione and Hayabusa Film) and explicitly does not state either is attached to Season 3."
+    },
+    {
+      "claim": "[CORE, evening] Season two character designer Keiya Nakano drew a celebratory/commemorative illustration for the Season 3 announcement.",
+      "url": "https://www.animenewsnetwork.com/news/2026-08-02/chained-soldier-tv-anime-gets-3rd-season/.240191",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. Exact quote: 'The second season's character designer Keiya Nakano also drew an illustration to celebrate the third season announcement.' Independently corroborated by the Anime.com source, also fetched fresh: 'Anime News Network reports that Season 2 character designer Keiya Nakano drew a commemorative illustration to mark the announcement.' Doubly confirmed."
+    },
+    {
+      "claim": "[CORE, evening] No release date, broadcast window, or studio has been announced for Chained Soldier Season 3.",
+      "url": "https://www.anime.com/news/chained-soldier-season-3-production-confirmed",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. Exact quotes: 'No release date, broadcast window, or staff list for Season 3 has been given' and 'Nothing has been said publicly about which studio will handle the new season either.' IMPORTANT NUANCE CAUGHT ON RE-FETCH: the official PV YouTube page (m-gn28edpIc) lists 'Passione x Hayabusa Film' under a staff block explicitly headed 'Chained Soldier 2' (i.e. Season 2's own crew credits, not a Season 3 confirmation) -- this matches, rather than contradicts, the 'no studio announced for S3' claim, but the package correctly does NOT cite the PV page as studio evidence for Season 3. Recorded here so a future reviewer does not mistake that Season-2-labeled credit block for a Season 3 studio confirmation."
+    },
+    {
+      "claim": "[NON-CORE, evening, promotional b-roll only] YouTube video is the official Chained Soldier Season 3 production-decision PV, published by Pony Canyon's anime channel.",
+      "url": "https://www.youtube.com/watch?v=m-gn28edpIc",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. Page title translates to 'TV anime Chained Soldier 3 production-decision PV'; description states '3rd season production of the TV anime Chained Soldier has been decided'; uploader is Pony Canyon's official anime channel, dated 2026-08-02, matching the Anime.com source's description of the PV. No Season 3 release date stated on the page, consistent with the core claim."
+    }
+  ],
+  "verification_gaps_and_caveats": [
+    {
+      "issue": "fandom.com was not used as a source for either package",
+      "detail": "Per Sebastian's standing rule tonight ('fandom.com is known to be intermittently unreachable (HTTP 402) -- don't rely on it as a sole source; verify independently if used'), this is recorded as a non-issue: neither package cites any fandom.com/wikia source at all. All six core claims across both packages rely on animenewsnetwork.com, comicbook.com, or anime.com -- all non-encyclopedic, dated, and independently re-fetched in this session."
+    },
+    {
+      "issue": "Send-log overlap re-checked directly, not via self-attestation",
+      "detail": "Per Sebastian's standing rule tonight and F43's precedent (recent_send_conflict has been caught wrong twice), the recent_send_conflict flag in the manifest was NOT trusted at face value. Instead, sent_scripts_log.json (203 records) was searched directly for 'dangers in my heart' / 'kyotaro' / 'bokuyaba' and 'chained soldier' / 'mato seihei' -- zero matches on all terms, confirmed twice (once during initial subagent-output review, once again during this approval-file construction pass)."
+    },
+    {
+      "issue": "Air-time staleness re-checked for both packages, per Sebastian's standing rule (F45 precedent)",
+      "detail": "Morning package's claim is about manga chapter count and a 2027 anime season -- not tied to any specific airing/streaming moment, so there is no air-time staleness risk to check against 'right now' (2026-08-15 22:41 ET). Evening package's claim is about an August 2, 2026 announcement event (13 days in the past relative to this review) with NO forward-looking prediction about a specific upcoming air date -- the VO explicitly frames the lack of a date as the story, so there is nothing that can go stale between an announcement and this post_date the way F45's pre-air preview did. Neither package previews an unaired episode or predicts a specific future air/release moment."
+    },
+    {
+      "issue": "Colon-handoff loop fragments removed from both VOs and their associated manifest fields nulled (Law #141 rescission correction)",
+      "detail": "Both packages originally ended their VO on a manufactured incomplete-sentence fragment ('Before the credits roll:' / 'Before the next order:') using the Law #141 forced seamless-loop mechanic, which was rescinded 2026-07-27 and is no longer required or wanted (cron_daily_runtime.txt Step 6: 'no forced incomplete colon setup required'). Both fragments were cut from the vo field; vo_word_count recalculated against the validator's real _words() regex (morning 106->102, evening 104->100); loop_line/loop_transition/final_to_opening/loop_read_aloud_pass fields nulled on both packages rather than left populated with stale fragment text that no longer matches the shipped VO. See changes_made_before_approval for the full before/after."
+    },
+    {
+      "issue": "Evening VO word count sits exactly at the 100-word floor of the 100-108 band",
+      "detail": "After removing the colon fragment, the evening package's VO is exactly 100 words -- the minimum of the validator's in-band range for a 30s edit. Confirmed via the real validator regex, not estimated. Per Sebastian's explicit instruction, the content was NOT padded to create margin; it was judged to read as a complete, natural thought at this length and the validator (which requires >=100, <=108, tolerance +/-1) passes cleanly at exactly 100."
+    },
+    {
+      "issue": "render_emails.py rendering bug found and worked around locally (now logged as its own entry)",
+      "detail": "The shared cron_tracking/daily_combined/render_emails.py doubles the RECOMMENDED POST TIME line whenever a package's post_times values are stored as full sentences (as both of this batch's packages' are), because the template re-prepends its own label on top of an already-labeled string. Worked around with a batch-scoped renderer copy for this batch's two draft emails only; the shared template file itself was NOT modified. Logged as docs/KNOWN_ISSUES.md F46 (commit pending alongside this batch's other docs, per related_process_gaps_logged_separately below)."
+    }
+  ],
+  "changes_made_before_approval": "(1) Removed the manufactured trailing colon fragment from both VOs ('Before the credits roll:' from morning, 'Before the next order:' from evening) after confirming via cron_daily_runtime.txt that the Law #141 forced-loop mechanic these fragments implement was rescinded 2026-07-27 and is no longer required -- the runtime's current Step 6 explicitly says 'no forced incomplete colon setup required.' (2) Recalculated and corrected vo_word_count on both packages against the validator's real _words() regex after the VO edit: morning 106 -> 102, evening 104 -> 100 (both exact regex matches, not estimates). (3) Nulled the now-stale loop_line, loop_transition, final_to_opening, and loop_read_aloud_pass fields on both packages (previously populated with the cut fragment text) and replaced loop_transition_note with a plain statement that no forced loop was attempted, so no field in the manifest contradicts the actual shipped VO. (4) Corrected the matching vo_word_count summary values in state.json (106->102, 104->100), which had gone stale relative to the manifest after the VO edit. (5) Built a batch-scoped copy of render_emails.py to work around the F46 post-time-doubling bug for this batch's two draft emails, without touching the shared template. FINAL VALIDATOR STATE: validators/validate_dual_package.py run directly against the corrected manifest returns raw PASS, exit code 0, all checks green, immediately before this approval file was constructed.",
+  "related_process_gaps_logged_separately": "One new gap found while preparing this batch is now logged in docs/KNOWN_ISSUES.md (commit pending at time of staging): render_emails.py's RECOMMENDED POST TIME section silently doubles the post-time label whenever post_times values are stored as full sentences rather than bare time strings -> F46. This is a shared-template rendering gap, not a content or generation defect in this batch's manifest data. No validator code was changed; the shared render_emails.py file was also left unchanged -- only a batch-scoped copy was used to produce readable drafts for this approval.",
+  "status": "approved"
+}

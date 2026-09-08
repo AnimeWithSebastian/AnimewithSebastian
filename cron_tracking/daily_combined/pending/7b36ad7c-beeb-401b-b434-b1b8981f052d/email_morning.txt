@@ -1,0 +1,64 @@
+SUBJECT: CORRECTION | MORNING | Kingdom Hearts | 2026-08-23 | Disney Just Announced a Kingdom Hearts Anime
+
+━━━ MORNING — 2026-08-23 ━━━
+SHOW:    Kingdom Hearts
+ANGLE:   Disney officially announces an original Kingdom Hearts anime series for Disney+ and Disney Channel at D23 2026, with Tetsuya Nomura and Square Enix attached, an original story not adapting the games -- key visual shows a figure with dark hair and fur-trimmed clothing, not Sora's usual look, identity unconfirmed
+FORMAT:  FACT_DROP
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM — Law #134 Stage 2; manga panels allowed within the anime-footage half for manga-based formats)
+TOPIC:   timely — signals: news
+SERIES:  one-off
+FUNNEL:  standalone
+
+*** THIS IS A CORRECTION TO AN ALREADY-SENT PACKAGE ***
+Corrects batch_id: af6c90bf-b832-474c-ad67-782f56038368 (package_id 76c51349-bdb9-4456-a947-aa54883e74b7, originally sent as this same morning slot for post_date 2026-08-23)
+Correction reason: the key visual in the teaser was inaccurately described as a "cloaked/hooded figure... identity unconfirmed" in the original send. This traced back to an inaccurate secondary-source description (Hypebeast's own article prose calls it a "cloaked, hooded figure holding a Keyblade") that was never checked against the actual promotional image itself before the original send.
+What changed: Sebastian directly inspected the real, actual promotional image and confirmed the "cloaked/hooded" description does not match it -- the figure has fully visible dark hair, not covered by any hood, and fur-trimmed clothing across the shoulders, with no cloak anywhere in the image. Corrected: (1) the VO, now reading "the only image released so far shows dark hair and fur-trimmed clothing -- not Sora's usual look" in place of the cloaked/hooded framing; (2) the hook line / opening sentence and the closing question line, updated to match the corrected VO exactly; (3) both hook candidates, angle, and the required VO beats; (4) the claim-source matrix entry for the visual description, now flagged as corrected from the earlier inaccurate framing; (5) all four clip descriptions and their claim-vs-source checks (CUT 1 opening visual, CUT 4 closing visual) reworded from "cloaked figure" / "cloaked Keyblade wielder" to "dark hair and fur-trimmed clothing" / "dark-haired, fur-trimmed figure"; (6) the TikTok post text, now describing the real visual directly instead of "doesn't show the lead character's face yet"; (7) the still-live Helgi/Dark Road fan theory is preserved (it remains real, sourced to Complex.com, and appropriately hedged as unconfirmed) but reworded to match the corrected visual description -- "fans comparing the fur trim and outfit think it's Helgi" -- rather than the old "cloaked Keyblade wielder" framing. The evening Bleach package from this same batch is unaffected and is not being re-sent.
+If you already produced/posted the original version of this Short, this corrected script should replace it going forward.
+
+━━━ FIRST-SECOND HOOK (Law #144) ━━━
+ON-SCREEN (second 1): DISNEY JUST ANNOUNCED A KINGDOM HEARTS ANIME
+SPOKEN (VO first line): Disney just announced a Kingdom Hearts anime, and the only image released so far shows dark hair and fur-trimmed clothing -- not Sora's usual look.
+HOOK FAMILY: revelation
+(candidate A: Disney just announced a Kingdom Hearts anime, and the only image released so far shows dark hair and fur-trimmed clothing -- not Sora's usual look.
+ candidate B: Kingdom Hearts is getting an anime, and the first image already has fans debating who's under that fur trim.
+ SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (104 words — fills the fixed 30s CapCut edit) ━━━
+Disney just announced a Kingdom Hearts anime, and the only image released so far shows dark hair and fur-trimmed clothing -- not Sora's usual look. The series was confirmed at D23 twenty twenty-six, releasing on Disney Plus and Disney Channel. Tetsuya Nomura and Square Enix are attached, but this is an original story, not a game adaptation. No premiere date, episode count, studio, or cast has been announced. Disney hasn't confirmed the figure's identity, but fans comparing the fur trim and outfit think it's Helgi from Dark Road. So is that really Helgi, or did Sora just change his look? Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings — Law #140) ━━━
+CUT 1 — 7 sec (0:00–0:07): D23 2026 official Kingdom Hearts anime teaser key visual — Keyblade-wielding figure with dark hair and fur-trimmed clothing, shown from behind, Disney Channel/Disney+ logo lockup — opens on the real reveal
+CUT 2 — 7 sec (0:07–0:14): B-roll — Kingdom Hearts game series key art/logo montage for franchise context (no anime footage exists yet for this unreleased series)
+CUT 3 — 7 sec (0:14–0:21): Disney+/Disney Channel co-branding lockup shown at the D23 panel announcement — visually confirms the dual-platform distribution detail
+CUT 4 — 9 sec (0:21–0:30): Return to the teaser key visual (dark-haired, fur-trimmed figure) held on screen for the closer/CTA beat
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+DISNEY / JUST ANNOUNCED / A KINGDOM HEARTS / ANIME (word-by-word, one orange keyword per line, max 2 lines on screen, Anton ALL CAPS white/black outline)
+
+━━━ YOUTUBE TITLE ━━━
+Disney Just Announced a Kingdom Hearts Anime
+
+━━━ TIKTOK TITLE ━━━
+Kingdom Hearts Is Getting an Anime
+
+━━━ TIKTOK POST TEXT ━━━
+Disney just confirmed an ORIGINAL Kingdom Hearts anime series for Disney+ AND Disney Channel — and the key visual shows dark hair and fur-trimmed clothing, not Sora's usual look. Nomura and Square Enix are attached. No release date yet. #KingdomHearts #DisneyPlus #AnimeNews #Anime #Sora
+
+━━━ PINNED COMMENT ━━━
+The dual Disney+/Disney Channel release is the part nobody's talking about — it's confirmed for both platforms, which means this isn't being positioned as a streaming-only side project.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 7:30 AM ET
+TikTok — post 7:45 AM ET
+
+━━━ SOURCES ━━━
+1. Disney announced an original Kingdom Hearts anime series at D23 2026 for Disney+ and Disney Channel — https://hypebeast.com/2026/8/disney-plus-channel-kingdom-hearts-anime-series-official-d23-announcement (Aug 2026)
+2. ABC News confirms the D23 announcement of the Kingdom Hearts anime series — https://abcnews.com/GMA/Culture/kingdom-hearts-anime-series-announced-d23/story?id=135659603 (Aug 2026)
+3. The series is an original story, not a direct game adaptation, with Nomura/Square Enix involved — https://www.anime.com/news/kingdom-hearts-first-animated-series-disney-plus (Aug 2026)
+4. No premiere date, studio, or cast confirmed yet; dual Disney+/Disney Channel release — https://wdwnt.com/2026/08/kingdom-hearts-anime-series-announced-for-disney-and-disney-channel/ (Aug 2026)
+5. Additional coverage confirming the announcement's limited details — https://www.yahoo.com/entertainment/tv/articles/kingdom-hearts-anime-series-works-032524034.html (Aug 2026)
+6. Fan theory (fans comparing the fur trim and outfit) that the figure could be Helgi from Kingdom Hearts Dark Road, per Reddit outfit comparisons — https://www.complex.com/pop-culture/a/treyalston/kingdom-hearts-4-coco-trailer-d23-watch (Aug 15, 2026)
+7. CORRECTION: the teaser key visual actually shows dark hair and fur-trimmed clothing, not a cloaked/hooded figure — verified via Sebastian's own direct visual inspection of the real promotional image, not a URL re-fetch (2026-08-23)
+
+━━━ END MORNING ━━━

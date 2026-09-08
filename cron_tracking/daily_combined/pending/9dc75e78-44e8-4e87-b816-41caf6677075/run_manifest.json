@@ -1,0 +1,482 @@
+{
+  "batch_id": "9dc75e78-44e8-4e87-b816-41caf6677075",
+  "run_ts": "2026-08-16T19:05:00-04:00",
+  "post_date": "2026-08-17",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-08-16T18:51:00-04:00",
+    "age_days": 1,
+    "status": "CURRENT"
+  },
+  "model_compliance": "MODEL: Claude Sonnet 5.0 | CATEGORY: none (routine daily) | PASS.",
+  "research_artifacts": [
+    "cron_tracking/daily_combined/market_sweep_20260817.json",
+    "cron_tracking/daily_combined/selected_sources_fetched_20260817.json",
+    "cron_tracking/daily_combined/targeted_fact_check_20260817.json"
+  ],
+  "packages": [
+    {
+      "package_id": "ef43eed6-d6fe-4804-877e-2a79317bd0f1",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "Though I Am an Inept Villainess",
+      "angle": "Episode 5 turns Reirin's Ghost Festival dance and Keigetsu's feared reputation into a deliberate court-survival weapon.",
+      "format_type": "CHARACTER_DIVE",
+      "format_reason": "Search-ranked current episode coverage supports a character-focused survival angle; distinct from the evening SEASON_RATING package.",
+      "topic_class": "timely",
+      "topic_signals": [
+        "currently_airing"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "A DANCE IS REIRIN'S SHARPEST WEAPON",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Though I Am an Inept Villainess turns a court dance into Reirin's sharpest weapon.",
+        "Reirin's best weapon in Episode 5 is the court's worst reputation."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Though I Am an Inept Villainess turns a court dance into Reirin's sharpest weapon.",
+      "opening_sentence": "Though I Am an Inept Villainess turns a court dance into Reirin's sharpest weapon.",
+      "vo": "Though I Am an Inept Villainess turns a court dance into Reirin's sharpest weapon. In Episode 5, she attends the Ghost Festival in Keigetsu's body, where Keigetsu's bad reputation works in her favor. Reirin performs the Sogdian Whirl with sharp turns and huge spinning gestures while the other Maidens stay formal. She uses that attention to push back on Seika's court games and defend LeeLee. The body swap matters because Reirin can finally move without fearing that her own illness will make her collapse. Would you rather see Reirin win with a dance or a court confrontation? Leave your take.",
+      "vo_word_count": 100,
+      "question_line": "Would you rather see Reirin win with a dance or a court confrontation?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 25,
+      "length_rationale": "YouTube-only, user-directed fixed 30-second edit: five related Episode 5 beats form one compact dance-throughline rather than a 60s+ multi-claim explainer; 108 words fills the 99–108 word band without padding.",
+      "length_math": {
+        "target_sec": 30,
+        "required_word_range": "99-108",
+        "actual_words": 108,
+        "estimated_duration_sec": 30.0,
+        "delta_to_target_sec": 0.0
+      },
+      "video_style": "Face-cam split-screen: creator top, verified Season 1 anime footage bottom only.",
+      "face": true,
+      "split_screen": true,
+      "face_direction_notes": [
+        "DIRECT-TO-CAMERA: lean in, zero warmup.",
+        "GLANCE-DOWN-AT-FOOTAGE: cue the Ghost Festival setting.",
+        "GLANCE-DOWN-AT-FOOTAGE: cue the dance movement.",
+        "DIRECT-TO-CAMERA: make the court-game point.",
+        "DIRECT-TO-CAMERA: land the body-swap consequence.",
+        "DIRECT-TO-CAMERA: ask the binary question and CTA.",
+        "REACTION BEAT: pause on the loop handoff."
+      ],
+      "clips": [
+        {
+          "scene": "Reirin arrives at the Ghost Festival in Keigetsu's body",
+          "reason": "Establishes the body-swap circumstance before the dance.",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": true,
+          "verification_source_url": "https://www.animenewsnetwork.com/review/though-i-am-an-inept-villainess/episode-5/.240447",
+          "claim_vs_source_check": {
+            "claimed_beat": "Reirin arrives at the Ghost Festival in Keigetsu's body",
+            "source_content_confirmed": "ANN's Episode 5 review says Reirin attends the Ghost Festival while in Keigetsu's body.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 5,
+            "locate_confirmed_via": "The cited page explicitly labels this scene as Episode 5.",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Reirin performs the Sogdian Whirl",
+          "reason": "Shows the exact dance that anchors the hook.",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": true,
+          "verification_source_url": "https://www.animenewsnetwork.com/review/though-i-am-an-inept-villainess/episode-5/.240447",
+          "claim_vs_source_check": {
+            "claimed_beat": "Reirin performs the Sogdian Whirl",
+            "source_content_confirmed": "ANN's Episode 5 review explicitly says Reirin performs the Sogdian Whirl.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 5,
+            "locate_confirmed_via": "The cited page explicitly labels this scene as Episode 5.",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Reirin’s sharp turns and whirling gestures",
+          "reason": "Lets the visual delivery match the sourced choreography description.",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://www.animenewsnetwork.com/review/though-i-am-an-inept-villainess/episode-5/.240447",
+          "claim_vs_source_check": {
+            "claimed_beat": "Reirin’s sharp turns and whirling gestures",
+            "source_content_confirmed": "ANN describes the dance as sharp focused movements with large whirling gestures.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 5,
+            "locate_confirmed_via": "The cited page explicitly labels this scene as Episode 5.",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "The court and crown prince watch Reirin dance",
+          "reason": "Pays off the attention the performance draws at the festival.",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": true,
+          "verification_source_url": "https://moesucks.com/2026/08/13/villainess-villainy-or-the-lack-thereof-summer-2026-week-6/",
+          "claim_vs_source_check": {
+            "claimed_beat": "The court and crown prince watch Reirin dance",
+            "source_content_confirmed": "Moe Sucks' Episode 5 review says Reirin impresses everyone, including the crown prince.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 5,
+            "locate_confirmed_via": "The cited page explicitly labels this scene as Episode 5.",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Reirin returns Seika's hairpin at the festival",
+          "reason": "Carries the court-game point into the CTA.",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": true,
+          "verification_source_url": "https://moesucks.com/2026/08/13/villainess-villainy-or-the-lack-thereof-summer-2026-week-6/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Reirin returns Seika's hairpin at the festival",
+            "source_content_confirmed": "Moe Sucks' Episode 5 review says Reirin uses the opportunity to return Seika's hairpin.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 5,
+            "locate_confirmed_via": "The cited page explicitly labels this scene as Episode 5.",
+            "episode_source": "explicitly_stated"
+          }
+        }
+      ],
+      "clip_descriptions": "CUT 1 0:00-0:06 S1E5 Reirin arrives at the Ghost Festival in Keigetsu's body. CUT 2 0:06-0:12 S1E5 Reirin performs the Sogdian Whirl. CUT 3 0:12-0:18 S1E5 sharp turns and wide whirling gestures. CUT 4 0:18-0:24 S1E5 court reaction, including the crown prince. CUT 5 0:24-0:30 S1E5 Reirin returns Seika's hairpin under the CTA. Creator remains top-half; every bottom-half cut is aired anime footage.",
+      "captions": "CUT 1: BODY SWAP / BAD REPUTATION\nCUT 2: SOGDIAN WHIRL\nCUT 3: DANCE = WEAPON\nCUT 4: THE COURT WATCHES\nCUT 5: DANCE OR CONFRONTATION?",
+      "youtube_title": "Inept Villainess Makes a Dance Dangerous",
+      "tiktok_title": "Reirin's Dance Wins the Ghost Festival",
+      "tiktok_post_text": "Though I Am an Inept Villainess makes Reirin's Ghost Festival dance her sharpest tool. #Anime #AnimeTok #VillainessAnime #SummerAnime",
+      "pinned_comment": "Reirin's smartest move is making Keigetsu's terrible reputation useful before anyone can use it against her.",
+      "post_times": {
+        "youtube": "8:15 AM ET",
+        "tiktok": "8:45 AM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "sources": [
+        {
+          "claim": "Episode 5 places Reirin in Keigetsu’s body at the Ghost Festival; the dance is the Sogdian Whirl and Keigetsu’s reputation helps her confront Seika’s machinations.",
+          "url": "https://www.animenewsnetwork.com/review/though-i-am-an-inept-villainess/episode-5/.240447",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "A second dated Episode 5 review confirms Reirin performs the Sogdian Whirl, impresses the crown prince, and uses the moment to return Seika’s hairpin.",
+          "url": "https://moesucks.com/2026/08/13/villainess-villainy-or-the-lack-thereof-summer-2026-week-6/",
+          "date": "Aug 2026"
+        }
+      ],
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Hook claim: Episode 5 makes Reirin’s court dance—the Sogdian Whirl—her sharpest visible weapon at the Ghost Festival.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/review/though-i-am-an-inept-villainess/episode-5/.240447",
+              "https://moesucks.com/2026/08/13/villainess-villainy-or-the-lack-thereof-summer-2026-week-6/"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Reirin attends the Ghost Festival in Keigetsu's body, where Keigetsu's tarnished reputation permits the Sogdian Whirl and resistance to Seika's schemes.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/review/though-i-am-an-inept-villainess/episode-5/.240447"
+            ]
+          },
+          {
+            "claim": "Reirin impresses the crown prince and returns Seika’s hairpin during the episode.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://moesucks.com/2026/08/13/villainess-villainy-or-the-lack-thereof-summer-2026-week-6/"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      }
+    },
+    {
+      "package_id": "f14aa919-278d-4921-a2b3-9d5959d51cd2",
+      "slot": "evening",
+      "content_type": "short",
+      "show": "Jaadugar: A Witch in Mongolia",
+      "angle": "Summer Scorecard rates Jaadugar 9/10 for making Sitara’s tutor-to-spy mission its action sequence rather than background politics.",
+      "format_type": "SEASON_RATING",
+      "format_reason": "Trending-ranked seasonal entry with two connected, officially sourced current episodes; rating hook provides a distinct recurring format.",
+      "topic_class": "timely",
+      "topic_signals": [
+        "currently_airing",
+        "seasonal_ranking"
+      ],
+      "series": {
+        "id": "summer_scorecard",
+        "recurring": true
+      },
+      "series_public_name": "Summer Scorecard",
+      "series_next_line": "Summer Scorecard returns tomorrow.",
+      "funnel_status": "standalone",
+      "hook_family": "observation",
+      "hook_onscreen_text": "SUMMER SCORECARD: JAADUGAR 9/10",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Jaadugar earns a 9/10 because its court politics are the action.",
+        "Jaadugar’s best action scene is a secret order, not a sword fight."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Jaadugar earns a 9/10 because its court politics are the action.",
+      "opening_sentence": "Jaadugar earns a 9/10 because its court politics are the action.",
+      "vo": "Jaadugar earns a 9/10 because its court politics are the action. In Episode 4, Sitara becomes Sorghaghtani's tutor, hides her hatred, and earns her trust as the court shifts after Genghis Khan's death. Episode 5 raises the pressure: Sitara gets a secret order to investigate the Second Prince Chagatai with Shira's help, then Töregene accuses her of theft over a Jada Stone and sends her into harsh interrogation. The show goes on to describe Sitara as fully committed, planning with Töregene to use their combined cunning and access to information against the ruling family. Should Sitara trust that plan? Leave your take.",
+      "vo_word_count": 103,
+      "question_line": "Should Sitara trust that plan?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 25,
+      "length_rationale": "YouTube-only, user-directed fixed 30-second edit: the four connected Episode 4–5 court-mission beats support a concise scorecard rather than a padded 60s+ argument; 104 words fills the 99–108 word band.",
+      "length_math": {
+        "target_sec": 30,
+        "required_word_range": "99-108",
+        "actual_words": 104,
+        "estimated_duration_sec": 30.3,
+        "delta_to_target_sec": 0.3
+      },
+      "video_style": "Face-cam split-screen: creator top, verified Season 1 anime footage bottom only.",
+      "face": true,
+      "split_screen": true,
+      "face_direction_notes": [
+        "DIRECT-TO-CAMERA: lean in, zero warmup.",
+        "GLANCE-DOWN-AT-FOOTAGE: cue the tutor relationship.",
+        "GLANCE-DOWN-AT-FOOTAGE: cue the secret order.",
+        "GLANCE-DOWN-AT-FOOTAGE: cue the accusation.",
+        "DIRECT-TO-CAMERA: state the scorecard judgment.",
+        "DIRECT-TO-CAMERA: ask the specific mission question and CTA.",
+        "REACTION BEAT: pause on the loop handoff."
+      ],
+      "clips": [
+        {
+          "scene": "Sitara tutors Sorghaghtani in Elements",
+          "reason": "Opens on the verified relationship that lets Sitara enter court politics.",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": true,
+          "verification_source_url": "https://anime-jaadugar.com/en/news/051/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Sitara tutors Sorghaghtani in Elements",
+            "source_content_confirmed": "The official Episode 4 summary says Sitara becomes Sorghaghtani's tutor in her study of Elements.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 4,
+            "locate_confirmed_via": "The cited page explicitly labels this scene as Episode 4.",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Sitara plays an obedient confidante",
+          "reason": "Shows her conscious decision to hide her hatred while earning trust.",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": true,
+          "verification_source_url": "https://anime-jaadugar.com/en/news/051/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Sitara plays an obedient confidante",
+            "source_content_confirmed": "The official Episode 4 summary says Sitara hides her hatred, plays an obedient confidante, and gains Sorghaghtani's trust.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 4,
+            "locate_confirmed_via": "The cited page explicitly labels this scene as Episode 4.",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Sorghaghtani gives Sitara a secret order",
+          "reason": "Visualizes the specific spy-mission escalation.",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://anime-jaadugar.com/en/news/056/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Sorghaghtani gives Sitara a secret order",
+            "source_content_confirmed": "The official Episode 5 summary says Sorghaghtani gives Sitara a secret order to investigate Chagatai.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 5,
+            "locate_confirmed_via": "The cited page explicitly labels this scene as Episode 5.",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Sitara prepares with Shira",
+          "reason": "Gives the mission a concrete operational beat.",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": true,
+          "verification_source_url": "https://anime-jaadugar.com/en/news/056/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Sitara prepares with Shira",
+            "source_content_confirmed": "The official Episode 5 summary says Sitara makes arrangements with Shira's help.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 5,
+            "locate_confirmed_via": "The cited page explicitly labels this scene as Episode 5.",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Töregene’s accusation and Sitara’s interrogation",
+          "reason": "Closes with the pressure point behind the CTA.",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": true,
+          "verification_source_url": "https://anime-jaadugar.com/en/news/056/",
+          "claim_vs_source_check": {
+            "claimed_beat": "Töregene’s accusation and Sitara’s interrogation",
+            "source_content_confirmed": "The official Episode 5 summary says Töregene accuses Sitara over a Jada Stone and she is harshly interrogated.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 5,
+            "locate_confirmed_via": "The cited page explicitly labels this scene as Episode 5.",
+            "episode_source": "explicitly_stated"
+          }
+        }
+      ],
+      "clip_descriptions": "CUT 1 0:00-0:06 S1E4 Sitara tutors Sorghaghtani in Elements. CUT 2 0:06-0:12 S1E4 Sitara acts as an obedient confidante. CUT 3 0:12-0:18 S1E5 Sorghaghtani gives Sitara a secret order. CUT 4 0:18-0:24 S1E5 Sitara prepares with Shira. CUT 5 0:24-0:30 S1E5 Töregene’s accusation and interrogation under the CTA. Creator remains top-half; every bottom-half cut is aired anime footage.",
+      "captions": "CUT 1: SUMMER SCORECARD 9/10\nCUT 2: TRUST IS A WEAPON\nCUT 3: SECRET ORDER\nCUT 4: INSIDE THE COURT\nCUT 5: TRUST THAT PLAN?\nSummer Scorecard returns tomorrow.",
+      "youtube_title": "Jaadugar's Court Politics Earn a 9/10",
+      "tiktok_title": "Jaadugar Makes Politics Feel Like Action",
+      "tiktok_post_text": "Jaadugar turns Sitara's court mission into the action. Summer Scorecard returns tomorrow. #Anime #AnimeTok #SummerAnime #Jaadugar",
+      "pinned_comment": "The interrogation is why this score works: Sitara cannot treat Sorghaghtani's order like a clean mission anymore. Summer Scorecard returns tomorrow.",
+      "post_times": {
+        "youtube": "7:15 PM ET",
+        "tiktok": "8:05 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "sources": [
+        {
+          "claim": "The official Episode 4 summary says Sitara becomes Sorghaghtani’s tutor, hides her hatred, gains trust, and receives an unexpected order after Genghis Khan’s death.",
+          "url": "https://anime-jaadugar.com/en/news/051/",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "The official Episode 5 summary says Sitara investigates Chagatai with Shira’s help before Töregene’s theft accusation and harsh interrogation.",
+          "url": "https://anime-jaadugar.com/en/news/056/",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "A dated ANN review of Episodes 5–7 says Jaadugar is currently streaming on Crunchyroll and describes Sitara’s increasingly committed inside-the-ruling-family revenge strategy.",
+          "url": "https://www.animenewsnetwork.com/review/jaadugar-a-witch-in-mongolia/episodes-5-7/.240459",
+          "date": "Aug 2026"
+        }
+      ],
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Hook claim: Jaadugar’s 9/10 rating is based on its sourced Episodes 4–5 court-politics arc, where Sitara moves from tutor into a secret investigation.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://anime-jaadugar.com/en/news/051/",
+              "https://anime-jaadugar.com/en/news/056/"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Episode 4 has Sitara tutor Sorghaghtani in Elements, hide her hatred, and gain her trust as the court changes after Genghis Khan’s death.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://anime-jaadugar.com/en/news/051/"
+            ]
+          },
+          {
+            "claim": "Episode 5 gives Sitara a secret order to investigate Chagatai with Shira’s help, then subjects her to Töregene’s accusation and interrogation.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://anime-jaadugar.com/en/news/056/"
+            ]
+          },
+          {
+            "claim": "The Anime News Network Episodes 5-7 review states Sitara \"is now all in\" and that she and Töregene plan to use their \"combined cunning and access to information\" against the ruling family — presented as the review's own characterization, not as a stated consequence of the Episode 5 interrogation.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/review/jaadugar-a-witch-in-mongolia/episodes-5-7/.240459"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      }
+    }
+  ]
+}

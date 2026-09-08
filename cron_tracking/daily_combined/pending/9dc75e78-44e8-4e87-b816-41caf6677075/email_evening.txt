@@ -1,0 +1,70 @@
+SUBJECT: TOMORROW | EVENING | Jaadugar: A Witch in Mongolia | 2026-08-17 | Jaadugar's Court Politics Earn a 9/10
+
+━━━ EVENING — 2026-08-17 ━━━
+SHOW:    Jaadugar: A Witch in Mongolia
+ANGLE:   Summer Scorecard rates Jaadugar 9/10 for making Sitara’s tutor-to-spy mission its action sequence rather than background politics.
+FORMAT:  SEASON_RATING
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM)
+TOPIC:   timely — signals: currently_airing/seasonal_ranking
+SERIES:  summer_scorecard
+SERIES NAME (viewer-facing): Summer Scorecard
+NEXT INSTALLMENT CUE: Summer Scorecard returns tomorrow.
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK ━━━
+ON-SCREEN (second 1): SUMMER SCORECARD: JAADUGAR 9/10
+SPOKEN (VO first line): Jaadugar earns a 9/10 because its court politics are the action.
+HOOK FAMILY: observation
+(candidate A: Jaadugar earns a 9/10 because its court politics are the action.
+ candidate B: Jaadugar’s best action scene is a secret order, not a sword fight.
+ SELECTED: 0)
+
+━━━ VO (103 words — fills the resolved 30s CapCut edit) ━━━
+Jaadugar earns a 9/10 because its court politics are the action. In Episode 4, Sitara becomes Sorghaghtani's tutor, hides her hatred, and earns her trust as the court shifts after Genghis Khan's death. Episode 5 raises the pressure: Sitara gets a secret order to investigate the Second Prince Chagatai with Shira's help, then Töregene accuses her of theft over a Jada Stone and sends her into harsh interrogation. The show goes on to describe Sitara as fully committed, planning with Töregene to use their combined cunning and access to information against the ruling family. Should Sitara trust that plan? Leave your take.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view) ━━━
+[FACE: direct-to-camera, lean in] Jaadugar earns a 9/10 because its court politics are the action. [FACE: glance-down-at-footage] In Episode 4, Sitara becomes Sorghaghtani's tutor, hides her hatred, and earns her trust as the court shifts after Genghis Khan's death. [FACE: glance-down-at-footage] Episode 5 raises the pressure: Sitara gets a secret order to investigate the Second Prince Chagatai with Shira's help, then Töregene accuses her of theft over a Jada Stone and sends her into harsh interrogation. [FACE: glance-down-at-footage] The show goes on to describe Sitara as fully committed, planning with Töregene to use their combined cunning and access to information against the ruling family. [FACE: glance-down-at-footage] Should Sitara trust that plan? Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings) ━━━
+CUT 1 — 6 sec (0:00–0:06): Sitara tutors Sorghaghtani in Elements — Opens on the verified relationship that lets Sitara enter court politics.
+SOURCE: SEASON 1 EPISODE 4
+CUT 2 — 6 sec (0:06–0:12): Sitara plays an obedient confidante — Shows her conscious decision to hide her hatred while earning trust.
+SOURCE: SEASON 1 EPISODE 4
+CUT 3 — 6 sec (0:12–0:18): Sorghaghtani gives Sitara a secret order — Visualizes the specific spy-mission escalation.
+SOURCE: SEASON 1 EPISODE 5
+CUT 4 — 6 sec (0:18–0:24): Sitara prepares with Shira — Gives the mission a concrete operational beat.
+SOURCE: SEASON 1 EPISODE 5
+CUT 5 (final) — 6 sec (0:24–0:30): Töregene’s accusation and Sitara’s interrogation — Closes with the pressure point behind the CTA.
+SOURCE: SEASON 1 EPISODE 5
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+CUT 1: SUMMER SCORECARD 9/10
+CUT 2: TRUST IS A WEAPON
+CUT 3: SECRET ORDER
+CUT 4: INSIDE THE COURT
+CUT 5: TRUST THAT PLAN?
+Summer Scorecard returns tomorrow.
+
+━━━ YOUTUBE TITLE ━━━
+Jaadugar's Court Politics Earn a 9/10
+
+━━━ TIKTOK TITLE ━━━
+Jaadugar Makes Politics Feel Like Action
+
+━━━ TIKTOK POST TEXT (caption) ━━━
+Jaadugar turns Sitara's court mission into the action. Summer Scorecard returns tomorrow. #Anime #AnimeTok #SummerAnime #Jaadugar
+
+━━━ PINNED COMMENT ━━━
+The interrogation is why this score works: Sitara cannot treat Sorghaghtani's order like a clean mission anymore. Summer Scorecard returns tomorrow.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 7:15 PM ET
+TikTok — post 8:05 PM ET
+
+━━━ SOURCES ━━━
+1. The official Episode 4 summary says Sitara becomes Sorghaghtani’s tutor, hides her hatred, gains trust, and receives an unexpected order after Genghis Khan’s death. — https://anime-jaadugar.com/en/news/051/ (Jul 2026)
+2. The official Episode 5 summary says Sitara investigates Chagatai with Shira’s help before Töregene’s theft accusation and harsh interrogation. — https://anime-jaadugar.com/en/news/056/ (Jul 2026)
+3. A dated ANN review of Episodes 5–7 says Jaadugar is currently streaming on Crunchyroll and describes Sitara’s increasingly committed inside-the-ruling-family revenge strategy. — https://www.animenewsnetwork.com/review/jaadugar-a-witch-in-mongolia/episodes-5-7/.240459 (Aug 2026)
+
+━━━ END EVENING ━━━

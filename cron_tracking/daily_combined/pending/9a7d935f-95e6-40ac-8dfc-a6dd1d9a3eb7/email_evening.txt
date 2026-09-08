@@ -1,0 +1,57 @@
+SUBJECT: TOMORROW | EVENING | Kagurabachi | 2026-08-26 | Kagurabachi 129: Kunishige's Breaking Point
+
+━━━ EVENING — 2026-08-26 ━━━
+SHOW:    Kagurabachi
+ANGLE:   Kunishige pushes through his forging limit for Chiaki, revealing why he keeps risking his life at the furnace
+FORMAT:  CHARACTER_DIVE
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM)
+TOPIC:   timely — signals: chapter/news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK ━━━
+ON-SCREEN (second 1): He was about to give up. Then he thought of her.
+SPOKEN (VO first line): He was seconds from losing control at the furnace.
+HOOK FAMILY: revelation
+(candidate A: Kagurabachi just showed why Kunishige keeps forging even when it's killing him.
+ candidate B: He was seconds from losing control at the furnace.
+ SELECTED: 1)
+
+━━━ VO (108 words — fills the resolved 30s CapCut edit) ━━━
+He was seconds from losing control at the furnace. One memory stopped him. Kagurabachi Chapter 129 pushes Kunishige to his physical and emotional limit as flames threaten to consume everything around him. Right as he's about to lose it, a flashback reveals why: an abusive father and his mother's death left him convinced he's unworthy of Chiaki. But his real motivation was never revenge -- it's protecting her that keeps him forging despite the risk. Just as his eyes seem ready to close, his memories shift to Chiaki, and he regains control. Chapter 130 releases August 30th. Is Chiaki actually Kunishige's hope, or his biggest weakness? Leave your take.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view) ━━━
+[FACE: direct-to-camera, lean in] He was seconds from losing control at the furnace. [FACE: glance-down-at-footage] One memory stopped him. [FACE: glance-down-at-footage] Kagurabachi Chapter 129 pushes Kunishige to his physical and emotional limit as flames threaten to consume everything around him. [FACE: glance-down-at-footage] Right as he's about to lose it, a flashback reveals why: an abusive father and his mother's death left him convinced he's unworthy of Chiaki. [FACE: glance-down-at-footage] But his real motivation was never revenge -- it's protecting her that keeps him forging despite the risk. [FACE: glance-down-at-footage] Just as his eyes seem ready to close, his memories shift to Chiaki, and he regains control. [FACE: glance-down-at-footage] Chapter 130 releases August 30th. [FACE: glance-down-at-footage] Is Chiaki actually Kunishige's hope, or his biggest weakness? Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings) ━━━
+CUT 1 — 10 sec (0:00–0:10): Manga panel: Kunishige at the furnace, flames rising and threatening to consume him — Establishes the physical stakes of the forging process
+CUT 2 — 10 sec (0:10–0:20): Manga panel flashback: young Kunishige with his abusive father, memories of his mother's death — Delivers the emotional backstory driving his self-doubt
+CUT 3 (final) — 10 sec (0:20–0:30): Manga panel: Kunishige regaining control at the furnace, thinking of Chiaki, flames settling — Pays off the hook and sets up the CTA question
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+Kagurabachi Chapter 129 just revealed why Kunishige keeps forging even when it's killing him. Load-bearing note: Kunishige is the swordsmith bound to protecting Chiaki, the Soga clan's princess.
+
+━━━ YOUTUBE TITLE ━━━
+Kagurabachi 129: Kunishige's Breaking Point
+
+━━━ TIKTOK TITLE ━━━
+One memory saved him at the furnace (Kagurabachi 129)
+
+━━━ TIKTOK POST TEXT (caption) ━━━
+He was seconds from losing control at the furnace. Then he thought of her. #Kagurabachi #ShonenJump #Kunishige #Chiaki #AnimeManga #MangaSpoilers #AnimeTok #AnimeShorts #AnimeCommentary
+
+━━━ PINNED COMMENT ━━━
+Kagurabachi Chapter 129 is out now. Kunishige = the swordsmith forging the Enchanted Blades, bound to protecting Chiaki. Chapter 130 drops August 30.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 2026-08-26T18:00:00-04:00
+TikTok — post 2026-08-26T18:15:00-04:00
+
+━━━ SOURCES ━━━
+1. Kunishige nears his physical and emotional limit at the furnace as flames threaten to overwhelm him, then regains control after thinking of Chiaki — https://www.soapcentral.com/anime/kagurabachi-chapter-129-chiaki-becomes-kunishige-s-source-hope (Aug 2026)
+2. Flashback shows Kunishige believes he is unworthy of Chiaki due to his family background, including memories of an abusive father and his mother's death — https://www.soapcentral.com/anime/kagurabachi-chapter-129-chiaki-becomes-kunishige-s-source-hope (Aug 2026)
+3. Kunishige's motivation to keep forging despite the risk is protecting Chiaki, not simply revenge or ambition — https://www.soapcentral.com/anime/kagurabachi-chapter-129-release-date-everything-need-know (Aug 2026)
+4. Kagurabachi Chapter 130 is confirmed for release on Sunday, August 30, 2026 — https://www.soapcentral.com/anime/kagurabachi-chapter-130-release-date-everything-need-know (date not recorded in manifest)
+
+━━━ END EVENING ━━━

@@ -1,0 +1,112 @@
+{
+  "approved_by": "Sebastian",
+  "approved_at": "2026-08-16T21:33:10.271149+00:00",
+  "approval_status": "APPROVED",
+  "approval_pending_note": "RESOLVED. Law #165 approval granted by Sebastian based on the full independent verification performed across this review thread: three rounds of direct claim-level correction (round 1's clairsentience/visual-seeing/mother-link exclusions, round 2's established-backstory reframe, round 3's CUT 4 visual-vs-interpretation fix), all 12 fetch_review entries independently fetched and confirmed in this session (several re-fetched multiple times across rounds), direct sent_scripts_log.json overlap re-check (205 records, zero matches for either show), and the validator returning a clean PASS immediately before this approval file was constructed. approved_by/approved_at were left null throughout drafting and review, and only filled in now, at the moment of actual human approval -- consistent with the discipline documented for F41 (never report a workflow step complete before the event occurred).",
+  "batch_id": "de6845d6-1f2e-424d-8830-759924128782",
+  "corrects_batch_id": null,
+  "scope_note": "This batch contains TWO packages, post_date 2026-08-16: Spy x Family (morning, FACT_DROP, chapter 139 part 2) and Kaiju No. 8 -- Narumi's Week at Work (evening, FACT_DROP). This is a genuinely NEW, independent batch, not a correction of any prior batch -- Sebastian explicitly chose these two shows fresh, unrelated to batch f21e15f0 (The Dangers in My Heart / Chained Soldier), which stays retired exactly as sent. Both packages were generated fresh this session under Sebastian's six standing rules for tonight (independent fetch with real quotes per claim, fandom.com HTTP 402 caution, permanent batch_id retirement via uuid4, explicit sent_scripts_log.json overlap re-check, real-world air-time staleness re-check, real in-source clip timestamps), then went through THREE rounds of direct, claim-level correction from Sebastian before this approval file was constructed -- see changes_made_before_approval for the full history of what was found and fixed in each round.",
+  "fetch_review": [
+    {
+      "claim": "[CORE, anchors_claim=hook, morning] In chapter 139 part 2, Anya pushes her telepathy past its previous limit to remotely reach Donovan Desmond's mind, at real physical cost (nosebleed, hair-ornament strain, Yor's scolding).",
+      "url": "https://screenrant.com/spy-x-family-anya-new-powers-clairsentience/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session (twice -- once for the round-1 clairsentience/seeing/mother-link check, once again for the round-3 CUT 4 re-verification). Exact quotes: she 'remotely tap[s] into Donovan's mind' by seeking the 'vibe... Damian has been thinking about'; her ''horn' hair ornaments' crackle with energy; 'a nosebleed' forms; Yor ('the other Final Boss') picks her up and takes her to the hospital after noticing it."
+    },
+    {
+      "claim": "[NON-CORE / excluded after round-1 verification, morning] The term 'clairsentience' is an in-text/in-manga name for Anya's new ability.",
+      "url": "https://screenrant.com/spy-x-family-anya-new-powers-clairsentience/",
+      "fetched_content_supports_claim": false,
+      "note": "Independently re-fetched and confirmed NOT supported. The article calls this 'a new manifestation of her powers... clairsentience' as its OWN descriptive/analytical label, not a term used in the manga text. No second source uses the term. Per Sebastian's round-1 instruction, this was excluded from the VO entirely rather than presented as an in-story name."
+    },
+    {
+      "claim": "[NON-CORE / excluded after round-1 verification, morning] Anya visually SEES Donovan during this scene, as opposed to only hearing/reaching his thoughts.",
+      "url": "https://screenrant.com/spy-x-family-anya-new-powers-clairsentience/",
+      "fetched_content_supports_claim": false,
+      "note": "Independently re-fetched and confirmed only a heavily hedged version is supported: she can 'vaguely perceive a visual' described as 'a fuzzy manifestation of an immature clairvoyance' -- not a clean 'she sees him.' Per Sebastian's round-1 instruction, the VO was written to only assert that she reaches/locks onto his mind/thoughts, not that she sees him."
+    },
+    {
+      "claim": "[NON-CORE / excluded after round-1 verification, morning] Project Apple is specifically tied to Anya's mother (as opposed to only to Anya and Donovan).",
+      "url": "https://www.theflagshipeclipse.com/2025/09/03/spy-x-family-finally-confirms-anyas-connection-to-project-apple/",
+      "fetched_content_supports_claim": false,
+      "note": "Independently fetched fresh. Confirms ONLY Anya's and Donovan's connection to Project Apple. A mother-link is unconfirmed fan speculation about a separate hypothetical 'Project C' / 'Tonia' theory, explicitly NOT the same claim. Per Sebastian's round-1 instruction, no mother-link claim appears anywhere in the package."
+    },
+    {
+      "claim": "[CORE, morning, round-2 fix] Established backstory framing: Anya is someone Project Apple once experimented on, making her a test subject before the Forgers -- framed as pre-existing backstory, not something newly surfacing in this specific scene.",
+      "url": "https://en.wikipedia.org/wiki/Anya_Forger",
+      "fetched_content_supports_claim": true,
+      "note": "Round-1's VO used 'what surfaces with it' for the Project Apple line, which Sebastian flagged as implying a new-to-this-scene revelation -- an unverified narrative-mechanic claim. Round-2 fix reframed it as established backstory ('she's doing this as someone Project Apple once experimented on, the same program that made her a test subject before the Forgers'), cross-checked against Anya's established Project Apple test-subject backstory, independent of the disputed clairsentience/seeing/mother claims. VO word count recalculated after the fix: 104 words (within the validator's real 100-108 band via its _words() regex, not estimated)."
+    },
+    {
+      "claim": "[CORE, morning, round-3 fix -- CUT 4 visual accuracy] Chapter 139 part 2's actual final-panel visual is Anya clutching her Chimera plush, troubled and sleepless, hearing fragmented words -- NOT a drawn panel depicting Project Apple itself.",
+      "url": "https://screenrant.com/spy-x-family-anya-new-powers-clairsentience/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched a third time specifically to resolve Sebastian's round-3 objection. Exact quotes: the 'final panels' show 'Anya having what appear to be resurfacing memories of her time with Project Apple,' 'clutching her Chimera plush,' with 'clearly dark thoughts... preventing her from sleeping soundly,' hearing 'Die...scared...Des...d's......research...'. Confirmed the source explicitly does NOT describe any panel or flashback visually depicting Project Apple itself (no facility, no experiment imagery) -- the only visual described is the plush and Anya's troubled expression. CUT 4's scene/reason/manga_reference/location_pointer fields and the clip_descriptions string were all rewritten to cite the real drawn visual (plush, troubled expression) rather than an invented 'Project Apple memory panel.' captions and pinned_comment were checked and found NOT to share this problem (captions state established-backstory text, not a visual claim; pinned_comment concerns dialogue/fragmented words, not a panel claim)."
+    },
+    {
+      "claim": "[CORE, morning] Spy x Family manga surpassed 42 million copies in circulation, as of April 2026.",
+      "url": "https://en.wikipedia.org/wiki/Spy_%C3%97_Family",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in this review. Paired with a non-encyclopedic second source (Reddit r/AnimeMirchi, Apr 4, 2026) per Law #58's pairing requirement -- core claim does not rely solely on an encyclopedic source."
+    },
+    {
+      "claim": "[CORE, morning] No anime episode has adapted chapter 139 material; the anime has not reached this manga-only story point (used to justify manga-panel-only clip plan, no anime footage).",
+      "url": "https://www.viz.com/shonenjump/chapters/spy-x-family",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in this review. Confirms manga-only status at this chapter; supports footage_status='unaired_no_footage' across all clip entries and the story_point_gate field."
+    },
+    {
+      "claim": "[CORE, anchors_claim=hook, evening] Kaiju No. 8 is returning with a new 4-episode anime short, 'Narumi's Week at Work,' premiering September 5, 2026 with weekly Saturday episodes, centering on Gen Narumi rather than protagonist Kafka Hibino.",
+      "url": "https://www.animenewsnetwork.com/news/2026-08-05/new-kaiju-no-8-anime-short-trailer-reveals-4-episode-run-starting-on-september-5/.240303",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in this review. Confirmed 4-episode run, September 5, 2026 start, Narumi-centered short. Cross-confirmed against anime.com's independent report of the same premiere date and format."
+    },
+    {
+      "claim": "[CORE, evening] Gen Narumi is Japan's strongest anti-kaiju combatant and captain of the First Division.",
+      "url": "https://myanimelist.net/character/198940/Gen_Narumi",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in this review. Paired with Game Rant (non-encyclopedic, Aug 1, 2024), verified exact quote: 'The First Division is led by none other than Gen Narumi, the Anti-Kaiju's strongest Captain and the best chance at success in every mission.' Satisfies Law #58 pairing -- claim does not rely solely on MyAnimeList/Wikipedia."
+    },
+    {
+      "claim": "[CORE, evening] Narumi's implanted weapon gives him a precognitive combat advantage, letting him predict enemy movement before it happens.",
+      "url": "https://www.themarysue.com/who-is-gen-narumi-in-kaiju-no-8-explained/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in this review. Confirms the precognition/foresight mechanic as described in the package; no contradicting source found."
+    },
+    {
+      "claim": "[CORE, evening] Production I.G is animating the short.",
+      "url": "https://en.wikipedia.org/wiki/Kaiju_No._8",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in this review. Confirms Production I.G as the animating studio, consistent with the main series' existing production."
+    }
+  ],
+  "verification_gaps_and_caveats": [
+    {
+      "issue": "fandom.com was not used as a source for either package",
+      "detail": "Per Sebastian's standing rule tonight, this is a non-issue: neither package cites any fandom.com/wikia source. Morning relies on Viz, Soap Central, ScreenRant, Wikipedia, and Reddit; evening relies on Anime News Network, anime.com, Wikipedia, Silime, MyAnimeList, The Mary Sue, and Game Rant."
+    },
+    {
+      "issue": "Send-log overlap re-checked directly against sent_scripts_log.json, not via self-attestation (F43 precedent)",
+      "detail": "Both 'Spy x Family' and 'Kaiju No. 8' / 'Narumi' were searched directly against sent_scripts_log.json's 205 entries via direct field parse (not just keyword grep, per the explicit F43 concern about the self-attested recent_send_conflict flag being unreliable). Zero matches for either show as a subject across all 205 entries."
+    },
+    {
+      "issue": "This package underwent three distinct rounds of substantive correction, all resolved before this approval draft",
+      "detail": "Round 1 (claim-level fact-check): removed/excluded the unverified 'clairsentience' in-text-name claim, softened the visual-seeing claim to match the source's own hedge, and excluded any Project-Apple-to-mother link -- none of these three were confirmable and all were dropped or rewritten to match only what sources actually state. Round 2 (narrative-framing fix): the round-1 fix's replacement phrase ('what surfaces with it') for the Project Apple line still implied a new-to-this-scene revelation; reframed as established backstory instead, VO word count re-verified at 104 (in-band). Round 3 (visual-accuracy fix): CUT 4 and the clip_descriptions string cited a 'Project Apple memory panel' that the source does not actually describe as visually depicted in chapter 139.2 -- the chapter's real final-panel visual is Anya clutching her Chimera plush, troubled and sleepless. Corrected CUT 4's scene/reason/manga_reference/location_pointer fields and clip_descriptions to cite the real drawn visual; captions and pinned_comment were checked and found not to share the same problem."
+    },
+    {
+      "issue": "Morning VO word count sits mid-band, not at a floor/ceiling edge case",
+      "detail": "Final VO (post round-2 fix) is 104 words against the validator's real _words() regex -- comfortably within the 100-108 in-band range, not an edge case requiring special note the way a prior batch's exact-100 evening VO was."
+    },
+    {
+      "issue": "Evening package (Kaiju No. 8) received no corrections across two independent verification passes",
+      "detail": "Per Sebastian's explicit statement in the round-2 correction message, the evening package 'remains fully approved -- no issues found there across two independent verification passes' and was left completely untouched through all three correction rounds. Nothing in this approval file changes that status."
+    },
+    {
+      "issue": "Air-time staleness re-checked for both packages against real current time",
+      "detail": "Morning: chapter 139 part 2 released today (Aug 16, 2026) per Soap Central and ScreenRant's same-day recap -- post_date 2026-08-16 is the correct same-day/next-day publish window, not stale. Evening: the Narumi short's September 5, 2026 premiere is 20 days out from this review (Aug 16) -- the VO frames it as an upcoming premiere with a confirmed date, not a claim that could go stale between now and posting."
+    }
+  ],
+  "changes_made_before_approval": "ROUND 1 (fact-check on three specific disputed claims): (1) Excluded 'clairsentience' as an in-text ability name after confirming it is ScreenRant's own descriptive/analytical term, not used elsewhere or in-manga. (2) Softened the visual-seeing claim so the VO only asserts Anya reaches/locks onto Donovan's mind/thoughts, not that she sees him, after confirming the source's own claim is heavily hedged ('vaguely perceive,' 'fuzzy... immature clairvoyance'). (3) Confirmed no source ties Project Apple to Anya's mother specifically (The Flagship Eclipse confirms only Anya+Donovan's link; mother-link is unconfirmed fan speculation about a separate theory) and excluded any such claim from the package. ROUND 2 (narrative-framing fix): replaced the round-1 Project Apple phrasing ('what surfaces with it,' which implied a new-to-this-scene revelation) with an established-backstory framing ('she's doing this as someone Project Apple once experimented on, the same program that made her a test subject before the Forgers'); rebuilt the VO (104 words, in-band per the validator's real _words() regex); updated three dependent fields to match (question_line, captions, tiktok_post_text). ROUND 3 (visual-accuracy fix): confirmed via a third independent fetch that chapter 139.2's actual final-panel visual is Anya clutching her Chimera plush while troubled/sleepless -- NOT a panel visually depicting Project Apple itself, which the source does not describe as drawn on the page. Rewrote CUT 4's scene, reason, manga_reference, and location_pointer.description fields, plus the clip_descriptions string, to cite the real drawn visual instead of an invented 'Project Apple memory panel.' Checked captions and pinned_comment for the same implicit assumption and found neither shares the problem (captions state established backstory as text, not a visual claim; pinned_comment concerns dialogue/fragmented words Anya hears, not a drawn panel). FINAL VALIDATOR STATE: validators/validate_dual_package.py run directly against the corrected manifest after round 3's fix returns raw PASS, exit code reflects zero FAIL lines, all checks green, immediately before this approval file was constructed. Evening package (Kaiju No. 8) received zero edits across all three rounds.",
+  "related_process_gaps_logged_separately": "None newly identified in this batch's review. No shared template, validator, or runtime file was modified during this review -- all three correction rounds were confined to this batch's own build script (build_manifest_de6845d6.py) and its generated manifest.",
+  "status": "approved"
+}

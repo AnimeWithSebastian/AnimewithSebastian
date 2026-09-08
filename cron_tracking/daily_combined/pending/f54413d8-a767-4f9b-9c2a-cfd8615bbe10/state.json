@@ -1,0 +1,52 @@
+{
+  "cron_id": "daily_combined",
+  "workflow": "combined_daily_dual_package",
+  "batch_id": "f54413d8-a767-4f9b-9c2a-cfd8615bbe10",
+  "run_ts": "2026-08-14T22:35:00+00:00",
+  "post_date": "2026-08-15",
+  "status": "CLOSED_NOTHING_SHIPPED",
+  "emails_sent": false,
+  "log_appended": false,
+  "git_pushed": false,
+  "error": null,
+  "hold_reason": "Law #165 interactive review completed 2026-08-15. Both packages resolved to a non-ship outcome; see disposition object below and docs/KNOWN_ISSUES.md F43 (second occurrence), F44 (fifth finding), F45. This batch ships nothing under this batch_id -- morning is a confirmed duplicate drop, evening is held pending a future rework. Neither package was sent; emails_sent and log_appended remain false and must not be set true for this batch_id.",
+  "disposition": {
+    "morning": {
+      "package_id": "b742e7bd-648e-4c9a-96f5-119a02f84712",
+      "show": "One Piece",
+      "status": "DROPPED_DUPLICATE",
+      "reason": "Confirmed duplicate of already-sent batch 6818490a (sent 2026-08-08, for post_date 2026-08-09): same show, same Chapter 1190, same character Scopper Gaban, same core beat (loses left arm defending Luffy from Imu). M1-M8 accuracy verification work remains valid and is preserved in docs/KNOWN_ISSUES.md F44's fifth finding, but accuracy does not override duplication.",
+      "resolved_at": "2026-08-15T21:56:00-04:00",
+      "known_issues_refs": ["F43 (second occurrence)", "F44 (fifth finding)"],
+      "permanent": true
+    },
+    "evening": {
+      "package_id": "83821ab1-a845-470f-b5a9-c3b5885d683a",
+      "show": "Bleach: Thousand-Year Blood War - The Calamity",
+      "status": "HELD_PENDING_REWORK",
+      "reason": "Package's SEASON_PREVIEW framing (built entirely from pre-air material) went stale once Episode 4 actually aired (2026-08-15, 11:00 PM JST / 10:00 AM ET) before this batch's own post_date (2026-08-15). Not a permanent drop -- the Ichigo/Horn of Salvation/Yhwach material (~70% of the VO) is genuine, independently-sourced, and worth preserving in a future rework. No same-day rework attempted due to thin same-day post-air sourcing risk. Future rework must independently re-examine the Gerard/'3 captains' sentence for overlap with already-sent batch d4a8f107 (sent 2026-08-15, title 'Bleach: 3 Captains Couldn't Scratch Gerard') rather than carrying it forward unexamined.",
+      "resolved_at": "2026-08-15T21:59:00-04:00",
+      "known_issues_refs": ["F45"],
+      "permanent": false
+    }
+  },
+  "migration_note": "This batch_id (f54413d8-a767-4f9b-9c2a-cfd8615bbe10) is a reissue. The content was originally found on disk under batch_id 32acbc3d-5319-42e9-a6bf-321e9c6f3f85 -- an ID that docs/KNOWN_ISSUES.md F41 (committed) had already retired as producing zero real artifacts. The 32acbc3d pending/ directory was created on disk at 2026-08-15T21:33:24Z, roughly 5 hours after F41's authoring commit, was never tracked in git on any branch, and reused a batch_id that should never be reused once retired. Full investigation and rationale: docs/KNOWN_ISSUES.md F44. Content itself was not altered in this migration -- only the batch_id and pending_path were updated across run_manifest.json, approval_morning.json, approval_evening.json, and this file. The old 32acbc3d pending/ directory has been removed after this copy was verified.",
+  "pending_path": "cron_tracking/daily_combined/pending/f54413d8-a767-4f9b-9c2a-cfd8615bbe10/",
+  "validator_result": "PASS",
+  "packages": [
+    {
+      "package_id": "b742e7bd-648e-4c9a-96f5-119a02f84712",
+      "slot": "morning",
+      "show": "One Piece",
+      "format_type": "CHARACTER_DIVE",
+      "vo_word_count": 211
+    },
+    {
+      "package_id": "83821ab1-a845-470f-b5a9-c3b5885d683a",
+      "slot": "evening",
+      "show": "Bleach: Thousand-Year Blood War - The Calamity",
+      "format_type": "SEASON_PREVIEW",
+      "vo_word_count": 105
+    }
+  ]
+}

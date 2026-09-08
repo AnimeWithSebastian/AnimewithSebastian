@@ -1,0 +1,60 @@
+SUBJECT: TOMORROW | EVENING | Reincarnated as a Sword | 2026-08-21 | Reincarnated as a Sword S2 Is Skipping Crunchyroll
+
+━━━ EVENING — 2026-08-21 ━━━
+SHOW:    Reincarnated as a Sword
+ANGLE:   Season 2 dropped its HIDIVE-exclusive trailer this week and premieres its North American footage tomorrow at Anime NYC -- and this time Crunchyroll isn't part of it at all
+FORMAT:  WORTH_WATCHING
+STYLE:   Face-Cam Split Screen (Creator TOP / anime footage BOTTOM — Law #134 Stage 2)
+TOPIC:   timely — signals: premiere, news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK (Law #144) ━━━
+ON-SCREEN (second 1): Reincarnated as a Sword Season 2 is skipping Crunchyroll completely.
+SPOKEN (VO first line): Reincarnated as a Sword Season 2 is skipping Crunchyroll completely.
+HOOK FAMILY: contradiction
+(candidate A: Reincarnated as a Sword Season 2 is skipping Crunchyroll completely.
+ candidate B: If you watched Reincarnated as a Sword on Crunchyroll, Season 2 isn't going to be there.
+ SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (107 words — fills the resolved 30s CapCut edit) ━━━
+Reincarnated as a Sword Season 2 is skipping Crunchyroll completely. It streams early on ABEMA starting September thirtieth, then makes its TV debut October seventh, with HIDIVE carrying it in North America as it airs. Crunchyroll isn't part of the plan this season. HIDIVE is holding the North American premiere tomorrow at Anime NYC, with director Shinji Ishihira and producers Yosuke Shimada and Genta Ozaki on the panel. A manga spinoff, Tensei Shitara Ken Deshita My Dish, launches the same day as the early stream. Does it bother you when a sequel switches platforms, or do you just follow the show wherever it goes? Leave your take.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view) ━━━
+[FACE: direct-to-camera, lean in] Reincarnated as a Sword Season 2 is skipping Crunchyroll completely. [FACE: glance-down-at-footage] It streams early on ABEMA starting September thirtieth, then makes its TV debut October seventh, with HIDIVE carrying it in North America as it airs. [FACE: direct-to-camera] Crunchyroll isn't part of the plan this season. [FACE: glance-down-at-footage] HIDIVE is holding the North American premiere tomorrow at Anime NYC, with director Shinji Ishihira and producers Yosuke Shimada and Genta Ozaki on the panel. [FACE: glance-down-at-footage] A manga spinoff, Tensei Shitara Ken Deshita My Dish, launches the same day as the early stream. [FACE: direct-to-camera, lean in] Does it bother you when a sequel switches platforms, or do you just follow the show wherever it goes? [FACE: direct-to-camera] Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings REQUIRED) ━━━
+CUT 1 — 6 sec (0:00–0:06): Season 2 official HIDIVE trailer opening (S2E1) — directly visualizes the hook (new season, platform change)
+CUT 2 — 6 sec (0:06–0:12): Fran meets Teacher, the founding rescue beat (S1E1) — establishes the core premise for viewers unfamiliar with Season 1
+CUT 3 — 6 sec (0:12–0:18): Season 2 new-arc action beat, Floating Island (S2E1) — shows new-season visuals, keeps momentum
+CUT 4 — 6 sec (0:18–0:24): Fran and Teacher reunion beat (S2E1), Season 2 trailer — reinforces the returning duo before the CTA
+CUT 5 (final) — 6 sec (0:24–0:30): Title card / logo hold (S2E1), held for CTA text overlay
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+Word-by-word ALL CAPS captions, one orange keyword per line (e.g. SKIPPING / CRUNCHYROLL / HIDIVE / EXCLUSIVE), max 2 lines on screen, Anton font, white text, black outline.
+
+━━━ YOUTUBE TITLE (Law #144) ━━━
+Reincarnated as a Sword S2 Is Skipping Crunchyroll
+
+━━━ TIKTOK TITLE (Law #144) ━━━
+Reincarnated as a Sword S2 Platform Switch
+
+━━━ TIKTOK POST TEXT (caption) ━━━
+Reincarnated as a Sword Season 2 is dropping Crunchyroll entirely for its exclusive HIDIVE simulcast. #anime #reincarnatedasasword #isekai #animenews #hidive
+
+━━━ PINNED COMMENT ━━━
+HIDIVE is even flying the director and two producers out to Anime NYC tomorrow (Aug 22) for the North American premiere -- this isn't a quiet platform switch.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 6:00 PM ET | Peak 6:00 PM ET
+TikTok — post 6:15 PM ET | Peak 6:15 PM ET
+
+━━━ SOURCES (concise evidence) ━━━
+1. Streaming dates, platforms, Anime NYC premiere, manga spinoff — https://www.animenewsnetwork.com/news/2026-08-16/reincarnated-as-a-sword-season-2-reveals-september-30-early-streaming-debut-theme-songs-in-trailer/.240622 (Aug 2026)
+2. HIDIVE-exclusive framing, Crunchyroll not part of S2 — https://www.gametrader.sg/blog/tag/reincarnated-as-a-sword/ (Aug 2026)
+3. Corroborating S2 platform/date, broadcast schedule — https://www.anime.com/news/reincarnated-as-a-sword-ii-october-7-premiere-date (Aug 2026)
+4. Original S2 announcement (March 2026), HIDIVE confirmed — https://www.animenewsnetwork.com/news/2026-03-28/reincarnated-as-a-sword-season-2-new-video-unveils-october-debut/.235874 (Mar 2026)
+5. Season 1 plot/premise — https://en.wikipedia.org/wiki/Reincarnated_as_a_Sword (checked Aug 2026)
+
+━━━ END EVENING ━━━

@@ -1,0 +1,56 @@
+SUBJECT: TOMORROW | MORNING | Blue Lock | 2026-09-01 | Blue Lock 359: Benched For Playing Too Well
+
+━━━ MORNING — 2026-09-01 ━━━
+SHOW:    Blue Lock
+ANGLE:   England's coach Fox benches Agi mid-match for 'ego' after Japan's equalizer and brings in Lockhart, the obedient 'Iron Soldier' -- a coaching-philosophy angle distinct from the prior Blue Lock send, which focused on the Isagi/Yukimiya steal-and-score sequence
+FORMAT:  THE_MOMENT
+STYLE:   Face-cam split screen (creator TOP / anime manga panels BOTTOM, Law #134 Stage 2 required default)
+TOPIC:   timely — signals: chapter/news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK ━━━
+ON-SCREEN (second 1): England's coach just benched his own player for playing too well.
+SPOKEN (VO first line): England's coach just benched his own player for playing too well.
+HOOK FAMILY: revelation
+(candidate A: England's coach just benched his own player for playing too well.
+ candidate B: Blue Lock's England coach just admitted he only wants obedient soldiers, not players.
+ SELECTED: 0)
+
+━━━ VO (100 words — fills the resolved 30s CapCut edit) ━━━
+England's coach just benched his own player for playing too well. Chapter 359 has Japan and England tied one-one after Yukimiya's equalizer, and at the twenty-minute mark, coach Fox pulls Agi off the field entirely. His reasoning: Agi's ego, and France's earlier loss as clear proof that individual improvisation doesn't work. In comes Lockhart, nicknamed the Iron Soldier, brought over from Berserk Dortmund specifically because he only rewards players who follow orders without question. Fox is betting the whole match on obedience over instinct. Is Fox's obedience-only system going to cost England the match? Leave your take.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view) ━━━
+[FACE: direct-to-camera, lean in] England's coach just benched his own player for playing too well. [FACE: glance-down-at-footage] Chapter 359 has Japan and England tied one-one after Yukimiya's equalizer, and at the twenty-minute mark, coach Fox pulls Agi off the field entirely. [FACE: glance-down-at-footage] His reasoning: Agi's ego, and France's earlier loss as clear proof that individual improvisation doesn't work. [FACE: glance-down-at-footage] In comes Lockhart, nicknamed the Iron Soldier, brought over from Berserk Dortmund specifically because he only rewards players who follow orders without question. [FACE: glance-down-at-footage] Fox is betting the whole match on obedience over instinct. [FACE: glance-down-at-footage] Is Fox's obedience-only system going to cost England the match? Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings) ━━━
+CUT 1 — 12 sec (0:00–0:12): Manga panel: Fox berating Agi and pulling him from the match — Delivers the core 'benched for playing too well' hook claim
+CUT 2 — 8 sec (0:12–0:20): Manga panel: Fox explaining his 'obedient soldiers only' coaching philosophy — Establishes the reasoning behind benching Agi
+CUT 3 (final) — 10 sec (0:20–0:30): Manga panel: Lockhart entering as Fox's 'Iron Soldier' — Introduces the obedience-only replacement, the twist that reframes Fox's philosophy
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+Blue Lock Chapter 359 just showed England's coach bench his own player for playing too well.
+
+━━━ YOUTUBE TITLE ━━━
+Blue Lock 359: Benched For Playing Too Well
+
+━━━ TIKTOK TITLE ━━━
+England's coach benched HIM? (Blue Lock 359)
+
+━━━ TIKTOK POST TEXT (caption) ━━━
+Fox just benched his own player mid-match for having too much ego. Blue Lock Chapter 359 breakdown. #BlueLock #BlueLockManga #Isagi #AnimeManga #ShonenJump #AnimeTok #MangaSpoilers #AnimeShorts #AnimeCommentary
+
+━━━ PINNED COMMENT ━━━
+Chapter 359 is out now on K MANGA. Full Fox/Agi/Lockhart breakdown in the video.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 2026-09-01T09:00:00-04:00
+TikTok — post 2026-09-01T09:15:00-04:00
+
+━━━ SOURCES ━━━
+1. Blue Lock Chapter 359 released September 1, 2026 (Aug 31 in most regions); England leads 1-1 tied match against Japan at U-20 World Cup after Yukimiya's equalizer — https://www.soapcentral.com/anime/blue-lock-chapter-359-release-date-everything-need-know (Sep 2026)
+2. At the 20-minute mark, England coach Fox substitutes Agi as a disciplinary measure, criticizing Agi's 'ego' and citing France's loss as proof individual improvisation fails; brings in Lockhart, the 'Iron Soldier' from Berserk Dortmund, who only rewards obedient 'soldier' players — https://otakukart.com/blue-lock-chapter-359-spoilers-summary-recap/ (Aug 2026)
+3. Yukimiya Kenyu scored the dramatic equalizing goal making the score 1-1, forcing England's tactical overhaul and the surprise arrival of a New Generation XI player — https://case.otonity.com/read/93/spoiler-alert-yukimiyas-goal-forces-england-to-change-tactical-strategy-in-blue-lock-chapter-359 (Aug 2026)
+
+━━━ END MORNING ━━━

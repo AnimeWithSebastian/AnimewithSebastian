@@ -1,0 +1,61 @@
+Subject: TOMORROW | MORNING | Spy x Family | 2026-08-16 | Spy x Family Just Pushed Anya's Powers Further
+
+━━━ MORNING — 2026-08-16 ━━━
+SHOW:    Spy x Family
+ANGLE:   Chapter 139 part 2 (released today) has Anya push her telepathy past its previous limit to lock onto Donovan Desmond's mind from a distance, at real physical cost, and the aftermath surfaces buried Project Apple memories tied to her own past as a test subject -- a real narrative escalation, not filler, landing the same day as the manga's 42-million-copy milestone context. (Note: the 'clairsentience' label and a mother-specific Project Apple link were both dropped after direct verification -- clairsentience is a reviewer's own descriptive term, not an in-text name, and no source ties Project Apple itself to Anya's mother; see semantic_qa notes.)
+FORMAT:  FACT_DROP
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM — Law #134 Stage 2; manga panels allowed within the anime-footage half for manga-based formats)
+TOPIC:   timely — signals: chapter/news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK (Law #144 — on screen + spoken in second 1) ━━━
+ON-SCREEN (second 1): ANYA JUST REACHED DONOVAN'S MIND.
+SPOKEN (VO first line): Anya Forger just pushed her mind further than it's ever gone.
+HOOK FAMILY: revelation
+(Draft two hook candidates internally — Law #145 — publish ONLY the selected one:
+  candidate A: Anya Forger just pushed her mind further than it's ever gone.
+  candidate B: Spy x Family just had Anya reach Donovan's mind from farther away than ever before.
+  SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (104 words — fills the resolved 30s CapCut edit) ━━━
+Anya Forger just pushed her mind further than it's ever gone. In chapter 139 part 2, she strains her telepathy past its limit to hunt down Donovan Desmond's thoughts, and it works, she locks onto him from farther away than ever before. It costs her a nosebleed and a scolding from Yor. She's doing this as someone Project Apple once experimented on, the same program that made her a test subject before the Forgers. This manga just crossed forty-two million copies, still building toward its endgame. Is Anya getting closer to Donovan, or closer to the past that shaped her? Leave your take.
+
+━━━ CLOSING LINE NOTE (Law #141 rescinded 2026-07-27) ━━━
+Law #141 rescinded 2026-07-27 -- no forced colon-handoff loop attempted. VO closes on its own complete, natural thought ('Leave your take.').
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings REQUIRED — Law #140) ━━━
+CUT 1 — 6 sec (0:00–0:06): Spy x Family manga cover / key art (Anya) (unaired_no_footage) — Establishes the character and franchise without claiming any aired anime footage depicts chapter 139.2.
+CUT 2 — 7 sec (0:06–0:13): Chapter 139 part 2 panel reference (Anya locking onto Donovan's mind) (Spy x Family Chapter 139 part 2 (released Aug 16, 2026): Anya pushes her telepathy to the limit, hair ornaments crackling, nosebleed forming, to track down Donovan Desmond's thoughts from a distance she has not managed before -- confirmed in ScreenRant's same-day recap. (ScreenRant separately labels this development 'clairsentience' as its own descriptive term; that label is not used in the VO since it is the reviewer's framing, not an in-text name from the manga itself.)) — Puts the actual verified beat -- Anya straining her telepathy to reach Donovan from a new distance -- on screen with a clear manga-panel label.
+CUT 3 — 6 sec (0:13–0:19): Spy x Family manga cover / key art (Yor and Anya) (unaired_no_footage) — Supports the 'scolding from Yor' beat with generic, non-spoiler franchise art.
+CUT 4 — 6 sec (0:19–0:25): Chapter 139 part 2 panel reference (Anya clutching her Chimera plush, troubled and sleepless) (Spy x Family Chapter 139 part 2 (confirmed chapter-specific beat, per ScreenRant's same-day recap): the chapter's final panels show Anya clutching her Chimera plush, unable to sleep from dark thoughts, while hearing fragmented words ('Die...scared...Des...d's......research...'). ScreenRant's own interpretation reads this as apparent resurfacing Project Apple memories, but the chapter itself visually depicts only the plush and Anya's troubled expression -- not any panel of Project Apple itself.) — Shows the actual final-panel visual from this chapter -- Anya clutching her Chimera plush, dark thoughts keeping her awake -- which ScreenRant's recap interprets as resurfacing Project Apple memories. The clip depicts what is genuinely drawn on the page (the plush, her expression), not an invented visual of Project Apple itself, which the chapter does not depict.
+CUT 5 (final) — 5 sec (0:25–0:30): Spy x Family key art / volume 17 cover with CTA overlay (unaired_no_footage) — Closes on franchise art plus the milestone context (42 million copies) without inventing unaired ending footage.
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+ANYA JUST REACHED DONOVAN'S MIND / CH.139 PART 2 / FARTHER THAN EVER BEFORE / SHE'S A PROJECT APPLE TEST SUBJECT / 42M COPIES AND STILL BUILDING / CLOSER TO DONOVAN, OR CLOSER TO HER PAST? / LEAVE YOUR TAKE
+
+━━━ YOUTUBE TITLE (Law #144 — punchy, searchable) ━━━
+Spy x Family Just Pushed Anya's Powers Further
+
+━━━ TIKTOK TITLE (Law #144 — punchy; distinct from the caption below) ━━━
+Anya's Breakthrough Comes With a Cost
+
+━━━ TIKTOK POST TEXT (caption — may be longer; hashtags live HERE, not in the title) ━━━
+Anya just reached Donovan's mind from farther away than Spy x Family has ever shown -- and she's doing it as the same Project Apple test subject the story has never fully explained. #spyxfamily #anya #animenews #manga #shonenjump
+
+━━━ PINNED COMMENT ━━━
+The detail people are sleeping on: the fragmented words Anya hears -- 'Die...scared...Des...d's...research' -- echo the exact same broken phrasing from Chapman's dying thoughts earlier in the series. That's not a coincidence Endo would leave in by accident.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 10:00 AM ET | Peak 12:00 PM ET
+TikTok — post 7:00 PM ET | Peak 8:00 PM ET
+
+━━━ SOURCES (concise evidence — >=2, each dated) ━━━
+1. Fetched official Viz Shonen Jump chapter list: most recent listed chapter is Ch. 139.1, released August 2, 2026, marked FREE; page also displayed a 'new chapter coming in 11 hours' notice at time of fetch. — https://www.viz.com/shonenjump/chapters/spy-x-family (Aug 2, 2026)
+2. Fetched Soap Central timezone table confirming Spy x Family Chapter 139-2 releases Sunday, August 16, 2026 at 11:00 AM ET / 8:00 AM PT / 12:00 AM JST (Aug 17). — https://www.soapcentral.com/anime/spy-x-family-chapter-139-2-release-date-everything-need-know (Aug 3, 2026)
+3. Fetched ScreenRant's same-day recap (published Aug 16, 2026): Anya pushes her telepathy to the limit, hair ornaments crackling with energy, nosebleed forming, to track down Donovan Desmond's thoughts from a new distance; the article separately applies its own descriptive label 'clairsentience' to this development (not an in-text manga term) and hedges the visual component as only a 'vague'/'fuzzy' perception; article also describes resurfacing Project Apple memories and fragmented words tied to Chapman's dying thoughts, with no claim connecting Project Apple itself to Anya's mother. — https://screenrant.com/spy-x-family-anya-new-powers-clairsentience/ (Aug 16, 2026)
+4. Fetched Wikipedia: 'By April 2026, Spy x Family had over 42 million copies in circulation, making it one of the best-selling manga series of all time.' — https://en.wikipedia.org/wiki/Spy_%C3%97_Family (Apr 2026)
+5. Fetched r/AnimeMirchi Reddit post confirming the same 42 million circulation milestone: 'Spy Family has officially achieved a circulation figure of 42 million copies across its 17 volumes... The series recently surpassed 41 million copies in December 2025, and the launch of Volume 17 has contributed to the increase to 42 million.' — https://www.reddit.com/r/AnimeMirchi/comments/1sc7prd/42_million_copies_spy_x_family_achieves_huge/ (Apr 4, 2026)
+
+━━━ END MORNING ━━━

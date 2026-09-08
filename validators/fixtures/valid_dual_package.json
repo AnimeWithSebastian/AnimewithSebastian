@@ -226,8 +226,8 @@
       "tiktok_post_text": "Fern goes silent right before she wins and it's not a mood beat. Frieren fans know.",
       "pinned_comment": "Rewatch frame at the mana burst: her breathing already dropped a beat before Aura moves. Calmest killer in the season, I'll die on this. New Scene Test drops tomorrow.",
       "post_times": {
-        "youtube": "YouTube Shorts — post 5:30 PM ET | Peak 6-7 PM ET",
-        "tiktok": "TikTok — post 6:30-7:00 PM ET | Peak 7-8 PM ET"
+        "youtube": "YouTube Shorts \u2014 post 5:30 PM ET | Peak 6-7 PM ET",
+        "tiktok": "TikTok \u2014 post 6:30-7:00 PM ET | Peak 7-8 PM ET"
       },
       "blackout_conflict": false,
       "recent_send_conflict": false,
@@ -444,12 +444,54 @@
       "tiktok_post_text": "Elbaph isn't filler, it's Oda paying off a grudge from Little Garden. One Piece readers get it.",
       "pinned_comment": "Little Garden aired in the late 2000s. If you're calling this arc slow, you skipped the setup. Which giant's arc hit you hardest? Next Setup Receipts lands tomorrow.",
       "post_times": {
-        "youtube": "YouTube Shorts — post 6:00 PM ET | Peak 7 PM ET",
-        "tiktok": "TikTok — post 7:00 PM ET | Peak 8 PM ET"
+        "youtube": "YouTube Shorts \u2014 post 6:00 PM ET | Peak 7 PM ET",
+        "tiktok": "TikTok \u2014 post 7:00 PM ET | Peak 8 PM ET"
       },
       "blackout_conflict": false,
       "recent_send_conflict": false,
       "onscreen_cta_start_sec": 26
     }
-  ]
+  ],
+  "minimum_frequency_floor": {
+    "floor_formats": [
+      "THEORY_SPECULATION",
+      "SEASON_ROUNDUP",
+      "WORTH_WATCHING",
+      "WATCH_RANK",
+      "SEASON_RATING"
+    ],
+    "window_days": 21,
+    "evaluations": [
+      {
+        "format_type": "THEORY_SPECULATION",
+        "days_since_last_considered": null,
+        "must_force_consider": true,
+        "was_considered_this_run": false
+      },
+      {
+        "format_type": "SEASON_ROUNDUP",
+        "days_since_last_considered": null,
+        "must_force_consider": true,
+        "was_considered_this_run": false
+      },
+      {
+        "format_type": "WORTH_WATCHING",
+        "days_since_last_considered": null,
+        "must_force_consider": true,
+        "was_considered_this_run": false
+      },
+      {
+        "format_type": "WATCH_RANK",
+        "days_since_last_considered": null,
+        "must_force_consider": true,
+        "was_considered_this_run": false
+      },
+      {
+        "format_type": "SEASON_RATING",
+        "days_since_last_considered": null,
+        "must_force_consider": true,
+        "was_considered_this_run": false
+      }
+    ]
+  }
 }

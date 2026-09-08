@@ -1,0 +1,44 @@
+{
+  "status": "sent",
+  "emails_sent": true,
+  "human_approval": {
+    "approved_by": "Sebastian",
+    "approved_at": "2026-08-17T19:50:00-04:00",
+    "approval_file": "approval.json",
+    "note": "Law #165 review complete and approved. status remains AWAITING_APPROVAL and emails_sent remains false because dispatch (STEP 7) and log-append (STEP 8) have not yet been performed — this field records human sign-off only, distinct from send state."
+  },
+  "batch_id": "9baf0f49-22fe-42b4-960b-857dfd6ea146",
+  "post_date": "2026-08-18",
+  "packages": [
+    {
+      "package_id": "a7c857e4-d0ce-4dd3-b974-ffb05de5dc93",
+      "slot": "morning",
+      "show": "Sparks of Tomorrow",
+      "format_type": "EPISODE_MOMENT",
+      "youtube_title": "Sparks of Tomorrow's Riverboat Switch",
+      "tiktok_title": "Kengo Turns the Chase in Sparks",
+      "email_file": "email_morning.txt"
+    },
+    {
+      "package_id": "79bbef25-6967-422f-b430-31c9b9c05da5",
+      "slot": "evening",
+      "show": "Grand Blue Dreaming Season 3",
+      "format_type": "THE_MOMENT",
+      "youtube_title": "Grand Blue's Worst Wingman Plan",
+      "tiktok_title": "Kohei Makes the Wrong Couple Happen",
+      "email_file": "email_evening.txt"
+    }
+  ],
+  "pending_path": "/home/user/workspace/cron_tracking/daily_combined/pending/9baf0f49-22fe-42b4-960b-857dfd6ea146",
+  "validator": {
+    "exit_code": 0,
+    "output_path": "/home/user/workspace/cron_tracking/daily_combined/validator_pass_9baf0f49-22fe-42b4-960b-857dfd6ea146.txt",
+    "result": "PASS"
+  },
+  "review_note": "Drafted and validated only. No email was sent and no send log was modified.",
+  "log_appended": true,
+  "git_pushed": false,
+  "error": null,
+  "terminal_state_written_at": "2026-08-18T00:01:08.667701+00:00",
+  "terminal_state_written_by": "tools/append_send_batch.py (F38)"
+}

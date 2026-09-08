@@ -1,0 +1,67 @@
+RESULT: PASS — cleared to send both emails (186 PASS / 0 FAIL / 0 SKIP, exit code 0)
+
+TOMORROW | EVENING | The Apothecary Diaries | 2026-08-19 | Apothecary Diaries S3 Leaves the Palace
+
+batch_id: 8ca83216-42a3-4950-ae19-f41c98538d46
+package_id: 3fa10c2e-8b4e-4c1a-9d2f-1a2b3c4d5e02
+
+VO (complete, 108 words):
+"The Apothecary Diaries told you Season 3 leaves the palace before a single episode airs. TOHO Animation confirmed the season at its Summer Garden Party event, and the key visual says it all: Maomao and Jinshi in an open wheat field, not a palace wall in sight. Season 3 premieres October 2nd, split into two cours, the second arriving next April. It's also bringing a new opening theme from Yorushika and adding Reina Ueda to the cast. That's not a show repeating its format—it's one expanding its world. Is leaving the palace the best move, or does it lose what made the mystery work? Leave your take."
+
+FORMAT: SEASON_PREVIEW | content_type: short | topic_class: timely (premiere)
+ANGLE: The new key visual proves Season 3 leaves the palace setting behind, and that's the real headline, not just a release date.
+
+HOOK / PACKAGING:
+hook_line = opening_sentence: "The Apothecary Diaries told you Season 3 leaves the palace before a single episode airs."
+hook_onscreen_text: SCENE TEST: THE NEW KEY VISUAL ISN'T THE PALACE
+hook_family: revelation | hook_first_second: true | isolation_test_pass: true
+hook_candidates (2, selected index 0):
+ 1. "The Apothecary Diaries told you Season 3 leaves the palace before a single episode airs." (SELECTED)
+ 2. "Season 3's key visual puts Maomao in a wheat field, not the palace -- that's the real reveal."
+
+question_line: "Is leaving the palace the best move, or does it lose what made the mystery work?"
+cta_line: "Leave your take." (confirmed immediately adjacent to question_line in the real VO)
+
+series: recurring=true | series_public_name="Scene Test" | series_next_line="New Scene Test drops tomorrow."
+funnel_status: standalone
+
+VIDEO STYLE: Face-Cam Split Screen (creator top / anime footage bottom). face=true, split_screen=true.
+CapCut target: 30s | Total clip time: 30s
+
+CLIP PLAN (5 clips; 3 scene_verified=true against real trailer/visual coverage, 2 scene_verified=false / footage_status: unaired_no_footage — Seasons 1-2 palace-corridor contrast clip and the direct-to-camera Maomao reaction clip, both flagged since no footage exists yet for unaired Season 3 content):
+CUT 1 — 6 sec (0:00–0:06): New key visual reveal — Maomao and Jinshi walking through a golden wheat field — hook frame, the visual proof of the assumption break
+CUT 2 — 6 sec (0:06–0:12): New trailer footage montage from the Season 3 announcement — establishes the season is real and imminent
+CUT 3 — 6 sec (0:12–0:18): Palace corridor footage from Seasons 1-2, contrasted against the new setting — visual contrast beat, shows what's being left behind
+CUT 4 — 6 sec (0:18–0:24): Maomao close-up reaction shot (existing footage, used for the direct-to-camera VO beat) — carries the mid-VO beat naming the new opening theme/cast
+CUT 5 — 6 sec (0:24–0:30): Season 3 title card / October 2, 2026 premiere date card from the trailer — closing beat, locks in the premiere date before the CTA
+TOTAL CLIP TIME: 30 seconds
+
+CAPTIONS: CUT 1: NEW KEY VISUAL / ISN'T THE PALACE. CUT 2: SEASON 3 / CONFIRMED. CUT 3: OCTOBER 2 / 2026.
+
+TITLES:
+youtube_title: "Apothecary Diaries S3 Leaves the Palace"
+tiktok_title: "Apothecary Diaries S3's New Visual Is Not the Palace"
+
+tiktok_post_text: "The Apothecary Diaries Season 3 just dropped a key visual that isn't set in the palace at all. Premieres October 2, 2026. #ApothecaryDiaries #Maomao #Anime #Fall2026Anime #AnimeTok"
+
+pinned_comment: "New opening theme is by Yorushika and there's a new cast addition (Reina Ueda) -- this feels like more than a normal season bump. New Scene Test drops tomorrow."
+
+POST TIMES:
+YouTube Shorts — post 7:15 PM ET | Peak 7-8 PM ET
+TikTok — post 8:00 PM ET | Peak 8-9 PM ET
+
+SOURCES (real, fetched, dated — re-fetched and independently confirmed again during this session's Law #165 review):
+- Anime News Network (Aug 15, 2026): https://www.animenewsnetwork.com/news/2026-08-15/the-apothecary-diaries-season-3-trailer-unveils-october-2-debut-more-cast-opening-song/.240600
+- CBR (Aug 15, 2026): https://www.cbr.com/the-apothecary-diaries-season-3-october-2-premiere/
+- Essential Japan (Aug 15, 2026): https://essential-japan.com/news/maomao-officially-returns-this-october-as-new-the-apothecary-diaries-season-3-trailer-reveals-release-date/
+- Hypebeast (Aug 17, 2026): https://hypebeast.com/2026/8/the-apothecary-diaries-season-3-trailer-release-info
+- Anime.com (Aug 16, 2026) — added this session, confirms "Summer Garden Party 2026" event name: https://www.anime.com/news/the-apothecary-diaries-season-3-october-2-premiere
+- Soap Central (Aug 16, 2026) — added this session, confirms "muted winter palette" wording: https://www.soapcentral.com/anime/news-the-apothecary-diaries-season-3-confirms-fall-return-new-key-visual-cast-addition
+
+LAW #165 CORRECTION MADE THIS SESSION (flagging for your review, not hidden): the manifest's original hook-claim citation (Anime News Network only) does not itself name "TOHO Animation" or the "Summer Garden Party" event — it only says "a special event for the series." Both facts are real and are now independently sourced (Anime.com for the event name, Hypebeast for TOHO Animation) and added to the manifest and this email's source list. The VO text itself was not changed; only the sourcing behind it was completed.
+
+blackout_conflict: false | recent_send_conflict: false
+
+semantic_qa: all 10 checks (5 VO-independent + 5 VO-dependent) attested true after direct verification against the real VO text this session.
+
+--- END OF PACKAGE — AWAITING_APPROVAL (staged, NOT sent, NOT committed) ---

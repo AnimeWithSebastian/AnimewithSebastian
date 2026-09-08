@@ -1,0 +1,82 @@
+{
+  "approved_by": "Sebastian",
+  "approved_at": "2026-08-21T19:30:00-04:00",
+  "approval_status": "APPROVED",
+  "approval_pending_note": "approved_by/approved_at were deliberately left null when this file was first constructed and shown to Sebastian for review. He then gave explicit final sign-off on this exact constructed content (fetch_review, verification_gaps_and_caveats, validator_result all unchanged from the version he reviewed), at which point approved_by/approved_at/approval_status were filled in with his real name and the real timestamp of that sign-off (2026-08-21T19:30:00-04:00 ET). This satisfies Law #165: the approver personally reviewed and confirmed the underlying fetch evidence before this file was marked approved; it was not marked approved by model self-attestation.",
+  "batch_id": "f27f02a6-d543-48be-833f-b8101eb78978",
+  "corrects_batch_id": null,
+  "scope_note": "This batch contains TWO packages, both post_date 2026-08-21: The Iceblade Sorcerer Shall Rule the World (morning, FACT_DROP, package_id 95f32c9f-a4c6-41a4-9683-d24337d7a5fe) and Reincarnated as a Sword (evening, WORTH_WATCHING, package_id 5e9c3bca-6b57-43c0-bebd-9e44b3fe2eea). This batch REPLACES held/duplicate batch d08fde73-73e5-4b21-9acf-81d47a5b115f (Black Torch morning / Solo Leveling S3 evening -- both confirmed duplicates of prior sends, held per Sebastian's instruction, never sent; investigation findings recorded as docs/KNOWN_ISSUES.md F58/F59). Both new shows were hand-verified as zero hits against sent_scripts_log.json and cron_tracking/sent_scripts_events.jsonl before drafting, checked twice: once via exact show-field grep, once via full-record substring scan across every field. VO for both packages was written by Sebastian himself (not model-generated) and provided back verbatim for insertion; word counts, opening_sentence match, CTA adjacency, and (for the evening package) Law #158 comparative-language compliance were independently re-verified against the real inserted VO text in this review, not merely accepted as reported.",
+  "fetch_review": [
+    {
+      "claim": "[CORE, anchors_claim=hook, morning] Iceblade Sorcerer Season 2 recasts Elisa Griffith: Miyu Kubota now voices the role, replacing Nana Harumura, who retired from voice acting in January 2026 for health reasons.",
+      "url": "https://www.animenewsnetwork.com/news/2026-08-20/the-iceblade-sorcerer-shall-rule-the-world-tv-anime-2nd-season-reveals-october-8-debut-theme-song-/.240752",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh in this review. Confirms Miyu Kubota voices Elisa Griffith, replacing Nana Harumura, who 'retired from voice acting in January due to health reasons.'"
+    },
+    {
+      "claim": "[CORE, morning] Season 2 premieres October 8, 2026 at 1:23 a.m. on TBS (plus an October 9, 11:00 p.m. re-air), with Crunchyroll simulcasting as it airs.",
+      "url": "https://www.animenewsnetwork.com/news/2026-08-20/the-iceblade-sorcerer-shall-rule-the-world-tv-anime-2nd-season-reveals-october-8-debut-theme-song-/.240752",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh in this review. Confirms both air dates/times and Crunchyroll's simulcast role exactly as stated in the package."
+    },
+    {
+      "claim": "[CORE, morning] Studio changed from Cloud Hearts (Season 1) to Zero-G (Season 2); new character Olivia Arnold voiced by Hana Hishikawa; returning theme song artists Sizuk (OP) and Maaya Uchida (ED).",
+      "url": "https://www.animenewsnetwork.com/news/2026-08-20/the-iceblade-sorcerer-shall-rule-the-world-tv-anime-2nd-season-reveals-october-8-debut-theme-song-/.240752",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh in this review. All four sub-facts confirmed directly on the same primary source."
+    },
+    {
+      "claim": "[CORE, anchors_claim=hook, evening] Reincarnated as a Sword Season 2 is a HIDIVE-exclusive in North America this time -- Crunchyroll is explicitly not an option.",
+      "url": "https://www.gametrader.sg/blog/tag/reincarnated-as-a-sword/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh in this review. Exact quote: 'Season 2 will simulcast exclusively on HIDIVE from October 2026 -- meaning Crunchyroll is not an option this time around.' This is the strongest direct source for the hook's exclusion framing; the primary ANN announcement (next entry) omits Crunchyroll rather than explicitly excluding it, so this corroborating source is load-bearing for the hook's specific wording, not merely supplementary."
+    },
+    {
+      "claim": "[CORE, evening] Early streaming begins September 30, 2026 on ABEMA; TV debut October 7, 2026 on Tokyo MX and ABC TV; HIDIVE streams it as it airs in North America.",
+      "url": "https://www.animenewsnetwork.com/news/2026-08-16/reincarnated-as-a-sword-season-2-reveals-september-30-early-streaming-debut-theme-songs-in-trailer/.240622",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh in this review. All dates/platforms confirmed directly; this source does not mention Crunchyroll at all (silent omission, not an explicit statement of exclusion -- see prior entry for the source that makes the exclusion explicit)."
+    },
+    {
+      "claim": "[CORE, evening] HIDIVE holds the North American premiere at Anime NYC on August 22, 2026, with a panel featuring director Shinji Ishihira and producers Yosuke Shimada and Genta Ozaki. A manga spinoff, Tensei Shitara Ken Deshita My Dish, launches the same day (Sept 30) on Comic Ride.",
+      "url": "https://www.animenewsnetwork.com/news/2026-08-16/reincarnated-as-a-sword-season-2-reveals-september-30-early-streaming-debut-theme-songs-in-trailer/.240622",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh in this review. All names, dates, and the spinoff title/service confirmed exactly."
+    }
+  ],
+  "verification_gaps_and_caveats": [
+    {
+      "issue": "Evening package's central 'skipping Crunchyroll' claim rests on a secondary/corroborating source rather than the primary ANN announcement",
+      "detail": "The primary Anime News Network piece (Aug 16) never mentions Crunchyroll at all -- it only names ABEMA, Tokyo MX, ABC TV, and HIDIVE. The explicit 'Crunchyroll is not an option this time around' framing comes from GameTrader.SG's Aug 16 blog post. Both were independently re-fetched fresh in this review and are consistent (one is silent, the other is explicit; neither contradicts the other), but the hook's specific claim of active exclusion is better supported by the secondary source than the primary one. Not treated as blocking -- GameTrader.SG is dated and the claim is corroborated by omission on the primary source -- but recorded here rather than presented as resting equally on both.",
+      "core_matrix_source_pairing_note": "This satisfies the two-source/non-encyclopedic pairing requirement (Law #58) since GameTrader.SG is non-encyclopedic and dated; flagged for transparency about which source carries the specific exclusion wording, not because sourcing is insufficient."
+    },
+    {
+      "issue": "VO word counts as reported by the VO author (107/107) differed slightly from this review's independent recount (106/107) on the morning package",
+      "detail": "Independently recomputed word counts directly from the inserted VO text in this review using a plain .split() count: morning = 106 words, evening = 107 words. The VO author reported both as 107. Both figures land inside the required 100-108 band regardless of which count is used, so this did not block anything and no VO text was altered -- but the discrepancy on the morning package is recorded here rather than silently accepting the reported figure. semantic_qa.checks.vo_word_count was set true on both packages only after this independent recount confirmed both are genuinely in-band."
+    },
+    {
+      "issue": "semantic_qa.checks VO-dependent fields (cta_adjacency, hook_claim_coverage, numeric_cross_check, ai_slop_pattern_check) were pre-populated true before the real VO text existed",
+      "detail": "These four fields were already set true in the manifest from the original drafting pass, before Sebastian's real VO was inserted -- meaning they were attested against draft/placeholder content, not the final VO. This review did not accept those pre-set values on faith: each was independently re-checked against the actual inserted VO text (opening-sentence match confirmed true on both; question-line immediately followed by 'Leave your take.' confirmed true on both; no AI-slop stock phrases found in either VO). All four hold up under the real text, so they were left as true rather than reset and re-attested, but this is noted because the sequencing (attest-before-content-exists) is not the correct order and shouldn't be repeated."
+    }
+  ],
+  "validator_result": {
+    "run_fresh_in_this_review": true,
+    "command": "python3 validators/validate_dual_package.py cron_tracking/daily_combined/run_manifest.json",
+    "exit_code": 0,
+    "pass_count": 193,
+    "fail_count": 0,
+    "skip_count": 0,
+    "result": "PASS \u2014 cleared to send both emails"
+  },
+  "human_final_read_confirmation": "OBTAINED 2026-08-21T19:30:00-04:00. Sebastian wrote both VOs himself, instructed insertion, and after the validator returned a clean 193 PASS / 0 FAIL / 0 SKIP result and this approval.json was constructed and shown to him (fetch_review, verification_gaps_and_caveats, validator_result), he gave explicit final sign-off to write approved_by/approved_at/approval_status into this file. This is the human half of the Law #165 review; the fetch_review section above is the model's independently-repeated fetch pass done fresh in this review, not reused from the original drafting session's self-reported fetch claims.",
+  "changes_made_before_approval": [
+    "Sebastian wrote both VOs (morning: Iceblade Sorcerer S2, 106 words; evening: Reincarnated as a Sword S2, 107 words) and provided them verbatim for insertion.",
+    "Inserted both VO texts into run_manifest.json under the 'vo' field (validator's expected key, not 'vo_text'); set vo_status='complete' on both packages.",
+    "Independently re-verified before trusting the reported word counts: recounted both VOs directly (106/107, both in the 100-108 band), confirmed opening_sentence is the literal first VO sentence on both, confirmed the question_line is immediately followed by the exact phrase 'Leave your take.' on both, and re-ran a comparative-language scan on the evening package (no_comparative_language=true) finding zero banned terms.",
+    "First validator run after insertion returned 2 FAIL (semantic_qa.checks.vo_word_count was null on both packages, correctly left unset while VO was pending). Fixed by honestly setting vo_word_count=true on both, only after confirming via independent recount that both VOs are genuinely in the 100-108 band -- not attested merely to clear the check.",
+    "Second validator run: 193 PASS, 0 FAIL, 0 SKIP, exit code 0 -- full clean PASS.",
+    "Independently re-fetched all six core-claim source URLs fresh in this review (not reused from the original drafting session's self-reported fetch claims); all six confirmed to support their claims as stated.",
+    "Staged this approval.json at AWAITING_APPROVAL (approved_by/approved_at left null) -- no send, no STEP 7/8, no approval finalization until Sebastian's own sign-off.",
+    "Sebastian reviewed this constructed file and gave explicit final sign-off. approved_by set to 'Sebastian', approved_at set to 2026-08-21T19:30:00-04:00 (real timestamp of sign-off), approval_status set to APPROVED. fetch_review, verification_gaps_and_caveats, and validator_result are unchanged from the version he reviewed. This batch is now ready for whoever has real mail access to complete STEP 7 (dispatch) and STEP 8 (log append) -- neither of those steps has been performed by this approval action itself."
+  ]
+}

@@ -1,157 +1,141 @@
-#!/usr/bin/env python3
-"""Tests for the VO-handoff observability log (tools/vo_handoff_log.py).
-
-Every test writes to a temp path, never the real
-cron_tracking/daily_combined/vo_handoff_log.jsonl. Stdlib unittest only.
-
-    python3 -m unittest discover  (from inside the tools/ directory)
-"""
-
 from __future__ import annotations
 
-import json
 import os
+import shutil
 import tempfile
 import unittest
 
-import vo_handoff_log as L
+import vo_handoff_log as vhl
 
 
-class _TmpLog(unittest.TestCase):
-    def setUp(self) -> None:
-        self._dir = tempfile.mkdtemp()
-        self.path = os.path.join(self._dir, "vo_handoff_log.jsonl")
+class TestVoHandoffLogSchema(unittest.TestCase):
+    def setUp(self):
+        self.tree = tempfile.mkdtemp()
 
-    def events(self) -> list[dict]:
-        return L.read_events(self.path)
+    def tearDown(self):
+        shutil.rmtree(self.tree, ignore_errors=True)
 
-
-class TestVoHandoffLogEvents(_TmpLog):
-    def test_all_four_event_types_round_trip(self):
-        L.log_vo_requested("b1", "p1", word_band="200-216", path=self.path)
-        L.log_vo_received("b1", "p1", vo_word_count=210, path=self.path)
-        L.log_vo_rejected("b1", "p1", validator_exit_code=1,
-                          reason="word count out of band",
-                          failed_checks=["[evening] VO within 200-216 words"],
-                          path=self.path)
-        L.log_vo_inserted("b1", "p1", validator_exit_code=0, path=self.path)
-        self.assertEqual([e["event"] for e in self.events()],
-                         ["vo_requested", "vo_received", "vo_rejected", "vo_inserted"])
-
-    def test_every_record_carries_batch_package_and_timestamp(self):
-        L.log_vo_requested("batch-x", "pkg-y", path=self.path)
-        rec = self.events()[0]
-        self.assertEqual(rec["batch_id"], "batch-x")
-        self.assertEqual(rec["package_id"], "pkg-y")
-        self.assertTrue(rec["ts"], "every event must carry a timestamp")
-
-    def test_log_is_append_only_never_truncates(self):
-        for i in range(3):
-            L.log_vo_requested(f"b{i}", f"p{i}", path=self.path)
-        self.assertEqual(len(self.events()), 3)
-        # a later write must not clobber earlier lines
-        L.log_vo_received("b0", "p0", path=self.path)
-        self.assertEqual(len(self.events()), 4)
-
-    def test_word_band_is_preserved_for_the_writer(self):
-        # The band is the instruction handed to Claude; losing it would make the
-        # request unreconstructable without re-deriving the edit length.
-        L.log_vo_requested("b1", "p1", word_band="100-108", path=self.path)
-        self.assertEqual(self.events()[0]["word_band"], "100-108")
-
-
-class TestVoInsertedHardGuard(_TmpLog):
-    """log_vo_inserted must REFUSE anything but a fully_passed (exit 0) validation."""
-
-    def test_exit_zero_is_logged(self):
-        L.log_vo_inserted("b1", "p1", validator_exit_code=0, path=self.path)
-        self.assertEqual(len(self.events()), 1)
-
-    def test_exit_three_partial_is_refused(self):
-        # Exit 3 = PARTIAL: no failures, but VO-dependent checks are still SKIPPED.
-        # Recording that as an insertion is the exact false-confidence this guards.
-        with self.assertRaises(ValueError):
-            L.log_vo_inserted("b1", "p1", validator_exit_code=3, path=self.path)
-        self.assertEqual(self.events(), [], "nothing may be written on refusal")
-
-    def test_exit_one_failure_is_refused(self):
-        with self.assertRaises(ValueError):
-            L.log_vo_inserted("b1", "p1", validator_exit_code=1, path=self.path)
-        self.assertEqual(self.events(), [])
-
-
-class TestVoHandoffLogValidation(_TmpLog):
     def test_unknown_event_type_rejected(self):
         with self.assertRaises(ValueError):
-            L._base_record("vo_teleported", "b1", "p1")
+            vhl.build_event("vo_bogus", batch_id="b1", package_id="p1", slot="morning", show="X")
 
-    def test_blank_batch_or_package_id_rejected(self):
+    def test_vo_requested_missing_field_rejected(self):
+        # vo_status is auto-filled by log_vo_requested, but build_event directly
+        # must still reject an incomplete manual construction.
         with self.assertRaises(ValueError):
-            L.log_vo_requested("", "p1", path=self.path)
+            vhl.build_event("vo_requested", batch_id="b1", package_id="p1", slot="morning", show="X")
+
+    def test_vo_inserted_requires_exit_code_zero(self):
         with self.assertRaises(ValueError):
-            L.log_vo_requested("b1", "   ", path=self.path)
+            vhl.build_event("vo_inserted", batch_id="b1", package_id="p1", slot="morning",
+                             show="X", validator_exit_code=1)
+        with self.assertRaises(ValueError):
+            vhl.build_event("vo_inserted", batch_id="b1", package_id="p1", slot="morning",
+                             show="X", validator_exit_code=3)
+        # zero is fine
+        e = vhl.build_event("vo_inserted", batch_id="b1", package_id="p1", slot="morning",
+                             show="X", validator_exit_code=0)
+        self.assertEqual(e["validator_exit_code"], 0)
 
+    def test_vo_rejected_requires_failed_checks(self):
+        with self.assertRaises(ValueError):
+            vhl.build_event("vo_rejected", batch_id="b1", package_id="p1", slot="morning",
+                             show="X", validator_exit_code=1)
 
-class TestFailedRevalidationScenario(_TmpLog):
-    """Walk the real failed-revalidation path end to end.
+    def test_append_creates_file_and_parent_dir(self):
+        path = vhl._log_path(self.tree)
+        self.assertFalse(os.path.exists(path))
+        vhl.log_vo_requested(self.tree, batch_id="b1", package_id="p1", slot="morning", show="X")
+        self.assertTrue(os.path.exists(path))
 
-    Scenario: handoff sent -> VO comes back -> re-validation FAILS -> VO rejected ->
-    writer redoes it against the SAME batch_id/package_id -> second VO passes.
+    def test_events_are_one_json_object_per_line(self):
+        vhl.log_vo_requested(self.tree, batch_id="b1", package_id="p1", slot="morning", show="X")
+        vhl.log_vo_received(self.tree, batch_id="b1", package_id="p1", slot="morning", show="X",
+                             vo_word_count=104)
+        events = vhl.read_events(self.tree)
+        self.assertEqual(len(events), 2)
+        self.assertEqual(events[0]["event"], "vo_requested")
+        self.assertEqual(events[1]["event"], "vo_received")
+        self.assertEqual(events[1]["vo_word_count"], 104)
 
-    The redo must NOT log a second vo_requested: one handoff was requested, and a
-    duplicate would make the log read as two separate handoffs for one package.
-    """
+    def test_read_events_filters_by_batch_and_package(self):
+        vhl.log_vo_requested(self.tree, batch_id="b1", package_id="p1", slot="morning", show="X")
+        vhl.log_vo_requested(self.tree, batch_id="b1", package_id="p2", slot="evening", show="Y")
+        vhl.log_vo_requested(self.tree, batch_id="b2", package_id="p3", slot="morning", show="Z")
+        self.assertEqual(len(vhl.read_events(self.tree, batch_id="b1")), 2)
+        self.assertEqual(len(vhl.read_events(self.tree, batch_id="b1", package_id="p2")), 1)
+        self.assertEqual(len(vhl.read_events(self.tree, batch_id="b2")), 1)
 
-    def test_reject_then_redo_same_ids_single_request(self):
-        BATCH, PKG = "d4a8f107-batch", "b7c41e0a-pkg"
+    def test_explicit_failed_revalidation_case_full_timeline(self):
+        """The exact case the user required to be shown explicitly: Sebastian
+        pastes a VO, the full validator comes back with a real FAIL. Confirms:
+        - vo_received IS logged (unconditional on receipt)
+        - vo_inserted is NOT logged (only fully_passed logs it)
+        - vo_rejected IS logged, carrying the failed check names
+        - the redo reuses the SAME batch_id/package_id and does NOT log a
+          second vo_requested -- the original one stands
+        - the corrected VO that comes back next is just another vo_received
+          for the same package_id, followed by vo_inserted once it passes
+        """
+        batch_id, package_id, slot, show = "9dc75e78", "pkg-morning-1", "morning", "Spy x Family"
 
-        L.log_vo_requested(BATCH, PKG, word_band="200-216", path=self.path)
-        L.log_vo_received(BATCH, PKG, vo_word_count=140, path=self.path)
-        L.log_vo_rejected(BATCH, PKG, validator_exit_code=1,
-                          reason="VO word count below the required band",
-                          failed_checks=["[evening] VO within 200-216 words"],
-                          path=self.path)
+        # 1. draft/email stage
+        vhl.log_vo_requested(self.tree, batch_id=batch_id, package_id=package_id, slot=slot, show=show)
 
-        # redo -- same ids, NO second vo_requested
-        L.log_vo_received(BATCH, PKG, vo_word_count=208, path=self.path)
-        L.log_vo_inserted(BATCH, PKG, validator_exit_code=0, path=self.path)
+        # 2. Sebastian pastes VO #1 -- receipt is unconditional
+        vhl.log_vo_received(self.tree, batch_id=batch_id, package_id=package_id, slot=slot,
+                             show=show, vo_word_count=112)
 
-        evs = self.events()
-        self.assertEqual([e["event"] for e in evs],
-                         ["vo_requested", "vo_received", "vo_rejected",
-                          "vo_received", "vo_inserted"])
-        self.assertEqual(sum(1 for e in evs if e["event"] == "vo_requested"), 1,
-                         "a redo must not log a second vo_requested")
-        self.assertTrue(all(e["batch_id"] == BATCH and e["package_id"] == PKG for e in evs),
-                        "a redo must reuse the same batch_id/package_id")
-        # the rejection must carry the specific failed check, not just a boolean
-        rej = next(e for e in evs if e["event"] == "vo_rejected")
-        self.assertEqual(rej["failed_checks"], ["[evening] VO within 200-216 words"])
+        # 3. full validator re-run comes back with a REAL FAIL (exit code 1) --
+        #    batch stays at AWAITING_VO, no vo_inserted, a vo_rejected instead
+        vhl.log_vo_rejected(self.tree, batch_id=batch_id, package_id=package_id, slot=slot, show=show,
+                             validator_exit_code=1, failed_checks=["VO within 100-108 words"])
 
+        events_so_far = vhl.read_events(self.tree, batch_id=batch_id, package_id=package_id)
+        self.assertEqual([e["event"] for e in events_so_far],
+                          ["vo_requested", "vo_received", "vo_rejected"])
+        self.assertNotIn("vo_inserted", [e["event"] for e in events_so_far])
+        # exactly one vo_requested across the whole (still-open) round trip
+        self.assertEqual(sum(1 for e in events_so_far if e["event"] == "vo_requested"), 1)
 
-class TestObservabilityOnly(unittest.TestCase):
-    """This log must never become an input to a gate."""
+        # 4. redo round trip: Sebastian pastes a CORRECTED VO for the SAME
+        #    batch_id/package_id. No new vo_requested is logged for this --
+        #    only another vo_received.
+        vhl.log_vo_received(self.tree, batch_id=batch_id, package_id=package_id, slot=slot,
+                             show=show, vo_word_count=105)
+        events_after_redo = vhl.read_events(self.tree, batch_id=batch_id, package_id=package_id)
+        self.assertEqual(sum(1 for e in events_after_redo if e["event"] == "vo_requested"), 1,
+                          "redo must not log a second vo_requested -- the original stands")
+        self.assertEqual(sum(1 for e in events_after_redo if e["event"] == "vo_received"), 2)
 
-    def test_no_gate_reads_the_handoff_log(self):
-        # Guards against the failure mode the module docstring names: a record that
-        # quietly becomes a source of truth. If a gate ever starts importing this
-        # module, this test should fail and force a deliberate decision.
-        import io
-        here = os.path.dirname(os.path.abspath(__file__))
-        gate_files = [
-            os.path.join(here, "append_send_batch.py"),
-            os.path.join(here, "weekly_noop_gate.py"),
-            os.path.join(os.path.dirname(here), "validators", "validate_dual_package.py"),
+        # 5. this time the full validator re-run is fully_passed (exit 0) --
+        #    NOW vo_inserted is logged, and the batch can transition onward.
+        vhl.log_vo_inserted(self.tree, batch_id=batch_id, package_id=package_id, slot=slot,
+                             show=show, validator_exit_code=0)
+        final_events = vhl.read_events(self.tree, batch_id=batch_id, package_id=package_id)
+        self.assertEqual([e["event"] for e in final_events],
+                          ["vo_requested", "vo_received", "vo_rejected", "vo_received", "vo_inserted"])
+        # exactly one vo_inserted, matching the one fully_passed re-run
+        self.assertEqual(sum(1 for e in final_events if e["event"] == "vo_inserted"), 1)
+
+    def test_never_imported_by_any_gating_module(self):
+        """Pure-observability guarantee: confirm neither the dual-package
+        validator, the longform validator, nor append_send_batch.py imports
+        this module -- it must never become a gating input."""
+        repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        gating_files = [
+            os.path.join(repo_root, "validators", "validate_dual_package.py"),
+            os.path.join(repo_root, "validators", "validate_longform_flagship.py"),
+            os.path.join(repo_root, "tools", "append_send_batch.py"),
         ]
-        for f in gate_files:
-            if not os.path.exists(f):
+        for path in gating_files:
+            if not os.path.exists(path):
                 continue
-            with io.open(f, encoding="utf-8") as fh:
-                src = fh.read()
-            self.assertNotIn("vo_handoff_log", src,
-                             msg=f"{os.path.basename(f)} must not read the handoff log "
-                                 f"-- it is observability only, never a gate input")
+            with open(path, encoding="utf-8") as fh:
+                content = fh.read()
+            self.assertNotIn("vo_handoff_log", content,
+                              msg=f"{path} must never import/reference vo_handoff_log (pure observability only)")
 
 
 if __name__ == "__main__":
-    unittest.main(verbosity=2)
+    unittest.main()

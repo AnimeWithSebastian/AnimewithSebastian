@@ -1,0 +1,31 @@
+{
+  "status": "sent",
+  "emails_sent": true,
+  "batch_id": "9a7d935f-95e6-40ac-8dfc-a6dd1d9a3eb7",
+  "post_date": "2026-08-26",
+  "pending_path": "cron_tracking/daily_combined/pending/9a7d935f-95e6-40ac-8dfc-a6dd1d9a3eb7/",
+  "packages": [
+    {
+      "package_id": "3f5e2c81-6a4d-4b7c-9e1a-0d8f7b6c5a4e",
+      "slot": "morning",
+      "show": "Hunter x Hunter",
+      "format_type": "THE_MOMENT",
+      "vo_word_count": 108
+    },
+    {
+      "package_id": "7c2a9d34-1e5b-4f8a-b6c3-2d9e8f7a6b5c",
+      "slot": "evening",
+      "show": "Kagurabachi",
+      "format_type": "CHARACTER_DIVE",
+      "vo_word_count": 108
+    }
+  ],
+  "validator_exit_code": 0,
+  "error": null,
+  "log_appended": true,
+  "git_pushed": true,
+  "terminal_state_written_at": "2026-08-27T02:45:00Z",
+  "terminal_state_written_by": "tools/_manual_log_9a7d935f.py (manual, F72 gate gap)",
+  "manually_logged": true,
+  "manual_log_reason": "Logged manually -- both emails confirmed genuinely sent. The automated append_send_batch.py gate blocked on 3 of 14 fetch_review entries explicitly labeled as rejected/superseded historical record (2 marked 'ORIGINAL CLAIM (rejected pre-approval)', 1 an already-replaced citation) -- none represent a live unsupported claim in the actual sent content. This is a real, identified gap in the gate's logic (no rejected/superseded exemption), not a genuine sourcing problem. See docs/KNOWN_ISSUES.md (F72) for the full finding. Recorded manually per Sebastian's explicit authorization."
+}

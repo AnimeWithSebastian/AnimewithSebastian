@@ -1,0 +1,57 @@
+SUBJECT: REPLACEMENT | EVENING | Grand Blue Dreaming Season 3 | 2026-09-01 | SPOILER: Grand Blue S3E9 Proposal
+
+━━━ EVENING — 2026-09-01 ━━━
+SHOW:    Grand Blue Dreaming Season 3
+ANGLE:   Episode 9 ("Ordeals") turns three separate personal crises -- Mitarai's panic marriage proposal, Yamamoto's Spirytus stunt gone wrong, and Nojima's bidet disaster -- into the show's most chaotic single-episode pileup as Iori starts quietly worrying about who takes over Peek a Boo once the seniors graduate
+FORMAT:  THE_MOMENT
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM)
+TOPIC:   timely — signals: currently_airing/news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK ━━━
+ON-SCREEN (second 1): SPOILERS: Grand Blue's newest episode ends in a proposal nobody wanted.
+SPOKEN (VO first line): SPOILERS: Grand Blue's newest episode ends in a proposal nobody wanted.
+HOOK FAMILY: revelation
+(candidate A: SPOILERS: Grand Blue's newest episode ends in a proposal nobody wanted.
+ candidate B: SPOILER WARNING: One bottle of Spirytus just wrecked Grand Blue's whole episode.
+ SELECTED: 0)
+
+━━━ VO (100 words — fills the resolved 30s CapCut edit) ━━━
+SPOILERS: Grand Blue's newest episode ends in a proposal nobody wanted. Episode 9, 'Ordeals,' opens with Iori noticing his seniors job-hunting and starting to genuinely worry about who takes over Peek a Boo once they're gone. Then everything falls apart at once. Rie nearly shatters Mitarai's jaw, and he panics straight into a marriage proposal. Yamamoto's Spirytus-bottle stunt backfires when the bottle gets stuck, and he ends up drunk from his own setup. Nojima, separately, triggers a full bidet malfunction. Whose disaster was actually the worst: Mitarai's proposal, Yamamoto's Spirytus stunt, or Nojima's bidet? Leave your take.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view) ━━━
+[FACE: direct-to-camera, lean in] SPOILERS: Grand Blue's newest episode ends in a proposal nobody wanted. [FACE: glance-down-at-footage] Episode 9, 'Ordeals,' opens with Iori noticing his seniors job-hunting and starting to genuinely worry about who takes over Peek a Boo once they're gone. [FACE: glance-down-at-footage] Then everything falls apart at once. [FACE: glance-down-at-footage] Rie nearly shatters Mitarai's jaw, and he panics straight into a marriage proposal. [FACE: glance-down-at-footage] Yamamoto's Spirytus-bottle stunt backfires when the bottle gets stuck, and he ends up drunk from his own setup. [FACE: glance-down-at-footage] Nojima, separately, triggers a full bidet malfunction. [FACE: glance-down-at-footage] Whose disaster was actually the worst: Mitarai's proposal, Yamamoto's Spirytus stunt, or Nojima's bidet? Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings) ━━━
+CUT 1 — 6 sec (0:00–0:06): Real aired footage: Iori noticing his seniors starting job hunting and beginning to think about Peek a Boo's leadership changeover — Sets up the episode's quieter throughline underneath the chaos, giving the hook a beat to land against
+CUT 2 — 12 sec (0:06–0:18): Real aired footage: Mitarai panicking into a marriage proposal to girlfriend Rie after nearly having his jaw shattered — Delivers the core hook claim -- the proposal nobody wanted
+CUT 3 (final) — 12 sec (0:18–0:30): Real aired footage: Yamamoto's Spirytus bottle stunt going wrong and Nojima's bidet malfunction, both spiraling as the others walk in — Closes on the question/CTA -- ranking which of the three disasters was worst
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+Grand Blue Dreaming Season 3 Episode 9 just turned three separate disasters into one chaotic episode -- and one of them ends in a proposal.
+
+━━━ YOUTUBE TITLE ━━━
+SPOILER: Grand Blue S3E9 Proposal
+
+━━━ TIKTOK TITLE ━━━
+Grand Blue's newest episode ends in a proposal
+
+━━━ TIKTOK POST TEXT (caption) ━━━
+SPOILER for Grand Blue Dreaming Season 3 Episode 9.
+This episode stacks three disasters in one go -- and Mitarai's ends in a marriage proposal nobody saw coming. #GrandBlue #GrandBlueDreaming #AnimeComedy #AnimeTok #AnimeManga
+
+━━━ PINNED COMMENT ━━━
+Episode 9 ("Ordeals") aired August 31/September 1 and is streaming now on Crunchyroll. Episode 10 is next week.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 2026-09-01T18:00:00-04:00
+TikTok — post 2026-09-01T18:15:00-04:00
+
+━━━ SOURCES ━━━
+1. Grand Blue Dreaming Season 3 Episode 9, officially titled "Ordeals" (受難), aired August 31, 2026 in Japan's late-night broadcast slot on TOKYO MX and BS11, with MBS airing later on September 1, 2026; streaming internationally on Crunchyroll — https://www.indiatimes.com/trending/grand-blue-dreaming-season-3-episode-9-recap-yamamotos-unbelievable-spirytus-stunt-steals-the-show-as-mitarai-and-nojima-face-disasters/articleshow/133667310.html (Sep 2026)
+2. Official pre-air synopsis: seeing his seniors start job hunting, Iori begins considering Peek a Boo's eventual leadership changeover; he gathers with Nojima (wants to become a YouTuber), Yamamoto (seriously in love with a VTuber), and Mitarai, who nearly has his jaw shattered by girlfriend Rie and panics into proposing marriage — https://www.animatetimes.com/news/details.php?id=1787627889 (Aug 2026)
+3. Post-air recap confirms Yamamoto's plan to cool down using a bottle of Spirytus goes spectacularly wrong when the bottle gets stuck and he ends up drunk from the setup itself; Nojima separately triggers a bidet malfunction that leaves him soaked and looking suspicious when the others walk in — https://www.indiatimes.com/trending/grand-blue-dreaming-season-3-episode-9-recap-yamamotos-unbelievable-spirytus-stunt-steals-the-show-as-mitarai-and-nojima-face-disasters/articleshow/133667310.html (Sep 2026)
+
+━━━ END EVENING ━━━

@@ -58,6 +58,90 @@ to the repo, not a replacement for reading the actual law/runtime files it point
 
 ---
 
+## STANDING COMMUNICATION AND PROCESS RULES (added 2026-08-21, permanent, applies to every future batch)
+
+1. FILE ATTACHMENTS BY DEFAULT. Any content over ~500 words — diffs,
+   VOs, manifests, fact packages, approval.json contents — provided
+   as a file attachment by default, never in-body only.
+
+2. EXPLICIT REPO/REMOTE DECLARATION. Every report from an automated or
+   agent session states, as its first line, which repo/remote it
+   currently has real, configured access to. No claim about a repo's
+   content is valid unless that exact repo is the one declared.
+
+3. BATCH ROUTINE STEPS. Sequential, low-risk steps (insert ->
+   validate -> stage -> commit -> push -> report) completed together
+   in one pass, single consolidated report at the end. Only stop
+   mid-sequence for a genuine FAILURE, real ambiguity, or send/
+   duplicate-dispatch/financial risk.
+
+4. PERMANENT REPO MAP. SEBLABHRIS/AnimeWithSebastian.git = the real,
+   authoritative repo (380+ commits, June 2026 onward — this is where
+   approved batches are committed and sends are logged).
+   AnimeWithSebastian/AnimewithSebastian.git = a disconnected legacy
+   snapshot, no shared git history (confirmed via git merge-base
+   returning nothing), used by sessions lacking SEBLABHRIS access.
+   These two repos must never be assumed in sync.
+
+5. MATCH EFFORT TO THE ACTUAL QUESTION. Two failure modes to avoid,
+   both real and both costly:
+
+   a) DON'T RE-DERIVE SETTLED FACTS. If something was already
+      confirmed either earlier in this same session or is already
+      written into this document (Law #141's rescission status, CTA
+      placement rules, the repo map, the format-eligibility rules from
+      items #6/#7, etc.), cite the prior confirmation or this
+      document directly. Only re-verify from scratch if there's a
+      specific, stated reason to suspect it's changed — re-deriving
+      an already-settled fact via a fresh multi-step investigation is
+      pure waste.
+
+   b) SCOPE INVESTIGATION TO THE QUESTION'S ACTUAL STAKES. A simple
+      factual or confirmatory question (e.g. "did you write X",
+      "what's the status of Y") gets a direct, minimal-tool-call
+      answer — not an open-ended audit. Reserve deep, many-step
+      investigation for things that are genuinely novel, surprising,
+      or high-stakes (a real discrepancy, a new mechanism being
+      tested for the first time, a finding that contradicts something
+      already established). If a response is trending toward dozens of
+      tool calls for what was asked as a simple question, stop and
+      answer what's actually needed instead.
+
+   This does NOT relax any existing standard for source verification,
+   word-count checks, adversarial testing of new code, or fetch-and-
+   confirm review of content claims — those stay exactly as rigorous
+   as they've been all session. This rule targets redundant
+   re-verification and disproportionate exploration, not the real
+   verification work that protects content accuracy.
+
+6. MANGA-ONLY CONTENT MUST USE REAL MANGA PANEL REFERENCES, NEVER
+   ANIME-FOOTAGE SUBSTITUTION (added 2026-08-24, after batch
+   b1f4a6c2's correction). When a clip's underlying beat has not
+   aired in anime form (`footage_status: "unaired_no_footage"` or
+   `"unaired_trailer_only"`), the clip's `scene` field and the
+   rendered `clip_descriptions` text — i.e. the actual footage
+   Sebastian is instructed to cut into the video — must describe the
+   real manga panel (chapter + panel/beat, via `manga_reference`),
+   never an anime-footage substitute or "closest matching anime
+   equivalent" framing. It is not sufficient for `footage_status`,
+   `verification_note`, or `clip_plan_needs_manga_source` to honestly
+   disclose that no anime footage exists while the `scene` field
+   still instructs an anime-footage stand-in — the disclosure and the
+   instructed footage must agree. Do NOT invent a new
+   `footage_status` enum value (e.g. a "manga confirmed" state) to
+   badge this fix, and do NOT set `scene_verified: true` for a manga
+   panel — that field's Law #73 obligations
+   (`verification_source_url`, `claim_vs_source_check`, `clip_locate`)
+   describe locating an aired anime clip and do not apply to manga
+   panels; forcing them to pass would require fabricating them.
+   `scene_verified: false` with `footage_status: "unaired_no_footage"`
+   plus an accurate `manga_reference` is the correct, honest state for
+   a manga-only clip using real manga panel art. See
+   `cron_tracking/daily_combined/CLIP_PLAN_CORRECTION_20260824_manga_panel_rule.md`
+   for the worked example (One Piece Ch. 1191 + Dandadan Ch. 244).
+
+---
+
 ## 1. Brand and channel
 
 - Brand: **AnimeWithSebastian** (handle `@animewithsebastian`). "Hero or Villain"

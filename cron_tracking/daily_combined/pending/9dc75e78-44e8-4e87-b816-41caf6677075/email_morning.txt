@@ -1,0 +1,66 @@
+SUBJECT: TOMORROW | MORNING | Though I Am an Inept Villainess | 2026-08-17 | Inept Villainess Makes a Dance Dangerous
+
+━━━ MORNING — 2026-08-17 ━━━
+SHOW:    Though I Am an Inept Villainess
+ANGLE:   Episode 5 turns Reirin's Ghost Festival dance and Keigetsu's feared reputation into a deliberate court-survival weapon.
+FORMAT:  CHARACTER_DIVE
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM)
+TOPIC:   timely — signals: currently_airing
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK ━━━
+ON-SCREEN (second 1): A DANCE IS REIRIN'S SHARPEST WEAPON
+SPOKEN (VO first line): Though I Am an Inept Villainess turns a court dance into Reirin's sharpest weapon.
+HOOK FAMILY: contradiction
+(candidate A: Though I Am an Inept Villainess turns a court dance into Reirin's sharpest weapon.
+ candidate B: Reirin's best weapon in Episode 5 is the court's worst reputation.
+ SELECTED: 0)
+
+━━━ VO (100 words — fills the resolved 30s CapCut edit) ━━━
+Though I Am an Inept Villainess turns a court dance into Reirin's sharpest weapon. In Episode 5, she attends the Ghost Festival in Keigetsu's body, where Keigetsu's bad reputation works in her favor. Reirin performs the Sogdian Whirl with sharp turns and huge spinning gestures while the other Maidens stay formal. She uses that attention to push back on Seika's court games and defend LeeLee. The body swap matters because Reirin can finally move without fearing that her own illness will make her collapse. Would you rather see Reirin win with a dance or a court confrontation? Leave your take.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view) ━━━
+[FACE: direct-to-camera, lean in] Though I Am an Inept Villainess turns a court dance into Reirin's sharpest weapon. [FACE: glance-down-at-footage] In Episode 5, she attends the Ghost Festival in Keigetsu's body, where Keigetsu's bad reputation works in her favor. [FACE: glance-down-at-footage] Reirin performs the Sogdian Whirl with sharp turns and huge spinning gestures while the other Maidens stay formal. [FACE: glance-down-at-footage] She uses that attention to push back on Seika's court games and defend LeeLee. [FACE: glance-down-at-footage] The body swap matters because Reirin can finally move without fearing that her own illness will make her collapse. [FACE: glance-down-at-footage] Would you rather see Reirin win with a dance or a court confrontation? Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings) ━━━
+CUT 1 — 6 sec (0:00–0:06): Reirin arrives at the Ghost Festival in Keigetsu's body — Establishes the body-swap circumstance before the dance.
+SOURCE: SEASON 1 EPISODE 5
+CUT 2 — 6 sec (0:06–0:12): Reirin performs the Sogdian Whirl — Shows the exact dance that anchors the hook.
+SOURCE: SEASON 1 EPISODE 5
+CUT 3 — 6 sec (0:12–0:18): Reirin’s sharp turns and whirling gestures — Lets the visual delivery match the sourced choreography description.
+SOURCE: SEASON 1 EPISODE 5
+CUT 4 — 6 sec (0:18–0:24): The court and crown prince watch Reirin dance — Pays off the attention the performance draws at the festival.
+SOURCE: SEASON 1 EPISODE 5
+CUT 5 (final) — 6 sec (0:24–0:30): Reirin returns Seika's hairpin at the festival — Carries the court-game point into the CTA.
+SOURCE: SEASON 1 EPISODE 5
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+CUT 1: BODY SWAP / BAD REPUTATION
+CUT 2: SOGDIAN WHIRL
+CUT 3: DANCE = WEAPON
+CUT 4: THE COURT WATCHES
+CUT 5: DANCE OR CONFRONTATION?
+
+━━━ YOUTUBE TITLE ━━━
+Inept Villainess Makes a Dance Dangerous
+
+━━━ TIKTOK TITLE ━━━
+Reirin's Dance Wins the Ghost Festival
+
+━━━ TIKTOK POST TEXT (caption) ━━━
+Though I Am an Inept Villainess makes Reirin's Ghost Festival dance her sharpest tool. #Anime #AnimeTok #VillainessAnime #SummerAnime
+
+━━━ PINNED COMMENT ━━━
+Reirin's smartest move is making Keigetsu's terrible reputation useful before anyone can use it against her.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 8:15 AM ET
+TikTok — post 8:45 AM ET
+
+━━━ SOURCES ━━━
+1. Episode 5 places Reirin in Keigetsu’s body at the Ghost Festival; the dance is the Sogdian Whirl and Keigetsu’s reputation helps her confront Seika’s machinations. — https://www.animenewsnetwork.com/review/though-i-am-an-inept-villainess/episode-5/.240447 (Aug 2026)
+2. A second dated Episode 5 review confirms Reirin performs the Sogdian Whirl, impresses the crown prince, and uses the moment to return Seika’s hairpin. — https://moesucks.com/2026/08/13/villainess-villainy-or-the-lack-thereof-summer-2026-week-6/ (Aug 2026)
+
+━━━ END MORNING ━━━

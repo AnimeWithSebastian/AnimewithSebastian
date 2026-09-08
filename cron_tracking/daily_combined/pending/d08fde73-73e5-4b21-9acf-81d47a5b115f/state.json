@@ -1,0 +1,63 @@
+{
+  "status": "CLOSED_NOTHING_SHIPPED",
+  "emails_sent": false,
+  "batch_id": "d08fde73-73e5-4b21-9acf-81d47a5b115f",
+  "post_date": "2026-08-21",
+  "workflow": "step_4_7_claude_writes_vo",
+  "hold_reason": "Held as a confirmed duplicate -- Sebastian directly confirmed (conversation record, 2026-08-22) that both Black Torch and Solo Leveling S3 had already been covered by prior uploads before this batch was staged. This is NOT based on F58/F59's angle-similarity findings -- those investigated a related but separate question (why the automated conflict-check mechanism's own metrics didn't independently flag this) and found low mechanical similarity; they do not confirm or deny the real-world duplication, which rests on Sebastian's own direct knowledge of his prior uploads, not on any repo-derivable signal. Replaced by batch f27f02a6. See docs/KNOWN_ISSUES.md F65 for the process-gap finding this closes.",
+  "disposition": {
+    "morning": {
+      "package_id": "f0b2714e-7f2f-4263-ba9a-5094e1bef6ab",
+      "show": "Black Torch",
+      "status": "DROPPED_DUPLICATE",
+      "reason": "Sebastian confirmed direct, personal knowledge that Black Torch had already been covered by a prior upload before this batch was staged. Not derived from any mechanical signal (angle-similarity scored 0.026, far below threshold -- see F58) -- confirmed from Sebastian's own knowledge of his prior uploads.",
+      "resolved_at": "2026-08-22T20:18:00-04:00",
+      "known_issues_refs": ["F65"],
+      "permanent": true
+    },
+    "evening": {
+      "package_id": "2023b360-4574-4c87-8495-265db751aa7b",
+      "show": "Solo Leveling Season 3",
+      "status": "DROPPED_DUPLICATE",
+      "reason": "Sebastian confirmed direct, personal knowledge that Solo Leveling Season 3 had already been covered by a prior upload before this batch was staged. Not derived from any mechanical signal (angle-similarity scored 0.101, far below threshold -- see F59) -- confirmed from Sebastian's own knowledge of his prior uploads.",
+      "resolved_at": "2026-08-22T20:18:00-04:00",
+      "known_issues_refs": ["F65"],
+      "permanent": true
+    }
+  },
+  "packages": [
+    {
+      "package_id": "f0b2714e-7f2f-4263-ba9a-5094e1bef6ab",
+      "slot": "morning",
+      "show": "Black Torch",
+      "format_type": "WORTH_WATCHING",
+      "youtube_title": "Black Torch: Cancelled Manga, Biggest Anime Hit",
+      "tiktok_title": "Cancelled Manga, Biggest Anime Hit",
+      "vo_status": "complete"
+    },
+    {
+      "package_id": "2023b360-4574-4c87-8495-265db751aa7b",
+      "slot": "evening",
+      "show": "Solo Leveling Season 3",
+      "format_type": "THEORY_SPECULATION",
+      "youtube_title": "Solo Leveling S3 Is Real -- Here's the Holdup",
+      "tiktok_title": "Solo Leveling S3 Confirmed, Here's Why It's Delayed",
+      "vo_status": "complete"
+    }
+  ],
+  "pending_path": "/home/user/workspace/repo/cron_tracking/daily_combined/pending/d08fde73-73e5-4b21-9acf-81d47a5b115f",
+  "validator": {
+    "exit_code": 0,
+    "result": "PASS",
+    "note": "Full PASS after VO insertion. Zero skips, zero fails, both packages. VO written by Sebastian, inserted verbatim. Preserved for the record -- validator passing on format/mechanics never implied the content was non-duplicate; that question is outside the validator's scope."
+  },
+  "review_note": "VO inserted, validator PASS (exit 0). Originally staged AWAITING_APPROVAL per Law #164/#165. Never sent -- closed as a confirmed duplicate per hold_reason/disposition above rather than approved.",
+  "log_appended": false,
+  "git_pushed": false,
+  "error": null,
+  "terminal_state_written_at": "2026-08-23T00:18:00Z",
+  "terminal_state_written_by": "manual (Sebastian-directed, confirmed duplicate -- F65)",
+  "approval_status": null,
+  "approved_by": null,
+  "approved_at": null
+}

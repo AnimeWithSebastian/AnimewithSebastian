@@ -1,0 +1,90 @@
+{
+  "approved_by": "Sebastian",
+  "approved_at": "2026-09-02T20:21:50-04:00",
+  "approval_status": "APPROVED",
+  "approval_pending_note": "This file was constructed after Sebastian's own verbatim VO insertion on both packages (100 words each, independently recounted via the validator's own _words() regex and confirmed exact matches to declared vo_word_count) and a clean fresh validator PASS (exit 0, 201 pass, 0 fail, 0 skip). A genuine Law #165 independent re-fetch of the 3 core-claim source URLs was attempted in this review session but could NOT be completed: the fetch tool demonstrated extensive, repeated instability across this entire session (~12 attempts across multiple time windows, including intermittent failures on a known-good Wikipedia control URL fetched successfully minutes earlier in the same session). This is disclosed honestly below rather than represented as a completed fresh re-fetch. Approval for the 3 affected core claims rests on the ORIGINAL verification performed during the prior drafting session (before tonight's instability began), not on a fresh re-fetch tonight. Staged AWAITING_APPROVAL pending Sebastian's own personal read and explicit sign-off, per Law #165 and his standing instruction that he will not authorize a send without doing his own full read of the real content first.",
+  "batch_id": "2539246a-faec-4de1-91d8-766fbecc3a3f",
+  "corrects_batch_id": null,
+  "scope_note": "This batch contains TWO REPLACEMENT packages, replacing 2 of the 4 already-sent packages from the 9/1-9/2 batches on pure content preference (not factual error) -- per F71's finding that selection was defaulting to manga once a show's usual episode-recap angle was already used. Kagurabachi Ch. 130 (was morning 9/2) is replaced by Re:ZERO -Starting Life in Another World- Season 4 Episode 15 (morning, post_date 2026-09-02, package_id b2aff36e-ed73-46c6-b7d7-f5f5ad1253dc, format EPISODE_MOMENT, real aired footage). Chainsaw Man Reze Arc (was evening 9/1) is replaced by Grand Blue Dreaming Season 3 Episode 9 (evening, post_date 2026-09-01, package_id fdb33cf1-cef4-4e72-bd35-d189af64aca2, format THE_MOMENT, real aired footage). Blue Lock Ch. 359 (9/1 morning) and Solo Leveling: Ragnarok (9/2 evening) stay exactly as sent, untouched -- not part of this batch. Neither replaced package (Kagurabachi, Chainsaw Man) had its original send record altered; corrects_batch_id is null on this manifest since neither replacement corrects a factual error, this is a pure content-preference swap. Both new VOs were provided by Sebastian verbatim and inserted this session (100 words each, independently recounted and confirmed exact match to declared vo_word_count).",
+  "fetch_review": [
+    {
+      "package": "morning",
+      "claim": "[CORE, anchors_claim=hook] Reid's soul has taken over the body of Roy Alphard, the remaining Sin Archbishop of Gluttony, letting Reid move freely through the Pleiades Watchtower.",
+      "url": "https://www.animatetimes.com/news/details.php?id=1788248569",
+      "fetched_content_supports_claim": true,
+      "detail": "Verified during original drafting session (prior to tonight's fetch-tool instability). Independent re-verification attempted in this review session but blocked by demonstrated, extensively-tested fetcher instability (~12 attempts across multiple windows, including intermittent failures on a known-good Wikipedia control URL) -- not a content or credibility issue with this specific source. Approved on the basis of the original drafting-session verification, with this limitation honestly disclosed rather than represented as a fresh re-fetch."
+    },
+    {
+      "package": "morning",
+      "claim": "[CORE] After Returning by Death, Subaru must overcome five stacked obstacles to reach the tower's top: a magical-beast stampede, two Sin Archbishops, a giant scorpion, and a rising black shadow.",
+      "url": "https://en.mantan-web.jp/e_article/20260831dog00m200054000a.html",
+      "fetched_content_supports_claim": true,
+      "detail": "Verified during original drafting session (prior to tonight's fetch-tool instability). Independent re-verification attempted in this review session but blocked by demonstrated, extensively-tested fetcher instability (~12 attempts across multiple windows, including intermittent failures on a known-good Wikipedia control URL) -- not a content or credibility issue with this specific source. Approved on the basis of the original drafting-session verification, with this limitation honestly disclosed rather than represented as a fresh re-fetch."
+    },
+    {
+      "package": "morning",
+      "claim": "[SUPPORTING] Episode 15 (overall episode 81), titled 'A Devoted Star,' aired September 2, 2026.",
+      "url": "https://en.mantan-web.jp/e_article/20260831dog00m200054000a.html",
+      "fetched_content_supports_claim": true,
+      "detail": "Verified during original drafting session (prior to tonight's fetch-tool instability). Independent re-verification attempted in this review session but blocked by demonstrated, extensively-tested fetcher instability (~12 attempts across multiple windows, including intermittent failures on a known-good Wikipedia control URL) -- not a content or credibility issue with this specific source. Approved on the basis of the original drafting-session verification, with this limitation honestly disclosed rather than represented as a fresh re-fetch."
+    },
+    {
+      "package": "evening",
+      "claim": "[CORE, anchors_claim=hook] Mitarai proposes marriage to his girlfriend Rie to avoid having his jaw shattered after angering her.",
+      "url": "https://www.indiatimes.com/trending/grand-blue-dreaming-season-3-episode-9-recap-yamamotos-unbelievable-spirytus-stunt-steals-the-show-as-mitarai-and-nojima-face-disasters/articleshow/133667310.html",
+      "fetched_content_supports_claim": true,
+      "detail": "Verified during original drafting session (prior to tonight's fetch-tool instability). Independent re-verification attempted in this review session but blocked by demonstrated, extensively-tested fetcher instability (~12 attempts across multiple windows, including intermittent failures on a known-good Wikipedia control URL) -- not a content or credibility issue with this specific source. Approved on the basis of the original drafting-session verification, with this limitation honestly disclosed rather than represented as a fresh re-fetch."
+    },
+    {
+      "package": "evening",
+      "claim": "[CORE] Yamamoto's Spirytus bottle stunt to cool down goes wrong -- the bottle gets stuck and he ends up drunk from the setup itself -- while Nojima separately triggers a bidet malfunction.",
+      "url": "https://www.indiatimes.com/trending/grand-blue-dreaming-season-3-episode-9-recap-yamamotos-unbelievable-spirytus-stunt-steals-the-show-as-mitarai-and-nojima-face-disasters/articleshow/133667310.html",
+      "fetched_content_supports_claim": true,
+      "detail": "Verified during original drafting session (prior to tonight's fetch-tool instability). Independent re-verification attempted in this review session but blocked by demonstrated, extensively-tested fetcher instability (~12 attempts across multiple windows, including intermittent failures on a known-good Wikipedia control URL) -- not a content or credibility issue with this specific source. Approved on the basis of the original drafting-session verification, with this limitation honestly disclosed rather than represented as a fresh re-fetch."
+    },
+    {
+      "package": "evening",
+      "claim": "[SUPPORTING] Episode 9, titled 'Ordeals,' aired August 31, 2026 in Japan's late-night slot (MBS airing September 1), streaming internationally on Crunchyroll.",
+      "url": "https://www.indiatimes.com/trending/grand-blue-dreaming-season-3-episode-9-recap-yamamotos-unbelievable-spirytus-stunt-steals-the-show-as-mitarai-and-nojima-face-disasters/articleshow/133667310.html",
+      "fetched_content_supports_claim": true,
+      "detail": "Verified during original drafting session (prior to tonight's fetch-tool instability). Independent re-verification attempted in this review session but blocked by demonstrated, extensively-tested fetcher instability (~12 attempts across multiple windows, including intermittent failures on a known-good Wikipedia control URL) -- not a content or credibility issue with this specific source. Approved on the basis of the original drafting-session verification, with this limitation honestly disclosed rather than represented as a fresh re-fetch."
+    }
+  ],
+  "verification_gaps_and_caveats": [
+    {
+      "issue": "Law #165 fresh re-fetch attempted but blocked by fetch-tool instability -- disclosed limitation on this approval",
+      "detail": "During this review session, an independent fresh re-fetch of all 3 cited source URLs (Animate Times, Mantan-Web, IndiaTimes) was attempted as the mandatory Law #165 confirm-or-block step. All 3 URLs returned 'TimeoutError: Fetcher teapot_online_fetcher timed out' on first attempt. Per explicit instruction, this was retried methodically rather than worked around: 2 more retries of the same 3 URLs (same result, all 3 failed both times); alternate-path attempts including archive.org versions of all 3 URLs (same timeout) and each domain's root page (same timeout, ruling out URL-specificity); a search for and fetch of 3 alternate outlets reporting the same episode content (LeisureByte, 2 Reddit threads -- all timed out too). A control fetch against a known-stable URL (en.wikipedia.org/wiki/Re:Zero) was run repeatedly to distinguish 'these 3 sources are down' from 'the fetch tool itself is unstable': it succeeded once, then failed on the next 3 consecutive attempts, then succeeded again, then failed again immediately after -- roughly 12 total fetch attempts across the full session showed no sustained stable window. In the one window where the control succeeded, all 3 real source URLs were immediately attempted and still failed. This pattern indicates general fetch-tool instability during this session, not a problem specific to Animate Times, Mantan-Web, or IndiaTimes as sources, and not a content or credibility issue with any of them. No fresh tonight-session re-fetch was completed for any of the 3 core-claim sources. This approval instead relies on the verification performed during the ORIGINAL drafting session (before tonight's instability), which is disclosed here plainly rather than represented as a fresh re-check.",
+      "resolution_confirmed_by": "Sebastian (explicitly directed the wait-and-retry sequence, reviewed the real outcome at each step, and explicitly authorized building this approval.json on the disclosed basis above rather than waiting further)"
+    },
+    {
+      "issue": "Clip source verification unaffected by the fetch-tool instability above",
+      "detail": "All clip entries on both packages carry scene_verified: true with full claim_vs_source_check and clip_locate objects built during the original drafting session against real aired footage (not manga/manhwa panels, per Sebastian's explicit requirement for this replacement batch). This instability affected only the Law #165 claim_source_matrix re-fetch pass, not the clip-level footage verification, which was not re-attempted or re-claimed as fresh in this session either.",
+      "resolution_confirmed_by": null
+    },
+    {
+      "issue": "Semantic QA VO-dependent checks were freshly re-audited in this session against the actual final VO text (not a stale attestation)",
+      "detail": "Once both VOs were inserted, all 10 semantic_qa checks per package (5 VO-independent + 5 VO-dependent) were individually re-evaluated against the real VO text in this session: word counts independently recounted via the validator's exact _words() regex (both exactly 100); CTA-adjacency confirmed by direct string inspection (the closing question is immediately followed by the exact phrase 'Leave your take.' in both VOs); the Re:ZERO 'five obstacles' claim was arithmetically checked against its own enumeration (stampede + two Sin Archbishops + scorpion + shadow = 5); a manual hollow-phrasing/AI-slop scan was run on both VOs with no genuine violations found. This differs from the fetch_review claims above -- these checks were completed fresh in this session, not carried over from the original drafting session.",
+      "resolution_confirmed_by": null
+    }
+  ],
+  "validator_result": {
+    "run_fresh_in_this_review": true,
+    "command": "python3 validators/validate_dual_package.py cron_tracking/daily_combined/pending/replacement_20260902/run_manifest.json",
+    "exit_code": 0,
+    "result": "PASS \u2014 cleared to send both emails",
+    "pass_count": 201,
+    "fail_count": 0,
+    "skip_count": 0
+  },
+  "human_final_read_confirmation": "OBTAINED 2026-09-02T20:21:50-04:00. Sebastian personally reviewed the full raw approval.json content pasted directly in-thread (fetch_review, verification_gaps_and_caveats including the fetch-tool-instability disclosure, validator_result, and changes_made_before_approval), independently confirmed approved_by/approved_at were genuinely null and the disclosure wording matched exactly as dictated, and gave explicit instruction to write approved_by/approved_at/approval_status into this file.",
+  "changes_made_before_approval": [
+    "Inserted Sebastian's verbatim VO on the Re:ZERO Season 4 Episode 15 package (100 words, independently recounted via the validator's exact _words() regex and confirmed exact match to declared vo_word_count).",
+    "Inserted Sebastian's verbatim VO on the Grand Blue Dreaming Season 3 Episode 9 package (100 words, independently recounted via the validator's exact _words() regex and confirmed exact match to declared vo_word_count).",
+    "Set vo_status: 'complete' on both packages.",
+    "Re-audited all 10 semantic_qa checks per package against the real, final VO text (previously left honestly false/unattested while VO was pending); all 10 per package now attested true based on direct inspection of the actual VO text, not blanket-flipped.",
+    "Re-ran the full validator fresh after VO insertion: exit code 0, full PASS, 201 pass / 0 fail / 0 skip, both packages -- an improvement from the prior PARTIAL/exit-3 (186 pass / 0 fail / 16 skip) state recorded before VO text existed.",
+    "Attempted the mandatory Law #165 independent fresh re-fetch of all 3 core-claim source URLs; all 3 failed repeatedly across ~12 attempts and multiple time windows due to demonstrated general fetch-tool instability (confirmed via a repeatedly flaking Wikipedia control URL), not a content issue with the 3 sources. No fresh re-fetch was completed.",
+    "Built this approval.json with approval_status left as AWAITING_APPROVAL (not APPROVED), citing the REAL original-drafting-session verification for the 3 affected claims (not a fabricated fresh re-fetch), and honestly disclosing the fetch-tool-instability limitation in verification_gaps_and_caveats, per Sebastian's explicit instruction.",
+    "No commit, no push, no send. Staging only, pending Sebastian's own read and explicit sign-off."
+  ]
+}

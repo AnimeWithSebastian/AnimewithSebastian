@@ -47,6 +47,7 @@ import argparse
 import datetime as dt
 import json
 import os
+import re
 import sys
 from typing import Any
 
@@ -56,72 +57,65 @@ CRON_ID_DEFAULT = "daily_combined"
 _VALIDATORS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "validators")
 
 
-def _run_validator(manifest: dict[str, Any]):
-    """Import the validator and run it. Returns (result, error_string).
+def validate_manifest_failures(manifest: dict[str, Any],
+                               tree: str | None = None) -> list[str]:
+    """Re-run the deterministic preflight validator against the manifest.
 
-    On import failure returns (None, msg) so every caller can fail closed rather than
-    logging a send it was unable to verify.
+    Returns the list of failed check names (empty list == manifest is clean). If the
+    validator module cannot be imported, returns a single synthetic failure so the
+    caller fails closed rather than logging a send it could not verify.
+
+    SCHEMA CHANGE (2026-08-19, Claude-writes-VO workflow): Result.checks[1] is now a
+    status STRING ("PASS"|"FAIL"|"SKIP"), not a bool. This function previously did
+    `if not ok` on that position -- with a string, `not "FAIL"` and `not "PASS"` are
+    BOTH False (non-empty strings are truthy), so that comparison would have silently
+    stopped returning ANY failures at all, and the `if failures:` gate below would
+    always pass. Fixed to compare the status string explicitly.
+
+    TEST-ISOLATION FIX (2026-09-08, found during full repo audit): this previously
+    called _v.validate_manifest(manifest) with no tree argument at all, so
+    validate_dual_package's minimum_frequency_floor check silently fell back to its
+    own _REPO_ROOT default and read the REAL, live floor-tracking log on disk --
+    never the caller's own isolated --tree. Every test in test_append_send_batch.py
+    using run_cli() (which does pass --tree to a temp directory) was therefore
+    unknowingly validating against real, ever-growing production data instead of
+    its own fixtures, causing failures that drift in and out as real time passes
+    and that data grows, unrelated to anything the test itself set up. tree now
+    threads all the way through to the real recomputation, matching the isolation
+    main() already gives every other part of a test run. (This module still never
+    imports the underlying floor-tracking log module directly -- the fix only
+    passes tree through to validate_dual_package, the one sanctioned consumer.)
     """
     if _VALIDATORS_DIR not in sys.path:
         sys.path.insert(0, _VALIDATORS_DIR)
     try:
         import validate_dual_package as _v
     except Exception as e:  # noqa: BLE001 — cannot verify → fail closed
-        return None, f"validator import failed: {e}"
-    return _v.validate_manifest(manifest), None
-
-
-def validate_manifest_failures(manifest: dict[str, Any]) -> list[str]:
-    """Re-run the deterministic preflight validator; return failed check names.
-
-    Empty list == no FAILs. If the validator cannot be imported, returns a single
-    synthetic failure so the caller fails closed.
-
-    ============================ REAL BUG FIXED 2026-08-16 ============================
-    This function previously ended with:
-
-        return [name for name, ok, _ in result.checks if not ok]
-
-    That was correct while checks[1] was a BOOL. It became SILENTLY, TOTALLY BROKEN the
-    moment checks[1] became a status STRING, because every non-empty string is truthy
-    in Python -- `not "FAIL"` and `not "PASS"` are BOTH False. The comprehension
-    therefore matched NOTHING and this function returned an EMPTY LIST FOR EVERY
-    MANIFEST, ALWAYS.
-
-    The consequence was not cosmetic. main()'s send gate reads `if failures:` -- so a
-    manifest failing any number of real preflight checks would have sailed through the
-    gate and been written into the send log as a clean send, with no error state and no
-    warning. A broken package could be logged as successfully sent.
-
-    The fix is to compare the status explicitly. Anything else iterating these tuples
-    must do the same; `if not ok` is never correct against a status string.
-    ===================================================================================
-    """
-    result, err = _run_validator(manifest)
-    if result is None:
-        return [err]
+        return [f"validator import failed: {e}"]
+    result = _v.validate_manifest(manifest, tree=tree)
     return [name for name, status, _ in result.checks if status == "FAIL"]
 
 
-def validate_manifest_skips(manifest: dict[str, Any]) -> list[str]:
-    """Return the names of checks the validator SKIPPED (could not evaluate).
+def validate_manifest_skips(manifest: dict[str, Any],
+                            tree: str | None = None) -> list[str]:
+    """Companion to validate_manifest_failures(): returns SKIPped check names.
 
-    A skip means a VO-pending package: Perplexity has handed off validated facts and
-    Claude has not written the VO yet, so the VO-dependent checks cannot be evaluated.
-    Such a manifest is a legitimate draft, but it is NOT sendable and must never be
-    written to the send log.
+    A manifest with ANY skip means vo_status == "pending" somewhere -- the package
+    is still at the AWAITING_VO stage by definition and must NEVER reach a logged
+    send here, even though it has zero real FAILs (Result.ok is True). This is the
+    fully_passed distinction: append_batch() below must gate on zero failures AND
+    zero skips, not just zero failures.
 
-    Mirrors the explicit-status comparison in validate_manifest_failures above, for the
-    same reason: `if not ok` would match nothing here too.
-
-    On validator import failure this returns an empty list rather than a synthetic
-    entry -- the import failure is already reported as a FAILURE by
-    validate_manifest_failures, which main() checks first, so reporting it twice would
-    double-count one problem.
+    See validate_manifest_failures()'s 2026-09-08 note -- tree threads through here
+    for the identical test-isolation reason.
     """
-    result, err = _run_validator(manifest)
-    if result is None:
-        return []
+    if _VALIDATORS_DIR not in sys.path:
+        sys.path.insert(0, _VALIDATORS_DIR)
+    try:
+        import validate_dual_package as _v
+    except Exception as e:  # noqa: BLE001 — cannot verify → fail closed
+        return [f"validator import failed: {e}"]
+    result = _v.validate_manifest(manifest, tree=tree)
     return [name for name, status, _ in result.checks if status == "SKIP"]
 
 
@@ -370,6 +364,85 @@ def append_batch(manifest: dict[str, Any], tree: str, cron_id: str) -> dict[str,
             "package_ids": [p.get("package_id") for p in pkgs]}
 
 
+_BLOCKING_STATUSES = ("AWAITING_APPROVAL", "AWAITING_VO")
+
+
+def _confirmed_send_exists(batch_id: Any, tree: str, cron_id: str) -> bool:
+    """True if a real 'sent' record for batch_id exists in either durable log.
+
+    Checked in the JSONL ledger (via _existing_keys_jsonl, keyed on batch_id
+    regardless of package_id) and in the top-level state.json's own batch_id
+    field, matching the two locations Law #166's prose names explicitly.
+    """
+    events_path = os.path.join(tree, "cron_tracking", "sent_scripts_events.jsonl")
+    if any(k[0] == batch_id for k in _existing_keys_jsonl(events_path)):
+        return True
+    top_state_path = os.path.join(tree, "cron_tracking", cron_id, "state.json")
+    try:
+        with open(top_state_path, encoding="utf-8") as fh:
+            top_state = json.load(fh)
+        if isinstance(top_state, dict) and top_state.get("batch_id") == batch_id \
+                and top_state.get("status") == "success":
+            return True
+    except (OSError, json.JSONDecodeError):
+        pass
+    return False
+
+
+def check_pending_batches(tree: str, cron_id: str) -> list[dict[str, Any]]:
+    """Law #166 pending-batch check, ported to real code (was prose-only).
+
+    A pending batch BLOCKS today's run only if BOTH are true:
+      (a) its state.json's top-level "status" field is EXACTLY "AWAITING_APPROVAL"
+          or exactly "AWAITING_VO" (direct dict-field read -- never a substring
+          grep across the file, which is what produced F38's false positive), AND
+      (b) no confirmed send exists for that batch_id in sent_scripts_events.jsonl
+          or in the top-level state.json (see _confirmed_send_exists).
+
+    Precedence order (checked in this order, first match wins):
+      1. F37 correction-batch carve-out: if the pending record has a non-null
+         corrects_batch_id AND (b) is false (i.e. a confirmed send already
+         exists for it) while (a) still reads AWAITING_*, that is the F38
+         stale-state condition, not a real backlog item -- excluded from the
+         blocking list regardless of the raw status string.
+      2. Otherwise, the two-part test above applies as written.
+
+    Fails OPEN (non-blocking) on any pending directory whose state.json is
+    missing, unreadable, or missing a "status" field -- this matches current
+    de-facto behavior (nothing enforces this today) rather than introducing a
+    new way for a corrupt/incomplete directory to halt every future run.
+
+    Returns the list of blocking records (each a dict with batch_id, status,
+    dir), so an empty list means clear to proceed.
+    """
+    pending_root = os.path.join(tree, "cron_tracking", cron_id, "pending")
+    blocking: list[dict[str, Any]] = []
+    try:
+        entries = sorted(os.listdir(pending_root))
+    except OSError:
+        return blocking
+    for entry in entries:
+        state_path = os.path.join(pending_root, entry, "state.json")
+        try:
+            with open(state_path, encoding="utf-8") as fh:
+                pending_state = json.load(fh)
+        except (OSError, json.JSONDecodeError):
+            continue  # fail open: unreadable/missing state.json never blocks
+        if not isinstance(pending_state, dict):
+            continue
+        status = pending_state.get("status")
+        batch_id = pending_state.get("batch_id", entry)
+        if status not in _BLOCKING_STATUSES:
+            continue  # (a) false -> never blocks, regardless of (b)
+        already_sent = _confirmed_send_exists(batch_id, tree, cron_id)
+        if pending_state.get("corrects_batch_id") is not None and already_sent:
+            continue  # precedence 1: F37 carve-out overrides a stale AWAITING_* read
+        if already_sent:
+            continue  # (b) false -> F38 stale-state, never blocks
+        blocking.append({"batch_id": batch_id, "status": status, "dir": entry})
+    return blocking
+
+
 def mirror_pending_state(manifest: dict[str, Any], tree: str, cron_id: str,
                          state: dict[str, Any]) -> str | None:
     """F38 fix (2026-08-15): flip the PER-BATCH pending/<batch_id>/state.json to a
@@ -397,6 +470,11 @@ def mirror_pending_state(manifest: dict[str, Any], tree: str, cron_id: str,
     held (e.g. 32e0fcb9: Link Click sent, Slime held under Law #165 / F36).
     Reaching a terminal status here NEVER implies a held package was resolved.
 
+    F73 fix (2026-09-08): also resolves the pending directory by the batch_id
+    recorded INSIDE each directory's files when the directory name itself
+    isn't the raw batch_id (see the fallback scan below) -- previously this
+    silently no-op'd for any pending/ directory using a human-readable name.
+
     Returns the path written, or None when nothing was written. None is not a
     failure signal -- it means "not a success" or "no pending dir for this batch"
     (most batches never use the pending/ approval flow at all).
@@ -406,9 +484,44 @@ def mirror_pending_state(manifest: dict[str, Any], tree: str, cron_id: str,
     batch_id = manifest.get("batch_id")
     if not batch_id:
         return None
-    pending_dir = os.path.join(tree, "cron_tracking", cron_id, "pending", str(batch_id))
+    pending_root = os.path.join(tree, "cron_tracking", cron_id, "pending")
+    pending_dir = os.path.join(pending_root, str(batch_id))
     if not os.path.isdir(pending_dir):
-        return None
+        # F73 fix (2026-09-08): the fast path above assumes the pending/
+        # directory is literally named after the raw batch_id. Several real
+        # batches this session (batchA_20260901, batchB_20260902,
+        # fresh_20260907, replacement_20260902) used human-readable directory
+        # names instead, so that assumption silently failed -- the function
+        # returned None with no error, and those batches never got a per-batch
+        # terminal state written at all. check_pending_batches() never had
+        # this bug because it already matches by the batch_id recorded INSIDE
+        # each directory's own file, never by the directory's name -- so this
+        # fallback reuses that same content-based matching instead of
+        # inventing a new convention.
+        pending_dir = None
+        try:
+            entries = sorted(os.listdir(pending_root))
+        except OSError:
+            entries = []
+        for entry in entries:
+            candidate = os.path.join(pending_root, entry)
+            if not os.path.isdir(candidate):
+                continue
+            found_id = None
+            for fname in ("state.json", "run_manifest.json", "approval.json"):
+                try:
+                    with open(os.path.join(candidate, fname), encoding="utf-8") as fh:
+                        payload = json.load(fh)
+                except (OSError, json.JSONDecodeError):
+                    continue
+                if isinstance(payload, dict) and payload.get("batch_id"):
+                    found_id = payload["batch_id"]
+                    break
+            if found_id == batch_id:
+                pending_dir = candidate
+                break
+        if pending_dir is None:
+            return None
     pending_path = os.path.join(pending_dir, "state.json")
 
     existing: dict[str, Any] = {}
@@ -558,8 +671,65 @@ def main(argv: list[str]) -> int:
               file=sys.stderr)
         return 1
 
-    unsupported = [e for e in fetch_review
-                   if not isinstance(e, dict) or e.get("fetched_content_supports_claim") is not True]
+    # CORE-AWARE GATE (2026-08-19, narrow fix for the false-positive block on
+    # honestly-disclosed non-core claims): a fetch_review entry only needs
+    # fetched_content_supports_claim == True when it is a CORE claim. An
+    # entry explicitly marked non-core may legitimately have
+    # fetched_content_supports_claim: False WITHOUT blocking the log, but
+    # only if it carries a real, non-empty "note" explaining the gap --
+    # non-core does not mean "skip disclosure", it means "not audience-
+    # facing enough to be a hard blocker once honestly disclosed".
+    #
+    # core/non-core detection precedence (explicit, in order):
+    #   1. A structured "core" key present on the entry (True or False) is
+    #      authoritative. If present, the legacy text-prefix convention
+    #      below is IGNORED for that entry -- the two signals never get a
+    #      chance to silently disagree.
+    #   2. Else, a claim string starting with a case-insensitive, start-
+    #      anchored NON-CORE marker (in square brackets) is treated as
+    #      core=False. This is the LEGACY path: every existing approval.json
+    #      in this repo (7+ files, including real production batches)
+    #      encodes non-core claims this way, since no approval.json has ever
+    #      used a structured field.
+    #   3. Else (no structured field, no text-prefix match): default to
+    #      core=True -- the safe, strict default, identical to today's
+    #      behavior for any entry with no explicit signal either way.
+    #
+    # GOING FORWARD: new approval.json files should be built using the
+    # structured "core": true/false field, not the legacy bracketed text
+    # marker. The text-prefix path exists only to keep historical/legacy
+    # approvals working; it is not the intended long-term format.
+    _NON_CORE_PREFIX_RE = re.compile(r"^\s*\[NON-CORE\b", re.IGNORECASE)
+
+    def _is_core(entry: dict) -> bool:
+        if "core" in entry and entry["core"] is not None:
+            return entry["core"] is not False
+        claim = entry.get("claim")
+        if isinstance(claim, str) and _NON_CORE_PREFIX_RE.match(claim):
+            return False
+        return True
+
+    def _has_real_note(entry: dict) -> bool:
+        note = entry.get("note")
+        return isinstance(note, str) and note.strip() != ""
+
+    unsupported = []
+    for e in fetch_review:
+        if not isinstance(e, dict):
+            unsupported.append(e)
+            continue
+        if e.get("fetched_content_supports_claim") is True:
+            continue
+        # fetched_content_supports_claim is False/missing/malformed from here.
+        if _is_core(e):
+            unsupported.append(e)
+        elif not _has_real_note(e):
+            # Non-core but undisclosed (no real note) -- still blocks. A
+            # non-core claim isn't a free pass to skip disclosure entirely.
+            unsupported.append(e)
+        # else: non-core, unsupported, but honestly disclosed via a real
+        # note -- allowed through, does not block the log.
+
     if unsupported:
         # A malformed (non-dict) fetch_review entry is itself one of the things
         # this gate must fail closed on -- so the detail message must handle it
@@ -579,7 +749,7 @@ def main(argv: list[str]) -> int:
 
     # FAIL CLOSED: never log a send for a manifest that does not pass the validator.
     # Binds STEP 7 logging to the same mechanical gate as STEP 5 preflight.
-    failures = validate_manifest_failures(manifest)
+    failures = validate_manifest_failures(manifest, tree=args.tree)
     if failures:
         detail = "; ".join(failures[:8]) + (f"; +{len(failures) - 8} more" if len(failures) > 8 else "")
         path = write_state(manifest, args.tree, args.cron_id,
@@ -591,22 +761,21 @@ def main(argv: list[str]) -> int:
               file=sys.stderr)
         return 1
 
-    # FAIL CLOSED ON SKIPS TOO (2026-08-16, VO handoff). `ok` (zero FAILs) is NOT the
-    # send gate -- `fully_passed` (zero FAILs AND zero SKIPs) is. A manifest with
-    # vo_status="pending" has real, unevaluated VO-dependent checks; it is a legitimate
-    # draft but it has no finished VO, so logging it as a send would record an email
-    # that could not have gone out. Blocked here as a distinct, named condition rather
-    # than folded into the failure branch, so the state file says what actually happened.
-    skips = validate_manifest_skips(manifest)
+    # FAIL CLOSED (2026-08-19, Claude-writes-VO workflow): a manifest can have zero
+    # FAILs but still be VO-pending (Result.ok True, Result.fully_passed False). That
+    # is the AWAITING_VO draft/email stage, not a real send. Never log a send for a
+    # manifest carrying any SKIP -- fully_passed, not ok, is the real send gate.
+    skips = validate_manifest_skips(manifest, tree=args.tree)
     if skips:
         detail = "; ".join(skips[:8]) + (f"; +{len(skips) - 8} more" if len(skips) > 8 else "")
         path = write_state(manifest, args.tree, args.cron_id,
                            emails_sent=args.emails_sent, log_appended=False,
                            git_pushed=args.git_pushed,
-                           error=f"manifest has {len(skips)} unevaluated (SKIPPED) check(s) "
-                                 f"-- VO not written yet, not sendable: {detail}")
-        print(f"[BLOCKED] manifest has {len(skips)} SKIPPED check(s) (VO pending); "
-              f"appended nothing; wrote failure state to {path}", file=sys.stderr)
+                           error=f"manifest is VO-pending, not fully validated "
+                                 f"({len(skips)} check(s) skipped): {detail}")
+        print(f"[BLOCKED] manifest has {len(skips)} skipped (VO-pending) check(s); "
+              f"appended nothing; wrote failure state to {path}",
+              file=sys.stderr)
         return 1
 
     try:

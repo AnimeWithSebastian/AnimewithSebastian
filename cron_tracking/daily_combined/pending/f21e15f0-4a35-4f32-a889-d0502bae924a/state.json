@@ -1,0 +1,33 @@
+{
+  "cron_id": "daily_combined",
+  "workflow": "combined_daily_dual_package",
+  "batch_id": "f21e15f0-4a35-4f32-a889-d0502bae924a",
+  "run_ts": "2026-08-15T22:14:00-04:00",
+  "post_date": "2026-08-16",
+  "status": "sent",
+  "emails_sent": true,
+  "log_appended": true,
+  "git_pushed": false,
+  "error": null,
+  "packages": [
+    {
+      "package_id": "82148ead-4e29-460f-aee4-b3fa9a7f9dfd",
+      "slot": "morning",
+      "show": "The Dangers in My Heart",
+      "format_type": "MANGA_VS_ANIME",
+      "vo_word_count": 102
+    },
+    {
+      "package_id": "ecae0b48-e8a4-4552-a631-da61ed0cc705",
+      "slot": "evening",
+      "show": "Chained Soldier",
+      "format_type": "FACT_DROP",
+      "vo_word_count": 100
+    }
+  ],
+  "pending_path": "cron_tracking/daily_combined/pending/f21e15f0-4a35-4f32-a889-d0502bae924a/",
+  "validator_result": "PASS",
+  "approval_state_note": "Pending Sebastian review under Law #164. No email, send-log append, commit, or push has been performed.",
+  "terminal_state_written_at": "2026-08-16T03:09:15.980157+00:00",
+  "terminal_state_written_by": "tools/append_send_batch.py (F38)"
+}

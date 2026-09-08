@@ -1,0 +1,512 @@
+{
+  "batch_id": "de6845d6-1f2e-424d-8830-759924128782",
+  "run_ts": "2026-08-16T15:53:00-04:00",
+  "post_date": "2026-08-16",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-08-16T15:53:00-04:00",
+    "age_days": 0,
+    "status": "REFRESHED"
+  },
+  "research_sweep": {
+    "run_date": "2026-08-16",
+    "queries": [
+      "Spy x Family chapter 139.1 release schedule",
+      "Spy x Family chapter 139.2 spoilers summary",
+      "Spy x Family 42 million copies circulation 2026",
+      "Kaiju No 8 season 3 news August 2026",
+      "Kaiju No 8 manga chapter August 2026",
+      "Kaiju No 8 Narumi's Week at Work trailer reveal August 2026",
+      "Gen Narumi character Kaiju No 8",
+      "anime trending this week August 16 2026"
+    ],
+    "evidence_artifacts": [
+      "/home/user/workspace/build_manifest_de6845d6.py"
+    ],
+    "note": "Replacement batch for post_date 2026-08-16 (Dangers in My Heart + Chained Soldier from f21e15f0 not being produced by creator choice, not a correction -- corrects_batch_id intentionally omitted). f21e15f0's send record is untouched."
+  },
+  "overlap_review": {
+    "sent_log_reviewed": "all 205 entries in sent_scripts_log.json, checked via direct 'show' field extraction (python json parse), not just a keyword grep",
+    "morning": "Zero prior sent_scripts_log.json entry has 'show' == Spy x Family (or any variant). Not present in evening_blackout_30day or morning_blackout_30day in blackout_state.json.",
+    "evening": "Zero prior sent_scripts_log.json entry has 'show' == Kaiju No. 8. Only 'Kaiju Girl Caramelise' (a different, unrelated series) appears in the log, as a passing comparison reference inside an unrelated Black Torch script -- not as its own subject. Not present in either blackout list."
+  },
+  "staleness_review": {
+    "morning": "Chapter 139 part 2 released today, August 16 2026, 11:00 AM ET (confirmed by Soap Central's timezone table and the ScreenRant recap published the same day). Real time at draft was 3:53 PM ET / 19:53 UTC on August 16 -- the chapter is already live, not a future event; post_date 2026-08-16 lands the same day as release, which is the intended timely window, not a stale preview of a passed date.",
+    "evening": "Narumi's Week at Work trailer/premiere-date news is 11 days old (Aug 5 2026) as of the run date, not same-day, but the premiere itself (Sept 5 2026) has not happened yet -- this is a forward-looking preview of a real, dated, still-upcoming premiere, not a stale claim about a passed event."
+  },
+  "packages": [
+    {
+      "package_id": "5a2c9e14-6f8b-4d31-9a70-2b1e6c4f8a03",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "Spy x Family",
+      "angle": "Chapter 139 part 2 (released today) has Anya push her telepathy past its previous limit to lock onto Donovan Desmond's mind from a distance, at real physical cost, and the aftermath surfaces buried Project Apple memories tied to her own past as a test subject -- a real narrative escalation, not filler, landing the same day as the manga's 42-million-copy milestone context. (Note: the 'clairsentience' label and a mother-specific Project Apple link were both dropped after direct verification -- clairsentience is a reviewer's own descriptive term, not an in-text name, and no source ties Project Apple itself to Anya's mother; see semantic_qa notes.)",
+      "format_type": "FACT_DROP",
+      "topic_class": "timely",
+      "topic_signals": [
+        "chapter",
+        "news"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "ANYA JUST REACHED DONOVAN'S MIND.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Anya Forger just pushed her mind further than it's ever gone.",
+        "Spy x Family just had Anya reach Donovan's mind from farther away than ever before."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Anya Forger just pushed her mind further than it's ever gone.",
+      "opening_sentence": "Anya Forger just pushed her mind further than it's ever gone.",
+      "vo": "Anya Forger just pushed her mind further than it's ever gone. In chapter 139 part 2, she strains her telepathy past its limit to hunt down Donovan Desmond's thoughts, and it works, she locks onto him from farther away than ever before. It costs her a nosebleed and a scolding from Yor. She's doing this as someone Project Apple once experimented on, the same program that made her a test subject before the Forgers. This manga just crossed forty-two million copies, still building toward its endgame. Is Anya getting closer to Donovan, or closer to the past that shaped her? Leave your take.",
+      "vo_word_count": 104,
+      "question_line": "Is Anya getting closer to Donovan, or closer to the past that shaped her?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 25,
+      "face": true,
+      "split_screen": true,
+      "video_style": "Face-cam split-screen: creator top, manga panel / official cover art bottom (manga-based format, no aired anime footage exists for this content).",
+      "clips": [
+        {
+          "scene": "Spy x Family manga cover / key art (Anya)",
+          "reason": "Establishes the character and franchise without claiming any aired anime footage depicts chapter 139.2.",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": false,
+          "verification_note": "Use only official Shonen Jump+ / Viz cover art or key visual as non-spoiler b-roll; no anime episode has adapted this chapter.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched Viz, Shonen Jump+, and YouTube for any anime adaptation footage of chapter 139 content; none exists since the anime has not reached this manga-only story point.",
+          "location_pointer": {
+            "url": "https://www.viz.com/shonenjump/chapters/spy-x-family",
+            "description": "Official Viz Shonen Jump chapter list confirming Ch.139.1 (Aug 2, 2026) is the most recent chapter available and no anime episode exists for this material."
+          }
+        },
+        {
+          "scene": "Chapter 139 part 2 panel reference (Anya locking onto Donovan's mind)",
+          "reason": "Puts the actual verified beat -- Anya straining her telepathy to reach Donovan from a new distance -- on screen with a clear manga-panel label.",
+          "duration_sec": 7,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 13,
+          "scene_verified": false,
+          "manga_reference": "Spy x Family Chapter 139 part 2 (released Aug 16, 2026): Anya pushes her telepathy to the limit, hair ornaments crackling, nosebleed forming, to track down Donovan Desmond's thoughts from a distance she has not managed before -- confirmed in ScreenRant's same-day recap. (ScreenRant separately labels this development 'clairsentience' as its own descriptive term; that label is not used in the VO since it is the reviewer's framing, not an in-text name from the manga itself.)",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched Viz, Shonen Jump+, and YouTube for any anime adaptation footage of chapter 139 content; none exists since the anime has not reached this manga-only story point.",
+          "location_pointer": {
+            "url": "https://screenrant.com/spy-x-family-anya-new-powers-clairsentience/",
+            "description": "ScreenRant's same-day (Aug 16, 2026) recap of chapter 139 part 2, describing Anya's telepathy push and the Project Apple memory fragments."
+          }
+        },
+        {
+          "scene": "Spy x Family manga cover / key art (Yor and Anya)",
+          "reason": "Supports the 'scolding from Yor' beat with generic, non-spoiler franchise art.",
+          "duration_sec": 6,
+          "timeline_start_sec": 13,
+          "timeline_end_sec": 19,
+          "scene_verified": false,
+          "verification_note": "Use only official cover/key art of Yor and Anya together; no specific aired scene is claimed.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched Viz, Shonen Jump+, and YouTube for any anime adaptation footage of chapter 139 content; none exists since the anime has not reached this manga-only story point.",
+          "location_pointer": {
+            "url": "https://www.viz.com/shonenjump/chapters/spy-x-family",
+            "description": "Official Viz Shonen Jump chapter list, used to confirm no adaptation footage exists for this material."
+          }
+        },
+        {
+          "scene": "Chapter 139 part 2 panel reference (Anya clutching her Chimera plush, troubled and sleepless)",
+          "reason": "Shows the actual final-panel visual from this chapter -- Anya clutching her Chimera plush, dark thoughts keeping her awake -- which ScreenRant's recap interprets as resurfacing Project Apple memories. The clip depicts what is genuinely drawn on the page (the plush, her expression), not an invented visual of Project Apple itself, which the chapter does not depict.",
+          "duration_sec": 6,
+          "timeline_start_sec": 19,
+          "timeline_end_sec": 25,
+          "scene_verified": false,
+          "manga_reference": "Spy x Family Chapter 139 part 2 (confirmed chapter-specific beat, per ScreenRant's same-day recap): the chapter's final panels show Anya clutching her Chimera plush, unable to sleep from dark thoughts, while hearing fragmented words ('Die...scared...Des...d's......research...'). ScreenRant's own interpretation reads this as apparent resurfacing Project Apple memories, but the chapter itself visually depicts only the plush and Anya's troubled expression -- not any panel of Project Apple itself.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched Viz, Shonen Jump+, and YouTube for any anime adaptation footage of chapter 139 content; none exists since the anime has not reached this manga-only story point.",
+          "location_pointer": {
+            "url": "https://screenrant.com/spy-x-family-anya-new-powers-clairsentience/",
+            "description": "ScreenRant's same-day recap describing the chapter's final-panel beat (Anya clutching her Chimera plush, troubled, hearing fragmented words) and the article's own interpretation connecting it to Project Apple."
+          }
+        },
+        {
+          "scene": "Spy x Family key art / volume 17 cover with CTA overlay",
+          "reason": "Closes on franchise art plus the milestone context (42 million copies) without inventing unaired ending footage.",
+          "duration_sec": 5,
+          "timeline_start_sec": 25,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "verification_note": "Use official cover/key art only; show CTA text from 25 seconds.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched Viz, Shonen Jump+, and YouTube for any anime adaptation footage of chapter 139 content; none exists since the anime has not reached this manga-only story point.",
+          "location_pointer": {
+            "url": "https://en.wikipedia.org/wiki/Spy_%C3%97_Family",
+            "description": "Wikipedia entry confirming the 42-million-copies-in-circulation milestone as of April 2026."
+          }
+        }
+      ],
+      "clip_plan_needs_manga_source": true,
+      "story_point_gate": {
+        "anime_has_reached_this_point": false,
+        "checked_via": "https://www.viz.com/shonenjump/chapters/spy-x-family"
+      },
+      "clip_descriptions": "CUT 1 0:00-0:06 official cover/key art of Anya; CUT 2 0:06-0:13 chapter 139.2 panel reference of Anya locking onto Donovan's mind; CUT 3 0:13-0:19 official cover/key art of Yor and Anya; CUT 4 0:19-0:25 chapter 139.2 panel reference of Anya clutching her Chimera plush, troubled and sleepless (the chapter's actual final-panel visual, not a depiction of Project Apple itself); CUT 5 0:25-0:30 volume 17 cover/key art with CTA. Creator remains top-half throughout.",
+      "captions": "ANYA JUST REACHED DONOVAN'S MIND / CH.139 PART 2 / FARTHER THAN EVER BEFORE / SHE'S A PROJECT APPLE TEST SUBJECT / 42M COPIES AND STILL BUILDING / CLOSER TO DONOVAN, OR CLOSER TO HER PAST? / LEAVE YOUR TAKE",
+      "pinned_comment": "The detail people are sleeping on: the fragmented words Anya hears -- 'Die...scared...Des...d's...research' -- echo the exact same broken phrasing from Chapman's dying thoughts earlier in the series. That's not a coincidence Endo would leave in by accident.",
+      "tiktok_post_text": "Anya just reached Donovan's mind from farther away than Spy x Family has ever shown -- and she's doing it as the same Project Apple test subject the story has never fully explained. #spyxfamily #anya #animenews #manga #shonenjump",
+      "youtube_title": "Spy x Family Just Pushed Anya's Powers Further",
+      "tiktok_title": "Anya's Breakthrough Comes With a Cost",
+      "post_times": {
+        "youtube": "YouTube Shorts — post 10:00 AM ET | Peak 12:00 PM ET",
+        "tiktok": "TikTok — post 7:00 PM ET | Peak 8:00 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "sources": [
+        {
+          "claim": "Fetched official Viz Shonen Jump chapter list: most recent listed chapter is Ch. 139.1, released August 2, 2026, marked FREE; page also displayed a 'new chapter coming in 11 hours' notice at time of fetch.",
+          "url": "https://www.viz.com/shonenjump/chapters/spy-x-family",
+          "date": "Aug 2, 2026"
+        },
+        {
+          "claim": "Fetched Soap Central timezone table confirming Spy x Family Chapter 139-2 releases Sunday, August 16, 2026 at 11:00 AM ET / 8:00 AM PT / 12:00 AM JST (Aug 17).",
+          "url": "https://www.soapcentral.com/anime/spy-x-family-chapter-139-2-release-date-everything-need-know",
+          "date": "Aug 3, 2026"
+        },
+        {
+          "claim": "Fetched ScreenRant's same-day recap (published Aug 16, 2026): Anya pushes her telepathy to the limit, hair ornaments crackling with energy, nosebleed forming, to track down Donovan Desmond's thoughts from a new distance; the article separately applies its own descriptive label 'clairsentience' to this development (not an in-text manga term) and hedges the visual component as only a 'vague'/'fuzzy' perception; article also describes resurfacing Project Apple memories and fragmented words tied to Chapman's dying thoughts, with no claim connecting Project Apple itself to Anya's mother.",
+          "url": "https://screenrant.com/spy-x-family-anya-new-powers-clairsentience/",
+          "date": "Aug 16, 2026"
+        },
+        {
+          "claim": "Fetched Wikipedia: 'By April 2026, Spy x Family had over 42 million copies in circulation, making it one of the best-selling manga series of all time.'",
+          "url": "https://en.wikipedia.org/wiki/Spy_%C3%97_Family",
+          "date": "Apr 2026"
+        },
+        {
+          "claim": "Fetched r/AnimeMirchi Reddit post confirming the same 42 million circulation milestone: 'Spy Family has officially achieved a circulation figure of 42 million copies across its 17 volumes... The series recently surpassed 41 million copies in December 2025, and the launch of Volume 17 has contributed to the increase to 42 million.'",
+          "url": "https://www.reddit.com/r/AnimeMirchi/comments/1sc7prd/42_million_copies_spy_x_family_achieves_huge/",
+          "date": "Apr 4, 2026"
+        }
+      ],
+      "semantic_qa": {
+        "audited_before_return": true,
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        },
+        "claim_source_matrix": [
+          {
+            "claim": "Hook claim: In chapter 139 part 2, Anya Forger pushes her telepathy past its previous limit to reach/lock onto Donovan Desmond's mind from a distance she has not managed before.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://screenrant.com/spy-x-family-anya-new-powers-clairsentience/",
+              "https://www.viz.com/shonenjump/chapters/spy-x-family"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Chapter 139 part 2 released August 16, 2026.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.soapcentral.com/anime/spy-x-family-chapter-139-2-release-date-everything-need-know",
+              "https://screenrant.com/spy-x-family-anya-new-powers-clairsentience/"
+            ]
+          },
+          {
+            "claim": "Anya's power use causes a nosebleed and Yor scolds/collects her afterward.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://screenrant.com/spy-x-family-anya-new-powers-clairsentience/"
+            ]
+          },
+          {
+            "claim": "Anya experiences resurfacing memories tied to Project Apple (her own past as a test subject) and fragmented words connected to Chapman's dying thoughts. No source connects Project Apple specifically to Anya's mother -- the only mother-Project-Apple link found in research is unconfirmed fan speculation about a separate hypothetical project, so that claim is deliberately excluded from the VO.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://screenrant.com/spy-x-family-anya-new-powers-clairsentience/"
+            ]
+          },
+          {
+            "claim": "Spy x Family manga surpassed 42 million copies in circulation as of April 2026.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://en.wikipedia.org/wiki/Spy_%C3%97_Family",
+              "https://www.reddit.com/r/AnimeMirchi/comments/1sc7prd/42_million_copies_spy_x_family_achieves_huge/"
+            ]
+          },
+          {
+            "claim": "No anime episode has adapted chapter 139 material; the anime has not reached this manga-only story point.",
+            "core": false,
+            "source_urls": [
+              "https://www.viz.com/shonenjump/chapters/spy-x-family"
+            ]
+          }
+        ]
+      },
+      "loop_line": null,
+      "loop_transition": null,
+      "final_to_opening": null,
+      "loop_read_aloud_pass": null,
+      "loop_transition_note": "Law #141 rescinded 2026-07-27 -- no forced colon-handoff loop attempted. VO closes on its own complete, natural thought ('Leave your take.')."
+    },
+    {
+      "package_id": "b7d4f281-3c95-4e6a-8b12-f0d9a6c37e58",
+      "slot": "evening",
+      "content_type": "short",
+      "show": "Kaiju No. 8",
+      "angle": "The confirmed Sept 5 premiere of 'Narumi's Week at Work' shifts the spotlight from Kafka to Gen Narumi -- Japan's strongest anti-kaiju combatant -- with a real trailer, four confirmed episode titles, and a locked weekly schedule, giving a stale 8-month-old Final Chapter announcement a genuinely current news hook.",
+      "format_type": "SEASON_PREVIEW",
+      "topic_class": "timely",
+      "topic_signals": [
+        "premiere",
+        "news"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "KAIJU NO.8 IS BACK. NOT WITH KAFKA.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Kaiju Number 8 is coming back, but not with Kafka.",
+        "Kaiju Number 8's next anime isn't about Kafka at all."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Kaiju Number 8 is coming back, but not with Kafka.",
+      "opening_sentence": "Kaiju Number 8 is coming back, but not with Kafka.",
+      "vo": "Kaiju Number 8 is coming back, but not with Kafka. The new trailer confirms Narumi's Week at Work, a four-episode short premiering September 5th, and this time the spotlight is on Gen Narumi, the captain everyone calls Japan's strongest anti-kaiju combatant. Off the battlefield he is lazy, obsessed with video games, and constantly late. On it, he predicts every enemy move before it happens. This short finally answers what his actual week looks like between fights. Production I.G is animating all four episodes, dropping weekly through September 26th on Crunchyroll. Is Narumi's downtime going to be funnier than his fights? Leave your take.",
+      "vo_word_count": 106,
+      "question_line": "Is Narumi's downtime going to be funnier than his fights?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 25,
+      "face": true,
+      "split_screen": true,
+      "video_style": "Face-cam split-screen: creator top, official trailer and Season 1/2 aired footage of Gen Narumi bottom.",
+      "clips": [
+        {
+          "scene": "Official 'Narumi's Week at Work' trailer title card",
+          "reason": "Front-loads the confirmed premiere announcement without claiming unaired short-anime footage.",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": false,
+          "verification_note": "Use only the official trailer's title card / promotional stills; the short itself has not aired yet (premieres Sept 5).",
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "Searched YouTube and TOHO Animation's channel for the official trailer; confirmed via ANN and Anime.com reporting.",
+          "location_pointer": {
+            "url": "https://www.animenewsnetwork.com/news/2026-08-05/new-kaiju-no-8-anime-short-trailer-reveals-4-episode-run-starting-on-september-5/.240303",
+            "description": "ANN report confirming the trailer reveal and September 5 premiere with weekly Saturday episodes."
+          }
+        },
+        {
+          "scene": "Gen Narumi official Season 2 promotional/trailer footage (First Division captain)",
+          "reason": "Establishes who Narumi is using official Season 2 promotional footage, since no single source gave a specific episode/timestamp for a located combat introduction scene.",
+          "duration_sec": 7,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 13,
+          "scene_verified": false,
+          "verification_note": "Season 2 introduced Narumi as First Division captain per Wikipedia's character list; using official Season 2 promotional/trailer footage since no specific episode timestamp for his introduction scene was located this pass.",
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for a Season 2 official trailer or promotional clip featuring Narumi as First Division captain; no specific timestamped episode source naming an exact episode number was located, so an approx_timestamp is not set.",
+          "location_pointer": {
+            "url": "https://en.wikipedia.org/wiki/List_of_Kaiju_No._8_characters",
+            "description": "Wikipedia character list confirming Gen Narumi is the First Division captain and the anime's strongest active combatant, voiced by Koki Uchiyama."
+          }
+        },
+        {
+          "scene": "Official trailer footage of Narumi's off-duty/comedic side",
+          "reason": "Supports the VO's 'lazy, obsessed with video games, constantly late' beat with the actual trailer's tonal contrast.",
+          "duration_sec": 6,
+          "timeline_start_sec": 13,
+          "timeline_end_sec": 19,
+          "scene_verified": false,
+          "manga_reference": "Trailer described by Silime and Outlook Respawn as spotlighting Narumi's daily life; Gen's off-duty personality (video games, laziness, tardiness) is documented across GameWith, MyAnimeList, and Beebom character profiles.",
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "Searched YouTube/TOHO Animation for the trailer; cross-referenced character trait claims against MyAnimeList and GameWith profiles.",
+          "location_pointer": {
+            "url": "https://myanimelist.net/character/198940/Gen_Narumi",
+            "description": "MyAnimeList character profile: 'Likes: Video games, online shopping, ego surfing... when off the battlefield Gen is unprofessional, lazy and childish.'"
+          }
+        },
+        {
+          "scene": "Gen Narumi combat/promotional footage (precognitive ability)",
+          "reason": "Supports the VO's 'predicts every enemy move' claim using his established combat ability.",
+          "duration_sec": 6,
+          "timeline_start_sec": 19,
+          "timeline_end_sec": 25,
+          "scene_verified": false,
+          "verification_note": "Narumi's precognitive retina-implant ability (RT-0001, from Kaiju No. 1's remains) is documented in Wikipedia's character list and The Mary Sue's character explainer; using official Season 1/2 trailer or promotional combat footage since no confirmed specific episode/timestamp was located this pass.",
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for a timestamped combat scene demonstrating this ability; no single source stated an exact episode/timestamp, so approx_timestamp is not set and official trailer/promotional combat footage is used instead.",
+          "location_pointer": {
+            "url": "https://www.themarysue.com/who-is-gen-narumi-in-kaiju-no-8-explained/",
+            "description": "The Mary Sue explainer: Narumi's weapon 'allows him access to... the ability to visualize the brain signals of a living being and predict their movements before they make them.'"
+          }
+        },
+        {
+          "scene": "Official trailer end card with premiere date and CTA overlay",
+          "reason": "Closes on the confirmed premiere date and schedule while showing the CTA.",
+          "duration_sec": 5,
+          "timeline_start_sec": 25,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "verification_note": "Use the official trailer's end card / key visual only; show CTA text from 25 seconds.",
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "Searched YouTube/TOHO Animation for the trailer; premiere date and schedule confirmed via ANN, Anime.com, and Outlook Respawn.",
+          "location_pointer": {
+            "url": "https://www.anime.com/news/kaiju-no-8-narumis-week-at-work-september-5-premiere",
+            "description": "Anime.com report confirming Sept 5 premiere, weekly Saturday episodes, and Crunchyroll simulcast."
+          }
+        }
+      ],
+      "clip_plan_needs_manga_source": false,
+      "story_point_gate": null,
+      "clip_descriptions": "CUT 1 0:00-0:06 official trailer title card; CUT 2 0:06-0:13 Season 2 aired footage/promo of Narumi as First Division captain; CUT 3 0:13-0:19 trailer footage of Narumi's off-duty comedic side; CUT 4 0:19-0:25 Season 1/2 combat promotional footage; CUT 5 0:25-0:30 trailer end card with premiere date and CTA. Creator remains top-half throughout.",
+      "captions": "KAIJU NO. 8 IS BACK / NOT WITH KAFKA / GEN NARUMI'S SPOTLIGHT / SEPT 5 PREMIERE / JAPAN'S STRONGEST COMBATANT / LAZY OFF DUTY, LETHAL ON IT / FUNNIER THAN THE FIGHTS? / LEAVE YOUR TAKE",
+      "pinned_comment": "The four episode titles are already out -- 'The Platoon Leader's True Feelings,' 'The Vice Captain's Worries,' 'That Guy From the West,' and 'The Bond Between Classmates' -- and none of them mention a single kaiju. This might be the most character-focused thing Production I.G has done with this franchise.",
+      "tiktok_post_text": "Kaiju No. 8's next anime drops September 5th, and it's not about Kafka -- it's a full week inside Gen Narumi's chaotic life off the battlefield. #kaijuno8 #gennarumi #anime #animenews #crunchyroll",
+      "youtube_title": "Kaiju No. 8's Next Anime Isn't About Kafka",
+      "tiktok_title": "Kaiju No. 8 Is Back, Just Not With Kafka",
+      "post_times": {
+        "youtube": "YouTube Shorts — post 5:30 PM ET | Peak 7:00 PM ET",
+        "tiktok": "TikTok — post 8:00 PM ET | Peak 9:00 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "sources": [
+        {
+          "claim": "Fetched ANN news report: the official trailer for 'Narumi's Week at Work' was released, confirming a 4-episode run premiering September 5, with episodes launching Saturdays at 8:00 PM JST on TOHO Animation's YouTube channel, final episode streaming September 26; Crunchyroll will also stream it.",
+          "url": "https://www.animenewsnetwork.com/news/2026-08-05/new-kaiju-no-8-anime-short-trailer-reveals-4-episode-run-starting-on-september-5/.240303",
+          "date": "Aug 5, 2026"
+        },
+        {
+          "claim": "Fetched Anime.com report confirming the same September 5 premiere date, weekly Saturday 8:00 PM JST episodes on TOHO Animation YouTube, and Crunchyroll international simulcast.",
+          "url": "https://www.anime.com/news/kaiju-no-8-narumis-week-at-work-september-5-premiere",
+          "date": "Aug 5, 2026"
+        },
+        {
+          "claim": "Fetched Wikipedia's Kaiju No. 8 page confirming 'Narumi's Week at Work' details: announced December 2025, premiere date September 5 2026, 4 episodes, director Shigeyuki Miya, Production I.G, licensed by Crunchyroll.",
+          "url": "https://en.wikipedia.org/wiki/Kaiju_No._8",
+          "date": "Aug 2026 (page checked)"
+        },
+        {
+          "claim": "Fetched Wikipedia's List of Kaiju No. 8 characters page confirming Gen Narumi is the First Division captain, described as the anime's strongest active human combatant, voiced by Koki Uchiyama.",
+          "url": "https://en.wikipedia.org/wiki/List_of_Kaiju_No._8_characters",
+          "date": "Aug 2026 (page checked)"
+        },
+        {
+          "claim": "Fetched Silime report listing the four confirmed episode titles: 'The Platoon Leader's True Feelings,' 'The Vice Captain's Worries,' 'That Guy From the West,' 'The Bond Between Classmates.'",
+          "url": "https://www.silime.in/news/kaiju-no-8-narumi-short-trailer-four-episodes-september",
+          "date": "Aug 13, 2026"
+        },
+        {
+          "claim": "Fetched MyAnimeList character profile confirming Gen Narumi's off-duty personality: likes video games, online shopping, ego surfing; unprofessional, lazy, and childish off the battlefield despite being 'Japan's Strongest Anti-Kaiju Combatant.'",
+          "url": "https://myanimelist.net/character/198940/Gen_Narumi",
+          "date": "checked Aug 2026"
+        },
+        {
+          "claim": "Fetched The Mary Sue explainer confirming Narumi's precognitive ability via his retinal implant (from Kaiju No. 1's remains), letting him visualize brain signals and predict enemy movements before they happen.",
+          "url": "https://www.themarysue.com/who-is-gen-narumi-in-kaiju-no-8-explained/",
+          "date": "Jul 2024"
+        },
+        {
+          "claim": "Fetched Game Rant's foresight explainer, independently confirming Gen Narumi's 'strongest' status: 'The First Division is led by none other than Gen Narumi, the Anti-Kaiju's strongest Captain and the best chance at success in every mission.'",
+          "url": "https://gamerant.com/kaiju-no-8-gen-narumis-foresight/",
+          "date": "Aug 1, 2024"
+        }
+      ],
+      "semantic_qa": {
+        "audited_before_return": true,
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        },
+        "claim_source_matrix": [
+          {
+            "claim": "Hook claim: Kaiju No. 8 is returning with a new anime short, but it centers on Gen Narumi, not protagonist Kafka Hibino.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2026-08-05/new-kaiju-no-8-anime-short-trailer-reveals-4-episode-run-starting-on-september-5/.240303",
+              "https://www.anime.com/news/kaiju-no-8-narumis-week-at-work-september-5-premiere"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "'Narumi's Week at Work' is a 4-episode short premiering September 5, 2026, with weekly Saturday episodes through September 26 on TOHO Animation YouTube and Crunchyroll.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2026-08-05/new-kaiju-no-8-anime-short-trailer-reveals-4-episode-run-starting-on-september-5/.240303",
+              "https://en.wikipedia.org/wiki/Kaiju_No._8"
+            ]
+          },
+          {
+            "claim": "The four confirmed episode titles are 'The Platoon Leader's True Feelings,' 'The Vice Captain's Worries,' 'That Guy From the West,' and 'The Bond Between Classmates.'",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.silime.in/news/kaiju-no-8-narumi-short-trailer-four-episodes-september"
+            ]
+          },
+          {
+            "claim": "Gen Narumi is Japan's strongest anti-kaiju combatant and captain of the First Division, lazy and childish off duty despite his combat reputation.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://myanimelist.net/character/198940/Gen_Narumi",
+              "https://en.wikipedia.org/wiki/List_of_Kaiju_No._8_characters",
+              "https://gamerant.com/kaiju-no-8-gen-narumis-foresight/"
+            ]
+          },
+          {
+            "claim": "Narumi's implanted weapon lets him predict enemy movements before they happen (precognitive combat ability).",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.themarysue.com/who-is-gen-narumi-in-kaiju-no-8-explained/"
+            ]
+          },
+          {
+            "claim": "Production I.G is animating the short.",
+            "core": false,
+            "source_urls": [
+              "https://en.wikipedia.org/wiki/Kaiju_No._8"
+            ]
+          }
+        ]
+      },
+      "loop_line": null,
+      "loop_transition": null,
+      "final_to_opening": null,
+      "loop_read_aloud_pass": null,
+      "loop_transition_note": "Law #141 rescinded 2026-07-27 -- no forced colon-handoff loop attempted. VO closes on its own complete, natural thought ('Leave your take.')."
+    }
+  ]
+}

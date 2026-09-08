@@ -1,0 +1,530 @@
+{
+  "batch_id": "f27f02a6-d543-48be-833f-b8101eb78978",
+  "run_ts": "2026-08-21T16:31:00Z",
+  "post_date": "2026-08-21",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-08-21T16:00:00Z",
+    "age_days": 0,
+    "status": "REFRESHED_REPLACEMENT_BATCH"
+  },
+  "replaces_batch_id": "d08fde73-73e5-4b21-9acf-81d47a5b115f",
+  "replacement_reason": "Original batch d08fde73 (Black Torch morning / Solo Leveling S3 evening) confirmed as containing two duplicate sends of prior content; held per user instruction, never sent. This batch replaces both slots with two new, log-verified-clean shows for the same post_date.",
+  "packages": [
+    {
+      "package_id": "95f32c9f-a4c6-41a4-9683-d24337d7a5fe",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "The Iceblade Sorcerer Shall Rule the World",
+      "angle": "Season 2 is recasting a main heroine because the original voice actress retired for her health -- a real-world reason the cast is changing, not a story twist",
+      "format_type": "FACT_DROP",
+      "topic_class": "timely",
+      "topic_signals": [
+        "premiere",
+        "news"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "Iceblade Sorcerer Season 2 just recast one of its leads.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Iceblade Sorcerer Season 2 just recast one of its leads.",
+        "One of Iceblade Sorcerer's main girls sounds completely different in Season 2, and the reason isn't a story twist."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Iceblade Sorcerer Season 2 just recast one of its leads.",
+      "opening_sentence": "Iceblade Sorcerer Season 2 just recast one of its leads.",
+      "vo": "Iceblade Sorcerer Season 2 just recast one of its leads. Elisa Griffith is now voiced by Miyu Kubota, replacing original actor Nana Harumura, who retired from voice acting in January for health reasons. This isn't a story twist. It's a real cast change, and every other principal actor is returning exactly as before. Season 2 also brings a new character, Olivia Arnold, and a studio change from Cloud Hearts to Zero-G. The season premieres October eighth on TBS, with Crunchyroll simulcasting. Would you want a full recast, or would you rather the studio just delay the season until the original actor could return? Leave your take.",
+      "vo_status": "complete",
+      "vo_fact_beats": [
+        "The Iceblade Sorcerer Shall Rule the World Season 2 premieres October 8, 2026 at 1:23 a.m. on TBS, with an additional broadcast October 9 at 11:00 p.m.; Crunchyroll streams it as it airs (Anime News Network, Aug 20, 2026, https://www.animenewsnetwork.com/news/2026-08-20/the-iceblade-sorcerer-shall-rule-the-world-tv-anime-2nd-season-reveals-october-8-debut-theme-song-/.240752).",
+        "Elisa Griffith, one of Ray White's core friend group, is being recast: Miyu Kubota takes over the role, replacing Nana Harumura, who retired from voice acting in January 2026 due to health reasons (same ANN source).",
+        "The rest of the main cast returns: Junya Enoki (Ray White), Iori Saeki (Amelia Rose), Akira Sekine (Ariane Olgren), Azumi Waki (Rebecca Bradley), Kaede Hondo (Clarisse Cleveland), Yuichiro Umehara (Evi Armstrong), Kohei Amasaki (Albert Allium), Atsumi Tanezaki (Stella White) -- plus a new character, Olivia Arnold, voiced by Hana Hishikawa (same ANN source).",
+        "Production also changed studios: Zero-G animates Season 2, taking over from Cloud Hearts (Season 1); character designer Mariko Kawamoto replaces Makoto Shimojima; director Masahiro Takata returns (same ANN source).",
+        "Season 1 (Jan 2023) followed Ray White, the war hero known as the Iceblade Sorcerer, hiding his identity as a commoner student at the elite Arnold Academy, ending after his group defeated the Eugenics organization's plot against Rebecca Bradley (IMDb episode guide, https://www.imdb.com/title/tt25531288/episodes/; Anime News Network encyclopedia, https://www.animenewsnetwork.com/encyclopedia/anime.php?id=25582)."
+      ],
+      "vo_target_word_band": "100-108 (target ~104)",
+      "question_line": "Would you want a full recast, or would you rather the studio just delay the season until the original actor could return?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "video_style": "Face-Cam Split Screen (Creator TOP / anime footage BOTTOM)",
+      "face": true,
+      "split_screen": true,
+      "no_comparative_language": true,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Elisa Griffith is recast: Miyu Kubota replaces Nana Harumura, who retired in Jan 2026 for health reasons.",
+            "core": true,
+            "claim_type": "F",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2026-08-20/the-iceblade-sorcerer-shall-rule-the-world-tv-anime-2nd-season-reveals-october-8-debut-theme-song-/.240752"
+            ],
+            "anchors_claim": "hook",
+            "show": null
+          },
+          {
+            "claim": "Season 2 premieres Oct 8, 2026 on TBS, streams on Crunchyroll.",
+            "core": true,
+            "claim_type": "F",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2026-08-20/the-iceblade-sorcerer-shall-rule-the-world-tv-anime-2nd-season-reveals-october-8-debut-theme-song-/.240752"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Studio change from Cloud Hearts to Zero-G; character designer and returning director confirmed.",
+            "core": false,
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2026-08-20/the-iceblade-sorcerer-shall-rule-the-world-tv-anime-2nd-season-reveals-october-8-debut-theme-song-/.240752"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Season 1 premise -- Ray White hides his Iceblade Sorcerer identity at Arnold Academy, defeats Eugenics plot against Rebecca Bradley.",
+            "core": false,
+            "source_urls": [
+              "https://www.imdb.com/title/tt25531288/episodes/",
+              "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=25582"
+            ],
+            "show": null
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        },
+        "note": "vo_word_count check is null because VO itself is staged as pending per Claude-writes-VO workflow -- Sebastian writes VO next, then this check applies."
+      },
+      "sources": [
+        {
+          "claim": "Season 2 debut date/time, streaming, recast, studio change, theme songs, cast",
+          "url": "https://www.animenewsnetwork.com/news/2026-08-20/the-iceblade-sorcerer-shall-rule-the-world-tv-anime-2nd-season-reveals-october-8-debut-theme-song-/.240752",
+          "date": "Aug 20, 2026"
+        },
+        {
+          "claim": "Corroborating cast/date confirmation",
+          "url": "https://www.senpairanks.com/news/iceblade-sorcerer-shall-rule-the-world-season-2-october-2026-cast-pv",
+          "date": "Aug 1, 2026"
+        },
+        {
+          "claim": "Corroborating studio-change explainer",
+          "url": "https://animegamemusic.com/the-iceblade-sorcerer-shall-rule-the-world-season-2-release-date-teaser-trailer-and-studio-change-explained/",
+          "date": "Aug 12, 2026"
+        },
+        {
+          "claim": "Season 1 episode/plot detail",
+          "url": "https://www.imdb.com/title/tt25531288/episodes/",
+          "date": "checked Aug 21, 2026"
+        },
+        {
+          "claim": "Season 1 plot summary",
+          "url": "https://www.animenewsnetwork.com/encyclopedia/anime.php?id=25582",
+          "date": "checked Aug 21, 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Season 2 official teaser -- key visual / recast reveal beat",
+          "reason": "directly visualizes the hook (the new season, the cast change)",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=sVrK70TP8tQ",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube for official Iceblade Sorcerer Season 2 teaser; located Crunchyroll's 'The Iceblade Sorcerer Shall Rule the World II | Official Teaser', published Aug 1, 2026.",
+          "clip_locate": {
+            "season": 2,
+            "episode": 1,
+            "locate_confirmed_via": "the same Crunchyroll official teaser cited above, which previews Season 2's premiere episode content",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Season 2 is real and imminent, establishing footage for the hook.",
+            "source_content_confirmed": "Official Crunchyroll teaser for Season 2 exists and is titled/dated as claimed.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Ray White reveals his Iceblade Sorcerer identity to his friend group (Season 1)",
+          "reason": "establishes Ray and the friend-group dynamic the recast affects",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=xLtw_fQzans",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube for official Crunchyroll Dubs clips; located 'Ray Uses the Ice Blades' Episode 4 official clip.",
+          "clip_locate": {
+            "season": 1,
+            "episode": 4,
+            "locate_confirmed_via": "the same Crunchyroll Dubs official clip title/description cited above, which explicitly names Episode 4",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Ray's power and identity as the Iceblade Sorcerer, core to the friend-group dynamic.",
+            "source_content_confirmed": "Official clip shows Ray using his Iceblade Sorcerer powers.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Amelia Rose and friend-group school-life beat (Season 1, Episode 3)",
+          "reason": "shows the ensemble cast, including the character being recast, before the change",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=dwULhi82RZE",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube for official Season 1 clips; located Crunchyroll's official Episode 3 clip.",
+          "clip_locate": {
+            "season": 1,
+            "episode": 3,
+            "locate_confirmed_via": "the same Crunchyroll official Episode 3 clip title cited above, which explicitly names Episode 3",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Ensemble friend-group school-life dynamic.",
+            "source_content_confirmed": "Official clip shows the friend group in a school-life scene.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Season 2 teaser continued -- action/visual beat",
+          "reason": "keeps momentum on new-season visuals into the CTA",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=sVrK70TP8tQ",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Reused verified Season 2 teaser for a second beat further into the same clip.",
+          "clip_locate": {
+            "season": 2,
+            "episode": 1,
+            "locate_confirmed_via": "the same Crunchyroll official teaser cited above, a later segment of the same premiere-episode preview",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Season 2 visual continuation.",
+            "source_content_confirmed": "Same verified teaser, later segment.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Title card / wide shot, held for CTA text overlay",
+          "reason": "clean beat for on-screen CTA + question text",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=sVrK70TP8tQ",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Reused verified Season 2 teaser closing frame for CTA hold.",
+          "clip_locate": {
+            "season": 2,
+            "episode": 1,
+            "locate_confirmed_via": "the same Crunchyroll official teaser cited above, its closing frame",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Clean CTA hold frame.",
+            "source_content_confirmed": "Teaser closing shot works as a static hold.",
+            "match": true
+          }
+        }
+      ],
+      "clip_plan_needs_manga_source": false,
+      "clip_descriptions": "CUT 1 -- 6 sec (0:00-0:06): Season 2 official teaser key visual (S2E1) -- directly visualizes the hook. CUT 2 -- 6 sec (0:06-0:12): Ray reveals his Iceblade Sorcerer powers (S1E4) -- establishes Ray and the friend group. CUT 3 -- 6 sec (0:12-0:18): Friend-group school-life beat (S1E3) -- shows the ensemble including the character being recast. CUT 4 -- 6 sec (0:18-0:24): Season 2 teaser continued (S2E1) -- keeps new-season visuals moving. CUT 5 -- 6 sec (0:24-0:30): Title card / wide shot (S2E1), held for CTA text overlay. TOTAL CLIP TIME: 30 seconds.",
+      "captions": "Word-by-word ALL CAPS captions, one orange keyword per line (e.g. RECAST / SEASON 2 / RETIRED / HEALTH), max 2 lines on screen, Anton font, white text, black outline.",
+      "youtube_title": "Iceblade Sorcerer S2 Just Recast a Main Character",
+      "tiktok_title": "Iceblade Sorcerer S2 Recast Explained",
+      "tiktok_post_text": "Iceblade Sorcerer Season 2 just recast one of its leads -- and it's not a story twist, it's real life. #anime #iceblade #isekai #animenews #crunchyroll",
+      "pinned_comment": "The actress being replaced, Nana Harumura, retired from voice acting entirely in January for health reasons -- this isn't a creative choice, it's a real-life exit.",
+      "post_times": {
+        "youtube": "7:30 AM ET",
+        "tiktok": "7:45 AM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "vo_word_count": 106
+    },
+    {
+      "package_id": "5e9c3bca-6b57-43c0-bebd-9e44b3fe2eea",
+      "slot": "evening",
+      "content_type": "short",
+      "show": "Reincarnated as a Sword",
+      "angle": "Season 2 dropped its HIDIVE-exclusive trailer this week and premieres its North American footage tomorrow at Anime NYC -- and this time Crunchyroll isn't part of it at all",
+      "format_type": "WORTH_WATCHING",
+      "topic_class": "timely",
+      "topic_signals": [
+        "premiere",
+        "news"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "Reincarnated as a Sword Season 2 is skipping Crunchyroll completely.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Reincarnated as a Sword Season 2 is skipping Crunchyroll completely.",
+        "If you watched Reincarnated as a Sword on Crunchyroll, Season 2 isn't going to be there."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Reincarnated as a Sword Season 2 is skipping Crunchyroll completely.",
+      "opening_sentence": "Reincarnated as a Sword Season 2 is skipping Crunchyroll completely.",
+      "vo": "Reincarnated as a Sword Season 2 is skipping Crunchyroll completely. It streams early on ABEMA starting September thirtieth, then makes its TV debut October seventh, with HIDIVE carrying it in North America as it airs. Crunchyroll isn't part of the plan this season. HIDIVE is holding the North American premiere tomorrow at Anime NYC, with director Shinji Ishihira and producers Yosuke Shimada and Genta Ozaki on the panel. A manga spinoff, Tensei Shitara Ken Deshita My Dish, launches the same day as the early stream. Does it bother you when a sequel switches platforms, or do you just follow the show wherever it goes? Leave your take.",
+      "vo_status": "complete",
+      "vo_fact_beats": [
+        "Reincarnated as a Sword Season 2 streams early on ABEMA starting September 30, with a Japanese TV debut October 7 on Tokyo MX and ABC TV; HIDIVE is confirmed as the platform streaming it as it airs outside Japan, with no Crunchyroll involvement this time (Anime News Network, Aug 16, 2026, https://www.animenewsnetwork.com/news/2026-08-16/reincarnated-as-a-sword-season-2-reveals-september-30-early-streaming-debut-theme-songs-in-trailer/.240622).",
+        "This is a change from Season 1, which streamed on HIDIVE as well but is more broadly known through Crunchyroll's back-catalog licensing; Season 2's simulcast rights are exclusively HIDIVE, per NBCUniversal Anime/Music's own promotional rollout (GameTrader.SG, Aug 16, 2026, https://www.gametrader.sg/blog/tag/reincarnated-as-a-sword/; Crunchyroll News itself only reported the announcement, not a Crunchyroll simulcast, https://www.crunchyroll.com/news/latest/2026/3/28/reincarnated-as-a-sword-season-2-anime-october-2026-release-date-trailer).",
+        "HIDIVE is holding the show's North American premiere screening at Anime NYC on August 22, 2026 (tomorrow, relative to this post), with a panel featuring director Shinji Ishihira and producers Yosuke Shimada and Genta Ozaki (same ANN source, Aug 16, 2026).",
+        "A manga spinoff, Tensei Shitara Ken Deshita My Dish by Itsuki Fujioka, launches the same day as the early streaming debut, September 30, on Micro Magazine's Comic Ride platform (same ANN source).",
+        "Season 1 followed a nameless man reincarnated as a sentient sword who is found by an enslaved catgirl named Fran; he burns her slave contract to free her, and the two travel together as sword and wielder through the first season's dungeon-crawling arcs (Wikipedia, https://en.wikipedia.org/wiki/Reincarnated_as_a_Sword; Cinemaholic episode recap, https://thecinemaholic.com/reincarnated-as-a-sword-episode-1-recap-and-ending-explained/)."
+      ],
+      "vo_target_word_band": "100-108 (target ~104)",
+      "question_line": "Does it bother you when a sequel switches platforms, or do you just follow the show wherever it goes?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "video_style": "Face-Cam Split Screen (Creator TOP / anime footage BOTTOM)",
+      "face": true,
+      "split_screen": true,
+      "no_comparative_language": true,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Season 2 streams on ABEMA (early, Sep 30) and HIDIVE, with no Crunchyroll involvement.",
+            "core": true,
+            "claim_type": "F",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2026-08-16/reincarnated-as-a-sword-season-2-reveals-september-30-early-streaming-debut-theme-songs-in-trailer/.240622",
+              "https://www.gametrader.sg/blog/tag/reincarnated-as-a-sword/"
+            ],
+            "anchors_claim": "hook",
+            "show": null
+          },
+          {
+            "claim": "HIDIVE holds North American premiere at Anime NYC Aug 22, 2026, with named director/producers.",
+            "core": true,
+            "claim_type": "F",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2026-08-16/reincarnated-as-a-sword-season-2-reveals-september-30-early-streaming-debut-theme-songs-in-trailer/.240622"
+            ],
+            "show": null
+          },
+          {
+            "claim": "TV debut Oct 7 on Tokyo MX/ABC TV; manga spinoff launches Sep 30.",
+            "core": false,
+            "source_urls": [
+              "https://www.animenewsnetwork.com/news/2026-08-16/reincarnated-as-a-sword-season-2-reveals-september-30-early-streaming-debut-theme-songs-in-trailer/.240622"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Season 1 premise -- reincarnated sword, Fran the catgirl, slave-contract rescue.",
+            "core": false,
+            "source_urls": [
+              "https://en.wikipedia.org/wiki/Reincarnated_as_a_Sword",
+              "https://thecinemaholic.com/reincarnated-as-a-sword-episode-1-recap-and-ending-explained/"
+            ],
+            "show": null
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        },
+        "note": "vo_word_count check is null because VO itself is staged as pending per Claude-writes-VO workflow -- Sebastian writes VO next, then this check applies."
+      },
+      "sources": [
+        {
+          "claim": "Streaming dates, platforms, Anime NYC premiere, manga spinoff",
+          "url": "https://www.animenewsnetwork.com/news/2026-08-16/reincarnated-as-a-sword-season-2-reveals-september-30-early-streaming-debut-theme-songs-in-trailer/.240622",
+          "date": "Aug 16, 2026"
+        },
+        {
+          "claim": "HIDIVE-exclusive framing, Crunchyroll not part of S2",
+          "url": "https://www.gametrader.sg/blog/tag/reincarnated-as-a-sword/",
+          "date": "Aug 16, 2026"
+        },
+        {
+          "claim": "Corroborating S2 platform/date, broadcast schedule",
+          "url": "https://www.anime.com/news/reincarnated-as-a-sword-ii-october-7-premiere-date",
+          "date": "Aug 16, 2026"
+        },
+        {
+          "claim": "Original S2 announcement (March 2026), HIDIVE confirmed",
+          "url": "https://www.animenewsnetwork.com/news/2026-03-28/reincarnated-as-a-sword-season-2-new-video-unveils-october-debut/.235874",
+          "date": "Mar 28, 2026"
+        },
+        {
+          "claim": "Season 1 plot/premise",
+          "url": "https://en.wikipedia.org/wiki/Reincarnated_as_a_Sword",
+          "date": "checked Aug 21, 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Season 2 official trailer -- opening beat",
+          "reason": "directly visualizes the hook (new season, platform change)",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=-qfSjS7KvI0",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube for official Reincarnated as a Sword Season 2 trailer; located HIDIVE's official English-subtitled trailer, published Aug 15, 2026.",
+          "clip_locate": {
+            "season": 2,
+            "episode": 1,
+            "locate_confirmed_via": "the same HIDIVE official trailer cited above, which previews Season 2's premiere episode content",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Season 2 is real, imminent, HIDIVE-branded.",
+            "source_content_confirmed": "Official HIDIVE trailer confirms Season 2 and HIDIVE branding.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Fran meets Teacher (the sentient sword) -- first-episode rescue beat",
+          "reason": "establishes the core premise for viewers unfamiliar with Season 1",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=nY7vu0EKWZI",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube for official Season 1 trailer; located HIDIVE's official trailer showing Fran and Teacher's meeting.",
+          "clip_locate": {
+            "season": 1,
+            "episode": 1,
+            "locate_confirmed_via": "the same HIDIVE official Season 1 trailer cited above, which depicts the Episode 1 meeting between Fran and Teacher",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Fran and Teacher's founding partnership.",
+            "source_content_confirmed": "Official Season 1 trailer shows this exact meeting beat.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Season 2 trailer -- Floating Island / new-arc action beat",
+          "reason": "shows new-season visuals, keeps momentum",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=w6mc_Qtw3JA",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Located a second official Season 2 trailer upload (Trailer 2) for a distinct action beat.",
+          "clip_locate": {
+            "season": 2,
+            "episode": 1,
+            "locate_confirmed_via": "the same official trailer 2 cited above, which previews the Season 2 premiere episode's Floating Island arc footage",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "New-arc action visuals for Season 2.",
+            "source_content_confirmed": "Official trailer 2 shows new action footage.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Season 2 trailer continued -- Fran and Teacher reunion beat",
+          "reason": "reinforces the returning duo before the CTA",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=-qfSjS7KvI0",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Reused verified Season 2 trailer for a later segment showing Fran and Teacher.",
+          "clip_locate": {
+            "season": 2,
+            "episode": 1,
+            "locate_confirmed_via": "the same HIDIVE official Season 2 trailer cited above, a later segment of the same premiere-episode preview",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Returning duo visual.",
+            "source_content_confirmed": "Same verified trailer, later segment.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Title card / logo hold, held for CTA text overlay",
+          "reason": "clean beat for on-screen CTA + question text",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=-qfSjS7KvI0",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Reused verified Season 2 trailer closing logo card for CTA hold.",
+          "clip_locate": {
+            "season": 2,
+            "episode": 1,
+            "locate_confirmed_via": "the same HIDIVE official Season 2 trailer cited above, its closing logo card",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Clean CTA hold frame.",
+            "source_content_confirmed": "Trailer closing logo card works as a static hold.",
+            "match": true
+          }
+        }
+      ],
+      "clip_plan_needs_manga_source": false,
+      "clip_descriptions": "CUT 1 -- 6 sec (0:00-0:06): Season 2 official HIDIVE trailer opening (S2E1) -- visualizes the hook. CUT 2 -- 6 sec (0:06-0:12): Fran meets Teacher, the founding rescue beat (S1E1) -- establishes the premise. CUT 3 -- 6 sec (0:12-0:18): Season 2 new-arc action beat (S2E1), Floating Island. CUT 4 -- 6 sec (0:18-0:24): Fran and Teacher reunion beat (S2E1), Season 2 trailer. CUT 5 -- 6 sec (0:24-0:30): Title card / logo hold (S2E1) for CTA text overlay. TOTAL CLIP TIME: 30 seconds.",
+      "captions": "Word-by-word ALL CAPS captions, one orange keyword per line (e.g. SKIPPING / CRUNCHYROLL / HIDIVE / EXCLUSIVE), max 2 lines on screen, Anton font, white text, black outline.",
+      "youtube_title": "Reincarnated as a Sword S2 Is Skipping Crunchyroll",
+      "tiktok_title": "Reincarnated as a Sword S2 Platform Switch",
+      "tiktok_post_text": "Reincarnated as a Sword Season 2 is dropping Crunchyroll entirely for its exclusive HIDIVE simulcast. #anime #reincarnatedasasword #isekai #animenews #hidive",
+      "pinned_comment": "HIDIVE is even flying the director and two producers out to Anime NYC tomorrow (Aug 22) for the North American premiere -- this isn't a quiet platform switch.",
+      "post_times": {
+        "youtube": "6:00 PM ET",
+        "tiktok": "6:15 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "vo_word_count": 107
+    }
+  ]
+}

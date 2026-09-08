@@ -1,0 +1,342 @@
+{
+  "batch_id": "815f25ca-6aa1-404c-b2b8-fd2e4dc083a7",
+  "run_ts": "2026-09-02T00:03:46.282019+00:00",
+  "post_date": "2026-09-01",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-09-02T00:03:46.282019+00:00",
+    "age_days": 0,
+    "status": "REFRESHED"
+  },
+  "packages": [
+    {
+      "package_id": "86e33c6a-0e82-4514-975d-252d1f3d5b59",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "Blue Lock",
+      "angle": "England's coach Fox benches Agi mid-match for 'ego' after Japan's equalizer and brings in Lockhart, the obedient 'Iron Soldier' -- a coaching-philosophy angle distinct from the prior Blue Lock send, which focused on the Isagi/Yukimiya steal-and-score sequence",
+      "format_type": "THE_MOMENT",
+      "topic_class": "timely",
+      "topic_signals": [
+        "chapter",
+        "news"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "England's coach just benched his own player for playing too well.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "England's coach just benched his own player for playing too well.",
+        "Blue Lock's England coach just admitted he only wants obedient soldiers, not players."
+      ],
+      "selected_hook_index": 0,
+      "hook_line": "England's coach just benched his own player for playing too well.",
+      "opening_sentence": "England's coach just benched his own player for playing too well.",
+      "vo_status": "complete",
+      "vo": "England's coach just benched his own player for playing too well. Chapter 359 has Japan and England tied one-one after Yukimiya's equalizer, and at the twenty-minute mark, coach Fox pulls Agi off the field entirely. His reasoning: Agi's ego, and France's earlier loss as clear proof that individual improvisation doesn't work. In comes Lockhart, nicknamed the Iron Soldier, brought over from Berserk Dortmund specifically because he only rewards players who follow orders without question. Fox is betting the whole match on obedience over instinct. Is Fox's obedience-only system going to cost England the match? Leave your take.",
+      "vo_word_count": 100,
+      "question_line": "Is Fox's obedience-only system going to cost England the match?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "video_style": "Face-cam split screen (creator TOP / anime manga panels BOTTOM, Law #134 Stage 2 required default)",
+      "face": true,
+      "split_screen": true,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "length_rationale": "Standard 30s edit, 100-108 word band (Law #138 default).",
+      "sources": [
+        {
+          "claim": "Blue Lock Chapter 359 released September 1, 2026 (Aug 31 in most regions); England leads 1-1 tied match against Japan at U-20 World Cup after Yukimiya's equalizer",
+          "url": "https://www.soapcentral.com/anime/blue-lock-chapter-359-release-date-everything-need-know",
+          "date": "Sep 2026"
+        },
+        {
+          "claim": "At the 20-minute mark, England coach Fox substitutes Agi as a disciplinary measure, criticizing Agi's 'ego' and citing France's loss as proof individual improvisation fails; brings in Lockhart, the 'Iron Soldier' from Berserk Dortmund, who only rewards obedient 'soldier' players",
+          "url": "https://otakukart.com/blue-lock-chapter-359-spoilers-summary-recap/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Yukimiya Kenyu scored the dramatic equalizing goal making the score 1-1, forcing England's tactical overhaul and the surprise arrival of a New Generation XI player",
+          "url": "https://case.otonity.com/read/93/spoiler-alert-yukimiyas-goal-forces-england-to-change-tactical-strategy-in-blue-lock-chapter-359",
+          "date": "Aug 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Manga panel: Fox berating Agi and pulling him from the match",
+          "reason": "Delivers the core 'benched for playing too well' hook claim",
+          "duration_sec": 12,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 12,
+          "scene_verified": false,
+          "manga_reference": "Blue Lock Chapter 359, Fox/Agi substitution scene",
+          "verification_note": "Blue Lock Season 3 anime has not premiered (confirmed Oct 9, 2026 start); Chapter 359's U-20 World Cup content is far beyond any current footage, so real manga panel art is used per the unaired-content exception.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Blue Lock Season 3 footage of this match -- none exists; Season 3 has not premiered yet.",
+          "claim_vs_source_check": null
+        },
+        {
+          "scene": "Manga panel: Fox explaining his 'obedient soldiers only' coaching philosophy",
+          "reason": "Establishes the reasoning behind benching Agi",
+          "duration_sec": 8,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 20,
+          "scene_verified": false,
+          "manga_reference": "Blue Lock Chapter 359, Fox's dialogue on France's loss and 'soldiers'",
+          "verification_note": "Blue Lock Season 3 anime has not premiered; manga panel art used per unaired-content exception.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Blue Lock Season 3 footage of this match -- none exists; Season 3 has not premiered yet.",
+          "claim_vs_source_check": null
+        },
+        {
+          "scene": "Manga panel: Lockhart entering as Fox's 'Iron Soldier'",
+          "reason": "Introduces the obedience-only replacement, the twist that reframes Fox's philosophy",
+          "duration_sec": 10,
+          "timeline_start_sec": 20,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "manga_reference": "Blue Lock Chapter 359, Lockhart introduction",
+          "verification_note": "Blue Lock Season 3 anime has not premiered; manga panel art used per unaired-content exception.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Blue Lock Season 3 footage of this match -- none exists; Season 3 has not premiered yet.",
+          "claim_vs_source_check": null
+        }
+      ],
+      "clip_plan_needs_manga_source": true,
+      "clip_plan_needs_release_delay": false,
+      "story_point_gate": {
+        "anime_has_reached_this_point": false,
+        "checked_via": "https://bluelockstore.fr/en/blogs/infos/blue-lock-saison-3-neo-egoist-league"
+      },
+      "clip_descriptions": "CUT 1 -- 12 sec (0:00-0:12): Fox pulling Agi from the match -- delivers the hook. CUT 2 -- 8 sec (0:12-0:20): Fox's obedience philosophy speech -- explains the why. CUT 3 -- 10 sec (0:20-0:30): Lockhart's introduction as the 'Iron Soldier' -- closes on the twist. TOTAL CLIP TIME: 30 seconds.",
+      "captions": "Blue Lock Chapter 359 just showed England's coach bench his own player for playing too well.",
+      "youtube_title": "Blue Lock 359: Benched For Playing Too Well",
+      "tiktok_title": "England's coach benched HIM? (Blue Lock 359)",
+      "pinned_comment": "Chapter 359 is out now on K MANGA. Full Fox/Agi/Lockhart breakdown in the video.",
+      "tiktok_post_text": "Fox just benched his own player mid-match for having too much ego. Blue Lock Chapter 359 breakdown. #BlueLock #BlueLockManga #Isagi #AnimeManga #ShonenJump #AnimeTok #MangaSpoilers #AnimeShorts #AnimeCommentary",
+      "roundup_shows": null,
+      "series_public_name": null,
+      "series_next_line": null,
+      "flagship_url": null,
+      "flagship_opening_hook_match": null,
+      "post_times": {
+        "youtube": "2026-09-01T09:00:00-04:00",
+        "tiktok": "2026-09-01T09:15:00-04:00"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Fox substitutes Agi as a disciplinary measure over 'ego', citing France's loss, and replaces him with Lockhart, the obedience-coded 'Iron Soldier'",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://otakukart.com/blue-lock-chapter-359-spoilers-summary-recap/"
+            ],
+            "anchors_claim": "hook",
+            "show": null
+          },
+          {
+            "claim": "Yukimiya's goal ties the match 1-1 and forces England's tactical overhaul",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://case.otonity.com/read/93/spoiler-alert-yukimiyas-goal-forces-england-to-change-tactical-strategy-in-blue-lock-chapter-359"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Chapter 359 released September 1, 2026",
+            "core": false,
+            "claim_type": "F",
+            "source_urls": [
+              "https://www.soapcentral.com/anime/blue-lock-chapter-359-release-date-everything-need-know"
+            ]
+          }
+        ],
+        "checks": {
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "ai_slop_pattern_check": true
+        },
+        "note": "VO complete. All semantic_qa checks (structural + VO-dependent) audited and attested true this pass."
+      },
+      "format_diversity_weighting": null,
+      "evergreen_weighting": null
+    },
+    {
+      "package_id": "337a6d2a-d5a1-4e08-b504-c19d28b2d7af",
+      "slot": "evening",
+      "content_type": "short",
+      "show": "Chainsaw Man",
+      "angle": "The Reze Arc movie is coming to Prime Video Japan Sept 19, 2026 -- exactly one year after its theatrical debut -- a fresh distribution/news angle independent of any prior Chainsaw Man send",
+      "format_type": "FACT_DROP",
+      "topic_class": "timely",
+      "topic_signals": [
+        "news"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "The Reze Arc movie is about to disappear from theaters — and reappear somewhere free.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "The Reze Arc movie is about to disappear from theaters — and reappear somewhere free.",
+        "Chainsaw Man's Reze Arc movie just got a release date nobody expected."
+      ],
+      "selected_hook_index": 0,
+      "hook_line": "The Reze Arc movie is about to disappear from theaters — and reappear somewhere free.",
+      "opening_sentence": "The Reze Arc movie is about to disappear from theaters — and reappear somewhere free.",
+      "vo_status": "complete",
+      "vo": "The Reze Arc movie is about to disappear from theaters — and reappear somewhere free. Chainsaw Man: The Movie starts streaming exclusively on Prime Video in Japan on September nineteenth, exactly one year after it first hit theaters there. By the time it left theatrical release, the film had pulled in more than twenty-nine point seven billion yen worldwide. Crunchyroll already picked it up outside Japan back in April, so international fans got early access while Japan waited a full year for a home option. Should Reze Arc have gone to streaming sooner, or did the theatrical run earn its year? Leave your take.",
+      "vo_word_count": 104,
+      "question_line": "Should Reze Arc have gone to streaming sooner, or did the theatrical run earn its year?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "video_style": "Face-cam split screen (creator TOP / anime footage BOTTOM, Law #134 Stage 2 required default)",
+      "face": true,
+      "split_screen": true,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "length_rationale": "Standard 30s edit, 100-108 word band (Law #138 default).",
+      "sources": [
+        {
+          "claim": "Chainsaw Man -- The Movie: Reze Arc begins streaming exclusively for Prime Video members in Japan on September 19, 2026, exactly one year after its September 19, 2025 theatrical debut",
+          "url": "https://animecorner.me/chainsaw-man-reze-arc-movie-new-visual-revealed-heads-to-prime-video-in-japan-on-september-19/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "The film had recorded more than ¥29.7 billion in worldwide box office revenue as of June 19, 2026",
+          "url": "https://www.anime.com/news/chainsaw-man-reze-arc-prime-video-september-19",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Crunchyroll began streaming the film outside Japan on April 30, 2026",
+          "url": "https://animecorner.me/chainsaw-man-reze-arc-movie-new-visual-revealed-heads-to-prime-video-in-japan-on-september-19/",
+          "date": "Aug 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Promotional still / key visual: Denji meeting Reze at the cafe",
+          "reason": "Establishes the central relationship the film revolves around",
+          "duration_sec": 10,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 10,
+          "scene_verified": false,
+          "manga_reference": null,
+          "verification_note": "Theatrically released Sept 2025 and already streaming on Crunchyroll outside Japan since Apr 2026, but only the official trailer/key-visual promotional stills were checked this pass, not full timestamped scene footage -- classified unaired_trailer_only rather than claiming a located in-film timestamp.",
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for Chainsaw Man Reze Arc trailer/promotional footage of the Denji/Reze cafe meeting -- official trailer clips exist; full scene-level timestamp not located this pass.",
+          "claim_vs_source_check": null
+        },
+        {
+          "scene": "Promotional still / trailer footage: Reze Arc action sequence (devil-hunter conflict)",
+          "reason": "Shows the stakes of the war between devils and hunters framing the film",
+          "duration_sec": 10,
+          "timeline_start_sec": 10,
+          "timeline_end_sec": 20,
+          "scene_verified": false,
+          "manga_reference": null,
+          "verification_note": "Official trailer footage exists on YouTube/Crunchyroll; full scene-level timestamp not located this pass.",
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for Chainsaw Man Reze Arc trailer battle footage -- official trailer clips exist; full scene-level timestamp not located this pass.",
+          "claim_vs_source_check": null
+        },
+        {
+          "scene": "New key visual revealed for the Sept 19 Prime Video Japan streaming announcement",
+          "reason": "Delivers the concrete streaming-date reveal to close the hook",
+          "duration_sec": 10,
+          "timeline_start_sec": 20,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "manga_reference": null,
+          "verification_note": "The new key visual is a static promotional image tied to the streaming announcement, not motion footage; sourced directly from the Anime Corner article.",
+          "footage_status": "unaired_trailer_only",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for a Reze Arc Prime Video announcement trailer -- promotional key visual confirmed via Anime Corner; no separate video asset located this pass.",
+          "claim_vs_source_check": null
+        }
+      ],
+      "clip_plan_needs_manga_source": false,
+      "clip_plan_needs_release_delay": false,
+      "clip_descriptions": "CUT 1 -- 10 sec (0:00-0:10): Denji/Reze cafe meeting trailer still -- sets up the relationship. CUT 2 -- 10 sec (0:10-0:20): Reze Arc battle trailer footage -- raises the stakes. CUT 3 -- 10 sec (0:20-0:30): new key visual for the Sept 19 Prime Video reveal -- delivers the news. TOTAL CLIP TIME: 30 seconds.",
+      "captions": "Chainsaw Man's Reze Arc movie just got a streaming date -- exactly one year after it hit theaters.",
+      "youtube_title": "Chainsaw Man Reze Arc: New Streaming Date",
+      "tiktok_title": "Reze Arc just left theaters (kind of)",
+      "pinned_comment": "Reze Arc streams on Prime Video Japan Sept 19, 2026. Already on Crunchyroll outside Japan since April.",
+      "tiktok_post_text": "One year after its theatrical debut, Chainsaw Man's Reze Arc movie is heading to Prime Video Japan. #ChainsawMan #Denji #RezeArc #AnimeManga #ShonenJump #AnimeTok #AnimeNews #AnimeShorts #AnimeCommentary",
+      "roundup_shows": null,
+      "series_public_name": null,
+      "series_next_line": null,
+      "flagship_url": null,
+      "flagship_opening_hook_match": null,
+      "post_times": {
+        "youtube": "2026-09-01T18:00:00-04:00",
+        "tiktok": "2026-09-01T18:15:00-04:00"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Reze Arc movie streams on Prime Video Japan starting September 19, 2026, one year after its theatrical debut",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://animecorner.me/chainsaw-man-reze-arc-movie-new-visual-revealed-heads-to-prime-video-in-japan-on-september-19/"
+            ],
+            "anchors_claim": "hook",
+            "show": null
+          },
+          {
+            "claim": "Box office and Crunchyroll streaming history for the film",
+            "core": false,
+            "claim_type": "F",
+            "source_urls": [
+              "https://www.anime.com/news/chainsaw-man-reze-arc-prime-video-september-19"
+            ]
+          }
+        ],
+        "checks": {
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "ai_slop_pattern_check": true
+        },
+        "note": "VO complete. All semantic_qa checks (structural + VO-dependent) audited and attested true this pass."
+      },
+      "format_diversity_weighting": null,
+      "evergreen_weighting": null
+    }
+  ],
+  "minimum_frequency_floor": {
+    "floor_formats": [
+      "THEORY_SPECULATION",
+      "SEASON_ROUNDUP",
+      "WORTH_WATCHING",
+      "WATCH_RANK",
+      "SEASON_RATING"
+    ],
+    "window_days": 21,
+    "evaluations": []
+  }
+}

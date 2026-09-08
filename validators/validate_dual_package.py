@@ -25,6 +25,7 @@ email does not need to carry the audit.
 
 from __future__ import annotations
 
+import datetime
 import json
 import os
 import re
@@ -41,6 +42,20 @@ try:
 except Exception:  # noqa: BLE001 — degrade to "check cannot run", never crash import
     _extract_location_tokens = None
     _split_into_cut_segments = None
+try:
+    from conflict_check import check_recent_send_conflict
+except Exception:  # noqa: BLE001 — degrade to "check cannot run", never crash import
+    check_recent_send_conflict = None
+try:
+    from candidate_selection_log import days_since_last_considered, read_events
+except Exception:  # noqa: BLE001 — degrade to "check cannot run", never crash import
+    days_since_last_considered = None
+    read_events = None
+# Repo root (parent of validators/), matching where cron_tracking/ actually lives.
+# Used as the default `tree` for check_recent_send_conflict() when no caller-supplied
+# tree is threaded through -- mirrors _TOOLS_DIR's sibling-directory resolution above,
+# just one level up instead of one level over.
+_REPO_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -94,6 +109,18 @@ FORMAT_TYPES = (
     # Law #160 (evidence-governed, conclusion-hedged theory content)
     "THEORY_SPECULATION",
 )  # 17 tokens total
+
+# Minimum-frequency floor (2026-08-22, Part 2 design): five real, currently-live
+# FORMAT_TYPES tokens with confirmed severe underrepresentation in real send history
+# (sent_scripts_log.json's 219 entries as of 2026-08-22 show THEORY_SPECULATION,
+# SEASON_ROUNDUP, and WATCH_RANK at zero real sends ever; WORTH_WATCHING at 2;
+# SEASON_RATING never appears under its current token name). This is a forcing
+# mechanism, not a hard quota -- see the minimum_frequency_floor check below for
+# the full eligibility-vs-priority distinction this rests on.
+FLOOR_FORMATS = (
+    "THEORY_SPECULATION", "SEASON_ROUNDUP", "WORTH_WATCHING", "WATCH_RANK", "SEASON_RATING",
+)
+FLOOR_WINDOW_DAYS = 21
 
 # Punchy title packaging (Law #144, revised July 2026 on production feedback: YouTube
 # and TikTok titles were running too long; punchier titles that stand out convert
@@ -233,6 +260,29 @@ BANNED_THEORY_CERTAINTY_LANGUAGE = (
     r"\bthere's no doubt this is\b",
 )
 
+# Law #98 (WATCH_RANK): the format's own text requires "Sebastian must actually be
+# watching them. No speculation. No shows from memory" -- i.e. the ranking's source
+# is Sebastian's personal currently-watching list, ranked with his own per-placement
+# reasoning. The one real historical WATCH_RANK send (2026-07-28, Saga of Tanya the
+# Evil II) instead reported a public seasonal poll's week-by-week standings ("Anime
+# Corner" rankings) -- a real, mechanically-detectable mismatch with the format's own
+# design, fixed here (2026-08-22). Anchored regexes, same discipline as
+# BANNED_THEORY_CERTAINTY_LANGUAGE -- scoped to shows_ranked_source_note and angle
+# specifically, not the whole package, so unrelated fields mentioning "poll" in an
+# unrelated context (e.g. a FACT_DROP about a voice-actor poll) are never touched.
+BANNED_WATCH_RANK_PUBLIC_SOURCE_LANGUAGE = (
+    r"\banime corner\b",
+    r"\bmyanimelist ranking\b",
+    r"\bcrunchyroll poll\b",
+    r"\bseason(?:al)? ranking site\b",
+    r"\bfan vote\b",
+    r"\bviewer poll\b",
+    r"\bpublic poll\b",
+    r"\bpoll\b",
+    r"\bvoted\b",
+    r"\bsite ranking\b",
+)
+
 # Law #160 (THEORY_SPECULATION, DRAFT/PROPOSED -- fix applied 2026-08-11, found during
 # user review): the original Decision 3 credit check matched the BARE word "theory"
 # anywhere in vo/pinned_comment/tiktok_post_text. That is vacuous: theory_claim_line is
@@ -306,33 +356,24 @@ SEMANTIC_QA_CHECK_KEYS = (
                                      # literal-restatement-only check.
 )
 
-# --- VO-dependent vs VO-independent semantic_qa keys (2026-08-16, VO handoff) ----
-# Under the handoff workflow Perplexity does NOT write the VO; it hands validated
-# facts to Claude, who writes it. Between those two steps a package legitimately has
-# no VO, so the five checks below cannot be evaluated -- they are SKIPPED, never
-# assumed. The other five are fully evaluable without a VO and still run for real.
-#
-# VO_INDEPENDENT is computed by SET SUBTRACTION from the live SEMANTIC_QA_CHECK_KEYS
-# tuple rather than being written out by hand: if a key is ever added to that tuple
-# and not classified here, it lands in VO_INDEPENDENT and is therefore still ENFORCED
-# rather than silently skipped -- the fail-closed direction.
+# VO-STATUS SPLIT (2026-08-19, Claude-writes-VO workflow): of the 10 keys above, these
+# 5 self-attestations can only be honestly true once real VO text exists -- they are
+# SKIPPED (not attested either way) when vo_status == "pending". hook_claim_coverage
+# is VO-dependent because it attests the HOOK'S CLAIM AS SPOKEN is covered, which
+# cannot be attested before the VO's actual opening line is fixed.
 VO_DEPENDENT_QA_KEYS = (
-    "vo_word_count",            # counts words in a VO that does not exist yet
-    "cta_adjacency",            # CTA placement inside the VO
-    "hook_claim_coverage",      # the hook line is part of the VO
-    "numeric_cross_check",      # verifies counts as spoken in the VO
-    "ai_slop_pattern_check",    # scans VO phrasing
+    "vo_word_count",
+    "cta_adjacency",
+    "hook_claim_coverage",
+    "numeric_cross_check",
+    "ai_slop_pattern_check",
 )
-VO_INDEPENDENT_QA_KEYS = tuple(
-    k for k in SEMANTIC_QA_CHECK_KEYS if k not in VO_DEPENDENT_QA_KEYS
-)
-assert len(VO_DEPENDENT_QA_KEYS) + len(VO_INDEPENDENT_QA_KEYS) == len(SEMANTIC_QA_CHECK_KEYS)
-
-# vo_status values. Default is "complete" so every pre-existing manifest keeps its
-# current meaning and full enforcement -- the new draft stage is strictly opt-in.
-VO_STATUS_VALUES = ("pending", "complete")
-VO_STATUS_DEFAULT = "complete"
-
+# The remaining 5 are purely structural/source-based and run unconditionally even
+# when vo_status == "pending" -- confirmed via grep that none of these read the vo
+# field: title_search (titles), blackout_recent_conflicts (send-log lookup),
+# clip_timing_tiling (cut timing math), source_content_verification and
+# law_149_redundancy_check (claim_source_matrix / sources shape, not VO prose).
+VO_INDEPENDENT_QA_KEYS = tuple(k for k in SEMANTIC_QA_CHECK_KEYS if k not in VO_DEPENDENT_QA_KEYS)
 
 # claim_source_matrix entries that anchor the hook must say so via this field so 1.5
 # (hook claim coverage) is mechanically checkable, not merely self-attested.
@@ -391,87 +432,53 @@ FOOTAGE_STATUS_VALUES = (
 FOOTAGE_STATUS_HARD_BLOCK = ("aired_not_located",)
 
 
-# --- check status vocabulary (added 2026-08-16, VO-handoff workflow) ------------
-# Result.checks[1] is one of these THREE strings, replacing the old bool. SKIP exists
-# because a VO-pending package cannot evaluate its VO-dependent checks yet; folding
-# that into PASS would make a draft manifest look sendable, and folding it into FAIL
-# would make the normal draft stage look broken.
-STATUS_PASS = "PASS"
-STATUS_FAIL = "FAIL"
-STATUS_SKIP = "SKIP"
-
 @dataclass
 class Result:
-    """A list of (name, status, detail) checks.
-
-    STATUS IS A STRING, NOT A BOOL (changed 2026-08-16 for the VO-handoff workflow).
-    checks[1] is one of STATUS_PASS / STATUS_FAIL / STATUS_SKIP. The third state is
-    required because a VO-pending package legitimately cannot evaluate its VO-dependent
-    checks yet -- and "cannot evaluate yet" is neither a pass nor a failure. Collapsing
-    it into either one is what makes a draft-stage manifest look sendable.
-
-    CALLERS BEWARE: any code doing `if not ok` over these tuples is now WRONG, because
-    every non-empty string is truthy -- `not "FAIL"` and `not "PASS"` are both False.
-    Compare explicitly against STATUS_FAIL / STATUS_SKIP. This exact bug existed in
-    tools/append_send_batch.py's validate_manifest_failures() and would have silently
-    reported zero failures for every manifest; see that file's dated fix note.
-    """
-
+    # STATUS SCHEMA CHANGE (2026-08-19, Claude-writes-VO workflow): checks[1] is now
+    # a status STRING ("PASS" | "FAIL" | "SKIP") instead of a bare bool. This is a
+    # breaking change to the tuple's second element type -- any code that unpacks
+    # `checks` directly (not through .ok/.failures()) must be updated to compare
+    # against the string values, not truthiness. Confirmed by full-repo grep
+    # (2026-08-19) that tools/append_send_batch.py's validate_manifest_failures()
+    # was the one other call site doing this; it is fixed in the same change.
+    # SKIP exists so a VO-pending package (vo_status == "pending") can legitimately
+    # leave VO-dependent checks unresolved at draft/email stage WITHOUT being
+    # reported as a false PASS (a silent skip masquerading as green) or a false
+    # FAIL (blocking a package that is deliberately incomplete by design, not broken).
     checks: list[tuple[str, str, str]] = field(default_factory=list)
 
     def add(self, name: str, ok: bool, detail: str = "") -> None:
-        self.checks.append((name, STATUS_PASS if ok else STATUS_FAIL, detail))
+        self.checks.append((name, "PASS" if ok else "FAIL", detail))
 
-    def skip(self, name: str, detail: str = "") -> None:
-        """Record a check that could not be evaluated yet (VO not written).
-
-        A skip is NOT a pass. `fully_passed` -- the real send/approval gate -- is
-        False whenever any skip is present.
-        """
-        self.checks.append((name, STATUS_SKIP, detail))
+    def skip(self, name: str, reason: str) -> None:
+        """Record a check that was deliberately not run because its input (real VO
+        text) is not yet available (vo_status == "pending"). Distinct from add()'s
+        FAIL: a skip is an honest "not yet checkable", not a violation."""
+        self.checks.append((name, "SKIP", reason))
 
     @property
     def ok(self) -> bool:
-        """PERMISSIVE: zero FAILs. Skips do NOT count against it.
-
-        Kept for backward compatibility with existing callers and tests. This is
-        deliberately NOT the send gate -- a VO-pending manifest is `ok` while still
-        carrying unevaluated checks. Use `fully_passed` to gate a send or an approval.
-        """
-        return all(status != STATUS_FAIL for _, status, _ in self.checks)
+        """True iff there are zero FAILs. NOTE: this is intentionally permissive of
+        SKIPs -- ok=True with real skips present means "nothing checkable failed",
+        NOT "fully validated". Callers that gate sending/approval MUST use
+        fully_passed instead. ok is kept for the two existing send-blocking call
+        sites (main()'s exit code and append_send_batch.py) which are BOTH updated
+        in this same change to require fully_passed, not ok, for the actual send/
+        approval gate -- ok remains here only because ~85 existing tests assert on
+        it directly for pure PASS/FAIL fixtures that never set SKIP."""
+        return all(status != "FAIL" for _, status, _ in self.checks)
 
     @property
     def fully_passed(self) -> bool:
-        """THE REAL GATE: zero FAILs AND zero SKIPs -- every check actually evaluated
-        and actually passed. This is what clears AWAITING_APPROVAL or a send."""
-        return all(status == STATUS_PASS for _, status, _ in self.checks)
+        """The real gate for AWAITING_APPROVAL / a send: zero FAILs AND zero SKIPs.
+        A batch with any SKIP (VO still pending) must never reach this state True."""
+        return all(status == "PASS" for _, status, _ in self.checks)
 
     def failures(self) -> list[tuple[str, str, str]]:
-        return [c for c in self.checks if c[1] == STATUS_FAIL]
+        return [c for c in self.checks if c[1] == "FAIL"]
 
     def skips(self) -> list[tuple[str, str, str]]:
-        return [c for c in self.checks if c[1] == STATUS_SKIP]
-
-
-def _vo_status(pkg: dict[str, Any]) -> str:
-    """Read a package's vo_status, defaulting to "complete".
-
-    Defaulting to "complete" (not "pending") is deliberate and fail-closed: every
-    manifest written before this field existed keeps FULL enforcement. Only a package
-    that explicitly opts in to "pending" gets VO-dependent checks skipped.
-    """
-    raw = pkg.get("vo_status", VO_STATUS_DEFAULT)
-    return raw if isinstance(raw, str) else raw
-
-
-def _vo_is_pending(pkg: dict[str, Any]) -> bool:
-    """True only when vo_status is exactly "pending".
-
-    A malformed vo_status returns False, so the package keeps full enforcement AND
-    separately fails the vo_status-is-valid check -- it can never buy skips by being
-    malformed.
-    """
-    return _vo_status(pkg) == "pending"
+        return [c for c in self.checks if c[1] == "SKIP"]
 
 
 def _words(text: str) -> int:
@@ -508,6 +515,23 @@ def _list(pkg: dict, key: str, default: tuple = ()) -> list:
 
 def _is_num(x: Any) -> bool:
     return isinstance(x, (int, float)) and not isinstance(x, bool)
+
+
+def _parse_iso_date(s: Any) -> datetime.date | None:
+    """Parse a strict YYYY-MM-DD string into a date, or None if not parseable.
+
+    Deliberately narrow: only the exact YYYY-MM-DD form (no time component, no
+    timezone, no slashes) is accepted, matching every *_date_iso field's documented
+    format. Returns None for non-strings, wrong-shaped strings, and calendar-invalid
+    dates (e.g. 2026-02-30) rather than raising -- callers treat None as "format
+    check failed" and must not let a raised ValueError crash the validator.
+    """
+    if not isinstance(s, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", s):
+        return None
+    try:
+        return datetime.date.fromisoformat(s)
+    except ValueError:
+        return None
 
 
 def _vo_band(target_sec: float) -> tuple[int, int]:
@@ -1358,7 +1382,272 @@ def _validate_season_roundup_sourcing(pkg: dict[str, Any], p: str, r: Result) ->
           not shared, f"shared_sources={shared}")
 
 
-def _validate_semantic_qa(pkg: dict[str, Any], p: str, r: Result) -> None:
+# Documented eligibility windows (laws/format_reference_seasonal_types.md, Law #98)
+# for the four format_types whose numeric/enum-checkable eligibility rules were pure
+# self-attestation until this item (2026-08-19). Named here, not inlined, so the
+# function body and its tests read against the same constants the docs cite.
+EPISODE_MOMENT_MAX_AGE_DAYS = 7      # "must air within 7 days of the episode dropping"
+SEASON_RATING_MAX_AGE_DAYS = 30      # "currently airing OR finished within the last 30 days"
+SEASON_PREVIEW_WINDOW_DAYS = 45      # "verified premiere date within 45 days (before or after)"
+WATCH_RANK_MIN_SHOWS = 3             # "Minimum 3 shows" (Law #98)
+WATCH_RANK_MAX_SHOWS = 6             # "maximum 6" (Law #98)
+SHOW_STATUS_VALUES = ("airing", "finished")
+PREVIEW_STANCE_VALUES = ("pre_air", "post_air")  # Item #7 (2026-08-19), real F45 case
+
+
+def _validate_format_type_eligibility(pkg: dict[str, Any], p: str, r: Result,
+                                       post_date: datetime.date | None) -> None:
+    """Item #6 (2026-08-19): mechanical fields for the numeric/enum-checkable
+    eligibility rules that laws/format_reference_seasonal_types.md and Law #98
+    document for four format_types, closing the same self-attestation gap item
+    #3+#8 closed for blackout/recent-send conflicts. Before this, a package could
+    declare format_type=EPISODE_MOMENT for a 3-week-old episode, or
+    format_type=WATCH_RANK with 1 or 12 shows, and nothing mechanical checked it --
+    only the model's own drafting-pass judgment did.
+
+    All four fields are ADDITIVE/OPTIONAL to the schema: they apply only to their
+    one matching format_type and are absent (and unchecked) on the other 16 tokens,
+    following the exact SCOPING pattern _validate_season_roundup_sourcing already
+    established for SEASON_ROUNDUP's roundup_shows field.
+
+    ANCHOR DATE: every window below is computed against the manifest's own
+    `post_date` (the date the package is scheduled to publish), never against
+    wall-clock "today". This keeps old fixtures and old real packages permanently
+    checkable on their own terms -- a package that was compliant the day it was
+    written stays compliant forever, rather than silently starting to fail months
+    later purely because time passed. If post_date itself is missing or malformed,
+    every date-window check below is reported as a failure (fail-closed) rather than
+    skipped, matching this file's existing fail-closed convention; the count-only
+    WATCH_RANK check does not depend on post_date and still runs.
+
+    Checks (all fail-closed, all scoped to their one format_type):
+      EPISODE_MOMENT: episode_air_date_iso present, valid YYYY-MM-DD, not in the
+        future relative to post_date, and post_date - episode_air_date_iso <= 7 days.
+      SEASON_RATING: show_status in {"airing","finished"}; show_status_as_of_iso
+        present/valid; if "finished", finale_date_iso present/valid and
+        post_date - finale_date_iso <= 30 days (the "finished within the last 30
+        days" rule -- "airing" has no age ceiling, matching the law's "currently
+        airing OR finished within 30 days" either/or wording).
+      SEASON_PREVIEW: premiere_date_iso present, valid, and
+        abs(post_date - premiere_date_iso) <= 45 days (the law's own "before or
+        after airing" phrasing -- this is a symmetric window, not a deadline). ALSO
+        (item #7, 2026-08-19, real F45 case): preview_stance in {"pre_air",
+        "post_air"} must be consistent with whether premiere_date_iso has already
+        passed relative to post_date (equal counts as passed/post_air) -- catches a
+        package that declares itself pre-air framing for a date that, by ship
+        time, has already happened (or the reverse). This checks the DECLARED
+        stance against date math only; it does not read VO/hook tense itself.
+      WATCH_RANK: shows_ranked is a list of 3-6 non-empty strings with no
+        case-insensitive duplicates ("Never rank just one" / "Minimum 3 ... maximum
+        6", Law #98). ALSO (fix applied 2026-08-22, real gap found in the one
+        historical WATCH_RANK send): shows_ranked_source_note must be a non-empty
+        string, and neither shows_ranked_source_note nor angle may contain public
+        poll/aggregator source language (BANNED_WATCH_RANK_PUBLIC_SOURCE_LANGUAGE) --
+        Law #98's own text requires "Sebastian must actually be watching them...
+        No shows from memory," i.e. a personal currently-watching list with his own
+        placement reasoning, not a third-party ranking site's standings.
+
+    Like every other Law #73/#147/#159 field check, this is presence/shape/domain
+    only -- it cannot verify episode_air_date_iso or premiere_date_iso are
+    THEMSELVES true (that stays a live-source-verification drafting-pass
+    attestation, Law #52), only that the declared date is well-formed and inside
+    the documented window relative to post_date.
+    """
+    fmt = pkg.get("format_type")
+
+    # --- EPISODE_MOMENT: episode_air_date_iso, 7-day post-air deadline ---
+    ead_raw = pkg.get("episode_air_date_iso")
+    if fmt != "EPISODE_MOMENT":
+        r.add(f"{p} episode_air_date_iso absent on non-EPISODE_MOMENT package (scoping)",
+              ead_raw is None, f"format_type={fmt!r} episode_air_date_iso={ead_raw!r}")
+    else:
+        ead = _parse_iso_date(ead_raw)
+        r.add(f"{p} episode_air_date_iso present and valid YYYY-MM-DD",
+              ead is not None, f"episode_air_date_iso={ead_raw!r}")
+        if ead is None or post_date is None:
+            r.add(f"{p} episode_air_date_iso within 7 days of post_date (EPISODE_MOMENT window)",
+                  False,
+                  f"episode_air_date_iso={ead_raw!r} post_date={post_date!r} -- "
+                  "not evaluable")
+        else:
+            age = (post_date - ead).days
+            r.add(f"{p} episode_air_date_iso within 7 days of post_date (EPISODE_MOMENT window)",
+                  0 <= age <= EPISODE_MOMENT_MAX_AGE_DAYS,
+                  f"episode_air_date_iso={ead_raw} post_date={post_date.isoformat()} "
+                  f"age_days={age} max={EPISODE_MOMENT_MAX_AGE_DAYS}")
+
+    # --- SEASON_RATING: show_status/show_status_as_of_iso/finale_date_iso, 30-day rule ---
+    status_raw = pkg.get("show_status")
+    as_of_raw = pkg.get("show_status_as_of_iso")
+    finale_raw = pkg.get("finale_date_iso")
+    if fmt != "SEASON_RATING":
+        r.add(f"{p} show_status fields absent on non-SEASON_RATING package (scoping)",
+              status_raw is None and as_of_raw is None and finale_raw is None,
+              f"format_type={fmt!r} show_status={status_raw!r} "
+              f"show_status_as_of_iso={as_of_raw!r} finale_date_iso={finale_raw!r}")
+    else:
+        r.add(f"{p} show_status is one of {SHOW_STATUS_VALUES}",
+              status_raw in SHOW_STATUS_VALUES, f"show_status={status_raw!r}")
+        as_of = _parse_iso_date(as_of_raw)
+        r.add(f"{p} show_status_as_of_iso present and valid YYYY-MM-DD",
+              as_of is not None, f"show_status_as_of_iso={as_of_raw!r}")
+        if status_raw == "finished":
+            finale = _parse_iso_date(finale_raw)
+            r.add(f"{p} finale_date_iso present and valid YYYY-MM-DD (show_status=finished)",
+                  finale is not None, f"finale_date_iso={finale_raw!r}")
+            if finale is None or post_date is None:
+                r.add(f"{p} finale_date_iso within 30 days of post_date (SEASON_RATING window)",
+                      False,
+                      f"finale_date_iso={finale_raw!r} post_date={post_date!r} -- not evaluable")
+            else:
+                age = (post_date - finale).days
+                r.add(f"{p} finale_date_iso within 30 days of post_date (SEASON_RATING window)",
+                      0 <= age <= SEASON_RATING_MAX_AGE_DAYS,
+                      f"finale_date_iso={finale_raw} post_date={post_date.isoformat()} "
+                      f"age_days={age} max={SEASON_RATING_MAX_AGE_DAYS}")
+        elif status_raw == "airing":
+            # No age ceiling for "airing" -- the law's own either/or wording gives
+            # airing shows no 30-day limit. finale_date_iso is meaningless while
+            # airing, so require it ABSENT rather than silently ignoring it (the
+            # same "absent when not applicable" discipline as the scoping checks).
+            r.add(f"{p} finale_date_iso absent while show_status=airing (SEASON_RATING)",
+                  finale_raw is None, f"show_status=airing finale_date_iso={finale_raw!r}")
+        else:
+            # show_status itself already failed the enum check above; nothing further
+            # to evaluate about finale_date_iso in an unrecognized-status package.
+            r.add(f"{p} finale_date_iso consistent with show_status (SEASON_RATING)",
+                  False, f"show_status={status_raw!r} is not a recognized value")
+
+    # --- SEASON_PREVIEW: premiere_date_iso, +/-45 day symmetric window ---
+    prem_raw = pkg.get("premiere_date_iso")
+    stance_raw = pkg.get("preview_stance")
+    if fmt != "SEASON_PREVIEW":
+        r.add(f"{p} premiere_date_iso absent on non-SEASON_PREVIEW package (scoping)",
+              prem_raw is None, f"format_type={fmt!r} premiere_date_iso={prem_raw!r}")
+        r.add(f"{p} preview_stance absent on non-SEASON_PREVIEW package (scoping)",
+              stance_raw is None, f"format_type={fmt!r} preview_stance={stance_raw!r}")
+    else:
+        prem = _parse_iso_date(prem_raw)
+        r.add(f"{p} premiere_date_iso present and valid YYYY-MM-DD",
+              prem is not None, f"premiere_date_iso={prem_raw!r}")
+        if prem is None or post_date is None:
+            r.add(f"{p} premiere_date_iso within 45 days of post_date, either direction "
+                  "(SEASON_PREVIEW window)",
+                  False,
+                  f"premiere_date_iso={prem_raw!r} post_date={post_date!r} -- not evaluable")
+        else:
+            gap = abs((post_date - prem).days)
+            r.add(f"{p} premiere_date_iso within 45 days of post_date, either direction "
+                  "(SEASON_PREVIEW window)",
+                  gap <= SEASON_PREVIEW_WINDOW_DAYS,
+                  f"premiere_date_iso={prem_raw} post_date={post_date.isoformat()} "
+                  f"gap_days={gap} max={SEASON_PREVIEW_WINDOW_DAYS}")
+
+        # --- Item #7 (2026-08-19), real F45 case (Bleach Ep. 4, batch f54413d8):
+        # premiere_date_iso being inside the +/-45 day window (checked above) says
+        # nothing about whether the previewed date has already happened by ship
+        # time -- the law explicitly permits previewing "before or after airing".
+        # F45's actual failure was a package whose VO/hook was written in pre-air
+        # future tense ("Episode 4... airs Saturday") for an episode date that had,
+        # by post_date, already passed. preview_stance is the drafting pass's own
+        # required attestation of which framing it used; this check cross-verifies
+        # that attestation against the objective date math, so a declared "pre_air"
+        # framing can never coexist with a premiere_date_iso that has already
+        # passed relative to post_date (or vice versa). Per item #6's post_date
+        # convention, "has already passed" is decided against post_date, never
+        # wall-clock "today" -- boundary case premiere_date_iso == post_date counts
+        # as PASSED (post_air), matching the real F45 incident, where the batch's
+        # post_date (2026-08-15) was the SAME calendar day Episode 4 actually aired
+        # -- that same-day case is exactly what should have been declared post_air
+        # and was not.
+        #
+        # HONEST LIMITATION (disclosed, not silently assumed): this verifies the
+        # DECLARED stance is consistent with objective date math. It does NOT read
+        # the VO/hook text itself to confirm the actual prose tense matches the
+        # declared stance -- that remains a drafting-pass self-attestation
+        # responsibility, the same honest limitation already disclosed for every
+        # other self-attested field in this file (e.g. hook_first_second,
+        # loop_read_aloud_pass). This closes the "declared something false and
+        # nothing caught it" gap, not the "wrote something imprecise in the VO"
+        # gap -- a real, meaningful narrowing of F45's failure mode, not a claim to
+        # have fully solved it.
+        r.add(f"{p} preview_stance is one of {PREVIEW_STANCE_VALUES}",
+              stance_raw in PREVIEW_STANCE_VALUES, f"preview_stance={stance_raw!r}")
+        if prem is None or post_date is None or stance_raw not in PREVIEW_STANCE_VALUES:
+            r.add(f"{p} preview_stance consistent with premiere_date_iso vs post_date "
+                  "(SEASON_PREVIEW staleness, Law F45)",
+                  False,
+                  f"premiere_date_iso={prem_raw!r} post_date={post_date!r} "
+                  f"preview_stance={stance_raw!r} -- not evaluable")
+        else:
+            has_passed = prem <= post_date  # equal counts as passed (real F45 case)
+            expected_stance = "post_air" if has_passed else "pre_air"
+            r.add(f"{p} preview_stance consistent with premiere_date_iso vs post_date "
+                  "(SEASON_PREVIEW staleness, Law F45)",
+                  stance_raw == expected_stance,
+                  f"premiere_date_iso={prem_raw} post_date={post_date.isoformat()} "
+                  f"has_passed={has_passed} declared_stance={stance_raw!r} "
+                  f"expected_stance={expected_stance!r}")
+
+    # --- WATCH_RANK: shows_ranked, 3-6 distinct non-empty strings ---
+    ranked_raw = pkg.get("shows_ranked")
+    if fmt != "WATCH_RANK":
+        r.add(f"{p} shows_ranked absent on non-WATCH_RANK package (scoping)",
+              ranked_raw is None, f"format_type={fmt!r} shows_ranked={ranked_raw!r}")
+    else:
+        well_formed = (isinstance(ranked_raw, list)
+                        and all(isinstance(s, str) and s.strip() for s in ranked_raw))
+        dupes: list[str] = []
+        if well_formed:
+            seen: set[str] = set()
+            for s in ranked_raw:
+                k = _norm(s)
+                if k in seen:
+                    dupes.append(s)
+                seen.add(k)
+        count = len(ranked_raw) if isinstance(ranked_raw, list) else -1
+        r.add(f"{p} shows_ranked is a list of {WATCH_RANK_MIN_SHOWS}-{WATCH_RANK_MAX_SHOWS} "
+              "distinct non-empty strings (Law #98)",
+              well_formed and not dupes
+              and WATCH_RANK_MIN_SHOWS <= count <= WATCH_RANK_MAX_SHOWS,
+              f"shows_ranked={ranked_raw!r} count={count} duplicates={dupes}")
+
+    # --- WATCH_RANK: shows_ranked_source_note, scoped like shows_ranked above ---
+    # (fix applied 2026-08-22, per real gap found in the one historical WATCH_RANK
+    # send: Law #98 requires "Sebastian must actually be watching them... No shows
+    # from memory" -- a personal list with his own placement reasoning -- but that
+    # send instead reported a public "Anime Corner" seasonal poll's standings.)
+    source_note_raw = pkg.get("shows_ranked_source_note")
+    if fmt != "WATCH_RANK":
+        r.add(f"{p} shows_ranked_source_note absent on non-WATCH_RANK package (scoping)",
+              source_note_raw is None,
+              f"format_type={fmt!r} shows_ranked_source_note={source_note_raw!r}")
+    else:
+        note_present = isinstance(source_note_raw, str) and bool(source_note_raw.strip())
+        r.add(f"{p} shows_ranked_source_note is a non-empty string (Law #98)",
+              note_present,
+              f"shows_ranked_source_note={source_note_raw!r}; WATCH_RANK requires a "
+              f"non-empty note documenting that the ranking is Sebastian's own "
+              f"currently-watching list, ranked by his own reasoning")
+
+        # Mechanical block: the source note AND angle must not attribute the ranking
+        # to a public poll/aggregator source. Documentation alone (the field above)
+        # can be attested falsely; this regex check is the real, fail-closed gate
+        # that prevents a repeat of the exact 2026-07-28 failure mode.
+        note_norm = _norm(source_note_raw) if isinstance(source_note_raw, str) else ""
+        angle_norm = _norm(_str(pkg, "angle"))
+        public_source_hits = sorted(set(
+            pat for pat in BANNED_WATCH_RANK_PUBLIC_SOURCE_LANGUAGE
+            if re.search(pat, note_norm, re.IGNORECASE) or re.search(pat, angle_norm, re.IGNORECASE)
+        ))
+        r.add(f"{p} shows_ranked_source_note/angle attribute no public poll/aggregator "
+              "source (Law #98, mechanical check)",
+              len(public_source_hits) == 0,
+              f"shows_ranked_source_note={source_note_raw!r} angle={pkg.get('angle')!r}; "
+              f"violations found: {public_source_hits}" if public_source_hits else "")
+
+
+def _validate_semantic_qa(pkg: dict[str, Any], p: str, r: Result, vo_pending: bool = False) -> None:
     """Validate the one-pass semantic QA the generation context must self-run before
     returning (Law #147 / credit-safe mode). The daily model launch is single-pass, so
     the audit is folded into that one context and recorded in the manifest (NOT the slim
@@ -1392,31 +1681,28 @@ def _validate_semantic_qa(pkg: dict[str, Any], p: str, r: Result) -> None:
 
     # required self-attested check flags present and true (the validator ALSO enforces
     # the mechanical laws independently; this records the model's own audit result).
+    # VO-STATUS SPLIT (2026-08-19): the single flat attestation below is split into a
+    # VO-independent half (runs/attests unconditionally) and a VO-dependent half
+    # (skipped when vo_pending, since 5 of these 10 flags cannot be honestly attested
+    # before real VO text exists; the remaining 5 are purely structural).
     checks = qa.get("checks")
-    # VO-handoff split (2026-08-16): when vo_status == "pending" the VO does not exist
-    # yet, so the five VO-dependent attestations cannot honestly be made and are
-    # SKIPPED. The five VO-independent ones are still ENFORCED for real -- a draft-stage
-    # package gets no discount on sourcing, timing, titles or clip structure.
-    vo_pending = _vo_is_pending(pkg)
-
-    indep_ok = isinstance(checks, dict) and all(
-        checks.get(k) is True for k in VO_INDEPENDENT_QA_KEYS)
+    indep_ok = isinstance(checks, dict) and all(checks.get(k) is True for k in VO_INDEPENDENT_QA_KEYS)
     indep_missing = [k for k in VO_INDEPENDENT_QA_KEYS
-                     if not (isinstance(checks, dict) and checks.get(k) is True)]
-    r.add(f"{p} semantic_qa.checks VO-independent attested true "
+                      if not (isinstance(checks, dict) and checks.get(k) is True)]
+    r.add(f"{p} semantic_qa.checks VO-independent keys all attested true "
           f"({', '.join(VO_INDEPENDENT_QA_KEYS)})",
           indep_ok, f"missing/false={indep_missing}")
-
-    dep_label = (f"{p} semantic_qa.checks VO-dependent attested true "
-                 f"({', '.join(VO_DEPENDENT_QA_KEYS)})")
     if vo_pending:
-        r.skip(dep_label, "vo_status=pending -- VO not written yet, cannot attest")
+        r.skip(f"{p} semantic_qa.checks VO-dependent keys all attested true "
+               f"({', '.join(VO_DEPENDENT_QA_KEYS)})",
+               "VO not yet present, pending Claude's draft")
     else:
-        dep_ok = isinstance(checks, dict) and all(
-            checks.get(k) is True for k in VO_DEPENDENT_QA_KEYS)
+        dep_ok = isinstance(checks, dict) and all(checks.get(k) is True for k in VO_DEPENDENT_QA_KEYS)
         dep_missing = [k for k in VO_DEPENDENT_QA_KEYS
                        if not (isinstance(checks, dict) and checks.get(k) is True)]
-        r.add(dep_label, dep_ok, f"missing/false={dep_missing}")
+        r.add(f"{p} semantic_qa.checks VO-dependent keys all attested true "
+              f"({', '.join(VO_DEPENDENT_QA_KEYS)})",
+              dep_ok, f"missing/false={dep_missing}")
 
     # RESCINDED 2026-07-27 (Law #141 rescission): final_to_opening_readaloud
     # consistency check removed along with the rest of the forced-loop mandate.
@@ -1520,10 +1806,21 @@ def _validate_semantic_qa(pkg: dict[str, Any], p: str, r: Result) -> None:
     # or checks it anymore.
 
 
-def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
+def validate_package(pkg: dict[str, Any], idx: int, r: Result, tree: str | None = None,
+                      post_date: datetime.date | None = None) -> None:
     """Per-package mechanical checks. `idx` is 0/1; label uses the slot."""
     slot = pkg.get("slot", f"pkg{idx}")
     p = f"[{slot}]"
+
+    # VO-PENDING BRANCH (2026-08-19, Claude-writes-VO workflow): vo_status defaults
+    # to "complete" for backward compatibility with every manifest that predates this
+    # field. When "pending", the real vo text has not been written yet -- checks that
+    # read the VO STRING ITSELF must be SKIPPED (not silently passed, not hard-failed),
+    # while every purely structural check (format_type, clip timing, source matrix
+    # shape, titles, hook_candidates, series/funnel fields, hook_onscreen_text/
+    # hook_first_second attestations, content_type, etc.) still runs in full below,
+    # unconditionally, exactly as it did before this change.
+    vo_pending = pkg.get("vo_status", "complete") == "pending"
 
     # --- format_type is one of the controlled tokens (Law #85 + #96 + WATCH_RANK/#98) ---
     # Free-text/compound labels are no longer permitted — see FORMAT_TYPES above and
@@ -1548,29 +1845,19 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
     # vo_word_count (e.g. a string "104") previously crashed the `abs(counted - wc)`
     # comparison with an unhandled TypeError instead of producing a named check
     # failure. Guard the type before doing arithmetic.
-    # VO-HANDOFF SKIP GATE (2026-08-16). When vo_status == "pending" the VO has not been
-    # written yet, so every check that reads `vo` is SKIPPED rather than evaluated
-    # against an empty string -- which would otherwise produce a pile of meaningless
-    # FAILs and hide any real structural problem. The word BAND is still reported as the
-    # target Claude must hit, in the skip detail, so the handoff carries it.
-    vo_pending = _vo_is_pending(pkg)
-
     if vo_pending:
-        r.skip(f"{p} vo_word_count matches VO text",
-               "vo_status=pending -- no VO to count yet")
-        r.skip(f"{p} VO within {vo_min}-{vo_max} words",
-               f"vo_status=pending -- target band for the writer is "
-               f"{vo_min}-{vo_max} words at {int(target_sec)}s")
+        r.skip(f"{p} vo_word_count matches VO text", "VO not yet present, pending Claude's draft")
+        r.skip(f"{p} VO within {vo_min}-{vo_max} words", "VO not yet present, pending Claude's draft")
+    elif wc is not None and not _is_num(wc):
+        r.add(f"{p} vo_word_count matches VO text", False,
+              f"vo_word_count is not numeric: {wc!r}")
     else:
-        if wc is not None and not _is_num(wc):
-            r.add(f"{p} vo_word_count matches VO text", False,
-                  f"vo_word_count is not numeric: {wc!r}")
-        else:
-            if wc is None:
-                wc = counted
-            # the manifest's declared count must match the actual VO text (no fudging)
-            r.add(f"{p} vo_word_count matches VO text", abs(counted - wc) <= 1,
-                  f"declared={wc} counted={counted}")
+        if wc is None:
+            wc = counted
+        # the manifest's declared count must match the actual VO text (no fudging)
+        r.add(f"{p} vo_word_count matches VO text", abs(counted - wc) <= 1,
+              f"declared={wc} counted={counted}")
+    if not vo_pending:
         r.add(f"{p} VO within {vo_min}-{vo_max} words", vo_min <= counted <= vo_max,
               f"words={counted} (edit={int(target_sec)}s)")
 
@@ -1584,16 +1871,10 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
     q = _str(pkg, "question_line").strip()
     r.add(f"{p} question_line is a question", q.endswith("?") and len(q) > 5, f"question_line={q!r}")
     # the exact phrase must appear in the VO, immediately after the question
-    # Both of these read the VO body, so both skip while it is pending. cta_line and
-    # question_line themselves are still enforced above -- the handoff carries the
-    # closing STRUCTURE even though the prose does not exist yet.
     if vo_pending:
         r.skip(f"{p} question immediately followed by '{CTA_EXACT}' in VO",
-               "vo_status=pending -- writer must place '<question?> Leave your take.' "
-               "contiguously at the close")
-        r.skip(f"{p} exact CTA phrase present in VO",
-               f"vo_status=pending -- writer must include the exact phrase "
-               f"'{CTA_EXACT}'")
+               "VO not yet present, pending Claude's draft")
+        r.skip(f"{p} exact CTA phrase present in VO", "VO not yet present, pending Claude's draft")
     else:
         combined_ok = False
         if q:
@@ -1647,12 +1928,9 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
     r.add(f"{p} opening_sentence present",
           bool(_str(pkg, "opening_sentence") or _str(pkg, "opening_line")),
           "provide opening_sentence (or opening_line)")
-    if _vo_is_pending(pkg):
-        # The proposed opening line IS part of the handoff (Perplexity drafts it),
-        # so its PRESENCE stays enforced above. What cannot be checked yet is
-        # whether it matches a VO that has not been written.
+    if vo_pending:
         r.skip(f"{p} opening_sentence is the VO's exact first sentence",
-               "vo_status=pending -- writer must open the VO with this exact sentence")
+               "VO not yet present, pending Claude's draft")
     else:
         r.add(f"{p} opening_sentence is the VO's exact first sentence",
               bool(opening) and _norm(opening.rstrip(".!?")) == _norm(first_sent.rstrip(".!?")),
@@ -1761,10 +2039,37 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
           f"youtube={yt!r} tiktok={tt!r}")
 
     # --- blackout / recent-send conflict inputs must be present and clear ---
+    # F43 correction (item #3+#8, 2026-08-19): these two fields used to be pure
+    # self-attestation -- a package could simply claim False for both fields with
+    # nothing checking whether that claim was true. The real F43 Gaban near-miss
+    # (blackout_conflict/recent_send_conflict both attested False on a package that
+    # was, in fact, a near-duplicate of an already-sent angle) is exactly the failure
+    # mode this closes. tools/conflict_check.check_recent_send_conflict() is now the
+    # independent mechanical source of truth: the validator hard-fails if THAT
+    # function blocks, regardless of what the package itself attests. The
+    # self-attestation checks below are kept (a package should still attest
+    # correctly), but they are no longer sufficient on their own.
     bo = pkg.get("blackout_conflict", None)
     rc = pkg.get("recent_send_conflict", None)
     r.add(f"{p} blackout_conflict input present and clear", bo is False, f"blackout_conflict={bo}")
     r.add(f"{p} recent_send_conflict input present and clear", rc is False, f"recent_send_conflict={rc}")
+
+    if check_recent_send_conflict is None:
+        r.add(f"{p} mechanical conflict check (tools/conflict_check.py) importable",
+              False, "import failed -- check cannot run, failing closed")
+    else:
+        try:
+            mech = check_recent_send_conflict(pkg, tree=tree or _REPO_ROOT)
+        except Exception as e:  # noqa: BLE001 — a crash in the mechanical check must
+            # fail closed, never silently pass the package through.
+            r.add(f"{p} mechanical conflict check ran without error", False, f"{type(e).__name__}: {e}")
+        else:
+            r.add(f"{p} mechanical conflict check (independent of self-attestation) clear",
+                  not mech["blocked"],
+                  f"self-attested blackout_conflict={bo} recent_send_conflict={rc}, but "
+                  f"mechanical check blocked: signal={mech['signal']!r} "
+                  f"matched_batch_id={mech['matched_batch_id']!r} reason={mech['reason']!r}"
+                  if mech["blocked"] else "")
 
     # --- strong hook present + no banned filler ---
     # hook_line must be explicitly present BEFORE any fallback. Previously `hook` silently
@@ -1780,9 +2085,8 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
     hook = (_str(pkg, "hook_line") or opening).strip()
     r.add(f"{p} assumption-breaking hook present", len(hook.split()) >= 3, f"hook={hook!r}")
     r.add(f"{p} CTA not a banned phrase", not any(b in _norm(cta) for b in BANNED_CTA), f"cta={cta!r}")
-    if _vo_is_pending(pkg):
-        r.skip(f"{p} VO contains no banned word 'bro'",
-               "vo_status=pending -- re-checked for real once the VO is inserted")
+    if vo_pending:
+        r.skip(f"{p} VO contains no banned word 'bro'", "VO not yet present, pending Claude's draft")
     else:
         r.add(f"{p} VO contains no banned word 'bro'", not re.search(r"\bbro\b", vo, re.I), "")
 
@@ -1800,17 +2104,6 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
           "content_type" in pkg and _norm(_str(pkg, "content_type")) == "short",
           f"content_type={pkg.get('content_type')!r}")
 
-    # --- vo_status (2026-08-16, VO-handoff workflow) --------------------------------
-    # "complete" (default) = VO is written, everything enforced as before.
-    # "pending"            = Perplexity has handed off validated facts and Claude has
-    #                        not written the VO yet. VO-dependent checks SKIP.
-    # Absent is fine and means "complete". Present-but-invalid FAILS -- a malformed
-    # value must never be readable as "pending" and must never buy a skip.
-    vo_status_raw = pkg.get("vo_status", VO_STATUS_DEFAULT)
-    r.add(f"{p} vo_status is one of {VO_STATUS_VALUES} (absent == '{VO_STATUS_DEFAULT}')",
-          isinstance(vo_status_raw, str) and vo_status_raw in VO_STATUS_VALUES,
-          f"vo_status={pkg.get('vo_status')!r}")
-
     # --- first-second hook: on-screen assumption-break + spoken hook lead (Law #144) ---
     # The assumption being broken must be visible on screen AND spoken as the very first
     # sentence (the swipe-decision point). Relative watch time dominates Shorts, so the
@@ -1822,12 +2115,9 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
           pkg.get("hook_first_second", None) is True, f"hook_first_second={pkg.get('hook_first_second')}")
     r.add(f"{p} isolation_test_pass attested true (Law #144.1)",
           pkg.get("isolation_test_pass", None) is True, f"isolation_test_pass={pkg.get('isolation_test_pass')}")
-    if _vo_is_pending(pkg):
-        # Both hook_line and opening_sentence are DRAFT proposals at handoff time;
-        # the writer may refine wording, so equality is enforced after insertion.
-        # Presence of both stays enforced elsewhere, unconditionally.
+    if vo_pending:
         r.skip(f"{p} hook_line equals opening_sentence (break spoken first)",
-               "vo_status=pending -- equality enforced once the VO is inserted")
+               "opening_sentence not yet finalized -- VO not yet present, pending Claude's draft")
     else:
         r.add(f"{p} hook_line equals opening_sentence (break spoken first)",
               bool(hook) and bool(opening) and _norm(hook.rstrip(".!?")) == _norm(opening.rstrip(".!?")),
@@ -2131,7 +2421,7 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
                   f"recent_send_conflict is true for a THEORY_SPECULATION package")
 
     # --- one-pass semantic QA self-audit (Law #147 / credit-safe mode) ---
-    _validate_semantic_qa(pkg, p, r)
+    _validate_semantic_qa(pkg, p, r, vo_pending=vo_pending)
 
     # --- Law #159 per-show sourcing for SEASON_ROUNDUP (item 3, built 2026-08-14) ---
     # Runs for EVERY package, not just roundups: on the non-roundup path it asserts
@@ -2140,14 +2430,330 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result) -> None:
     # matrix shape checks are reported first -- this adds the per-show layer on top,
     # it does not replace them.
     _validate_season_roundup_sourcing(pkg, p, r)
+    _validate_format_type_eligibility(pkg, p, r, post_date)
+    _validate_spoiler_warning(pkg, p, r)
 
 
-def validate_manifest(m: dict[str, Any]) -> Result:
+# F60 (2026-08-21, real case: batch 71d6fdb3's Victoria of Many Faces package):
+# hero_or_villain_master_laws_final.txt documents a SPOILER WARNING requirement
+# for EPISODE_MOMENT/EPISODE_REVIEW/EPISODE_VS_MANGA packages (spoilers for a
+# currently-airing episode's specific beat/reveal), but until this check, nothing
+# mechanical enforced it -- a package could omit the flag entirely and still pass.
+SPOILER_REQUIRED_FORMATS = ("EPISODE_MOMENT", "EPISODE_REVIEW", "EPISODE_VS_MANGA")
+
+
+def _validate_spoiler_warning(pkg: dict[str, Any], p: str, r: Result) -> None:
+    """F60 fix: fail-closed check that a documented SPOILER WARNING is present
+    in the YouTube title and in the first line of the TikTok post text, for any
+    format_type where the master laws require it. Scoped like every other
+    format-specific field check in this file -- packages outside the three
+    spoiler-required formats are not checked (no scoping-absence assertion needed
+    here since this isn't a field that must be ABSENT elsewhere, just a rule that
+    doesn't apply elsewhere).
+
+    Case-insensitive substring match on the token "spoiler" -- matches "SPOILER:",
+    "Spoilers for Episode 7:", etc. This checks presence of the flag only, not its
+    exact wording or placement beyond "first line of tiktok_post_text".
+    """
+    fmt = pkg.get("format_type")
+    if fmt not in SPOILER_REQUIRED_FORMATS:
+        return
+
+    yt_title = _str(pkg, "youtube_title")
+    r.add(f"{p} youtube_title contains a spoiler warning ({fmt} requires one)",
+          "spoiler" in yt_title.lower(), f"youtube_title={yt_title!r}")
+
+    tiktok_text = _str(pkg, "tiktok_post_text")
+    first_line = tiktok_text.split("\n", 1)[0]
+    r.add(f"{p} tiktok_post_text first line contains a spoiler warning ({fmt} requires one)",
+          "spoiler" in first_line.lower(), f"tiktok_post_text_first_line={first_line!r}")
+
+
+def _validate_minimum_frequency_floor(m: dict[str, Any], r: Result, post_date: datetime.date | None,
+                                       tree: str | None = None) -> None:
+    """Minimum-frequency floor (2026-08-22, Part 2 design). Independently
+    RECOMPUTES the expected floor state from candidate_selection_log.jsonl via
+    tools/candidate_selection_log.days_since_last_considered() and cross-checks
+    the manifest's self-reported minimum_frequency_floor field against that real
+    recomputation -- this is deliberately NOT a shape/presence-only check. This is
+    the exact loophole Part 1's audit found in format_diversity_weighting (a real
+    schema with zero enforcement, zero call site, and no way to confirm after the
+    fact whether it ever actually fired): a manifest could otherwise assert
+    tie_break_applied=true or must_force_consider=false with no relationship to
+    what candidate_selection_log.jsonl actually shows, and nothing would catch it.
+
+    Fails closed (adds a FAIL check) on:
+      - missing/malformed minimum_frequency_floor field entirely
+      - floor_formats not exactly matching FLOOR_FORMATS (order-independent)
+      - window_days not exactly matching FLOOR_WINDOW_DAYS
+      - any FLOOR_FORMATS entry whose independently-recomputed
+        days_since_last_considered() >= FLOOR_WINDOW_DAYS (i.e. genuinely overdue
+        per the real log) is missing from evaluations, or is present but its
+        self-reported must_force_consider/days_since_last_considered disagree with
+        the real recomputation
+      - a non-overdue format asserting must_force_consider=true (a false positive
+        forcing claim is exactly as dishonest as a false negative)
+      - was_considered_this_run=false on any evaluation whose format_type has a
+        candidate_selection_log.jsonl event with today's real post_date (i.e. the
+        format WAS scored this run per the log, but the manifest claims it wasn't)
+      - was_considered_this_run=true on an evaluation that OMITS outcome (a real
+        evaluation happening this run must produce a real, non-omitted outcome --
+        omission is only honest when nothing was actually evaluated)
+      - was_considered_this_run=true on an evaluation with ZERO backing
+        candidate_scored event in the real log for that format_type+post_date
+        (a claimed evaluation with no real event behind it is a fabrication --
+        same severity as under-reporting a real one) -- and, when a real event
+        DOES exist, the manifest's self-reported outcome and
+        format_eligibility_result must exactly match that real event's actual
+        outcome/format_eligibility_result fields. tie_break_applied has no
+        corresponding field on candidate_scored events at all (confirmed against
+        tools/candidate_selection_log.py's schema) and is therefore NOT
+        cross-checked here -- it remains self-attested only, same trust level as
+        format_diversity_weighting/evergreen_weighting elsewhere in this schema.
+      - was_considered_this_run=false on an evaluation that POPULATES outcome,
+        tie_break_applied, or format_eligibility_result with anything other than
+        None/absent (2026-08-22 clarification, per explicit user resolution: a
+        forced-but-never-evaluated format is a real, meaningful state -- close to
+        a production bug -- and the schema must represent it honestly rather than
+        fabricating an evaluation that never happened; populating these fields
+        when nothing ran would be inventing data, exactly the failure mode this
+        whole mechanism exists to prevent)
+      - the days_since_last_considered import itself failing, or the real
+        candidate_selection_log.jsonl read raising -- either fails closed rather
+        than silently skipping the whole check
+
+    Does NOT fail the manifest merely because a genuinely overdue floor format
+    lost fairly on merit (tie_break_applied=false, outcome="rejected" with a real
+    merit-based rejection_reason) or was genuinely ineligible today
+    (format_eligibility_result != "eligible") -- per the design's Q2/Q4, forced
+    consideration guarantees an honest evaluation, never an automatic win. Also
+    does NOT fail the manifest merely because a genuinely overdue format has
+    was_considered_this_run=false with outcome/tie_break_applied/
+    format_eligibility_result correctly omitted -- this is the honest
+    "forced-but-not-yet-evaluated" state, not a violation on its own (though it is
+    exactly the state a human editor should be looking at week over week).
+    """
+    if post_date is None:
+        r.add("minimum_frequency_floor present and internally consistent", False,
+              "post_date missing/invalid -- floor evaluation is unevaluable without a real anchor date")
+        return
+
+    if days_since_last_considered is None:
+        r.add("minimum_frequency_floor present and internally consistent", False,
+              "tools/candidate_selection_log.days_since_last_considered import failed -- "
+              "check cannot run, failing closed")
+        return
+
+    floor = m.get("minimum_frequency_floor")
+    if not isinstance(floor, dict):
+        r.add("minimum_frequency_floor present and internally consistent", False,
+              f"minimum_frequency_floor={floor!r} (expected a dict)")
+        return
+
+    as_of = post_date.isoformat()
+    real_tree = tree or _REPO_ROOT
+
+    reported_formats = floor.get("floor_formats")
+    r.add("minimum_frequency_floor.floor_formats matches FLOOR_FORMATS exactly",
+          isinstance(reported_formats, list) and sorted(reported_formats) == sorted(FLOOR_FORMATS),
+          f"reported={reported_formats!r} expected(any order)={sorted(FLOOR_FORMATS)!r}")
+
+    reported_window = floor.get("window_days")
+    r.add("minimum_frequency_floor.window_days matches FLOOR_WINDOW_DAYS",
+          reported_window == FLOOR_WINDOW_DAYS,
+          f"reported={reported_window!r} expected={FLOOR_WINDOW_DAYS!r}")
+
+    reported_evals = floor.get("evaluations")
+    if not isinstance(reported_evals, list):
+        r.add("minimum_frequency_floor.evaluations is a list", False, f"evaluations={reported_evals!r}")
+        reported_evals = []
+    else:
+        r.add("minimum_frequency_floor.evaluations is a list", True)
+    reported_by_format = {e.get("format_type"): e for e in reported_evals if isinstance(e, dict)}
+
+    # exclude_batch_id: log_candidate() writes for THIS run happen in STEP 3,
+    # strictly before this validator runs in STEP 6 -- so by now today's own
+    # writes already exist in the log. Excluding this run's own batch_id keeps
+    # the overdue determination anchored to the state going INTO today's run,
+    # not the state immediately after today's own write (which would always
+    # read back as gap=0/"just considered" and erase the ability to confirm a
+    # format that WAS overdue actually got force-evaluated today). See
+    # days_since_last_considered's own docstring in candidate_selection_log.py
+    # for the full reasoning on why batch_id, not post_date, is the correct
+    # exclusion unit. This is the ONLY call site that needs the exclusion --
+    # the todays_real_events / todays_real_events_true lookups below correctly
+    # need to FIND today's own event (to confirm was_considered_this_run and
+    # cross-check outcome/format_eligibility_result), not exclude it.
+    this_run_batch_id = m.get("batch_id")
+    try:
+        # Real, independent recomputation -- this is the load-bearing part. Every
+        # value below comes from candidate_selection_log.jsonl via the real function,
+        # never from the manifest's own self-report.
+        real_gaps: dict[str, int | None] = {
+            fmt: days_since_last_considered(real_tree, fmt, as_of, exclude_batch_id=this_run_batch_id)
+            for fmt in FLOOR_FORMATS
+        }
+    except Exception as e:  # noqa: BLE001 — a crash in the mechanical recomputation
+        # must fail closed, never silently pass the manifest through.
+        r.add("minimum_frequency_floor mechanical recomputation ran without error", False,
+              f"{type(e).__name__}: {e}")
+        return
+    else:
+        r.add("minimum_frequency_floor mechanical recomputation ran without error", True)
+
+    for fmt in FLOOR_FORMATS:
+        real_gap = real_gaps[fmt]
+        # None (never considered) counts as infinitely overdue -- always >= any
+        # finite window, so always expected to be forced.
+        real_overdue = real_gap is None or real_gap >= FLOOR_WINDOW_DAYS
+        entry = reported_by_format.get(fmt)
+
+        if real_overdue:
+            r.add(f"minimum_frequency_floor: {fmt} (real gap={real_gap!r}, overdue) is present in evaluations",
+                  entry is not None,
+                  f"real days_since_last_considered={real_gap!r} (>= {FLOOR_WINDOW_DAYS} "
+                  f"or never-considered) but no evaluations entry reported for {fmt!r}")
+            if entry is not None:
+                reported_gap = entry.get("days_since_last_considered")
+                r.add(f"minimum_frequency_floor: {fmt} reported days_since_last_considered matches real recomputation",
+                      reported_gap == real_gap,
+                      f"reported={reported_gap!r} real={real_gap!r}")
+                r.add(f"minimum_frequency_floor: {fmt} reported must_force_consider=true (real gap is overdue)",
+                      entry.get("must_force_consider") is True,
+                      f"reported must_force_consider={entry.get('must_force_consider')!r}, "
+                      f"but real gap={real_gap!r} is overdue per FLOOR_WINDOW_DAYS={FLOOR_WINDOW_DAYS}")
+        else:
+            # Not overdue per the real log -- if a reported entry exists at all, it
+            # must not falsely claim must_force_consider=true (a false positive
+            # forcing claim is exactly as dishonest as silently omitting a real one).
+            if entry is not None and entry.get("must_force_consider") is True:
+                r.add(f"minimum_frequency_floor: {fmt} does not falsely claim must_force_consider=true",
+                      False,
+                      f"real gap={real_gap!r} is within FLOOR_WINDOW_DAYS={FLOOR_WINDOW_DAYS} (not overdue), "
+                      f"but manifest reports must_force_consider=true")
+
+        # was_considered_this_run cross-check: log_candidate() is called in STEP 3,
+        # strictly before this validator runs in STEP 6/preflight (see
+        # cron_daily_runtime.txt), so by validation time today's real
+        # candidate_selection_log.jsonl events -- if any were written for this
+        # format_type today -- are already on disk. A manifest that claims
+        # was_considered_this_run=false for a format the real log shows WAS scored
+        # with today's post_date is misrepresenting what happened this run.
+        if entry is not None and entry.get("was_considered_this_run") is False:
+            todays_real_events = [
+                e for e in read_events(real_tree, format_type=fmt)
+                if e.get("post_date") == as_of
+            ] if read_events is not None else []
+            r.add(f"minimum_frequency_floor: {fmt} was_considered_this_run=false matches real log "
+                  f"(no candidate_scored event with today's post_date)",
+                  not todays_real_events,
+                  f"manifest reports was_considered_this_run=false, but real log has "
+                  f"{len(todays_real_events)} candidate_scored event(s) for {fmt!r} with post_date={as_of!r}")
+
+        # Honest-omission consistency (2026-08-22 clarification): outcome,
+        # tie_break_applied, and format_eligibility_result describe a REAL
+        # evaluation. They must be populated when was_considered_this_run=true
+        # (a real evaluation happened -- omitting its outcome would hide it) and
+        # must be omitted/None when was_considered_this_run=false (nothing
+        # happened -- populating them would fabricate an evaluation that never
+        # occurred). Both directions are checked; only runs when an entry exists.
+        if entry is not None:
+            outcome_fields = ("outcome", "tie_break_applied", "format_eligibility_result")
+            populated = {f: entry.get(f) for f in outcome_fields if entry.get(f) is not None}
+            was_considered = entry.get("was_considered_this_run")
+            if was_considered is True:
+                missing = [f for f in outcome_fields if entry.get(f) is None]
+                r.add(f"minimum_frequency_floor: {fmt} was_considered_this_run=true has real outcome fields "
+                      f"(outcome/tie_break_applied/format_eligibility_result all populated)",
+                      not missing,
+                      f"was_considered_this_run=true but missing/None field(s): {missing} -- a real "
+                      f"evaluation happening this run must report a real, non-omitted outcome")
+
+                # True-branch real-event cross-check (2026-08-22, closing the
+                # loophole the docstring claimed was closed but wasn't): a claimed
+                # was_considered_this_run=true with ZERO backing candidate_scored
+                # event in the real log is a fabrication -- exactly as severe as the
+                # false-branch's under-reporting case above, and must fail closed
+                # the same way, not just check internal shape.
+                todays_real_events_true = [
+                    e for e in read_events(real_tree, format_type=fmt)
+                    if e.get("post_date") == as_of
+                ] if read_events is not None else []
+                r.add(f"minimum_frequency_floor: {fmt} was_considered_this_run=true is backed by a real "
+                      f"candidate_scored event in the log (not a fabricated evaluation)",
+                      bool(todays_real_events_true),
+                      f"manifest reports was_considered_this_run=true for {fmt!r} with post_date={as_of!r}, "
+                      f"but the real log has ZERO candidate_scored events matching that format_type and "
+                      f"post_date -- a claimed evaluation with no backing real event is a fabrication")
+
+                if todays_real_events_true:
+                    # Cross-check self-reported outcome/format_eligibility_result
+                    # against the real event's actual fields. Use the most recent
+                    # matching event if more than one exists for this format+date.
+                    real_event = todays_real_events_true[-1]
+                    real_outcome = real_event.get("outcome")
+                    real_eligibility = real_event.get("format_eligibility_result")
+                    reported_outcome = entry.get("outcome")
+                    reported_eligibility = entry.get("format_eligibility_result")
+                    r.add(f"minimum_frequency_floor: {fmt} reported outcome matches the real "
+                          f"candidate_scored event's outcome",
+                          reported_outcome == real_outcome,
+                          f"manifest reports outcome={reported_outcome!r}, but the real logged event's "
+                          f"outcome={real_outcome!r}")
+                    r.add(f"minimum_frequency_floor: {fmt} reported format_eligibility_result matches the "
+                          f"real candidate_scored event's format_eligibility_result",
+                          reported_eligibility == real_eligibility,
+                          f"manifest reports format_eligibility_result={reported_eligibility!r}, but the "
+                          f"real logged event's format_eligibility_result={real_eligibility!r}")
+                    # tie_break_applied has NO corresponding field on candidate_scored
+                    # events (confirmed against tools/candidate_selection_log.py's
+                    # event schema: batch_id, run_ts, post_date, show, angle,
+                    # format_type, axis_scores, cleared_monetization_gate,
+                    # format_eligibility_checked, format_eligibility_result,
+                    # format_eligibility_reason, outcome, rejection_reason,
+                    # slot_considered_for, selected_package_id -- no tie-break
+                    # concept anywhere). It is deliberately NOT cross-checked here,
+                    # not silently -- this is a real, named scope gap: whether the
+                    # floor tie-break rule genuinely decided a winner is knowable
+                    # only from the manifest's own self-report, with no independent
+                    # log-side signal to verify it against. It remains exactly as
+                    # trustworthy as format_diversity_weighting/evergreen_weighting's
+                    # self-attested fields elsewhere in this schema -- documented,
+                    # not mechanically enforced.
+            elif was_considered is False:
+                r.add(f"minimum_frequency_floor: {fmt} was_considered_this_run=false correctly omits "
+                      f"outcome/tie_break_applied/format_eligibility_result (no fabricated evaluation)",
+                      not populated,
+                      f"was_considered_this_run=false but these fields are populated: {populated!r} -- "
+                      f"nothing was actually evaluated, so these must be omitted/None, not invented")
+
+
+def validate_manifest(m: dict[str, Any], tree: str | None = None) -> Result:
     r = Result()
 
     # --- recipient exactly correct ---
     r.add("recipient is exactly correct", m.get("recipient") == RECIPIENT,
           f"recipient={m.get('recipient')!r} expected {RECIPIENT!r}")
+
+    # --- post_date present and valid YYYY-MM-DD (item #6, 2026-08-19) ---
+    # Previously documented in SCHEMA's comment block ("YYYY-MM-DD (next day)") but
+    # never itself mechanically checked -- every real fixture and real production
+    # manifest has always populated it correctly, but nothing enforced that. It is
+    # now also load-bearing as the anchor date for the four format_type eligibility
+    # windows below (_validate_format_type_eligibility), so a missing/malformed
+    # post_date must fail closed here AND make every date-window check below
+    # unevaluable (reported as a failure, not skipped) rather than silently using
+    # today's wall-clock date as a fallback anchor.
+    post_date_raw = m.get("post_date")
+    post_date = _parse_iso_date(post_date_raw)
+    r.add("post_date present and valid YYYY-MM-DD", post_date is not None,
+          f"post_date={post_date_raw!r}")
+
+    # --- minimum-frequency floor (2026-08-22, Part 2 design): independent
+    # mechanical recomputation against candidate_selection_log.jsonl, not a
+    # shape/presence-only check -- see _validate_minimum_frequency_floor's
+    # docstring for exactly what this does and does not fail on.
+    _validate_minimum_frequency_floor(m, r, post_date, tree=tree)
 
     # --- package count: normally exactly two, OR exactly one with an explicit,
     # non-empty M5 quality-over-quota justification (F_new fix, 2026-07-26). A bare
@@ -2234,8 +2840,39 @@ def validate_manifest(m: dict[str, Any]) -> Result:
         # _resolve_edit_target for the length logic itself.
 
     # --- per-package mechanical checks ---
+    # F61 fix (2026-08-22): check_recent_send_conflict()'s self-exclusion via
+    # _excluded_batch_ids(pkg) reads pkg.get("batch_id"), but individual package
+    # dicts have never carried their own batch_id -- only the manifest's top level
+    # does (see "shared batch identity" check above). Exclusion therefore silently
+    # never fired, so a package re-validated *after* its own batch was logged as
+    # sent gets mechanically flagged as an angle-similarity conflict against
+    # itself (matched_batch_id == the package's own batch). Surfaced 2026-08-22
+    # re-running the logger's --git-pushed follow-up for batch 71d6fdb3 after that
+    # same batch had already been appended to sent_scripts_log.json. Fix: pass
+    # validate_package a shallow copy of pkg carrying the manifest's real batch_id
+    # so the existing exclusion logic (already correct once given the right input)
+    # actually applies. Does not mutate the original package dicts in `pkgs`.
+    #
+    # F-next fix (2026-08-23): same bug class as F61, just missed for the OTHER
+    # half of _excluded_batch_ids()'s exclusion set. _excluded_batch_ids(pkg) also
+    # reads pkg.get("corrects_batch_id"), but only the manifest's top level ever
+    # carried corrects_batch_id -- individual package dicts never did, and F61's
+    # fix only injected batch_id, not corrects_batch_id, onto the per-package copy.
+    # Result: a genuine correction manifest (corrects_batch_id correctly set at the
+    # manifest level, pointing at the batch it fixes) still got mechanically
+    # blocked with a false-positive angle_similarity conflict against the very
+    # batch it was correcting, because the exclusion never saw the pointer.
+    # Surfaced 2026-08-23 building the real Kingdom Hearts correction batch
+    # 7b36ad7c (corrects_batch_id points back at af6c90bf, the batch it fixes).
+    # Fix: inject corrects_batch_id the same way batch_id is already injected, at the same
+    # site, via the same setdefault mechanism -- a direct mirror of the F61
+    # pattern, not new design. Does not mutate the original package dicts in
+    # `pkgs`.
     for i, pkg in enumerate(pkgs):
-        validate_package(pkg, i, r)
+        pkg_for_validation = dict(pkg)
+        pkg_for_validation.setdefault("batch_id", batch_id)
+        pkg_for_validation.setdefault("corrects_batch_id", m.get("corrects_batch_id"))
+        validate_package(pkg_for_validation, i, r, tree=tree, post_date=post_date)
 
     return r
 
@@ -2243,23 +2880,19 @@ def validate_manifest(m: dict[str, Any]) -> Result:
 def format_report(r: Result) -> str:
     lines = ["DUAL-PACKAGE PREFLIGHT VALIDATION", "=" * 40]
     for name, status, detail in r.checks:
-        # SKIP prints its detail too -- for a VO-pending package that detail carries
-        # the instruction to the writer (target word band, required closing phrase),
-        # so suppressing it would throw away the useful half of the handoff.
-        suffix = f"  ({detail})" if detail and status != STATUS_PASS else ""
+        suffix = f"  ({detail})" if detail and status != "PASS" else ""
         lines.append(f"[{status}] {name}{suffix}")
     lines.append("=" * 40)
     n_fail = len(r.failures())
     n_skip = len(r.skips())
-    if n_fail:
-        verdict = f"BLOCKED — {n_fail} check(s) failed; DO NOT SEND"
-    elif n_skip:
-        # PARTIAL is the normal, healthy draft state -- not an error. Every evaluable
-        # check passed; the VO-dependent ones are waiting on the writer.
-        verdict = (f"PARTIAL — {n_skip} check(s) SKIPPED pending VO; 0 failed. "
-                   f"NOT cleared to send — re-run after VO insertion")
-    else:
+    if r.fully_passed:
         verdict = "PASS — cleared to send both emails"
+    elif r.ok:
+        # ok (no FAILs) but not fully_passed (has SKIPs): VO-pending draft stage.
+        # Never cleared to send/approve -- fully_passed is the only send/approval gate.
+        verdict = f"PARTIAL — {n_skip} check(s) skipped pending VO; DO NOT SEND, DO NOT APPROVE"
+    else:
+        verdict = f"BLOCKED — {n_fail} check(s) failed; DO NOT SEND"
     lines.append(f"RESULT: {verdict}")
     return "\n".join(lines)
 
@@ -2445,6 +3078,37 @@ PACKAGE {
     "upweighting_applied": false,                           // true only if the rule was actually consulted AND had a real eligible candidate to upweight
     "selected_topic_class": "timely | evergreen",           // the topic_class this package actually shipped with
     "changed_outcome": false                                // true ONLY if upweighting caused an evergreen candidate to win a slot that would otherwise have gone timely -- same discipline as format_diversity_weighting.changed_outcome above
+  },
+  // REQUIRED, 2026-08-22 (Part 2 design, approved 2026-08-22) -- UNLIKE
+  // format_diversity_weighting/evergreen_weighting above, this field IS mechanically
+  // enforced: validate_manifest() independently recomputes every value below from
+  // candidate_selection_log.jsonl via tools/candidate_selection_log.days_since_last_considered()
+  // and hard-fails if the manifest's self-report disagrees with that real
+  // recomputation. See _validate_minimum_frequency_floor()'s docstring for the exact
+  // fail conditions.
+  "minimum_frequency_floor": {
+    "floor_formats": ["THEORY_SPECULATION", "SEASON_ROUNDUP", "WORTH_WATCHING", "WATCH_RANK", "SEASON_RATING"],  // must match FLOOR_FORMATS exactly (order-independent)
+    "window_days": 21,                                      // must match FLOOR_WINDOW_DAYS exactly
+    "evaluations": [                                        // one entry REQUIRED per floor_format whose real days_since_last_considered() >= window_days (or was never considered) as of post_date. A non-overdue format must NOT appear with must_force_consider=true.
+      {
+        "format_type": "THEORY_SPECULATION",
+        "days_since_last_considered": null,                 // integer, or null if never once logged in candidate_selection_log.jsonl -- must match the real recomputation exactly
+        "must_force_consider": true,                        // must be true iff the real gap is >= window_days or null (never considered); false otherwise -- checked both directions
+        "was_considered_this_run": true,                    // REAL, cross-checked both ways: if false, validator confirms the real log has NO candidate_scored event with today's post_date for this format_type; if true, validator confirms (a) outcome/tie_break_applied/format_eligibility_result below are all populated, (b) a real candidate_scored event actually exists for this format_type+post_date (a claim with zero backing event fails closed), and (c) the reported outcome/format_eligibility_result exactly match that real event's own fields. tie_break_applied has no field on candidate_scored events and is NOT cross-checked -- self-attested only.
+        // HONEST-OMISSION RULE (2026-08-22 clarification): the three fields below
+        // describe a REAL evaluation. When was_considered_this_run == true, all
+        // three MUST be populated (a real evaluation happened -- omitting its
+        // outcome would hide it). When was_considered_this_run == false, all
+        // three MUST be omitted or explicitly null (nothing was evaluated --
+        // populating them would fabricate an evaluation that never happened).
+        // This is the honest "forced-but-not-yet-evaluated" state and is NOT
+        // itself a validator failure, though it is exactly the state a human
+        // editor should be watching week over week.
+        "format_eligibility_result": "eligible | ineligible | not_applicable",  // self-attested; NOT independently re-derived by this check (that is _validate_format_type_eligibility's job on the winning package, not this manifest-level floor check). Omit/null if was_considered_this_run == false.
+        "tie_break_applied": false,                          // true only if this format was both eligible AND closely matched against the other slot's candidate, and the floor tie-break decided the winner. Omit/null if was_considered_this_run == false.
+        "outcome": "selected | rejected"                     // self-attested; a rejected-but-genuinely-considered floor format is NOT a validator failure. Omit/null if was_considered_this_run == false.
+      }
+    ]
   }
 }
 """
@@ -2464,21 +3128,27 @@ def main(argv: list[str]) -> int:
     except (OSError, json.JSONDecodeError) as e:
         print(f"[FAIL] could not load manifest: {e}", file=sys.stderr)
         return 2
-    r = validate_manifest(manifest)
+    # tree defaults to the real repo root (parent of this validators/ file), which is
+    # where cron_tracking/sent_scripts_events.jsonl actually lives when this is run
+    # via its documented invocation (python3 validators/validate_dual_package.py
+    # cron_tracking/daily_combined/run_manifest.json, from the repo root). No --tree
+    # override flag exists yet; add one if a future caller needs a different tree.
+    r = validate_manifest(manifest, tree=_REPO_ROOT)
     print(format_report(r))
-    # EXIT CODES (2026-08-16, VO handoff). 2 is PRE-EXISTING (usage / load error)
-    # and is deliberately NOT reused here.
-    #   0 = fully_passed -- zero FAILs AND zero SKIPs. The ONLY code that clears
-    #       AWAITING_APPROVAL or a send.
-    #   1 = at least one real FAIL.
-    #   3 = PARTIAL -- no FAILs but >=1 SKIP (the vo_status='pending' draft stage).
-    #       Distinct from 1 so a caller can tell 'waiting on the writer' from
-    #       'genuinely broken', and distinct from 0 so nothing reads it as sendable.
-    if r.failures():
-        return 1
-    if r.skips():
+    # Exit codes (2026-08-19, Claude-writes-VO workflow): 0 = fully_passed (zero
+    # FAILs, zero SKIPs) -- the ONLY code that clears AWAITING_APPROVAL/a send.
+    # 1 = real FAIL present. 3 = PARTIAL (ok but has SKIPs, i.e. vo_status ==
+    # "pending" draft/email stage) -- distinct from the pre-existing 2, which
+    # means "usage error / manifest could not be loaded" and must not be
+    # confused with a real validation outcome. Callers gating on "did this pass"
+    # (tools/append_send_batch.py, the AWAITING_VO -> AWAITING_APPROVAL trigger)
+    # must check for exit code 0 specifically, never treat nonzero-but-not-1 as
+    # a pass.
+    if r.fully_passed:
+        return 0
+    if r.ok:
         return 3
-    return 0
+    return 1
 
 
 if __name__ == "__main__":

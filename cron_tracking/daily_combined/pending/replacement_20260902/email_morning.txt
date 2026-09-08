@@ -1,0 +1,58 @@
+SUBJECT: REPLACEMENT | MORNING | Re:ZERO -Starting Life in Another World- Season 4 | 2026-09-02 | SPOILER: Re:ZERO S4E15 Body Reveal
+
+━━━ MORNING — 2026-09-02 ━━━
+SHOW:    Re:ZERO -Starting Life in Another World- Season 4
+ANGLE:   Episode 15 ("A Devoted Star") reveals Reid Astrea's soul has taken over Roy Alphard's body -- Subaru Returns by Death straight into interrogating Shaula about the Pleiades Watchtower's hidden trial rules before he can face the five stacked threats blocking the tower's top
+FORMAT:  EPISODE_MOMENT
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM)
+TOPIC:   timely — signals: currently_airing/news
+SERIES:  one-off
+FUNNEL:  standalone
+SPOILER WARNING: Yes — covers Re:ZERO -Starting Life in Another World- Season 4 episode content
+
+━━━ FIRST-SECOND HOOK ━━━
+ON-SCREEN (second 1): SPOILERS: Re:ZERO just revealed who's actually inside that body.
+SPOKEN (VO first line): SPOILERS: Re:ZERO just revealed who's actually inside that body.
+HOOK FAMILY: revelation
+(candidate A: SPOILERS: Re:ZERO just revealed who's actually inside that body.
+ candidate B: SPOILER WARNING: Episode 15 just confirmed Roy Alphard isn't the one you're fighting.
+ SELECTED: 0)
+
+━━━ VO (100 words — fills the resolved 30s CapCut edit) ━━━
+SPOILERS: Re:ZERO just revealed who's actually inside that body. Episode 15, 'A Devoted Star,' confirms Reid's soul has taken over Roy Alphard's body, letting him roam the Pleiades Watchtower freely. Subaru, having just Returned by Death, corners Shaula and demands the tower's hidden trial rules before he goes any further. What's blocking the top of the tower isn't one obstacle — it's five: a demonic-beast stampede, two separate Sin Archbishops, a giant scorpion, and a rising black shadow. Is Subaru walking into a trial he can actually win, or another loop he doesn't see coming? Leave your take.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view) ━━━
+[FACE: direct-to-camera, lean in] SPOILERS: Re:ZERO just revealed who's actually inside that body. [FACE: glance-down-at-footage] Episode 15, 'A Devoted Star,' confirms Reid's soul has taken over Roy Alphard's body, letting him roam the Pleiades Watchtower freely. [FACE: glance-down-at-footage] Subaru, having just Returned by Death, corners Shaula and demands the tower's hidden trial rules before he goes any further. [FACE: glance-down-at-footage] What's blocking the top of the tower isn't one obstacle — it's five: a demonic-beast stampede, two separate Sin Archbishops, a giant scorpion, and a rising black shadow. [FACE: glance-down-at-footage] Is Subaru walking into a trial he can actually win, or another loop he doesn't see coming? Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings) ━━━
+CUT 1 — 10 sec (0:00–0:10): Real aired footage: Reid roaming the Watchtower's examination hall, revealed to be inhabiting Roy Alphard's body — Delivers the core hook claim -- who is actually inside that body
+CUT 2 — 12 sec (0:10–0:22): Real aired footage: Subaru's Return by Death trigger and the tower's five stacked threats (stampede, two archbishops, scorpion, black shadow) introduced in sequence — Establishes the stakes and structure Subaru has to survive to reach Shaula
+CUT 3 (final) — 8 sec (0:22–0:30): Real aired footage: Subaru confronting Shaula on the tower balcony, pressing her for the trial's hidden rules — Closes on the question/CTA -- whether Subaru can actually win this trial or is walking into another blind loop
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+Re:ZERO Season 4 Episode 15 just revealed whose soul is actually inside that body -- and what Subaru has to survive to get answers.
+
+━━━ YOUTUBE TITLE ━━━
+SPOILER: Re:ZERO S4E15 Body Reveal
+
+━━━ TIKTOK TITLE ━━━
+Re:ZERO just revealed who's inside that body
+
+━━━ TIKTOK POST TEXT (caption) ━━━
+SPOILER for Re:ZERO Season 4 Episode 15.
+This episode just confirmed whose soul is actually running that body -- and Subaru still has four more threats standing between him and the truth. #ReZero #ReZeroSeason4 #AnimeManga #AnimeTok #Isekai
+
+━━━ PINNED COMMENT ━━━
+Episode 15 ("A Devoted Star") aired September 2 on Crunchyroll same-day. Episode 16 is next week.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 2026-09-02T09:00:00-04:00
+TikTok — post 2026-09-02T09:15:00-04:00
+
+━━━ SOURCES ━━━
+1. Re:ZERO Season 4 Episode 15 (overall episode 81), titled "A Devoted Star" (一途な星), aired September 2, 2026 on TOKYO MX and other Japanese channels, part of the Recapture Arc (Cour 2, airing since August 12, 2026) — https://en.mantan-web.jp/e_article/20260831dog00m200054000a.html (Sep 2026)
+2. Reid roams freely throughout the Pleiades Watchtower because Reid's soul has taken over the body of Roy Alphard, the remaining Sin Archbishop of Gluttony; Subaru, having 'Returned by Death,' questions Shaula about the secret rules of the tower's trial in order to overcome five stacked obstacles: a demonic-beast stampede, two Sin Archbishops, a suddenly-appearing giant scorpion, and a rising black shadow — https://www.animatetimes.com/news/details.php?id=1788248569 (Sep 2026)
+3. Independent same-day episode reaction/summary confirms the Reid/Roy Alphard body-takeover reveal and Subaru's post-death-return confrontation with Shaula on the tower balcony, corroborating the official synopsis beat-for-beat — https://x.com/rezero_ice/status/2092717105476976921 (Sep 2026)
+
+━━━ END MORNING ━━━

@@ -1,0 +1,55 @@
+SUBJECT: TOMORROW | EVENING | Solo Leveling: Ragnarok | 2026-09-02 | Solo Leveling Ragnarok: Light Novel Returns
+
+━━━ EVENING — 2026-09-02 ━━━
+SHOW:    Solo Leveling: Ragnarok
+ANGLE:   The Ragnarok light novel returns Aug 12, 2026 after an indefinite hiatus tied to artist Jin's mandatory South Korean military service, following Sung Suho -- a genuinely new spin-off angle, independent of the prior original-series Crunchyroll-ranking send
+FORMAT:  FACT_DROP
+STYLE:   Face-cam split screen (creator TOP / anime manga panels BOTTOM, Law #134 Stage 2 required default)
+TOPIC:   timely — signals: news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK ━━━
+ON-SCREEN (second 1): Solo Leveling: Ragnarok just came back from a hiatus -- but only half of it.
+SPOKEN (VO first line): The Solo Leveling spin-off just came back from a hiatus caused by real military service — but only half of it.
+HOOK FAMILY: revelation
+(candidate A: The Solo Leveling spin-off just came back from a hiatus caused by real military service — but only half of it.
+ candidate B: Solo Leveling's sequel went dark for real-world reasons, not story ones.
+ SELECTED: 0)
+
+━━━ VO (108 words — fills the resolved 30s CapCut edit) ━━━
+The Solo Leveling spin-off just came back from a hiatus caused by real military service — but only half of it. Ragnarok follows Sung Suho, son of Sung Jinwoo and Cha Haein. The manhwa, illustrated by Jin, went on hiatus in January when Jin was called up for mandatory South Korean service, and it still hasn't returned. What did come back on August twelfth is the separate Ragnarok light novel, written by Daul. The manhwa itself is confirmed to eventually return with a different artist, but that hasn't happened yet. Does a hiatus this long change how you feel about picking the story back up? Leave your take.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view) ━━━
+[FACE: direct-to-camera, lean in] The Solo Leveling spin-off just came back from a hiatus caused by real military service — but only half of it. [FACE: glance-down-at-footage] Ragnarok follows Sung Suho, son of Sung Jinwoo and Cha Haein. [FACE: glance-down-at-footage] The manhwa, illustrated by Jin, went on hiatus in January when Jin was called up for mandatory South Korean service, and it still hasn't returned. [FACE: glance-down-at-footage] What did come back on August twelfth is the separate Ragnarok light novel, written by Daul. [FACE: glance-down-at-footage] The manhwa itself is confirmed to eventually return with a different artist, but that hasn't happened yet. [FACE: glance-down-at-footage] Does a hiatus this long change how you feel about picking the story back up? Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings) ━━━
+CUT 1 — 8 sec (0:00–0:08): Manga/manhwa panel: Sung Suho introduced in the Solo Leveling epilogue setup — Establishes who the spin-off follows for viewers unfamiliar with Ragnarok
+CUT 2 — 10 sec (0:08–0:18): Manga/manhwa panel: the hiatus-era Season 2 finale artwork — Visualizes the point where the hiatus began, for the 'came back from a hiatus' hook
+CUT 3 (final) — 12 sec (0:18–0:30): Manga/manhwa panel or cover art: Volume 1 English cover art (pre-hiatus chapters, not new content) — Visualizes the light-novel-return / manhwa-still-on-hold contrast to close the hook
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+Solo Leveling: Ragnarok's light novel just came back from a hiatus caused by its artist's real military service -- the manhwa itself is still on hold.
+
+━━━ YOUTUBE TITLE ━━━
+Solo Leveling Ragnarok: Light Novel Returns
+
+━━━ TIKTOK TITLE ━━━
+Only Half of Ragnarok Is Back
+
+━━━ TIKTOK POST TEXT (caption) ━━━
+Solo Leveling: Ragnarok's light novel is back after its artist got drafted -- but the manhwa itself is still on hold. #SoloLeveling #SoloLevelingRagnarok #SungJinwoo #AnimeManga #Manhwa #AnimeTok #AnimeNews #AnimeShorts #AnimeCommentary
+
+━━━ PINNED COMMENT ━━━
+The Ragnarok light novel returned August 12 -- the manhwa itself is still on hiatus while artist Jin completes his military service. English manhwa Volume 1 and 2 collect the pre-hiatus chapters, not new content.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 2026-09-02T18:00:00-04:00
+TikTok — post 2026-09-02T18:15:00-04:00
+
+━━━ SOURCES ━━━
+1. Solo Leveling: Ragnarok is a spin-off (not a direct continuation) following Sung Suho, son of Sung Jinwoo and Cha Haein, written by Daul with art by Jin; the manhwa entered an unexpected hiatus in January 2026 due to Jin's mandatory South Korean military service (18-21 months) — https://comicbook.com/anime/news/solo-leveling-ragnarok-finally-confirms-its-return-after-indefinite-hiatus-but-theres-a-catch/ (Aug 2026)
+2. Tapas's official X handle confirmed the Ragnarok light novel returns August 12, 2026; the manhwa itself has yet to confirm its return and is separately confirmed to eventually come back with a different artist since Jin remains on military service; English manhwa Volume 1 is out and Volume 2 is scheduled for October 20 — https://comicbook.com/anime/news/solo-leveling-ragnarok-finally-confirms-its-return-after-indefinite-hiatus-but-theres-a-catch/ (Aug 2026)
+
+━━━ END EVENING ━━━

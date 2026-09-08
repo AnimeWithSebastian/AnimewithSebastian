@@ -1,0 +1,80 @@
+{
+  "approved_by": "Sebastian",
+  "approved_at": "2026-09-01T20:52:00-04:00",
+  "approval_status": "APPROVED",
+  "approval_pending_note": "This file was constructed after Sebastian's own verbatim VO insertion on both packages, a clean fresh validator PASS (exit 0, 201 pass, 0 fail, 0 skip), and a full independent Law #165 fetch-and-confirm review performed in this same session. That review surfaced a genuine core-claim contradiction on the Solo Leveling: Ragnarok package (the original VO/fields incorrectly stated the manhwa itself had returned, when the cited source explicitly states the manhwa 'has yet to confirm its return' -- only the separate light novel returned). This was surfaced to Sebastian rather than silently patched; he supplied the exact corrected VO text and six corrected user-facing fields verbatim, which were inserted, followed by a full field-by-field text sweep (35 total matches reviewed, 3 additional stale traces found in clip/citation text and corrected) and two citation-attribution fixes on this batch. Staged AWAITING_APPROVAL pending Sebastian's own personal read and explicit sign-off, per Law #165 and his explicit standing instruction that he will not authorize a send without doing his own full read of the real content first.",
+  "batch_id": "bd5bda60-98a3-4376-8060-3ec9422b9674",
+  "corrects_batch_id": null,
+  "scope_note": "This batch contains TWO packages, both post_date 2026-09-02: Kagurabachi (morning, THE_MOMENT, package_id 2fc49176-32b7-4166-8224-a99e5bb57dc3, Chapter 130) and Solo Leveling: Ragnarok (evening, FACT_DROP, package_id a37c63b8-76fa-4a7a-b910-c7b417be9146, hiatus/return news). Neither package corrects a prior sent batch. Kagurabachi's VO was provided by Sebastian verbatim and inserted this session (106 words, independently recounted and confirmed exact match to declared vo_word_count). Solo Leveling's VO went through three correction rounds this session after a genuine core-claim contradiction was found -- see verification_gaps_and_caveats for the full trace of the original error, every field it touched, and the final fix. Final Solo Leveling VO is 108 words, independently recounted and confirmed exact match to declared vo_word_count.",
+  "fetch_review": [
+    {
+      "package": "morning",
+      "claim": "[CORE, anchors_claim=hook] Japan accepts the Mikaboshi's demands and confirms Chiaki will be handed over at Airashima on April 1 at noon (story's present timeline: March 29); before that, the Soga Clan restrains Akemura and moves forward with a forbidden technique on Chiaki described as a form of anesthesia that paralyzes her sense of self and makes her obedient, justified as sparing her from cruelty after the handover.",
+      "url": "https://www.soapcentral.com/anime/kagurabachi-chapter-130-chiaki-reunites-kunishige-datenseki-breakthrough-changes-everything",
+      "fetched_content_supports_claim": true,
+      "detail": "Independently re-fetched fresh in this review (not reused from the original fact-package prose). Page confirms verbatim: Japan accepted the Mikaboshi's demands, handover at Airashima 'on April 1 at noon,' story currently at March 29; Akemura 'restrained by the Soga Clan'; the Soga Clan plans a 'forbidden technique' described as 'a form of anesthesia' that will 'paralyze someone's sense of self and turn them into an obedient individual'; justification is preventing Chiaki from experiencing cruelty after being handed over. Matches the VO's core claim exactly, including the specific April 1 / March 29 dates."
+    },
+    {
+      "package": "morning",
+      "claim": "[SUPPORTING] Chapter 131 releases September 6, 2026.",
+      "url": "https://www.soapcentral.com/anime/kagurabachi-chapter-131-release-date-everything-need-know",
+      "fetched_content_supports_claim": true,
+      "detail": "Independently re-fetched fresh via a separate SoapCentral page (distinct URL from the Chapter 130 recap page). Confirms 'Kagurabachi Chapter 131 is going to be released on Sunday, September 6, 2026,' with a full regional release-time table. Matches the VO's supporting claim exactly."
+    },
+    {
+      "package": "evening",
+      "claim": "[CORE, anchors_claim=hook] Ragnarok follows Sung Suho, son of Sung Jinwoo and Cha Haein, written by Daul with art by Jin; the manhwa went on hiatus in January 2026 when Jin was called up for mandatory South Korean military service (18-21 months), and the manhwa itself has NOT returned -- only the separate light novel returned, on August 12, 2026.",
+      "url": "https://comicbook.com/anime/news/solo-leveling-ragnarok-finally-confirms-its-return-after-indefinite-hiatus-but-theres-a-catch/",
+      "fetched_content_supports_claim": true,
+      "detail": "Independently re-fetched fresh, twice: once for the original claim and a second full-text pass specifically to separate manhwa-vs-light-novel claims after a contradiction was found. The article's own subheading states 'Solo Leveling: Ragnarok Manhwa Has Yet to Confirm Its Return.' It confirms: the manhwa (Jin's art) went on hiatus in January when Jin was drafted; mandatory service runs 18-21 months; the manhwa 'will return with a different artist' is stated only as a future confirmed intent, not something already happening ('no new chapters have been released in several months'); it is the LIGHT NOVEL (Daul, a separate work) that returned August 12, 2026 via Tapas. This is the corrected version of the claim -- see verification_gaps_and_caveats for the original error this fetch pass caught."
+    },
+    {
+      "package": "evening",
+      "claim": "[SUPPORTING] English manhwa Volume 1 is already released; Volume 2 is scheduled for October 20, 2026; these are pre-hiatus chapter collections, not new content.",
+      "url": "https://comicbook.com/anime/news/solo-leveling-ragnarok-finally-confirms-its-return-after-indefinite-hiatus-but-theres-a-catch/",
+      "fetched_content_supports_claim": true,
+      "detail": "Independently re-fetched fresh. Confirms verbatim: 'the manhwa has officially released the English version of Volume 1. The second volume will be released on October 20th, while the third volume will be out on January 19th, 2027.' Explicitly confirmed via a second targeted fetch in this review that this volume-release detail belongs to the MANHWA (collecting already-published pre-hiatus chapters via Yen Press), not the light novel -- resolving the ambiguity Sebastian flagged before authorizing this detail be reinstated into the VO."
+    }
+  ],
+  "verification_gaps_and_caveats": [
+    {
+      "issue": "MAJOR: Genuine core-claim contradiction found on the Solo Leveling: Ragnarok package -- full trace",
+      "detail": "ORIGINAL ERROR: The first-drafted VO and six dependent fields (hook_onscreen_text, captions, pinned_comment, youtube_title, tiktok_title, tiktok_post_text) all stated or implied that the Solo Leveling: Ragnarok MANHWA itself had returned with a different artist. Independently re-fetching the cited ComicBook source in this Law #165 review found the opposite stated explicitly under the article's own subheading: 'Solo Leveling: Ragnarok Manhwa Has Yet to Confirm Its Return.' Only the separate light novel (different author, Daul, not Jin) returned August 12. This was surfaced to Sebastian rather than silently corrected. RESOLUTION: Sebastian supplied exact corrected verbatim text for the VO (108 words) and all six affected fields, which were inserted exactly as provided. FURTHER SWEEP: Sebastian then requested one definitive full-text sweep of every field in the package for any remaining trace of the error. That sweep (Python regex across all 65 string fields, 35 total keyword matches reviewed) found 3 additional stale instances the field-by-field fix had missed: (1) sources[1].claim still read 'the manhwa will return with a different artist since Jin remains on military service' as an already-happening fact; (2) clips[2].scene and clip_descriptions used ambiguous 'return announcement' phrasing for the Volume 1 cover-art clip; (3) semantic_qa.claim_source_matrix[1].claim (internal QA record) still carried the original unqualified 'manhwa will return with a different artist' phrasing. All three were corrected to the same standard as the six user-facing fields: the manhwa's return is now consistently described as confirmed-but-not-yet-happened, never as already occurred. A second full sweep after these fixes found zero remaining unqualified instances -- every remaining 'return/back/confirmed' occurrence in the package now correctly attaches only to the light novel's actual return, or explicitly states the manhwa 'hasn't returned' / 'is still on hiatus' / 'has yet to confirm its return.'",
+      "resolution_confirmed_by": "Sebastian (exact VO and field text supplied by him verbatim; sweep methodology and results reported back to him in full before this approval.json was built)"
+    },
+    {
+      "issue": "Solo Leveling source citation misattribution found and corrected during this Law #165 review",
+      "detail": "Independent of the manhwa/light-novel contradiction above, sources[1].claim in the original manifest also contained the same 'manhwa will return...since Jin remains on military service' phrasing (as already-happening) even after the VO/fields sweep -- this was the second of the two citation-text corrections made in this review round, alongside the Chainsaw Man fix on the sibling batch. Corrected to: 'the manhwa itself has yet to confirm its return and is separately confirmed to eventually come back with a different artist.' No new facts introduced -- reframing only, using the same ComicBook source already fetched and cited."
+    },
+    {
+      "issue": "vo_word_count desync found and fixed (Solo Leveling package)",
+      "detail": "During the initial Law #165 review, before any VO correction, the manifest declared vo_word_count: 108 while the VO text in place at that time was independently recounted at 106 words -- a real mismatch. This was superseded by the full VO correction described above; the FINAL VO text (Sebastian's corrected 108-word version) was independently recounted via the validator's own _words() regex and confirmed to be exactly 108 words, matching the declared field. The other three packages in both batches (Blue Lock 100, Chainsaw Man 104, Kagurabachi 106) were also independently double-checked against their declared vo_word_count fields in this same pass and all matched exactly -- no other desyncs found."
+    },
+    {
+      "issue": "Clip source URLs were not re-fetched a second time in this specific Law #165 review pass",
+      "detail": "All clip sources on both packages are manga/manhwa-panel or cover-art references (scene_verified=false, footage_status=unaired_no_footage/manga-sourced), not live video URLs. Law #165's fetch-and-confirm requirement targets claim_source_matrix core claims, which were fully re-verified; the clip citations themselves don't carry separate narrative claims requiring the same treatment."
+    }
+  ],
+  "validator_result": {
+    "run_fresh_in_this_review": true,
+    "command": "python3 validators/validate_dual_package.py cron_tracking/daily_combined/pending/batchB_20260902/run_manifest.json",
+    "exit_code": 0,
+    "result": "PASS \u2014 cleared to send both emails",
+    "pass_count": 201,
+    "fail_count": 0,
+    "skip_count": 0
+  },
+  "human_final_read_confirmation": "OBTAINED 2026-09-01T20:52:00-04:00. Sebastian personally reviewed the fetch_review, verification_gaps_and_caveats (including the full correction trace on the Solo Leveling package and the citation fixes on both batches), validator_result, and the final rendered email content shown to him, and gave explicit instruction to write approved_by/approved_at/approval_status into this file.",
+  "changes_made_before_approval": [
+    "Inserted Sebastian's verbatim VO on the Kagurabachi package (106 words, independently confirmed exact match to declared vo_word_count).",
+    "Found a genuine core-claim contradiction on the Solo Leveling: Ragnarok package during the independent Law #165 fetch pass: the VO/fields claimed the manhwa itself had returned with a different artist; the cited source explicitly states the manhwa 'has yet to confirm its return' and only the separate light novel returned. Surfaced to Sebastian rather than silently corrected.",
+    "Inserted Sebastian's exact corrected VO (108 words) and six corrected fields (hook_onscreen_text, captions, pinned_comment, youtube_title, tiktok_title, tiktok_post_text) verbatim as supplied.",
+    "Independently confirmed via a second targeted fetch that the 'English Volume 1 out, Volume 2 due October 20' detail is genuinely and unambiguously about the manhwa's Yen Press English volumes (not the light novel), per Sebastian's explicit request before reinstating it.",
+    "Performed a full field-by-field text sweep of the entire Solo Leveling package (all 65 string fields, 35 keyword matches reviewed) per Sebastian's explicit request for one definitive final check; found and corrected 3 additional stale traces of the original error in sources[1].claim, clips[2]/clip_descriptions, and semantic_qa.claim_source_matrix[1].claim. A second sweep after these fixes confirmed zero remaining unqualified instances.",
+    "Found and fixed a citation misattribution in Solo Leveling sources[1].claim (same 'already returned' phrasing, confirmed by Sebastian before the fix).",
+    "Fixed the vo_word_count desync on the Solo Leveling package (was declared 108 against an actual 106 mid-correction; final corrected VO is genuinely 108 words) and double-checked all 3 other packages in both batches for the same class of desync -- none found.",
+    "Re-ran the full validator fresh after all fixes: exit code 0, full PASS, 201 pass / 0 fail / 0 skip, both packages.",
+    "Re-rendered email_morning.txt and email_evening.txt from the final, corrected manifest (draft only, not sent).",
+    "Built this approval.json with approval_status left as AWAITING_APPROVAL (not APPROVED) since Sebastian has not yet personally reviewed the rendered content -- staging only, per his explicit instruction not to send without further authorization and per Law #165."
+  ]
+}

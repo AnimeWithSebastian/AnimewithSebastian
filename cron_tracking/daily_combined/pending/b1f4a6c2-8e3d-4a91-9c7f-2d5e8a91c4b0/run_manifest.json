@@ -1,0 +1,453 @@
+{
+  "batch_id": "b1f4a6c2-8e3d-4a91-9c7f-2d5e8a91c4b0",
+  "run_ts": "2026-08-23T22:55:00Z",
+  "post_date": "2026-08-24",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-08-23T22:40:00Z",
+    "age_days": 0,
+    "status": "REFRESHED"
+  },
+  "packages": [
+    {
+      "package_id": "e1a2b3c4-0001-4a11-9001-000000000001",
+      "slot": "morning",
+      "content_type": "short",
+      "vo_status": "complete",
+      "show": "One Piece",
+      "angle": "Chapter 1191 (\"There's Still Loki\") lands Sunday Aug 23 -- Imu transforms mid-fight and a freshly one-armed Gaban tells Luffy to evacuate Elbaf. Luffy refuses, Hajrudin takes a hit protecting him, and the chapter's title promise pays off exactly as Loki finally arrives to join a three-way combo attack against Imu.",
+      "format_type": "THE_MOMENT",
+      "topic_class": "timely",
+      "topic_signals": [
+        "chapter",
+        "news"
+      ],
+      "series": null,
+      "series_public_name": null,
+      "series_next_line": null,
+      "funnel_status": "standalone",
+      "flagship_url": null,
+      "hook_family": "revelation",
+      "hook_onscreen_text": "Imu just changed shape mid-fight.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "One Piece Chapter 1191 just did something Imu has never done in over eleven hundred chapters: transform mid-fight.",
+        "Gaban lost his arm to Imu last chapter. This chapter, he's the one telling Luffy to run."
+      ],
+      "selected_hook_index": 0,
+      "hook_line": "One Piece Chapter 1191 just did something Imu has never done in over eleven hundred chapters: transform mid-fight.",
+      "opening_sentence": "One Piece Chapter 1191 just did something Imu has never done in over eleven hundred chapters: transform mid-fight.",
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "vo": "One Piece Chapter 1191 just did something Imu has never done in over eleven hundred chapters: transform mid-fight. Imu grows larger, sprouts horns, and gains black arms, taunting Gaban about his God Valley past. Gaban, down an arm, tells Luffy to evacuate Elbaf. Luffy refuses. Hajrudin punches Imu away, takes a hit from Imu's dark aura, and refuses to flee, declaring Loki is still coming. Loki arrives on cue. Luffy eats stored food to recover, then combines with Loki and Hajrudin for one combined attack against Imu. Is Loki showing up enough to actually turn this fight, or is Imu still three steps ahead? Leave your take.",
+      "vo_word_count": 108,
+      "question_line": "Is Loki showing up enough to actually turn this fight, or is Imu still three steps ahead?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Chapter 1191, titled \"There's Still Loki,\" released Sunday Aug 23, 2026 in Weekly Shonen Jump Issue #39, same-day via Manga Plus/Viz.",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://gamerant.com/one-piece-manga-break-august-30/",
+              "https://www.dexerto.com/anime/one-piece-chapter-1191-release-date-major-spoilers-3399495/"
+            ],
+            "anchors_claim": "hook",
+            "show": null
+          },
+          {
+            "claim": "Imu undergoes a visible transformation this chapter: grows larger, sprouts four horns, gains black arms, a pointed goatee, a chest pendant of three horned skulls, and eye-covered rings replace the spiked bracelets, with the eye-ring now encircling the waist/legs.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://gulfnews.com/entertainment/one-piece-chapter-1191-spoilers-imus-demonic-transformation-luffys-wild-recovery-can-the-trio-take-him-down-1.500644205",
+              "https://www.dexerto.com/anime/one-piece-chapter-1191-release-date-major-spoilers-3399495/"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Imu taunts Gaban directly, referencing his God Valley past and mocking that he only lost an arm this time; Gaban tells Luffy to evacuate Elbaf; Luffy refuses.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.yahoo.com/entertainment/tv/articles/one-piece-chapter-1191-spoilers-071245309.html",
+              "https://gulfnews.com/entertainment/one-piece-chapter-1191-spoilers-imus-demonic-transformation-luffys-wild-recovery-can-the-trio-take-him-down-1.500644205"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Hajrudin punches Imu away to protect Luffy and Gaban, takes a hit from Imu's dark aura, and refuses to flee (\"Even if I die, Loki is there\"); Loki then arrives, fulfilling the chapter's title.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.aol.com/articles/one-piece-chapter-1191-raw-090000000.html",
+              "https://www.dexerto.com/anime/one-piece-chapter-1191-release-date-major-spoilers-3399495/"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Luffy recovers strength by eating stored food, then combines with Loki and Hajrudin into a joint attack (\"Gokoku Sovereignty\"/\"Sovereignty of the Three Generals\") against Imu; chapter ends there, and the series is confirmed on break next week with no Chapter 1192 until Sept 6, 2026 (WSJ Issue #41).",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://gamerant.com/one-piece-manga-break-august-30/",
+              "https://www.yahoo.com/entertainment/tv/articles/one-piece-chapter-1191-spoilers-071245309.html"
+            ],
+            "show": null
+          },
+          {
+            "claim": "This directly follows the prior chapter (Aug 8, 2026), previously covered by this channel, where Gaban lost his arm to Imu.",
+            "core": false,
+            "source_urls": []
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Face-cam split screen -- creator top / anime footage bottom (Law #134 required default)",
+      "face": true,
+      "split_screen": true,
+      "sources": [
+        {
+          "claim": "Chapter 1191 release, title, WSJ issue, same-day digital availability",
+          "url": "https://gamerant.com/one-piece-manga-break-august-30/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Full spoiler breakdown: Imu transformation description, Gaban dialogue, Hajrudin arrival",
+          "url": "https://gulfnews.com/entertainment/one-piece-chapter-1191-spoilers-imus-demonic-transformation-luffys-wild-recovery-can-the-trio-take-him-down-1.500644205",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Chapter release date and major spoilers summary",
+          "url": "https://www.dexerto.com/anime/one-piece-chapter-1191-release-date-major-spoilers-3399495/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Chapter 1191 spoilers, Loki arrival, Gokoku Sovereignty combo attack",
+          "url": "https://www.yahoo.com/entertainment/tv/articles/one-piece-chapter-1191-spoilers-071245309.html",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Raw/early spoiler details, confirmed break next week (no Ch. 1192 until Sept 6)",
+          "url": "https://www.aol.com/articles/one-piece-chapter-1191-raw-090000000.html",
+          "date": "Aug 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "One Piece Manga Chapter 1191, opening panel -- Imu on the Elbaf battlefield, mid-fight",
+          "reason": "Cold open using the actual chapter art to establish Imu and the Elbaf stakes before the chapter-specific reveal",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": false,
+          "manga_reference": "Chapter 1191, opening panels",
+          "verification_note": "Chapter 1191 has not aired in anime form; this cut uses the actual manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any One Piece anime adaptation of Chapter 1191 -- none exists yet; the manga released same-day (Aug 23) and the anime has not caught up to this arc point. Corrected to use the real manga panel instead of an anime-footage substitute."
+        },
+        {
+          "scene": "One Piece Manga Chapter 1191, transformation panels -- Imu's horns sprouting, arms turning black",
+          "reason": "Visualizes the transformation beat using the actual chapter panels -- horns, black arms, aura change",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": false,
+          "manga_reference": "Chapter 1191, transformation panels",
+          "verification_note": "Imu's mid-fight transformation is manga-only as of Chapter 1191; this cut uses the actual manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for Imu transformation anime footage -- none found; this beat has only appeared in the manga so far. Corrected to use the real manga panel instead of an anime-footage substitute."
+        },
+        {
+          "scene": "One Piece Manga Chapter 1191, panel -- Gaban, one-armed, telling Luffy to evacuate Elbaf",
+          "reason": "Visualizes Gaban's line to Luffy to evacuate using the actual chapter panel",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": false,
+          "manga_reference": "Chapter 1191, Gaban/Luffy exchange panels",
+          "verification_note": "Gaban's evacuate-Elbaf line is manga-only as of Chapter 1191; this cut uses the actual manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for Gaban/Luffy Elbaf-arc anime footage matching this exchange -- the specific Chapter 1191 dialogue has not aired. Corrected to use the real manga panel instead of an anime-footage substitute."
+        },
+        {
+          "scene": "One Piece Manga Chapter 1191, panel -- Luffy's refusal, and Hajrudin taking the hit from Imu's dark aura",
+          "reason": "Visualizes Luffy's refusal to evacuate and Hajrudin's hit using the actual chapter panel",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": false,
+          "manga_reference": "Chapter 1191, Luffy refusal + Hajrudin panels",
+          "verification_note": "Luffy's refusal and Hajrudin's hit is manga-only as of Chapter 1191; this cut uses the actual manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for this specific beat in anime form -- not found; the anime has not reached Chapter 1191's content. Corrected to use the real manga panel instead of an anime-footage substitute."
+        },
+        {
+          "scene": "One Piece Manga Chapter 1191, panel -- Loki's arrival splash panel and the three-way combo attack",
+          "reason": "Payoff shot for the chapter title (\"There's Still Loki\") and the three-way combo setup, using the actual chapter splash panel",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "manga_reference": "Chapter 1191, Loki arrival + Gokoku Sovereignty setup panels",
+          "verification_note": "Loki's arrival and the Gokoku Sovereignty combo attack is manga-only as of Chapter 1191; this cut uses the actual manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for Loki anime footage tied to this arrival beat -- none found; Loki's appearance here is manga-exclusive so far. Corrected to use the real manga panel instead of an anime-footage substitute."
+        }
+      ],
+      "clip_plan_needs_manga_source": true,
+      "clip_plan_needs_release_delay": false,
+      "story_point_gate": {
+        "anime_has_reached_this_point": false,
+        "checked_via": "https://gamerant.com/one-piece-manga-break-august-30/"
+      },
+      "clip_descriptions": "CUT 1 -- 6 sec (0:00-0:06): Chapter 1191 opening panel -- Imu on the Elbaf battlefield, mid-fight -- cold open using the actual chapter art (manga panel, Ch. 1191). CUT 2 -- 6 sec (0:06-0:12): Chapter 1191 transformation panels -- horns sprouting, arms turning black -- visualizes the transformation beat (manga panel, Ch. 1191). CUT 3 -- 6 sec (0:12-0:18): Chapter 1191 panel -- Gaban, one-armed, telling Luffy to evacuate Elbaf -- visualizes Gaban's line (manga panel, Ch. 1191). CUT 4 -- 6 sec (0:18-0:24): Chapter 1191 panel -- Luffy's refusal, and Hajrudin taking the hit from Imu's dark aura -- visualizes the refusal and hit (manga panel, Ch. 1191). CUT 5 -- 6 sec (0:24-0:30): Chapter 1191 panel -- Loki's arrival splash panel and the three-way combo attack -- payoff shot for the chapter title (manga panel, Ch. 1191). TOTAL CLIP TIME: 30 seconds. All 5 cuts corrected to real manga panels (Ch. 1191 has not aired in anime form yet); footage_status=unaired_no_footage on every cut (manga panel used in place of anime footage).",
+      "captions": "One Piece Chapter 1191 is out and Imu just transformed mid-fight. Gaban -- still down an arm from last chapter -- tells Luffy to run. He doesn't. Then the chapter's title promise finally lands: Loki shows up. #OnePiece #OnePieceManga #Elbaf #Luffy #Imu #AnimeShorts",
+      "youtube_title": "One Piece Ch. 1191: Imu Just Changed Shape",
+      "tiktok_title": "One Piece Just Made Imu Transform",
+      "tiktok_post_text": "One Piece Chapter 1191 (\"There's Still Loki\") is out and Imu just did something we've never seen in over 1,100 chapters -- transformed mid-fight. Gaban, still down an arm from last chapter, tells Luffy to evacuate. He refuses. Then the title finally pays off: Loki arrives. Full breakdown in the video. #OnePiece #OnePieceManga #OnePieceTheory #Elbaf #Luffy #Imu #Loki #AnimeManga #AnimeShorts #WeeklyShonenJump",
+      "pinned_comment": "Chapter 1191 spoilers in this video. Real question: does Loki showing up actually turn this fight, or is Imu still three moves ahead? Drop your read below.",
+      "post_times": {
+        "youtube": "7:30 AM ET",
+        "tiktok": "7:35 AM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "clip_plan_correction_note": "Corrected 2026-08-24: the original send (2026-08-24T01:17Z) incorrectly substituted anime footage for this manga-only chapter (Chapter 1191 has not aired in anime form). This clip plan now uses the real manga panels. See docs/PROJECT_HANDOFF.md standing rule and cron_tracking/daily_combined/CLIP_PLAN_CORRECTION_20260824_manga_panel_rule.md."
+    },
+    {
+      "package_id": "a7e8e502-ae71-469e-a675-005049e8a78e",
+      "slot": "evening",
+      "content_type": "short",
+      "vo_status": "complete",
+      "show": "Dandadan",
+      "angle": "Chapter 244 ends with Okarun surrendering to the Dragon Knights, the Acura Blade failing to strip his powers, and Hase taking Momo hostage -- right before Kinta crashes in on a battle-cart to save them both. Chapter 245 releases the same day this posts (Monday, Aug 24, 2026).",
+      "format_type": "EPISODE_MOMENT",
+      "topic_class": "timely",
+      "topic_signals": [
+        "chapter",
+        "news"
+      ],
+      "series": null,
+      "series_public_name": null,
+      "series_next_line": null,
+      "funnel_status": "standalone",
+      "flagship_url": null,
+      "hook_family": "revelation",
+      "hook_onscreen_text": "Okarun just surrendered to the Dragon Knights.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Dandadan Chapter 244 ended about as badly as possible for Okarun.",
+        "Hase just took Momo hostage -- and Kinta crashed in on a battle-cart to stop him."
+      ],
+      "selected_hook_index": 0,
+      "hook_line": "Dandadan Chapter 244 ended about as badly as possible for Okarun.",
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "vo": "Dandadan Chapter 244 ended about as badly as possible for Okarun. Overwhelmed by the Dragon Knights, he surrenders, and their Acura Blade fails to strip Turbo Granny's powers from him -- they don't even believe he's actually lost them. Hase seizes the moment, taking Momo hostage and threatening to force a kiss on her just to break Okarun. Then Kinta crashes in on a jury-rigged battle-cart with his own crew, declaring he's here to save them both. Chapter 245 drops the same day this posts. Does Kinta's crew actually pull off the rescue, or does Hase find a way around them? Leave your take.",
+      "opening_sentence": "Dandadan Chapter 244 ended about as badly as possible for Okarun.",
+      "vo_word_count": 105,
+      "question_line": "Does Kinta's crew actually pull off the rescue, or does Hase find a way around them?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Dandadan Chapter 244 ends with Okarun overwhelmed by the Dragon Knights and surrendering.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.aol.com/articles/dandadan-chapter-245-release-date-153000000.html",
+              "https://otakuontheway.com/dandadan-chapter-245-release-date-spoilers-recap-and-what-happens-next/"
+            ],
+            "anchors_claim": "hook",
+            "show": null
+          },
+          {
+            "claim": "The Dragon Knights test Okarun with the Acura Blade, which fails to extract Turbo Granny's powers from him, and they refuse to believe he's genuinely lost them.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.aol.com/articles/dandadan-chapter-245-release-date-153000000.html",
+              "https://www.reddit.com/r/Dandadan/comments/1vruaa3/lets_talk_about_chapter_244/"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Hase takes Momo hostage and threatens to force a kiss on her to psychologically break Okarun.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.aol.com/articles/dandadan-chapter-245-release-date-153000000.html",
+              "https://www.reddit.com/r/Dandadan/comments/1vruaa3/lets_talk_about_chapter_244/"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Before Hase can go further, Kinta arrives aboard a jury-rigged nanoskin vehicle/battle-cart with allies (Bamora, Mantisian, Chiquitita, Rokuro Serpo), declaring he's come to rescue Momo and Okarun.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.aol.com/articles/dandadan-chapter-245-release-date-153000000.html",
+              "https://otakuontheway.com/dandadan-chapter-245-release-date-spoilers-recap-and-what-happens-next/",
+              "https://www.reddit.com/r/Dandadan/comments/1vruaa3/lets_talk_about_chapter_244/"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Dandadan Chapter 244 released Monday, August 17, 2026, and Chapter 245 is expected Monday, August 24, 2026, on the manga's regular weekly cadence -- both primary sources frame the Aug 24 date as expected-on-schedule, not an official Shueisha confirmation of that specific date.",
+            "core": true,
+            "claim_type": "C",
+            "source_urls": [
+              "https://www.aol.com/articles/dandadan-chapter-245-release-date-153000000.html",
+              "https://otakuontheway.com/dandadan-chapter-245-release-date-spoilers-recap-and-what-happens-next/"
+            ],
+            "show": null
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Face-cam split screen -- creator top / anime footage bottom (Law #134 required default)",
+      "face": true,
+      "split_screen": true,
+      "sources": [
+        {
+          "claim": "Chapter 245 expected release date (Aug 24, 2026), release-time breakdown, Chapter 244 recap (Okarun surrender, Acura Blade failure, Hase hostage-taking, Kinta's rescue arrival)",
+          "url": "https://www.aol.com/articles/dandadan-chapter-245-release-date-153000000.html",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Chapter 245 expected release date (Aug 24, 2026) framed as expected-not-confirmed, Chapter 244 recap corroboration",
+          "url": "https://otakuontheway.com/dandadan-chapter-245-release-date-spoilers-recap-and-what-happens-next/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Independent fan recap of Chapter 244 corroborating Okarun's surrender, Hase taking Momo hostage, and Kinta's battle-cart rescue arrival",
+          "url": "https://www.reddit.com/r/Dandadan/comments/1vruaa3/lets_talk_about_chapter_244/",
+          "date": "Aug 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Dandadan Manga Chapter 244, opening panel -- Okarun cornered/overwhelmed by the Dragon Knights",
+          "reason": "Cold open using the actual chapter art to establish Okarun's desperate position before the surrender beat",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": false,
+          "manga_reference": "Chapter 244, opening battle panels",
+          "verification_note": "Chapter 244's Dragon Knights battle is manga-only as of this post; this cut uses the actual manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for any Dandadan anime adaptation reaching the Dragon Knights arc -- none exists yet; the anime has not caught up to Chapter 244's content. Corrected to use the real manga panel instead of an anime-footage substitute."
+        },
+        {
+          "scene": "Dandadan Manga Chapter 244, panel -- Okarun's surrender and the Acura Blade's failed extraction",
+          "reason": "Visualizes Okarun's surrender using the actual chapter panel",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": false,
+          "manga_reference": "Chapter 244, surrender + Acura Blade panels",
+          "verification_note": "This specific beat is manga-only as of Chapter 244; this cut uses the actual manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for this exact surrender/Acura Blade beat in anime form -- not found; this beat has only appeared in the manga so far. Corrected to use the real manga panel instead of an anime-footage substitute."
+        },
+        {
+          "scene": "Dandadan Manga Chapter 244, panel -- Hase taking Momo hostage",
+          "reason": "Visualizes Hase taking Momo hostage using the actual chapter panel",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": false,
+          "manga_reference": "Chapter 244, Hase hostage-taking panels",
+          "verification_note": "This beat is manga-only as of Chapter 244; this cut uses the actual manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for the Hase hostage-taking scene in anime form -- not found; this beat has only appeared in the manga so far. Corrected to use the real manga panel instead of an anime-footage substitute."
+        },
+        {
+          "scene": "Dandadan Manga Chapter 244, panel -- Okarun's fury at Hase's threat",
+          "reason": "Visualizes Okarun's fury using the actual chapter panel, building tension before Kinta's arrival",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": false,
+          "manga_reference": "Chapter 244, Okarun's fury panels",
+          "verification_note": "This beat is manga-only as of Chapter 244; this cut uses the actual manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for this specific fury beat in anime form -- not found; the anime has not reached Chapter 244's content. Corrected to use the real manga panel instead of an anime-footage substitute."
+        },
+        {
+          "scene": "Dandadan Manga Chapter 244, panel -- Kinta's battle-cart arrival and rescue",
+          "reason": "Payoff shot for Kinta's rescue arrival using the actual chapter panel, tying to the CTA question about whether the rescue succeeds",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "manga_reference": "Chapter 244, Kinta's battle-cart arrival panels",
+          "verification_note": "Kinta's rescue arrival is manga-only as of Chapter 244; this cut uses the actual manga panel art instead of an anime-footage substitute.",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and Crunchyroll for Kinta's battle-cart arrival in anime form -- none found; Kinta's appearance here is manga-exclusive so far. Corrected to use the real manga panel instead of an anime-footage substitute."
+        }
+      ],
+      "episode_air_date_iso": "2026-08-17",
+      "clip_plan_needs_manga_source": true,
+      "clip_plan_needs_release_delay": false,
+      "story_point_gate": {
+        "anime_has_reached_this_point": false,
+        "checked_via": "https://www.aol.com/articles/dandadan-chapter-245-release-date-153000000.html"
+      },
+      "clip_descriptions": "CUT 1 -- 6 sec (0:00-0:06): Chapter 244 opening panel -- Okarun cornered/overwhelmed by the Dragon Knights -- cold open (manga panel, Ch. 244). CUT 2 -- 6 sec (0:06-0:12): Chapter 244 panel -- Okarun's surrender and the Acura Blade's failed extraction (manga panel, Ch. 244). CUT 3 -- 6 sec (0:12-0:18): Chapter 244 panel -- Hase taking Momo hostage (manga panel, Ch. 244). CUT 4 -- 6 sec (0:18-0:24): Chapter 244 panel -- Okarun's fury at Hase's threat (manga panel, Ch. 244). CUT 5 -- 6 sec (0:24-0:30): Chapter 244 panel -- Kinta's battle-cart arrival and rescue -- payoff shot (manga panel, Ch. 244). TOTAL CLIP TIME: 30 seconds. All 5 cuts corrected to real manga panels (Ch. 244 has not aired in anime form yet); footage_status=unaired_no_footage on every cut (manga panel used in place of anime footage).",
+      "captions": "Dandadan Chapter 244 left Okarun defeated, Momo held hostage, and Hase seconds from crossing a line -- until Kinta crashed in to save them both. Chapter 245 drops today. #Dandadan #DandadanManga #Okarun #Momo #Kinta #AnimeShorts",
+      "youtube_title": "Dandadan SPOILERS: Kinta's Rescue Arrives Just in Time",
+      "tiktok_title": "Dandadan Ch. 244 SPOILERS: Ends This Badly",
+      "tiktok_post_text": "SPOILERS for Dandadan Chapter 244. It ends about as badly as possible for Okarun -- overwhelmed, surrendered, and watching Hase take Momo hostage. Then Kinta crashes in on a battle-cart to save them both. Chapter 245 drops the same day this posts. Full breakdown in the video. #Dandadan #DandadanManga #DandadanTheory #Okarun #Momo #Kinta #Hase #AnimeManga #AnimeShorts #WeeklyShonenJump",
+      "pinned_comment": "Chapter 244 spoilers in this video. Real question: does Kinta's crew actually pull off the rescue, or does Hase find a way around them? Drop your read below.",
+      "post_times": {
+        "youtube": "7:30 PM ET",
+        "tiktok": "7:35 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "clip_plan_correction_note": "Corrected 2026-08-24: the original send (2026-08-24T01:19Z) incorrectly substituted anime footage for this manga-only chapter (Chapter 244 has not aired in anime form). This clip plan now uses the real manga panels. See docs/PROJECT_HANDOFF.md standing rule and cron_tracking/daily_combined/CLIP_PLAN_CORRECTION_20260824_manga_panel_rule.md."
+    }
+  ],
+  "minimum_frequency_floor": {
+    "floor_formats": [
+      "THEORY_SPECULATION",
+      "SEASON_ROUNDUP",
+      "WORTH_WATCHING",
+      "WATCH_RANK",
+      "SEASON_RATING"
+    ],
+    "window_days": 21,
+    "evaluations": []
+  }
+}

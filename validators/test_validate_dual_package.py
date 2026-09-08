@@ -10,9 +10,12 @@ which must FAIL on a specific named check. Uses stdlib unittest only — no deps
 
 from __future__ import annotations
 
+import datetime as dt
 import json
 import os
+import shutil
 import sys
+import tempfile
 import unittest
 
 import validate_dual_package as v
@@ -21,6 +24,7 @@ _TOOLS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "too
 if _TOOLS_DIR not in sys.path:
     sys.path.insert(0, _TOOLS_DIR)
 import render_clip_descriptions as _render  # noqa: E402 — used by UPDATE 6 test helpers
+import candidate_selection_log as csl  # noqa: E402 — used by TestMinimumFrequencyFloorAdversarial
 
 FIXTURE = os.path.join(os.path.dirname(__file__), "fixtures", "valid_dual_package.json")
 # KEYWORD_CALLBACK_FIXTURE removed (2026-07-27, Law #141 rescission) -- the fixture
@@ -62,6 +66,51 @@ def load_json(path: str) -> dict:
 def failed_names(manifest: dict) -> list[str]:
     r = v.validate_manifest(manifest)
     return [name for name, ok, _ in r.checks if ok == "FAIL"]
+
+
+# --- Module-level test isolation (2026-09-08, full repo audit) -----------
+#
+# THE BUG THIS FIXES: v.validate_manifest(manifest) with no explicit `tree`
+# falls back to v._REPO_ROOT -- the REAL repo root -- for the
+# minimum_frequency_floor check's independent recomputation against the
+# real candidate_selection_log.jsonl. load_valid()'s fixture has post_date
+# 2026-07-16 and declares must_force_consider=true / days_since_last_
+# considered=null for all 5 floor formats, which was accurate the day the
+# fixture was written (nothing had ever been logged yet). Since then, the
+# REAL, live candidate_selection_log.jsonl has accumulated genuine entries
+# for these formats (from real production batches), so the mechanical
+# recomputation now finds a real prior event and returns a negative day-gap
+# relative to the fixture's frozen July date -- correctly concluding the
+# fixture's hardcoded must_force_consider=true is now false, and correctly
+# FAILing on that basis. This is the validator working exactly as designed;
+# the problem is that ~55 tests across this file share this one fixture and
+# never intended to depend on the real, ever-growing production log at all.
+#
+# THE FIX: point v._REPO_ROOT at a throwaway, permanently-empty directory
+# for the duration of this test module, so every call to
+# v.validate_manifest(manifest) that doesn't pass its own explicit tree
+# (i.e. every test NOT in TestMinimumFrequencyFloorAdversarial or
+# TestMechanicalConflictCheckWiring, which already build their own isolated
+# trees on purpose) sees a genuinely empty candidate_selection_log.jsonl --
+# permanently matching load_valid()'s original "never logged" assumption,
+# immune to future real-log growth. Restored in tearDownModule() so this
+# never leaks into any other test module or process.
+_isolated_tree_for_module = None
+_real_repo_root_for_module = None
+
+
+def setUpModule():
+    global _isolated_tree_for_module, _real_repo_root_for_module
+    _isolated_tree_for_module = tempfile.mkdtemp(prefix="validate_dual_package_test_isolation_")
+    _real_repo_root_for_module = v._REPO_ROOT
+    v._REPO_ROOT = _isolated_tree_for_module
+
+
+def tearDownModule():
+    global _isolated_tree_for_module, _real_repo_root_for_module
+    v._REPO_ROOT = _real_repo_root_for_module
+    if _isolated_tree_for_module:
+        shutil.rmtree(_isolated_tree_for_module, ignore_errors=True)
 
 
 class TestValidDualPackage(unittest.TestCase):
@@ -389,6 +438,174 @@ class TestInvalidCases(unittest.TestCase):
         pkg = m["packages"][0]
         pkg["opening_sentence"] = "This is not the first sentence of the VO."
         self.assertFailsOn(m, "opening_sentence is the VO's exact first sentence")
+
+
+class TestMechanicalConflictCheckWiring(unittest.TestCase):
+    """Item #3+#8 wiring (2026-08-19): tools/conflict_check.check_recent_send_conflict()
+    is now an independent mechanical source of truth, not just the two self-attested
+    blackout_conflict/recent_send_conflict fields. These tests use a temp `tree` with
+    controlled cron_tracking/sent_scripts_events.jsonl history so the outcome does not
+    depend on the real, changing production ledger.
+    """
+
+    def _tree_with_history(self, rows: list[dict]) -> str:
+        tmp = tempfile.mkdtemp()
+        os.makedirs(os.path.join(tmp, "cron_tracking"), exist_ok=True)
+        path = os.path.join(tmp, "cron_tracking", "sent_scripts_events.jsonl")
+        with open(path, "w", encoding="utf-8") as fh:
+            for row in rows:
+                fh.write(json.dumps(row) + "\n")
+        self.addCleanup(shutil.rmtree, tmp, ignore_errors=True)
+        return tmp
+
+    def test_self_attested_clear_but_mechanically_a_near_duplicate_hard_fails(self):
+        # The real F43 failure mode: a package attests blackout_conflict=False and
+        # recent_send_conflict=False (both look clean), but the mechanical check
+        # independently finds a real near-duplicate via the shared-entity signal.
+        # The validator must hard-fail regardless of the clean self-attestation.
+        tree = self._tree_with_history([{
+            "batch_id": "hist-1", "show": "One Piece", "format_type": "THE_MOMENT",
+            "angle": "Chapter 1190: Scopper Gaban lands the first confirmed injury "
+                     "on Imu in the entire series, then loses his arm for it",
+            "date_sent": "2026-08-08T00:00:00Z", "post_date": "2026-08-08",
+        }])
+        m = load_valid()
+        m["packages"][1]["show"] = "One Piece"
+        m["packages"][1]["format_type"] = "THE_MOMENT"
+        m["packages"][1]["angle"] = ("Gaban sacrifices his arm to save Luffy from "
+                                      "Imu in Ch.1190 -- fate left unconfirmed")
+        m["packages"][1]["post_date"] = "2026-08-14"
+        m["packages"][1]["blackout_conflict"] = False
+        m["packages"][1]["recent_send_conflict"] = False
+        r = v.validate_manifest(m, tree=tree)
+        self.assertFalse(r.ok)
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
+        self.assertTrue(any("mechanical conflict check" in n for n in names),
+                        msg=f"expected a mechanical-conflict-check failure; got={names}")
+
+    def test_genuinely_clean_package_passes_mechanical_check(self):
+        # Sanity counterpart: an unrelated show/angle with no real conflicting
+        # history must NOT be blocked by the mechanical check.
+        tree = self._tree_with_history([{
+            "batch_id": "hist-1", "show": "Bleach", "format_type": "THE_MOMENT",
+            "angle": "Ichigo's Getsuga Tensho evolves one more time",
+            "date_sent": "2026-01-01T00:00:00Z", "post_date": "2026-01-01",
+        }])
+        m = load_valid()
+        r = v.validate_manifest(m, tree=tree)
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
+        mech_failures = [n for n in names if "mechanical conflict check" in n]
+        self.assertEqual(mech_failures, [], msg=f"unexpected mechanical failures: {mech_failures}")
+
+    def test_missing_history_file_does_not_crash_and_does_not_false_block(self):
+        # An empty/nonexistent tree (no cron_tracking dir at all) must fail open on
+        # the mechanical check specifically (matches conflict_check.py's own documented
+        # missing-file behavior: empty history, no crash) rather than raising.
+        tmp = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, tmp, ignore_errors=True)
+        m = load_valid()
+        r = v.validate_manifest(m, tree=tmp)
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
+        mech_failures = [n for n in names if "mechanical conflict check" in n]
+        self.assertEqual(mech_failures, [], msg=f"unexpected mechanical failures: {mech_failures}")
+
+    def test_real_repo_root_default_used_when_no_tree_passed(self):
+        # When validate_manifest is called with no explicit tree (the normal caller
+        # path, e.g. every pre-existing test in this file), it must default to the
+        # real repo root rather than crashing or silently skipping the check. The
+        # valid fixture's show/angle must not collide with real production history.
+        r = v.validate_manifest(load_valid())
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
+        mech_failures = [n for n in names if "mechanical conflict check" in n]
+        self.assertEqual(mech_failures, [],
+                          msg=f"valid fixture unexpectedly collided with real history: {mech_failures}")
+
+    def test_correction_manifest_corrects_batch_id_excludes_the_corrected_batch(self):
+        # F-next regression (2026-08-23, same bug class as F61): a genuine
+        # correction manifest sets corrects_batch_id at the MANIFEST level
+        # pointing back at the batch it fixes. _excluded_batch_ids(pkg) reads
+        # pkg.get("corrects_batch_id"), but before this fix nothing ever copied
+        # the manifest's corrects_batch_id onto the per-package dict passed to
+        # check_recent_send_conflict() -- only batch_id was injected (F61). A
+        # correction whose angle is (deliberately, necessarily) near-identical
+        # to the batch it corrects would false-positive block on
+        # angle_similarity against its own correction target. Real discovery
+        # case: building the Kingdom Hearts correction batch 7b36ad7c
+        # (corrects_batch_id=af6c90bf) on 2026-08-23.
+        original_batch_id = "af6c90bf-b832-474c-ad67-782f56038368"
+        tree = self._tree_with_history([{
+            "batch_id": original_batch_id, "show": "Kingdom Hearts",
+            "format_type": "FACT_DROP",
+            "angle": "Disney officially announces an original Kingdom Hearts anime "
+                     "series for Disney+ and Disney Channel at D23 2026, with Tetsuya "
+                     "Nomura and Square Enix attached, an original story not adapting "
+                     "the games -- key visual shows a cloaked Keyblade wielder from "
+                     "behind, identity unconfirmed",
+            "date_sent": "2026-08-23T02:35:08Z", "post_date": "2026-08-23",
+        }])
+        m = load_valid()
+        m["corrects_batch_id"] = original_batch_id
+        # Deliberately near-identical angle (same show, same core facts) -- this is
+        # what a real correction looks like: it fixes one inaccurate detail, not the
+        # whole angle, so high similarity against the corrected batch is expected
+        # and must be excluded rather than flagged.
+        m["packages"][0]["show"] = "Kingdom Hearts"
+        m["packages"][0]["format_type"] = "FACT_DROP"
+        m["packages"][0]["angle"] = (
+            "Disney officially announces an original Kingdom Hearts anime series for "
+            "Disney+ and Disney Channel at D23 2026, with Tetsuya Nomura and Square "
+            "Enix attached, an original story not adapting the games -- key visual "
+            "shows a figure with dark hair and fur-trimmed clothing, not Sora's usual "
+            "look, identity unconfirmed"
+        )
+        m["packages"][0]["post_date"] = "2026-08-23"
+        m["packages"][0]["blackout_conflict"] = False
+        m["packages"][0]["recent_send_conflict"] = False
+        r = v.validate_manifest(m, tree=tree)
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
+        mech_failures = [n for n in names if "mechanical conflict check" in n]
+        self.assertEqual(mech_failures, [],
+                          msg=f"correction manifest false-positived against its own "
+                              f"corrects_batch_id target: {mech_failures}")
+
+    def test_correction_manifest_still_blocks_against_unrelated_history(self):
+        # Counterpart to the exclusion test above: corrects_batch_id must exclude
+        # ONLY the specific batch named, not conflict-checking generally. A
+        # correction manifest that also happens to collide with a genuinely
+        # different, unrelated historical batch must still hard-fail.
+        original_batch_id = "af6c90bf-b832-474c-ad67-782f56038368"
+        unrelated_batch_id = "unrelated-hist-batch-0001"
+        tree = self._tree_with_history([
+            {
+                "batch_id": original_batch_id, "show": "Kingdom Hearts",
+                "format_type": "FACT_DROP",
+                "angle": "Disney officially announces an original Kingdom Hearts anime "
+                         "series for Disney+ and Disney Channel at D23 2026",
+                "date_sent": "2026-08-23T02:35:08Z", "post_date": "2026-08-23",
+            },
+            {
+                "batch_id": unrelated_batch_id, "show": "One Piece",
+                "format_type": "THE_MOMENT",
+                "angle": "Chapter 1190: Scopper Gaban lands the first confirmed injury "
+                         "on Imu in the entire series, then loses his arm for it",
+                "date_sent": "2026-08-08T00:00:00Z", "post_date": "2026-08-08",
+            },
+        ])
+        m = load_valid()
+        m["corrects_batch_id"] = original_batch_id
+        m["packages"][0]["show"] = "One Piece"
+        m["packages"][0]["format_type"] = "THE_MOMENT"
+        m["packages"][0]["angle"] = ("Gaban sacrifices his arm to save Luffy from "
+                                      "Imu in Ch.1190 -- fate left unconfirmed")
+        m["packages"][0]["post_date"] = "2026-08-23"
+        m["packages"][0]["blackout_conflict"] = False
+        m["packages"][0]["recent_send_conflict"] = False
+        r = v.validate_manifest(m, tree=tree)
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
+        mech_failures = [n for n in names if "mechanical conflict check" in n]
+        self.assertTrue(any(mech_failures),
+                         msg="correction manifest should still be blocked by a "
+                             "genuinely unrelated conflict, not blanket-excused")
 
 
 class TestEvidenceBasedPackaging(unittest.TestCase):
@@ -779,6 +996,15 @@ class TestDurationExperiment(unittest.TestCase):
         # cause.
         m = load_experiment()
         m["packages"][1]["format_type"] = "FACT_DROP"
+        # Item #6 (2026-08-19): shows_ranked is WATCH_RANK-scoped -- moving the
+        # package off WATCH_RANK without also clearing shows_ranked would leave a
+        # genuinely invalid package (a FACT_DROP package must not carry a
+        # WATCH_RANK-only field), which is a real, correct failure, not a
+        # regression this test should be probing. shows_ranked_source_note is the
+        # same WATCH_RANK-only field added 2026-08-22 (Law #98 fix) and needs the
+        # same clearing for the same reason.
+        del m["packages"][1]["shows_ranked"]
+        m["packages"][1].pop("shows_ranked_source_note", None)
         r = v.validate_manifest(m)
         pkg_failures = [n for n, ok, d in r.failures() if "[evening]" in n]
         self.assertEqual(pkg_failures, [], msg=f"format_type must not gate edit length; unexpected failures: {pkg_failures}")
@@ -956,21 +1182,15 @@ class TestSemanticQA(unittest.TestCase):
         m["packages"][0]["semantic_qa"]["audited_before_return"] = False
         self.assertFailsOn(m, "audited_before_return attested true")
 
-    # NEEDLE UPDATED 2026-08-16 (VO-handoff split), not weakened. The single
-    # "semantic_qa.checks all attested true" check was split into a VO-independent
-    # half (always enforced) and a VO-dependent half (skipped only when
-    # vo_status == 'pending'). These tests still assert a real FAIL on the same
-    # mutated key -- only the check's NAME changed, so the needle follows it to
-    # whichever half owns that key.
     def test_missing_check_flag_rejected(self):
         m = load_valid()
         m["packages"][0]["semantic_qa"]["checks"].pop("hook_claim_coverage", None)
-        self.assertFailsOn(m, "semantic_qa.checks VO-dependent attested true")
+        self.assertFailsOn(m, "semantic_qa.checks VO-dependent keys all attested true")
 
     def test_false_check_flag_rejected(self):
         m = load_valid()
         m["packages"][1]["semantic_qa"]["checks"]["clip_timing_tiling"] = False
-        self.assertFailsOn(m, "semantic_qa.checks VO-independent attested true")
+        self.assertFailsOn(m, "semantic_qa.checks VO-independent keys all attested true")
 
     # test_readaloud_mismatch_rejected REMOVED (2026-07-27, Law #141 rescission) --
     # final_to_opening_readaloud is no longer checked; a mismatch (or its absence) no
@@ -1129,22 +1349,22 @@ class TestHookClaimCoverageAndNumericCrossCheck(unittest.TestCase):
     def test_missing_hook_claim_coverage_check_flag_rejected(self):
         m = load_valid()
         m["packages"][0]["semantic_qa"]["checks"].pop("hook_claim_coverage", None)
-        self.assertFailsOn(m, "semantic_qa.checks VO-dependent attested true")
+        self.assertFailsOn(m, "semantic_qa.checks VO-dependent keys all attested true")
 
     def test_false_hook_claim_coverage_check_flag_rejected(self):
         m = load_valid()
         m["packages"][1]["semantic_qa"]["checks"]["hook_claim_coverage"] = False
-        self.assertFailsOn(m, "semantic_qa.checks VO-dependent attested true")
+        self.assertFailsOn(m, "semantic_qa.checks VO-dependent keys all attested true")
 
     def test_missing_numeric_cross_check_flag_rejected(self):
         m = load_valid()
         m["packages"][0]["semantic_qa"]["checks"].pop("numeric_cross_check", None)
-        self.assertFailsOn(m, "semantic_qa.checks VO-dependent attested true")
+        self.assertFailsOn(m, "semantic_qa.checks VO-dependent keys all attested true")
 
     def test_false_numeric_cross_check_flag_rejected(self):
         m = load_valid()
         m["packages"][1]["semantic_qa"]["checks"]["numeric_cross_check"] = False
-        self.assertFailsOn(m, "semantic_qa.checks VO-dependent attested true")
+        self.assertFailsOn(m, "semantic_qa.checks VO-dependent keys all attested true")
 
     # test_hook_and_loop_anchors_can_be_the_same_entry_if_it_is_both REMOVED
     # (2026-07-27, Law #141 rescission) -- there is no longer a separate loop-anchor
@@ -2521,7 +2741,7 @@ class TestClipLocateGroundingLaw73Update5(unittest.TestCase):
         morning_cross_check_results = [ok for name, ok, _ in r.checks
                                         if name.startswith("[morning]")
                                         and "clip_locate episode number does not contradict claim_vs_source_check when both state one" in name]
-        self.assertEqual(morning_cross_check_results, [v.STATUS_PASS],
+        self.assertEqual(morning_cross_check_results, ["PASS"],
                           msg="cross-check must report PASS when skipped, not silently absent or failing")
 
     # 7. locate_confirmed_via as a bare URL must fail the shape check --
@@ -2693,161 +2913,6 @@ class TestClipDescriptionsSurfaceLocationLaw73Update6(unittest.TestCase):
         self.assertIn("does not match", detail, msg=f"expected a segment-count-mismatch message, not a per-cut mismap; got {detail!r}")
 
 
-
-
-class TestVoPendingSkipBehavior(unittest.TestCase):
-    """vo_status="pending" -- the Perplexity -> Claude VO handoff draft stage.
-
-    Added 2026-08-16. The contract under test: VO-dependent checks SKIP, everything
-    else still runs and attests for real, and a skipped manifest is never sendable.
-    """
-
-    def _pending(self):
-        """Valid fixture with the evening package flipped to vo_status=pending."""
-        m = load_valid()
-        m["packages"][1]["vo_status"] = "pending"
-        return m
-
-    @staticmethod
-    def _statuses(r):
-        return {name: status for name, status, _ in r.checks}
-
-    # --- the five VO-dependent semantic_qa keys skip; the five others do not --------
-    def test_vo_dependent_qa_half_skips_and_independent_half_still_runs(self):
-        r = v.validate_manifest(self._pending())
-        st = self._statuses(r)
-        dep = [n for n in st if "VO-dependent attested true" in n and n.startswith("[evening]")]
-        indep = [n for n in st if "VO-independent attested true" in n and n.startswith("[evening]")]
-        self.assertEqual(len(dep), 1)
-        self.assertEqual(len(indep), 1)
-        self.assertEqual(st[dep[0]], v.STATUS_SKIP)
-        self.assertEqual(st[indep[0]], v.STATUS_PASS,
-                         "VO-independent attestations must still be enforced for real")
-
-    def test_key_partition_is_five_and_five_derived_not_hardcoded(self):
-        self.assertEqual(len(v.VO_DEPENDENT_QA_KEYS), 5)
-        self.assertEqual(len(v.VO_INDEPENDENT_QA_KEYS), 5)
-        # derived by subtraction: no key may be lost or duplicated
-        self.assertEqual(set(v.VO_DEPENDENT_QA_KEYS) | set(v.VO_INDEPENDENT_QA_KEYS),
-                         set(v.SEMANTIC_QA_CHECK_KEYS))
-        self.assertEqual(set(v.VO_DEPENDENT_QA_KEYS) & set(v.VO_INDEPENDENT_QA_KEYS), set())
-
-    # --- the six VO-dependent mechanical checks skip --------------------------------
-    def test_all_six_vo_dependent_mechanical_checks_skip(self):
-        r = v.validate_manifest(self._pending())
-        st = self._statuses(r)
-        needles = [
-            "vo_word_count matches VO text",
-            "words",                                   # the VO word-band check
-            "in VO",                                   # question+CTA contiguity
-            "exact CTA phrase present in VO",
-            "opening_sentence is the VO's exact first sentence",
-            "VO contains no banned word",
-            "hook_line equals opening_sentence",
-        ]
-        for needle in needles:
-            hits = [n for n in st if n.startswith("[evening]") and needle in n]
-            self.assertTrue(hits, f"no evening check matching {needle!r}")
-            for n in hits:
-                self.assertEqual(st[n], v.STATUS_SKIP,
-                                 f"{n} should SKIP while vo_status=pending")
-
-    def test_structural_checks_still_pass_for_real_on_a_pending_package(self):
-        r = v.validate_manifest(self._pending())
-        st = self._statuses(r)
-        # a representative spread of non-VO checks must still be PASS, not SKIP
-        for needle in ("format_type is one of the controlled tokens",
-                       "clip timings tile", "YouTube title within",
-                       "recipient is exactly", "sources"):
-            hits = [n for n in st if needle in n]
-            if hits:
-                self.assertNotIn(v.STATUS_SKIP, [st[n] for n in hits],
-                                 f"{needle!r} must not be skipped -- it does not read the VO")
-
-    # --- ok vs fully_passed ---------------------------------------------------------
-    def test_pending_manifest_is_ok_but_not_fully_passed(self):
-        r = v.validate_manifest(self._pending())
-        self.assertTrue(r.ok, f"no real failures expected; got {r.failures()}")
-        self.assertFalse(r.fully_passed, "skips must keep fully_passed False")
-        self.assertTrue(r.skips())
-
-    def test_complete_manifest_is_both_ok_and_fully_passed(self):
-        r = v.validate_manifest(load_valid())
-        self.assertTrue(r.ok)
-        self.assertTrue(r.fully_passed, "a clean complete manifest must be fully_passed")
-        self.assertEqual(r.skips(), [])
-
-    # --- default and malformed values -----------------------------------------------
-    def test_absent_vo_status_defaults_to_complete_and_enforces_everything(self):
-        m = load_valid()
-        for pkg in m["packages"]:
-            pkg.pop("vo_status", None)
-        r = v.validate_manifest(m)
-        self.assertEqual(r.skips(), [], "absent vo_status must mean full enforcement")
-        self.assertTrue(r.fully_passed)
-
-    # Every malformed shape must FAIL the enum check AND buy zero skips. Looped
-    # rather than spot-checked because "pending" is the only value that unlocks
-    # skipping: anything that is merely pending-ish must not, and a near-miss
-    # (case, whitespace, typo) is exactly how that would regress unnoticed.
-    MALFORMED_VO_STATUS = (
-        ("wrong case", "PENDING"),
-        ("surrounding whitespace", " pending "),
-        ("typo", "pendign"),
-        ("non-string int", 1),
-        ("None", None),
-        ("bool True", True),          # note: True is not a str, and must not pass
-        ("empty string", ""),
-        ("unrelated word", "draft"),
-    )
-
-    def test_malformed_vo_status_fails_and_buys_no_skips(self):
-        for label, bad in self.MALFORMED_VO_STATUS:
-            with self.subTest(value=label):
-                m = load_valid()
-                m["packages"][1]["vo_status"] = bad
-                r = v.validate_manifest(m)
-                names = [n for n, s, _ in r.checks if s == v.STATUS_FAIL]
-                self.assertTrue(any("vo_status is one of" in n for n in names),
-                                f"{label}: expected a vo_status failure; got {names}")
-                self.assertEqual(r.skips(), [],
-                                 f"{label}: a malformed vo_status must never buy "
-                                 f"VO-dependent skips")
-
-    def test_only_exact_pending_unlocks_skipping(self):
-        # The positive half of the guard above: the ONE value that must work.
-        m = load_valid()
-        m["packages"][1]["vo_status"] = "pending"
-        r = v.validate_manifest(m)
-        self.assertTrue(r.skips(), "exact 'pending' must unlock VO-dependent skips")
-        self.assertFalse(any("vo_status is one of" in n
-                             for n, s, _ in r.checks if s == v.STATUS_FAIL),
-                         "'pending' is a valid enum value and must not fail the check")
-
-    # --- exit codes -----------------------------------------------------------------
-    def test_exit_code_three_for_partial_and_zero_for_complete(self):
-        import json as _json, tempfile as _tf, os as _os
-        d = _tf.mkdtemp()
-        pend = _os.path.join(d, "pending.json")
-        comp = _os.path.join(d, "complete.json")
-        with open(pend, "w", encoding="utf-8") as fh:
-            _json.dump(self._pending(), fh)
-        with open(comp, "w", encoding="utf-8") as fh:
-            _json.dump(load_valid(), fh)
-        self.assertEqual(v.main(["prog", pend]), 3, "PARTIAL must exit 3, not 0 or 1")
-        self.assertEqual(v.main(["prog", comp]), 0, "fully_passed must exit 0")
-
-    def test_report_shows_skip_and_partial_verdict(self):
-        r = v.validate_manifest(self._pending())
-        out = v.format_report(r)
-        self.assertIn("[SKIP]", out)
-        self.assertIn("PARTIAL", out)
-        # NB: the PARTIAL verdict legitimately contains the substring "cleared to
-        # send" as part of "NOT cleared to send", so assert on the POSITIVE clearance
-        # string specifically rather than the substring.
-        self.assertNotIn("PASS — cleared to send", out,
-                         "a PARTIAL report must never carry the positive send clearance")
-        self.assertIn("NOT cleared to send", out)
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
@@ -4185,3 +4250,1122 @@ class TestSeasonRoundupPerShowSourcingLaw159(unittest.TestCase):
         for loader in (load_valid, load_experiment):
             r = v.validate_manifest(loader())
             self.assertTrue(r.ok, msg=f"baseline fixture regressed: {r.failures()}")
+
+
+class TestVoPendingSkipBehavior(unittest.TestCase):
+    """2026-08-19, Claude-writes-VO workflow. Verifies the vo_status=="pending" branch
+    genuinely SKIPS the VO-dependent checks (not silently pass, not hard-fail) while
+    every VO-independent check still runs for real, and that Result.ok vs
+    Result.fully_passed vs main()'s exit code behave exactly as designed:
+    ok=True (permissive of skips) but fully_passed=False while any check is pending.
+    """
+
+    VO_DEPENDENT_NAMES = (
+        "VO within",
+        "question immediately followed by",
+        "exact CTA phrase present in VO",
+        "opening_sentence is the VO's exact first sentence",
+        "VO contains no banned word 'bro'",
+        "hook_line equals opening_sentence",
+        "semantic_qa.checks VO-dependent keys all attested true",
+    )
+    VO_INDEPENDENT_NAMES_SAMPLE = (
+        "opening_sentence present",
+        "semantic_qa.checks VO-independent keys all attested true",
+    )
+
+    def _pending_manifest(self) -> dict:
+        m = load_valid()
+        pkg = m["packages"][0]
+        pkg["vo_status"] = "pending"
+        pkg["vo"] = ""
+        pkg.pop("vo_word_count", None)
+        # per the standing process change, hook_line/opening_sentence are PROPOSED
+        # (not locked) at draft stage even while VO itself is pending -- keep them
+        # present so the structural "present" checks still exercise real content.
+        return m
+
+    def test_pending_package_skips_exactly_the_vo_dependent_checks(self):
+        m = self._pending_manifest()
+        r = v.validate_manifest(m)
+        skip_names = [n for n, ok, _ in r.checks if ok == "SKIP"]
+        morning_skips = [n for n in skip_names if n.startswith("[morning]")]
+        for needle in self.VO_DEPENDENT_NAMES:
+            self.assertTrue(any(needle in n for n in morning_skips),
+                             msg=f"expected a [morning] SKIP containing {needle!r}; "
+                                 f"got skips={morning_skips}")
+
+    def test_pending_package_does_not_skip_vo_independent_checks(self):
+        m = self._pending_manifest()
+        r = v.validate_manifest(m)
+        skip_names = [n for n, ok, _ in r.checks if ok == "SKIP"]
+        morning_skips = [n for n in skip_names if n.startswith("[morning]")]
+        for needle in self.VO_INDEPENDENT_NAMES_SAMPLE:
+            leaked = [n for n in morning_skips if needle in n]
+            self.assertEqual(leaked, [],
+                              msg=f"VO-independent check {needle!r} was wrongly SKIPPED: {leaked}")
+        # and it must have run for real (present as PASS, not silently absent)
+        all_names_status = {n: ok for n, ok, _ in r.checks}
+        present_check = next(n for n in all_names_status if "opening_sentence present" in n and n.startswith("[morning]"))
+        self.assertEqual(all_names_status[present_check], "PASS")
+
+    def test_pending_package_has_zero_fails_from_vo_absence_alone(self):
+        """Stripping the VO must never itself produce a hard FAIL -- only SKIPs."""
+        m = self._pending_manifest()
+        r = v.validate_manifest(m)
+        morning_fails = [n for n, ok, _ in r.checks if ok == "FAIL" and n.startswith("[morning]")]
+        self.assertEqual(morning_fails, [], msg=f"unexpected FAILs from VO-pending package: {morning_fails}")
+
+    def test_pending_manifest_ok_true_but_fully_passed_false(self):
+        m = self._pending_manifest()
+        r = v.validate_manifest(m)
+        self.assertTrue(r.ok, msg=f"ok should be permissive of skips; failures={r.failures()}")
+        self.assertFalse(r.fully_passed,
+                          msg="fully_passed must be False while any check is SKIPPED")
+        self.assertTrue(len(r.skips()) > 0)
+
+    def test_complete_vo_status_backward_compatible_default(self):
+        """A manifest that never sets vo_status at all (every pre-existing manifest)
+        must behave exactly as before -- vo_status defaults to "complete", nothing
+        is skipped, and fully_passed == ok when there are zero fails."""
+        m = load_valid()
+        for pkg in m["packages"]:
+            self.assertNotIn("vo_status", pkg)
+        r = v.validate_manifest(m)
+        self.assertEqual(r.skips(), [])
+        self.assertTrue(r.fully_passed, msg=f"failures={r.failures()}")
+        self.assertEqual(r.fully_passed, r.ok)
+
+    def test_explicit_vo_status_complete_also_skips_nothing(self):
+        m = load_valid()
+        for pkg in m["packages"]:
+            pkg["vo_status"] = "complete"
+        r = v.validate_manifest(m)
+        self.assertEqual(r.skips(), [])
+        self.assertTrue(r.fully_passed, msg=f"failures={r.failures()}")
+
+    def test_main_exit_code_3_for_partial_pending_manifest(self):
+        """main()'s exit code must distinguish PARTIAL (3, skips-only) from a real
+        PASS (0) -- a pending manifest must never exit 0."""
+        m = self._pending_manifest()
+        path = os.path.join(os.path.dirname(__file__), "_tmp_vo_pending_manifest.json")
+        with open(path, "w", encoding="utf-8") as fh:
+            json.dump(m, fh)
+        try:
+            code = v.main(["validate_dual_package.py", path])
+        finally:
+            os.remove(path)
+        self.assertEqual(code, 3, "pending-VO manifest must exit 3 (PARTIAL), not 0 (PASS) or 1 (FAIL)")
+
+    def test_main_exit_code_0_for_complete_valid_manifest(self):
+        path = os.path.join(os.path.dirname(__file__), "_tmp_vo_complete_manifest.json")
+        with open(path, "w", encoding="utf-8") as fh:
+            json.dump(load_valid(), fh)
+        try:
+            code = v.main(["validate_dual_package.py", path])
+        finally:
+            os.remove(path)
+        self.assertEqual(code, 0, "a genuinely complete, fully-passing manifest must exit 0")
+
+    def test_format_report_says_partial_do_not_send_when_pending(self):
+        m = self._pending_manifest()
+        r = v.validate_manifest(m)
+        report = v.format_report(r)
+        self.assertIn("PARTIAL", report)
+        self.assertIn("DO NOT SEND", report)
+        self.assertIn("DO NOT APPROVE", report)
+
+    def test_evening_package_independent_of_morning_vo_status(self):
+        """Only the [morning] package is set to pending in _pending_manifest(); the
+        [evening] package's own VO-dependent checks must still run for real and stay
+        ungated by the sibling package's status."""
+        m = self._pending_manifest()
+        r = v.validate_manifest(m)
+        evening_skips = [n for n, ok, _ in r.checks if ok == "SKIP" and n.startswith("[evening]")]
+        self.assertEqual(evening_skips, [],
+                          msg=f"evening package must not inherit morning's pending VO status: {evening_skips}")
+
+
+class TestFormatTypeEligibilityLaw98(unittest.TestCase):
+    """Item #6 (2026-08-19): mechanical fields for the numeric/enum-checkable
+    eligibility rules laws/format_reference_seasonal_types.md and Law #98 document
+    for EPISODE_MOMENT, SEASON_RATING, SEASON_PREVIEW, and WATCH_RANK. Before this,
+    all four were pure self-attestation via format_type alone -- nothing mechanical
+    checked episode age, premiere-window distance, finale age, or ranked-show count.
+
+    All cases build a fresh package from load_valid()'s morning slot so each test is
+    independent and unaffected by the other package. post_date is fixed at
+    2026-07-16 (the real fixture's own value) throughout, so every day-math example
+    below is computed by hand against that anchor for a reader auditing this file.
+    """
+
+    def _pkg(self, format_type, **fields):
+        m = load_valid()
+        pkg = m["packages"][0]
+        pkg["format_type"] = format_type
+        for k in ("episode_air_date_iso", "show_status", "show_status_as_of_iso",
+                  "finale_date_iso", "premiere_date_iso", "shows_ranked",
+                  "shows_ranked_source_note", "preview_stance"):
+            pkg.pop(k, None)
+        pkg.update(fields)
+        return m
+
+    def _fails(self, m, needle):
+        r = v.validate_manifest(m)
+        names = [n for n, ok, _ in r.failures() if "[morning]" in n and needle in n]
+        return names
+
+    # --- EPISODE_MOMENT: 7-day post-air deadline, anchored on post_date=2026-07-16 ---
+
+    def test_episode_moment_exactly_7_days_old_passes(self):
+        # post_date - 7 days = 2026-07-09. Boundary itself must PASS (rule says
+        # "within 7 days", inclusive).
+        m = self._pkg("EPISODE_MOMENT", episode_air_date_iso="2026-07-09")
+        self.assertEqual(self._fails(m, "EPISODE_MOMENT window"), [])
+
+    def test_episode_moment_8_days_old_fails(self):
+        # One day past the boundary: 2026-07-08 is 8 days before post_date.
+        m = self._pkg("EPISODE_MOMENT", episode_air_date_iso="2026-07-08")
+        self.assertNotEqual(self._fails(m, "EPISODE_MOMENT window"), [])
+
+    def test_episode_moment_future_air_date_fails(self):
+        # An air date AFTER post_date is nonsensical (can't review an episode before
+        # it airs) -- age would be negative, which the 0<=age guard correctly rejects.
+        m = self._pkg("EPISODE_MOMENT", episode_air_date_iso="2026-07-20")
+        self.assertNotEqual(self._fails(m, "EPISODE_MOMENT window"), [])
+
+    def test_episode_moment_missing_date_fails(self):
+        m = self._pkg("EPISODE_MOMENT")
+        fails = self._fails(m, "episode_air_date_iso present")
+        self.assertNotEqual(fails, [])
+
+    def test_episode_moment_malformed_date_fails(self):
+        m = self._pkg("EPISODE_MOMENT", episode_air_date_iso="07/09/2026")
+        self.assertNotEqual(self._fails(m, "episode_air_date_iso present"), [])
+
+    def test_episode_moment_field_scoped_out_on_other_format(self):
+        # A stray episode_air_date_iso on a non-EPISODE_MOMENT package must fail the
+        # scoping check, exactly like roundup_shows/shows_ranked do for their formats.
+        m = self._pkg("FACT_DROP", episode_air_date_iso="2026-07-09")
+        self.assertNotEqual(self._fails(m, "episode_air_date_iso absent"), [])
+
+    # --- SEASON_RATING: finished-within-30-days OR airing (no ceiling) ---
+
+    def test_season_rating_finished_exactly_30_days_passes(self):
+        m = self._pkg("SEASON_RATING", show_status="finished",
+                       show_status_as_of_iso="2026-07-15", finale_date_iso="2026-06-16")
+        self.assertEqual(self._fails(m, "SEASON_RATING window"), [])
+
+    def test_season_rating_finished_31_days_fails(self):
+        m = self._pkg("SEASON_RATING", show_status="finished",
+                       show_status_as_of_iso="2026-07-15", finale_date_iso="2026-06-15")
+        self.assertNotEqual(self._fails(m, "SEASON_RATING window"), [])
+
+    def test_season_rating_airing_has_no_age_ceiling(self):
+        # "airing" has no age ceiling per the law's either/or wording -- no
+        # finale_date_iso should be required or checked against any window.
+        m = self._pkg("SEASON_RATING", show_status="airing",
+                       show_status_as_of_iso="2026-07-15")
+        r = v.validate_manifest(m)
+        fails = [n for n, ok, _ in r.failures() if "[morning]" in n
+                 and ("SEASON_RATING" in n or "show_status" in n or "finale" in n)]
+        self.assertEqual(fails, [])
+
+    def test_season_rating_airing_with_finale_date_present_fails(self):
+        # finale_date_iso is meaningless while airing -- must be absent, not just
+        # ignored, per the function's own "absent when not applicable" discipline.
+        m = self._pkg("SEASON_RATING", show_status="airing",
+                       show_status_as_of_iso="2026-07-15", finale_date_iso="2026-06-01")
+        self.assertNotEqual(self._fails(m, "finale_date_iso absent while show_status=airing"), [])
+
+    def test_season_rating_invalid_status_value_fails(self):
+        m = self._pkg("SEASON_RATING", show_status="cancelled",
+                       show_status_as_of_iso="2026-07-15")
+        self.assertNotEqual(self._fails(m, "show_status is one of"), [])
+
+    def test_season_rating_finished_missing_finale_date_fails(self):
+        m = self._pkg("SEASON_RATING", show_status="finished",
+                       show_status_as_of_iso="2026-07-15")
+        self.assertNotEqual(self._fails(m, "finale_date_iso present and valid"), [])
+
+    # --- SEASON_PREVIEW: +/-45 day symmetric window ---
+    # NOTE (item #7, 2026-08-19): preview_stance is now also a required field on
+    # SEASON_PREVIEW packages (see TestPreviewStanceStalenessLaw98F45 below for its
+    # own dedicated adversarial coverage). Every test in this block passes the
+    # date-math-correct preview_stance so it remains an honest "fully passes
+    # SEASON_PREVIEW" case rather than silently passing only because its assertion
+    # filters by a needle that happens not to match the new stance check's name.
+
+    def test_season_preview_exactly_45_days_before_passes(self):
+        # post_date=2026-07-16, premiere 45 days earlier = 2026-06-01 -- already
+        # passed relative to post_date, so the correct stance is post_air.
+        m = self._pkg("SEASON_PREVIEW", premiere_date_iso="2026-06-01",
+                       preview_stance="post_air")
+        self.assertEqual(self._fails(m, "SEASON_PREVIEW window"), [])
+
+    def test_season_preview_exactly_45_days_after_passes(self):
+        # Symmetric: 45 days AFTER post_date must also pass ("before or after
+        # airing") -- 2026-08-30 has not yet happened relative to post_date, so the
+        # correct stance is pre_air.
+        m = self._pkg("SEASON_PREVIEW", premiere_date_iso="2026-08-30",
+                       preview_stance="pre_air")
+        self.assertEqual(self._fails(m, "SEASON_PREVIEW window"), [])
+
+    def test_season_preview_46_days_after_fails(self):
+        m = self._pkg("SEASON_PREVIEW", premiere_date_iso="2026-08-31",
+                       preview_stance="pre_air")
+        self.assertNotEqual(self._fails(m, "SEASON_PREVIEW window"), [])
+
+    def test_season_preview_46_days_before_fails(self):
+        m = self._pkg("SEASON_PREVIEW", premiere_date_iso="2026-05-31",
+                       preview_stance="post_air")
+        self.assertNotEqual(self._fails(m, "SEASON_PREVIEW window"), [])
+
+    def test_season_preview_missing_date_fails(self):
+        m = self._pkg("SEASON_PREVIEW", preview_stance="pre_air")
+        self.assertNotEqual(self._fails(m, "premiere_date_iso present and valid"), [])
+
+    # --- WATCH_RANK: 3-6 distinct non-empty shows ---
+
+    def test_watch_rank_3_shows_passes(self):
+        m = self._pkg("WATCH_RANK", shows_ranked=["Show A", "Show B", "Show C"],
+                       shows_ranked_source_note="Sebastian's own currently-watching "
+                       "list, ranked by his own reasoning per placement.")
+        self.assertEqual(self._fails(m, "Law #98"), [])
+
+    def test_watch_rank_6_shows_passes(self):
+        m = self._pkg("WATCH_RANK",
+                       shows_ranked=["A", "B", "C", "D", "E", "F"],
+                       shows_ranked_source_note="Sebastian's own currently-watching "
+                       "list, ranked by his own reasoning per placement.")
+        self.assertEqual(self._fails(m, "Law #98"), [])
+
+    def test_watch_rank_2_shows_fails(self):
+        # "Never rank just one" is the qualitative framing but the actual documented
+        # floor is 3 -- 2 must also fail.
+        m = self._pkg("WATCH_RANK", shows_ranked=["Show A", "Show B"])
+        self.assertNotEqual(self._fails(m, "Law #98"), [])
+
+    def test_watch_rank_1_show_fails(self):
+        m = self._pkg("WATCH_RANK", shows_ranked=["Show A"])
+        self.assertNotEqual(self._fails(m, "Law #98"), [])
+
+    def test_watch_rank_7_shows_fails(self):
+        m = self._pkg("WATCH_RANK",
+                       shows_ranked=["A", "B", "C", "D", "E", "F", "G"])
+        self.assertNotEqual(self._fails(m, "Law #98"), [])
+
+    def test_watch_rank_case_insensitive_duplicate_fails(self):
+        m = self._pkg("WATCH_RANK",
+                       shows_ranked=["One Piece", "Naruto", "one piece"])
+        self.assertNotEqual(self._fails(m, "Law #98"), [])
+
+    def test_watch_rank_missing_field_fails(self):
+        m = self._pkg("WATCH_RANK")
+        self.assertNotEqual(self._fails(m, "Law #98"), [])
+
+    def test_watch_rank_empty_string_in_list_fails(self):
+        m = self._pkg("WATCH_RANK", shows_ranked=["Show A", "", "Show C"])
+        self.assertNotEqual(self._fails(m, "Law #98"), [])
+
+    # --- WATCH_RANK: shows_ranked_source_note + public-poll-source ban (Law #98 fix, 2026-08-22) ---
+
+    def test_watch_rank_missing_source_note_fails(self):
+        m = self._pkg("WATCH_RANK", shows_ranked=["Show A", "Show B", "Show C"])
+        self.assertNotEqual(self._fails(m, "shows_ranked_source_note is a non-empty string"), [])
+
+    def test_watch_rank_empty_source_note_fails(self):
+        m = self._pkg("WATCH_RANK", shows_ranked=["Show A", "Show B", "Show C"],
+                       shows_ranked_source_note="   ")
+        self.assertNotEqual(self._fails(m, "shows_ranked_source_note is a non-empty string"), [])
+
+    def test_watch_rank_clean_source_note_passes(self):
+        m = self._pkg("WATCH_RANK", shows_ranked=["Show A", "Show B", "Show C"],
+                       shows_ranked_source_note="Sebastian's own currently-watching "
+                       "list, ranked by his own reasoning per placement.")
+        self.assertEqual(self._fails(m, "public poll/aggregator"), [])
+
+    def test_watch_rank_anime_corner_in_source_note_fails(self):
+        # Real 2026-07-28 failure mode: the one historical WATCH_RANK send
+        # reported Anime Corner's public seasonal poll standings.
+        m = self._pkg("WATCH_RANK", shows_ranked=["Show A", "Show B", "Show C"],
+                       shows_ranked_source_note="Based on Anime Corner rankings.")
+        self.assertNotEqual(self._fails(m, "public poll/aggregator"), [])
+
+    def test_watch_rank_anime_corner_in_angle_fails(self):
+        # Same real failure mode, but the public-source language lives in `angle`
+        # instead of the new source-note field -- both are checked.
+        m = self._pkg("WATCH_RANK", shows_ranked=["Show A", "Show B", "Show C"],
+                       shows_ranked_source_note="Sebastian's own currently-watching list.",
+                       angle="Tanya dethroned then reclaimed #1 in the Anime Corner rankings")
+        self.assertNotEqual(self._fails(m, "public poll/aggregator"), [])
+
+    def test_watch_rank_poll_keyword_fails(self):
+        m = self._pkg("WATCH_RANK", shows_ranked=["Show A", "Show B", "Show C"],
+                       shows_ranked_source_note="Ranked using a fan poll result.")
+        self.assertNotEqual(self._fails(m, "public poll/aggregator"), [])
+
+    def test_watch_rank_source_note_scoping_absent_on_other_formats(self):
+        # shows_ranked_source_note must be absent (not just empty) on non-WATCH_RANK
+        # packages -- mirrors the existing shows_ranked scoping check.
+        m = self._pkg("FACT_DROP", shows_ranked_source_note="stray field")
+        self.assertNotEqual(self._fails(m, "shows_ranked_source_note absent on non-WATCH_RANK"), [])
+
+    # --- cross-cutting: post_date itself ---
+
+    def test_manifest_missing_post_date_fails(self):
+        m = load_valid()
+        del m["post_date"]
+        r = v.validate_manifest(m)
+        names = [n for n, ok, _ in r.failures() if "post_date present and valid" in n]
+        self.assertNotEqual(names, [])
+
+    def test_manifest_malformed_post_date_fails(self):
+        m = load_valid()
+        m["post_date"] = "July 16, 2026"
+        r = v.validate_manifest(m)
+        names = [n for n, ok, _ in r.failures() if "post_date present and valid" in n]
+        self.assertNotEqual(names, [])
+
+    def test_missing_post_date_makes_date_window_checks_fail_not_skip(self):
+        # A package that's otherwise a perfectly valid EPISODE_MOMENT must still show
+        # a real FAIL (not a silently-passing check, not a SKIP) when the manifest's
+        # own post_date anchor is missing -- fail-closed, matching this file's
+        # existing convention for every other unevaluable-check case.
+        m = self._pkg("EPISODE_MOMENT", episode_air_date_iso="2026-07-09")
+        del m["post_date"]
+        r = v.validate_manifest(m)
+        window_checks = [(n, ok) for n, ok, _ in r.checks
+                          if "[morning] episode_air_date_iso within 7 days" in n]
+        self.assertEqual(len(window_checks), 1)
+        self.assertEqual(window_checks[0][1], "FAIL")
+
+    def test_real_valid_fixture_unaffected_by_new_checks(self):
+        # Both packages in the real valid fixture use CHARACTER_DIVE/WRONG_TAKE --
+        # neither is one of the four scoped format_types, so every new field must be
+        # absent and every new check must pass via the scoping branch.
+        r = v.validate_manifest(load_valid())
+        new_check_fails = [n for n, ok, _ in r.failures()
+                            if any(kw in n for kw in
+                                   ("episode_air_date_iso", "show_status",
+                                    "premiere_date_iso", "shows_ranked",
+                                    "preview_stance", "post_date present"))]
+        self.assertEqual(new_check_fails, [])
+
+
+class TestPreviewStanceStalenessLaw98F45(unittest.TestCase):
+    """Item #7 (2026-08-19): preview_stance is a required field on SEASON_PREVIEW
+    packages, mechanically cross-checked against premiere_date_iso vs post_date --
+    closing (narrowing, not fully solving) the real F45 failure mode: a package
+    framed in pre-air future tense ("Episode 4... airs Saturday") for a date that,
+    by ship time, had already happened. See docs/KNOWN_ISSUES.md for the full F45
+    incident writeup (batch f54413d8, Bleach: TYBW - The Calamity, Episode 4).
+
+    Convention: premiere_date_iso <= post_date means the date has ALREADY PASSED as
+    of ship time (equality counts as passed -- this is the real F45 boundary, where
+    the episode aired the same calendar day as post_date), so the correct stance is
+    post_air. premiere_date_iso > post_date means the date has NOT happened yet, so
+    the correct stance is pre_air. Any other pairing is a HARD FAIL.
+
+    Every fixture manifest here uses the shared valid fixture's real post_date,
+    confirmed once up front so every date literal below is unambiguous.
+    """
+
+    STANCE_CHECK_NAME = ("preview_stance consistent with premiere_date_iso vs "
+                          "post_date")
+
+    def setUp(self):
+        # Confirm the shared fixture's post_date so every hand-picked date literal
+        # in this class is anchored to a known, real value rather than an assumed
+        # one -- if the fixture's post_date ever changes, this fails loudly here
+        # instead of silently invalidating every test below.
+        self.assertEqual(load_valid()["post_date"], "2026-07-16")
+
+    def _pkg(self, **fields):
+        m = load_valid()
+        pkg = m["packages"][0]
+        pkg["format_type"] = "SEASON_PREVIEW"
+        for k in ("episode_air_date_iso", "show_status", "show_status_as_of_iso",
+                  "finale_date_iso", "premiere_date_iso", "shows_ranked",
+                  "preview_stance"):
+            pkg.pop(k, None)
+        pkg.update(fields)
+        return m
+
+    def _stance_fails(self, m):
+        r = v.validate_manifest(m)
+        return [n for n, ok, _ in r.failures() if self.STANCE_CHECK_NAME in n]
+
+    # --- Required adversarial test 1: future premiere, stance=pre_air -- passes ---
+    def test_future_premiere_pre_air_stance_passes(self):
+        # post_date=2026-07-16; premiere in the future (within the 45-day window).
+        m = self._pkg(premiere_date_iso="2026-07-20", preview_stance="pre_air")
+        self.assertEqual(self._stance_fails(m), [])
+
+    # --- Required adversarial test 2: past premiere, stance=post_air -- passes ---
+    def test_past_premiere_post_air_stance_passes(self):
+        # post_date=2026-07-16; premiere in the past (within the 45-day window).
+        m = self._pkg(premiere_date_iso="2026-07-10", preview_stance="post_air")
+        self.assertEqual(self._stance_fails(m), [])
+
+    # --- Required adversarial test 3: the real F45 case, reconstructed ---
+    def test_real_f45_bleach_episode_4_case_is_caught(self):
+        # Real incident (docs/KNOWN_ISSUES.md, batch f54413d8, evening package):
+        # Bleach: Thousand-Year Blood War - The Calamity, Episode 4 ("The Perfect
+        # Crimson"). run_ts=2026-08-14T22:35:00+00:00, post_date=2026-08-15.
+        # Real air date: Saturday 2026-08-15, 11:00 PM JST = 10:00 AM ET the SAME
+        # calendar day (per CBR, re-verified in F44 finding E3) -- i.e. by the time
+        # this evening package would ship, the episode had already aired that
+        # morning ET. The real package's VO/hook was written entirely in pre-air
+        # future tense ("Episode 4... airs Saturday," "the official preview says")
+        # and one clip's verification_note asserted the episode "has not aired as
+        # of this run's date" -- false by ship-review time. Reconstructed here with
+        # premiere_date_iso == post_date == "2026-08-15" and the actual declared
+        # stance (pre_air) the real package shipped with -- this must HARD FAIL.
+        m = self._pkg(premiere_date_iso="2026-08-15", preview_stance="pre_air")
+        m["post_date"] = "2026-08-15"
+        fails = self._stance_fails(m)
+        self.assertNotEqual(fails, [],
+                             "item #7 must catch the real F45 Bleach Episode 4 "
+                             "same-day-airing pre_air misdeclaration")
+
+    # --- Required adversarial test 4: the reverse inconsistency ---
+    def test_future_premiere_post_air_stance_fails(self):
+        # post_date=2026-07-16; premiere in the future, but incorrectly declared
+        # post_air (claims something already happened that has not) -- equally a
+        # real problem per the user's spec, must HARD FAIL just like the F45
+        # direction.
+        m = self._pkg(premiere_date_iso="2026-07-20", preview_stance="post_air")
+        self.assertNotEqual(self._stance_fails(m), [])
+
+    def test_past_premiere_pre_air_stance_fails(self):
+        # Symmetric check using a non-boundary past date (distinct from the F45
+        # boundary case in test 3): premiere already happened, declared pre_air.
+        m = self._pkg(premiere_date_iso="2026-07-10", preview_stance="pre_air")
+        self.assertNotEqual(self._stance_fails(m), [])
+
+    # --- Required adversarial test 5: the exact boundary, both declared stances --
+    def test_premiere_equals_post_date_post_air_passes(self):
+        # premiere_date_iso == post_date is the exact real F45 boundary. Per the
+        # user's spec, this class's setUp/module convention decides it counts as
+        # "already happened" -- so the correct stance is post_air, and that must
+        # pass cleanly.
+        m = self._pkg(premiere_date_iso="2026-07-16", preview_stance="post_air")
+        self.assertEqual(self._stance_fails(m), [])
+
+    def test_premiere_equals_post_date_pre_air_fails(self):
+        # The exact same boundary date, but declared pre_air -- this is the literal
+        # F45 shape (premiere_date_iso == post_date, declared pre_air) and must
+        # HARD FAIL, not pass or silently skip.
+        m = self._pkg(premiere_date_iso="2026-07-16", preview_stance="pre_air")
+        self.assertNotEqual(self._stance_fails(m), [])
+
+    # --- Required adversarial test 6: missing/invalid preview_stance ---
+    def test_missing_preview_stance_fails_closed(self):
+        m = self._pkg(premiere_date_iso="2026-07-20")  # no preview_stance at all
+        r = v.validate_manifest(m)
+        enum_fails = [n for n, ok, _ in r.failures()
+                      if "preview_stance is one of" in n]
+        self.assertNotEqual(enum_fails, [])
+        self.assertNotEqual(self._stance_fails(m), [])
+
+    def test_invalid_preview_stance_value_fails_closed(self):
+        m = self._pkg(premiere_date_iso="2026-07-20", preview_stance="TBD")
+        r = v.validate_manifest(m)
+        enum_fails = [n for n, ok, _ in r.failures()
+                      if "preview_stance is one of" in n]
+        self.assertNotEqual(enum_fails, [])
+        self.assertNotEqual(self._stance_fails(m), [])
+
+    def test_non_string_preview_stance_fails_closed(self):
+        m = self._pkg(premiere_date_iso="2026-07-20", preview_stance=True)
+        r = v.validate_manifest(m)
+        enum_fails = [n for n, ok, _ in r.failures()
+                      if "preview_stance is one of" in n]
+        self.assertNotEqual(enum_fails, [])
+
+    # --- Required adversarial test 7: real-data F45 fixture confirms catch ---
+    def test_real_f45_fixture_confirms_new_check_would_have_caught_it(self):
+        # Same reconstruction as test 3, but asserting on validate_manifest().ok
+        # directly -- confirms the manifest-level gate (the one preflight actually
+        # checks in step 6 of the daily runtime) would have failed closed on the
+        # real F45 package, not just that an internal check fired.
+        m = self._pkg(premiere_date_iso="2026-08-15", preview_stance="pre_air")
+        m["post_date"] = "2026-08-15"
+        r = v.validate_manifest(m)
+        self.assertFalse(r.ok,
+                          "validate_manifest().ok must be False for the "
+                          "reconstructed real F45 Bleach Episode 4 package")
+
+    # --- Additional coverage: scoping (mirrors item #6's pattern for the other
+    # three format_type-scoped fields) ---
+    def test_preview_stance_absent_on_non_season_preview_package_passes(self):
+        m = self._pkg()
+        m["packages"][0]["format_type"] = "FACT_DROP"
+        r = v.validate_manifest(m)
+        scoping_fails = [n for n, ok, _ in r.failures()
+                          if "preview_stance absent on non-SEASON_PREVIEW" in n]
+        self.assertEqual(scoping_fails, [])
+
+    def test_preview_stance_present_on_non_season_preview_package_fails(self):
+        m = self._pkg(preview_stance="pre_air")
+        m["packages"][0]["format_type"] = "FACT_DROP"
+        # FACT_DROP doesn't need premiere_date_iso/shows_ranked etc., so clear those
+        # to isolate the one field under test.
+        m["packages"][0].pop("premiere_date_iso", None)
+        r = v.validate_manifest(m)
+        scoping_fails = [n for n, ok, _ in r.failures()
+                          if "preview_stance absent on non-SEASON_PREVIEW" in n]
+        self.assertNotEqual(scoping_fails, [])
+
+    def test_missing_post_date_makes_stance_check_fail_not_skip(self):
+        # Fail-closed convention: an otherwise-consistent SEASON_PREVIEW package
+        # must still show a real FAIL (not silently pass, not SKIP) when post_date
+        # itself is missing, matching every other date-window check in this file.
+        m = self._pkg(premiere_date_iso="2026-07-20", preview_stance="pre_air")
+        del m["post_date"]
+        r = v.validate_manifest(m)
+        stance_checks = [(n, ok) for n, ok, _ in r.checks
+                          if self.STANCE_CHECK_NAME in n]
+        self.assertEqual(len(stance_checks), 1)
+        self.assertEqual(stance_checks[0][1], "FAIL")
+
+
+class TestSpoilerWarningF60(unittest.TestCase):
+    """F60 (2026-08-21, real case: batch 71d6fdb3's Victoria of Many Faces
+    package): hero_or_villain_master_laws_final.txt requires a SPOILER WARNING
+    in youtube_title and the first line of tiktok_post_text for EPISODE_MOMENT,
+    EPISODE_REVIEW, and EPISODE_VS_MANGA packages. Before this, nothing
+    mechanical checked it -- a package could omit the flag entirely and still
+    validate clean.
+    """
+
+    def _pkg(self, format_type, youtube_title, tiktok_post_text):
+        m = load_valid()
+        pkg = m["packages"][0]
+        pkg["format_type"] = format_type
+        pkg["youtube_title"] = youtube_title
+        pkg["tiktok_post_text"] = tiktok_post_text
+        return m
+
+    def _fails(self, m, needle):
+        r = v.validate_manifest(m)
+        return [n for n, ok, _ in r.failures() if "[morning]" in n and needle in n]
+
+    def test_episode_moment_missing_spoiler_in_title_fails(self):
+        m = self._pkg("EPISODE_MOMENT",
+                       "Victoria of Many Faces Just Left Everyone",
+                       "SPOILERS for Episode 7: she left. #anime")
+        self.assertNotEqual(self._fails(m, "youtube_title contains a spoiler warning"), [])
+
+    def test_episode_moment_missing_spoiler_in_tiktok_first_line_fails(self):
+        m = self._pkg("EPISODE_MOMENT",
+                       "SPOILER: Victoria of Many Faces Just Left Everyone",
+                       "She left everyone who loves her. #anime")
+        self.assertNotEqual(
+            self._fails(m, "tiktok_post_text first line contains a spoiler warning"), [])
+
+    def test_episode_moment_with_spoiler_in_both_passes(self):
+        m = self._pkg("EPISODE_MOMENT",
+                       "SPOILER: Victoria of Many Faces Just Left Everyone",
+                       "SPOILERS for Episode 7: she left. #anime")
+        self.assertEqual(self._fails(m, "spoiler warning"), [])
+
+    def test_spoiler_check_case_insensitive(self):
+        m = self._pkg("EPISODE_MOMENT",
+                       "Spoiler: Victoria of Many Faces Just Left Everyone",
+                       "spoilers for Episode 7: she left. #anime")
+        self.assertEqual(self._fails(m, "spoiler warning"), [])
+
+    def test_episode_review_also_requires_spoiler_warning(self):
+        m = self._pkg("EPISODE_REVIEW",
+                       "Victoria of Many Faces Episode 7 Review",
+                       "Reviewing Episode 7. #anime")
+        self.assertNotEqual(self._fails(m, "spoiler warning"), [])
+
+    def test_episode_vs_manga_also_requires_spoiler_warning(self):
+        m = self._pkg("EPISODE_VS_MANGA",
+                       "Victoria of Many Faces: Anime vs Manga Episode 7",
+                       "Comparing Episode 7 to the manga. #anime")
+        self.assertNotEqual(self._fails(m, "spoiler warning"), [])
+
+    def test_non_spoiler_required_format_not_checked(self):
+        # FACT_DROP has no spoiler-warning requirement in the master laws --
+        # the check must not fire at all for formats outside the three scoped.
+        m = self._pkg("FACT_DROP",
+                       "Victoria of Many Faces Facts You Missed",
+                       "Facts about the show. #anime")
+        r = v.validate_manifest(m)
+        spoiler_checks = [n for n, ok, _ in r.checks
+                           if "[morning]" in n and "spoiler warning" in n]
+        self.assertEqual(spoiler_checks, [])
+
+    def test_tiktok_spoiler_flag_must_be_on_first_line_not_buried(self):
+        # A spoiler flag two lines down the caption does not count -- the law
+        # says "first line of TikTok post text".
+        m = self._pkg("EPISODE_MOMENT",
+                       "SPOILER: Victoria of Many Faces Just Left Everyone",
+                       "She left everyone who loves her.\nSPOILERS for Episode 7.")
+        self.assertNotEqual(
+            self._fails(m, "tiktok_post_text first line contains a spoiler warning"), [])
+
+
+class TestMinimumFrequencyFloorAdversarial(unittest.TestCase):
+    """Part 2 minimum_frequency_floor adversarial tests (2026-08-22). Each test
+    builds its own isolated tree with a deliberately constructed
+    candidate_selection_log.jsonl state via tools/candidate_selection_log's
+    real log_candidate()/build_event() -- never hand-written JSON lines -- so
+    each fixture is itself schema-valid and these tests exercise the same
+    write path production code uses. post_date is always fixed at
+    "2026-08-23" so day-gap arithmetic is deterministic and independent of
+    wall-clock time.
+    """
+
+    ANCHOR = "2026-08-23"
+
+    def _tree(self) -> str:
+        tmp = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, tmp, ignore_errors=True)
+        return tmp
+
+    def _log(self, tree: str, *, format_type: str, post_date: str,
+              outcome: str = "rejected",
+              format_eligibility_result: str = "eligible",
+              rejection_reason: str | None = "lost on merit to another candidate",
+              selected_package_id: str | None = None,
+              batch_id: str = "adv-batch-1") -> dict:
+        """Write one real candidate_scored event via the actual production
+        write path (csl.log_candidate), returning the event dict written."""
+        kwargs = dict(
+            batch_id=batch_id, run_ts=f"{post_date}T22:30:00+00:00", post_date=post_date,
+            show="Test Show", angle="Test angle for adversarial floor coverage",
+            format_type=format_type,
+            axis_scores={"sub_conversion": "MED", "brand_attractiveness": "MED", "viral_discovery": "MED"},
+            cleared_monetization_gate=True, format_eligibility_checked=True,
+            format_eligibility_result=format_eligibility_result,
+            format_eligibility_reason="eligibility reason" if format_eligibility_result != "not_applicable" else "",
+            outcome=outcome, slot_considered_for="either",
+        )
+        if outcome == "rejected":
+            kwargs["rejection_reason"] = rejection_reason
+            kwargs["selected_package_id"] = None
+        else:
+            kwargs["rejection_reason"] = None
+            kwargs["selected_package_id"] = selected_package_id or "11111111-1111-1111-1111-111111111111"
+        return csl.log_candidate(tree, **kwargs)
+
+    def _floor_manifest(self, evaluations: list[dict], *, batch_id: str = "adv-batch-1") -> dict:
+        """A minimal manifest carrying only the fields
+        _validate_minimum_frequency_floor actually reads, with post_date fixed
+        at self.ANCHOR. Other unrelated required-field failures are expected
+        and irrelevant to these tests -- each test asserts on the SPECIFIC
+        named floor check(s), not overall r.ok, exactly like
+        TestMechanicalConflictCheckWiring does above for its own concern.
+
+        batch_id MUST match the batch_id used (via self._log(...,
+        batch_id=...)) for any "today" events the test logs for THIS run --
+        _validate_minimum_frequency_floor excludes real_gaps events matching
+        the manifest's own batch_id (see validate_dual_package.py) so the
+        overdue determination reflects state going INTO today's run, not the
+        state immediately after today's own write. A mismatched batch_id here
+        would silently fail to exclude today's write, corrupting real_gap.
+        """
+        m = load_valid()
+        m["post_date"] = self.ANCHOR
+        m["batch_id"] = batch_id
+        m["minimum_frequency_floor"] = {
+            "floor_formats": list(v.FLOOR_FORMATS),
+            "window_days": v.FLOOR_WINDOW_DAYS,
+            "evaluations": evaluations,
+        }
+        return m
+
+    def _floor_failure_names(self, m: dict, tree: str) -> list[str]:
+        r = v.validate_manifest(m, tree=tree)
+        return [name for name, ok, _ in r.checks if ok == "FAIL" and "minimum_frequency_floor" in name]
+
+    # --- Case (a): overdue + eligible -> forced + prioritized, honestly reported ---
+    def test_a_overdue_eligible_forced_and_honestly_reported_passes(self):
+        tree = self._tree()
+        # WATCH_RANK's only real event is 30 days before the anchor -- well past
+        # the 21-day FLOOR_WINDOW_DAYS, so it is genuinely overdue.
+        self._log(tree, format_type="WATCH_RANK", post_date="2026-07-24")
+        # And it WAS genuinely evaluated again today, and won.
+        self._log(tree, format_type="WATCH_RANK", post_date=self.ANCHOR,
+                   outcome="selected", selected_package_id="22222222-2222-2222-2222-222222222222",
+                   batch_id="adv-batch-today")
+        evaluations = [{
+            "format_type": "WATCH_RANK", "days_since_last_considered": 30,
+            "must_force_consider": True, "was_considered_this_run": True,
+            "outcome": "selected", "tie_break_applied": True,
+            "format_eligibility_result": "eligible",
+        }]
+        # Other four floor formats never appear in the log at all -> None -> also
+        # overdue -> must ALSO be present. Add honest never-considered entries.
+        for fmt in v.FLOOR_FORMATS:
+            if fmt == "WATCH_RANK":
+                continue
+            evaluations.append({
+                "format_type": fmt, "days_since_last_considered": None,
+                "must_force_consider": True, "was_considered_this_run": False,
+            })
+        m = self._floor_manifest(evaluations, batch_id="adv-batch-today")
+        fails = self._floor_failure_names(m, tree)
+        self.assertEqual(fails, [], msg=f"unexpected floor failures: {fails}")
+
+    # --- Case (b): overdue + ineligible today -> correctly not forced into an
+    # impossible send; being forced into CONSIDERATION never means forced into
+    # SELECTION, and an honest ineligible-today outcome must not fail the check ---
+    def test_b_overdue_but_ineligible_today_is_not_falsely_penalized(self):
+        tree = self._tree()
+        self._log(tree, format_type="SEASON_RATING", post_date="2026-07-01")
+        # Evaluated again today, but genuinely ineligible today (e.g. no season
+        # currently airing to rate) -- a real, honest non-selection outcome.
+        self._log(tree, format_type="SEASON_RATING", post_date=self.ANCHOR,
+                   format_eligibility_result="ineligible",
+                   rejection_reason="no season currently eligible for a rating post",
+                   batch_id="adv-batch-today")
+        evaluations = [{
+            "format_type": "SEASON_RATING",
+            "days_since_last_considered": (dt.date(2026, 8, 23) - dt.date(2026, 7, 1)).days,
+            "must_force_consider": True, "was_considered_this_run": True,
+            "outcome": "rejected", "tie_break_applied": False,
+            "format_eligibility_result": "ineligible",
+        }]
+        for fmt in v.FLOOR_FORMATS:
+            if fmt == "SEASON_RATING":
+                continue
+            evaluations.append({
+                "format_type": fmt, "days_since_last_considered": None,
+                "must_force_consider": True, "was_considered_this_run": False,
+            })
+        m = self._floor_manifest(evaluations, batch_id="adv-batch-today")
+        fails = self._floor_failure_names(m, tree)
+        self.assertEqual(fails, [], msg=f"unexpected floor failures: {fails}")
+
+    # --- Case (c): overdue + eligible but loses fairly on merit -> logged as a
+    # fair loss, no false must_force_consider mismatch and no penalty for losing ---
+    def test_c_overdue_eligible_but_fairly_loses_on_merit_is_not_penalized(self):
+        tree = self._tree()
+        self._log(tree, format_type="WORTH_WATCHING", post_date="2026-07-15")
+        self._log(tree, format_type="WORTH_WATCHING", post_date=self.ANCHOR,
+                   outcome="rejected", format_eligibility_result="eligible",
+                   rejection_reason="lost fairly to a higher axis-scored candidate today",
+                   batch_id="adv-batch-today")
+        evaluations = [{
+            "format_type": "WORTH_WATCHING",
+            "days_since_last_considered": (dt.date(2026, 8, 23) - dt.date(2026, 7, 15)).days,
+            "must_force_consider": True, "was_considered_this_run": True,
+            "outcome": "rejected", "tie_break_applied": False,
+            "format_eligibility_result": "eligible",
+        }]
+        for fmt in v.FLOOR_FORMATS:
+            if fmt == "WORTH_WATCHING":
+                continue
+            evaluations.append({
+                "format_type": fmt, "days_since_last_considered": None,
+                "must_force_consider": True, "was_considered_this_run": False,
+            })
+        m = self._floor_manifest(evaluations, batch_id="adv-batch-today")
+        fails = self._floor_failure_names(m, tree)
+        self.assertEqual(fails, [], msg=f"unexpected floor failures: {fails}")
+
+    # --- Case (d): not-yet-overdue -> no false positive forcing ---
+    def test_d_not_yet_overdue_must_not_be_falsely_forced(self):
+        tree = self._tree()
+        # Only 5 days before the anchor -- well within the 21-day window, not
+        # overdue at all. Explicit historical batch_id, distinct from the
+        # manifest's default batch_id ("adv-batch-1") -- otherwise the
+        # exclude_batch_id logic would wrongly treat this genuine 5-day-old
+        # prior event as "this run's own write" and exclude it, corrupting
+        # the test (a real prior event must never share this run's batch_id).
+        self._log(tree, format_type="THEORY_SPECULATION", post_date="2026-08-18",
+                   batch_id="adv-batch-historical")
+        evaluations = [{
+            "format_type": "THEORY_SPECULATION", "days_since_last_considered": 5,
+            "must_force_consider": True,  # FALSE CLAIM: not actually overdue
+            "was_considered_this_run": False,
+        }]
+        for fmt in v.FLOOR_FORMATS:
+            if fmt == "THEORY_SPECULATION":
+                continue
+            evaluations.append({
+                "format_type": fmt, "days_since_last_considered": None,
+                "must_force_consider": True, "was_considered_this_run": False,
+            })
+        m = self._floor_manifest(evaluations)
+        fails = self._floor_failure_names(m, tree)
+        self.assertTrue(
+            any("does not falsely claim must_force_consider=true" in n for n in fails),
+            msg=f"expected a false-positive-forcing failure; got={fails}",
+        )
+
+    def test_d_not_yet_overdue_with_honest_no_entry_passes(self):
+        # Sanity counterpart to (d): the SAME real log state, but the manifest
+        # correctly omits an evaluations entry for the non-overdue format
+        # entirely (the honest option per the docstring) -- must NOT fail.
+        tree = self._tree()
+        # Same explicit historical batch_id as test_d above -- see that
+        # test's comment for why this must not collide with the manifest's
+        # own batch_id.
+        self._log(tree, format_type="THEORY_SPECULATION", post_date="2026-08-18",
+                   batch_id="adv-batch-historical")
+        evaluations = []
+        for fmt in v.FLOOR_FORMATS:
+            if fmt == "THEORY_SPECULATION":
+                continue
+            evaluations.append({
+                "format_type": fmt, "days_since_last_considered": None,
+                "must_force_consider": True, "was_considered_this_run": False,
+            })
+        m = self._floor_manifest(evaluations)
+        fails = self._floor_failure_names(m, tree)
+        self.assertEqual(fails, [], msg=f"unexpected floor failures: {fails}")
+
+    # --- Case (e): two overdue formats simultaneously -> BOTH forced into the
+    # consideration pool, but selection still governs which (if either) wins ---
+    def test_e_two_simultaneously_overdue_formats_both_forced_independently(self):
+        tree = self._tree()
+        self._log(tree, format_type="SEASON_ROUNDUP", post_date="2026-07-01")
+        self._log(tree, format_type="WATCH_RANK", post_date="2026-07-05")
+        # Both evaluated today; only one (SEASON_ROUNDUP) actually wins the slot --
+        # WATCH_RANK is honestly evaluated and fairly loses. This is the real
+        # multi-overdue scenario Part 2's design names explicitly.
+        self._log(tree, format_type="SEASON_ROUNDUP", post_date=self.ANCHOR,
+                   outcome="selected", selected_package_id="33333333-3333-3333-3333-333333333333",
+                   batch_id="adv-batch-today")
+        self._log(tree, format_type="WATCH_RANK", post_date=self.ANCHOR,
+                   outcome="rejected", rejection_reason="lost fairly to SEASON_ROUNDUP today",
+                   batch_id="adv-batch-today")
+        evaluations = [
+            {
+                "format_type": "SEASON_ROUNDUP",
+                "days_since_last_considered": (dt.date(2026, 8, 23) - dt.date(2026, 7, 1)).days,
+                "must_force_consider": True, "was_considered_this_run": True,
+                "outcome": "selected", "tie_break_applied": True,
+                "format_eligibility_result": "eligible",
+            },
+            {
+                "format_type": "WATCH_RANK",
+                "days_since_last_considered": (dt.date(2026, 8, 23) - dt.date(2026, 7, 5)).days,
+                "must_force_consider": True, "was_considered_this_run": True,
+                "outcome": "rejected", "tie_break_applied": True,
+                "format_eligibility_result": "eligible",
+            },
+        ]
+        for fmt in v.FLOOR_FORMATS:
+            if fmt in ("SEASON_ROUNDUP", "WATCH_RANK"):
+                continue
+            evaluations.append({
+                "format_type": fmt, "days_since_last_considered": None,
+                "must_force_consider": True, "was_considered_this_run": False,
+            })
+        m = self._floor_manifest(evaluations, batch_id="adv-batch-today")
+        fails = self._floor_failure_names(m, tree)
+        self.assertEqual(fails, [], msg=f"unexpected floor failures: {fails}")
+
+    # --- True-branch fabrication case #1: was_considered_this_run=true claimed
+    # with ZERO backing real event in the log ---
+    def test_true_branch_fabrication_no_backing_event_fails_closed(self):
+        tree = self._tree()
+        # No events logged for WATCH_RANK at all, ever -- yet the manifest
+        # claims it WAS considered today. This is a pure fabrication.
+        evaluations = [{
+            "format_type": "WATCH_RANK", "days_since_last_considered": None,
+            "must_force_consider": True, "was_considered_this_run": True,
+            "outcome": "selected", "tie_break_applied": True,
+            "format_eligibility_result": "eligible",
+        }]
+        for fmt in v.FLOOR_FORMATS:
+            if fmt == "WATCH_RANK":
+                continue
+            evaluations.append({
+                "format_type": fmt, "days_since_last_considered": None,
+                "must_force_consider": True, "was_considered_this_run": False,
+            })
+        m = self._floor_manifest(evaluations)
+        fails = self._floor_failure_names(m, tree)
+        self.assertTrue(
+            any("is backed by a real candidate_scored event" in n for n in fails),
+            msg=f"expected a no-backing-event fabrication failure; got={fails}",
+        )
+
+    # --- True-branch fabrication case #2: a real event exists, but the
+    # manifest's reported outcome/format_eligibility_result disagrees with it ---
+    def test_true_branch_fabrication_outcome_mismatch_fails_closed(self):
+        tree = self._tree()
+        # Real event says outcome=rejected, format_eligibility_result=ineligible.
+        self._log(tree, format_type="SEASON_RATING", post_date=self.ANCHOR,
+                   outcome="rejected", format_eligibility_result="ineligible",
+                   rejection_reason="genuinely ineligible today",
+                   batch_id="adv-batch-mismatch")
+        # Manifest dishonestly reports the OPPOSITE: outcome=selected,
+        # format_eligibility_result=eligible.
+        evaluations = [{
+            "format_type": "SEASON_RATING", "days_since_last_considered": None,
+            "must_force_consider": True, "was_considered_this_run": True,
+            "outcome": "selected", "tie_break_applied": True,
+            "format_eligibility_result": "eligible",
+        }]
+        for fmt in v.FLOOR_FORMATS:
+            if fmt == "SEASON_RATING":
+                continue
+            evaluations.append({
+                "format_type": fmt, "days_since_last_considered": None,
+                "must_force_consider": True, "was_considered_this_run": False,
+            })
+        m = self._floor_manifest(evaluations, batch_id="adv-batch-mismatch")
+        fails = self._floor_failure_names(m, tree)
+        self.assertTrue(
+            any("reported outcome matches the real candidate_scored event's outcome" in n for n in fails),
+            msg=f"expected an outcome-mismatch failure; got={fails}",
+        )
+        self.assertTrue(
+            any("reported format_eligibility_result matches the real candidate_scored event's format_eligibility_result" in n for n in fails),
+            msg=f"expected a format_eligibility_result-mismatch failure; got={fails}",
+        )
+
+    # --- False-branch fabrication (under-reporting): was_considered_this_run=false
+    # claimed when the real log shows today's event actually exists ---
+    def test_false_branch_under_reporting_fails_closed(self):
+        tree = self._tree()
+        self._log(tree, format_type="WORTH_WATCHING", post_date=self.ANCHOR,
+                   outcome="rejected", rejection_reason="lost today",
+                   batch_id="adv-batch-underreport")
+        evaluations = [{
+            "format_type": "WORTH_WATCHING", "days_since_last_considered": None,
+            "must_force_consider": True, "was_considered_this_run": False,
+        }]
+        for fmt in v.FLOOR_FORMATS:
+            if fmt == "WORTH_WATCHING":
+                continue
+            evaluations.append({
+                "format_type": fmt, "days_since_last_considered": None,
+                "must_force_consider": True, "was_considered_this_run": False,
+            })
+        m = self._floor_manifest(evaluations, batch_id="adv-batch-underreport")
+        fails = self._floor_failure_names(m, tree)
+        self.assertTrue(
+            any("was_considered_this_run=false matches real log" in n for n in fails),
+            msg=f"expected an under-reporting failure; got={fails}",
+        )
+
+
+class TestDaysSinceLastConsideredExcludeBatchId(unittest.TestCase):
+    """Regression coverage (2026-08-22) for the exclude_batch_id fix to
+    days_since_last_considered(). Before this fix, real_gap was always
+    recomputed AFTER log_candidate()'s STEP-3 write for today's own run
+    (STEP 3 runs strictly before the STEP 6 validator per
+    cron_daily_runtime.txt) -- so any format actually evaluated this run
+    always recomputed to gap=0, which the overdue check
+    (real_gap is None or real_gap >= FLOOR_WINDOW_DAYS) reads as "not
+    overdue," permanently erasing the ability to confirm "a format that WAS
+    overdue going into today got force-evaluated today." These tests call
+    days_since_last_considered() directly (not through the validator) to
+    isolate the fix at its actual source.
+    """
+
+    def _tree(self) -> str:
+        tmp = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, tmp, ignore_errors=True)
+        return tmp
+
+    def _log(self, tree: str, *, format_type: str, post_date: str, batch_id: str,
+              outcome: str = "rejected") -> dict:
+        kwargs = dict(
+            batch_id=batch_id, run_ts=f"{post_date}T22:30:00+00:00", post_date=post_date,
+            show="Test Show", angle="Test angle for exclude_batch_id regression coverage",
+            format_type=format_type,
+            axis_scores={"sub_conversion": "MED", "brand_attractiveness": "MED", "viral_discovery": "MED"},
+            cleared_monetization_gate=True, format_eligibility_checked=True,
+            format_eligibility_result="eligible", format_eligibility_reason="eligibility reason",
+            outcome=outcome, slot_considered_for="either",
+        )
+        if outcome == "rejected":
+            kwargs["rejection_reason"] = "lost today"
+            kwargs["selected_package_id"] = None
+        else:
+            kwargs["rejection_reason"] = None
+            kwargs["selected_package_id"] = "44444444-4444-4444-4444-444444444444"
+        return csl.log_candidate(tree, **kwargs)
+
+    def test_real_prior_event_25_days_back_plus_todays_write_excludes_todays_write(self):
+        """The exact case requested: a real prior event 25 days before
+        post_date (genuinely overdue, since 25 >= FLOOR_WINDOW_DAYS=21), THEN
+        a new event written today under the SAME batch_id as the run under
+        test. Without exclude_batch_id, this would incorrectly recompute to
+        0 (today's write is now the most recent event). With
+        exclude_batch_id=<today's batch_id>, it must correctly still return
+        25 -- proving the mechanism can now confirm "a format that WAS
+        overdue got force-evaluated today," which was previously unprovable.
+        """
+        tree = self._tree()
+        self._log(tree, format_type="WATCH_RANK", post_date="2026-07-29", batch_id="hist-batch")
+        self._log(tree, format_type="WATCH_RANK", post_date="2026-08-23", batch_id="today-batch",
+                   outcome="selected")
+        # Sanity: WITHOUT exclusion, today's own write dominates -> 0.
+        unexcluded = csl.days_since_last_considered(tree, "WATCH_RANK", "2026-08-23")
+        self.assertEqual(unexcluded, 0, msg="sanity check: today's write should dominate when not excluded")
+        # With exclusion of today's own batch_id, the real prior gap (25 days,
+        # 2026-07-29 -> 2026-08-23) must be recovered.
+        excluded = csl.days_since_last_considered(
+            tree, "WATCH_RANK", "2026-08-23", exclude_batch_id="today-batch")
+        self.assertEqual(excluded, 25)
+        self.assertGreaterEqual(excluded, v.FLOOR_WINDOW_DAYS, msg="25 days must register as overdue")
+
+    def test_only_todays_event_exists_exclusion_yields_none_not_zero(self):
+        """When a format has ONLY today's event (no prior history at all),
+        excluding today's own batch_id must leave ZERO events -- so the
+        correct result is None (never considered, per the function's own
+        contract), never 0. This guards against an exclusion implementation
+        that silently falls back to a wrong default gap instead of the
+        "never considered" sentinel.
+        """
+        tree = self._tree()
+        self._log(tree, format_type="SEASON_ROUNDUP", post_date="2026-08-23", batch_id="today-batch",
+                   outcome="selected")
+        excluded = csl.days_since_last_considered(
+            tree, "SEASON_ROUNDUP", "2026-08-23", exclude_batch_id="today-batch")
+        self.assertIsNone(excluded)
+
+
+class TestDaysSinceLastConsideredProductionData(unittest.TestCase):
+    """Production-data verification (2026-08-22, item #3 of the build
+    instruction; UPDATED 2026-09-08 full repo audit).
+
+    Originally confirmed the real, currently-shipped candidate_selection_log.jsonl
+    in THIS repo genuinely showed THEORY_SPECULATION, SEASON_ROUNDUP, and
+    WATCH_RANK as never-considered (None). Per this class's own original
+    docstring's instruction ("if this format has genuinely been logged since
+    this test was written, update this assertion to reflect the new real
+    state rather than deleting or weakening the test"), this test now failed
+    exactly as designed: all three formats show a real gap of 13 days as of
+    this update, confirming they were genuinely evaluated together in batch
+    af6c90bf (2026-08-23)'s real floor-format sweep -- see docs/KNOWN_ISSUES.md
+    F71 for the broader finding this same production data fed into.
+
+    A hardcoded exact day-count would itself go stale the very next day (the
+    gap increments with real wall-clock time), so this update asserts the
+    new real *shape* of the state -- a real, non-negative integer, not None
+    -- rather than pinning a specific number that would immediately become
+    the next staleness trap. A future maintainer seeing THIS version fail
+    (e.g. gap becomes None again, which should never happen once a format
+    has been logged at least once) should treat that as a real regression
+    signal, not routine drift.
+    """
+
+    def test_theory_speculation_season_roundup_watch_rank_now_have_real_history(self):
+        repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        today = dt.date.today().isoformat()
+        for fmt in ("THEORY_SPECULATION", "SEASON_ROUNDUP", "WATCH_RANK"):
+            gap = csl.days_since_last_considered(repo_root, fmt, today)
+            self.assertIsNotNone(
+                gap,
+                msg=f"{fmt} unexpectedly shows days_since_last_considered=None "
+                    f"against the real repo log -- this format was confirmed "
+                    f"genuinely logged as of 2026-09-08 (batch af6c90bf), so a "
+                    f"reversion to None would itself be a real regression worth "
+                    f"investigating, not something to silently update away",
+            )
+            self.assertIsInstance(gap, int)
+            self.assertGreaterEqual(gap, 0)

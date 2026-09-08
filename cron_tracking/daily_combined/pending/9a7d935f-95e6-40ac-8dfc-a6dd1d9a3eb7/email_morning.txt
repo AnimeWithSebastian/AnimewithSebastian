@@ -1,0 +1,58 @@
+SUBJECT: TOMORROW | MORNING | Hunter x Hunter | 2026-08-26 | Hunter x Hunter 418: He Faked His Death
+
+━━━ MORNING — 2026-08-26 ━━━
+SHOW:    Hunter x Hunter
+ANGLE:   Tserriednich fakes his own death using his new Nen ability to escape Room 1004 undetected
+FORMAT:  THE_MOMENT
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM)
+TOPIC:   timely — signals: chapter/news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK ━━━
+ON-SCREEN (second 1): He's not dead. Everyone just watched him die.
+SPOKEN (VO first line): Everyone in the room just watched Tserriednich die.
+HOOK FAMILY: revelation
+(candidate A: Everyone in the room just watched Tserriednich die.
+ candidate B: Hunter x Hunter just revealed the ability that fakes a death in front of witnesses.
+ SELECTED: 0)
+
+━━━ VO (108 words — fills the resolved 30s CapCut edit) ━━━
+Everyone in the room just watched Tserriednich die. He didn't. Chapter 418 has him activate Parallel Future in Zetsu, hiding his aura completely -- a ten-second window to see ahead, unable to touch anyone physically, but able to move objects. Using that illusion, he fakes his own death in Room 1004, and Benjamin genuinely believes he killed him. Special Martial Law reaches his quarters while he simply walks past the guards, undetected. The chapter ends on real ambiguity: Theta turns her head toward him as he nears the exit. Chapter 419 releases August 30th. Did Theta actually sense him, or was that just her nerves? Leave your take.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view) ━━━
+[FACE: direct-to-camera, lean in] Everyone in the room just watched Tserriednich die. [FACE: glance-down-at-footage] He didn't. [FACE: glance-down-at-footage] Chapter 418 has him activate Parallel Future in Zetsu, hiding his aura completely -- a ten-second window to see ahead, unable to touch anyone physically, but able to move objects. [FACE: glance-down-at-footage] Using that illusion, he fakes his own death in Room 1004, and Benjamin genuinely believes he killed him. [FACE: glance-down-at-footage] Special Martial Law reaches his quarters while he simply walks past the guards, undetected. [FACE: glance-down-at-footage] The chapter ends on real ambiguity: Theta turns her head toward him as he nears the exit. [FACE: glance-down-at-footage] Chapter 419 releases August 30th. [FACE: glance-down-at-footage] Did Theta actually sense him, or was that just her nerves? Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings) ━━━
+CUT 1 — 10 sec (0:00–0:10): Manga panel: Tserriednich entering Zetsu, activating Parallel Future ability — Establishes the ability the entire hook depends on
+CUT 2 — 10 sec (0:10–0:20): Manga panel: Benjamin's forces enforcing martial law, believing Tserriednich dead — Shows the false death Benjamin believes he witnessed
+CUT 3 (final) — 10 sec (0:20–0:30): Manga panel: Theta turning her head toward Tserriednich as he nears the exit — Delivers the cliffhanger that sets up the question/CTA
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+Hunter x Hunter Chapter 418 just revealed the ability that lets Tserriednich fake his own death in front of witnesses.
+
+━━━ YOUTUBE TITLE ━━━
+Hunter x Hunter 418: He Faked His Death
+
+━━━ TIKTOK TITLE ━━━
+He didn't actually die (HxH 418)
+
+━━━ TIKTOK POST TEXT (caption) ━━━
+Everyone in Room 1004 believes Tserriednich is dead. He isn't. #HunterxHunter #HxH #Togashi #Tserriednich #AnimeManga #ShonenJump #AnimeTok #MangaSpoilers #AnimeShorts #AnimeCommentary
+
+━━━ PINNED COMMENT ━━━
+Chapter 418 'Hypothesis' is officially out on VIZ/Manga Plus. Full breakdown of Parallel Future's real limits in the video. Chapter 419 drops August 30.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 2026-08-26T08:00:00-04:00
+TikTok — post 2026-08-26T08:15:00-04:00
+
+━━━ SOURCES ━━━
+1. Chapter 418 reveals Tserriednich faked his death via Parallel Future to fool Benjamin and escape Room 1004 — https://nuxgameguides.com/entertainment/hunter-x-hunter-chapter-418-spoilers-release-date-and-recap/ (Aug 2026)
+2. Parallel Future's mechanical rules: 10-second future vision via Zetsu, cannot alter others' physical state, can move objects, aura-fueled illusion beyond the initial 10 seconds — https://www.animeexplained.com/spoilers/hxh-418/ (Aug 2026)
+3. Chapter ends with Theta turning toward Tserriednich as he passes, an ambiguous cliffhanger over whether she senses him — https://noscriptneeded.com/hunter-x-hunter-418-theta-tserriednich-escape-explained/ (Aug 2026)
+4. Chapter 418's official English title is 'Hypothesis' (listed in the chapter index; Nux Game Guides independently confirms the official translation uses 'Hypothesis') — https://en.wikipedia.org/wiki/List_of_Hunter_%C3%97_Hunter_chapters (date not recorded in manifest)
+5. Hunter x Hunter Chapter 419 is scheduled for release on August 30, 2026 — https://www.thepopverse.com/comics-manga-hunter-x-hunter-release-schedule-updated-hiatus-new-chapter-date (date not recorded in manifest)
+
+━━━ END MORNING ━━━

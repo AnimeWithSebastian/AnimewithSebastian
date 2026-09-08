@@ -1,0 +1,56 @@
+SUBJECT: TOMORROW | MORNING | Kagurabachi | 2026-09-02 | Kagurabachi 130: They're Calling This Mercy
+
+━━━ MORNING — 2026-09-02 ━━━
+SHOW:    Kagurabachi
+ANGLE:   The Soga Clan plans a forbidden anesthesia technique on Chiaki before her handover to the Mikaboshi at Airashima, while the Sorcery Bureau scrambles over the Datenseki crisis -- a distinct plot angle from the prior Kagurabachi send about Kunishige's furnace breakthrough
+FORMAT:  THE_MOMENT
+STYLE:   Face-cam split screen (creator TOP / anime manga panels BOTTOM, Law #134 Stage 2 required default)
+TOPIC:   timely — signals: chapter/news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK ━━━
+ON-SCREEN (second 1): They're about to erase her mind — and calling it a mercy.
+SPOKEN (VO first line): They're about to erase her mind — and calling it a mercy.
+HOOK FAMILY: revelation
+(candidate A: They're about to erase her mind — and calling it a mercy.
+ candidate B: Kagurabachi's Soga Clan just revealed the technique that erases who you are.
+ SELECTED: 0)
+
+━━━ VO (106 words — fills the resolved 30s CapCut edit) ━━━
+They're about to erase her mind — and calling it a mercy. Chapter 130 has Japan agreeing to hand Chiaki over to the Mikaboshi at Airashima on April first, with the story's present timeline sitting at March twenty-ninth. Before that handover happens, the Soga Clan restrains Akemura and moves forward with a forbidden technique on Chiaki: a form of anesthesia that paralyzes her sense of self and makes her obedient. Their justification is that it will spare her from experiencing whatever cruelty comes after she's handed over. Chapter 131 releases September sixth. Is the Soga Clan actually protecting Chiaki, or just controlling her? Leave your take.
+
+━━━ PERFORMANCE SCRIPT (render-time-only view) ━━━
+[FACE: direct-to-camera, lean in] They're about to erase her mind — and calling it a mercy. [FACE: glance-down-at-footage] Chapter 130 has Japan agreeing to hand Chiaki over to the Mikaboshi at Airashima on April first, with the story's present timeline sitting at March twenty-ninth. [FACE: glance-down-at-footage] Before that handover happens, the Soga Clan restrains Akemura and moves forward with a forbidden technique on Chiaki: a form of anesthesia that paralyzes her sense of self and makes her obedient. [FACE: glance-down-at-footage] Their justification is that it will spare her from experiencing whatever cruelty comes after she's handed over. [FACE: glance-down-at-footage] Chapter 131 releases September sixth. [FACE: glance-down-at-footage] Is the Soga Clan actually protecting Chiaki, or just controlling her? Leave your take.
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings) ━━━
+CUT 1 — 8 sec (0:00–0:08): Manga panel: Japan/the Mikaboshi confirming Chiaki's handover terms at Airashima — Establishes the ticking-clock stakes for the hook
+CUT 2 — 14 sec (0:08–0:22): Manga panel: the Soga Clan restraining Akemura and preparing the forbidden anesthesia technique on Chiaki — Delivers the core 'erasing her mind' hook claim
+CUT 3 (final) — 8 sec (0:22–0:30): Manga panel: Chiaki's resolve despite her world crumbling — Closes on the emotional stakes tied to the question/CTA
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+Kagurabachi Chapter 130 just revealed the technique the Soga Clan wants to use on Chiaki -- and they're calling it mercy.
+
+━━━ YOUTUBE TITLE ━━━
+Kagurabachi 130: They're Calling This Mercy
+
+━━━ TIKTOK TITLE ━━━
+This 'mercy' erases who you are (Kagurabachi 130)
+
+━━━ TIKTOK POST TEXT (caption) ━━━
+The Soga Clan wants to erase Chiaki's mind before handing her over -- and they're calling it protection. Kagurabachi Chapter 130 breakdown. #Kagurabachi #Chiaki #AnimeManga #ShonenJump #AnimeTok #MangaSpoilers #AnimeShorts #AnimeCommentary
+
+━━━ PINNED COMMENT ━━━
+Chapter 130 is out now on Shueisha Manga Plus / Viz. Chapter 131 drops September 6.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 2026-09-02T09:00:00-04:00
+TikTok — post 2026-09-02T09:15:00-04:00
+
+━━━ SOURCES ━━━
+1. Kagurabachi Chapter 130: Japan accepts the Mikaboshi's demands and confirms Chiaki will be handed over at Airashima on April 1 at noon; the story's present timeline is March 29 — https://www.soapcentral.com/anime/kagurabachi-chapter-130-chiaki-reunites-kunishige-datenseki-breakthrough-changes-everything (Aug 2026)
+2. The Soga Clan restrains Akemura and plans to use a forbidden technique on Chiaki described as a form of anesthesia that paralyzes her sense of self and turns her obedient, justified as preventing her from experiencing cruelty after the handover — https://www.soapcentral.com/anime/kagurabachi-chapter-130-chiaki-reunites-kunishige-datenseki-breakthrough-changes-everything (Aug 2026)
+3. Kagurabachi Chapter 131 is scheduled to release Sunday, September 6, 2026 — https://www.soapcentral.com/anime/kagurabachi-chapter-131-release-date-everything-need-know (Sep 2026)
+
+━━━ END MORNING ━━━

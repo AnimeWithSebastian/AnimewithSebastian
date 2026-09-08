@@ -1,0 +1,108 @@
+{
+  "approved_by": "Sebastian",
+  "approved_at": "2026-08-16T20:26:59-04:00",
+  "approval_status": "APPROVED",
+  "approval_pending_note": "approved_by/approved_at were deliberately left null when this file was first constructed and shown to Sebastian for review. He then gave explicit final sign-off on this exact constructed content (fetch_review, verification_gaps_and_caveats, validator_result all unchanged from the version he reviewed), at which point approved_by/approved_at/approval_status were filled in with his real name and the real timestamp of that sign-off (2026-08-16T20:26:59-04:00 ET). This satisfies Law #165: the approver personally reviewed and confirmed the underlying fetch evidence before this file was marked approved; it was not marked approved by model self-attestation.",
+  "batch_id": "9dc75e78-44e8-4e87-b816-41caf6677075",
+  "corrects_batch_id": null,
+  "scope_note": "This batch contains TWO packages, both post_date 2026-08-17: Though I Am an Inept Villainess (morning, CHARACTER_DIVE, package_id ef43eed6-d6fe-4804-877e-2a79317bd0f1) and Jaadugar: A Witch in Mongolia (evening, SEASON_RATING, package_id f14aa919-278d-4921-a2b3-9d5959d51cd2). Neither package corrects a prior sent batch. Both went through multiple correction rounds this session before this review, detailed in changes_made_before_approval. Sebastian performed his own final independent read of both complete rendered packages (subject, all metadata fields, hook, VO, performance script, clip plan, captions, titles, pinned comment, post times, sources) immediately before instructing this file's construction, confirming word counts, absence of loop artifacts, absence of smart quotes, and source support himself -- this is recorded as the human half of the Law #165 review. The URL-level fetch_review below is the model's independently-repeated fetch pass, done fresh in this same review conversation, not reused from any earlier self-reported fetch claim.",
+  "fetch_review": [
+    {
+      "claim": "[CORE, anchors_claim=hook, morning] Episode 5 makes Reirin's court dance -- the Sogdian Whirl -- her sharpest visible weapon at the Ghost Festival.",
+      "url": "https://www.animenewsnetwork.com/review/though-i-am-an-inept-villainess/episode-5/.240447",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. Confirms Reirin performs the Sogdian Whirl and that it stands out from the other Maidens' performances ('vibrancy and mix of sharp, focused movements and large, whirling gestures'), directly supporting the hook framing."
+    },
+    {
+      "claim": "[CORE, morning] Reirin attends the Ghost Festival in Keigetsu's body, where Keigetsu's bad reputation works in her favor.",
+      "url": "https://www.animenewsnetwork.com/review/though-i-am-an-inept-villainess/episode-5/.240447",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. Exact quote: 'Keigetsu's tarnished reputation is a major boon to Reirin at the Ghost Festival' and 'now in Keigetsu's strong body, she is at last allowed to take up space.'"
+    },
+    {
+      "claim": "[CORE, morning] Reirin uses the moment to push back on Seika's court games and defend LeeLee.",
+      "url": "https://www.animenewsnetwork.com/review/though-i-am-an-inept-villainess/episode-5/.240447",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. Supports the general 'pushes back on Seika's machinations' framing ('she's forcing the prince and the rest of the court to recognize Seika's failings') and confirms a frame-up plot involving LeeLee's hairpin is in play ('someone's making particularly nasty moves in the game, trying to frame the Kin ladies'). Does NOT itself state that Reirin returns the hairpin -- see next entry for the caveat on that specific detail."
+    },
+    {
+      "claim": "[CORE, morning, CUT 5 clip description detail] Reirin returns Seika's hairpin at the festival.",
+      "url": "https://moesucks.com/2026/08/13/villainess-villainy-or-the-lack-thereof-summer-2026-week-6/",
+      "fetched_content_supports_claim": true,
+      "note": "CAVEAT recorded honestly: independently fetched fresh in THIS review session, this second source confirms the hairpin-return detail directly ('Reirin uses this opportunity to return Seika's hairpin, so her court lady is no longer on the hook for thievery'). However, on the same fresh fetch, the FIRST source (ANN Episode 5 review) does NOT confirm this specific detail -- it describes an unresolved framing plot around the hairpin but never states Reirin returns it. This one specific clip-plan detail (CUT 5) therefore rests on a single non-encyclopedic source rather than the two-source pairing the rest of the package has. The broader claims (dance, body-swap, reputation dynamic, crown prince's reaction) are corroborated by both sources. Not treated as a blocking issue -- moesucks is a dated, non-encyclopedic outlet and the detail is a minor plot beat, not a core factual assertion -- but flagged here rather than silently presented as doubly-sourced."
+    },
+    {
+      "claim": "[CORE, anchors_claim=hook, evening] Jaadugar's 9/10 rating is based on its sourced Episodes 4-5 court-politics arc, where Sitara moves from tutor into a secret investigation.",
+      "url": "https://anime-jaadugar.com/en/news/051/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. Confirms Sitara becomes Sorghaghtani's tutor, hides her hatred, gains trust: 'Sitara has become a tutor for Tolui's wife, Sorghaghtani, in her study of Elements'; 'Hiding away her intense hatred, she plays the role of an obedient confidante while biding her time'; 'Sitara completely gains Sorghaghtani's trust.'"
+    },
+    {
+      "claim": "[CORE, evening] Episode 4: the court shifts after Genghis Khan's death and Sitara receives an unexpected order.",
+      "url": "https://anime-jaadugar.com/en/news/051/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. Exact quote: 'Suddenly, the emperor Genghis Khan passes away. Amidst major shifts in the political structure, Sitara receives an unexpected order.'"
+    },
+    {
+      "claim": "[CORE, evening] Episode 5: Sitara gets a secret order to investigate the Second Prince Chagatai with Shira's help, then Toregene accuses her of theft over a Jada Stone and sends her into harsh interrogation.",
+      "url": "https://anime-jaadugar.com/en/news/056/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session. Exact quote: 'Having been given a secret order from Sorghaghtani, Sitara is tasked with investigating the movements of the Second Prince Chagatai... With Shira's help, she is able to make necessary arrangements. But just then, Sitara is accused of theft by Toregene... for possessing a Jada Stone... and is subjected to harsh interrogation.' Matches the VO's Episode 5 sentence exactly, including the corrected causal framing from this session's earlier edit."
+    },
+    {
+      "claim": "[CORE, evening -- corrected claim per this session's Jaadugar causal-claim fix] The Anime News Network Episodes 5-7 review states Sitara 'is now all in' and that she and Toregene plan to use their 'combined cunning and access to information' against the ruling family -- presented as the review's own characterization, not as a stated in-episode consequence of the Episode 5 interrogation.",
+      "url": "https://www.animenewsnetwork.com/review/jaadugar-a-witch-in-mongolia/episodes-5-7/.240459",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched fresh in THIS review session, specifically re-checking the corrected wording. Exact quote: 'Sitara, who previously questioned her dedication to revenge... is now all in. The two women, two captives, plan to use their combined cunning and access to information to orchestrate the dissolution of the Mongolian Empire entirely.' Confirmed this is reviewer narration/characterization, not a quoted line or an explicitly-labeled in-episode event -- matching the corrected claim_source_matrix wording exactly. Minor paraphrase note: the source's own framing is 'dissolution of the Mongolian Empire,' which the package renders as 'against the ruling family' -- a fair compression, not a contradiction."
+    }
+  ],
+  "verification_gaps_and_caveats": [
+    {
+      "issue": "CUT 5 hairpin-return detail (morning package) is single-sourced, not double-sourced",
+      "detail": "See fetch_review entry above. The ANN Episode 5 review does not confirm Reirin returns Seika's hairpin; only the moesucks review does. This is a minor clip-plan/b-roll description detail, not a core hook claim, and moesucks is dated and non-encyclopedic, but it is recorded here rather than presented as doubly-confirmed like the rest of the package."
+    },
+    {
+      "issue": "Send-log overlap independently re-checked directly against sent_scripts_log.json for this batch specifically, not trusted from the manifest's self-reported flags",
+      "detail": "recent_send_conflict and blackout_conflict both read false on both packages in the manifest. Independently searched sent_scripts_log.json (207 records) directly in this review: batch_id 9dc75e78 has zero existing entries (consistent with log_appended: false), and there is no angle-specific overlap -- the four prior log entries mentioning 'Though I Am an Inept Villainess' or 'Jaadugar: A Witch in Mongolia' use distinct angles (dub-cast reveal, premiere ranking, aesthetic-trap wrong-take, war-survival wrong-take) with no overlap with this batch's Ghost Festival dance angle or Episodes 4-5 season-rating angle."
+    },
+    {
+      "issue": "state.json at the pending batch's root still shows pre-correction word counts (morning 108, evening 104)",
+      "detail": "cron_tracking/daily_combined/pending/9dc75e78-.../state.json was not re-synced after this session's word-count corrections; it still reflects the values from before the Law #141 fragment removal and the apostrophe/word-count fix. The authoritative content -- run_manifest.json, and the freshly re-rendered email_morning.txt/email_evening.txt -- correctly show 100 and 103, independently re-verified via the real validator regex in this review. state.json is bookkeeping metadata, not shipped content; it should be re-synced as part of the same step that appends the send-log event, but is flagged here so it isn't mistaken for a live discrepancy in the actual package content."
+    },
+    {
+      "issue": "Two rounds of Law #141 colon-handoff fragment removal occurred on this batch's packages this session",
+      "detail": "Both packages were originally drafted with the deprecated Law #141 forced seamless-loop mechanic still active, populating loop_line/loop_transition/final_to_opening/loop_read_aloud_pass/loop_transition_note with content built around trailing colon fragments. This was found and corrected in-session: the fragments were cut so each VO ends cleanly on 'Leave your take.', and all loop-mechanic fields were removed from both packages entirely (not merely nulled -- confirmed absent from the package dict as of this review's fresh field scan). This is documented as Occurrence 2 of the same pattern in docs/KNOWN_ISSUES.md F50, alongside Occurrence 1 (batch f21e15f0). See F50 for the full pattern-level discussion; this file only documents that the correction was applied and independently re-verified on this batch's current manifest."
+    },
+    {
+      "issue": "Curly-apostrophe / word-count regex bug found and fixed on the morning package",
+      "detail": "The morning package's VO contained a curly (smart-quote, U+2019) apostrophe in 'Keigetsu's' that the validator's word-count regex ([\\w']+, straight-apostrophe only) silently mis-split, producing a declared count of 101 against a real count of 100. Normalized to a straight apostrophe; word count corrected to 100 and independently reconfirmed via a fresh regex recompute in this review (declared=100, real=100, match=True). A scoped scan of the rest of both packages' core text fields (vo, hook_line, opening_sentence, question_line, cta_line, captions, youtube_title, tiktok_title, tiktok_post_text, pinned_comment) for any other curly apostrophes or smart quotes found none remaining, reconfirmed again in this final review pass. Logged separately as its own defect entry, docs/KNOWN_ISSUES.md F51 (distinct from F50 -- a live text-encoding/regex defect, not the loop-mechanic pattern)."
+    },
+    {
+      "issue": "Jaadugar (evening) causal-claim correction",
+      "detail": "The evening package's claim_source_matrix and VO originally implied the ANN Episodes 5-7 review's 'combined cunning and access to information' framing was a stated consequence of the Episode 5 interrogation specifically. This was corrected to present it accurately as the review's own narrative characterization rather than an in-episode stated consequence. The corrected wording was re-verified against a fresh independent fetch of the ANN Episodes 5-7 review in this session (see fetch_review entry above) and confirmed accurate: the source's language is reviewer narration, not a quoted or explicitly-labeled in-episode event. question_line and CUT 5 on-screen caption were updated in step with this correction ('Should Sitara trust that plan?' / 'TRUST THAT PLAN?')."
+    },
+    {
+      "issue": "Line 68 of the rendered evening email (source description wording) intentionally left as-is",
+      "detail": "Per Sebastian's explicit instruction earlier this session, a minor wording looseness in the rendered email's source-description line (relative to the claim_source_matrix entry's exact wording) was flagged but left unedited -- not a factual error, a style inconsistency judged not worth another edit round."
+    },
+    {
+      "issue": "Evening VO word count (103) and morning VO word count (100) both independently reconfirmed in this final review pass",
+      "detail": "Freshly recomputed against the validator's real _words() regex directly from the current manifest in this review session (not restated from any earlier turn): morning declared=100/real=100/in-band=true; evening declared=103/real=103/in-band=true. Morning sits near the low end of the 100-108 band (at the floor); per Sebastian's standing instruction from the prior batch, content is not padded artificially to create margin -- both VOs were judged to read as complete, natural thoughts at their current length, and the validator's +/-1 tolerance and 100-108 band both pass cleanly."
+    }
+  ],
+  "validator_result": {
+    "run_fresh_in_this_review": true,
+    "command": "python3 validators/validate_dual_package.py cron_tracking/daily_combined/pending/9dc75e78-44e8-4e87-b816-41caf6677075/run_manifest.json",
+    "exit_code": 0,
+    "pass_count": 179,
+    "fail_count": 0,
+    "result": "PASS \u2014 cleared to send both emails"
+  },
+  "human_final_read_confirmation": "Sebastian performed his own final independent read of both complete rendered packages (all fields listed in scope_note) immediately before instructing construction of this file, and confirmed word counts, absence of loop artifacts, absence of smart quotes, and source support directly. This file's fetch_review and verification_gaps_and_caveats sections record the model's independently-repeated portion of that same combined review.",
+  "changes_made_before_approval": [
+    "Round 1: Removed deprecated Law #141 colon-handoff fragments from both VOs; nulled then fully removed loop_line/loop_transition/final_to_opening/loop_read_aloud_pass/loop_transition_note fields on both packages; recalculated word counts after the cut.",
+    "Round 2: Found and fixed a curly-apostrophe word-count regex mismatch on the morning package (Keigetsu's); corrected declared vo_word_count from 101 to 100; ran a scoped scan of both packages' core text fields for any other smart quotes (none found).",
+    "Round 3: Corrected the evening package's Jaadugar causal claim to accurately reflect the ANN Episodes 5-7 review as reviewer characterization rather than a stated in-episode consequence; updated claim_source_matrix, question_line, and CUT 5 caption to match; recalculated evening word count (103, in band).",
+    "This review: both emails freshly re-rendered from the current manifest; validator re-run fresh (179 PASS / 0 FAIL); both VO word counts independently recomputed against the real regex; a fresh field-level scan confirmed zero loop-mechanic fields and zero smart quotes remain in either package; all five core-claim URLs independently re-fetched in this session (not reused from any earlier self-reported fetch); one new caveat surfaced and documented (morning CUT 5 hairpin-return detail is single-sourced, not double-sourced) rather than silently carried forward as fully corroborated."
+  ]
+}

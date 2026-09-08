@@ -1,0 +1,514 @@
+{
+  "batch_id": "9baf0f49-22fe-42b4-960b-857dfd6ea146",
+  "run_ts": "2026-08-17T18:47:00-04:00",
+  "post_date": "2026-08-18",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-08-13T22:40:59.876136+00:00",
+    "age_days": 4,
+    "status": "selected ideas pre-researched; fresh claim and footage checks completed 2026-08-17"
+  },
+  "model_compliance": {
+    "model": "openai",
+    "reasoning_effort": "high",
+    "context": "Step 2 through Step 5 drafting; no sends performed."
+  },
+  "research_artifacts": {
+    "brief": "/home/user/workspace/cron_tracking/daily_combined/selected_ideas_brief.md",
+    "claim_and_clip_verification": "/home/user/workspace/cron_tracking/daily_combined/research_verification_20260817_dual_package.json",
+    "sent_history_check": {
+      "Sparks of Tomorrow": "Most recent matching send: 2026-07-03; outside 30-day blackout.",
+      "Grand Blue Dreaming": "Most recent matching send: 2026-07-13; outside 30-day blackout."
+    },
+    "blackout_snapshot_note": "The existing blackout_state snapshot is dated 2026-07-12 and over-includes both titles; date-calculated sent history was independently checked and is clear."
+  },
+  "packages": [
+    {
+      "package_id": "a7c857e4-d0ce-4dd3-b974-ffb05de5dc93",
+      "slot": "morning",
+      "show": "Sparks of Tomorrow",
+      "angle": "SPOILER WARNING \u2014 Episode 7's engagement decoy turns into a riverboat chase when Kengo Kuga changes sides after Sasaki invokes Seiroku.",
+      "spoiler_warning": true,
+      "format_type": "EPISODE_MOMENT",
+      "format_reason": "Episode 7 aired within the seven-day window and supplies two verified sequential beats: the engagement decoy and Kengo\u2019s riverboat reversal.",
+      "hook_family": "REVERSAL",
+      "hook_onscreen_text": "SPOILERS: KENGO SWITCHES SIDES MID-CHASE",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Kengo Kuga does not lose the riverboat chase in Sparks of Tomorrow Episode 7\u2014he changes teams on it.",
+        "Sparks of Tomorrow Episode 7 makes Kengo's riverboat chase a loyalty test."
+      ],
+      "selected_hook_index": 0,
+      "hook_line": "Kengo Kuga does not lose the riverboat chase in Sparks of Tomorrow Episode 7\u2014he changes teams on it.",
+      "opening_sentence": "Kengo Kuga does not lose the riverboat chase in Sparks of Tomorrow Episode 7\u2014he changes teams on it.",
+      "question_line": "Did Seiroku earn Kengo's turn, or did the episode rush it?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 56,
+      "loop_line": "Spoilers aside, Kengo's choice gives this escape a new direction.",
+      "loop_transition": "Return visually to Kengo boarding the boat, then hard-cut to the opening line.",
+      "loop_read_aloud_pass": true,
+      "loop_transition_note": "The final line points back to Kengo\u2019s choice; the first line names that choice as the chase reversal.",
+      "final_to_opening": "Spoilers aside, Kengo's choice gives this escape a new direction. Kengo Kuga does not lose the riverboat chase in Sparks of Tomorrow Episode 7\u2014he changes teams on it.",
+      "face_direction_notes": [
+        "[FACE: direct-to-camera, lean in; deliver the reversal without warmup.]",
+        "[FACE: glance down to the ceremony footage; mark the decoy with one open palm.]",
+        "[FACE: point down toward the escape footage; pace the destination clearly.]",
+        "[FACE: direct-to-camera, lower voice on Kengo boarding the boat.]",
+        "[FACE: hold eye contact on Seiroku\u2019s name; let the memory land.]",
+        "[FACE: nod once as the chase becomes an alliance.]",
+        "[FACE: frame the choice with two hands, then bring them together.]",
+        "[FACE: direct-to-camera; stress character decision over plot convenience.]",
+        "[FACE: glance down to the boat visual; mark the shift in what it represents.]",
+        "[FACE: trace the trap closing, then open both hands on Kengo\u2019s reversal.]",
+        "[FACE: direct-to-camera, slow down on the war connection.]",
+        "[FACE: ask the question with a measured pause.]",
+        "[FACE: direct-to-camera; say the CTA simply and clearly.]",
+        "[FACE: small reset gesture toward the opening riverboat visual.]"
+      ],
+      "captions": "CUT 1: ENGAGEMENT DECOY\nCUT 2: THE ESCAPE PLAN\nCUT 3: KENGO BOARDS\nCUT 4: SEIROKU CHANGES IT\nCUT 5: CHASE \u2192 ALLIANCE",
+      "tiktok_post_text": "SPOILERS: Kengo changes the entire riverboat chase in Sparks of Tomorrow Episode 7. Was the turn earned?",
+      "pinned_comment": "Did Seiroku earn Kengo's turn, or did the episode rush it?",
+      "post_times": {
+        "youtube": "8:15 AM ET",
+        "tiktok": "8:45 AM ET"
+      },
+      "clip_verification_notes": "AIRED: Episode 7 was independently listed as aired on August 16 by Rotten Tomatoes. ACCURATE: each planned beat was checked against the fetched ANN Episode 7 review. CURRENTLY AVAILABLE: the official on-air page states Netflix worldwide availability. Real-platform search was performed on YouTube and Netflix; no unaired or unsupported scene is used.",
+      "content_type": "short",
+      "topic_class": "timely",
+      "topic_signals": [
+        "currently_airing"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "capcut_target_sec": 65,
+      "total_clip_time_sec": 65,
+      "vo": "Kengo Kuga does not lose the riverboat chase in Sparks of Tomorrow Episode 7\u2014he changes teams on it. The episode opens with a betrothal ceremony for Yosuke Mizoe and fifteen-year-old Inako, but Inako's older sister takes her place as the decoy. That lets Inako and Sasaki run for the neighboring community, where Kate's father supposedly has the other half of the electrical catalogue. Yosuke follows, and Kengo joins the pursuit, boarding their riverboat close enough to end the escape himself. Sasaki then reminds Kengo of Seiroku, Sasaki's brother and Kengo's war buddy. Kengo chooses to help the pair, turning a pursuit into an alliance while Yosuke is still trying to close the gap. The move is more than a rescue beat: Kengo has to decide whether Seiroku's memory means obeying the chase or protecting the people Sasaki is risking everything for. That is why the scene lands as a character decision, not a convenient interruption. That shift also changes what the boat represents. It starts as Yosuke's closing trap, then becomes the place where Kengo refuses to let the pursuit decide Inako's future. His choice makes the old war connection matter in the present. Did Seiroku earn Kengo's turn, or did the episode rush it? Leave your take. Spoilers aside, Kengo's choice gives this escape a new direction.",
+      "vo_word_count": 221,
+      "length_rationale": "Two independently verified story beats support a multi-beat argument. A 65-second edit gives the setup, reversal, and question enough room and keeps the package eligible for TikTok Creator Rewards; it is not YouTube-only.",
+      "length_math": {
+        "target_sec": 65,
+        "required_word_range": "217-234",
+        "actual_words": 221,
+        "estimated_duration_sec": 64.1,
+        "delta_to_target_sec": -0.9
+      },
+      "video_style": "Face-Cam Split Screen \u2014 Creator TOP / anime footage BOTTOM (Law #134 Stage 2).",
+      "face": true,
+      "split_screen": true,
+      "clips": [
+        {
+          "scene": "Inako's older sister stands in for her at Yosuke Mizoe's betrothal ceremony.",
+          "reason": "Opens on the engagement-ceremony decoy before the escape.",
+          "duration_sec": 12,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 12,
+          "scene_verified": true,
+          "verification_source_url": "https://www.animenewsnetwork.com/review/sparks-of-tomorrow/episode-7/.240653",
+          "claim_vs_source_check": {
+            "claimed_beat": "Inako's older sister stands in for her at Yosuke Mizoe's betrothal ceremony.",
+            "source_content_confirmed": "The fetched ANN Episode 7 review says Inako's older sister takes her place at the betrothal ceremony.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 7,
+            "locate_confirmed_via": "The cited source explicitly identifies this recap as Season 1, Episode 7.",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Inako and Sasaki escape toward the neighboring community to meet Kate's father.",
+          "reason": "Establishes the escape objective and the electrical-catalogue lead.",
+          "duration_sec": 13,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 25,
+          "scene_verified": true,
+          "verification_source_url": "https://www.animenewsnetwork.com/review/sparks-of-tomorrow/episode-7/.240653",
+          "claim_vs_source_check": {
+            "claimed_beat": "Inako and Sasaki escape toward the neighboring community to meet Kate's father.",
+            "source_content_confirmed": "The fetched ANN Episode 7 review says Inako and Sasaki flee to a neighboring community to meet Kate's father, who supposedly has the other catalogue half.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 7,
+            "locate_confirmed_via": "The cited source explicitly identifies this recap as Season 1, Episode 7.",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Kengo Kuga joins Yosuke's pursuit and boards the riverboat carrying Sasaki and Inako.",
+          "reason": "Puts Kengo's chase position on screen before his reversal.",
+          "duration_sec": 14,
+          "timeline_start_sec": 25,
+          "timeline_end_sec": 39,
+          "scene_verified": true,
+          "verification_source_url": "https://www.animenewsnetwork.com/review/sparks-of-tomorrow/episode-7/.240653",
+          "claim_vs_source_check": {
+            "claimed_beat": "Kengo Kuga joins Yosuke's pursuit and boards the riverboat carrying Sasaki and Inako.",
+            "source_content_confirmed": "The fetched ANN Episode 7 review says Kengo joins Yosuke in pursuit, catches up by riverboat, and boards it.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 7,
+            "locate_confirmed_via": "The cited source explicitly identifies this recap as Season 1, Episode 7.",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Sasaki invokes Seiroku, his brother and Kengo's war buddy, during the riverboat encounter.",
+          "reason": "Shows the specific reminder that frames Kengo's decision.",
+          "duration_sec": 14,
+          "timeline_start_sec": 39,
+          "timeline_end_sec": 53,
+          "scene_verified": true,
+          "verification_source_url": "https://www.animenewsnetwork.com/review/sparks-of-tomorrow/episode-7/.240653",
+          "claim_vs_source_check": {
+            "claimed_beat": "Sasaki invokes Seiroku, his brother and Kengo's war buddy, during the riverboat encounter.",
+            "source_content_confirmed": "The fetched ANN Episode 7 review says Sasaki reminds Kengo of Seiroku, Sasaki's brother and Kengo's war buddy.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 7,
+            "locate_confirmed_via": "The cited source explicitly identifies this recap as Season 1, Episode 7.",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Kengo switches from chasing Sasaki and Inako to supporting them.",
+          "reason": "Pays off the hook and leaves room for the viewer question.",
+          "duration_sec": 12,
+          "timeline_start_sec": 53,
+          "timeline_end_sec": 65,
+          "scene_verified": true,
+          "verification_source_url": "https://www.animenewsnetwork.com/review/sparks-of-tomorrow/episode-7/.240653",
+          "claim_vs_source_check": {
+            "claimed_beat": "Kengo switches from chasing Sasaki and Inako to supporting them.",
+            "source_content_confirmed": "The fetched ANN Episode 7 review says Kengo has a change of heart and allies himself with Sasaki.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 1,
+            "episode": 7,
+            "locate_confirmed_via": "The cited source explicitly identifies this recap as Season 1, Episode 7.",
+            "episode_source": "explicitly_stated"
+          }
+        }
+      ],
+      "youtube_title": "Sparks of Tomorrow's Riverboat Switch",
+      "tiktok_title": "Kengo Turns the Chase in Sparks",
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "sources": [
+        {
+          "claim": "Episode 7\u2019s ceremony decoy, riverboat pursuit, Seiroku reminder, and Kengo\u2019s change of heart.",
+          "url": "https://www.animenewsnetwork.com/review/sparks-of-tomorrow/episode-7/.240653",
+          "date": "Aug 17, 2026"
+        },
+        {
+          "claim": "Official worldwide Netflix availability and Sunday broadcast schedule for Sparks of Tomorrow.",
+          "url": "https://denkimokuroku.jp/en/onair/",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "Episode 7 air-date and Netflix listing.",
+          "url": "https://www.rottentomatoes.com/tv/sparks_of_tomorrow/s01/e07",
+          "date": "Aug 2026"
+        }
+      ],
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Hook claim: Kengo boards the riverboat while pursuing Sasaki and Inako, then changes sides after Sasaki invokes Seiroku.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/review/sparks-of-tomorrow/episode-7/.240653"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Inako\u2019s older sister substitutes for her at the betrothal ceremony, enabling Inako and Sasaki to flee toward Kate\u2019s father and the other catalogue half.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.animenewsnetwork.com/review/sparks-of-tomorrow/episode-7/.240653"
+            ]
+          },
+          {
+            "claim": "Episode 7 was available as an aired current episode before the 2026-08-18 post date.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://denkimokuroku.jp/en/onair/",
+              "https://www.rottentomatoes.com/tv/sparks_of_tomorrow/s01/e07"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true,
+          "isolation_test": true,
+          "closer_question_check_9_8": true,
+          "closer_question_check_9_9": true
+        }
+      },
+      "clip_descriptions": "CUT 1 0:00-0:12 S1E7 engagement-ceremony decoy. CUT 2 0:12-0:25 S1E7 Inako and Sasaki escape toward Kate\u2019s father. CUT 3 0:25-0:39 S1E7 Kengo joins Yosuke and boards the riverboat. CUT 4 0:39-0:53 S1E7 Sasaki invokes Seiroku. CUT 5 0:53-1:05 S1E7 Kengo switches sides. Creator remains top-half; every bottom-half cut is aired anime footage."
+    },
+    {
+      "package_id": "79bbef25-6967-422f-b430-31c9b9c05da5",
+      "slot": "evening",
+      "show": "Grand Blue Dreaming Season 3",
+      "angle": "Episode 6\u2019s wingman plan mutates into Maki\u2019s completely different reading of Iori and Kohei.",
+      "format_type": "THE_MOMENT",
+      "format_reason": "A single fully sourced Episode 6 comedic reversal best fits THE_MOMENT and keeps this package distinct from the morning EPISODE_MOMENT. Episode 7 preview material is not treated as confirmed story content.",
+      "hook_family": "MISUNDERSTANDING",
+      "hook_onscreen_text": "KOHEI CREATES THE WRONG COUPLE",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Grand Blue Season 3 turns Kohei's wingman plan into the funniest evidence against him in Episode 6.",
+        "Kohei tries to help Aina in Grand Blue Episode 6 and makes himself the problem."
+      ],
+      "selected_hook_index": 0,
+      "hook_line": "Grand Blue Season 3 turns Kohei's wingman plan into the funniest evidence against him in Episode 6.",
+      "opening_sentence": "Grand Blue Season 3 turns Kohei's wingman plan into the funniest evidence against him in Episode 6.",
+      "question_line": "Did Maki's conclusion make Kohei a worse wingman, or the episode's best punchline?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 56,
+      "loop_line": "Grand Blue gets the laugh by letting the misunderstanding do all the work.",
+      "loop_transition": "Cut from Maki\u2019s reaction back to Kohei\u2019s initial wingman gesture, then re-enter the opening line.",
+      "loop_read_aloud_pass": true,
+      "loop_transition_note": "The closing line names the mechanism of the joke; the opening line immediately restates the same mechanism with Kohei as its target.",
+      "final_to_opening": "Grand Blue gets the laugh by letting the misunderstanding do all the work. Grand Blue Season 3 turns Kohei's wingman plan into the funniest evidence against him in Episode 6.",
+      "face_direction_notes": [
+        "[FACE: direct-to-camera, grin; name the wingman reversal immediately.]",
+        "[FACE: glance down to Kohei and Aina footage; keep the setup clear.]",
+        "[FACE: direct-to-camera, pinch fingers to show the hints getting too obvious.]",
+        "[FACE: gesture outward toward the separate Chisa and Aina reaction.]",
+        "[FACE: turn to camera with a short incredulous pause on Maki\u2019s conclusion.]",
+        "[FACE: use a two-part hand motion to contrast Kohei\u2019s intent and the result.]",
+        "[FACE: slow the delivery; point to the crossed wires between conversations.]",
+        "[FACE: soften expression for Aina and Chisa\u2019s more honest conversation.]",
+        "[FACE: direct-to-camera; show that the intent was honest but the signals were not.]",
+        "[FACE: tap two fingers together to connect Maki\u2019s wrong dots.]",
+        "[FACE: ask the question and hold a beat.]",
+        "[FACE: say the CTA directly to camera.]",
+        "[FACE: smile and snap back to the opening Kohei gesture.]"
+      ],
+      "captions": "CUT 1: KOHEI PLAYS WINGMAN\nCUT 2: HINTS GO SIDEWAYS\nCUT 3: EVERYONE MISREADS IT\nCUT 4: MAKI HEARS THE WRONG THING\nCUT 5: BEST PUNCHLINE?",
+      "youtube_title": "Grand Blue's Worst Wingman Plan",
+      "tiktok_title": "Kohei Makes the Wrong Couple Happen",
+      "tiktok_post_text": "Grand Blue Episode 6 turns Kohei's wingman plan into Maki's wildest conclusion. Best punchline or worst assist?",
+      "pinned_comment": "Did Maki's conclusion make Kohei a worse wingman, or the episode's best punchline?",
+      "post_times": {
+        "youtube": "7:15 PM ET",
+        "tiktok": "8:05 PM ET"
+      },
+      "clip_verification_notes": "AIRED: independent Episode 6 recaps identify the episode and its plot; the r/anime Episode 6 discussion names Crunchyroll. ACCURATE: the fetched SoapCentral and IndiaTimes recaps confirm each planned misunderstanding beat. CURRENTLY AVAILABLE: IndiaTimes and the Episode 6 discussion identify Crunchyroll for the series. Real-platform searches on YouTube and Crunchyroll were performed; no unaired Episode 7 plot is used.",
+      "content_type": "short",
+      "topic_class": "timely",
+      "topic_signals": [
+        "currently_airing"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "capcut_target_sec": 65,
+      "total_clip_time_sec": 65,
+      "vo": "Grand Blue Season 3 turns Kohei's wingman plan into the funniest evidence against him in Episode 6. Kohei realizes Aina likes Iori and starts trying to steer Iori toward her instead of saying the obvious part out loud. His hints are so transparent that the whole situation grows stranger instead of clearer. Chisa and Aina get their own wrong read and try to give the boys space. Then Maki overhears enough to conclude that Iori and Kohei are romantically involved. That is the turn: Kohei begins as the guy trying to create one relationship, then accidentally becomes the proof of a completely different one. The joke works because no one is reacting to the same conversation; each person is building a new version of it from fragments. It also gives Aina and Chisa an open conversation about their feelings beneath the chaos. Kohei is never lying about what he wants, which makes the mistake even better: every attempt to make the plan clearer gives someone else a stranger version to believe. By the time Maki connects the dots, the audience can see why the conclusion is wrong and why it still fits every hint. Did Maki's conclusion make Kohei a worse wingman, or the episode's best punchline? Leave your take. Grand Blue gets the laugh by letting the misunderstanding do all the work.",
+      "vo_word_count": 223,
+      "length_rationale": "Two independently verified story beats support a multi-beat argument. A 65-second edit gives the setup, reversal, and question enough room and keeps the package eligible for TikTok Creator Rewards; it is not YouTube-only.",
+      "length_math": {
+        "target_sec": 65,
+        "required_word_range": "217-234",
+        "actual_words": 223,
+        "estimated_duration_sec": 64.6,
+        "delta_to_target_sec": -0.4
+      },
+      "video_style": "Face-Cam Split Screen \u2014 Creator TOP / anime footage BOTTOM (Law #134 Stage 2).",
+      "face": true,
+      "split_screen": true,
+      "clips": [
+        {
+          "scene": "Kohei realizes Aina likes Iori and decides to help as her wingman.",
+          "reason": "Sets up the well-intended plan that creates the episode's misunderstanding.",
+          "duration_sec": 13,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 13,
+          "scene_verified": true,
+          "verification_source_url": "https://www.indiatimes.com/trending/grand-blue-dreaming-season-3-episode-6-recap-iori-and-koheis-bizarre-misunderstanding-sends-aina-and-chisa-into-complete-chaos/articleshow/133130727.html",
+          "claim_vs_source_check": {
+            "claimed_beat": "Kohei realizes Aina likes Iori and decides to help as her wingman.",
+            "source_content_confirmed": "The fetched IndiaTimes Episode 6 recap says Kohei realizes Aina likes Iori and decides to help her get closer to him.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 3,
+            "episode": 6,
+            "locate_confirmed_via": "The cited source explicitly identifies this recap as Season 3, Episode 6.",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Kohei drops hints to steer Iori toward Aina instead of saying the plan plainly.",
+          "reason": "Shows how the wingman effort becomes confusing.",
+          "duration_sec": 13,
+          "timeline_start_sec": 13,
+          "timeline_end_sec": 26,
+          "scene_verified": true,
+          "verification_source_url": "https://www.soapcentral.com/anime/grand-blue-dreaming-season-3-episode-7-release-date-everything-need-know",
+          "claim_vs_source_check": {
+            "claimed_beat": "Kohei drops hints to steer Iori toward Aina instead of saying the plan plainly.",
+            "source_content_confirmed": "The fetched SoapCentral Episode 6 recap says Kohei drops hints to help Aina get closer to Iori, creating misunderstandings.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 3,
+            "episode": 6,
+            "locate_confirmed_via": "The cited source explicitly identifies this recap as Season 3, Episode 6.",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Chisa and Aina misread the situation and give Iori and Kohei space.",
+          "reason": "Builds the layered misunderstanding before Maki's conclusion.",
+          "duration_sec": 13,
+          "timeline_start_sec": 26,
+          "timeline_end_sec": 39,
+          "scene_verified": true,
+          "verification_source_url": "https://www.soapcentral.com/anime/grand-blue-dreaming-season-3-episode-7-release-date-everything-need-know",
+          "claim_vs_source_check": {
+            "claimed_beat": "Chisa and Aina misread the situation and give Iori and Kohei space.",
+            "source_content_confirmed": "The fetched SoapCentral Episode 6 recap says Chisa and Aina misunderstand the situation and try to give the boys space.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 3,
+            "episode": 6,
+            "locate_confirmed_via": "The cited source explicitly identifies this recap as Season 3, Episode 6.",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Maki overhears the hints and concludes that Iori and Kohei are romantically involved.",
+          "reason": "Delivers the reversal that anchors the hook.",
+          "duration_sec": 14,
+          "timeline_start_sec": 39,
+          "timeline_end_sec": 53,
+          "scene_verified": true,
+          "verification_source_url": "https://www.indiatimes.com/trending/grand-blue-dreaming-season-3-episode-6-recap-iori-and-koheis-bizarre-misunderstanding-sends-aina-and-chisa-into-complete-chaos/articleshow/133130727.html",
+          "claim_vs_source_check": {
+            "claimed_beat": "Maki overhears the hints and concludes that Iori and Kohei are romantically involved.",
+            "source_content_confirmed": "The fetched IndiaTimes Episode 6 recap says Maki overhears part of the conversation and concludes Iori and Kohei may be romantically involved.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 3,
+            "episode": 6,
+            "locate_confirmed_via": "The cited source explicitly identifies this recap as Season 3, Episode 6.",
+            "episode_source": "explicitly_stated"
+          }
+        },
+        {
+          "scene": "Aina and Chisa have an open conversation about their feelings after the chaos.",
+          "reason": "Carries the emotional undercurrent into the CTA without making an Episode 7 claim.",
+          "duration_sec": 12,
+          "timeline_start_sec": 53,
+          "timeline_end_sec": 65,
+          "scene_verified": true,
+          "verification_source_url": "https://www.soapcentral.com/anime/grand-blue-dreaming-season-3-episode-7-release-date-everything-need-know",
+          "claim_vs_source_check": {
+            "claimed_beat": "Aina and Chisa have an open conversation about their feelings after the chaos.",
+            "source_content_confirmed": "The fetched SoapCentral Episode 6 recap says Chisa and Aina have an open conversation about their feelings beneath the misunderstanding.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": 3,
+            "episode": 6,
+            "locate_confirmed_via": "The cited source explicitly identifies this recap as Season 3, Episode 6.",
+            "episode_source": "explicitly_stated"
+          }
+        }
+      ],
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "sources": [
+        {
+          "claim": "Episode 6 recap: Kohei helps Aina pursue Iori, creating Maki\u2019s Iori/Kohei misunderstanding and an Aina/Chisa conversation.",
+          "url": "https://www.soapcentral.com/anime/grand-blue-dreaming-season-3-episode-7-release-date-everything-need-know",
+          "date": "Aug 12, 2026"
+        },
+        {
+          "claim": "Independent Episode 6 recap: Kohei becomes Aina\u2019s wingman and Maki misreads Iori and Kohei; international streaming is on Crunchyroll.",
+          "url": "https://www.indiatimes.com/trending/grand-blue-dreaming-season-3-episode-6-recap-iori-and-koheis-bizarre-misunderstanding-sends-aina-and-chisa-into-complete-chaos/articleshow/133130727.html",
+          "date": "Aug 11, 2026"
+        },
+        {
+          "claim": "Episode 6 discussion listing on Crunchyroll.",
+          "url": "https://www.reddit.com/r/anime/comments/1vko5uh/grand_blue_dreaming_season_3_grand_blue_season_3/",
+          "date": "Aug 10, 2026"
+        }
+      ],
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Hook claim: Kohei tries to help Aina get closer to Iori, but Maki concludes Iori and Kohei are romantically involved.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.soapcentral.com/anime/grand-blue-dreaming-season-3-episode-7-release-date-everything-need-know",
+              "https://www.indiatimes.com/trending/grand-blue-dreaming-season-3-episode-6-recap-iori-and-koheis-bizarre-misunderstanding-sends-aina-and-chisa-into-complete-chaos/articleshow/133130727.html"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "Chisa and Aina misread the boys\u2019 situation, give them space, and later have an open conversation about their feelings.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.soapcentral.com/anime/grand-blue-dreaming-season-3-episode-7-release-date-everything-need-know"
+            ]
+          },
+          {
+            "claim": "The package uses aired Episode 6 only; Episode 7 preview language is not used as proof of an aired event.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.soapcentral.com/anime/grand-blue-dreaming-season-3-episode-7-release-date-everything-need-know",
+              "https://www.indiatimes.com/trending/grand-blue-dreaming-season-3-episode-6-recap-iori-and-koheis-bizarre-misunderstanding-sends-aina-and-chisa-into-complete-chaos/articleshow/133130727.html"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true,
+          "isolation_test": true,
+          "closer_question_check_9_8": true,
+          "closer_question_check_9_9": true
+        }
+      },
+      "clip_descriptions": "CUT 1 0:00-0:13 S3E6 Kohei realizes Aina likes Iori and becomes her wingman. CUT 2 0:13-0:26 S3E6 Kohei drops confusing hints. CUT 3 0:26-0:39 S3E6 Chisa and Aina give the boys space. CUT 4 0:39-0:53 S3E6 Maki concludes Iori and Kohei are involved. CUT 5 0:53-1:05 S3E6 Aina and Chisa talk openly. Creator remains top-half; every bottom-half cut is aired anime footage."
+    }
+  ]
+}

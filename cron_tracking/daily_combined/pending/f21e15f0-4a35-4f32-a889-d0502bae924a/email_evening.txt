@@ -1,0 +1,59 @@
+Subject: TOMORROW | EVENING | Chained Soldier | 2026-08-16 | Chained Soldier Has Season 3, Not a Date
+
+━━━ EVENING — 2026-08-16 ━━━
+SHOW:    Chained Soldier
+ANGLE:   The Season 3 announcement is a genuine green light, but the announcement deliberately contains no premiere date or confirmed studio.
+FORMAT:  FACT_DROP
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM — Law #134 Stage 2; manga panels allowed within the anime-footage half for manga-based formats)
+TOPIC:   timely — signals: news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK (Law #144 — on screen + spoken in second 1) ━━━
+ON-SCREEN (second 1): SEASON 3. NO DATE.
+SPOKEN (VO first line): Chained Soldier got a third season, but it did not get a date or a studio.
+HOOK FAMILY: contradiction
+(Draft two hook candidates internally — Law #145 — publish ONLY the selected one:
+  candidate A: Chained Soldier got a third season, but it did not get a date or a studio.
+  candidate B: Chained Soldier’s Season 3 is real—the release details are not.
+  SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (100 words — fills the resolved 30s CapCut edit) ━━━
+Chained Soldier got a third season, but it did not get a date or a studio. The August second event gave fans an announcement video and a new visual, then stopped there. That restraint is the story: this is a green light, not a trailer cycle pretending the season is around the corner. Season two character designer Keiya Nakano also drew the celebratory illustration, giving the news a real handoff from the last season. But the next production team is still unknown. Is that enough to get excited, or do you wait for the first real details? Leave your take.
+
+━━━ CLOSING LINE NOTE (Law #141 rescinded 2026-07-27) ━━━
+Law #141 rescinded 2026-07-27 -- no forced colon-handoff loop attempted. VO closes on its own complete, natural thought ('Leave your take.').
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings REQUIRED — Law #140) ━━━
+CUT 1 — 6 sec (0:00–0:06): Official Season 3 production-decision PV title card (unaired_trailer_only) — Front-loads the confirmed announcement without making a story-footage claim.
+CUT 2 — 6 sec (0:06–0:12): Official Season 3 announcement visual (unaired_trailer_only) — Matches the sourced green-light confirmation.
+CUT 3 — 6 sec (0:12–0:18): Official PV title card / door imagery (unaired_trailer_only) — Shows the announced asset while the VO lists the still-unconfirmed details.
+CUT 4 — 6 sec (0:18–0:24): Keiya Nakano celebratory illustration (unaired_trailer_only) — Supports the named artist credit from the announcement report.
+CUT 5 (final) — 6 sec (0:24–0:30): Official Season 3 PV end card with CTA overlay (unaired_trailer_only) — Closes on the confirmed decision and the question, without inventing a release window.
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+SEASON 3: CONFIRMED / NO DATE / NO STUDIO / THE PV IS REAL / WAIT FOR DETAILS? / LEAVE YOUR TAKE
+
+━━━ YOUTUBE TITLE (Law #144 — punchy, searchable) ━━━
+Chained Soldier Has Season 3, Not a Date
+
+━━━ TIKTOK TITLE (Law #144 — punchy; distinct from the caption below) ━━━
+Season 3 Is Real. The Details Aren’t.
+
+━━━ TIKTOK POST TEXT (caption — may be longer; hashtags live HERE, not in the title) ━━━
+Chained Soldier Season 3 is confirmed, but no date or studio was announced. Is the PV enough? #chainedsoldier #matoseiheinoslave #anime #animeannouncement #hidive
+
+━━━ PINNED COMMENT ━━━
+The confirmation is real, but “Season 3 is in production” is not the same thing as a premiere window. The official announcement still leaves the studio and date open.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 5:45 PM ET | Peak 7:00 PM ET
+TikTok — post 8:15 PM ET | Peak 9:00 PM ET
+
+━━━ SOURCES (concise evidence — >=2, each dated) ━━━
+1. Fetched ANN report: the Season 2 special event announced Season 3 “is in the works” and “revealed an announcement video and visual”; it also says Keiya Nakano drew a celebratory illustration. — https://www.animenewsnetwork.com/news/2026-08-02/chained-soldier-tv-anime-gets-3rd-season/.240191 (Aug 2, 2026)
+2. Fetched Anime.com report: “No release date, broadcast window, or staff list for Season 3 has been given,” and it says no studio has been attached. — https://www.anime.com/news/chained-soldier-season-3-production-confirmed (Aug 3, 2026)
+3. Fetched official YouTube PV title is “TVアニメ『魔都精兵のスレイブ3』制作決定PV”; its description says “3期制作決定” (Season 3 production decided). — https://www.youtube.com/watch?v=m-gn28edpIc (Aug 2, 2026)
+
+━━━ END EVENING ━━━

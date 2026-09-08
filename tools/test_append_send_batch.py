@@ -728,6 +728,192 @@ class TestApprovalFileGateLaw164165(LoggerCase):
         self.assertIn("emails not confirmed sent", st["error"])
 
 
+class TestCoreAwareApprovalGate(LoggerCase):
+    """Core-aware gate fix (2026-08-19): the Law #164/#165 gate in
+    TestApprovalFileGateLaw164165 above originally required EVERY
+    fetch_review entry to have fetched_content_supports_claim == True,
+    with no distinction between core and non-core claims. That blocked a
+    real production batch (8ca83216) whose evening package had one
+    honestly-disclosed, non-core citation gap (a real note explaining that
+    the cited page didn't itself state a secondary date, though the fact
+    was independently confirmed elsewhere in the same approval's own
+    sources).
+
+    This class pins the narrow fix: a fetch_review entry only needs
+    fetched_content_supports_claim == True when it is a CORE claim.
+    core/non-core detection precedence, in order:
+      1. A structured "core" key present on the entry (True or False) is
+         authoritative -- ignores the legacy text-prefix marker entirely
+         when present.
+      2. Else, a claim string starting with a case-insensitive
+         "[NON-CORE" marker is treated as core=False (the legacy
+         convention already used in every existing approval.json in this
+         repo, since none of them use a structured field).
+      3. Else: defaults to core=True (today's strict behavior, unchanged).
+
+    A non-core entry with fetched_content_supports_claim == False only
+    passes if it also carries a real, non-empty "note" -- non-core is not
+    a free pass to skip disclosure.
+    """
+
+    # 1. A core:true entry with fetched_content_supports_claim: False --
+    #    MUST still block. This is the actual protection the gate exists
+    #    for; the fix must leave it completely untouched.
+    def test_core_true_unsupported_entry_still_blocks(self):
+        approval_path = self.write_approval_file(fetch_review=[
+            {"claim": "core claim that failed verification", "core": True,
+             "url": "https://example.com/a", "fetched_content_supports_claim": False,
+             "note": "even with a note, a core claim that fails verification must block"},
+        ])
+        rc = self.run_cli("--emails-sent", approval_file=approval_path)
+        self.assertEqual(rc, 1)
+        self.assertFalse(os.path.exists(self.events_path))
+        st = self.state()
+        self.assertEqual(st["status"], "failed")
+        self.assertFalse(st["log_appended"])
+
+    # 2. A core:false entry with fetched_content_supports_claim: False and a
+    #    real, non-empty note -- must NOT block. The actual fix.
+    def test_core_false_unsupported_entry_with_real_note_does_not_block(self):
+        approval_path = self.write_approval_file(fetch_review=[
+            {"claim": "non-core claim with an honestly disclosed gap", "core": False,
+             "url": "https://example.com/b", "fetched_content_supports_claim": False,
+             "note": "the cited page does not itself state this secondary detail, "
+                      "though the fact is independently confirmed by another source "
+                      "already cited in this same approval"},
+        ])
+        rc = self.run_cli("--emails-sent", approval_file=approval_path)
+        self.assertEqual(rc, 0)
+        st = self.state()
+        self.assertEqual(st["status"], "success")
+        self.assertTrue(st["log_appended"])
+
+    # 3. A core:false entry with fetched_content_supports_claim: False and an
+    #    EMPTY/missing note -- MUST still block. Non-core isn't a free pass
+    #    to skip disclosure entirely.
+    def test_core_false_unsupported_entry_without_note_still_blocks(self):
+        approval_path = self.write_approval_file(fetch_review=[
+            {"claim": "non-core claim with no disclosure", "core": False,
+             "url": "https://example.com/c", "fetched_content_supports_claim": False},
+        ])
+        rc = self.run_cli("--emails-sent", approval_file=approval_path)
+        self.assertEqual(rc, 1)
+        self.assertFalse(os.path.exists(self.events_path))
+        st = self.state()
+        self.assertEqual(st["status"], "failed")
+        self.assertFalse(st["log_appended"])
+
+    # 3b. Same as above but with an explicit empty-string note (not just a
+    #     missing key) -- still must block, since an empty string is not a
+    #     real disclosure.
+    def test_core_false_unsupported_entry_with_empty_string_note_still_blocks(self):
+        approval_path = self.write_approval_file(fetch_review=[
+            {"claim": "non-core claim with a blank note", "core": False,
+             "url": "https://example.com/c2", "fetched_content_supports_claim": False,
+             "note": "   "},
+        ])
+        rc = self.run_cli("--emails-sent", approval_file=approval_path)
+        self.assertEqual(rc, 1)
+        st = self.state()
+        self.assertEqual(st["status"], "failed")
+
+    # 4. A mix: one core:true false entry AND one core:false false entry
+    #    (with a real note) present together -- MUST block. The core
+    #    failure alone is sufficient cause, regardless of the honestly
+    #    disclosed non-core entry sitting right next to it.
+    def test_mixed_core_true_failure_and_core_false_disclosed_entry_blocks(self):
+        approval_path = self.write_approval_file(fetch_review=[
+            {"claim": "core claim that failed verification", "core": True,
+             "url": "https://example.com/d1", "fetched_content_supports_claim": False,
+             "note": "a note does not rescue a core claim"},
+            {"claim": "non-core claim with an honest disclosure", "core": False,
+             "url": "https://example.com/d2", "fetched_content_supports_claim": False,
+             "note": "genuinely disclosed non-core gap, would pass on its own"},
+        ])
+        rc = self.run_cli("--emails-sent", approval_file=approval_path)
+        self.assertEqual(rc, 1)
+        self.assertFalse(os.path.exists(self.events_path))
+        st = self.state()
+        self.assertEqual(st["status"], "failed")
+        self.assertFalse(st["log_appended"])
+
+    # 5. Backward compatibility: an approval.json with NO core field
+    #    anywhere on any entry (pre-dating this schema addition), and no
+    #    legacy [NON-CORE] text marker either, behaves exactly as it did
+    #    before this fix -- full strict gating, nothing silently loosened
+    #    for old data. Reuses the exact same shape as the pre-fix
+    #    regression test in TestApprovalFileGateLaw164165.
+    def test_backward_compat_no_core_field_anywhere_still_strict(self):
+        approval_path = self.write_approval_file(fetch_review=[
+            {"claim": "claim A", "url": "https://example.com/a",
+             "fetched_content_supports_claim": True},
+            {"claim": "claim B", "url": "https://example.com/b",
+             "fetched_content_supports_claim": False},
+        ])
+        rc = self.run_cli("--emails-sent", approval_file=approval_path)
+        self.assertEqual(rc, 1)
+        self.assertFalse(os.path.exists(self.events_path))
+        st = self.state()
+        self.assertEqual(st["status"], "failed")
+        self.assertFalse(st["log_appended"])
+
+    # 6. The actual real-world case: an entry using ONLY the legacy
+    #    [NON-CORE] text prefix (no structured "core" field at all),
+    #    fetched_content_supports_claim: false, with a real non-empty
+    #    note -- must NOT block. Uses the real wording pattern from batch
+    #    8ca83216's actual approval.json as the fixture.
+    def test_legacy_non_core_text_prefix_with_real_note_does_not_block(self):
+        approval_path = self.write_approval_file(fetch_review=[
+            {"claim": "[NON-CORE, evening] Season runs two cours: first cour "
+                      "Oct 2 2026, second cour premieres April 2027.",
+             "url": "https://www.cbr.com/the-apothecary-diaries-season-3-october-2-premiere/",
+             "fetched_content_supports_claim": False,
+             "note": "Fetched fresh this session. CBR confirms the Oct 2, 2026 date "
+                      "and a 'two-part release schedule' but does NOT itself state the "
+                      "April 2027 second-cour date. However, the underlying fact is "
+                      "independently and directly confirmed by the animenewsnetwork.com "
+                      "source already cited on the CORE 'two cours' beat."},
+        ])
+        rc = self.run_cli("--emails-sent", approval_file=approval_path)
+        self.assertEqual(rc, 0)
+        st = self.state()
+        self.assertEqual(st["status"], "success")
+        self.assertTrue(st["log_appended"])
+
+    # 7. A structured core:false field where the claim text does NOT start
+    #    with [NON-CORE] -- must still NOT block, confirming the structured
+    #    field works independently of the text convention.
+    def test_structured_core_false_without_text_marker_does_not_block(self):
+        approval_path = self.write_approval_file(fetch_review=[
+            {"claim": "a plainly worded non-core claim with no bracket marker",
+             "core": False, "url": "https://example.com/e",
+             "fetched_content_supports_claim": False,
+             "note": "structured core:false alone is enough, no text marker needed"},
+        ])
+        rc = self.run_cli("--emails-sent", approval_file=approval_path)
+        self.assertEqual(rc, 0)
+        st = self.state()
+        self.assertEqual(st["status"], "success")
+
+    # 8. The claim text starts with [NON-CORE] but structured core: true is
+    #    ALSO present -- must block. Confirms the structured field takes
+    #    precedence over the text prefix when both exist, so the two
+    #    signals can never silently disagree in the permissive direction.
+    def test_structured_core_true_overrides_conflicting_text_marker_and_blocks(self):
+        approval_path = self.write_approval_file(fetch_review=[
+            {"claim": "[NON-CORE] this text says non-core but the field overrides it",
+             "core": True, "url": "https://example.com/f",
+             "fetched_content_supports_claim": False,
+             "note": "even with a note, structured core:true must win and block"},
+        ])
+        rc = self.run_cli("--emails-sent", approval_file=approval_path)
+        self.assertEqual(rc, 1)
+        self.assertFalse(os.path.exists(self.events_path))
+        st = self.state()
+        self.assertEqual(st["status"], "failed")
+        self.assertFalse(st["log_appended"])
+
+
 class TestCorrectionBatchAttribution(LoggerCase):
     """corrects_batch_id / correction_reason (added 2026-08-13): a correction
     send that amends an already-sent batch's content needs a durable, typed
@@ -940,3 +1126,255 @@ class TestPendingStateMirrorF38(LoggerCase):
         self.assertEqual(st["status"], "success")
         self.assertTrue(st["git_pushed"])
         self.assertEqual(self.pending()["git_pushed"], True)
+
+    # --- F73: pending/ directory not named after the raw batch_id ---
+
+    def human_named_pending_dir(self, dirname):
+        return os.path.join(self.tree, "cron_tracking", CRON_ID, "pending", dirname)
+
+    def seed_pending_human_named(self, dirname, extra: dict | None = None):
+        """Same as seed_pending(), but under a human-readable directory name
+        instead of the raw batch_id -- reproducing batchA_20260901,
+        fresh_20260907, etc."""
+        d = self.human_named_pending_dir(dirname)
+        os.makedirs(d, exist_ok=True)
+        body = {
+            "status": "AWAITING_" + "APPROVAL",
+            "emails_sent": False,
+            "batch_id": self.manifest["batch_id"],
+            "post_date": self.manifest.get("post_date"),
+        }
+        if extra:
+            body.update(extra)
+        with open(os.path.join(d, "state.json"), "w", encoding="utf-8") as fh:
+            json.dump(body, fh)
+        return d
+
+    def test_human_named_pending_dir_still_flips_to_terminal(self):
+        # F73's actual failure mode: dirname != batch_id, so the old fast-path
+        # os.path.isdir() check missed it and silently returned None -- no
+        # per-batch terminal state was ever written for these real batches.
+        d = self.seed_pending_human_named("fresh_20260907")
+        self.assertEqual(self.run_cli("--emails-sent"), 0)
+        with open(os.path.join(d, "state.json"), encoding="utf-8") as fh:
+            mirrored = json.load(fh)
+        self.assertEqual(mirrored["status"], "sent")
+        self.assertEqual(mirrored["batch_id"], self.manifest["batch_id"])
+
+    def test_human_named_pending_dir_preserves_step6_fields(self):
+        # the fallback path must merge exactly like the fast path does --
+        # held_packages/corrects_batch_id must survive here too.
+        held = [{"show": "Slime", "disposition": "HELD_NOT_SENT",
+                 "still_open": True}]
+        d = self.seed_pending_human_named("batchB_20260902", {
+            "corrects_batch_id": "b03ef8b6-d254-442a-aaf9-673a6578a0c5",
+            "held_packages": held,
+        })
+        self.assertEqual(self.run_cli("--emails-sent"), 0)
+        with open(os.path.join(d, "state.json"), encoding="utf-8") as fh:
+            mirrored = json.load(fh)
+        self.assertEqual(mirrored["status"], "sent")
+        self.assertEqual(mirrored["corrects_batch_id"],
+                         "b03ef8b6-d254-442a-aaf9-673a6578a0c5")
+        self.assertEqual(mirrored["held_packages"], held)
+
+    def test_unrelated_human_named_dirs_are_not_matched(self):
+        # the fallback must match by batch_id, not just "first directory
+        # found" or "any directory that exists" -- an unrelated pending batch
+        # sitting alongside must never get overwritten.
+        unrelated_id = "11111111-2222-3333-4444-555555555555"
+        unrelated_dir = self.human_named_pending_dir("unrelated_batch")
+        os.makedirs(unrelated_dir, exist_ok=True)
+        unrelated_body = {"status": "AWAITING_" + "APPROVAL",
+                          "batch_id": unrelated_id}
+        with open(os.path.join(unrelated_dir, "state.json"), "w",
+                 encoding="utf-8") as fh:
+            json.dump(unrelated_body, fh)
+
+        target_dir = self.seed_pending_human_named("the_real_batch")
+        self.assertEqual(self.run_cli("--emails-sent"), 0)
+
+        with open(os.path.join(target_dir, "state.json"), encoding="utf-8") as fh:
+            target_after = json.load(fh)
+        self.assertEqual(target_after["status"], "sent")
+
+        with open(os.path.join(unrelated_dir, "state.json"), encoding="utf-8") as fh:
+            unrelated_after = json.load(fh)
+        self.assertEqual(unrelated_after, unrelated_body,
+                         "an unrelated batch's pending state must be left "
+                         "completely untouched by another batch's mirror")
+
+    def test_batch_id_can_be_read_from_run_manifest_json(self):
+        # some real pending dirs only carry run_manifest.json, not a
+        # pre-existing state.json, before a batch is ever sent -- the
+        # fallback must still find them via that file.
+        d = self.human_named_pending_dir("fresh_20260907")
+        os.makedirs(d, exist_ok=True)
+        with open(os.path.join(d, "run_manifest.json"), "w",
+                 encoding="utf-8") as fh:
+            json.dump({"batch_id": self.manifest["batch_id"]}, fh)
+        self.assertEqual(self.run_cli("--emails-sent"), 0)
+        with open(os.path.join(d, "state.json"), encoding="utf-8") as fh:
+            mirrored = json.load(fh)
+        self.assertEqual(mirrored["status"], "sent")
+
+    def test_no_matching_dir_anywhere_is_still_a_clean_noop(self):
+        # if NO pending directory (raw-UUID or human-named) matches this
+        # batch_id at all, this must behave exactly like the pre-existing
+        # "no pending dir" case -- clean no-op, no crash, no phantom file.
+        self.human_named_pending_dir("someone_elses_batch")
+        os.makedirs(self.human_named_pending_dir("someone_elses_batch"),
+                   exist_ok=True)
+        with open(os.path.join(
+                self.human_named_pending_dir("someone_elses_batch"),
+                "state.json"), "w", encoding="utf-8") as fh:
+            json.dump({"batch_id": "99999999-0000-0000-0000-000000000000",
+                      "status": "AWAITING_APPROVAL"}, fh)
+        self.assertEqual(self.run_cli("--emails-sent"), 0)
+        self.assertFalse(os.path.exists(self.pending_path()))
+        self.assertEqual(self.state()["status"], "success")
+
+
+class TestCheckPendingBatchesLaw166(LoggerCase):
+    """Item #2 (recurring-failure-patterns audit): Law #166's pending-batch
+    check was prose-only (see cron_daily_runtime.txt), enforced only by an
+    LLM reading a directory listing. check_pending_batches() ports the exact
+    two-part test the prose already specifies into real, testable code."""
+
+    def pending_root(self):
+        return os.path.join(self.tree, "cron_tracking", CRON_ID, "pending")
+
+    def seed_pending_state(self, batch_id, status, *, corrects_batch_id=None,
+                            dirname=None):
+        dirname = dirname or batch_id
+        d = os.path.join(self.pending_root(), dirname)
+        os.makedirs(d, exist_ok=True)
+        payload = {"batch_id": batch_id, "status": status}
+        if corrects_batch_id is not None:
+            payload["corrects_batch_id"] = corrects_batch_id
+        with open(os.path.join(d, "state.json"), "w", encoding="utf-8") as fh:
+            json.dump(payload, fh)
+
+    def seed_confirmed_send(self, batch_id, package_id="pkg-1"):
+        os.makedirs(os.path.dirname(self.events_path), exist_ok=True)
+        with open(self.events_path, "a", encoding="utf-8") as fh:
+            fh.write(json.dumps({"batch_id": batch_id, "package_id": package_id,
+                                  "event": "sent"}) + "\n")
+
+    # 1: AWAITING_APPROVAL + no send anywhere -> blocks
+    def test_awaiting_approval_no_send_blocks(self):
+        self.seed_pending_state("b1", "AWAITING_APPROVAL")
+        blocking = a.check_pending_batches(self.tree, CRON_ID)
+        self.assertEqual([r["batch_id"] for r in blocking], ["b1"])
+
+    # 2: AWAITING_VO + no send -> blocks
+    def test_awaiting_vo_no_send_blocks(self):
+        self.seed_pending_state("b2", "AWAITING_VO")
+        blocking = a.check_pending_batches(self.tree, CRON_ID)
+        self.assertEqual([r["batch_id"] for r in blocking], ["b2"])
+
+    # 3: AWAITING_APPROVAL but a real sent row exists (F38 stale-state) -> does not block
+    def test_stale_awaiting_status_with_real_send_does_not_block(self):
+        self.seed_pending_state("b3", "AWAITING_APPROVAL")
+        self.seed_confirmed_send("b3")
+        blocking = a.check_pending_batches(self.tree, CRON_ID)
+        self.assertEqual(blocking, [])
+
+    # 4: corrects_batch_id present + demonstrably sent + still reads AWAITING_* -> F37 carve-out
+    def test_correction_batch_carveout_does_not_block(self):
+        self.seed_pending_state("b4", "AWAITING_APPROVAL", corrects_batch_id="b0")
+        self.seed_confirmed_send("b4")
+        blocking = a.check_pending_batches(self.tree, CRON_ID)
+        self.assertEqual(blocking, [])
+
+    # 5: terminal status "sent" -> does not block
+    def test_terminal_sent_status_does_not_block(self):
+        self.seed_pending_state("b5", "sent")
+        blocking = a.check_pending_batches(self.tree, CRON_ID)
+        self.assertEqual(blocking, [])
+
+    # 5b: terminal CLOSED_NOTHING_SHIPPED status -> does not block
+    def test_terminal_closed_nothing_shipped_does_not_block(self):
+        self.seed_pending_state("b5b", "CLOSED_NOTHING_SHIPPED")
+        blocking = a.check_pending_batches(self.tree, CRON_ID)
+        self.assertEqual(blocking, [])
+
+    # 6: missing/corrupt state.json -> fails open, does not block, does not crash
+    def test_missing_state_json_fails_open(self):
+        os.makedirs(os.path.join(self.pending_root(), "b6"), exist_ok=True)
+        blocking = a.check_pending_batches(self.tree, CRON_ID)
+        self.assertEqual(blocking, [])
+
+    def test_corrupt_state_json_fails_open(self):
+        d = os.path.join(self.pending_root(), "b6b")
+        os.makedirs(d, exist_ok=True)
+        with open(os.path.join(d, "state.json"), "w", encoding="utf-8") as fh:
+            fh.write("{ not valid json")
+        blocking = a.check_pending_batches(self.tree, CRON_ID)
+        self.assertEqual(blocking, [])
+
+    # 6c: state.json missing the status field entirely -> fails open
+    def test_missing_status_field_fails_open(self):
+        d = os.path.join(self.pending_root(), "b6c")
+        os.makedirs(d, exist_ok=True)
+        with open(os.path.join(d, "state.json"), "w", encoding="utf-8") as fh:
+            json.dump({"batch_id": "b6c"}, fh)
+        blocking = a.check_pending_batches(self.tree, CRON_ID)
+        self.assertEqual(blocking, [])
+
+    # 6d: substring false-positive guard -- a status string that merely CONTAINS
+    # "AWAITING_APPROVAL" as a substring (not an exact match) must not block,
+    # proving this is a direct field-equality read, not a grep (the F38 bug class).
+    def test_substring_status_is_not_treated_as_exact_match(self):
+        self.seed_pending_state("b6d", "PREVIOUSLY_AWAITING_APPROVAL_NOW_CLOSED")
+        blocking = a.check_pending_batches(self.tree, CRON_ID)
+        self.assertEqual(blocking, [])
+
+    # 7: no pending directory at all -> clean empty list, no crash
+    def test_no_pending_directory_is_clean_noop(self):
+        self.assertFalse(os.path.isdir(self.pending_root()))
+        blocking = a.check_pending_batches(self.tree, CRON_ID)
+        self.assertEqual(blocking, [])
+
+    # 8: top-level state.json (not the JSONL ledger) carries the confirmed send
+    def test_confirmed_send_via_top_level_state_json_does_not_block(self):
+        self.seed_pending_state("b8", "AWAITING_APPROVAL")
+        top_state_dir = os.path.join(self.tree, "cron_tracking", CRON_ID)
+        os.makedirs(top_state_dir, exist_ok=True)
+        with open(os.path.join(top_state_dir, "state.json"), "w", encoding="utf-8") as fh:
+            json.dump({"batch_id": "b8", "status": "success"}, fh)
+        blocking = a.check_pending_batches(self.tree, CRON_ID)
+        self.assertEqual(blocking, [])
+
+    # 9: multiple pending batches -- only the genuinely blocking ones are returned
+    def test_multiple_pending_only_real_blockers_returned(self):
+        self.seed_pending_state("ok1", "sent")
+        self.seed_pending_state("blocker1", "AWAITING_APPROVAL")
+        self.seed_pending_state("blocker2", "AWAITING_VO")
+        self.seed_pending_state("stale1", "AWAITING_APPROVAL")
+        self.seed_confirmed_send("stale1")
+        blocking = a.check_pending_batches(self.tree, CRON_ID)
+        self.assertEqual(sorted(r["batch_id"] for r in blocking),
+                         ["blocker1", "blocker2"])
+
+    # 10: real production data -- the 8 actual pending directories from this
+    # repo's real cron_tracking tree are all terminal (sent / CLOSED_NOTHING_
+    # SHIPPED); reproduced here as a fixture snapshot (not a live filesystem
+    # dependency, so the test suite stays hermetic) to prove the function
+    # reports zero blockers against that real, current shape.
+    def test_real_current_pending_snapshot_reports_zero_blockers(self):
+        real_statuses = {
+            "32e0fcb9": "sent",
+            "8ca83216": "sent",
+            "9baf0f49": "CLOSED_NOTHING_SHIPPED",
+            "9dc75e78": "sent",
+            "d4a8f107": "CLOSED_NOTHING_SHIPPED",
+            "de6845d6": "sent",
+            "f21e15f0": "sent",
+            "f54413d8": "CLOSED_NOTHING_SHIPPED",
+        }
+        for batch_id, status in real_statuses.items():
+            self.seed_pending_state(batch_id, status)
+        blocking = a.check_pending_batches(self.tree, CRON_ID)
+        self.assertEqual(blocking, [],
+                         "real current pending snapshot must report zero blockers")

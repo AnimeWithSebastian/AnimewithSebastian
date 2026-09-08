@@ -1,0 +1,202 @@
+{
+  "batch_id": "3f8a9c1e-7d24-4b6a-9e12-5c8b0a4f6d3a",
+  "run_ts": "2026-08-21T20:38:00-04:00",
+  "post_date": "2026-08-21",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {"timestamp": "2026-08-21T18:00:00-04:00", "age_days": 0, "status": "CURRENT"},
+  "packages": [
+    {
+      "package_id": "b1e4a2d0-1a3c-4e5f-9a7b-2c6d8e1f4a5b",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "Goodbye, Lara",
+      "angle": "Episode 7's end-card foam-again twist is the show quietly answering who Lara's true love is -- and it's deliberately steering viewers toward the wrong guy.",
+      "format_type": "EPISODE_MOMENT",
+      "topic_class": "timely",
+      "topic_signals": ["currently_airing"],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "Goodbye, Lara used the exact imagery that killed its heroine to tell you Luca is the wrong guy.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Goodbye, Lara used the exact imagery that killed its heroine to tell you Luca is the wrong guy.",
+        "Everyone thinks Luca just won. The credits scene says otherwise."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Goodbye, Lara used the exact imagery that killed its heroine to tell you Luca is the wrong guy.",
+      "opening_sentence": "Goodbye, Lara used the exact imagery that killed its heroine to tell you Luca is the wrong guy.",
+      "vo_status": "complete",
+      "vo": "Goodbye, Lara used the exact imagery that killed its heroine to tell you Luca is the wrong guy. Episode 1 killed Lara: rejected by a prince, her tail burst, and she dissolved into sea foam. Two hundred years later, she's reincarnated in modern Kyoto. Episode 7 gives her closure with new character Luca, who says he's drawn to her because she's just herself. The episode ends with a fireworks date. Then the end credits show Lara dissolving into foam again — the exact fate that killed her the first time. Episode 4 hinted her real match might be Mari, not Luca. Who does Lara actually love? Leave your take.",
+      "vo_word_count": 108,
+      "vo_pending_brief": {
+        "target_word_band": [100, 108],
+        "facts_to_cover": [
+          "Goodbye, Lara (Sayonara, Lara) is a Kinema Citrus Summer 2026 Crunchyroll original, 12 episodes, airing Sundays.",
+          "Premise is a Little Mermaid inversion: mermaid princess Lara becomes human for a prince, is rejected when her tail bursts in front of him, dissolves into sea foam and dies in Episode 1, then reincarnates 200 years later in modern Kyoto.",
+          "Modern-day cast: her witch aunt Grace is reincarnated as a talking pet fish; national-level boxer Mari Ootsu takes Lara in.",
+          "New character Luca is introduced in Episode 7 (aired Aug 16-17, 2026) and gives Lara emotional closure from her original prince-rejection trauma, telling her he likes her 'because she's just herself.'",
+          "Episode 7 ends with Lara and Luca on a fireworks date, followed by an end-credits sequence showing Lara dissolving into sea foam again -- the exact fate that killed her in Episode 1.",
+          "Episode 4 (aired 2026-07-28) had already built foreshadowing that boxer Mari, not a new love interest, is set up as Lara's true emotional match, per Anime News Network's review.",
+          "Real fan debate is happening now (Reddit thread dated Aug 17, 2026) over whether Luca is a genuine love interest or a narrative red herring given the foam-again end card.",
+          "The angle: the show just used its own signature death imagery (sea foam) as a coded 'wrong answer' signal right after introducing Luca -- viewers cheering for Luca may be falling for the same setup that killed Lara once already."
+        ],
+        "proposed_hook_line": "Lara just answered who she really loves. You looked right past it.",
+        "proposed_opening_sentence": "Goodbye, Lara just used the exact same imagery that killed its heroine to tell you Luca is the wrong guy.",
+        "required_closing_structure": "A specific question about who Lara's true love actually is, immediately followed by the exact phrase \"Leave your take.\""
+      },
+      "question_line": "Who does Lara actually love?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "episode_air_date_iso": "2026-08-17",
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {"claim": "Goodbye, Lara premise: mermaid Lara dissolves into sea foam after prince rejection in Episode 1, reincarnates 200 years later in modern Kyoto.", "core": true, "claim_type": "A", "source_urls": ["https://gizmodo.com/goodbye-lara-crunchyroll-the-little-mermaid-anime-2000785941", "https://en.wikipedia.org/wiki/Goodbye,_Lara"], "anchors_claim": "hook"},
+          {"claim": "Episode 7 (aired Aug 16-17, 2026) introduces Luca, who gives Lara closure and says he likes her for herself; episode ends with a fireworks date.", "core": true, "claim_type": "A", "source_urls": ["https://angryanimebitches.com/2026/08/16/goodbye-lara-episode-7/", "https://www.animenewsnetwork.com/review/goodbye-lara/episode-7/.240655"]},
+          {"claim": "Episode 7's end-credits sequence shows Lara turning to sea foam again after the fireworks date with Luca.", "core": true, "claim_type": "A", "source_urls": ["https://angryanimebitches.com/2026/08/16/goodbye-lara-episode-7/", "https://www.reddit.com/r/anime/comments/1vq02pj/goodbye_lara_sayonara_lara_episode_7_discussion/"]},
+          {"claim": "Episode 4 (aired 2026-07-28) review established foreshadowing that Mari, not a new suitor, is the show's real romantic endgame for Lara.", "core": true, "claim_type": "F", "source_urls": ["https://www.animenewsnetwork.com/review/goodbye-lara/episode-4/.240017"]},
+          {"claim": "Studio is Kinema Citrus; series airs Summer 2026 on Crunchyroll, Sundays, 12 episodes total.", "core": false, "source_urls": ["https://en.wikipedia.org/wiki/Goodbye,_Lara"]}
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Creator face-cam split-screen (Creator TOP / anime footage BOTTOM, Law #134 Stage 2)",
+      "face": true,
+      "split_screen": true,
+      "sources": [
+        {"claim": "Series premise, cast, studio, episode schedule", "url": "https://en.wikipedia.org/wiki/Goodbye,_Lara", "date": "Aug 2026"},
+        {"claim": "Series premise and Episode 1 death/reincarnation setup", "url": "https://gizmodo.com/goodbye-lara-crunchyroll-the-little-mermaid-anime-2000785941", "date": "Jul 2026"},
+        {"claim": "Episode 7 synopsis: Luca introduction, closure scene, fireworks date, foam-again end card", "url": "https://angryanimebitches.com/2026/08/16/goodbye-lara-episode-7/", "date": "Aug 2026"},
+        {"claim": "Episode 7 review confirming end-card twist and fan reaction framing", "url": "https://www.animenewsnetwork.com/review/goodbye-lara/episode-7/.240655", "date": "Aug 2026"},
+        {"claim": "Live fan debate over Luca vs. Mari as true love, dated Aug 17, 2026", "url": "https://www.reddit.com/r/anime/comments/1vq02pj/goodbye_lara_sayonara_lara_episode_7_discussion/", "date": "Aug 2026"},
+        {"claim": "Episode 4 review establishing Mari-as-true-love foreshadowing", "url": "https://www.animenewsnetwork.com/review/goodbye-lara/episode-4/.240017", "date": "Jul 2026"},
+        {"claim": "Full episode air-date schedule", "url": "https://aniflixy.com/how-many-episodes-will-goodbye-lara-have-full-episode-guide-and-release-schedule/", "date": "Aug 2026"}
+      ],
+      "clips": [
+        {"scene": "Lara's Episode 1 tail-burst rejection and dissolve into sea foam", "reason": "Establishes the death imagery the hook depends on", "duration_sec": 8, "timeline_start_sec": 0, "timeline_end_sec": 8, "scene_verified": true, "verification_source_url": "https://gizmodo.com/goodbye-lara-crunchyroll-the-little-mermaid-anime-2000785941", "claim_vs_source_check": {"claimed_beat": "Lara is rejected by the prince, her tail bursts, and she dissolves into sea foam and dies.", "source_content_confirmed": "Gizmodo's review describes this exact Episode 1 rejection-and-foam-death sequence.", "match": true}, "clip_locate": {"season": 1, "episode": 1, "locate_confirmed_via": "the same Gizmodo review of the Episode 1 premiere cited above", "approx_timestamp": "final act", "episode_source": "explicitly_stated"}},
+        {"scene": "Modern Kyoto reincarnation reveal, Lara meeting Mari and fish-Grace", "reason": "Grounds viewers in the present-day setting before introducing the new twist", "duration_sec": 6, "timeline_start_sec": 8, "timeline_end_sec": 14, "scene_verified": true, "verification_source_url": "https://en.wikipedia.org/wiki/Goodbye,_Lara", "claim_vs_source_check": {"claimed_beat": "Lara reincarnates in modern Kyoto and is taken in by boxer Mari Ootsu, with her aunt Grace reincarnated as a talking fish.", "source_content_confirmed": "Wikipedia's plot/cast summary confirms this modern-day cast setup.", "match": true}, "clip_locate": {"season": 1, "episode": 2, "locate_confirmed_via": "the same Wikipedia plot/cast summary cited above, which places the modern-day reincarnation setup in the early episodes", "approx_timestamp": "cold open", "episode_source": "inferred"}},
+        {"scene": "Episode 7: Luca's closure scene with Lara (\"because she's just herself\")", "reason": "Shows the apparent romantic resolution the twist undercuts", "duration_sec": 8, "timeline_start_sec": 14, "timeline_end_sec": 22, "scene_verified": true, "verification_source_url": "https://angryanimebitches.com/2026/08/16/goodbye-lara-episode-7/", "claim_vs_source_check": {"claimed_beat": "Luca tells Lara he's drawn to her because she is genuinely herself, giving her emotional closure.", "source_content_confirmed": "The episode review describes this Luca-Lara closure dialogue beat.", "match": true}, "clip_locate": {"season": 1, "episode": 7, "locate_confirmed_via": "the same AngryAnimeBitches Episode 7 review cited above", "approx_timestamp": "mid-episode", "episode_source": "explicitly_stated"}},
+        {"scene": "Episode 7 end-credits: Lara dissolving into sea foam again after the fireworks date", "reason": "Delivers the payoff twist the whole hook is built on", "duration_sec": 8, "timeline_start_sec": 22, "timeline_end_sec": 30, "scene_verified": true, "verification_source_url": "https://www.animenewsnetwork.com/review/goodbye-lara/episode-7/.240655", "claim_vs_source_check": {"claimed_beat": "The end-credits sequence shows Lara turning to sea foam again after her fireworks date with Luca.", "source_content_confirmed": "ANN's Episode 7 review discusses this end-credits foam imagery and its narrative implication.", "match": true}, "clip_locate": {"season": 1, "episode": 7, "locate_confirmed_via": "the same Anime News Network Episode 7 review cited above", "approx_timestamp": "end credits", "episode_source": "explicitly_stated"}}
+      ],
+      "clip_descriptions": "CUT 1 (S1E1, 0:00-0:08): Lara's tail bursts after the prince's rejection and she dissolves into sea foam and dies -- the death imagery the whole hook leans on. CUT 2 (S1E2, 0:08-0:14): Modern-day Kyoto reincarnation -- Lara meeting boxer Mari Ootsu and her fish-reincarnated aunt Grace. CUT 3 (S1E7, 0:14-0:22): Luca's closure scene with Lara, telling her he likes her 'because she's just herself.' CUT 4 (S1E7, 0:22-0:30): The end-credits payoff -- Lara dissolving into sea foam again after her fireworks date with Luca.",
+      "captions": "PENDING_VO",
+      "youtube_title": "SPOILER: Goodbye, Lara Just Answered Its Love Triangle",
+      "tiktok_title": "Lara's Ep7 Ending Is a Trap",
+      "tiktok_post_text": "SPOILER WARNING for Goodbye, Lara Episode 7.\nPENDING_VO -- caption + hashtag pyramid to be finalized once VO is inserted.",
+      "pinned_comment": "PENDING_VO",
+      "post_times": {"youtube": "7:30 AM ET", "tiktok": "7:45 AM ET"},
+      "blackout_conflict": false,
+      "recent_send_conflict": false
+    },
+    {
+      "package_id": "c2f5b3e1-2b4d-4f6a-8b8c-3d7e9f2a5b6c",
+      "slot": "evening",
+      "content_type": "short",
+      "show": "Kaiju Girl Caramelise",
+      "angle": "Episode 7 quietly changed what triggers Kuroe's kaiju transformation -- for the first time it's not romance, it's the panic of being alone. Nobody's talking about it.",
+      "format_type": "WRONG_TAKE",
+      "topic_class": "timely",
+      "topic_signals": ["currently_airing"],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "For six episodes, Kaiju Girl Caramelise trained you to believe Kuroe only transforms into a kaiju when overwhelmed by love for Arata.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "For six episodes, Kaiju Girl Caramelise trained you to believe Kuroe only transforms into a kaiju when overwhelmed by love for Arata.",
+        "Kaiju Girl Caramelise just rewrote its own core rule and barely anyone noticed."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "For six episodes, Kaiju Girl Caramelise trained you to believe Kuroe only transforms into a kaiju when overwhelmed by love for Arata.",
+      "opening_sentence": "For six episodes, Kaiju Girl Caramelise trained you to believe Kuroe only transforms into a kaiju when overwhelmed by love for Arata.",
+      "vo_status": "complete",
+      "vo": "For six episodes, Kaiju Girl Caramelise trained you to believe Kuroe only transforms into a kaiju when overwhelmed by love for Arata. Episode 7 broke that rule. After their kiss goes viral, Arata becomes an unwilling celebrity, and the two try to avoid being seen together. They meet anyway, hiding in a festival crowd, but the crowd separates them. This time it's not love that triggers her transformation — it's the panic of being alone. Arata calms her down, and they reunite for the fireworks. A published review calls this the first time her trigger wasn't romantic. Is the show quietly rewriting its own rule? Leave your take.",
+      "vo_word_count": 107,
+      "vo_pending_brief": {
+        "target_word_band": [100, 108],
+        "facts_to_cover": [
+          "Kaiju Girl Caramelise (Otome Kaiju Caramelize) is a Liden Films Summer 2026 anime based on Spica Aoki's manga, airing on Crunchyroll (Japan broadcast Fridays on TBS/BS11/AT-X), premiered July 3, 2026.",
+          "Premise: high schooler Kuroe Akaishi has a rare condition that causes her to transform into a giant kaiju (Harugon) whenever overwhelming emotion -- especially romantic feeling for classmate Arata Minami -- takes over.",
+          "In Episode 6 ('Rairi's Forest,' aired Aug 7, 2026), Kuroe kisses Arata while transformed as Harugon; video of it goes viral and Arata is dubbed the 'Prince of Kaiju.'",
+          "Episode 7 ('All Eyes on Arata,' aired Aug 14, 2026) opens with Arata now an unwilling celebrity because of that viral video, and the two have to hide their relationship from paparazzi and the public.",
+          "At a fireworks festival together, Kuroe and Arata get separated by the crowd -- and the STRESS of being alone and missing the fireworks, not romantic feeling, is what triggers her transformation into Harugon this time.",
+          "Anime News Network's Episode 7 review (published Aug 17, 2026) explicitly flags this as a first: 'I believe this is a first, as it is not her crush on Minami that triggers it, but rather her despair at being alone.'",
+          "The review also reframes this transformation as a defensive/protective retreat rather than a loss of control -- the crowd leaves her alone once she's a kaiju, which lets her and Arata reunite for the fireworks finale.",
+          "Episode 7 ends on a post-credits stinger: obsessive friend Manatsu is shown waiting at Arata's house dressed as Harugon, setting up a jealousy-driven complication next episode.",
+          "The angle: this show has spent 6 episodes training viewers that Kuroe transforms because of romantic overload, and Episode 7 just quietly broke that rule without any characters (or most viewers) noticing the shift."
+        ],
+        "proposed_hook_line": "Everyone thinks her transformation is about love. Episode 7 just proved it isn't.",
+        "proposed_opening_sentence": "For six episodes, Kaiju Girl Caramelise trained you to believe Kuroe only turns into a kaiju when she's overwhelmed by love -- and then Episode 7 broke that rule.",
+        "required_closing_structure": "A specific question about whether the show is quietly changing its own core rule (or what this means for future transformations), immediately followed by the exact phrase \"Leave your take.\""
+      },
+      "question_line": "Is the show quietly rewriting its own rule?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {"claim": "Kuroe Akaishi transforms into kaiju Harugon when overwhelmed by strong emotion, especially romantic feelings for Arata.", "core": true, "claim_type": "A", "source_urls": ["https://en.wikipedia.org/wiki/Kaiju_Girl_Caramelise", "https://www.techtimes.com/articles/319468/20260701/kaiju-girl-caramelise-premieres-tomorrow-real-neuroscience-drives-kaiju-form.htm"], "anchors_claim": "hook"},
+          {"claim": "Episode 6 (Aug 7, 2026) ends with a viral video of Harugon kissing Arata, making him the 'Prince of Kaiju.'", "core": true, "claim_type": "A", "source_urls": ["https://en.wikipedia.org/wiki/Kaiju_Girl_Caramelise", "https://www.animenewsnetwork.com/review/kaiju-girl-caramelise/episode-7/.240627"]},
+          {"claim": "Episode 7 (Aug 14, 2026) has Kuroe and Arata separated by a festival crowd, and her transformation this time is triggered by despair/loneliness, not romantic feeling.", "core": true, "claim_type": "A", "source_urls": ["https://en.wikipedia.org/wiki/Kaiju_Girl_Caramelise", "https://www.animenewsnetwork.com/review/kaiju-girl-caramelise/episode-7/.240627"]},
+          {"claim": "ANN's Episode 7 review explicitly states this is the first time her transformation was triggered by something other than her crush on Arata.", "core": true, "claim_type": "F", "source_urls": ["https://www.animenewsnetwork.com/review/kaiju-girl-caramelise/episode-7/.240627"]},
+          {"claim": "Episode 7 ends with a post-credits scene showing Manatsu waiting at Arata's house dressed as Harugon.", "core": false, "source_urls": ["https://en.wikipedia.org/wiki/Kaiju_Girl_Caramelise", "https://www.animenewsnetwork.com/review/kaiju-girl-caramelise/episode-7/.240627"]},
+          {"claim": "Studio is Liden Films; series is based on Spica Aoki's manga; airs Crunchyroll Summer 2026.", "core": false, "source_urls": ["https://en.wikipedia.org/wiki/Kaiju_Girl_Caramelise"]}
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Creator face-cam split-screen (Creator TOP / anime footage BOTTOM, Law #134 Stage 2)",
+      "face": true,
+      "split_screen": true,
+      "sources": [
+        {"claim": "Series premise, studio, cast, source manga info", "url": "https://en.wikipedia.org/wiki/Kaiju_Girl_Caramelise", "date": "Aug 2026"},
+        {"claim": "Premise confirmation: neuroscience-flavored transformation concept", "url": "https://www.techtimes.com/articles/319468/20260701/kaiju-girl-caramelise-premieres-tomorrow-real-neuroscience-drives-kaiju-form.htm", "date": "Jul 2026"},
+        {"claim": "Episode 6 viral-kiss / 'Prince of Kaiju' plot beat and Episode 7 synopsis (separation, transformation trigger shift, Manatsu post-credits stinger)", "url": "https://en.wikipedia.org/wiki/Kaiju_Girl_Caramelise", "date": "Aug 2026"},
+        {"claim": "Episode 7 review explicitly identifying the transformation-trigger change as a first for the series", "url": "https://www.animenewsnetwork.com/review/kaiju-girl-caramelise/episode-7/.240627", "date": "Aug 2026"},
+        {"claim": "Episode guide cross-reference for air dates", "url": "https://www.animeoshi.com/anime/otome-kaijuu-caramliser", "date": "Aug 2026"}
+      ],
+      "clips": [
+        {"scene": "Kuroe transforming into Harugon from romantic overwhelm (earlier episode establishing shot)", "reason": "Establishes the 'old rule' the hook is about to overturn", "duration_sec": 7, "timeline_start_sec": 0, "timeline_end_sec": 7, "scene_verified": true, "verification_source_url": "https://en.wikipedia.org/wiki/Kaiju_Girl_Caramelise", "claim_vs_source_check": {"claimed_beat": "Kuroe's transformations up to this point have been triggered by overwhelming romantic feelings for Arata.", "source_content_confirmed": "Wikipedia's character/plot summary confirms romantic overload as Kuroe's established transformation trigger.", "match": true}, "clip_locate": {"season": 1, "episode": 3, "locate_confirmed_via": "the same Wikipedia character/plot summary cited above, which establishes romantic overload as the series' baseline transformation trigger across early episodes", "approx_timestamp": "mid-episode", "episode_source": "inferred"}},
+        {"scene": "Episode 6 viral kiss moment / Arata dubbed 'Prince of Kaiju'", "reason": "Sets up why Arata is now a celebrity, the premise of Episode 7's conflict", "duration_sec": 7, "timeline_start_sec": 7, "timeline_end_sec": 14, "scene_verified": true, "verification_source_url": "https://en.wikipedia.org/wiki/Kaiju_Girl_Caramelise", "claim_vs_source_check": {"claimed_beat": "A viral video of Harugon kissing Arata leads to him being nicknamed the 'Prince of Kaiju.'", "source_content_confirmed": "Wikipedia's Episode 6 synopsis confirms this exact viral-video and nickname beat.", "match": true}, "clip_locate": {"season": 1, "episode": 6, "locate_confirmed_via": "the same Wikipedia Episode 6 ('Rairi's Forest') synopsis cited above", "approx_timestamp": "final act", "episode_source": "explicitly_stated"}},
+        {"scene": "Episode 7 festival crowd separating Kuroe and Arata", "reason": "Shows the actual trigger moment -- separation and distress, not romance", "duration_sec": 8, "timeline_start_sec": 14, "timeline_end_sec": 22, "scene_verified": true, "verification_source_url": "https://www.animenewsnetwork.com/review/kaiju-girl-caramelise/episode-7/.240627", "claim_vs_source_check": {"claimed_beat": "Kuroe transforms into Harugon after being separated from Arata by the festival crowd, triggered by despair rather than romantic feeling.", "source_content_confirmed": "ANN's review explicitly describes and analyzes this non-romantic transformation trigger as a first for the series.", "match": true}, "clip_locate": {"season": 1, "episode": 7, "locate_confirmed_via": "the same Anime News Network Episode 7 review cited above", "approx_timestamp": "festival climax", "episode_source": "explicitly_stated"}},
+        {"scene": "Episode 7 post-credits stinger: Manatsu waiting at Arata's house dressed as Harugon", "reason": "Delivers the escalation/cliffhanger payoff for the closing beat", "duration_sec": 8, "timeline_start_sec": 22, "timeline_end_sec": 30, "scene_verified": true, "verification_source_url": "https://en.wikipedia.org/wiki/Kaiju_Girl_Caramelise", "claim_vs_source_check": {"claimed_beat": "The episode ends with Manatsu waiting for Arata at his home, dressed as Harugon.", "source_content_confirmed": "Wikipedia's Episode 7 synopsis confirms this exact post-credits stinger.", "match": true}, "clip_locate": {"season": 1, "episode": 7, "locate_confirmed_via": "the same Wikipedia Episode 7 synopsis cited above", "approx_timestamp": "post-credits", "episode_source": "explicitly_stated"}}
+      ],
+      "clip_descriptions": "CUT 1 (S1E3, 0:00-0:07): Kuroe transforms into Harugon from romantic overwhelm -- establishing the 'old rule' the hook is about to overturn. CUT 2 (S1E6, 0:07-0:14): The viral kiss moment that gets Arata dubbed the 'Prince of Kaiju,' setting up Episode 7's celebrity-pressure conflict. CUT 3 (S1E7, 0:14-0:22): The festival crowd separates Kuroe and Arata, and it's despair -- not romance -- that triggers her transformation this time. CUT 4 (S1E7, 0:22-0:30): The post-credits stinger -- Manatsu waiting at Arata's house dressed as Harugon.",
+      "captions": "PENDING_VO",
+      "youtube_title": "Kaiju Girl Caramelise Just Changed Its Own Rule",
+      "tiktok_title": "This Wasn't About Love Anymore",
+      "tiktok_post_text": "PENDING_VO -- caption + hashtag pyramid to be finalized once VO is inserted.",
+      "pinned_comment": "PENDING_VO",
+      "post_times": {"youtube": "7:00 PM ET", "tiktok": "7:15 PM ET"},
+      "blackout_conflict": false,
+      "recent_send_conflict": false
+    }
+  ]
+}

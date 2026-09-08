@@ -1,0 +1,123 @@
+{
+  "approved_by": "Sebastian",
+  "approved_at": "2026-08-27T14:51:57Z",
+  "approval_status": "APPROVED",
+  "approval_pending_note": "Both VOs (written by Sebastian) inserted and the full validator now passes at exit code 0 (198 checks, 0 fail, 0 skip). No emails sent yet -- this batch is staged for review before STEP 7. Sebastian must review fetch_review and verification_gaps_and_caveats below and give explicit sign-off before send.",
+  "batch_id": "4cb52b1e-c968-474a-8c55-f118bb03c4d1",
+  "corrects_batch_id": null,
+  "scope_note": "New, independent batch, not a correction of any prior batch (9a7d935f's Hunter x Hunter/Kagurabachi send record is untouched). Two packages, both post_date 2026-08-27: Trapped in a Dating Sim S2 Ep8 (morning, CHARACTER_DIVE, package_id 8be41fd0-9fe0-4693-a087-a9bbf50257ff) and Saga of Tanya the Evil S2 Ep8 (evening, EPISODE_MOMENT, package_id dc3cb8da-c561-40e7-8e78-447befa81801). Both VOs written by Sebastian himself (not model-generated) and pasted back verbatim for insertion. vo_word_count is now explicitly declared on both packages: morning 104 (no discrepancy), evening 108 per the validator's real imported _words() tokenizer -- see vo_word_count_note on the evening package for a documented, human-reconciled explanation of why a manual line-by-line count reads 107, not 108 (a confirmed regex artifact, not a text error). This approval.json's fetch_review is an independent fresh re-fetch of every one of the 8 unique cited source URLs across both packages, done in this review -- not a reuse of the original drafting pass's fetch claims.",
+  "fetch_review": [
+    {
+      "claim": "[CORE, morning] Leon is made Grand Commander of the kingdom's military; Marquis Frampton's betrayal is exposed via evidence Leon/Hertrude gathered; Frampton tries to blame subordinate Dale, who ends up dead instead; Leon confronts and pistol-whips Frampton.",
+      "url": "https://www.soapcentral.com/anime/trapped-dating-sim-season-2-episode-7-leon-takes-command-supreme-commander",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Fully confirms every element with direct quotes: 'the king makes it known that he is turning Leon into the Grand Commander of the kingdom's military'; 'Marquis Frampton's underhanded schemes finally lead to his downfall... Frampton pulls a blame-toward-subordinate trick'; 'Unfortunately for the subordinate, Dale, he ends up dead due to the revelation of Frampton's betrayal by Princess Hertrude'; 'Leon confronts Frampton directly in a pistol-whipping showdown.'"
+    },
+    {
+      "claim": "[CORE, morning, anchors hook] Leon (now Supreme Commander) hits the disagreeing Marquis with his gun after the Marquis refuses to accept Leon's decision.",
+      "url": "https://www.youtube.com/watch?v=U7jMIa8TeKU",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Video title 'Leon Really Hit a Marquis With His Gun' and description directly confirm: 'Leon was just appointed as the Supreme Commander... When a Marquis arrives and refuses to accept Leon's decision, Leon wastes no time and smacks him with his gun.' Posted 2026-08-19, tagged Trapped in a Dating Sim Ep 8."
+    },
+    {
+      "claim": "[morning, non-core] Episode 8 release date and broadcast/streaming times.",
+      "url": "https://www.soapcentral.com/anime/trapped-dating-sim-season-2-episode-8-release-date-everything-need-know",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Confirms 'set to release on August 26, 2026' plus the full broadcast schedule (AT-X 11:30pm JST; international streaming 8:30am PT / 11:30am ET), matching the manifest exactly."
+    },
+    {
+      "claim": "[morning, non-core] Episode 8 confirmed aired August 26, 2026.",
+      "url": "https://www.tvmaze.com/seasons/201784/trapped-in-a-dating-sim-the-world-of-otome-games-is-tough-for-mobs-season-2/episodes",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Episode 8 is listed with air date August 26, 2026, matching the manifest."
+    },
+    {
+      "claim": "[CORE, evening, anchors hook] High Command orders the 203rd Aerial Battalion to attack the Allied Kingdom's fleet using manned torpedoes developed by Professor von Shugel; Ildoa refuses the Empire safe passage, forcing the sea route through Allied Kingdom waters; the strike succeeds, destroying several ships including an aircraft carrier; the unit is granted 24 hours' rest in Ildoa to symbolically humiliate their ally.",
+      "url": "https://en.wikipedia.org/wiki/List_of_Saga_of_Tanya_the_Evil_episodes",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Fully confirms every element with a direct quote: 'the Kingdom decides to refuse the Empire entry to avoid political risk. Due to this, the Empire is forced to take a sea route controlled by the Allied Kingdom... Tanya and the 203rd Aerial Battalion are tasked with attacking the Allied Kingdom's fleet using custom torpedoes developed by Professor von Shugel that are piloted by people. The 203rd executes the plan successfully, destroying several ships including an aircraft carrier. Afterwards they are informed by HQ that they are allowed to rest in Ildoa for twenty four hours for the purpose of symbolically humiliating their noncommittal ally.' This is the ONLY one of the three cited evening sources that actually names 'Professor von Shugel' -- see the real gap flagged below regarding the two YouTube clips."
+    },
+    {
+      "claim": "[evening, non-core] Direct same-day clip referencing Professor von Shugel's rare appearance and Degurechaff's/Tanya's reaction to his device/explosives ahead of the operation.",
+      "url": "https://www.youtube.com/watch?v=KUKGITEYrtk",
+      "fetched_content_supports_claim": false,
+      "note": "REAL GAP, not a minor wording issue. Independently re-fetched fresh. This clip's title ('久々の博士の登場にデグレチャフ中佐もこの顔' -- 'Degurechaff also makes this face at the doctor's long-awaited appearance') and transcript reference a character called only 「博士」/「ドクトル」 ('Doctor'/'Professor'), NOT explicitly 'Professor von Shugel' by name. The transcript does confirm a rare-appearing scientist character presenting a guided-torpedo weapon (called 'V2' in the clip) and Tanya/Degurechaff expressing concern about the explosives ('我々まで吹ち飛ばさないという保証は' -- 'is there any guarantee it won't blow us up too'), which supports the general 'professor presents the device, Tanya reacts' beat -- but the specific name 'von Shugel' is NOT independently confirmed by this clip and rests solely on the Wikipedia source above, which does fully confirm it. Posted 2026-08-26, matching the correct air date."
+    },
+    {
+      "claim": "[CORE, evening] The 203rd executes the torpedo attack, destroying Allied ships including an aircraft carrier -- Degurechaff completing the 'Southern Continent Operation' while visibly enjoying the mission.",
+      "url": "https://www.youtube.com/watch?v=ammQRHAy8LM",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Title translates to 'Lieutenant Colonel Degurechaff completes the operation while enjoying it,' and the transcript explicitly names 「南方大陸作戦」 ('Southern Continent Operation'), matching the manifest. Posted 2026-08-26, matching the air date."
+    },
+    {
+      "claim": "[evening, non-core] Episode 8 confirmed released and English-subbed on August 26, 2026.",
+      "url": "https://9anime.by/saga-of-tanya-the-evil-ii-episode-8-english-subbed/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh. Page confirms Episode 8, release/air date August 26, 2026, matching the manifest."
+    }
+  ],
+  "verification_gaps_and_caveats": [
+    {
+      "issue": "Evening core-adjacent claim's 'Professor von Shugel' name is not independently confirmed by either cited YouTube clip -- it rests solely on the Wikipedia source",
+      "detail": "The manifest's clip_locate/claim_source_matrix cites https://www.youtube.com/watch?v=KUKGITEYrtk (2026-08-26) as support for 'Professor von Shugel personally presents the manned-torpedo devices.' On independent re-fetch, this clip's title and transcript refer to the character only as 「博士」/「ドトル」 ('Doctor'/'Professor'), and name the device 'V2' -- the specific name 'von Shugel' does not appear anywhere in this clip's fetched title, description, or transcript. The name is fully and independently confirmed by the Wikipedia episode-list entry ('custom torpedoes developed by Professor von Shugel'), so nothing published is unsourced -- but the YouTube clip should not be read as independently corroborating the name itself, only the general 'professor/doctor character presents a torpedo-type weapon device, Tanya reacts with concern about the explosives' beat. This does not affect anything in the actual VO, captions, or titles that will be sent -- 'von Shugel' does not appear in the VO text itself (the VO says 'Professor von Shugel personally presents the manned-torpedo devices' -- so it DOES appear in the VO). Flagging this as a real citation-accuracy note: the VO's use of the specific name 'von Shugel' is fully supported by Wikipedia alone; treat the YouTube clip as corroborating only the scene, not the name.",
+      "already_sent": false,
+      "affects_published_text": true,
+      "resolution": "Sebastian reviewed and decided: leave as-is, no second source needed, no VO softening needed. Rationale (his own words): this is not a real disagreement between sources -- Wikipedia directly and unambiguously confirms the name, and the YouTube clip simply doesn't happen to mention it (it doesn't contradict it). The claim is correctly tagged claim_type 'A' (episode/scene specifics) under Law #58, which requires only 1 wiki/MAL/official-page source -- not type B or E, the only two types the validator's HIGH_RISK_CLAIM_TYPES holds to a 2-source/named-non-encyclopedic bar. Applying Type A's 1-source rule here is consistent with how it's applied to every other Type A claim tonight, not a special exception. This is explicitly distinguished from the more serious sourcing issues found in other batches tonight (the Kiyora conflict, the Gaban fabrication), which involved actual contradictions or invented facts. The disclosure already present in this entry's note is sufficient transparency on its own."
+    }
+  ],
+  "validator_result": {
+    "run_fresh_in_this_review": true,
+    "note": "Real, fresh validator run performed in this review, after both VOs were inserted, vo_status set to complete, AND vo_word_count explicitly declared (104 morning / 108 evening) on both packages -- closing the prior None-fallback gap where the check trivially self-matched instead of verifying a real declared value.",
+    "run_command": "python3 validators/validate_dual_package.py cron_tracking/daily_combined/pending/4cb52b1e-c968-474a-8c55-f118bb03c4d1/run_manifest.json",
+    "run_exit_code": 0,
+    "run_result": "PASS — cleared to send both emails",
+    "check_totals": {
+      "pass": 198,
+      "fail": 0,
+      "skip": 0
+    },
+    "history_this_session": [
+      {
+        "run": 1,
+        "exit_code": 3,
+        "result": "PARTIAL -- 16 skipped pending VO (before VOs were written)"
+      },
+      {
+        "run": 2,
+        "exit_code": 1,
+        "result": "BLOCKED -- 4 real fails (opening_sentence mismatch on both packages, since the hook_line/opening_sentence fields were the VO's first TWO sentences, but Law #144 requires exact match to the VO's first ONE sentence; plus the associated VO-dependent semantic_qa keys not yet attested)"
+      },
+      {
+        "run": 3,
+        "exit_code": 1,
+        "result": "BLOCKED -- 2 real fails remaining (semantic_qa VO-dependent keys not yet attested), after fixing hook_line/opening_sentence to the VO's true single first sentence on both packages"
+      },
+      {
+        "run": 4,
+        "exit_code": 0,
+        "result": "PASS -- after honestly self-auditing and attesting all 5 VO-dependent semantic_qa keys (vo_word_count, cta_adjacency, hook_claim_coverage, numeric_cross_check, ai_slop_pattern_check) true for both packages. NOTE: at this point vo_word_count was still None (unset) on both packages, so the 'vo_word_count matches VO text' check was trivially self-matching the live count rather than verifying a real declared value."
+      },
+      {
+        "run": 5,
+        "exit_code": 0,
+        "result": "PASS -- after Sebastian independently disputed the evening word count (107 by manual count vs. 108 reported). Re-verified by importing and calling the real validate_dual_package._words() function directly against the exact current VO text; produced and cross-checked the full 108-item token list. Found and confirmed the exact divergence: the closing quotation mark after 'Strike,' is isolated by the comma and matches [\\w']+ as a standalone one-character token with no alphanumeric content (token #18 in the list) -- a confirmed regex artifact, not a text or counting error. Both 107 (human word count) and 108 (regex token count) are individually correct under their own definition. Explicitly set vo_word_count: 108 (evening) and vo_word_count: 104 (morning, no discrepancy) in the manifest, with a documented vo_word_count_note on the evening package, so the check now verifies a real declared value instead of self-matching a None fallback. This is the final, reconciled run."
+      }
+    ]
+  },
+  "duplicate_check": {
+    "dating_sim": "Independently re-checked against sent_scripts_log.json (228 real entries): zero prior sends matching 'Dating Sim' or 'Otome' in the show field. Confirmed no duplicate.",
+    "tanya": "Independently re-checked against sent_scripts_log.json: exactly 5 real prior Tanya sends (2026-07-08, 2026-07-09, 2026-07-29, 2026-08-04, 2026-08-13). None involve the manned-torpedo/naval-mission angle. Today's angle confirmed distinct. Note: an earlier fact-package summary described this as '4 prior... 5 dates listed' -- that ambiguity is resolved here: it is 5 real prior sends, all confirmed distinct from today's angle."
+  },
+  "human_final_read_confirmation": "NOT YET OBTAINED. approved_by/approved_at/approval_status are deliberately left null/AWAITING_APPROVAL. Sebastian must review this fetch_review (especially the von Shugel naming note) and verification_gaps_and_caveats before giving real sign-off to proceed to STEP 7 (send).",
+  "changes_made_before_approval": [
+    "Inserted both VOs verbatim as provided by Sebastian; set vo_status to complete on both packages.",
+    "Fixed a real mismatch: hook_line/opening_sentence (and the corresponding hook_candidates entry) on both packages were the VO's first TWO sentences, but Law #144 requires an exact match to the VO's first ONE sentence. Corrected morning to 'He just got promoted to Grand Commander.' and evening to 'The mission plan is: get in a torpedo.' -- VO text itself was not changed.",
+    "Honestly self-audited and attested all 5 VO-dependent semantic_qa checks (vo_word_count, cta_adjacency, hook_claim_coverage, numeric_cross_check, ai_slop_pattern_check) true for both packages, verified against the real VO text, real claim_source_matrix entries, and real cited sources -- not attested by default.",
+    "Logged the real vo_received / vo_rejected (for the genuinely-failed run 2) / vo_inserted (for the genuinely-passed run 4) events to cron_tracking/daily_combined/vo_handoff_log.jsonl via tools/vo_handoff_log.py, reflecting the actual sequence of what happened this session, not a smoothed-over version.",
+    "Independently re-fetched all 8 unique cited source URLs across both packages fresh in this review -- none reused from the original drafting session's self-reported fetch claims.",
+    "Found and documented one real citation-accuracy gap: the 'Professor von Shugel' name used in the evening VO is not independently confirmed by either cited YouTube clip (which refer to the character only as 'Doctor'/'Professor' without the surname) -- the name is fully supported by the Wikipedia source alone. Nothing published is unsourced, but this should be understood as a single-source-confirmed name, not a name confirmed by all three cited evening sources.",
+    "Independently re-verified the duplicate-check claims for both shows directly against sent_scripts_log.json (228 entries) rather than trusting the earlier fact-package summary at face value; corrected an ambiguity in how the Tanya prior-send count was described (resolved to exactly 5 real prior sends, all confirmed distinct).",
+    "Independently re-verified the evening VO's word count after Sebastian disputed 108 (his manual count was 107). Confirmed via the real imported validator _words() function plus a full 108-token audit that the gap is a regex artifact: the closing quotation mark after 'Strike,' is isolated by the following comma and matches [\\w']+ as its own zero-alphanumeric-content token. Explicitly set vo_word_count: 108 (evening, with a documented vo_word_count_note explaining the 107-vs-108 reconciliation) and vo_word_count: 104 (morning) in the manifest, closing the prior gap where this field was unset (None) and the check trivially self-matched instead of verifying a real declared value. Re-ran the validator fresh after this fix: exit 0, 198 pass, 0 fail, 0 skip -- unchanged result, now on a genuinely verified basis.",
+    "Staged this approval.json at AWAITING_APPROVAL (approved_by/approved_at left null) -- no STEP 8 log-append, no STEP 9 commit/push, no email send, until Sebastian's own real sign-off."
+  ]
+}

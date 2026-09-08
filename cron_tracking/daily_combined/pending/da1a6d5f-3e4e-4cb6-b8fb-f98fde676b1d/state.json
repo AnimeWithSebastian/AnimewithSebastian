@@ -1,0 +1,30 @@
+{
+  "status": "CLOSED_NOTHING_SHIPPED",
+  "emails_sent": true,
+  "batch_id": "da1a6d5f-3e4e-4cb6-b8fb-f98fde676b1d",
+  "post_date": "2026-08-24",
+  "approved_by": null,
+  "approved_at": null,
+  "terminal_state_written_at": "2026-08-24T22:41:00-04:00",
+  "terminal_state_written_by": "Claude, interactive session, per Sebastian's explicit close-out instruction",
+  "disposition": "Both packages in this batch's two emails were already sent (Law #164/#165 approval gate was not satisfied before send -- see docs/KNOWN_ISSUES.md F67 for the process-gap finding). approved_by/approved_at remain null because this batch itself was never reviewed and approved through the normal gate before its emails went out -- there is no real approval event to record. This batch is closed as terminal so it stops blocking check_pending_batches(); it does not represent a rejected or withdrawn package, since its content already reached viewers.",
+  "morning_package": {
+    "show": "One Piece",
+    "package_id": "e1a2b3c4-0001-4a11-9001-000000000001",
+    "outcome": "carried_forward_unchanged",
+    "detail": "Content carried forward byte-identical (unchanged from this batch's own run_manifest.json) into batch b1f4a6c2, which went through the full approval gate and was properly reviewed, approved, and sent.",
+    "carried_forward_into_batch_id": "b1f4a6c2-8e3d-4a91-9c7f-2d5e8a91c4b0",
+    "carried_forward_approved_by": "Sebastian",
+    "carried_forward_approved_at": "2026-08-23T21:10:17-04:00",
+    "carried_forward_commit": "71845f2ce228043cf5106af29fe535b7f1585365"
+  },
+  "evening_package": {
+    "show": "Skeleton Knight in Another World S2",
+    "package_id": "e1a2b3c4-0002-4a11-9001-000000000002",
+    "outcome": "dropped",
+    "hold_reason": "Post-send fetch review (Law #164/#165) found the central hook claim's second half -- \"'Chiyome' is a title given to the most skilled of the Jinshin Clan's Six Great Ninja\" -- had zero source backing across all three cited sources (SoapCentral, MyAnimeList forum, Reddit). Only the name-reveal half (Chiyome=Mia) was confirmed, by Reddit. Documented in docs/KNOWN_ISSUES.md F67. Sebastian's explicit decision: leave the already-sent email as-is (no correction, no retraction, no further sourcing investigation), and replace the evening slot for 2026-08-24 going forward with a new, independently-sourced candidate rather than repairing this one.",
+    "replaced_by_batch_id": "b1f4a6c2-8e3d-4a91-9c7f-2d5e8a91c4b0",
+    "replacement_show": "Dandadan (Chapter 244)"
+  },
+  "known_issues_reference": "docs/KNOWN_ISSUES.md F67 (including 2026-08-24 addendum covering the MyAnimeList forum non-support, SoapCentral episode-title/Chiyome-support gap, watch.rdd.media Episode 9 mismatch, and the Saturday/Monday air-day resolution reversal -- all confined to internal manifest fields, none affecting published copy)"
+}

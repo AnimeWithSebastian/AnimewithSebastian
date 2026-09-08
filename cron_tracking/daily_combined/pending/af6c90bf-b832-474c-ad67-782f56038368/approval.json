@@ -1,0 +1,151 @@
+{
+  "approved_by": "Sebastian",
+  "approved_at": "2026-08-23T02:24:00Z",
+  "approval_status": "approved",
+  "approval_pending_note": "Sebastian reviewed the complete rendered emails and this complete approval.json (with the real, verbatim Complex.com quote, not a paraphrase) directly, caught and required fixes for three real content issues across three review rounds, and gave explicit Law #165 final sign-off at 2026-08-23T02:24:00Z. This batch is now cleared for STEP 7 (email dispatch) and STEP 8 (log append) by whoever has real mail access -- this session did not send the emails or perform the GitHub push of those steps.",
+  "batch_id": "af6c90bf-b832-474c-ad67-782f56038368",
+  "corrects_batch_id": null,
+  "scope_note": "This batch contains TWO packages, both post_date 2026-08-23: Kingdom Hearts anime announcement (morning, FACT_DROP, package_id 76c51349-bdb9-4456-a947-aa54883e74b7) and Bleach: Thousand-Year Blood War - The Calamity, Episode 45 'DEFEND YOU' (evening, EPISODE_MOMENT, package_id 36aafe53-98d9-420e-9c93-d5d9f0214b0e). The evening slot originally held a Fate/strange Fake candidate, which Sebastian explicitly instructed be dropped (same-batch FACT_DROP format collision with the Kingdom Hearts morning package, not a content-quality rejection); that research was preserved at research_backlog/fate_strange_fake_new_season_20260822.md for a future date rather than discarded. The Bleach evening replacement was sourced, double-method conflict-checked against sent_scripts_log.json and sent_scripts_events.jsonl, and drafted fresh in this batch. Both VOs in this batch were written by Sebastian himself (not model-generated), through two rounds of question-line edits, and provided back verbatim for insertion; word counts, opening_sentence/hook_line match, and CTA adjacency were independently re-verified against the real inserted VO text in this review, not merely accepted as reported.",
+  "fetch_review": [
+    {
+      "claim": "[CORE, anchors_claim=hook, morning] Disney officially announced an original Kingdom Hearts anime series for Disney+ and Disney Channel at D23 2026.",
+      "url": "https://hypebeast.com/2026/8/disney-plus-channel-kingdom-hearts-anime-series-official-d23-announcement",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched in this review (and in the prior drafting session). Confirms the D23 2026 announcement of an original Kingdom Hearts anime series releasing on both Disney+ and Disney Channel."
+    },
+    {
+      "claim": "[CORE, anchors_claim=hook, morning] Disney officially announced an original Kingdom Hearts anime series for Disney+ and Disney Channel at D23 2026 (corroborating source).",
+      "url": "https://abcnews.com/GMA/Culture/kingdom-hearts-anime-series-announced-d23/story?id=135659603",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched in this review. ABC News/GMA corroborates the D23 announcement independently of the Hypebeast source, satisfying the two-source pairing for a core hook claim."
+    },
+    {
+      "claim": "[CORE, morning] The project involves Tetsuya Nomura and Square Enix and is an original story, not adapting the games.",
+      "url": "https://www.anime.com/news/kingdom-hearts-first-animated-series-disney-plus",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched in this review. Confirms Nomura/Square Enix attachment and the original-story framing (not a direct game adaptation)."
+    },
+    {
+      "claim": "[CORE, morning] No premiere date, episode count, studio, or cast has been announced yet.",
+      "url": "https://wdwnt.com/2026/08/kingdom-hearts-anime-series-announced-for-disney-and-disney-channel/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched in this review. Confirms the absence of premiere date, episode count, studio, and cast details as of the announcement."
+    },
+    {
+      "claim": "[NON-CORE, morning] The key visual shows a cloaked figure from behind whose identity is not confirmed as Sora.",
+      "url": "https://hypebeast.com/2026/8/disney-plus-channel-kingdom-hearts-anime-series-official-d23-announcement",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched in this review. Describes the teaser key visual as a cloaked, hooded figure holding a Keyblade, shown from behind, with no confirmation of identity."
+    },
+    {
+      "claim": "[NON-CORE, morning -- newly added this review, per Sebastian's explicit request] A fan theory holds the figure could be Helgi from Kingdom Hearts Dark Road, based on Reddit outfit comparisons -- not confirmed by Disney.",
+      "url": "https://www.complex.com/pop-culture/a/treyalston/kingdom-hearts-4-coco-trailer-d23-watch",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched fresh in THIS review (not reused from Sebastian's summary). VERBATIM quotes pulled directly from the live page: (1) \"Disney also announced a new Kingdom Hearts anime for Disney+ that will reimagine the saga with a fresh story, sparking fan theories that the silhouetted keyblade wielder in the promo art might be Helgi from Dark Road rather than Sora.\" (2) \"There's also a theory the character could be Helgi from Kingdom Hearts Dark Road, according to fans on Reddit who've compared both characters' outfits.\" Article by Trey Alston, published complex.com, dated 2026-08-15. Both sentences independently confirm the claim as written in the manifest: this is an unconfirmed fan theory (sourced to Reddit outfit comparisons per Complex's own reporting), not a Disney confirmation. Marked core=false in claim_source_matrix, correctly hedged in the VO ('fans comparing outfit details think it's Helgi from Dark Road' / 'So who's under the hood -- Helgi, or is Sora in disguise?')."
+    },
+    {
+      "claim": "[CORE, anchors_claim=hook, evening] Episode 45 'DEFEND YOU' gives Ichigo a brand-new anime-original form nicknamed 'Blood Chains Ichigo,' designed by Tite Kubo and not in the manga.",
+      "url": "https://bleachmx.fr/bleach-tybw-tite-kubo-revele-une-forme-totalement-inedite-dichigo-pour-lanime/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched in this review. Confirms the new anime-original hybrid form, its nickname, and Tite Kubo's personal design credit; confirms it does not appear in the source manga."
+    },
+    {
+      "claim": "[CORE, evening] The new form reveal is corroborated by an independent outlet.",
+      "url": "https://ovicio.com.br/bleach-thousand-year-blood-war-revela-nova-forma-de-ichigo/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched in this review. Portuguese-language coverage corroborates the same new-form reveal, satisfying the two-source pairing for this core hook claim."
+    },
+    {
+      "claim": "[CORE, evening] Episode 45 aired August 22, 2026 as the 5th episode of Cour 4 ('The Calamity').",
+      "url": "https://animecorner.me/ichigo-struggles-against-yhwach-in-bleach-thousand-year-blood-war-episode-45-preview/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched in this review. Confirms episode positioning within Cour 4 and the August air date."
+    },
+    {
+      "claim": "[CORE, evening] Episode 45 aired August 22, 2026 (corroborating air-date source).",
+      "url": "https://thegeekiary.com/bleach-thousand-year-blood-war-1x44-and-1x45-review-the-perfect-crimson-and-defend-you/139205",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched in this review. Review of episodes 44-45 corroborates the August 22, 2026 air date and episode events."
+    },
+    {
+      "claim": "[CORE, evening] Ichigo remains in control of the new form and creates tangible clones to counter Yhwach's The Almighty; his fused attack still fails to stop Yhwach, and Rukia is left near-death.",
+      "url": "https://bleachmx.fr/bleach-thousand-year-blood-war-episode-45-defend-you/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched in this review. Full episode 45 recap confirms Ichigo staying in control, the clone tactic against The Almighty, the failed fused Gran Rey Cero/Getsuga Tensho attack, and Rukia's near-death state."
+    },
+    {
+      "claim": "[CORE, evening] Ichigo remains in control of the new form and the fused attack fails against Yhwach (corroborating source).",
+      "url": "https://thegeekiary.com/bleach-thousand-year-blood-war-1x44-and-1x45-review-the-perfect-crimson-and-defend-you/139205",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched in this review. Review corroborates the battle outcome and Ichigo's retained control, satisfying the two-source pairing for this core claim."
+    },
+    {
+      "claim": "[NON-CORE, evening] The episode closes on Orihime's solo arc, self-healing via Rikka, then vanishing with the line 'Bye-bye, Ichigo... I love you, Kurosaki-kun.'",
+      "url": "https://bleachmx.fr/bleach-thousand-year-blood-war-episode-45-defend-you/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently re-fetched in this review. Confirms the Orihime closing beat and quoted line exactly as used in the clip plan / VO closer."
+    },
+    {
+      "claim": "[Numbering-convention verification, evening -- not itself a manifest claim, verifying Sebastian's per-cour framing decision] 'Episode 5' (VO, per-cour/Cour 4 numbering) and 'Episode 45' (manifest clip_locate, absolute series numbering) refer to the same real episode and are not a discrepancy.",
+      "url": "https://www.cbr.com/bleach-tybw-season-4-episode-4-the-calamity-release-date-time/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched in this review (and in the discrepancy-flagging step). Exact quote: 'Episode 4 is also Episode 44 of Bleach: Thousand-Year Blood War overall.' Establishes a consistent +40 offset between Cour 4's per-cour numbering and the show's absolute episode numbering, confirming Episode 5 (per-cour) == Episode 45 (absolute)."
+    },
+    {
+      "claim": "[Numbering-convention verification, evening -- corroborating source] Episode 5 of Cour 4 ('The Calamity') released August 22, 2026, matching the absolute-numbering air date used for Episode 45's sourcing.",
+      "url": "https://www.gamesradar.com/entertainment/anime-shows/bleach-thousand-year-blood-war-season-4-release-date-time-schedule-disney-plus-hulu/",
+      "fetched_content_supports_claim": true,
+      "note": "Independently fetched in this review. Confirms episode 5 (cour-relative) aired August 22, 2026, the same date used across the evening package's absolute-numbering (Episode 45) sources -- corroborating that both numbering systems point to the identical real episode, not two different airings."
+    }
+  ],
+  "verification_gaps_and_caveats": [
+    {
+      "issue": "Kingdom Hearts VO includes a fan-theory claim (Helgi/Dark Road) that was not present in the package's original drafted claim set and was added mid-review at Sebastian's explicit direction, after he supplied his own source for it.",
+      "detail": "Sebastian's initial VO submission referenced the Helgi/Dark Road fan theory and cited Complex.com as his source, along with a direct quote he provided. Rather than inserting the claim on the strength of his summary alone, this review independently re-fetched the live Complex.com URL and confirmed the quote is real and verbatim (two separate sentences on the page both reference the theory). The claim was then added to the morning package's claim_source_matrix as core=false (correctly hedged, matches the VO's own hedged phrasing: 'fans comparing outfit details think it's Helgi from Dark Road' / 'So who's under the hood -- Helgi, or is Sora in disguise?'), and the URL was added to the package's sources list. Not treated as blocking -- the claim is real, sourced, and appropriately hedged in the VO -- but recorded here because it entered the package later in the process than the rest of the claim set and via a path (user-supplied source) different from the original independent research sweep.",
+      "core_matrix_source_pairing_note": "This claim is single-sourced (Complex.com only) rather than dual-sourced. Acceptable because it is explicitly marked core=false and is framed throughout as an unconfirmed fan theory, not a factual assertion requiring the two-source/non-encyclopedic pairing that core claims require under Law #58."
+    },
+    {
+      "issue": "Bleach evening package uses 'Episode 5' (per-cour, Cour 4 relative numbering) in the spoken VO while the manifest's clip_locate/sourcing fields use 'Episode 45' (absolute series numbering).",
+      "detail": "Flagged as a potential discrepancy before Sebastian confirmed it was intentional. He confirmed both numbers are real and correct, and that the per-cour framing was a deliberate choice for consistency with this channel's own prior send on this exact show (batch d4a8f107, which used 'Episode 3' / 'Episode 4' per-cour numbering for the same convention). This review independently verified the +40 offset is real and consistent via CBR ('Episode 4 is also Episode 44... overall') and confirmed via GamesRadar+ that the per-cour Episode 5 air date (Aug 22, 2026) matches the absolute-numbering Episode 45 sources used elsewhere in the package. No manifest fields were changed as a result -- clip_locate.episode remains 45 (absolute, matches the sourcing), and the VO's 'Episode 5' phrasing is left as Sebastian wrote it. The validator has no rule cross-checking free VO prose numbers against clip_locate.episode, so this does not register as a mechanical conflict, but is documented here explicitly so a future reviewer does not independently re-flag it.",
+      "core_matrix_source_pairing_note": "Not applicable -- this is a numbering-convention note, not a claim requiring source pairing. The underlying episode-content claims themselves remain dual-sourced per the fetch_review entries above."
+    },
+    {
+      "issue": "Two supporting-copy fields (not the VO itself) contained unsourced or inaccurate framing, caught by Sebastian on review and fixed in this revision.",
+      "detail": "(1) Morning tiktok_post_text originally said the key visual 'is hiding the lead character's face on purpose' -- same problem as the earlier VO fix: Disney has not revealed the character, which is different from an affirmative claim that Disney is actively hiding it. Changed to 'the key visual doesn't show the lead character's face yet,' which matches what the sources actually support. (2) Evening pinned_comment originally asserted a specific claim about Bleach's broader narrative history: that Ichigo's Vasto Lorde and Fullbring-arc transformations 'cost him something' as a recurring pattern. No credible, dated, non-fandom source could be found confirming this specific framing (searches turned up only Amino/fandom-style pages, which this channel avoids as sources). Rather than ship an unsourced assertion about series history, the pinned comment was rewritten to keep only the claim that is actually sourced in this package: Ichigo staying in control of the new form in this specific episode (per the BleachMx episode 45 recap already in sources). The historical comparison claim was removed entirely rather than weakly hedged. (3) Morning pinned_comment originally claimed 'Disney almost never splits a flagship announcement across both platforms at once' -- a comparative claim about Disney's broader release-strategy history that was never sourced. A dedicated search for this review found the opposite of a rare pattern: multiple Disney properties (Secrets of Sulphur Springs, Wizards Beyond Everquest-adjacent Disney Channel/Disney+ day-after rollouts, various Disney Channel Original Movies since ~2021) have received simultaneous or near-simultaneous Disney Channel/Disney+ releases, meaning the 'almost never' framing is not just unsourced but likely inaccurate. Rewritten to assert only the directly confirmed fact (dual-platform release itself, per the existing Hypebeast/WDW News Today sources) plus a defensible interpretive read ('isn't being positioned as a streaming-only side project') rather than any comparative claim about frequency.",
+      "core_matrix_source_pairing_note": "Neither field is a claim_source_matrix entry (both are creative/caption copy, not core factual claims requiring Law #58 pairing), but the same 'don't assert what sources don't support' standard was applied to both as a matter of practice, not just to matrix-tracked claims."
+    },
+    {
+      "issue": "Both VOs are human-authored by Sebastian, submitted after two prior rounds of his own question-line edits, and inserted verbatim without model rewriting.",
+      "detail": "vo_word_count, opening_sentence-matches-VO-first-sentence, hook_line==opening_sentence, and CTA-adjacency ('Leave your take.' immediately following the question sentence) were all independently re-verified programmatically against the real inserted VO text in this review (108 words morning / 107 words evening, both in the required 100-108 band). No AI-slop stock phrasing was found in either VO on manual scan. All five VO-dependent semantic_qa checks (vo_word_count, cta_adjacency, hook_claim_coverage, numeric_cross_check, ai_slop_pattern_check) were left as SKIPPED until the real VO was inserted, then flipped to true only after this independent verification -- never attested before the real text existed."
+    }
+  ],
+  "validator_result": {
+    "run_fresh_in_this_review": true,
+    "command": "python3 validators/validate_dual_package.py cron_tracking/daily_combined/run_manifest.json",
+    "exit_code": 0,
+    "result": "PASS \u2014 cleared to send both emails"
+  },
+  "human_final_read_confirmation": "OBTAINED. Sebastian reviewed the complete rendered emails and the complete approval.json (including the real, verbatim Complex.com quote and all three rounds of copy fixes) directly, and gave explicit Law #165 final sign-off at 2026-08-23T02:24:00Z.",
+  "changes_made_before_approval": [
+    "Sebastian wrote both VOs himself (morning: Kingdom Hearts, 108 words; evening: Bleach TYBW - The Calamity, 107 words), through two rounds of his own question-line edits, and provided them verbatim for insertion.",
+    "Inserted both VO texts into run_manifest.json under the 'vo' field; set vo_status='complete' on both packages.",
+    "Updated hook_line/opening_sentence/hook_candidates[0] on both packages to exactly match each VO's literal first sentence; updated question_line to exactly match each VO's actual closing question.",
+    "Flagged two real discrepancies to Sebastian before silently resolving them: (1) the Helgi/Dark Road claim had no existing source in the package, (2) 'Episode 5' vs 'Episode 45' numbering. Both were resolved only after Sebastian supplied real justification, which was then independently re-verified from primary sources rather than accepted on his word alone.",
+    "Added the Helgi/Dark Road claim to the morning package's claim_source_matrix (core=false) and added the Complex.com URL to the package's sources list, after independently re-fetching and confirming the verbatim quote.",
+    "Left the Bleach package's clip_locate.episode=45 (absolute numbering) unchanged; the VO's 'Episode 5' (per-cour) phrasing was left as written, per Sebastian's confirmed intentional convention matching a prior send (batch d4a8f107).",
+    "Flipped all 5 VO-dependent semantic_qa.checks fields from SKIPPED to true, only after independently verifying each was honestly true against the real inserted VO text (word counts recomputed programmatically; CTA/question adjacency regex-verified; both VOs scanned for AI-slop patterns -- none found; no bare unverified numeric claims requiring cross-check).",
+    "Ran validators/validate_dual_package.py fresh in this review: exit code 0, full PASS, zero SKIPPED, zero FAILED across both packages.",
+    "Logged vo_received and vo_inserted events for both packages to vo_handoff_log.jsonl.",
+    "Updated state.json (both per-batch and top-level mirror) to status='AWAITING_APPROVAL'.",
+    "On second review, Sebastian caught two remaining unsourced/inaccurate copy issues and requested fixes: (1) morning tiktok_post_text's 'hiding...on purpose' framing (same category of issue as the earlier VO fix), and (2) evening pinned_comment's unsourced Vasto Lorde/Fullbring 'cost him something' historical claim.",
+    "Fixed (1) by rewriting tiktok_post_text to 'the key visual doesn't show the lead character's face yet' -- accurate to what the sources support, no claim of active concealment.",
+    "Searched for a real, credible, dated, non-fandom source confirming the Vasto Lorde/Fullbring narrative pattern; found none (only Amino/fandom-style pages, which this channel avoids). Fixed (2) by removing the historical comparison entirely rather than weakly hedging it -- pinned_comment now only asserts the sourced, in-episode claim that Ichigo stays in control of the new form.",
+    "Rebuilt run_manifest.json and re-ran the validator after both fixes: exit code 0, full PASS, unchanged from before the fixes -- neither field is validator-checked, so this required manual verification that the fixed text still renders correctly and reads naturally, not just a validator pass.",
+    "Re-rendered both emails with the corrected text and confirmed both fixes appear exactly as intended in the final render.",
+    "On third review, Sebastian caught a third remaining unsourced comparative claim: morning pinned_comment's 'Disney almost never splits a flagship announcement across both platforms at once.' Searched specifically for evidence on Disney's dual-platform release frequency; found evidence pointing the other way (several prior Disney properties have gotten simultaneous/near-simultaneous Disney Channel + Disney+ releases), confirming the original claim was unsourced and likely inaccurate rather than just unverified.",
+    "Rewrote the morning pinned_comment to remove the frequency/history comparison entirely, keeping only the directly sourced fact (dual-platform release itself) plus a defensible interpretive read, matching the same fix pattern already applied to the Bleach pinned comment.",
+    "Rebuilt run_manifest.json and re-ran the validator after this third fix: exit code 0, full PASS, unchanged.",
+    "Re-rendered both emails and confirmed the corrected pinned comment appears exactly as intended.",
+    "Staged this approval.json at AWAITING_APPROVAL (approved_by/approved_at/approval_status left null) -- no send, no STEP 7/8, no GitHub commit until Sebastian reviews this file and the rendered emails himself and gives explicit final sign-off."
+  ]
+}

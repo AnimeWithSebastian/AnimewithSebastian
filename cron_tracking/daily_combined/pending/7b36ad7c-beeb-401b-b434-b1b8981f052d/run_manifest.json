@@ -1,0 +1,316 @@
+{
+  "batch_id": "7b36ad7c-beeb-401b-b434-b1b8981f052d",
+  "run_ts": "2026-08-23T22:30:33Z",
+  "post_date": "2026-08-23",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-08-13T22:40:59.876136+00:00",
+    "age_days": 10,
+    "status": "STALE_CACHE_FILE_BUT_FRESH_LIVE_SEARCHES_RUN_THIS_SESSION"
+  },
+  "corrects_batch_id": "af6c90bf-b832-474c-ad67-782f56038368",
+  "single_package_reason": "Only the morning Kingdom Hearts package requires correction (inaccurate 'cloaked/hooded figure' visual description, corrected against direct inspection of the real promotional image). The evening Bleach package from batch af6c90bf is unaffected and does not need re-sending.",
+  "packages": [
+    {
+      "package_id": "76c51349-bdb9-4456-a947-aa54883e74b7",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "Kingdom Hearts",
+      "angle": "Disney officially announces an original Kingdom Hearts anime series for Disney+ and Disney Channel at D23 2026, with Tetsuya Nomura and Square Enix attached, an original story not adapting the games -- key visual shows a figure with dark hair and fur-trimmed clothing, not Sora's usual look, identity unconfirmed",
+      "format_type": "FACT_DROP",
+      "topic_class": "timely",
+      "topic_signals": [
+        "news"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "DISNEY JUST ANNOUNCED A KINGDOM HEARTS ANIME",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Disney just announced a Kingdom Hearts anime, and the only image released so far shows dark hair and fur-trimmed clothing -- not Sora's usual look.",
+        "Kingdom Hearts is getting an anime, and the first image already has fans debating who's under that fur trim."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Disney just announced a Kingdom Hearts anime, and the only image released so far shows dark hair and fur-trimmed clothing -- not Sora's usual look.",
+      "opening_sentence": "Disney just announced a Kingdom Hearts anime, and the only image released so far shows dark hair and fur-trimmed clothing -- not Sora's usual look.",
+      "vo": "Disney just announced a Kingdom Hearts anime, and the only image released so far shows dark hair and fur-trimmed clothing -- not Sora's usual look. The series was confirmed at D23 twenty twenty-six, releasing on Disney Plus and Disney Channel. Tetsuya Nomura and Square Enix are attached, but this is an original story, not a game adaptation. No premiere date, episode count, studio, or cast has been announced. Disney hasn't confirmed the figure's identity, but fans comparing the fur trim and outfit think it's Helgi from Dark Road. So is that really Helgi, or did Sora just change his look? Leave your take.",
+      "vo_status": "complete",
+      "vo_word_count": 104,
+      "vo_target_word_band": [
+        100,
+        108
+      ],
+      "vo_required_beats": [
+        "Disney officially confirmed an original Kingdom Hearts anime series at D23 2026 (mid-August 2026)",
+        "It will release on BOTH Disney+ and Disney Channel -- an unusual dual-platform move for Disney",
+        "Tetsuya Nomura and Square Enix are attached/involved in the project",
+        "This is an ORIGINAL STORY -- it is explicitly NOT a direct adaptation of the existing Kingdom Hearts games",
+        "The only released material is a teaser key visual showing a figure with dark hair and fur-trimmed clothing, not Sora's usual look -- identity not confirmed by Disney (CORRECTED: the figure is NOT cloaked/hooded; hair is fully visible)",
+        "No premiere date, episode count, studio, or cast has been announced yet",
+        "A fan theory (reported by Complex) holds the figure could be Helgi from Dark Road, based on Reddit outfit comparisons -- not confirmed by Disney"
+      ],
+      "question_line": "So is that really Helgi, or did Sora just change his look?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Disney officially announced an original Kingdom Hearts anime series for Disney+ and Disney Channel at D23 2026",
+            "claim_type": "B",
+            "core": true,
+            "source_urls": [
+              "https://hypebeast.com/2026/8/disney-plus-channel-kingdom-hearts-anime-series-official-d23-announcement",
+              "https://abcnews.com/GMA/Culture/kingdom-hearts-anime-series-announced-d23/story?id=135659603"
+            ],
+            "anchors_claim": "hook"
+          },
+          {
+            "claim": "The project involves Tetsuya Nomura and Square Enix and is an original story, not adapting the games",
+            "claim_type": "D",
+            "core": true,
+            "source_urls": [
+              "https://hypebeast.com/2026/8/disney-plus-channel-kingdom-hearts-anime-series-official-d23-announcement",
+              "https://www.anime.com/news/kingdom-hearts-first-animated-series-disney-plus"
+            ]
+          },
+          {
+            "claim": "No premiere date, episode count, studio, or cast has been announced",
+            "claim_type": "A",
+            "core": true,
+            "source_urls": [
+              "https://wdwnt.com/2026/08/kingdom-hearts-anime-series-announced-for-disney-and-disney-channel/",
+              "https://www.yahoo.com/entertainment/tv/articles/kingdom-hearts-anime-series-works-032524034.html"
+            ]
+          },
+          {
+            "claim": "The key visual shows a figure with dark hair and fur-trimmed clothing, not Sora's usual look, whose identity is not confirmed (CORRECTED from an earlier inaccurate 'cloaked/hooded figure' description)",
+            "claim_type": "A",
+            "core": false,
+            "source_urls": [
+              "https://hypebeast.com/2026/8/disney-plus-channel-kingdom-hearts-anime-series-official-d23-announcement"
+            ]
+          },
+          {
+            "claim": "A fan theory holds the figure could be Helgi from Kingdom Hearts Dark Road, based on Reddit outfit comparisons -- not confirmed by Disney",
+            "claim_type": "A",
+            "core": false,
+            "source_urls": [
+              "https://www.complex.com/pop-culture/a/treyalston/kingdom-hearts-4-coco-trailer-d23-watch"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "video_style": "Face-Cam Split Screen (Creator TOP / anime footage BOTTOM, Law #134 Stage 2)",
+      "face": true,
+      "split_screen": true,
+      "sources": [
+        {
+          "claim": "Disney announced an original Kingdom Hearts anime series at D23 2026 for Disney+ and Disney Channel",
+          "url": "https://hypebeast.com/2026/8/disney-plus-channel-kingdom-hearts-anime-series-official-d23-announcement",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "ABC News confirms the D23 announcement of the Kingdom Hearts anime series",
+          "url": "https://abcnews.com/GMA/Culture/kingdom-hearts-anime-series-announced-d23/story?id=135659603",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "The series is an original story, not a direct game adaptation, with Nomura/Square Enix involved",
+          "url": "https://www.anime.com/news/kingdom-hearts-first-animated-series-disney-plus",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "No premiere date, studio, or cast confirmed yet; dual Disney+/Disney Channel release",
+          "url": "https://wdwnt.com/2026/08/kingdom-hearts-anime-series-announced-for-disney-and-disney-channel/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Additional coverage confirming the announcement's limited details",
+          "url": "https://www.yahoo.com/entertainment/tv/articles/kingdom-hearts-anime-series-works-032524034.html",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "Fan theory (fans comparing the fur trim and outfit) that the figure could be Helgi from Kingdom Hearts Dark Road, per Reddit outfit comparisons",
+          "url": "https://www.complex.com/pop-culture/a/treyalston/kingdom-hearts-4-coco-trailer-d23-watch",
+          "date": "Aug 15, 2026"
+        },
+        {
+          "claim": "CORRECTION: the teaser key visual actually shows dark hair and fur-trimmed clothing, not a cloaked/hooded figure -- verified via Sebastian's own direct visual inspection of the real promotional image, not a URL re-fetch",
+          "url": null,
+          "date": "2026-08-23",
+          "verification_method": "direct_visual_inspection_by_sebastian"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "D23 2026 official Kingdom Hearts anime teaser key visual \u2014 Keyblade-wielding figure with dark hair and fur-trimmed clothing, shown from behind, Disney Channel/Disney+ logo lockup",
+          "reason": "the actual announcement visual \u2014 the only real image that exists for this story, opens the video on the real reveal",
+          "scene_verified": true,
+          "verification_source_url": "https://hypebeast.com/2026/8/disney-plus-channel-kingdom-hearts-anime-series-official-d23-announcement",
+          "claim_vs_source_check": {
+            "claimed_beat": "Disney officially revealed a teaser key visual of a Keyblade-wielding figure with dark hair and fur-trimmed clothing, shown from behind at D23 2026",
+            "source_content_confirmed": "Hypebeast's Aug 16 report confirms the D23 reveal included the official key visual of a cloaked figure holding a Keyblade, shown from behind, with no confirmed identity NOTE (correction): the secondary-source 'cloaked/hooded' description used in the original send does not match the actual promotional image on direct inspection -- corrected to dark hair, fur-trimmed clothing, no hood/cloak.",
+            "match": true
+          },
+          "clip_locate": {
+            "season": "N/A (teaser/announcement material, not an episode)",
+            "episode": 0,
+            "locate_confirmed_via": "the same Hypebeast D23 announcement article cited above, which carries the official key visual image directly",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          },
+          "duration_sec": 7,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 7
+        },
+        {
+          "scene": "B-roll: Kingdom Hearts game series key art/logo montage (mainline series, not anime-specific footage) to establish franchise context for viewers unfamiliar with the games",
+          "reason": "gives non-gamer viewers instant recognition of the source franchise before the anime-specific reveal lands",
+          "scene_verified": false,
+          "verification_note": "Using existing official Kingdom Hearts game series key art/logo material as franchise context B-roll, not anime-specific footage \u2014 no anime footage exists yet for this unreleased series",
+          "footage_status": "unaired_no_footage",
+          "footage_search_performed": "Searched YouTube and the official Square Enix Kingdom Hearts channel for any anime-specific B-roll; none exists because the anime series has not aired a single frame \u2014 only official game-series key art/logo material is available, which is what this B-roll uses.",
+          "duration_sec": 7,
+          "timeline_start_sec": 7,
+          "timeline_end_sec": 14
+        },
+        {
+          "scene": "Disney+/Disney Channel co-branding lockup shown at the D23 panel announcement",
+          "reason": "visually confirms the unusual dual-platform distribution detail (Disney+ AND Disney Channel) that is the actual news hook",
+          "scene_verified": true,
+          "verification_source_url": "https://wdwnt.com/2026/08/kingdom-hearts-anime-series-announced-for-disney-and-disney-channel/",
+          "claim_vs_source_check": {
+            "claimed_beat": "The series was announced as a joint Disney+ and Disney Channel release, an unusual dual-platform move",
+            "source_content_confirmed": "WDW News Today's Aug 15 report confirms the series was announced for both Disney+ and Disney Channel",
+            "match": true
+          },
+          "clip_locate": {
+            "season": "N/A (teaser/announcement material, not an episode)",
+            "episode": 0,
+            "locate_confirmed_via": "the same WDW News Today D23 panel report cited above, which documents the Disney+/Disney Channel co-branding lockup shown at the panel",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          },
+          "duration_sec": 7,
+          "timeline_start_sec": 14,
+          "timeline_end_sec": 21
+        },
+        {
+          "scene": "Return to the teaser key visual (dark-haired, fur-trimmed figure) held on screen for the closer/CTA beat",
+          "reason": "closes on the same mystery image the hook opened with, reinforcing the 'who is this' question driving the CTA",
+          "scene_verified": true,
+          "verification_source_url": "https://hypebeast.com/2026/8/disney-plus-channel-kingdom-hearts-anime-series-official-d23-announcement",
+          "claim_vs_source_check": {
+            "claimed_beat": "The same dark-haired, fur-trimmed Keyblade wielder key visual is the only confirmed image tied to this announcement",
+            "source_content_confirmed": "Hypebeast's report and accompanying image confirm this is the sole released key visual for the announcement",
+            "match": true
+          },
+          "clip_locate": {
+            "season": "N/A (teaser/announcement material, not an episode)",
+            "episode": 0,
+            "locate_confirmed_via": "the same Hypebeast D23 announcement article cited on the opening cut, reused here for the closing beat",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          },
+          "duration_sec": 9,
+          "timeline_start_sec": 21,
+          "timeline_end_sec": 30
+        }
+      ],
+      "clip_plan_needs_manga_source": false,
+      "clip_plan_needs_release_delay": false,
+      "clip_descriptions": "Cut 1: official D23 teaser key visual (Keyblade-wielding figure with dark hair and fur-trimmed clothing, from behind). Cut 2: Kingdom Hearts game franchise key art/logo montage for context. Cut 3: Disney+/Disney Channel co-branding lockup from the D23 panel. Cut 4: return to the teaser key visual for the closing question beat.",
+      "captions": "DISNEY / JUST ANNOUNCED / A KINGDOM HEARTS / ANIME (word-by-word, one orange keyword per line, max 2 lines on screen, Anton ALL CAPS white/black outline)",
+      "youtube_title": "Disney Just Announced a Kingdom Hearts Anime",
+      "tiktok_title": "Kingdom Hearts Is Getting an Anime",
+      "tiktok_post_text": "Disney just confirmed an ORIGINAL Kingdom Hearts anime series for Disney+ AND Disney Channel \u2014 and the key visual shows dark hair and fur-trimmed clothing, not Sora's usual look. Nomura and Square Enix are attached. No release date yet. #KingdomHearts #DisneyPlus #AnimeNews #Anime #Sora",
+      "pinned_comment": "The dual Disney+/Disney Channel release is the part nobody's talking about \u2014 it's confirmed for both platforms, which means this isn't being positioned as a streaming-only side project.",
+      "post_times": {
+        "youtube": "7:30 AM ET",
+        "tiktok": "7:45 AM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "correction_reason": "Original VO/sourcing described the teaser key visual as a 'cloaked/hooded figure... identity unconfirmed,' traced to an inaccurate secondary-source description that was never checked against the actual promotional image before the original send. Sebastian directly inspected the real image: the figure has fully visible dark hair (no hood) and fur-trimmed clothing across the shoulders (no cloak). VO, hook_line/opening_sentence, question_line, hook_candidates, angle, vo_required_beats, claim_source_matrix, clips, clip_descriptions, and tiktok_post_text all corrected to match the real image."
+    }
+  ],
+  "minimum_frequency_floor": {
+    "floor_formats": [
+      "THEORY_SPECULATION",
+      "SEASON_ROUNDUP",
+      "WORTH_WATCHING",
+      "WATCH_RANK",
+      "SEASON_RATING"
+    ],
+    "window_days": 21,
+    "evaluations": [
+      {
+        "format_type": "THEORY_SPECULATION",
+        "days_since_last_considered": 0,
+        "must_force_consider": false,
+        "was_considered_this_run": true,
+        "format_eligibility_result": "ineligible",
+        "tie_break_applied": false,
+        "outcome": "rejected",
+        "rejection_reason": "Neither candidate is theory/speculation content \u2014 Kingdom Hearts is a confirmed factual announcement and Bleach episode 45 is a confirmed aired-episode moment, with no open narrative question to speculate on."
+      },
+      {
+        "format_type": "SEASON_ROUNDUP",
+        "days_since_last_considered": 0,
+        "must_force_consider": false,
+        "was_considered_this_run": true,
+        "format_eligibility_result": "ineligible",
+        "tie_break_applied": false,
+        "outcome": "rejected",
+        "rejection_reason": "Requires >=2 shows in a single roundup package (roundup_shows). Both tonight's packages are single-show pieces; forcing a roundup format onto either story would misrepresent single-story content as a multi-show survey."
+      },
+      {
+        "format_type": "WORTH_WATCHING",
+        "days_since_last_considered": 0,
+        "must_force_consider": false,
+        "was_considered_this_run": true,
+        "format_eligibility_result": "ineligible",
+        "tie_break_applied": false,
+        "outcome": "rejected",
+        "rejection_reason": "WORTH_WATCHING is a single-show persuasion format for existing/airing shows Sebastian can personally recommend watching. Kingdom Hearts has zero footage to recommend, and the Bleach package is a specific-episode-moment breakdown, not a general watch recommendation."
+      },
+      {
+        "format_type": "WATCH_RANK",
+        "days_since_last_considered": 0,
+        "must_force_consider": false,
+        "was_considered_this_run": true,
+        "format_eligibility_result": "ineligible",
+        "tie_break_applied": false,
+        "outcome": "rejected",
+        "rejection_reason": "Requires 3-6 shows Sebastian is personally currently watching, ranked with his own placement reasoning (Law #98) \u2014 not applicable to either single-story package tonight."
+      },
+      {
+        "format_type": "SEASON_RATING",
+        "days_since_last_considered": 0,
+        "must_force_consider": false,
+        "was_considered_this_run": true,
+        "format_eligibility_result": "ineligible",
+        "tie_break_applied": false,
+        "outcome": "rejected",
+        "rejection_reason": "Requires show_status of 'airing' or 'finished within 30 days' with a rateable completed/ongoing season. Kingdom Hearts has not aired a single frame. Bleach TYBW \u2013 The Calamity is airing, but tonight's package is a single-episode-moment breakdown (EPISODE_MOMENT), not a season-level rating/verdict piece \u2014 using SEASON_RATING here would misrepresent the format."
+      }
+    ]
+  }
+}

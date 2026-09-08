@@ -1,0 +1,50 @@
+{
+  "cache_written_at": "2026-08-21T14:22:00Z",
+  "cache_reason": "Law #129 refresh: cache was missing entirely (never previously written, or lost with the orphaned-tree confusion documented in F55). Fresh 8-search sweep run 2026-08-21 for TODAY's real post_date generation.",
+  "search_queries_run": [
+    "anime news August 2026 trending",
+    "anime episode premiere this week August 2026",
+    "One Piece manga chapter August 2026 news",
+    "Attack on Titan anime news 2026",
+    "anime airing episode this week August 20 21 2026",
+    "Jujutsu Kaisen news August 2026",
+    "Chainsaw Man anime 2026 news",
+    "anime ranking most popular August 2026",
+    "My Hero Academia final season news 2026",
+    "summer 2026 anime season currently airing",
+    "Kaiju No 8 season 2 episode news August 2026",
+    "anime episode released this week August 2026 reaction",
+    "Dandadan season 2 news August 2026",
+    "Black Torch anime Studio 100studio premise cat spirits",
+    "Black Torch manga Tsuyoshi Takaki source material",
+    "Solo Leveling Season 3 A-1 Pictures Aniplex confirmed June 2026",
+    "Solo Leveling anime season 3 Jeju Island arc"
+  ],
+  "candidate_ideas": [
+    {
+      "show": "Black Torch",
+      "angle": "currently-airing shonen breakout, 'biggest shows on streaming' framing",
+      "format": "currently-airing spotlight",
+      "topic_class": "timely",
+      "topic_signals": ["currently_airing", "trending_streaming_ranking"],
+      "sources": [
+        {"url": "https://movieweb.com/black-torch-action-streaming-success-crunchyroll-august-2026/", "date": "2026-08-11", "note": "MovieWeb: Black Torch is 'officially one of the biggest shows on streaming'"},
+        {"url": "https://www.cbr.com/crunchyroll-new-shonen-hit-black-torch-anime/", "date": "2026-07-25", "note": "CBR: premise, studio 100studio background, prior studio track record"},
+        {"url": "https://en.wikipedia.org/wiki/Black_Torch", "date": "2026 (live page, checked 2026-08-21)", "note": "encyclopedic: cast/crew/premiere date, paired with non-encyclopedic CBR/MovieWeb sources per Law #165"},
+        {"url": "https://myanimelist.net/anime/61169/Black_Torch", "date": "2026-07-19", "note": "MAL: currently airing status, broadcast schedule Saturdays 22:00 JST, synopsis"}
+      ]
+    },
+    {
+      "show": "Solo Leveling",
+      "angle": "Season 3 news/speculation — confirmed in production, held behind Beyond the System movie",
+      "format": "news/speculation roundup",
+      "topic_class": "timely",
+      "topic_signals": ["franchise_news", "season_confirmation_followup"],
+      "sources": [
+        {"url": "https://thedirect.com/article/solo-leveling-season-3-crunchyroll-release", "date": "2026-08-18", "note": "The Direct: Season 3 held until after Beyond the System movie; D&C Media Q4 report reconfirms 2027-2028 window"},
+        {"url": "https://gamerant.com/solo-leveling-season-3-release-update/", "date": "2026-08-14", "note": "Game Rant: 'Season 3' label removed from Beyond the System trailer, clarifying it's a separate movie project ahead of a true TV Season 3"},
+        {"url": "https://gamerant.com/solo-leveling-season-3-officially-confirmed-dc-media/", "date": "2026-06-09", "note": "Game Rant: original D&C Media investor-report confirmation, 2027-2028 window, A-1 Pictures/Aniplex"}
+      ]
+    }
+  ]
+}

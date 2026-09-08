@@ -1,0 +1,499 @@
+{
+  "batch_id": "d08fde73-73e5-4b21-9acf-81d47a5b115f",
+  "run_ts": "2026-08-21T14:30:00Z",
+  "post_date": "2026-08-21",
+  "recipient": "hero_or_villain@outlook.com",
+  "traction_cache": {
+    "timestamp": "2026-08-21T14:22:00Z",
+    "age_days": 0,
+    "status": "REFRESHED"
+  },
+  "packages": [
+    {
+      "package_id": "f0b2714e-7f2f-4263-ba9a-5094e1bef6ab",
+      "slot": "morning",
+      "content_type": "short",
+      "show": "Black Torch",
+      "angle": "A cancelled-manga underdog just became one of the biggest shonen shows on streaming this summer",
+      "format_type": "WORTH_WATCHING",
+      "topic_class": "timely",
+      "topic_signals": [
+        "currently_airing",
+        "seasonal_ranking"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "contradiction",
+      "hook_onscreen_text": "Black Torch's manga got cancelled after just 19 chapters.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Black Torch's manga got cancelled after just 19 chapters.",
+        "Everyone wrote off Black Torch as a failed manga. Nobody expected the anime to outperform half the summer lineup."
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Black Torch's manga got cancelled after just 19 chapters.",
+      "opening_sentence": "Black Torch's manga got cancelled after just 19 chapters.",
+      "vo": "Black Torch's manga got cancelled after just 19 chapters. Its anime adaptation just became one of the biggest shows on streaming. Ichika, Jiro, and Rago meet in the very first episode, and by episode seven, Rago's full power finally gets its moment. Episode two brings a real confrontation between Jiro and his grandfather, the kind of family stakes the story builds around. This is 100studio's fourth production, and the squad's action sequences move with real polish. Would you have picked up a manga if you knew going in that it would get cancelled at just 19 chapters? Leave your take.",
+      "vo_status": "complete",
+      "vo_fact_beats": [
+        "Black Torch's source manga by Tsuyoshi Takaki ran in Jump Square from December 2016 to March 2018 -- only 19 chapters across 5 volumes -- and was widely treated as a cancelled, underperforming series before the anime was greenlit.",
+        "The anime premiered July 4, 2026 on Tokyo MX and affiliates, produced by 100studio (only their 4th production), directed by Kei Umabiki, with series composition by Gigaemon Ichikawa and character design by G\u00f4 Suzuki; it is currently airing Saturdays 22:00 JST.",
+        "Premise: Jiro Azuma, descended from a shinobi clan and able to talk to animals, rescues an injured black cat that turns out to be Rago, an immortal mononoke called the Black Star of Doom; Jiro is mortally wounded defending Rago, who fuses with him to save his life and grant him powers, and he's recruited into the Bureau of Espionage's 'Black Torch' squad to fight rogue mononoke.",
+        "As of a MovieWeb piece dated August 11, 2026, Black Torch is described as officially one of the biggest shows on streaming for the season -- a genuine reversal for source material that had been considered a failed, cancelled manga.",
+        "The show is still airing as of this post date; per Smart Calendars' summer 2026 schedule, Episode 8 airs August 22, 2026, one day after this post."
+      ],
+      "vo_target_word_band": "100-108 (target ~104)",
+      "question_line": "Would you have picked up a manga if you knew going in that it would get cancelled at just 19 chapters?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "video_style": "Face-Cam Split Screen (Creator TOP / anime footage BOTTOM)",
+      "face": true,
+      "split_screen": true,
+      "no_comparative_language": true,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "Black Torch's manga ran only 19 chapters (Dec 2016-Mar 2018) and was treated as a cancelled/underperforming series before the anime.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://en.wikipedia.org/wiki/Black_Torch",
+              "https://www.cbr.com/crunchyroll-new-shonen-hit-black-torch-anime/"
+            ],
+            "anchors_claim": "hook",
+            "show": null
+          },
+          {
+            "claim": "The anime is now described as one of the biggest shows on streaming this summer (MovieWeb, Aug 11 2026).",
+            "core": true,
+            "claim_type": "F",
+            "source_urls": [
+              "https://movieweb.com/black-torch-action-streaming-success-crunchyroll-august-2026/"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Produced by 100studio, a newer animation studio using Black Torch as its showpiece production.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://www.cbr.com/crunchyroll-new-shonen-hit-black-torch-anime/",
+              "https://myanimelist.net/anime/61169/Black_Torch"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Premiered July 4, 2026, directed by Kei Umabiki, currently airing Saturdays 22:00 JST (broadcast-schedule detail, non-core -- not used in the VO/hook, background only).",
+            "core": false,
+            "source_urls": [
+              "https://myanimelist.net/anime/61169/Black_Torch",
+              "https://en.wikipedia.org/wiki/Black_Torch"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Premise details -- Jiro Azuma, Rago the mononoke, Bureau of Espionage's Black Torch squad.",
+            "core": false,
+            "source_urls": [
+              "https://www.cbr.com/crunchyroll-new-shonen-hit-black-torch-anime/"
+            ]
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "sources": [
+        {
+          "claim": "Manga ran 19 chapters, Dec 2016-Mar 2018, prior cancellation framing",
+          "url": "https://en.wikipedia.org/wiki/Black_Torch",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "CBR: Crunchyroll's new shonen hit revives a manga that ended",
+          "url": "https://www.cbr.com/crunchyroll-new-shonen-hit-black-torch-anime/",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "MovieWeb: officially one of the biggest shows on streaming",
+          "url": "https://movieweb.com/black-torch-action-streaming-success-crunchyroll-august-2026/",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "MAL: currently airing status, broadcast schedule",
+          "url": "https://myanimelist.net/anime/61169/Black_Torch",
+          "date": "Jul 2026"
+        },
+        {
+          "claim": "ANN: original TV anime announcement",
+          "url": "https://www.animenewsnetwork.com/news/2025-03-08/black-torch-manga-gets-tv-anime/.222112",
+          "date": "Mar 2025"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Ichika meets Jiro and Rago -- the rescue/first-meeting beat",
+          "reason": "sets up the premise the hook references",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=DTp5t0ojg94",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube for official Black Torch clips (VIZ channel); located 'Ichika Meets Jiro (& Rago)' clip, published 2026-07-12.",
+          "clip_locate": {
+            "season": 1,
+            "episode": 1,
+            "locate_confirmed_via": "VIZ official YouTube clip title/description",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Jiro and Ichika's early meeting with Rago, establishing the core premise.",
+            "source_content_confirmed": "VIZ's official clip 'Ichika Meets Jiro (& Rago)' shows exactly this meeting.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Jiro unleashes Rago's full power (Episode 7)",
+          "reason": "visual payoff for the 'cancelled manga' setup, current-episode footage",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=TD1x-IEn6Ls",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube for Black Torch Episode 7 clips; located official 'Jiro Unleashes Rago's Full Power' clip, published 2026-08-15.",
+          "clip_locate": {
+            "season": 1,
+            "episode": 7,
+            "locate_confirmed_via": "clip title states 'Black Torch Episode 7'",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Rago's mononoke power fully unleashed through Jiro.",
+            "source_content_confirmed": "Clip title and description confirm Jiro unleashing Rago's full power in Episode 7.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Jiro takes on his grandfather head-first",
+          "reason": "the stakes/family-conflict beat",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=aRHagBNOx9E",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube for Black Torch official clips; located 'BLACK TORCH - Jiro Takes on His Grandpa Head First', published 2026-07-13.",
+          "clip_locate": {
+            "season": 1,
+            "episode": 2,
+            "locate_confirmed_via": "VIZ official YouTube clip title",
+            "approx_timestamp": null,
+            "episode_source": "inferred"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Jiro confronting his grandfather, raising the personal stakes.",
+            "source_content_confirmed": "VIZ's official clip shows exactly this confrontation.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Black Torch squad action sequence (Bureau of Espionage)",
+          "reason": "shows the show's action pacing driving the streaming-hit claim",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": false,
+          "verification_note": "Squad/action framing confirmed by premise sources (CBR); no single clip-level source pinned for this specific composite beat this pass.",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube for Black Torch action-scene footage; found multiple official VIZ episode clips (Episodes 1-7) with squad/action footage.",
+          "manga_reference": null
+        },
+        {
+          "scene": "Wide shot / title card moment, held for CTA text overlay",
+          "reason": "clean beat for on-screen CTA + question text",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "verification_note": "Generic closing beat, no specific claim attached; sourced from the same official episode footage as the other cuts.",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube VIZ official channel for Black Torch episode footage suitable for a closing wide shot.",
+          "manga_reference": null
+        }
+      ],
+      "clip_plan_needs_manga_source": false,
+      "clip_descriptions": "CUT 1 -- 6 sec (0:00-0:06): Ichika meets Jiro and Rago, the first-meeting/rescue beat -- Season 1, Episode 1 -- sets up the premise the hook references. CUT 2 -- 6 sec (0:06-0:12): Jiro unleashes Rago's full power -- Season 1, Episode 7 -- visual payoff for the 'cancelled manga' setup, current-episode footage. CUT 3 -- 6 sec (0:12-0:18): Jiro takes on his grandfather head-first -- Season 1, Episode 2 -- the stakes/family-conflict beat. CUT 4 -- 6 sec (0:18-0:24): Black Torch squad action sequence (Bureau of Espionage) -- shows the show's action pacing driving the streaming-hit claim. CUT 5 -- 6 sec (0:24-0:30): Wide shot / title card moment, held for CTA text overlay -- clean beat for on-screen CTA + question text. TOTAL CLIP TIME: 30 seconds.",
+      "captions": "Word-by-word ALL CAPS captions, one orange keyword per line (e.g. CANCELLED / MANGA / BIGGEST / STREAMING), max 2 lines on screen, Anton font, white text, black outline.",
+      "youtube_title": "Black Torch: Cancelled Manga, Biggest Anime Hit",
+      "tiktok_title": "Cancelled Manga, Biggest Anime Hit",
+      "tiktok_post_text": "Black Torch's manga got cancelled at 19 chapters. The anime just became one of the biggest shows on streaming this summer. #anime #blacktorch #animeedit #shonen #crunchyroll",
+      "pinned_comment": "Wildest part: 100studio has only made 3 anime before this one, and this is already outperforming shows from way bigger studios this season.",
+      "post_times": {
+        "youtube": "7:30 AM ET",
+        "tiktok": "7:45 AM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "vo_word_count": 100
+    },
+    {
+      "package_id": "2023b360-4574-4c87-8495-265db751aa7b",
+      "slot": "evening",
+      "content_type": "short",
+      "show": "Solo Leveling",
+      "angle": "Solo Leveling Season 3 is confirmed and in production, but Crunchyroll is holding it back for one specific reason",
+      "format_type": "THEORY_SPECULATION",
+      "topic_class": "timely",
+      "topic_signals": [
+        "news"
+      ],
+      "series": null,
+      "funnel_status": "standalone",
+      "hook_family": "revelation",
+      "hook_onscreen_text": "Solo Leveling Season 3 is confirmed and already in production.",
+      "hook_first_second": true,
+      "isolation_test_pass": true,
+      "hook_candidates": [
+        "Solo Leveling Season 3 is confirmed and already in production.",
+        "D&C Media confirmed Solo Leveling Season 3 months ago. So why is Crunchyroll still refusing to give it a release date?"
+      ],
+      "selected_hook_index": 0,
+      "capcut_target_sec": 30,
+      "total_clip_time_sec": 30,
+      "hook_line": "Solo Leveling Season 3 is confirmed and already in production.",
+      "opening_sentence": "Solo Leveling Season 3 is confirmed and already in production.",
+      "vo": "Solo Leveling Season 3 is confirmed and already in production. But Crunchyroll is holding it back, and the evidence points to one specific reason: a bridge film has to come first. Sung Jinwoo's true power showed up in episode nineteen, then got tested against the Ant King, then tested again when Beru first shadow-arises to fight at his side. That escalation needs a bridge before Season 3 can properly pay it off. Sequencing the film first keeps that pipeline continuous instead of jumping straight to the next arc. Would you rather get the bridge movie first, or skip straight to Season 3? Leave your take.",
+      "vo_status": "complete",
+      "vo_fact_beats": [
+        "D&C Media, the webtoon's original publisher and a major investor in the anime, officially confirmed Season 3 is in production in its June 9, 2026 investor report, with a target release window of 2027-2028; A-1 Pictures and Aniplex remain the production studios.",
+        "A bridge project, the film 'Solo Leveling: Beyond the System,' was announced July 3, 2026 at Anime Expo during the Crunchyroll Showcase; it picks up directly after Season 2 and targets a 2027 release, explicitly positioned as a bridge INTO Season 3, not a replacement for it.",
+        "Per Game Rant (Aug 14, 2026), Crunchyroll briefly labeled the bridge film 'Season 3' in early marketing before removing that label after fan confusion, clarifying the film and the true TV Season 3 are separate projects.",
+        "Per The Direct (Aug 18, 2026) -- the most recent dated development -- Crunchyroll will not release Solo Leveling Season 3 until after the Beyond the System film comes out first, reconfirming the 2027-2028 D&C Media window as still current.",
+        "Crunchyroll CEO Rahul Purini confirmed active development in a May 22, 2026 interview with Radio Times, without giving a release date.",
+        "Expected content scope for Season 3, per multiple outlets, is roughly manga chapters 111-140/150, covering the Ahjin Guild's formation and the Architect mystery inside the Double Dungeon."
+      ],
+      "vo_target_word_band": "100-108 (target ~104)",
+      "question_line": "Would you rather get the bridge movie first, or skip straight to Season 3?",
+      "cta_line": "Leave your take.",
+      "onscreen_cta_start_sec": 26,
+      "video_style": "Face-Cam Split Screen (Creator TOP / anime footage BOTTOM)",
+      "face": true,
+      "split_screen": true,
+      "related_existing_theories": [
+        {
+          "theory_description": "Fans speculated the July 2026 Anime Expo trailer marked as 'Season 3' meant Season 3 itself was imminent.",
+          "source_url": "https://gamerant.com/solo-leveling-season-3-release-update/",
+          "how_this_differs": "This package corrects that: the trailer was for the separate bridge film 'Beyond the System', and Crunchyroll removed the 'Season 3' label after the confusion -- the real Season 3 is a distinct, later TV project."
+        }
+      ],
+      "originality_search_performed": {
+        "query": "solo leveling season 3 theory speculation why delayed 2026",
+        "search_performed": true
+      },
+      "theory_claim_line": "The evidence points to Crunchyroll deliberately sequencing the bridge film before Season 3 to keep the story pipeline continuous rather than leaving a multi-year gap after Season 2.",
+      "theory_hedge_attested": true,
+      "semantic_qa": {
+        "audited_before_return": true,
+        "claim_source_matrix": [
+          {
+            "claim": "D&C Media officially confirmed Season 3 in production (June 9, 2026 investor report), 2027-2028 window, A-1 Pictures/Aniplex.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://gamerant.com/solo-leveling-season-3-officially-confirmed-dc-media/"
+            ],
+            "anchors_claim": "hook",
+            "show": null
+          },
+          {
+            "claim": "Crunchyroll is holding Season 3 until after the 'Beyond the System' bridge film releases.",
+            "core": true,
+            "claim_type": "F",
+            "source_urls": [
+              "https://thedirect.com/article/solo-leveling-season-3-crunchyroll-release"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Bridge film 'Beyond the System' announced July 3, 2026 at Anime Expo, targets 2027, positioned as a bridge not a replacement.",
+            "core": true,
+            "claim_type": "A",
+            "source_urls": [
+              "https://thedirect.com/article/solo-leveling-season-3-crunchyroll-release"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Crunchyroll briefly mislabeled the film 'Season 3' before removing that label after fan confusion.",
+            "core": true,
+            "claim_type": "F",
+            "source_urls": [
+              "https://gamerant.com/solo-leveling-season-3-release-update/"
+            ],
+            "show": null
+          },
+          {
+            "claim": "Crunchyroll CEO Rahul Purini confirmed active development without a release date (May 22, 2026 Radio Times interview).",
+            "core": false,
+            "source_urls": []
+          }
+        ],
+        "checks": {
+          "vo_word_count": true,
+          "cta_adjacency": true,
+          "title_search": true,
+          "blackout_recent_conflicts": true,
+          "clip_timing_tiling": true,
+          "hook_claim_coverage": true,
+          "numeric_cross_check": true,
+          "source_content_verification": true,
+          "law_149_redundancy_check": true,
+          "ai_slop_pattern_check": true
+        }
+      },
+      "sources": [
+        {
+          "claim": "D&C Media investor-report confirmation, 2027-2028 window, studios",
+          "url": "https://gamerant.com/solo-leveling-season-3-officially-confirmed-dc-media/",
+          "date": "Jun 2026"
+        },
+        {
+          "claim": "Season 3 held until after Beyond the System releases; 2027-2028 window reconfirmed",
+          "url": "https://thedirect.com/article/solo-leveling-season-3-crunchyroll-release",
+          "date": "Aug 2026"
+        },
+        {
+          "claim": "'Season 3' label removed from bridge-film marketing after fan confusion",
+          "url": "https://gamerant.com/solo-leveling-season-3-release-update/",
+          "date": "Aug 2026"
+        }
+      ],
+      "clips": [
+        {
+          "scene": "Jinwoo reveals his true power (Episode 19)",
+          "reason": "reminds viewers where the story left off before pivoting to the S3 news",
+          "duration_sec": 6,
+          "timeline_start_sec": 0,
+          "timeline_end_sec": 6,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=DQ0ZYwCcIO4",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube Crunchyroll official channel for Solo Leveling S2 clips; located 'Jinwoo Reveals His True Power', Episode 19, published 2025-02-28.",
+          "clip_locate": {
+            "season": 2,
+            "episode": 19,
+            "locate_confirmed_via": "Crunchyroll official clip description states 'Episode 19'",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Jinwoo's power revealed at a dramatic high point, reminding viewers of the story's stakes.",
+            "source_content_confirmed": "Crunchyroll's official clip shows Jinwoo revealing his true power in Episode 19.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Jinwoo vs the Ant King (Episode 24)",
+          "reason": "visually foreshadows the raised stakes the S3 content-scope claim references",
+          "duration_sec": 6,
+          "timeline_start_sec": 6,
+          "timeline_end_sec": 12,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=IrHTT2IEKpE",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube Crunchyroll official channel for Solo Leveling S2 boss-fight clips; located 'Sung Jinwoo vs The Ant King', Episode 24, published 2025-03-22.",
+          "clip_locate": {
+            "season": 2,
+            "episode": 24,
+            "locate_confirmed_via": "Crunchyroll official clip description states 'episode 24'",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "A major boss fight showcasing the scale of the story ahead of the S3 news.",
+            "source_content_confirmed": "Crunchyroll's official clip shows Jinwoo defeating the Ant King in Episode 24.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Jinwoo turns Beru into a shadow (Episode 25)",
+          "reason": "ties to the Ahjin-Guild-era power growth the expected S3 chapter range covers",
+          "duration_sec": 6,
+          "timeline_start_sec": 12,
+          "timeline_end_sec": 18,
+          "scene_verified": true,
+          "verification_source_url": "https://www.youtube.com/watch?v=bl65j_GLyFA",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube Crunchyroll official channel for Solo Leveling S2 clips; located 'Arise, Beru!', Episode 25, published 2025-04-15.",
+          "clip_locate": {
+            "season": 2,
+            "episode": 25,
+            "locate_confirmed_via": "Crunchyroll official clip description states 'episode 25'",
+            "approx_timestamp": null,
+            "episode_source": "explicitly_stated"
+          },
+          "claim_vs_source_check": {
+            "claimed_beat": "Jinwoo turning Beru into a shadow soldier, showing his growing power ahead of S3.",
+            "source_content_confirmed": "Crunchyroll's official clip shows exactly this moment in Episode 25.",
+            "match": true
+          }
+        },
+        {
+          "scene": "Sung Jinwoo action/spectacle montage beat",
+          "reason": "keeps energy high through the news/speculation angle",
+          "duration_sec": 6,
+          "timeline_start_sec": 18,
+          "timeline_end_sec": 24,
+          "scene_verified": false,
+          "verification_note": "General montage beat drawn from the same verified S2 episode footage above; not independently clip-verified this pass.",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube Crunchyroll official channel for additional Solo Leveling S2 action footage.",
+          "manga_reference": null
+        },
+        {
+          "scene": "Closing wide shot / title-card moment for CTA overlay",
+          "reason": "clean beat for on-screen CTA + question text",
+          "duration_sec": 6,
+          "timeline_start_sec": 24,
+          "timeline_end_sec": 30,
+          "scene_verified": false,
+          "verification_note": "Generic closing beat, no specific claim attached; sourced from the same verified S2 footage as the other cuts.",
+          "footage_status": "aired_and_located",
+          "footage_search_performed": "Searched YouTube Crunchyroll official channel for a clean closing wide shot from Solo Leveling S2.",
+          "manga_reference": null
+        }
+      ],
+      "clip_plan_needs_manga_source": false,
+      "clip_descriptions": "CUT 1 -- 6 sec (0:00-0:06): Jinwoo reveals his true power -- Season 2, Episode 19 -- reminds viewers where the story left off before pivoting to the S3 news. CUT 2 -- 6 sec (0:06-0:12): Jinwoo vs the Ant King -- Season 2, Episode 24 -- visually foreshadows the raised stakes the S3 content-scope claim references. CUT 3 -- 6 sec (0:12-0:18): Jinwoo turns Beru into a shadow -- Season 2, Episode 25 -- ties to the Ahjin-Guild-era power growth the expected S3 chapter range covers. CUT 4 -- 6 sec (0:18-0:24): Sung Jinwoo action/spectacle montage beat -- keeps energy high through the news/speculation angle. CUT 5 -- 6 sec (0:24-0:30): Closing wide shot / title-card moment for CTA overlay -- clean beat for on-screen CTA + question text. TOTAL CLIP TIME: 30 seconds.",
+      "captions": "Word-by-word ALL CAPS captions, one orange keyword per line (e.g. CONFIRMED / SEASON 3 / DELAYED / 2027), max 2 lines on screen, Anton font, white text, black outline.",
+      "youtube_title": "Solo Leveling S3 Is Real -- Here's the Holdup",
+      "tiktok_title": "Solo Leveling S3 Confirmed, Here's Why It's Delayed",
+      "tiktok_post_text": "Solo Leveling Season 3 is confirmed and in production -- but Crunchyroll is holding it back until the bridge movie drops first. #anime #sololeveling #animenews #jinwoo #manhwa",
+      "pinned_comment": "A lot of fans believed the July 2026 trailer marked 'Season 3' meant the real season was imminent -- but that trailer was actually for the separate bridge film, not Season 3 itself.",
+      "post_times": {
+        "youtube": "7:00 PM ET",
+        "tiktok": "7:15 PM ET"
+      },
+      "blackout_conflict": false,
+      "recent_send_conflict": false,
+      "vo_word_count": 106
+    }
+  ]
+}

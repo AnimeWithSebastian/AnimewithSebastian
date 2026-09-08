@@ -1,0 +1,96 @@
+{
+  "approved_by": "Sebastian",
+  "approved_at": "2026-08-19T00:52:00+00:00",
+  "approval_status": "APPROVED",
+  "approval_pending_note": "Approved by Sebastian on 2026-08-19T00:52:00+00:00 (2026-08-18 8:52 PM EDT), after his own independent Law #165 read of the full rendered emails, this approval.json, and the git push confirmation delivered in the prior report. This field previously recorded the MODEL's fetch-and-confirm review only; it now also carries the human sign-off. Dispatch (STEP 7) and log-append (STEP 8) have NOT been performed -- this session has no mail-sending capability -- and are handed off to whoever runs those steps next, per the same pattern as every other approved batch in this repo.",
+  "batch_id": "8ca83216-42a3-4950-ae19-f41c98538d46",
+  "corrects_batch_id": null,
+  "scope_note": "This batch contains TWO packages: Mushoku Tensei: Jobless Reincarnation S3E8 (morning, package_id 3fa10c2e-8b4e-4c1a-9d2f-1a2b3c4d5e01) and The Apothecary Diaries Season 3 premiere (evening, package_id 3fa10c2e-8b4e-4c1a-9d2f-1a2b3c4d5e02). Both went through the Claude-writes-VO handoff: staged draft/PARTIAL (vo_status=pending, validator exit 3) -> Sebastian supplied Claude's real VO text for both -> inserted into the manifest -> full validator re-run -> exit 0, fully_passed. vo_received and vo_inserted events logged for both packages in cron_tracking/daily_combined/vo_handoff_log.jsonl.",
+  "vo_handoff_note": "An intermediate full-validator run on the freshly-inserted VOs returned exit code 1 (2 real FAILs), caused entirely by drafting-pass bugs on my side -- NOT by any defect in Sebastian's pasted VO text: (a) hook_candidates[0] on both packages still used a plain '--' where the real VO/hook_line uses an em dash '\u2014', so the published-hook-matches-selected-candidate check failed; (b) the evening question_line field read '...the best move for this story...' but Claude's actual VO says '...the best move...' (no 'for this story'), so the question-immediately-followed-by-CTA adjacency check failed because the literal substring wasn't present in the VO. Both were corrected to match the real, unedited VO text exactly, and the second full re-run returned exit 0 with 186 PASS / 0 FAIL / 0 SKIP. No vo_rejected event was logged for this, since the VO text itself was never rejected or resent -- only my own manifest fields were wrong and were fixed in place before any event was recorded.",
+  "fetch_review": [
+    {
+      "claim": "[CORE, morning, anchors_claim=hook] Rudeus meets Perugius Dola inside the floating fortress Chaos Breaker seeking a cure for his mother Zenith's trance-like condition; Perugius has no cure and instead redirects Rudeus toward Elinalise.",
+      "url": "https://animecorner.me/rudy-meets-perugius-in-mushoku-tensei-season-3-episode-8-preview/",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh this session. Exact quote: \"To find a way to restore Zenith, Rudeus, through an introduction from Nanahoshi, is granted an audience with Perugius, the \u2018Armored Dragon King,\u2019 one of the Three Heroes who slew the Demon God and now resides in the floating fortress Chaos Breaker.\" The Elinalise redirect is independently confirmed below via the Indiatimes recap, also fetched fresh this session: \"Perugius does not have a cure waiting for him, but he does point Rudeus towards an unexpected person: Elinalise.\" Doubly confirmed across two sources."
+    },
+    {
+      "url": "https://www.indiatimes.com/trending/mushoku-tensei-season-3-episode-8-recap-rudeus-meets-perugius-as-nanahoshis-health-takes-a-shocking-turn-in-the-flying-fortress/amp_articleshow/133298473.html",
+      "claim": "[CORE, morning, anchors_claim=hook, second source] Same hook claim as above -- Rudeus seeks a cure for Zenith, Perugius redirects him to Elinalise instead.",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh this session. Exact quotes: \"Rudeus explains what happened to his mother after the Teleport Labyrinth incident and asks Perugius whether he knows anything that could help her\" and \"Perugius does not have a cure waiting for him, but he does point Rudeus towards an unexpected person: Elinalise.\" Minor naming note: this source calls him only \"Perugius,\" not \"Perugius Dola\" -- a naming-style detail, not a factual contradiction."
+    },
+    {
+      "claim": "[CORE, morning, type C] Mushoku Tensei Season 3 (Chaos Breaker Arc) is currently airing; Episode 8 ('The Flying Fortress') aired August 16, 2026.",
+      "url": "https://www.techtimes.com/articles/324709/20260817/mushoku-tensei-season-3-episode-8-debuts-chaos-breaker-levitation-quantum-neuroscience.htm",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh this session. Exact quotes: \"When Mushoku Tensei: Jobless Reincarnation Season 3's Chaos Breaker arc opened on August 16, it sent Rudeus Greyrat and his companions into a mountain-sized fortress...\" and \"Episode 8 'The Flying Fortress' is available now.\""
+    },
+    {
+      "claim": "[CORE, morning, type A] Nanahoshi's condition turns dangerous: she coughs up blood right after Sylphie's healing magic misfires, the episode's cliffhanger.",
+      "url": "https://www.indiatimes.com/trending/mushoku-tensei-season-3-episode-8-recap-rudeus-meets-perugius-as-nanahoshis-health-takes-a-shocking-turn-in-the-flying-fortress/amp_articleshow/133298473.html",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh this session. Exact quotes: \"Sylphie attempts to use healing magic on her, yet something goes badly wrong\" and \"Nanahoshi suddenly becomes much worse and begins coughing up blood, turning what had seemed like a mysterious illness into an immediate crisis.\""
+    },
+    {
+      "claim": "[NON-CORE, morning] New voice cast this arc: Rikiya Koyama as Perugius Dola, Nanako Mori as Atoferatofe Rybak, Ayumi Tsunematsu as Sylvaril of the Void.",
+      "url": "https://comicbookco.com/anime/mushoku-tensei-chaos-breaker-arc/",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh this session. Exact quote: \"A trailer released August 10 introduced three new cast members: Rikiya Koyama as Perugius Dola, Nanako Mori as Atoferatofe Rybak, and Ayumi Tsunematsu as Sylvaril of the Void.\""
+    },
+    {
+      "claim": "[CORE, evening, anchors_claim=hook] The Apothecary Diaries Season 3 premieres October 2, 2026, announced at the Summer Garden Party 2026 event via a TOHO Animation trailer.",
+      "url": "https://www.animenewsnetwork.com/news/2026-08-15/the-apothecary-diaries-season-3-trailer-unveils-october-2-debut-more-cast-opening-song/.240600",
+      "fetched_content_supports_claim": true,
+      "note": "IMPORTANT CORRECTION CAPTURED HERE: this ANN source (the manifest's only originally-cited source for this claim) confirms the October 2 premiere and the two-cour structure, but does NOT name TOHO Animation or the 'Summer Garden Party' event -- it only says 'a special event for the series on Saturday.' The 'TOHO Animation' / 'Summer Garden Party 2026' specifics in the manifest's vo_fact_brief and VO text were originally under-sourced against this URL alone. I searched further this session and found real, independent confirmation for both missing specifics (see the next two entries) and added those URLs to the manifest's source_urls and top-level sources list before this approval. The underlying facts are true and now properly cited; the gap was in citation completeness, not in the facts themselves."
+    },
+    {
+      "claim": "[CORE, evening, anchors_claim=hook, corroboration 1/2] The October 2, 2026 premiere date was revealed at the series' 'Summer Garden Party 2026' event.",
+      "url": "https://www.anime.com/news/the-apothecary-diaries-season-3-october-2-premiere",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh this session. Exact quote: \"The date arrived inside a run of ten numbered reveals that the account posted on August 15 from the series' Summer Garden Party 2026 event.\" Confirms the event name and that the premiere date came from it."
+    },
+    {
+      "claim": "[CORE, evening, anchors_claim=hook, corroboration 2/2] TOHO Animation is the studio that released/unveiled the Season 3 trailer confirming the October 2, 2026 premiere.",
+      "url": "https://hypebeast.com/2026/8/the-apothecary-diaries-season-3-trailer-release-info",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh this session. Exact quote: \"TOHO Animation has officially unveiled the main promotional trailer for the highly anticipated third season of The Apothecary Diaries, confirming that the new installment will premiere on October 2, 2026.\" This source was already present in the manifest's top-level sources list before this review; it is now also added to this claim's source_urls in claim_source_matrix, since it was the piece actually carrying the TOHO Animation attribution."
+    },
+    {
+      "claim": "[CORE, evening, type A] New key visual shows Maomao and Jinshi in a muted winter palette, walking through a golden wheat field, outside the palace setting that defined Seasons 1-2.",
+      "url": "https://essential-japan.com/news/maomao-officially-returns-this-october-as-new-the-apothecary-diaries-season-3-trailer-reveals-release-date/",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh this session. Exact quote: \"The newly released key visual reinforces the larger journey ahead by showing Maomao and Jinshi walking through a golden wheat field beneath an early morning sky, moving away from the enclosed palace setting that has defined much of the anime so far.\" This source alone does not use the word 'winter' -- see next entry for that specific word's confirmation."
+    },
+    {
+      "claim": "[CORE, evening, type A, corroboration for 'muted winter palette' wording] The key visual is specifically described as using a muted winter color palette.",
+      "url": "https://www.soapcentral.com/anime/news-the-apothecary-diaries-season-3-confirms-fall-return-new-key-visual-cast-addition",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh this session after the essential-japan source alone did not use the word 'winter.' Exact quote: \"Also, a new key visual has been revealed, featuring Maomao and Jinshi in a muted winter palette.\" This matches the manifest's exact wording. Added to claim_source_matrix and top-level sources this session."
+    },
+    {
+      "claim": "[NON-CORE, evening] Season runs two cours: first cour Oct 2 2026, second cour premieres April 2027.",
+      "url": "https://www.cbr.com/the-apothecary-diaries-season-3-october-2-premiere/",
+      "fetched_content_supports_claim": false,
+      "note": "Fetched fresh this session. CBR confirms the Oct 2, 2026 date and a 'two-part release schedule' but does NOT itself state the April 2027 second-cour date -- that specific date is not in this page's text. However, the underlying fact is independently and directly confirmed by the animenewsnetwork.com source already cited on the CORE 'two cours' beat: \"its second cours will premiere in April 2027.\" Since this line is marked core: false and the fact itself is confirmed elsewhere in the same package's own citations, this is a partial/weak citation on a non-core line rather than an unsupported claim reaching the audience. Left as-is; flagged here for visibility rather than treated as a blocker."
+    },
+    {
+      "claim": "[CORE, evening, type A] New opening theme 'Kumo o Nukekazashimo e Watashidake' by Yorushika; new cast member Reina Ueda as Bai Niangniang.",
+      "url": "https://www.animenewsnetwork.com/news/2026-08-15/the-apothecary-diaries-season-3-trailer-unveils-october-2-debut-more-cast-opening-song/.240600",
+      "fetched_content_supports_claim": true,
+      "note": "Fetched fresh this session. Exact quotes: \"The trailer previews the opening 'Kumo o Nukekazashimo e Watashidake' (I Am Alone, Breaking Through the Clouds Downwind) by yorushika\" and \"Reina Ueda plays Bai Niangniang, a pale and mysterious nymph.\""
+    }
+  ],
+  "verification_gaps_and_caveats": [
+    {
+      "issue": "Evening package's hook claim was originally under-sourced against a single URL that does not name TOHO Animation or the Summer Garden Party event",
+      "detail": "The manifest's vo_fact_brief, claim_source_matrix, and the shipped VO text itself all asserted 'TOHO Animation confirmed the season at its Summer Garden Party event' -- but the only URL originally cited for that claim (animenewsnetwork.com) does not contain either specific. Both specifics are real and independently confirmed (see fetch_review entries above: anime.com for the event name, hypebeast.com for TOHO Animation), and both new URLs have been added to the manifest's claim_source_matrix and top-level sources before this approval file was written. This was a citation-completeness gap, not a fabricated fact -- but it is exactly the class of error Law #165 exists to catch before it reaches the audience uncorrected."
+    },
+    {
+      "issue": "Non-core two-cours/April-2027 line on the evening package cites a URL (CBR) that does not itself state the April 2027 date",
+      "detail": "The date is independently confirmed elsewhere in the same package's own citations (animenewsnetwork.com, fetched and quoted above). Not corrected in the manifest since the line is non-core and the fact is not unsupported overall, only weakly cited on this specific line. Flagged for visibility, not treated as a blocker."
+    }
+  ],
+  "changes_made_before_approval": "(1) Real VO text supplied by Sebastian (via Claude) inserted verbatim into both packages; vo_status set to 'complete' on both. (2) hook_candidates[0] and hook_line/opening_sentence reconciled to the real VO's exact first sentence and dash style (em dash, not '--') on both packages. (3) Evening question_line corrected from '...the best move for this story...' to the real VO's '...the best move...' (no 'for this story') so the CTA-adjacency check reads the literal VO text correctly. (4) semantic_qa.checks on both packages extended with the 5 VO-dependent keys (vo_word_count, cta_adjacency, hook_claim_coverage, numeric_cross_check, ai_slop_pattern_check), each independently checked against the real VO text (word counts recomputed with the validator's own _words() regex: 103/108; CTA-adjacency and banned-word scan run directly against the real VO strings; numeric claims in the VO -- Episode 8, October 2nd, 'next April' -- cross-checked against the vo_fact_brief beats) before being attested true. (5) Evening package's TOHO Animation / Summer Garden Party 2026 hook claim re-sourced with two newly-fetched corroborating URLs (anime.com, hypebeast.com) after the original single citation was found on fetch to not contain either specific; the 'muted winter palette' wording was also re-sourced with a newly-fetched soapcentral.com URL for the same reason. FINAL VALIDATOR STATE: validators/validate_dual_package.py run against the finished manifest returns exit code 0, 186 PASS / 0 FAIL / 0 SKIP, confirmed via a fresh process run and 'RESULT: PASS \u2014 cleared to send both emails'.",
+  "status": "approved"
+}

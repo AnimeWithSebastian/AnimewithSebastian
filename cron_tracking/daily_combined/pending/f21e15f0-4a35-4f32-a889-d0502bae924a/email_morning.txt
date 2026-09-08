@@ -1,0 +1,59 @@
+Subject: TOMORROW | MORNING | The Dangers in My Heart | 2026-08-16 | Dangers in My Heart Will End Before Season 3
+
+━━━ MORNING — 2026-08-16 ━━━
+SHOW:    The Dangers in My Heart
+ANGLE:   Manga-vs-anime timing: Chapter 196 leaves three chapters, so the manga concludes before the confirmed 2027 anime Season 3 can adapt the ending.
+FORMAT:  MANGA_VS_ANIME
+STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM — Law #134 Stage 2; manga panels allowed within the anime-footage half for manga-based formats)
+TOPIC:   timely — signals: chapter/news
+SERIES:  one-off
+FUNNEL:  standalone
+
+━━━ FIRST-SECOND HOOK (Law #144 — on screen + spoken in second 1) ━━━
+ON-SCREEN (second 1): THE MANGA ENDS FIRST.
+SPOKEN (VO first line): The Dangers in My Heart will end on the page before Season 3 even returns.
+HOOK FAMILY: contradiction
+(Draft two hook candidates internally — Law #145 — publish ONLY the selected one:
+  candidate A: The Dangers in My Heart will end on the page before Season 3 even returns.
+  candidate B: The Dangers in My Heart has three manga chapters left, but its anime won't return until 2027.
+  SELECTED: 0 — this is the published hook; the loser is not posted.)
+
+━━━ VO (102 words — fills the resolved 30s CapCut edit) ━━━
+The Dangers in My Heart will end on the page before Season 3 even returns. Chapter 196 says it has three chapters left, while the anime's third season is coming in 2027. So Kyotaro and Anna's ending will not be a weekly anime surprise. Manga readers get there first, while the adaptation waits. That changes the finale conversation: there is no race to avoid spoilers when the page reaches the finish line first. The story ends in print before the next season begins. Do you read the last three chapters now, or wait for the anime to catch up? Leave your take.
+
+━━━ CLOSING LINE NOTE (Law #141 rescinded 2026-07-27) ━━━
+Law #141 rescinded 2026-07-27 -- no forced colon-handoff loop attempted. VO closes on its own complete, natural thought ('Leave your take.').
+
+━━━ CLIP PLAN (face-cam split screen; per-cut timings REQUIRED — Law #140) ━━━
+CUT 1 — 6 sec (0:00–0:06): Kyotaro and Anna in HIDIVE’s official series trailer (aired_and_located) — Establishes the anime’s central pair without claiming it depicts Chapter 196.
+CUT 2 — 6 sec (0:06–0:12): Official manga cover / Chapter 196 end-notice panel (The Dangers in My Heart, Chapter 196 end-of-chapter notice: three chapters remaining.) — Puts the three-chapter source on screen with a clear manga label.
+CUT 3 — 6 sec (0:12–0:18): Kyotaro and Anna trailer reaction shot (aired_and_located) — Supports the “manga readers get there first” contrast while remaining generic b-roll.
+CUT 4 — 6 sec (0:18–0:24): Manga page / Chapter 196 end-notice panel (The Dangers in My Heart, Chapter 196 end-of-chapter notice: three chapters remaining.) — Returns to the print source while the VO explains the anime timing.
+CUT 5 (final) — 6 sec (0:24–0:30): Kyotaro and Anna in the official HIDIVE trailer with CTA overlay (aired_and_located) — Leaves the viewer on the couple rather than inventing unaired ending footage.
+TOTAL CLIP TIME: 30 seconds
+
+━━━ ON-SCREEN CAPTIONS ━━━
+THE MANGA ENDS FIRST / CHAPTER 196: 3 LEFT / SEASON 3: 2027 / MANGA READERS GET THERE FIRST / NO WEEKLY SURPRISE / READ OR WAIT? / LEAVE YOUR TAKE
+
+━━━ YOUTUBE TITLE (Law #144 — punchy, searchable) ━━━
+Dangers in My Heart Will End Before Season 3
+
+━━━ TIKTOK TITLE (Law #144 — punchy; distinct from the caption below) ━━━
+The Manga Will End Before Its Anime Returns
+
+━━━ TIKTOK POST TEXT (caption — may be longer; hashtags live HERE, not in the title) ━━━
+The Dangers in My Heart manga has three chapters left, while the anime returns in 2027. Read the finale now or wait? #thedangersinmyheart #bokuyaba #manga #anime #romanceanime
+
+━━━ PINNED COMMENT ━━━
+The key detail is the order: the manga’s last three chapters land before Season 3’s 2027 return. That makes every finale spoiler a choice, not an accident.
+
+━━━ RECOMMENDED POST TIME ━━━
+YouTube Shorts — post 10:15 AM ET | Peak 12:00 PM ET
+TikTok — post 7:15 PM ET | Peak 8:00 PM ET
+
+━━━ SOURCES (concise evidence — >=2, each dated) ━━━
+1. Fetched ANN report title: “The Dangers in My Heart Manga Ends in 3 Chapters”; it also states the manga ends in its 14th compiled volume and the anime gets a third season in 2027. — https://www.animenewsnetwork.com/news/2026-08-04/the-dangers-in-my-heart-manga-ends-in-3-chapters/.240281 (Aug 4, 2026)
+2. Fetched ComicBook.com report: “the manga is ending in three chapters” and “Season 3 is expected to drop in 2027.” — https://comicbook.com/anime/news/8-years-later-hidives-critically-acclaimed-series-confirms-finale/ (Aug 7, 2026)
+3. Fetched official HIDIVE YouTube trailer description: “Antisocial boy meets popular girl,” used only as licensed/promotional b-roll, not as evidence for the ending claim. — https://www.youtube.com/watch?v=x-cTWEpQu_A (Mar 31, 2023)
+
+━━━ END MORNING ━━━

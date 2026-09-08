@@ -133,7 +133,40 @@ evening with date_sent = today: NO-OP (already done today) — write state no_op
 exit.
 
 PENDING-BATCH CHECK (Law #166, added 2026-08-13, part of the Law #164 approval
-gate; CARVE-OUT + PARSING RULE ADDED 2026-08-15, docs/KNOWN_ISSUES.md F37/F38)
+gate; CARVE-OUT + PARSING RULE ADDED 2026-08-15, docs/KNOWN_ISSUES.md F37/F38;
+AWAITING_VO STATE ADDED 2026-08-19, Claude-writes-VO workflow)
+
+  CLAUDE-WRITES-VO STATE MACHINE (added 2026-08-19): a batch/package now moves
+  through status="AWAITING_VO" BEFORE status="AWAITING_APPROVAL" whenever
+  Perplexity does not write the VO itself. The full sequence, no step skipped
+  or merged:
+    (pre-send draft/email, VO: [PENDING -- Claude to write])
+      -> AWAITING_VO
+      -> [Sebastian pastes Claude's VO back; full validator re-run]
+      -> AWAITING_APPROVAL   (ONLY reached on a fully_passed re-run, i.e.
+                               validate_dual_package.py exit code 0 -- see
+                               validators/validate_dual_package.py Result.fully_passed)
+      -> [approval.json written]
+      -> sent / success
+  AWAITING_VO BLOCKS today's fresh-generation check the SAME WAY
+  AWAITING_APPROVAL does (deliberate -- see the two-part test below, which now
+  treats both strings as blocking). A batch sitting at AWAITING_VO is exactly
+  as much an open backlog item as one sitting at AWAITING_APPROVAL; generating
+  a second batch on top of either defeats the same purpose.
+  Failed-revalidation case (if the pasted VO's full re-run comes back with a
+  real FAIL): the batch STAYS at AWAITING_VO -- it does not transition anywhere.
+  Log a vo_received event (receipt is unconditional) and a vo_rejected event
+  (carrying the failed check names) to cron_tracking/daily_combined/
+  vo_handoff_log.jsonl -- see tools/vo_handoff_log.py. The redo round trip
+  reuses the SAME batch_id/package_id and does NOT log a new vo_requested; the
+  original vo_requested event for that package still stands. The corrected VO
+  that comes back next is just another vo_received for the same package_id,
+  and if THAT re-run is fully_passed, exactly one vo_inserted event is logged
+  and the batch moves to AWAITING_APPROVAL.
+  vo_handoff_log.jsonl is PURE OBSERVABILITY -- it is explicitly NEVER read by
+  this pending-batch check and NEVER read by any blackout/recent-send/overlap
+  check. Do not gate any decision on its contents; it exists only to
+  reconstruct the handoff timeline after the fact.
 
   *** HOW TO READ A PENDING BATCH'S STATUS — DO THIS FIRST ***
   PARSE state.json AND READ THE "status" FIELD. Do NOT substring-grep the file
@@ -144,15 +177,10 @@ gate; CARVE-OUT + PARSING RULE ADDED 2026-08-15, docs/KNOWN_ISSUES.md F37/F38)
   on batch 32e0fcb9. Only the value of the top-level "status" field counts.
 
   A pending batch BLOCKS today's run only if BOTH are true:
-    (a) its state.json "status" field is exactly "AWAITING_APPROVAL"
-        ~~AND~~
-        OR exactly "AWAITING_VO"   [ADDED 2026-08-16, VO-handoff workflow:
-        a batch waiting on Claude to write the VO is exactly as open a backlog
-        item as one waiting on Sebastian to approve. Both mean "a real batch is
-        staged and unfinished"; generating a fresh one on top would create two
-        competing open batches for the same slot. Treated identically here --
-        same blocking behavior, same carve-outs, same terminal-status escape.],
-        AND
+    (a) its state.json "status" field is exactly "AWAITING_APPROVAL" OR exactly
+        "AWAITING_VO" (added 2026-08-19 -- a batch waiting on Claude's VO text
+        is just as open a backlog item as one waiting on Sebastian's approval;
+        both strings block identically), AND
     (b) it has no confirmed send — i.e. no row for its batch_id in
         cron_tracking/sent_scripts_events.jsonl, and the top-level
         cron_tracking/daily_combined/state.json does not record that batch_id
@@ -189,8 +217,8 @@ gate; CARVE-OUT + PARSING RULE ADDED 2026-08-15, docs/KNOWN_ISSUES.md F37/F38)
   following this file. Only the F38 terminal-state FLIP is code-backed.
 
 BEFORE reserving a new batch, check cron_tracking/daily_combined/pending/
-for any batch directory that BLOCKS under the two-part test above. If ANY such
-batch exists:
+for any batch directory that BLOCKS under the two-part test above (status
+AWAITING_APPROVAL or AWAITING_VO). If ANY such batch exists:
   - Do NOT generate a new batch today. Generating a second batch on top of an
     unreviewed one defeats the purpose of the approval gate — it creates a
     backlog that's easier to skim past, and a second batch risks assuming
@@ -238,11 +266,27 @@ STEP 3 — SELECT TWO INDEPENDENT IDEAS IN ONE CONTEXT (Law #125-#128, Law #85)
     idea on Law #85's three axes (Sub Conversion / Brand Attractiveness / Viral
     Potential — HIGH/MED/LOW) using the shared sweep's traction/fandom signals; an
     idea needs >=2 of 3 axes HIGH or MED to be eligible, and an idea scoring LOW on
-    all three is BLOCKED regardless of creative quality. Prefer formats high on Law
-    #85's monetization hierarchy (WRONG_TAKE, CHARACTER_DIVE, THE_MOMENT, COMMENTARY,
-    VILLAIN_DEFENSE rank above FACT_DROP/ORIGIN_STORY/SLEPT_ON when candidates are
-    otherwise close). This filter narrows the candidate pool BEFORE the diversity/
-    blackout rules below are applied to the survivors.
+    all three is BLOCKED regardless of creative quality.
+    [CORRECTED 2026-08-22 — the prior instruction here read "Prefer formats high on
+    Law #85's monetization hierarchy (WRONG_TAKE, CHARACTER_DIVE, THE_MOMENT,
+    COMMENTARY, VILLAIN_DEFENSE rank above FACT_DROP/ORIGIN_STORY/SLEPT_ON when
+    candidates are otherwise close)." That instruction directly contradicted
+    law_85_monetization_first.md's own 2026-07-26 and 2026-07-27 correction
+    banners, which retracted the ranking: a same-night deep-research pass found
+    no statistically significant effect of format on views (p=0.150), retention
+    (p=0.551), or likes (p=0.309), WRONG_TAKE specifically is below-average on
+    retention (60.8% vs 70%+ for top-indexing categories) rather than a top
+    performer, and the law's own text says plainly "no format below is a proven
+    top or bottom performer... position in this list should not be read as a
+    performance signal... Selection between formats should be made on the
+    case-by-case Monetization Score above... not on list position." This runtime
+    step kept instructing the opposite of that for almost a month after the law
+    was corrected. There is no format-name preference anymore: once a candidate
+    clears the >=2-of-3 axes gate above, no format_type is preferred over another
+    on identity alone — the axis scores are the only monetization-based signal
+    that survives into format selection.]
+    This filter narrows the candidate pool BEFORE the diversity/blackout rules
+    below are applied to the survivors.
 Pick BOTH ideas together so you can guarantee cross-slot diversity in one pass:
   - DIFFERENT shows, DIFFERENT angles, DIFFERENT formats, independent sourcing.
   - No blackout conflict (blackout_state.json) and no recent-send conflict
@@ -420,6 +464,19 @@ Pick BOTH ideas together so you can guarantee cross-slot diversity in one pass:
       reason; at least one placement must be a WRONG_TAKE the audience will argue; shows
       airing or finished <=60 days; live-source verified per Law #52; 14-day blackout per
       ranking (may return with an updated ranking if episodes drop).
+      [FIX 2026-08-22, real gap found in the one historical WATCH_RANK send (2026-07-28,
+      Saga of Tanya the Evil II), whose `angle` field reported a public "Anime Corner"
+      seasonal-poll standing instead of Sebastian's own watch list]: set a new required
+      field shows_ranked_source_note — a non-empty string documenting that the ranking
+      is Sebastian's own currently-watching list, ranked by his own per-placement
+      reasoning (e.g. "Sebastian's own currently-watching list this season, ranked by
+      his own reasoning per placement"). The validator ALSO mechanically bans public
+      poll/aggregator source language (e.g. "Anime Corner", "MyAnimeList ranking",
+      "Crunchyroll poll", "fan vote", "poll", "voted") from both shows_ranked_source_note
+      and angle — this is a real, fail-closed check, not just a documentation field; do
+      not draft a WATCH_RANK ranking sourced from a public poll or aggregator site under
+      any framing, since the law's own text already requires "Sebastian must actually be
+      watching them. No speculation. No shows from memory."
       Law #158 WORTH_WATCHING (added 2026-08-10, selectable as of this runtime update):
       a persuasive case for ONE show, on its own merits — no restriction on how
       well-known the show already is (this is the explicit differentiator from
@@ -547,6 +604,35 @@ Pick BOTH ideas together so you can guarantee cross-slot diversity in one pass:
     The validator fails closed if a recurring series lacks either marker.
 Record blackout_conflict=false and recent_send_conflict=false per package in the
 manifest (the validator fails closed if either is true or missing).
+
+  - CANDIDATE SELECTION LOG (Fix 1, added 2026-08-22 — SCOPE CORRECTED 2026-08-22:
+    this is no longer pure observability; see below): after the full pipeline above
+    (monetization gate -> format eligibility -> diversity/blackout/final-selection)
+    has completed for EVERY candidate this run considered — not mid-pipeline, not
+    after only one stage — call tools/candidate_selection_log.py's log_candidate()
+    exactly ONCE per candidate, recording its final, pipeline-complete outcome
+    (selected or rejected, with a real rejection_reason when rejected). This answers,
+    after the fact, whether a given format_type was genuinely considered and lost on
+    a given day versus never having surfaced at all — something sent_scripts_log.json
+    alone cannot answer, since it only ever records the two candidates that won. This
+    log is NEVER read by validate_longform_flagship.py, append_send_batch.py, or
+    conflict_check.py, and must never become one of their gating inputs — but it IS
+    now the real, sanctioned data source for exactly one gating check:
+    validate_dual_package.py's minimum_frequency_floor (see next sub-step) reads it
+    via days_since_last_considered() to independently recompute whether each
+    FLOOR_FORMATS format_type is overdue. See
+    tools/candidate_selection_log.py's module docstring ("SCOPE OF GATING USE"
+    section) for the full, honest statement of this one sanctioned exception.
+
+  - MINIMUM FREQUENCY FLOOR (Part 2, added 2026-08-22): before writing the
+    minimum_frequency_floor manifest field, call
+    tools/candidate_selection_log.py's days_since_last_considered(tree, format_type,
+    post_date, exclude_batch_id=<this run's own batch_id>) once per FLOOR_FORMATS
+    entry to get the real, current gap; report it honestly in evaluations exactly as
+    validators/validate_dual_package.py's _validate_minimum_frequency_floor()
+    independently recomputes and cross-checks it. No logic beyond the function call
+    itself belongs here — see that function's docstring for the full overdue/
+    forced-consideration/fabrication rules this reporting must satisfy.
 
 ================================================================================
 STEP 3.5 — LENGTH SELECTION (Law #138 Stage 1/2 — content-driven, not fixed)
@@ -1382,106 +1468,94 @@ MANIFEST SCHEMA for semantic_qa is printed by:
   python3 validators/validate_dual_package.py --schema
 
 ================================================================================
-STEP 4.7 — VO HANDOFF: PERPLEXITY RESEARCHES, CLAUDE WRITES
+STEP 4.7 — VO HANDOFF TO CLAUDE (standing process change, added 2026-08-19 —
+           supersedes any prior instruction for Perplexity to write the VO)
 ================================================================================
-ADDED 2026-08-16. Perplexity no longer writes VO text. It does the research and
-sourcing, proposes a DRAFT hook/opening line, and hands the package to Claude,
-who writes the actual VO. This step documents that handoff end to end.
+Perplexity no longer writes the VO. Claude does. Per package:
+  1. Do the full research/sourcing pass exactly as STEP 2-4.5 already require —
+     real fetches, claim_source_matrix, clip plan, captions, titles, TikTok
+     text, pinned comment, post times, sources. Same Law #165 standard as any
+     other package; nothing about sourcing rigor changes.
+  2. Do NOT write the vo field. Instead set pkg["vo_status"] = "pending" and
+     leave vo empty (or omit it), then provide in the manifest:
+       - validated facts/beats the VO must cover
+       - the exact target word-count band (VO_MIN-VO_MAX per STEP 3.5's
+         resolved edit length; validators/validate_dual_package.py._vo_band)
+       - format_type / hook_family / topic_class
+       - a PROPOSED (not locked) hook_line / opening_sentence — Claude may
+         end up writing a different real opening sentence; this proposal is a
+         draft-stage placeholder, not a mechanical requirement on Claude
+       - the required closing structure: a question immediately followed by
+         the exact phrase "Leave your take."
+  3. Run the deterministic validator NOW, at draft stage, with vo_status=
+     "pending". Per the 2026-08-19 Result.fully_passed split
+     (validators/validate_dual_package.py), every check that does NOT depend
+     on real VO text still runs IN FULL — title search, blackout/recent-send
+     conflicts, clip timing tiling, source/claim-matrix shape, the
+     VO-independent half of the semantic_qa self-attestation. Checks that
+     genuinely require real VO text (VO word count, the CTA-adjacency-in-VO
+     checks, opening_sentence-equals-VO's-first-sentence, the banned-word
+     scan, hook_line-equals-opening_sentence, and the VO-dependent half of
+     semantic_qa.checks) are explicitly SKIPPED — not silently passed, not
+     hard-failed. Confirm the draft-stage run exits 3 (PARTIAL — see STEP 5's
+     exit-code table below), never 1 (a real FAIL at this stage means a
+     VO-independent field is genuinely broken and must be fixed before
+     emailing) and never 0 (0 is impossible while vo_status="pending" by
+     construction, since at least one check is always skipped).
+  4. Email the complete package to hero_or_villain@outlook.com with the VO
+     section marked exactly "VO: [PENDING — Claude to write]", and — Design
+     Requirement 1 — state PLAINLY NEAR THE TOP of the email that VO-dependent
+     checks are pending, e.g.: "⚠ PARTIAL PRE-CHECK ONLY — N check(s) skipped
+     pending VO. This package is NOT validated for send until Claude's VO is
+     inserted and the full validator re-run passes with zero skips." Reuse the
+     PARTIAL verdict line validators/validate_dual_package.py's format_report()
+     already renders ("RESULT: PARTIAL — N check(s) skipped pending VO; DO NOT
+     SEND, DO NOT APPROVE") so the disclosure and the mechanical result never
+     drift apart.
+  5. Write cron_tracking/daily_combined/pending/<batch_id>/state.json status
+     as "AWAITING_VO" (not "AWAITING_APPROVAL" — that status is reserved for
+     STEP 6, reached only after the FULL unskipped validator run passes).
+     Mirror status/batch_id/pending_path into the top-level state.json the
+     same way STEP 6 already does, so STEP 1's Law #166 pending-batch check
+     (which now also blocks on AWAITING_VO) can find it.
+  6. Log a vo_requested event to cron_tracking/daily_combined/
+     vo_handoff_log.jsonl for this package — see tools/vo_handoff_log.py for
+     the full 4-event schema (vo_requested / vo_received / vo_inserted /
+     vo_rejected) and the explicit failed-revalidation case it is built to
+     record. This log is PURE OBSERVABILITY: never read by Law #166's
+     pending-batch check, never read by any blackout/recent-send/overlap
+     check, never a gating input anywhere in the pipeline.
+  7. STOP for this package. Do not proceed to STEP 5's send-track validation
+     narrative below, do not approve, do not send, until Sebastian pastes
+     Claude's real VO back.
 
-WHY THE SPLIT: sourcing and prose are different jobs with different failure
-modes. Merging them meant a sourcing pass under pressure to produce finished
-copy, which is exactly when a claim gets asserted a shade harder than its source
-supports. Splitting them makes the sourcing artifact reviewable BEFORE any prose
-exists to be persuaded by.
-
-WHAT PERPLEXITY HANDS OFF (all of it validated first, none of it optional):
-  - the full package MINUS the VO body: format, angle, clips, sources,
-    claim_source_matrix, titles, captions, post times, everything structural
-  - vo_status: "pending"        <- the field that turns on the skip behavior
-  - the WORD-COUNT BAND for the resolved edit length (e.g. 100-108 at 30s,
-    200-216 at 60s). Claude must hit the band; it is not a suggestion.
-  - the CLOSING STRUCTURE: the exact question_line, and the requirement that the
-    VO end "<question?> Leave your take." contiguously.
-  - a DRAFT hook_line / opening_sentence. Draft is the operative word -- Claude
-    may refine the wording, which is why hook==opening equality is not enforced
-    until after insertion.
-
-WHAT THE VALIDATOR DOES WITH vo_status="pending" (validate_dual_package.py):
-  SKIPS EXACTLY 8 CHECKS PER PENDING PACKAGE. Counted from a real run against the
-  standard fixture, not estimated:
-
-    7 mechanical checks that read the VO body --
-      1. vo_word_count matches VO text
-      2. VO within <band> words
-      3. question immediately followed by "Leave your take." in VO
-      4. exact CTA phrase present in VO
-      5. opening_sentence is the VO's exact first sentence
-      6. VO contains no banned word
-      7. hook_line equals opening_sentence
-
-    1 semantic_qa attestation covering the 5 VO-DEPENDENT KEYS --
-      vo_word_count, cta_adjacency, hook_claim_coverage, numeric_cross_check,
-      ai_slop_pattern_check
-      (5 keys, but ONE check: the attestation is asserted as a single grouped
-      check, so the skip count is 8, not 12. The five VO-INDEPENDENT keys --
-      title_search, blackout_recent_conflicts, clip_timing_tiling,
-      source_content_verification, law_149_redundancy_check -- are asserted as
-      their own separate check, which is still ENFORCED.)
-
-  EVERYTHING ELSE STILL RUNS AND STILL ATTESTS FOR REAL. A draft-stage package
-  gets no discount on sourcing, clip verification, timing, titles or blackout.
-
-  A SKIP IS NOT A PASS. The report prints [SKIP] distinctly and the verdict line
-  reads PARTIAL, never "cleared to send".
-
-EXIT CODES (note 2 is PRE-EXISTING: usage / manifest load error):
-  0  fully_passed -- zero FAILs AND zero SKIPs. The ONLY code that clears
-     AWAITING_APPROVAL or a send.
-  1  at least one real FAIL.
-  3  PARTIAL -- no FAILs but >=1 SKIP. This is the normal, healthy draft state.
-
-THE SEQUENCE:
-  1. Perplexity finishes STEP 4/4.5, sets vo_status="pending", runs STEP 5.
-     Expected result: exit 3 / PARTIAL. Exit 1 here means a REAL structural
-     problem that has nothing to do with the missing VO -- fix it before handing
-     off, never hand off a failing package.
-  2. Stage the batch with state.json status="AWAITING_VO" and log a
-     vo_requested event (tools/vo_handoff_log.py), carrying the word band.
-  3. Claude writes the VO to the band and closing structure.
-  4. Log vo_received. Insert the VO, set vo_status="complete", RE-RUN STEP 5.
-  5a. Exit 0 -> log vo_inserted, move the batch to AWAITING_APPROVAL, continue
-      into STEP 6 exactly as any other batch.
-  5b. NOT exit 0 -> the VO is REJECTED. See the failure path below.
-
-FAILED RE-VALIDATION (explicit, because this is the case that invites drift):
-  - The batch STAYS at AWAITING_VO. A rejected VO does not close the batch and
-    does not fall back to AWAITING_APPROVAL -- it returns to the writer.
-  - Log vo_received AND vo_rejected. Both. The received line is what makes a
-    retry loop legible later; dropping it would make the log read as though the
-    writer never responded.
-  - The redo REUSES the same batch_id and package_id. It is the same batch.
-  - Do NOT log a second vo_requested. One handoff was requested; a duplicate
-    would read as two separate handoffs for one package.
-  - vo_rejected carries the specific failed check names, so the redo request is
-    concrete rather than "it failed".
-
-HARD GUARD IN CODE, NOT CONVENTION: tools/vo_handoff_log.py's log_vo_inserted
-REFUSES to write unless validator_exit_code == 0. Exit 3 (still skipping) and
-exit 1 (real failures) both raise. "The VO went in" is precisely the claim a
-later reader would trust without re-checking, so it is enforced mechanically.
-
-THE HANDOFF LOG IS OBSERVABILITY ONLY. cron_tracking/daily_combined/
-vo_handoff_log.jsonl is NOT read by Law #166's pending-batch check, nor by any
-blackout, cooldown, recent-send or overlap check, nor by anything in the send
-path. A batch's blocking state lives in state.json; this log only records what
-happened. Deleting it entirely must never change what the pipeline decides. Do
-not let it become a source of truth -- that is how a record turns into a gate
-nobody reviewed.
-
-SEND GATE UNCHANGED IN SPIRIT, TIGHTENED IN CODE: tools/append_send_batch.py now
-blocks a manifest with ANY skips, writing a real failure state rather than
-logging a send. `ok` (zero FAILs) is NOT the gate; `fully_passed` (zero FAILs AND
-zero SKIPs) is.
+ONCE SEBASTIAN PASTES CLAUDE'S VO BACK, per package:
+  1. Log a vo_received event (unconditional on receipt — this is logged
+     whether or not the re-run below ends up passing).
+  2. Insert the real VO text into the manifest's vo field. Set
+     opening_sentence to match the VO's REAL first sentence (not the STEP 4.7
+     proposal). Update hook_line and any captions/on-screen text that were
+     built around the proposed opening_sentence if the real first sentence
+     differs. Set pkg["vo_status"] = "complete".
+  3. Re-run the FULL validator fresh — zero skips permitted at this point.
+     Confirm the exit code before doing anything else:
+       - exit 0 (fully_passed, zero FAILs AND zero SKIPs): log a vo_inserted
+         event (validator_exit_code=0) and proceed to STEP 5/6 below — this
+         is the ONLY way a package reaches AWAITING_APPROVAL.
+       - exit 1 or exit 3 (a real FAIL, or still PARTIAL/has-skips for any
+         reason): the batch STAYS at AWAITING_VO — it does NOT transition
+         anywhere. Log a vo_rejected event (validator_exit_code, and
+         failed_checks = the FAIL-status check names from Result.failures()).
+         Do NOT log a vo_inserted event. Report the real PASS/FAIL detail to
+         Sebastian before anything else happens.
+  4. REDO ROUND TRIP: if a corrected VO comes back for the same package, this
+     is the SAME batch_id/package_id as before. Do NOT log a new
+     vo_requested event — the original one from STEP 4.7 point 6 still
+     stands. The corrected text is just another vo_received event, followed
+     by another full re-run and (if it passes) the one and only vo_inserted
+     event for that package.
+No package reaches AWAITING_APPROVAL status without a complete, unskipped
+PASS of the full validator (exit code 0 / Result.fully_passed == True).
 
 ================================================================================
 STEP 5 — DETERMINISTIC PREFLIGHT VALIDATION (FAIL CLOSED — no model revision)
@@ -1530,10 +1604,33 @@ timeline tiling) is computed against whatever capcut_target_sec each package act
 resolved in STEP 3.5 — there is no separate fixed-30s default tier or capped
 experiment tier to reconcile; every package is checked the same way at its own
 resolved length.
-  EXIT 0 = cleared to send.  EXIT non-zero = BLOCKED.
-If BLOCKED: fix the specific mechanical field(s) in the manifest and re-run the
-validator. Do NOT send. Only routine mechanical fixes here — no creative rewrite loop
-is needed for mechanics. Never send on a non-zero exit.
+  EXIT CODES (2026-08-19, Claude-writes-VO workflow — Result.ok vs
+  Result.fully_passed split, validators/validate_dual_package.py):
+    EXIT 0 = fully_passed — zero FAILs AND zero SKIPs. The ONLY code that
+             clears AWAITING_APPROVAL or a send. Cleared to send.
+    EXIT 1 = a real FAIL is present. BLOCKED — fix the specific mechanical
+             field(s) and re-run.
+    EXIT 2 = usage error / manifest could not be loaded (pre-existing,
+             unchanged — not a validation outcome at all).
+    EXIT 3 = PARTIAL — zero FAILs, but one or more checks are SKIPPED (the
+             normal draft-stage result while vo_status="pending", per STEP
+             4.7). BLOCKED for send/approval exactly like exit 1, but for a
+             different reason: this is not a broken package, it is an
+             intentionally incomplete pre-check. DO NOT SEND. DO NOT APPROVE.
+  Result.ok (as opposed to Result.fully_passed) is permissive of skips — it is
+  used internally for reporting only and is NEVER the send/approval gate.
+  Callers (tools/append_send_batch.py, this runtime) must check for exit code
+  0 specifically, never merely "non-negative" or "not 1".
+If BLOCKED (exit 1 or exit 2): fix the specific mechanical field(s) in the
+manifest and re-run the validator. Do NOT send. Only routine mechanical fixes
+here — no creative rewrite loop is needed for mechanics. Never send on a
+non-zero exit.
+If PARTIAL (exit 3) at draft stage: this is expected while vo_status=
+"pending" — proceed per STEP 4.7 (email with disclosure, state.json status
+AWAITING_VO). If exit 3 persists AFTER a real VO has been inserted and
+vo_status set to "complete", that is a genuine residual gap — treat it the
+same as exit 1: it blocks AWAITING_APPROVAL and must be fixed before
+re-running, per STEP 4.7's failed-revalidation handling.
 
 ================================================================================
 STEP 6 — HOLD FOR APPROVAL (only after STEP 5 passes; replaces auto-send,

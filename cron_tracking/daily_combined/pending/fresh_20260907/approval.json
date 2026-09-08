@@ -1,0 +1,238 @@
+{
+  "batch_id": "7c4e91a3-2f6d-4b8e-9a15-3d7c8f1e6b42",
+  "post_date": "2026-09-07",
+  "approval_status": "APPROVED",
+  "approved_by": "Sebastian",
+  "approved_at": "2026-09-07T19:54:44Z",
+  "manifest_path": "cron_tracking/daily_combined/pending/fresh_20260907/run_manifest.json",
+  "last_repo_commit": {
+    "hash": "d700617ba4352630cdd6800168c3f28e6b8957fa",
+    "date": "2026-09-03T01:19:32+00:00",
+    "note": "This is the last real commit on origin/main as of this review. No commits have been made this session -- the current pending package directory is untracked (git status confirms: '?? cron_tracking/daily_combined/pending/fresh_20260907/'). No git operations performed this session."
+  },
+  "validator": {
+    "command": "python3 validators/validate_dual_package.py cron_tracking/daily_combined/pending/fresh_20260907/run_manifest.json",
+    "exit_code": 0,
+    "result": "PASS",
+    "pass_count": 196,
+    "fail_count": 0,
+    "run_at": "2026-09-07T19:44:36Z (live re-run immediately before this final approval.json read, post post_times correction)"
+  },
+  "packages": [
+    {
+      "package_id": "a3f7d902-1b4e-4c8a-9e6f-2d8b5a1c7f30",
+      "slot": "morning",
+      "show": "One Piece",
+      "youtube_title": "One Piece 1192: Imu's Shield Just Broke",
+      "vo_status": "complete",
+      "vo_word_count": 108,
+      "law_165_review": {
+        "status": "clean",
+        "sources_reviewed": 3,
+        "issues_found": 0,
+        "detail": "All 3 sources (IndiaTimes, Dexerto, FandomWire) independently re-fetched live on 2026-09-07. Every core claim_source_matrix entry confirmed against real fetched content. No corrections needed."
+      }
+    },
+    {
+      "package_id": "e819c4b7-6a2d-4f91-8c3e-7b5d9a2f4e18",
+      "slot": "evening",
+      "show": "Kaiju No. 8",
+      "youtube_title": "Kaiju No. 8's New Episode Was 4 Minutes Long",
+      "vo_status": "complete",
+      "vo_word_count": 108,
+      "law_165_review": {
+        "status": "corrected_then_clean",
+        "sources_reviewed": 5,
+        "issues_found": 3,
+        "issues_corrected": 3,
+        "detail": "5 sources (r/KaijuNo8, r/anime, anime.com, TechTimes, Sportskeeda) independently re-fetched live on 2026-09-07. Found 3 real claim-to-source attribution gaps in the original claim_source_matrix: (1) runtime+air-date claim cited only r/KaijuNo8, which never states the air date; (2) reaction-split claim cited r/anime as 'independent corroboration' but r/anime's actual comments do not address runtime or length at all; (3) 500-yen/slippers gag claim's citation order implied r/KaijuNo8 as primary source when the detail only appears in r/anime. All 3 corrected by re-scoping claims to the source(s) that actually state them, verified via full verbatim comment-by-comment re-fetch of both Reddit threads. No claim was left unsupported; no citation was dropped -- each thread was re-attached to the claim(s) it actually supports. User reviewed and approved the correction methodology before it was applied to the manifest.",
+        "corrected_claim_source_matrix_summary": [
+          {
+            "claim": "Runtime confirmed 3:44 by real viewer comments",
+            "type": "C",
+            "sources": [
+              "https://www.reddit.com/r/KaijuNo8/comments/1w83w2u/narumis_week_at_work_ep_1/"
+            ]
+          },
+          {
+            "claim": "Premiered September 5, 2026 as first of 4-episode Production I.G/TOHO release",
+            "type": "C",
+            "sources": [
+              "https://www.anime.com/news/kaiju-no-8-narumis-week-at-work-september-5-premiere",
+              "https://www.techtimes.com/articles/323230/20260805/kaiju-no-8-narumis-week-work-premieres-september-5-shark-electroreception-powers-his-foresight.htm"
+            ]
+          },
+          {
+            "claim": "Reaction split -- funny but too brief, some wanted full-length -- fully self-supporting in a single thread",
+            "type": "A",
+            "sources": [
+              "https://www.reddit.com/r/KaijuNo8/comments/1w83w2u/narumis_week_at_work_ep_1/"
+            ]
+          },
+          {
+            "claim": "Running gag: reported to Eiji over 500-yen issue; Narumi in slippers/shorts/t-shirt",
+            "type": "A",
+            "sources": [
+              "https://www.reddit.com/r/anime/comments/1w8auhu/kaiju_no_8_narumis_week_at_work_kaijuu_8gou/"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "emails_sent": true,
+  "git_pushed": false,
+  "same_day_send_note": "Batch generation and Law #165 review ran long, past the original next-day TOMORROW-framing window. This is NOT a CORRECTION (nothing was previously sent) and NOT a REPLACEMENT (no prior approved-but-unsent batch is being swapped for the same target date) per the runtime spec's actual definitions of those two prefixes. post_date=2026-09-07 (today) on both packages, reflecting genuine same-day posting. Subject line prefix changed from TOMORROW to TODAY -- a new prefix with no prior precedent in this repo (confirmed via grep, no existing 'TODAY |' convention found) but the most honest available label for this case. Morning post_time moved from the stale, already-passed 8:00 AM ET to 5:00 PM ET (confirmed reachable as of 3:22 PM ET review time). Evening post_time unchanged at 7:00 PM ET (confirmed still reachable).",
+  "send_confirmation": {
+    "morning": {
+      "real_send_utc": "2026-09-07T20:07:14Z",
+      "connector_reported_date": "Monday, September 07, 2026, 8:07 PM UTC",
+      "mailbox_verified": true,
+      "mailbox_email_ids": [
+        "AQMkADAwATM0MDAAMi1hNzU1AC1lMjFkLTAwAi0wMAoARgAAAzW7qCrLjuhGlhQYD5lZhcoHAN2_6LTid3pLrJ8ttdD6ck4AAAIBDAAAAN2_6LTid3pLrJ8ttdD6ck4AAABWNOpYAAAA",
+        "AQMkADAwATM0MDAAMi1hNzU1AC1lMjFkLTAwAi0wMAoARgAAAzW7qCrLjuhGlhQYD5lZhcoHAN2_6LTid3pLrJ8ttdD6ck4AAAIBCQAAAN2_6LTid3pLrJ8ttdD6ck4AAABWNRNmAAAA"
+      ],
+      "mailbox_dates": ["2026-09-07T20:07:24+00:00", "2026-09-07T20:07:21+00:00"],
+      "thread_id": "AQQkADAwATM0MDAAMi1hNzU1AC1lMjFkLTAwAi0wMAoAEABC1CWsIsEvTpaOBRae8GsJ",
+      "mailbox_count_for_subject": 2,
+      "f21_duplicate": true
+    },
+    "evening": {
+      "real_send_utc": "2026-09-07T20:07:59Z",
+      "connector_reported_date": "Monday, September 07, 2026, 8:08 PM UTC",
+      "mailbox_verified": true,
+      "mailbox_email_ids": [
+        "AQMkADAwATM0MDAAMi1hNzU1AC1lMjFkLTAwAi0wMAoARgAAAzW7qCrLjuhGlhQYD5lZhcoHAN2_6LTid3pLrJ8ttdD6ck4AAAIBDAAAAN2_6LTid3pLrJ8ttdD6ck4AAABWNOpZAAAA",
+        "AQMkADAwATM0MDAAMi1hNzU1AC1lMjFkLTAwAi0wMAoARgAAAzW7qCrLjuhGlhQYD5lZhcoHAN2_6LTid3pLrJ8ttdD6ck4AAAIBCQAAAN2_6LTid3pLrJ8ttdD6ck4AAABWNRNnAAAA"
+      ],
+      "mailbox_dates": ["2026-09-07T20:08:06+00:00", "2026-09-07T20:08:04+00:00"],
+      "thread_id": "AQQkADAwATM0MDAAMi1hNzU1AC1lMjFkLTAwAi0wMAoAEADABWGdb0WpSKOS1zZggV7t",
+      "mailbox_count_for_subject": 2,
+      "f21_duplicate": true
+    },
+    "note": "Both subjects show 2 distinct mailbox email_ids each (same thread_id per subject, 2-3 sec apart) despite exactly one send_email tool call per package -- consistent with the pre-documented F21 connector duplication pattern in docs/KNOWN_ISSUES.md. Logged as a new dated F21 row. append_send_batch.py was run once per package (dedup key batch_id+package_id unaffected by mailbox-side duplication)."
+  },
+  "logger_run": {
+    "command": "python3 tools/append_send_batch.py cron_tracking/daily_combined/pending/fresh_20260907/run_manifest.json --tree /home/user/workspace/repo_restore --emails-sent --approval-file cron_tracking/daily_combined/pending/fresh_20260907/approval.json",
+    "output": "[OK] appended 2 events (skipped 0 already-present; legacy_added=2); package_ids=['a3f7d902-1b4e-4c8a-9e6f-2d8b5a1c7f30', 'e819c4b7-6a2d-4f91-8c3e-7b5d9a2f4e18']; state -> /home/user/workspace/repo_restore/cron_tracking/daily_combined/state.json; git_pushed=False",
+    "date_sent_field_caveat": "The logger recorded date_sent=2026-09-07T17:15:00Z for both events -- this is the manifest's scheduled post_time field, NOT the real send-time clock reads captured above (20:07:14Z morning, 20:07:59Z evening). Flagging this discrepancy rather than treating the two as equivalent, per standing no-silent-patch rule."
+  },
+  "notes": "Both emails sent and mailbox-verified (with F21 duplication present, as usual). This approval.json reflects the corrected, validator-clean state after the Law #165 sourcing correction on the Kaiju No. 8 package and the post_date/post_times/subject-prefix same-day correction. emails_sent flag updated to true post-send; git_pushed remains false pending this commit/push.",
+  "fetch_review": [
+    {
+      "claim": "Chapter 1192 is titled \"We Will Never Forgive\" and released Sunday, September 6, 2026",
+      "core": true,
+      "fetched_content_supports_claim": true,
+      "source_urls": [
+        "https://www.indiatimes.com/entertainment/one-piece-chapter-1192-spoilers-luffy-and-loki-chase-imu-usopp-appears-on-hajrudins-shoulder/articleshow/133699628.html",
+        "https://www.dexerto.com/anime/one-piece-chapter-1192-release-date-major-spoilers-3404962/"
+      ],
+      "show": "One Piece",
+      "slot": "morning"
+    },
+    {
+      "claim": "Luffy, Loki, and Hajrudin used the combined attack Gokoku Sovereignty to send Imu flying, but it did not defeat him",
+      "core": true,
+      "fetched_content_supports_claim": true,
+      "source_urls": [
+        "https://fandomwire.com/one-piece-chapter-1192-ending-explained/"
+      ],
+      "show": "One Piece",
+      "slot": "morning"
+    },
+    {
+      "claim": "Imu revealed the Shield of Emptiness, which stopped Luffy's punch and caused his hand to bleed",
+      "core": true,
+      "fetched_content_supports_claim": true,
+      "source_urls": [
+        "https://www.indiatimes.com/entertainment/one-piece-chapter-1192-spoilers-luffy-and-loki-chase-imu-usopp-appears-on-hajrudins-shoulder/articleshow/133699628.html",
+        "https://fandomwire.com/one-piece-chapter-1192-ending-explained/"
+      ],
+      "show": "One Piece",
+      "slot": "morning"
+    },
+    {
+      "claim": "Gaban told Luffy to escape again; Usopp appeared on Hajrudin's shoulder and refused to abandon the giants, citing their past help",
+      "core": true,
+      "fetched_content_supports_claim": true,
+      "source_urls": [
+        "https://www.dexerto.com/anime/one-piece-chapter-1192-release-date-major-spoilers-3404962/",
+        "https://fandomwire.com/one-piece-chapter-1192-ending-explained/"
+      ],
+      "show": "One Piece",
+      "slot": "morning"
+    },
+    {
+      "claim": "Luffy stuck himself to Loki's hammer, was swung with lightning, and used Gomu Gomu no Dawn Thor Bullet to pierce the shield",
+      "core": true,
+      "fetched_content_supports_claim": true,
+      "source_urls": [
+        "https://www.indiatimes.com/entertainment/one-piece-chapter-1192-spoilers-luffy-and-loki-chase-imu-usopp-appears-on-hajrudins-shoulder/articleshow/133699628.html",
+        "https://fandomwire.com/one-piece-chapter-1192-ending-explained/"
+      ],
+      "show": "One Piece",
+      "slot": "morning"
+    },
+    {
+      "claim": "This is a manga-only chapter with no corresponding anime episode aired yet",
+      "core": false,
+      "fetched_content_supports_claim": false,
+      "source_urls": [],
+      "show": "One Piece",
+      "slot": "morning",
+      "note": "Non-core background/context claim, not independently re-fetched during this session's Law #165 review; disclosed honestly rather than omitted."
+    },
+    {
+      "claim": "Kaiju No. 8: Narumi's Week at Work Episode 1's runtime is confirmed by real viewer comments as 3 minutes 44 seconds",
+      "core": true,
+      "fetched_content_supports_claim": true,
+      "source_urls": [
+        "https://www.reddit.com/r/KaijuNo8/comments/1w83w2u/narumis_week_at_work_ep_1/"
+      ],
+      "show": "Kaiju No. 8",
+      "slot": "evening"
+    },
+    {
+      "claim": "The short premiered September 5, 2026 as the first of a 4-episode Production I.G/TOHO Animation release, per official/press coverage",
+      "core": true,
+      "fetched_content_supports_claim": true,
+      "source_urls": [
+        "https://www.anime.com/news/kaiju-no-8-narumis-week-at-work-september-5-premiere",
+        "https://www.techtimes.com/articles/323230/20260805/kaiju-no-8-narumis-week-work-premieres-september-5-shark-electroreception-powers-his-foresight.htm"
+      ],
+      "show": "Kaiju No. 8",
+      "slot": "evening"
+    },
+    {
+      "claim": "Fans reacted with a mix of finding it hilarious but too brief, some saying they expected full-length episodes -- this split reaction is fully self-supporting within a single discussion thread (multiple named commenters, both sentiments present verbatim)",
+      "core": true,
+      "fetched_content_supports_claim": true,
+      "source_urls": [
+        "https://www.reddit.com/r/KaijuNo8/comments/1w83w2u/narumis_week_at_work_ep_1/"
+      ],
+      "show": "Kaiju No. 8",
+      "slot": "evening"
+    },
+    {
+      "claim": "The episode's specific reaction-driving gag involves a running joke about a character being reported to Eiji over a 500 yen issue, and Narumi appearing off-duty in slippers, shorts, and a t-shirt",
+      "core": true,
+      "fetched_content_supports_claim": true,
+      "source_urls": [
+        "https://www.reddit.com/r/anime/comments/1w8auhu/kaiju_no_8_narumis_week_at_work_kaijuu_8gou/"
+      ],
+      "show": "Kaiju No. 8",
+      "slot": "evening"
+    },
+    {
+      "claim": "Gen Narumi is established in the main series as First Division captain and Japan's strongest anti-kaiju combatant (background context, not the new-episode claim)",
+      "core": false,
+      "fetched_content_supports_claim": false,
+      "source_urls": [
+        "https://www.sportskeeda.com/anime/kaiju-no-8-season-2-episode-1-gen-narumi-introduced-kafka-kikoru-join-first-division"
+      ],
+      "show": "Kaiju No. 8",
+      "slot": "evening",
+      "note": "Non-core background/context claim, not independently re-fetched during this session's Law #165 review; disclosed honestly rather than omitted."
+    }
+  ]
+}

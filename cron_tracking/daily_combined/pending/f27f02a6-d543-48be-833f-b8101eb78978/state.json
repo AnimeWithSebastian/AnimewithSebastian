@@ -1,0 +1,49 @@
+{
+  "status": "sent",
+  "emails_sent": true,
+  "batch_id": "f27f02a6-d543-48be-833f-b8101eb78978",
+  "post_date": "2026-08-21",
+  "workflow": "step_7_8_pending_dispatch_and_log",
+  "packages": [
+    {
+      "package_id": "95f32c9f-a4c6-41a4-9683-d24337d7a5fe",
+      "slot": "morning",
+      "show": "The Iceblade Sorcerer Shall Rule the World",
+      "format_type": "FACT_DROP",
+      "youtube_title": "Iceblade Sorcerer S2 Just Recast a Main Character",
+      "tiktok_title": "Iceblade Sorcerer S2 Recast Explained",
+      "vo_status": "complete"
+    },
+    {
+      "package_id": "5e9c3bca-6b57-43c0-bebd-9e44b3fe2eea",
+      "slot": "evening",
+      "show": "Reincarnated as a Sword",
+      "format_type": "WORTH_WATCHING",
+      "youtube_title": "Reincarnated as a Sword S2 Is Skipping Crunchyroll",
+      "tiktok_title": "Reincarnated as a Sword S2 Platform Switch",
+      "vo_status": "complete"
+    }
+  ],
+  "pending_path": "cron_tracking/daily_combined/pending/f27f02a6-d543-48be-833f-b8101eb78978",
+  "validator": {
+    "exit_code": 0,
+    "result": "PASS",
+    "pass_count": 193,
+    "fail_count": 0,
+    "skip_count": 0,
+    "note": "Full clean PASS after Sebastian wrote both VOs and they were inserted + independently re-verified (word count, opening_sentence match, CTA adjacency, Law #158 comparative-language check). One honest fix applied: semantic_qa.checks.vo_word_count was null while VO was pending (correct at the time); set true only after independent recount confirmed both VOs (106/107 words) are genuinely in the 100-108 band."
+  },
+  "review_note": "This batch REPLACES held/duplicate batch d08fde73-73e5-4b21-9acf-81d47a5b115f (Black Torch morning / Solo Leveling S3 evening -- both confirmed duplicates of prior sends, never sent, held per Sebastian's instruction). Both new shows (Iceblade Sorcerer S2, Reincarnated as a Sword S2) hand-verified as zero hits against sent_scripts_log.json AND cron_tracking/sent_scripts_events.jsonl, checked twice: once via exact show-field grep, once via full-record substring scan across every field. Staged through STEP 6 (validator) only -- no email drafted or sent, no STEP 7/8 log append. VO event log: vo_received at 2026-08-21T19:25:15.087275-04:00 (Sebastian provided both VO texts verbatim in chat, self-reported 107/107 words). vo_inserted at 2026-08-21T19:25:15.087275-04:00 (inserted into run_manifest.json under the validator schema field 'vo'; independent recount found morning=106/evening=107, both in-band, so the reported/recounted discrepancy on morning did not block anything). validator_rerun at 2026-08-21T19:25:15.087275-04:00 -> 193 PASS / 0 FAIL / 0 SKIP, exit 0. approval_json_built at 2026-08-21T19:25:15.087275-04:00 with 6 fresh-refetched fetch_review entries and 3 verification_gaps_and_caveats -- staged AWAITING_APPROVAL (approved_by/approved_at left null, no send authorized). approval_event: approved_by=Sebastian, approved_at=2026-08-21T19:30:00-04:00, approval_status=APPROVED. STEP 7 (email dispatch) and STEP 8 (send-log append) NOT yet performed -- this batch is now ready for whoever has real mail access to complete those two steps, same handoff pattern as every prior approved batch tonight.",
+  "log_appended": true,
+  "git_pushed": false,
+  "error": null,
+  "terminal_state_written_at": "2026-08-21T23:38:36.092388+00:00",
+  "terminal_state_written_by": "tools/append_send_batch.py (F38)",
+  "approval_status": "APPROVED",
+  "superseded_batch": {
+    "batch_id": "d08fde73-73e5-4b21-9acf-81d47a5b115f",
+    "reason": "Both packages (Black Torch, Solo Leveling S3) confirmed as duplicates of prior sends by Sebastian. Held, never sent. Investigation findings written as KNOWN_ISSUES.md entries F58 and F59.",
+    "held_manifest_path": "/home/user/workspace/repo/cron_tracking/daily_combined/pending/d08fde73-73e5-4b21-9acf-81d47a5b115f/run_manifest.json"
+  },
+  "approval_path": "cron_tracking/daily_combined/pending/f27f02a6-d543-48be-833f-b8101eb78978/approval.json"
+}

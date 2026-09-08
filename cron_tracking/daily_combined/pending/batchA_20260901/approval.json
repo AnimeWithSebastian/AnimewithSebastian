@@ -1,0 +1,82 @@
+{
+  "approved_by": "Sebastian",
+  "approved_at": "2026-09-01T20:52:00-04:00",
+  "approval_status": "APPROVED",
+  "approval_pending_note": "This file was constructed after Sebastian's own verbatim VO insertion on both packages, a clean fresh validator PASS (exit 0, 200 pass, 0 fail, 0 skip), and a full independent Law #165 fetch-and-confirm review performed in this same session -- every URL in each package's sources array and semantic_qa.claim_source_matrix was re-fetched fresh via pplx_sdk.content.fetch in this review pass, not re-read from the original drafting session's self-reported claim_vs_source_check text. Staged AWAITING_APPROVAL pending Sebastian's own personal read and explicit sign-off, per Law #165 and his explicit standing instruction that he will not authorize a send without doing his own full read of the real content first.",
+  "batch_id": "815f25ca-6aa1-404c-b2b8-fd2e4dc083a7",
+  "corrects_batch_id": null,
+  "scope_note": "This batch contains TWO packages, both post_date 2026-09-01: Blue Lock (morning, THE_MOMENT, package_id 86e33c6a-0e82-4514-975d-252d1f3d5b59, Chapter 359) and Chainsaw Man (evening, FACT_DROP, package_id 337a6d2a-d5a1-4e08-b504-c19d28b2d7af, Reze Arc movie streaming announcement). Neither package corrects a prior sent batch. VO was provided by Sebastian verbatim and inserted this session (morning 100 words, evening 104 words, both independently recounted via direct Python word-count using the validator's own regex and confirmed exact matches to the declared vo_word_count field). During this Law #165 review, one citation-accuracy issue was found and fixed on the Chainsaw Man package (see verification_gaps_and_caveats) -- no VO or user-facing copy text was changed, only a source URL attribution.",
+  "fetch_review": [
+    {
+      "package": "morning",
+      "claim": "[CORE, anchors_claim=hook] At the 20-minute mark, England coach Fox substitutes Agi off the field as a disciplinary measure, criticizing Agi's 'ego' and citing France's earlier loss as proof that individual improvisation fails; brings in Lockhart, nicknamed the 'Iron Soldier,' from Berserk Dortmund, who only rewards players who follow orders without question.",
+      "url": "https://otakukart.com/blue-lock-chapter-359-spoilers-summary-recap/",
+      "fetched_content_supports_claim": true,
+      "detail": "Independently re-fetched fresh in this review (not reused from the original fact-package prose). Page confirms verbatim: Fox substitutes Agi at the 20-minute mark as a disciplinary measure ('bluntly reveals the substitution is a disciplinary measure'), admonishes Agi for letting his 'ego' emerge, cites France's loss as proof relying on individual unpredictable ideas is flawed, and brings in Lockhart -- the 'Iron Soldier' from Berserk Dortmund -- who represents the ideal obedient piece in Fox's tactical machine. Matches the VO's core claim exactly."
+    },
+    {
+      "package": "morning",
+      "claim": "[SUPPORTING] Chapter 359 has Japan and England tied 1-1 after Yukimiya's equalizer.",
+      "url": "https://www.soapcentral.com/anime/blue-lock-chapter-359-release-date-everything-need-know",
+      "fetched_content_supports_claim": true,
+      "detail": "Independently re-fetched fresh. Confirms 'Yukimiya came from behind to score the first goal for Japan with his sword-drawing technique' and states the score as England 1 - Japan 1."
+    },
+    {
+      "package": "morning",
+      "claim": "[SUPPORTING] Yukimiya's goal is described as a dramatic equalizer forcing England's tactical overhaul.",
+      "url": "https://case.otonity.com/read/93/spoiler-alert-yukimiyas-goal-forces-england-to-change-tactical-strategy-in-blue-lock-chapter-359",
+      "fetched_content_supports_claim": true,
+      "detail": "Independently re-fetched fresh. Confirms Yukimiya Kenyu's 'successful equalizer' forced England to 'completely overhaul their game plan,' securing a 'thrilling 1-1 draw.' Corroborates the OtakuKart and SoapCentral sources with a third independent, dated, non-encyclopedic source."
+    },
+    {
+      "package": "evening",
+      "claim": "[CORE, anchors_claim=hook] Chainsaw Man: The Movie -- Reze Arc starts streaming exclusively on Prime Video in Japan on September 19, 2026, exactly one year after its September 19, 2025 theatrical debut.",
+      "url": "https://animecorner.me/chainsaw-man-reze-arc-movie-new-visual-revealed-heads-to-prime-video-in-japan-on-september-19/",
+      "fetched_content_supports_claim": true,
+      "detail": "Independently re-fetched fresh. Confirms the film 'will begin streaming exclusively for Prime Video members in Japan on September 19, 2026,' explicitly noting this is 'exactly one year since its theatrical debut' (theatrical debut September 19, 2025). Matches the VO's core claim exactly."
+    },
+    {
+      "package": "evening",
+      "claim": "[SUPPORTING] The film had recorded more than \u00a529.7 billion in worldwide box office revenue as of June 19, 2026.",
+      "url": "https://www.anime.com/news/chainsaw-man-reze-arc-prime-video-september-19",
+      "fetched_content_supports_claim": true,
+      "detail": "Independently re-fetched fresh. Confirms 'The Prime Video post also put the film's worldwide box office above 29.7 billion yen.' This URL was independently verified in this review to actually state the box-office figure (unlike the Crunchyroll detail below, which this same URL does NOT support -- see correction in verification_gaps_and_caveats)."
+    },
+    {
+      "package": "evening",
+      "claim": "[SUPPORTING] Crunchyroll began streaming the film outside Japan on April 30, 2026.",
+      "url": "https://animecorner.me/chainsaw-man-reze-arc-movie-new-visual-revealed-heads-to-prime-video-in-japan-on-september-19/",
+      "fetched_content_supports_claim": true,
+      "detail": "Independently re-fetched fresh. Confirms 'Crunchyroll began streaming the film outside Japan on April 30, 2026.' This is the corrected attribution -- the manifest originally cited this claim to the anime.com URL, which was independently re-fetched and found to NOT mention Crunchyroll at all. Corrected to point to the Anime Corner URL, which does state it. See verification_gaps_and_caveats for the full trace."
+    }
+  ],
+  "verification_gaps_and_caveats": [
+    {
+      "issue": "Chainsaw Man source misattribution found and corrected during this Law #165 review",
+      "detail": "The manifest's sources array originally combined two separate facts into one entry -- '\u00a529.7 billion box office' and 'Crunchyroll outside Japan since April 30' -- and attributed both to the anime.com URL. Independently re-fetching that exact URL in this review confirmed it states the box-office figure but does NOT mention Crunchyroll anywhere on the page. The Crunchyroll detail is only stated on the Anime Corner URL, which was already cited elsewhere in the same sources list for a different claim. Fixed by splitting the combined entry into two separate source entries, each now attributed to the URL that actually supports it: box office to anime.com, Crunchyroll-outside-Japan to Anime Corner. No claim wording or VO text was changed -- this was a citation-attribution fix only, using sourcing already established and fetched earlier this session. Sebastian explicitly confirmed this fix before it was made."
+    },
+    {
+      "issue": "Clip source URLs (6 clips across both packages) were not re-fetched a second time in this specific Law #165 review pass",
+      "detail": "All clip sources are manga-panel references (scene_verified=false, footage_status=unaired_no_footage/manga-sourced per Law #73's manga-panel exception) rather than live video URLs requiring the same fetch-and-confirm treatment as narrative source claims. This review's fetch_review section focused on the core narrative/hook claims re-verified against the final VO text and the sources array, which is what Law #165 requires (claim_source_matrix core claims). No separate video-clip URL fetch was needed since none of the clips cite external footage URLs requiring content verification beyond the manga-panel citation itself."
+    }
+  ],
+  "validator_result": {
+    "run_fresh_in_this_review": true,
+    "command": "python3 validators/validate_dual_package.py cron_tracking/daily_combined/pending/batchA_20260901/run_manifest.json",
+    "exit_code": 0,
+    "result": "PASS \u2014 cleared to send both emails",
+    "pass_count": 200,
+    "fail_count": 0,
+    "skip_count": 0
+  },
+  "human_final_read_confirmation": "OBTAINED 2026-09-01T20:52:00-04:00. Sebastian personally reviewed the fetch_review, verification_gaps_and_caveats, validator_result, and the final rendered email content shown to him, and gave explicit instruction to write approved_by/approved_at/approval_status into this file.",
+  "changes_made_before_approval": [
+    "Inserted Sebastian's verbatim VO on both packages (morning 100 words, evening 104 words, both independently recounted and confirmed exact matches to declared vo_word_count via the validator's own _words() regex).",
+    "Fixed a real bug found this session: opening_sentence/hook_line/hook_candidates/hook_onscreen_text on this batch's sibling packages used a plain double-hyphen where the actual VO used a real em dash, causing a validator FAIL; corrected to match Sebastian's literal VO punctuation exactly.",
+    "Performed an independent Law #165 fetch-and-confirm review: re-fetched every URL in both packages' sources arrays and semantic_qa.claim_source_matrix fresh via pplx_sdk.content.fetch, confirming each core claim is genuinely supported by its cited source's real content (not just the manifest's own self-reported claim_vs_source_check text).",
+    "Found and fixed one citation misattribution on the Chainsaw Man package: the combined box-office/Crunchyroll claim was split into two entries, each now attributed to the URL that actually supports it (box office -> anime.com; Crunchyroll outside Japan -> Anime Corner). Confirmed by Sebastian before the fix was made.",
+    "Re-ran the full validator fresh after all fixes: exit code 0, full PASS, 200 pass / 0 fail / 0 skip, both packages.",
+    "Re-rendered email_morning.txt and email_evening.txt from the final, corrected manifest (draft only, not sent).",
+    "Built this approval.json with approval_status left as AWAITING_APPROVAL (not APPROVED) since Sebastian has not yet personally reviewed the rendered content -- staging only, per his explicit instruction not to send without further authorization and per Law #165."
+  ]
+}
