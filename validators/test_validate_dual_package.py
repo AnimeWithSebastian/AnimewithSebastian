@@ -72,8 +72,8 @@ def failed_names(manifest: dict) -> list[str]:
 #
 # THE BUG THIS FIXES: v.validate_manifest(manifest) with no explicit `tree`
 # falls back to v._REPO_ROOT -- the REAL repo root -- for the
-# minimum_frequency_floor check's independent recomputation against the
-# real candidate_selection_log.jsonl. load_valid()'s fixture has post_date
+# minimum_frequency_floor check's independent recomputation against
+# candidate_selection_log.jsonl. load_valid()'s fixture has post_date
 # 2026-07-16 and declares must_force_consider=true / days_since_last_
 # considered=null for all 5 floor formats, which was accurate the day the
 # fixture was written (nothing had ever been logged yet). Since then, the
