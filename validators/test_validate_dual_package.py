@@ -5339,10 +5339,15 @@ class TestDaysSinceLastConsideredProductionData(unittest.TestCase):
     docstring's instruction ("if this format has genuinely been logged since
     this test was written, update this assertion to reflect the new real
     state rather than deleting or weakening the test"), this test now failed
-    exactly as designed: all three formats show a real gap of 13 days as of
-    this update, confirming they were genuinely evaluated together in batch
-    af6c90bf (2026-08-23)'s real floor-format sweep -- see docs/KNOWN_ISSUES.md
-    F71 for the broader finding this same production data fed into.
+    exactly as designed: all three formats show a real, non-negative day-gap
+    (not None), confirming they were genuinely evaluated together in a real
+    floor-format sweep at some point after this test was originally written
+    (the exact batch that did so, and the exact gap in days, will both differ
+    by repo and by when this is read, since candidate_selection_log.jsonl
+    content is repo-specific and grows over time -- the meaningful fact is
+    that real history now exists at all, not which specific batch created it
+    or how many days ago) -- see docs/KNOWN_ISSUES.md F71 for the broader
+    finding this same production data fed into.
 
     A hardcoded exact day-count would itself go stale the very next day (the
     gap increments with real wall-clock time), so this update asserts the
