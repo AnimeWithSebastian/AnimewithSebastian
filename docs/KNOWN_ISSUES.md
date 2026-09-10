@@ -4572,3 +4572,86 @@ sign-off.
 **Status:** Logged only. Correction batch (`corrects_batch_id: 714d87e0`)
 built with full Law #165 fetch_review findings, pending Sebastian's
 sign-off on `approval.json` before either correction email sends.
+
+## F76: Law #170 (single-hook drafting) directly contradicts a live validator gate — the law is committed but operationally held, because a package obeying it cannot pass STEP 5
+
+**Discovered:** 2026-09-10, immediately after applying Laws #170–#173 to
+`cron_daily_runtime.txt` (ported from the other repo's six-law efficiency review).
+Found by testing the new law against the real validator rather than assuming the
+two agreed.
+
+**Status:** OPEN. Law #170's text is committed; its *behavior* is under an explicit
+operational hold recorded inline in `cron_daily_runtime.txt` directly above the law.
+No validator code was changed — that needs its own authorization, design and diff
+review per standing convention.
+
+**The contradiction.** Law #170 says, verbatim:
+
+> "draft exactly ONE hook directly. Do not generate a second candidate, do not set
+> `hook_candidates[]` or `selected_hook_index` — set `hook_line` to the single
+> drafted hook."
+
+`validators/validate_dual_package.py` still hard-enforces the opposite, at three
+checks (lines ~2144–2150):
+
+```
+r.add(f"{p} exactly 2 internal hook_candidates (single-variant experiment)", ...)
+r.add(f"{p} the two hook_candidates are distinct", ...)
+r.add(f"{p} selected_hook_index selects one of the two candidates", ...)
+```
+
+**Verified, not inferred.** A manifest was built that OBEYS Law #170 — both packages
+with `hook_candidates` and `selected_hook_index` removed — and run through the real
+validator. Result: **6 hard failures**, three per package:
+
+```
+[morning] exactly 2 internal hook_candidates (single-variant experiment)
+[morning] the two hook_candidates are distinct
+[morning] selected_hook_index selects one of the two candidates
+[evening] exactly 2 internal hook_candidates (single-variant experiment)
+[evening] the two hook_candidates are distinct
+[evening] selected_hook_index selects one of the two candidates
+```
+
+So **a package written to Law #170 cannot clear STEP 5.** The law and the gate are in
+direct conflict and the gate wins, because it is mechanical and fail-closed while the
+law is prose.
+
+**Why the test suite did not catch this.** All 690 tests still pass. They pass because
+every fixture still carries the OLD two-candidate shape — nothing in the suite
+exercises the world Law #170 describes. A green suite is not evidence that a newly
+added law is implementable; it only says the existing fixtures still satisfy the
+existing checks. This is worth remembering the next time a law lands with a green run
+attached.
+
+**Resolution recorded inline, not just here.** `cron_daily_runtime.txt` now carries an
+OPERATIONAL HOLD annotation immediately above Law #170's directive text, instructing
+real batches to keep using Law #145's original two-candidate mechanic until the
+validator is updated. The law's text stays committed as documented intent for when
+the validator catches up — deliberately NOT as current operational instruction. The
+annotation lives at the point of use so a future run cannot follow the law without
+also reading the hold.
+
+**Same shape as a conflict this project has already hit.** Law #146 retired the
+480–720s long-form duration band while `validate_longform_flagship.py` still enforced
+it — law and code disagreeing, with the code silently winning. That one was latent
+because no flagship had ever been produced. This one is not latent: the daily Shorts
+pipeline runs against these checks every day, so following Law #170 would fail a real
+batch the first time it was tried.
+
+**To close this, one of two things has to happen** (both need their own authorization):
+
+1. **Relax the validator** — make `hook_candidates` / `selected_hook_index` optional
+   rather than required, so a single-hook package passes. This is the change Law #170
+   assumes exists. It needs real code, real tests covering both the one-hook and
+   two-hook shapes, and fixture updates.
+2. **Reinstate the dual-candidate requirement in the law** and retire Law #170,
+   if the two-candidate mechanic is judged worth keeping after all.
+
+Until then the hold stands, and the law is documentation rather than instruction.
+
+**Cross-repo note.** Laws #170–#173 originated in the other repo's six-law efficiency
+review and were ported here. If that review added Law #170 there without touching its
+validator, the same contradiction exists on that side too — this is likely a shared
+defect rather than a porting artifact, and worth checking there rather than assuming
+this repo is the only one affected.

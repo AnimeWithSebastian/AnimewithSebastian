@@ -785,13 +785,39 @@ standards the legacy runs enforced (nothing relaxed):
     sentence it governs — e.g. "[FACE: direct-to-camera, lean in] <VO sentence>" or
     "[FACE: glance-down-at-footage] <VO sentence>" — so Sebastian reads one
     continuous performance script, but the underlying vo field the validator checks
-    never contains bracket characters. Direct eye contact is the
-    default — only mark GLANCE-DOWN or REACTION BEAT where the line specifically
-    calls for it, the same restraint the long-form spec already applies (no filler
-    mugging; expression matches the emotional weight of the line, not exaggerated for
-    its own sake). CUT 1 is always DIRECT-TO-CAMERA with zero warmup. This direction-
-    note track is additive — it never changes the VO's words, word count, or timing;
-    it only tells Sebastian how to deliver what's already written.
+    never contains bracket characters. CUT 1 is always DIRECT-TO-CAMERA with zero
+    warmup. This direction-note track is additive — it never changes the VO's words,
+    word count, or timing; it only tells Sebastian how to deliver what's already
+    written.
+
+    CORRECTION BLOCK (2026-09-10, Law #171): the case-by-case judgment call in the
+    original text below — "only mark GLANCE-DOWN or REACTION BEAT where the line
+    specifically calls for it" — is SUPERSEDED by a mechanical template. Original
+    text preserved, struck through, not deleted:
+    ~~Direct eye contact is the default — only mark GLANCE-DOWN or REACTION BEAT
+    where the line specifically calls for it, the same restraint the long-form spec
+    already applies (no filler mugging; expression matches the emotional weight of
+    the line, not exaggerated for its own sake).~~
+
+  - MECHANICAL DIRECTION-TRACK TEMPLATE (Law #171, added 2026-09-10 — supersedes
+    the case-by-case GLANCE-DOWN/REACTION-BEAT judgment call in Law #134 above):
+    apply this fixed template instead of per-line judgment:
+      1. The FIRST VO sentence is always DIRECT-TO-CAMERA (consistent with Law
+         #134's existing CUT 1 rule above — no change there).
+      2. EVERY OTHER VO sentence defaults to GLANCE-DOWN-AT-FOOTAGE.
+      3. Exactly ONE optional REACTION BEAT may be placed at a genuine peak
+         sentence — the single strongest emotional beat in the VO, if one clearly
+         qualifies. If no sentence clearly qualifies as a genuine peak, skip the
+         REACTION BEAT entirely rather than forcing one. Never more than one
+         REACTION BEAT per package.
+    MANDATORY COMPANION RULE — REBUILD ON VO EDIT (not optional, never skipped
+    for efficiency): any time the VO text changes after the direction track was
+    first built — a correction, a padding trim, a reworded sentence, any edit at
+    all — the direction track MUST be rebuilt from the CURRENT VO text before
+    send. Concretely: verify every direction-track entry's quoted VO sentence is
+    an exact, current substring of the live vo field. If any entry's quoted
+    sentence no longer matches the live VO verbatim, that entry is stale and the
+    track must be rebuilt before the package can proceed to STEP 5/6.
   - CLIP VERIFICATION (Law #73, restored and extended July 25, 2026 — RUN THIS
     BEFORE finalizing the clip plan): every clips[] entry must be checked against
     all three dimensions — AIRED (the scene occurs in an episode that has genuinely
@@ -1006,12 +1032,38 @@ standards the legacy runs enforced (nothing relaxed):
     two same-day packages. The separate tiktok_post_text caption may stay longer and
     keep its hashtag pyramid — the no-hashtag/length rules bind the tiktok_title FIELD,
     not the caption; never truncate the caption to fake a title.
-  - SINGLE-VARIANT EXPERIMENT (Law #145): draft exactly TWO distinct hook_candidates
-    per package, pick selected_hook_index, and set hook_line to the selected candidate.
+  - SINGLE-VARIANT EXPERIMENT (Law #145 — ORIGINAL TEXT, SUPERSEDED 2026-09-10 by
+    Law #170 for the dual-drafting mechanic only; struck through, not deleted, per
+    the additive-only convention for law text):
+    ~~draft exactly TWO distinct hook_candidates per package, pick
+    selected_hook_index, and set hook_line to the selected candidate.~~
+    CORRECTION BLOCK (2026-09-10): the dual-candidate drafting requirement above is
+    superseded by Law #170 below. The remainder of this bullet — publish exactly ONE
+    Short per slot, distinct shows AND distinct published hooks across the two
+    same-day packages — is NOT superseded and remains fully in force:
     Publish exactly ONE Short per slot — NEVER publish duplicate Shorts of one insight
     (the two packages must have distinct shows AND distinct published hooks).
   - ATTRIBUTION (Law #145): set funnel_status = standalone | teaser | flagship_followup.
     A "teaser" package MUST carry flagship_url (teasers only after a flagship exists).
+    (unchanged — Law #145's attribution clause is untouched by Law #170)
+  - SINGLE-HOOK DRAFTING (Law #170, added 2026-09-10 — supersedes Law #145's
+    dual-candidate requirement above; OPERATIONAL HOLD added 2026-09-10,
+    same day — validators/validate_dual_package.py still hard-requires
+    exactly 2 distinct hook_candidates + a valid selected_hook_index,
+    directly contradicting this law's text as written. Until the
+    validator is updated to match, DO NOT follow this law's single-hook
+    behavior on real batches -- continue drafting TWO candidates and
+    selecting one, per Law #145's original, still-functional mechanic,
+    or every package will fail STEP 5. This law's text remains
+    committed as documented intent for when the validator catches up,
+    not as current operational instruction. See KNOWN_ISSUES for the
+    tracked conflict.) draft exactly ONE hook directly. Do not
+    generate a second candidate, do not set hook_candidates[] or
+    selected_hook_index — set hook_line to the single drafted hook. Every
+    surviving Law #145 requirement (one Short per slot, distinct shows AND
+    distinct published hooks across the two same-day packages, funnel_status
+    attribution) still applies unchanged; only the two-candidate-then-select
+    mechanic is removed.
   - CONTENT TYPE: set content_type="short" (this pipeline is Shorts-only; long-form
     flagships go through validators/validate_longform_flagship.py — Law #146).
   - QUALITY OVER QUOTA (M5): the weekly targets (>=9/14 timely, >=2 recurring series,
@@ -1469,7 +1521,10 @@ MANIFEST SCHEMA for semantic_qa is printed by:
 
 ================================================================================
 STEP 4.7 — VO HANDOFF TO CLAUDE (standing process change, added 2026-08-19 —
-           supersedes any prior instruction for Perplexity to write the VO)
+           supersedes any prior instruction for Perplexity to write the VO;
+           REAFFIRMED 2026-09-10, no exceptions for short/simple/filler VOs or
+           time/credit pressure — see F75 for the incident this reaffirmation
+           responds to)
 ================================================================================
 Perplexity no longer writes the VO. Claude does. Per package:
   1. Do the full research/sourcing pass exactly as STEP 2-4.5 already require —
@@ -1685,6 +1740,29 @@ This fetch-and-confirm step is NOT optional and NOT satisfied by re-reading
 manifest fields, however detailed they look. It is the one thing a mechanical
 validator structurally cannot do.
 
+CONDITIONAL QUOTE REUSE (Law #172, added 2026-09-10 — narrows WHEN a fresh
+fetch is required under Law #165 above; does not change the standard in (a)-(d)
+for any claim that needs it):
+  - If a core claim is genuinely UNCHANGED since its initial verbatim-quote
+    capture (the same claim, same wording, same source, first captured earlier
+    in this same research pass or carried over from an earlier reviewed batch),
+    the Law #165 review may cross-check against the ALREADY-CAPTURED verbatim
+    quote instead of re-fetching the URL live.
+  - If the claim was edited, corrected, reworded, or re-scoped at ANY point
+    after its initial capture — for ANY reason, including a fix made during
+    this same session — Law #165's full fresh fetch-and-confirm review is
+    MANDATORY, no exceptions.
+  - ANY doubt about whether a claim is genuinely unchanged is treated as
+    changed: re-fetch. This law narrows the fetch requirement only for
+    provably-identical claims, never for a "probably fine" judgment call.
+  - When this reuse check or any Law #165 review touches MULTIPLE entries,
+    each entry is still reviewed individually, one at a time (quote + verdict
+    together) — never as a batch find-replace or bulk consistency pass. If any
+    single entry's substance doesn't cleanly support reuse (or doesn't cleanly
+    support the claim, under the normal Law #165 standard) on individual
+    inspection, stop and flag that specific entry rather than forcing
+    consistency with the rest of the batch.
+
 ================================================================================
 AUTOMATIC SLOT REPLACEMENT ON UNRESOLVABLE CORE-CLAIM CONTRADICTION
 (Law #169, added 2026-08-14, generalizing the F36 Slime hold into a repeatable
@@ -1742,6 +1820,15 @@ STEP 6.5 — EXPLICIT APPROVAL (only after the STEP 6 review step is done)
 ================================================================================
 Approval happens in an interactive session, never inside an unattended
 background run. When Sebastian (or Claude with Sebastian present) approves:
+  0. SCHEMA PRE-CHECK (Law #173, added 2026-09-10 — directly addresses the F78
+     finding, an approval.json built with a "verdict" string field instead of
+     the "fetched_content_supports_claim" boolean the logger requires): before
+     writing or finalizing approval.json, confirm the EXACT field name and type
+     the current tools/append_send_batch.py Law #165 gate reads — as of this
+     writing, "fetched_content_supports_claim": true/false per fetch_review
+     entry — by checking the logger source directly, not by assuming this
+     writing is still current. Do this once, early, per batch, before
+     drafting fetch_review entries, not after a send/log failure surfaces it.
   1. Write cron_tracking/daily_combined/pending/<batch_id>/approval.json:
        {"approved_by": "...", "approved_at": "<ISO ts>",
         "fetch_review": [{"claim": "...", "url": "...",
@@ -1752,8 +1839,8 @@ background run. When Sebastian (or Claude with Sebastian present) approves:
      package CANNOT be approved as-is — go fix the citation/claim, re-run
      STEP 5's validator, and restart this review from (a). Approval can never
      be recorded alongside a known-unsupported core claim.
-  3. Only after approval.json is written with all entries true, proceed to
-     STEP 7's send.
+  3. Only after approval.json is written with all entries true AND matching
+     the schema confirmed in step 0, proceed to STEP 7's send.
 
 ================================================================================
 STEP 7 — SEND TWO SEPARATE PLAIN-TEXT EMAILS (only after STEP 6.5 approval.json exists)
