@@ -1049,15 +1049,15 @@ standards the legacy runs enforced (nothing relaxed):
   - SINGLE-HOOK DRAFTING (Law #170, added 2026-09-10 — supersedes Law #145's
     dual-candidate requirement above; OPERATIONAL HOLD added 2026-09-10,
     same day — validators/validate_dual_package.py still hard-requires
-    exactly 2 distinct hook_candidates + a valid selected_hook_index,
-    directly contradicting this law's text as written. Until the
-    validator is updated to match, DO NOT follow this law's single-hook
-    behavior on real batches -- continue drafting TWO candidates and
-    selecting one, per Law #145's original, still-functional mechanic,
-    or every package will fail STEP 5. This law's text remains
-    committed as documented intent for when the validator catches up,
-    not as current operational instruction. See KNOWN_ISSUES for the
-    tracked conflict.) draft exactly ONE hook directly. Do not
+    exactly 2 distinct hook_candidates + a valid selected_hook_index
+    (lines ~2144-2150), directly contradicting this law's text as written.
+    Until the validator is updated to match, DO NOT follow this law's
+    single-hook behavior on real batches -- continue drafting TWO
+    candidates and selecting one, per Law #145's original, still-
+    functional mechanic, or every package will fail STEP 5. This law's
+    text remains committed as documented intent for when the validator
+    catches up, not as current operational instruction. See KNOWN_ISSUES
+    for the tracked conflict.) draft exactly ONE hook directly. Do not
     generate a second candidate, do not set hook_candidates[] or
     selected_hook_index — set hook_line to the single drafted hook. Every
     surviving Law #145 requirement (one Short per slot, distinct shows AND

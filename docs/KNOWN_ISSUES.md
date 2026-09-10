@@ -4639,6 +4639,21 @@ because no flagship had ever been produced. This one is not latent: the daily Sh
 pipeline runs against these checks every day, so following Law #170 would fail a real
 batch the first time it was tried.
 
+**NO REAL BATCH HAS HIT THIS.** Confirmed on both repos: no production batch has
+been built with Law #170 active since it landed. This was caught as a landmine
+before it caused a real failure, not diagnosed after one. That matters for how it
+should be read later -- there is no corrupted batch to unwind and no send to
+correct; the entire cost so far is that a law was written which cannot yet be
+followed.
+
+**WHILE HELD, LAW #170 PRODUCES ZERO REAL EFFICIENCY GAIN.** The law exists to save
+the work of drafting and discarding a second hook. Under the hold, runs continue
+drafting two candidates and selecting one exactly as before, so none of that saving
+is realised. The law is currently pure documentation: it costs nothing, and it
+returns nothing, until the validator is updated. This is worth stating plainly so
+nobody later assumes the efficiency benefit has been banked simply because the law
+is committed.
+
 **To close this, one of two things has to happen** (both need their own authorization):
 
 1. **Relax the validator** — make `hook_candidates` / `selected_hook_index` optional
