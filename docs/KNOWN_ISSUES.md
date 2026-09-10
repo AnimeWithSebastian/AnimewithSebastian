@@ -4670,3 +4670,65 @@ review and were ported here. If that review added Law #170 there without touchin
 validator, the same contradiction exists on that side too — this is likely a shared
 defect rather than a porting artifact, and worth checking there rather than assuming
 this repo is the only one affected.
+
+## F77: Laws #171 and #173 are process-text-only tonight — no validator or test coverage yet for the direction-track staleness check or the approval.json schema pre-check
+
+**What happened.** As part of encoding the six efficiency laws Sebastian
+proposed this session, `cron_daily_runtime.txt` was updated with Law #170
+(single-hook drafting), Law #171 (mechanical direction-track template +
+mandatory rebuild-on-VO-edit), Law #172 (conditional Law #165 quote
+reuse), Law #173 (pre-send approval.json schema pre-check), and a dated
+reaffirmation of STEP 4.7 (Perplexity never writes VO text). All five
+were committed as authoritative runtime *text* the cron reads and is
+expected to follow procedurally.
+
+Two of these five describe checks that are currently mechanically
+checkable but are NOT YET wired into `validators/validate_dual_package.py`
+or covered by any test in `validators/test_validate_dual_package.py`:
+
+- **Law #171's rebuild-on-edit check**: "verify every direction-track
+  entry's quoted VO sentence is an exact, current substring of the live
+  vo field" is a concrete, automatable string-containment check per
+  direction-track entry. Today this is a self-attestation/manual step in
+  the runtime text only — the validator does not independently confirm
+  it, and no test exercises a stale (edited-VO, un-rebuilt-track) case.
+- **Law #173's schema pre-check**: confirming `approval.json`'s
+  `fetch_review` entries use the literal `fetched_content_supports_claim`
+  boolean field (not `verdict` or any other name/type) before attempting
+  a send is also a concrete, automatable schema check. Today this is a
+  runtime-text instruction only — nothing fails fast on a malformed
+  `approval.json` before `tools/append_send_batch.py`'s Law #165 gate is
+  reached at send-log time (the exact failure mode F78 documents).
+
+**Why this matters.** Both gaps follow the same shape as F78: a rule
+stated clearly in prose but not mechanically enforced can still silently
+drift or get missed under time pressure, and the failure only surfaces
+downstream (at send, or at log-append) rather than at draft time.
+
+**Recommendation (scoped future task, NOT to be built tonight):**
+convert both into real validator checks with test coverage, at a later
+reviewed pass:
+1. Add a direction-track staleness check to
+   `validators/validate_dual_package.py` that, for any package carrying a
+   direction-track list, confirms each entry's quoted VO sentence is an
+   exact substring of the live `vo` field; FAIL (not skip) on any stale
+   entry once `vo_status` is no longer "pending".
+2. Add an approval.json schema pre-check — either as a standalone
+   pre-send validator entry point or as a check inside
+   `tools/append_send_batch.py` itself — that inspects `fetch_review`
+   entries for the presence and boolean type of
+   `fetched_content_supports_claim` and fails with a clear,
+   schema-specific message (distinct from the generic
+   "unsupported/malformed" message F78 flagged as ambiguous) when the
+   field is missing or wrongly typed, rather than only failing later at
+   the content-verification gate.
+3. New test classes in `validators/test_validate_dual_package.py` for
+   both: at minimum, a stale-track-after-VO-edit fixture (Law #171) and
+   a wrong-field-name/wrong-type `approval.json` fixture (Law #173),
+   each asserting the new check fires before the pre-existing Law #165
+   content gate would even be reached.
+
+**Status:** Logged only, as a scoped future task. No validator or test
+changes made tonight. Laws #170-#173 and the STEP 4.7 reaffirmation are
+live in `cron_daily_runtime.txt` as of this commit; only their mechanical
+enforcement (for #171 and #173 specifically) remains open.
