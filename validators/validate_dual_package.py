@@ -1861,6 +1861,50 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result, tree: str | None 
         r.add(f"{p} VO within {vo_min}-{vo_max} words", vo_min <= counted <= vo_max,
               f"words={counted} (edit={int(target_sec)}s)")
 
+    # --- direction_note_track staleness (Law #171, added 2026-09-10; mechanical
+    # enforcement added later the same day per F79/F171's own recommendation) ---
+    # Field name confirmed against the real, live run_manifest.json for batch
+    # 4786c451 (the one precedent that actually built this track): a package's
+    # "direction_note_track" is a list of {"line_index", "vo_sentence",
+    # "direction", "note"} objects describing how each VO sentence should be
+    # performed. Law #171's mandatory companion rule requires this track be
+    # rebuilt any time the VO text changes -- found necessary after a real VO
+    # edit (a padding removal, a corrected claim adding a new sentence) left a
+    # package's track stale: still quoting deleted sentences, missing an entry
+    # for the new one. That specific incident was caught only by a manual
+    # re-check at final render, not by anything mechanical -- this check closes
+    # that gap. Skipped while vo_status == "pending" (nothing to check a track
+    # against yet, same convention as every other VO-dependent check above);
+    # FAILS CLOSED once a real VO exists. A package that doesn't carry a
+    # direction_note_track at all is not required to have one by this specific
+    # check -- Law #171 does not make the track itself mandatory, only requires
+    # it be kept in sync WHEN one is used; presence is a separate question for
+    # a separate law/check, not silently assumed here.
+    track = pkg.get("direction_note_track")
+    if track is not None:
+        if vo_pending:
+            r.skip(f"{p} direction_note_track entries match the live VO text (Law #171)",
+                   "VO not yet present, pending Claude's draft")
+        elif not isinstance(track, list):
+            r.add(f"{p} direction_note_track entries match the live VO text (Law #171)",
+                  False, f"direction_note_track is not a list: {type(track).__name__}")
+        else:
+            stale = []
+            for i, entry in enumerate(track):
+                if not isinstance(entry, dict):
+                    stale.append(f"entry[{i}] is not an object: {entry!r}")
+                    continue
+                sentence = entry.get("vo_sentence")
+                if not isinstance(sentence, str) or not sentence.strip():
+                    stale.append(f"entry[{i}] vo_sentence is missing/empty: {sentence!r}")
+                elif sentence not in vo:
+                    stale.append(f"entry[{i}] vo_sentence not found verbatim in current "
+                                 f"VO (stale -- rebuild required): {sentence!r}")
+            r.add(f"{p} direction_note_track entries match the live VO text (Law #171)",
+                  not stale,
+                  "all entries current" if not stale else "; ".join(stale[:5])
+                  + ("" if len(stale) <= 5 else f" (+{len(stale) - 5} more)"))
+
     # --- CTA exact placement: a specific question immediately followed by "Leave your take." ---
     # F15 fix (2026-07-25): a non-string cta_line previously crashed _norm()'s
     # str-only .strip()/.lower() with an unhandled AttributeError.
@@ -2138,21 +2182,49 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result, tree: str | None 
     # --- single-variant experiment: draft two hooks internally, publish exactly ONE ---
     # (Law #145). Never publish duplicate Shorts of one insight — carry both candidates
     # in the manifest for attribution but ship only the selected one.
-    cands = pkg.get("hook_candidates", [])
-    cands_ok = (isinstance(cands, list) and len(cands) == 2
-                and all(isinstance(c, str) and c.strip() for c in cands))
-    r.add(f"{p} exactly 2 internal hook_candidates (single-variant experiment)",
-          cands_ok, f"hook_candidates={cands}")
-    r.add(f"{p} the two hook_candidates are distinct",
-          cands_ok and _norm(cands[0]) != _norm(cands[1]), f"hook_candidates={cands}")
-    sel = pkg.get("selected_hook_index", None)
-    sel_ok = cands_ok and isinstance(sel, int) and not isinstance(sel, bool) and sel in (0, 1)
-    r.add(f"{p} selected_hook_index selects one of the two candidates",
-          sel_ok, f"selected_hook_index={sel}")
-    selected_hook = cands[sel] if sel_ok else None
-    r.add(f"{p} published hook_line matches the selected candidate (publish ONE)",
-          sel_ok and _norm(selected_hook) == _norm(hook),
-          f"selected={selected_hook!r} hook={hook!r}")
+    #
+    # Law #170 fix (2026-09-10): Law #170 superseded Law #145's dual-candidate
+    # drafting mechanic with single-hook drafting (draft ONE hook, never set
+    # hook_candidates/selected_hook_index), but was committed as runtime TEXT only
+    # while this check still hard-required the old two-candidate shape -- a package
+    # built to Law #170's letter failed all 3 checks below. Found and held via an
+    # operational-hold annotation before any real batch hit it (see KNOWN_ISSUES).
+    # This branches on whether hook_candidates is present in the manifest AT ALL:
+    #   - present -> validate the full Law #145 dual-candidate shape, unchanged from
+    #     the original checks (regression-safe for any caller still using it).
+    #   - absent -> validate Law #170's single-hook shape instead: hook_line's
+    #     presence/non-emptiness is already checked earlier in this function
+    #     (raw_hook_line, above); the only new thing to verify here is that
+    #     selected_hook_index is genuinely absent, not silently left over from a
+    #     half-converted manifest.
+    # A manifest can use exactly one shape, never a partial mix of both.
+    cands_present = "hook_candidates" in pkg
+    if cands_present:
+        cands = pkg.get("hook_candidates", [])
+        cands_ok = (isinstance(cands, list) and len(cands) == 2
+                    and all(isinstance(c, str) and c.strip() for c in cands))
+        r.add(f"{p} exactly 2 internal hook_candidates (single-variant experiment)",
+              cands_ok, f"hook_candidates={cands}")
+        r.add(f"{p} the two hook_candidates are distinct",
+              cands_ok and _norm(cands[0]) != _norm(cands[1]), f"hook_candidates={cands}")
+        sel = pkg.get("selected_hook_index", None)
+        sel_ok = cands_ok and isinstance(sel, int) and not isinstance(sel, bool) and sel in (0, 1)
+        r.add(f"{p} selected_hook_index selects one of the two candidates",
+              sel_ok, f"selected_hook_index={sel}")
+        selected_hook = cands[sel] if sel_ok else None
+        r.add(f"{p} published hook_line matches the selected candidate (publish ONE)",
+              sel_ok and _norm(selected_hook) == _norm(hook),
+              f"selected={selected_hook!r} hook={hook!r}")
+    else:
+        # An explicit null is treated as equivalent to absent; only a real leftover
+        # value (e.g. 0 or 1) signals a half-converted manifest.
+        sel = pkg.get("selected_hook_index", None)
+        r.add(f"{p} selected_hook_index absent under single-hook drafting (Law #170)",
+              sel is None,
+              f"selected_hook_index={sel!r} (Law #170's single-hook shape requires "
+              f"this field be omitted entirely, not just falsy -- hook_candidates "
+              f"is absent so this manifest is using the new shape, but "
+              f"selected_hook_index is a leftover from the old one)")
 
     # --- topic portfolio classification (Law #143) ---
     # F15 fix (2026-07-25): a non-string topic_class previously crashed _norm()'s
@@ -2952,13 +3024,31 @@ PACKAGE {
   "hook_onscreen_text": "the assumption-break shown on-screen in the first second (Law #144)",
   "hook_first_second": true,        // model attests VO hook + on-screen text land in the first second
   "isolation_test_pass": true,      // model attests the Law #144.1 Isolation Test was run on hook_onscreen_text/hook_line and passed
-  "hook_candidates": ["hook A", "hook B"],   // exactly 2 drafted internally (Law #145)
-  "selected_hook_index": 0,         // 0 or 1; the published hook_line must equal this candidate
+  // TWO VALID SHAPES for hook drafting (Law #170, added 2026-09-10 -- operational
+  // hold lifted the same day once this validator was updated to accept both
+  // shapes; see KNOWN_ISSUES for the resolution record):
+  //   Law #145 (original, dual-candidate): include BOTH fields below.
+  //   Law #170 (single-hook, current): OMIT both fields below entirely; just set
+  //     hook_line directly with no hook_candidates/selected_hook_index keys at all.
+  "hook_candidates": ["hook A", "hook B"],   // Law #145 shape: exactly 2 drafted internally
+  "selected_hook_index": 0,         // Law #145 shape: 0 or 1; published hook_line must equal this candidate
   "capcut_target_sec": 30,          // edit length; numeric in [20,180]s, open-ended for every package; 30 is the default when absent
   "total_clip_time_sec": 30,        // must equal capcut_target_sec
   "hook_line": "assumption-breaking first line (== opening_sentence == the selected candidate)",
   "opening_sentence": "EXACT first sentence of the VO (opening_line accepted as alias)",
   "vo": "full VO text (100-108 words; contains '<question?> Leave your take.'); may end on any clean, complete, natural closing thought -- same plain-statement standard as the rest of the VO (Law #141 rescission, 2026-07-27: the forced incomplete-colon-setup loop ending is no longer required or specially scored; a loop-style ending is still allowed if it arises naturally and passes every other register check)",
+  // OPTIONAL. "direction_note_track" (Law #171, field name confirmed 2026-09-10
+  // against the real, live run_manifest.json for batch 4786c451): a per-sentence
+  // performance-direction list, checked for staleness against the CURRENT "vo"
+  // text above once vo_status is no longer "pending" -- every entry's
+  // "vo_sentence" must appear verbatim in "vo" or the check fails closed. Not
+  // required to be present at all; only checked for staleness when it is.
+  "direction_note_track": [
+    {"line_index": 0, "vo_sentence": "<exact first VO sentence>",
+     "direction": "DIRECT-TO-CAMERA", "note": "..."},
+    {"line_index": 1, "vo_sentence": "<exact next VO sentence>",
+     "direction": "GLANCE-DOWN-AT-FOOTAGE", "note": "..."}
+  ],
   "vo_word_count": 104,
   "question_line": "the specific question immediately before the CTA (ends with ?)",
   "cta_line": "Leave your take.",
@@ -3009,8 +3099,14 @@ PACKAGE {
     // final_to_opening_readaloud -- OPTIONAL, INERT (Law #141 rescission, 2026-07-27).
     // No longer required, read, or checked.
   },
-  "video_style": "Anime Clips Only (anime footage only; no face/split/inset)",
-  "face": false, "split_screen": false,
+  // F42 addendum fix (2026-09-10): this example previously showed the pre-Law
+  // #134-Stage-2 anime-only shape, directly contradicting the live checks below
+  // (face/split_screen MUST be true -- see "face flag is true" / "split_screen
+  // flag is true" checks). A package built by copying this example would have
+  // failed all three checks it was supposedly demonstrating. Corrected to match
+  // the real, current required default.
+  "video_style": "Face-Cam Split Screen (Creator TOP / anime footage BOTTOM — Law #134 Stage 2)",
+  "face": true, "split_screen": true,
   "sources": [{"claim": "...", "url": "...", "date": "Mon YYYY"}, ...],   // >=2, url+date each
   "clips": [   // any clip count (F22, no fixed minimum); per-cut timing REQUIRED;
                // must tile 0->30s contiguously

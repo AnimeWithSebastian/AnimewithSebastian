@@ -1048,22 +1048,22 @@ standards the legacy runs enforced (nothing relaxed):
     (unchanged — Law #145's attribution clause is untouched by Law #170)
   - SINGLE-HOOK DRAFTING (Law #170, added 2026-09-10 — supersedes Law #145's
     dual-candidate requirement above; OPERATIONAL HOLD added 2026-09-10,
-    same day — validators/validate_dual_package.py still hard-requires
-    exactly 2 distinct hook_candidates + a valid selected_hook_index
-    (lines ~2144-2150), directly contradicting this law's text as written.
-    Until the validator is updated to match, DO NOT follow this law's
-    single-hook behavior on real batches -- continue drafting TWO
-    candidates and selecting one, per Law #145's original, still-
-    functional mechanic, or every package will fail STEP 5. This law's
-    text remains committed as documented intent for when the validator
-    catches up, not as current operational instruction. See KNOWN_ISSUES
-    for the tracked conflict.) draft exactly ONE hook directly. Do not
-    generate a second candidate, do not set hook_candidates[] or
-    selected_hook_index — set hook_line to the single drafted hook. Every
-    surviving Law #145 requirement (one Short per slot, distinct shows AND
-    distinct published hooks across the two same-day packages, funnel_status
-    attribution) still applies unchanged; only the two-candidate-then-select
-    mechanic is removed.
+    same day, LIFTED 2026-09-10, later the same day — validators/validate_dual_package.py
+    originally still hard-required exactly 2 distinct hook_candidates + a valid
+    selected_hook_index (lines ~2144-2150), directly contradicting this law's
+    text as written, so the hold instructed continuing Law #145's two-candidate
+    mechanic until reconciled. The validator has since been updated (same day)
+    to accept EITHER shape — the legacy two-candidate shape (unchanged,
+    regression-tested) OR this law's single-hook shape (hook_candidates and
+    selected_hook_index both genuinely absent, not merely falsy) — with new
+    adversarial test coverage confirming both shapes validate correctly and are
+    never partially mixed. See KNOWN_ISSUES for the full resolution record.)
+    draft exactly ONE hook directly. Do not generate a second candidate, do
+    not set hook_candidates[] or selected_hook_index — set hook_line to the
+    single drafted hook. Every surviving Law #145 requirement (one Short per
+    slot, distinct shows AND distinct published hooks across the two same-day
+    packages, funnel_status attribution) still applies unchanged; only the
+    two-candidate-then-select mechanic is removed.
   - CONTENT TYPE: set content_type="short" (this pipeline is Shorts-only; long-form
     flagships go through validators/validate_longform_flagship.py — Law #146).
   - QUALITY OVER QUOTA (M5): the weekly targets (>=9/14 timely, >=2 recurring series,

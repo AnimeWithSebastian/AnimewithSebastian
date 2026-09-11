@@ -151,6 +151,178 @@ class TestValidDualPackage(unittest.TestCase):
                           msg=f"expected zero loop-related failures, got: {loop_mentions}")
 
 
+class TestSingleHookLaw170(unittest.TestCase):
+    """Law #170 (added 2026-09-10): supersedes Law #145's dual-candidate hook
+    drafting with a single-hook shape. Found via a real conflict: a package
+    built to Law #170's letter (no hook_candidates, no selected_hook_index)
+    failed 3 checks that assumed the old two-candidate shape was the only
+    valid one. This class pins the new branch -- both shapes must validate
+    correctly, and the two must never partially mix."""
+
+    def _strip_to_single_hook(self, m, pkg_index=0):
+        pkg = m["packages"][pkg_index]
+        pkg.pop("hook_candidates", None)
+        pkg.pop("selected_hook_index", None)
+        return m
+
+    def test_single_hook_shape_with_both_fields_absent_passes(self):
+        m = load_valid()
+        self._strip_to_single_hook(m)
+        self._strip_to_single_hook(m, 1)
+        fails = [n for n in failed_names(m)
+                 if "hook_candidates" in n or "selected_hook_index" in n]
+        self.assertEqual(fails, [], msg=f"unexpected hook-shape failures: {fails}")
+
+    def test_single_hook_shape_with_leftover_selected_hook_index_fails(self):
+        m = load_valid()
+        self._strip_to_single_hook(m)
+        m["packages"][0]["selected_hook_index"] = 0
+        fails = [n for n in failed_names(m) if "selected_hook_index absent" in n]
+        self.assertNotEqual(fails, [])
+
+    def test_single_hook_shape_selected_hook_index_explicit_none_passes(self):
+        m = load_valid()
+        self._strip_to_single_hook(m)
+        m["packages"][0]["selected_hook_index"] = None
+        fails = [n for n in failed_names(m) if "selected_hook_index absent" in n]
+        self.assertEqual(fails, [])
+
+    def test_dual_candidate_shape_unchanged_still_passes(self):
+        m = load_valid()
+        fails = [n for n in failed_names(m)
+                 if "hook_candidates" in n or "selected_hook_index" in n or "hook_line matches" in n]
+        self.assertEqual(fails, [], msg=f"unexpected regression in dual-candidate path: {fails}")
+
+    def test_dual_candidate_shape_wrong_count_still_fails(self):
+        m = load_valid()
+        m["packages"][0]["hook_candidates"] = ["only one hook"]
+        fails = [n for n in failed_names(m) if "exactly 2 internal hook_candidates" in n]
+        self.assertNotEqual(fails, [])
+
+    def test_empty_hook_candidates_list_is_not_silently_treated_as_new_shape(self):
+        m = load_valid()
+        m["packages"][0]["hook_candidates"] = []
+        fails = [n for n in failed_names(m) if "exactly 2 internal hook_candidates" in n]
+        self.assertNotEqual(fails, [])
+
+    def test_null_hook_candidates_is_not_silently_treated_as_new_shape(self):
+        m = load_valid()
+        m["packages"][0]["hook_candidates"] = None
+        fails = [n for n in failed_names(m) if "exactly 2 internal hook_candidates" in n]
+        self.assertNotEqual(fails, [])
+
+
+class TestDirectionTrackStalenessLaw171(unittest.TestCase):
+    """Law #171 (added 2026-09-10; mechanical enforcement added later the same
+    day per F79's own recommendation): direction_note_track entries must stay
+    in sync with the live VO text. Field name and shape confirmed directly
+    against real, live production data (batch 4786c451's run_manifest.json),
+    not assumed -- {"line_index", "vo_sentence", "direction", "note"}.
+
+    Found necessary after a real incident: a VO edit (removing padding,
+    adding a new sentence for a corrected claim) left a package's track
+    stale -- still quoting deleted sentences, missing an entry for the new
+    one -- caught only by a manual re-check at final render, not by anything
+    mechanical. This class pins the check that now catches it automatically.
+    """
+
+    def _first_sentence(self, m, pkg_index=0):
+        return m["packages"][pkg_index]["vo"].split(". ")[0] + "."
+
+    def test_no_track_present_is_not_required_and_passes(self):
+        m = load_valid()
+        m["packages"][0].pop("direction_note_track", None)
+        fails = [n for n in failed_names(m) if "direction_note_track" in n]
+        self.assertEqual(fails, [])
+
+    def test_current_track_matching_live_vo_passes(self):
+        m = load_valid()
+        first = self._first_sentence(m)
+        m["packages"][0]["direction_note_track"] = [
+            {"line_index": 0, "vo_sentence": first,
+             "direction": "DIRECT-TO-CAMERA", "note": "hook"},
+        ]
+        fails = [n for n in failed_names(m) if "direction_note_track" in n]
+        self.assertEqual(fails, [])
+
+    def test_stale_entry_quoting_a_since_deleted_sentence_fails(self):
+        m = load_valid()
+        m["packages"][0]["direction_note_track"] = [
+            {"line_index": 0, "vo_sentence": "This sentence was deleted from the VO.",
+             "direction": "DIRECT-TO-CAMERA", "note": "stale"},
+        ]
+        fails = [n for n in failed_names(m) if "direction_note_track" in n]
+        self.assertNotEqual(fails, [])
+
+    def test_missing_vo_sentence_field_fails(self):
+        m = load_valid()
+        m["packages"][0]["direction_note_track"] = [
+            {"line_index": 0, "direction": "DIRECT-TO-CAMERA", "note": "no sentence key"},
+        ]
+        fails = [n for n in failed_names(m) if "direction_note_track" in n]
+        self.assertNotEqual(fails, [])
+
+    def test_non_dict_entry_fails_without_crashing(self):
+        m = load_valid()
+        m["packages"][0]["direction_note_track"] = ["not a dict"]
+        fails = [n for n in failed_names(m) if "direction_note_track" in n]
+        self.assertNotEqual(fails, [])
+
+    def test_non_list_track_fails_without_crashing(self):
+        m = load_valid()
+        m["packages"][0]["direction_note_track"] = "not a list"
+        fails = [n for n in failed_names(m) if "direction_note_track" in n]
+        self.assertNotEqual(fails, [])
+
+    def test_skipped_while_vo_status_pending(self):
+        m = load_valid()
+        m["packages"][0]["vo_status"] = "pending"
+        m["packages"][0]["direction_note_track"] = [
+            {"line_index": 0, "vo_sentence": "Anything at all, doesn't matter here.",
+             "direction": "DIRECT-TO-CAMERA", "note": "n/a"},
+        ]
+        r = v.validate_manifest(m)
+        matches = [(n, ok) for n, ok, _ in r.checks if "direction_note_track" in n]
+        self.assertTrue(matches)
+        for n, ok in matches:
+            self.assertEqual(ok, "SKIP", msg=f"expected SKIP while pending, got {ok} for {n}")
+
+    def test_new_vo_sentence_with_no_corresponding_entry_is_not_detected(self):
+        # Pins the check's real, documented boundary: it validates each
+        # EXISTING track entry against the current VO, but does NOT detect a
+        # VO sentence that has NO track entry at all -- the other half of
+        # Law #171's real motivating incident (a new sentence added with
+        # zero corresponding entry). This is a distinct, separately-scoped
+        # gap, verified here as real current behavior, not just described in
+        # a comment.
+        m = load_valid()
+        first = self._first_sentence(m)
+        # Append an extra sentence to the VO with no track entry for it at
+        # all. Only asserting on direction_note_track-specific failures
+        # below, so this deliberately doesn't need to keep the rest of the
+        # manifest (word count band, CTA placement, etc.) internally valid.
+        m["packages"][0]["vo"] = (m["packages"][0]["vo"].rstrip()
+                                  + " This extra sentence has no track entry at all.")
+        m["packages"][0]["direction_note_track"] = [
+            {"line_index": 0, "vo_sentence": first,
+             "direction": "DIRECT-TO-CAMERA", "note": "hook"},
+        ]
+        fails = [n for n in failed_names(m) if "direction_note_track" in n]
+        self.assertEqual(fails, [],
+                         msg="this check does not detect untracked new sentences -- "
+                             "documented boundary, see class docstring")
+
+    def test_multiple_valid_entries_all_pass(self):
+        m = load_valid()
+        sentences = [s.strip() + "." for s in m["packages"][0]["vo"].split(". ") if s.strip()]
+        m["packages"][0]["direction_note_track"] = [
+            {"line_index": i, "vo_sentence": s, "direction": "GLANCE-DOWN-AT-FOOTAGE", "note": ""}
+            for i, s in enumerate(sentences[:3])
+        ]
+        fails = [n for n in failed_names(m) if "direction_note_track" in n]
+        self.assertEqual(fails, [])
+
+
 class TestWordCountUnicodeAndContractions(unittest.TestCase):
     """F5 fix: _words() must count an accented name (e.g. Pok\u00e9mon) as ONE word,
     not two ("Pok"+"mon"), WITHOUT breaking contraction counting -- a naive \\w+

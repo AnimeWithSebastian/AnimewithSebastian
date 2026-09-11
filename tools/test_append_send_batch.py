@@ -728,6 +728,103 @@ class TestApprovalFileGateLaw164165(LoggerCase):
         self.assertIn("emails not confirmed sent", st["error"])
 
 
+class TestSchemaPreCheckLaw173(LoggerCase):
+    """Law #173 (added 2026-09-10, directly addressing F78): an approval.json
+    authored with a "verdict" string field (or a similar plausible substitute)
+    instead of the required "fetched_content_supports_claim" boolean produced
+    the SAME generic "unsupported/malformed" error a genuine content-verification
+    failure produces -- costing real diagnostic time telling the two apart on a
+    real batch. This class pins the new, distinct schema-mismatch error path,
+    and separately confirms it never fires for shapes it shouldn't (a genuinely
+    unsupported claim using the CORRECT field name, or a missing field with no
+    plausible substitute at all -- both must still fall through to the
+    pre-existing generic gate, unchanged)."""
+
+    def _approval_path(self, fetch_review):
+        path = os.path.join(self.tree, "approval_schema_test.json")
+        with open(path, "w", encoding="utf-8") as fh:
+            json.dump({"fetch_review": fetch_review}, fh)
+        return path
+
+    def test_verdict_field_instead_of_real_field_blocks_with_schema_message(self):
+        path = self._approval_path([
+            {"claim": "Chiaki teases Kunishige's handwriting", "url": "https://example.com/a",
+             "verdict": "confirmed"},
+        ])
+        rc = self.run_cli("--emails-sent", approval_file=path)
+        self.assertEqual(rc, 1)
+        st = self.state()
+        self.assertEqual(st["status"], "failed")
+        self.assertFalse(st["log_appended"])
+        self.assertIn("schema mismatch (Law #173)", st["error"])
+        self.assertIn("verdict", st["error"])
+        self.assertIn("fetched_content_supports_claim", st["error"])
+        self.assertNotIn("unsupported/malformed", st["error"])
+
+    def test_other_substitute_field_names_also_detected(self):
+        for field in ("supported", "confirmed", "status", "result"):
+            with self.subTest(field=field):
+                path = self._approval_path([
+                    {"claim": "test claim", "url": "https://example.com/a", field: "yes"},
+                ])
+                rc = self.run_cli("--emails-sent", approval_file=path)
+                self.assertEqual(rc, 1)
+                st = self.state()
+                self.assertIn("schema mismatch (Law #173)", st["error"])
+
+    def test_missing_field_with_no_substitute_falls_through_to_generic_error(self):
+        path = self._approval_path([
+            {"claim": "test claim", "url": "https://example.com/a"},
+        ])
+        rc = self.run_cli("--emails-sent", approval_file=path)
+        self.assertEqual(rc, 1)
+        st = self.state()
+        self.assertEqual(st["status"], "failed")
+        self.assertNotIn("schema mismatch (Law #173)", st["error"])
+        self.assertIn("unsupported/malformed", st["error"])
+
+    def test_correct_field_true_passes_schema_check_and_logs_success(self):
+        path = self._approval_path([
+            {"claim": "test claim", "url": "https://example.com/a",
+             "fetched_content_supports_claim": True},
+        ])
+        rc = self.run_cli("--emails-sent", approval_file=path)
+        self.assertEqual(rc, 0)
+        st = self.state()
+        self.assertEqual(st["status"], "success")
+
+    def test_correct_field_false_skips_schema_check_hits_existing_gate(self):
+        path = self._approval_path([
+            {"claim": "test claim", "url": "https://example.com/a",
+             "fetched_content_supports_claim": False},
+        ])
+        rc = self.run_cli("--emails-sent", approval_file=path)
+        self.assertEqual(rc, 1)
+        st = self.state()
+        self.assertNotIn("schema mismatch (Law #173)", st["error"])
+        self.assertIn("unsupported/malformed", st["error"])
+
+    def test_mix_of_correct_and_verdict_entries_still_flagged(self):
+        path = self._approval_path([
+            {"claim": "claim A", "url": "https://example.com/a",
+             "fetched_content_supports_claim": True},
+            {"claim": "claim B", "url": "https://example.com/b",
+             "verdict": "confirmed as corrected"},
+        ])
+        rc = self.run_cli("--emails-sent", approval_file=path)
+        self.assertEqual(rc, 1)
+        st = self.state()
+        self.assertIn("schema mismatch (Law #173)", st["error"])
+        self.assertIn("claim B", st["error"])
+
+    def test_malformed_non_dict_entry_does_not_crash_schema_check(self):
+        path = self._approval_path(["not a dict", 12345])
+        rc = self.run_cli("--emails-sent", approval_file=path)
+        self.assertEqual(rc, 1)
+        st = self.state()
+        self.assertNotIn("schema mismatch (Law #173)", st["error"])
+
+
 class TestCoreAwareApprovalGate(LoggerCase):
     """Core-aware gate fix (2026-08-19): the Law #164/#165 gate in
     TestApprovalFileGateLaw164165 above originally required EVERY

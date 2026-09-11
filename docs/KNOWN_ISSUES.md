@@ -4580,10 +4580,15 @@ sign-off on `approval.json` before either correction email sends.
 Found by testing the new law against the real validator rather than assuming the
 two agreed.
 
-**Status:** OPEN. Law #170's text is committed; its *behavior* is under an explicit
+**Status:** ~~OPEN. Law #170's text is committed; its *behavior* is under an explicit
 operational hold recorded inline in `cron_daily_runtime.txt` directly above the law.
 No validator code was changed — that needs its own authorization, design and diff
-review per standing convention.
+review per standing convention.~~ **RESOLVED 2026-09-10, later the same day.** The
+validator was updated to accept both hook shapes, the operational hold in
+`cron_daily_runtime.txt` was lifted, and direct test coverage was added. The struck
+text above is preserved verbatim because it was accurate when written; see the
+**RESOLUTION** block at the end of this entry for what actually changed and what was
+verified rather than assumed.
 
 **The contradiction.** Law #170 says, verbatim:
 
@@ -4663,13 +4668,69 @@ is committed.
 2. **Reinstate the dual-candidate requirement in the law** and retire Law #170,
    if the two-candidate mechanic is judged worth keeping after all.
 
-Until then the hold stands, and the law is documentation rather than instruction.
+~~Until then the hold stands, and the law is documentation rather than instruction.~~
+**Superseded 2026-09-10 (same day):** option 1 was taken. The hold no longer stands and
+Law #170 is now operational instruction, not documentation.
 
 **Cross-repo note.** Laws #170–#173 originated in the other repo's six-law efficiency
 review and were ported here. If that review added Law #170 there without touching its
 validator, the same contradiction exists on that side too — this is likely a shared
 defect rather than a porting artifact, and worth checking there rather than assuming
 this repo is the only one affected.
+
+**RESOLUTION (2026-09-10, later the same day).** Option 1 above was authorized and
+implemented. Recorded here in full rather than by reference, because the whole point of
+this entry is that prose and mechanism disagreed and only the mechanism was binding.
+
+*What changed in code.* `validators/validate_dual_package.py` now branches on whether
+`hook_candidates` is present in the manifest at all:
+
+- **present** — the full Law #145 dual-candidate shape is validated, byte-for-byte
+  unchanged from the three original checks. Nothing was relaxed on this path.
+- **absent** — Law #170's single-hook shape is validated instead. `hook_line`'s
+  presence and non-emptiness are already checked earlier in the same function, so the
+  only new assertion is that `selected_hook_index` is not left over from a
+  half-converted manifest.
+
+A manifest uses exactly one shape. A partial mix (`hook_candidates` removed but
+`selected_hook_index` left behind) fails, by design — that shape is the most likely
+real authoring mistake during the transition, and it would otherwise pass silently.
+
+*What changed in the runtime text.* The OPERATIONAL HOLD annotation in
+`cron_daily_runtime.txt` directly above Law #170 was rewritten to record the hold, its
+lifting, and the reason for both. The hold's history is preserved in the annotation
+rather than erased, so a future reader sees that the law was briefly unfollowable and
+why.
+
+*What changed in tests.* `TestSingleHookLaw170` in
+`validators/test_validate_dual_package.py` — 7 tests covering the single-hook shape
+passing, the leftover-`selected_hook_index` mix failing, the dual-candidate path
+unchanged (regression), a wrong-candidate-count still failing, and `[]` / `null`
+`hook_candidates` not being silently mistaken for the new shape.
+
+*Correcting this entry's own "Why the test suite did not catch this" paragraph.* That
+paragraph is still true as written — the 690-test suite was green precisely because
+every fixture carried the old shape. That specific gap is now closed: the suite is 713
+tests and the single-hook path has direct coverage. The general lesson stated in that
+paragraph stands unchanged and should not be read as retired.
+
+**Known scope limits of this resolution, deliberately not claimed as fixed.**
+
+1. An explicit `"selected_hook_index": null` is accepted as absent, because the check
+   is `sel is None` and JSON `null` and a missing key are indistinguishable after
+   `dict.get`. The validator's own failure message says the field must be "omitted
+   entirely, not just falsy," which is precise about falsy values like `0` but slightly
+   overstates the `null` case. Cosmetic; no behavior depends on the distinction.
+2. The line citation `(lines ~2144–2150)` in this entry and in
+   `cron_daily_runtime.txt` is now stale — the checks moved to roughly 2201–2220 when the
+   branch was added. Left as-is by decision: the `~` marks it as approximate, nothing
+   depends on it, and chasing exact line numbers across edits is not worth a task.
+
+**Cross-repo note, now confirmed rather than suspected.** The speculation above was
+correct. The same contradiction existed in the other repo, was found there
+independently, and the fix applied here is a port of theirs — same branch structure,
+same schema-docstring update. This was a shared defect introduced by the six-law
+efficiency review, not a porting artifact on either side.
 
 ## F77: Laws #171 and #173 are process-text-only tonight — no validator or test coverage yet for the direction-track staleness check or the approval.json schema pre-check
 
@@ -4728,7 +4789,68 @@ reviewed pass:
    each asserting the new check fires before the pre-existing Law #165
    content gate would even be reached.
 
-**Status:** Logged only, as a scoped future task. No validator or test
+**Status:** ~~Logged only, as a scoped future task. No validator or test
 changes made tonight. Laws #170-#173 and the STEP 4.7 reaffirmation are
 live in `cron_daily_runtime.txt` as of this commit; only their mechanical
-enforcement (for #171 and #173 specifically) remains open.
+enforcement (for #171 and #173 specifically) remains open.~~ **RESOLVED
+2026-09-10, later the same day, with one scope limit still open (below).**
+Both mechanical checks are now built and tested. The struck text is preserved
+verbatim because it was accurate when written.
+
+**RESOLUTION (2026-09-10, later the same day).** Recommendation items 1 and 2 above
+were authorized and built in the same pass that resolved F76.
+
+*Item 1 — Law #171 direction-track staleness, built as specified.*
+`validators/validate_dual_package.py` now reads `direction_note_track` and, for every
+entry, requires the entry's `vo_sentence` to appear verbatim in the live `vo` field.
+FAILS closed once `vo_status` is no longer `"pending"`; SKIPs while pending, matching
+the convention every other VO-dependent check already uses. A package carrying no
+`direction_note_track` at all still passes — Law #171 does not make the track itself
+mandatory, it requires the track be kept in sync when one is used, and this check was
+deliberately scoped to the second thing only. Malformed shapes (a non-list track, a
+non-dict entry, a missing or empty `vo_sentence`) fail rather than crash. The field
+name and entry shape were confirmed against real production data (batch `4786c451`'s
+`run_manifest.json`), not assumed from the law's prose. Covered by
+`TestDirectionTrackStalenessLaw171` — 9 tests.
+
+*Item 2 — Law #173 approval.json schema pre-check, built as specified.*
+`tools/append_send_batch.py` now scans `fetch_review` entries before the
+content-verification gate. An entry missing `fetched_content_supports_claim` but
+carrying a plausible substitute name (`verdict`, `supported`, `confirmed`, `status`,
+`result`) blocks with a distinct schema-specific message naming the offending field and
+the expected one. An entry missing the field with no substitute at all still falls
+through to the pre-existing generic gate, unchanged. This is the specific ambiguity F78
+identified: a field-naming mistake and a genuine verification failure previously
+produced the same error text. Covered by `TestSchemaPreCheckLaw173` — 7 tests.
+
+*Item 3 — built, but in a different file than this entry proposed.* Item 3 asked for
+both new test classes in `validators/test_validate_dual_package.py`. The Law #173 class
+went into `tools/test_append_send_batch.py` instead, because that is where the code it
+tests actually lives. The recommendation was written before it was decided where the
+check would go. Not a deviation to correct — noted so a later reader comparing this
+entry against the tree does not go looking for a class that was deliberately placed
+elsewhere.
+
+*Suite state.* 713 tests green (482 in `validators/`, 231 in `tools/`), up from the
+690 baseline: +7 Law #170, +7 Law #173, +9 Law #171.
+
+**STILL OPEN — a real scope limit in the Law #171 check, logged as its own follow-up
+rather than folded into the resolution above.** The check validates each *existing*
+track entry against the current VO. It does **not** detect the reverse case: a VO
+sentence with no corresponding track entry at all. Both halves were present in Law
+#171's real motivating incident — a VO edit removed padding (leaving entries quoting
+deleted sentences, which this check now catches) *and* added a new sentence for a
+corrected claim (leaving that sentence untracked, which this check does not catch).
+
+This is verified current behavior, not a suspicion:
+`test_new_vo_sentence_with_no_corresponding_entry_is_not_detected` constructs exactly
+that case and asserts the check stays silent. Half of Law #171's rebuild-on-edit
+requirement therefore remains self-attestation, and this entry should not be read as
+"Law #171 is now mechanically enforced" without that qualification.
+
+Closing it is a larger problem than it looks and was deliberately not attempted here:
+it requires deciding what counts as a VO "sentence" for coverage purposes (naive
+splitting on `". "` breaks on abbreviations, ellipses, and quoted dialogue), and
+whether full per-sentence coverage is required at all or only for sentences carrying a
+direction. Both are design questions needing their own authorization, not an extension
+of tonight's port.

@@ -671,6 +671,50 @@ def main(argv: list[str]) -> int:
               file=sys.stderr)
         return 1
 
+    # SCHEMA PRE-CHECK (Law #173, added 2026-09-10 -- directly addresses F78): an
+    # approval.json authored with a "verdict" string field (e.g. "confirmed")
+    # instead of the required "fetched_content_supports_claim" boolean produced
+    # the exact same generic "unsupported/malformed" error the genuine-content-
+    # failure path below produces -- costing real diagnostic time distinguishing
+    # a field-naming mistake from an actual verification failure. This scans for
+    # entries missing the real field but carrying a plausible substitute name,
+    # and fails with a distinct, schema-specific message BEFORE the generic
+    # content-verification path, so the two failure classes are never conflated
+    # again. An entry with NO substitute-looking field at all still falls through
+    # to the existing generic check below, unchanged -- this only catches the
+    # specific "used the wrong field name" shape F78 found.
+    _VERDICT_SUBSTITUTE_KEYS = ("verdict", "supported", "confirmed", "status", "result")
+    schema_suspects = []
+    for e in fetch_review:
+        if not isinstance(e, dict):
+            continue
+        if "fetched_content_supports_claim" in e:
+            continue  # real field present (whatever its value) -- not a schema issue
+        found = [k for k in _VERDICT_SUBSTITUTE_KEYS if k in e]
+        if found:
+            schema_suspects.append((e, found))
+
+    if schema_suspects:
+        detail = "; ".join(
+            f"claim={e.get('claim', '<no claim>')!r} has field(s) {found!r} but not "
+            f"'fetched_content_supports_claim'"
+            for e, found in schema_suspects[:5]
+        )
+        more = "" if len(schema_suspects) <= 5 else f" (+{len(schema_suspects) - 5} more)"
+        path = write_state(manifest, args.tree, args.cron_id,
+                           emails_sent=args.emails_sent, log_appended=False,
+                           git_pushed=args.git_pushed,
+                           error=f"approval.json schema mismatch (Law #173): "
+                                 f"{len(schema_suspects)} fetch_review entr"
+                                 f"{'y' if len(schema_suspects) == 1 else 'ies'} use a "
+                                 f"different field name instead of the required boolean "
+                                 f"'fetched_content_supports_claim' -- this looks like a "
+                                 f"field-naming mistake, not a content-verification "
+                                 f"failure (see F78). {detail}{more}")
+        print(f"[BLOCKED] approval.json schema mismatch (Law #173, see F78); "
+              f"wrote failure state to {path}", file=sys.stderr)
+        return 1
+
     # CORE-AWARE GATE (2026-08-19, narrow fix for the false-positive block on
     # honestly-disclosed non-core claims): a fetch_review entry only needs
     # fetched_content_supports_claim == True when it is a CORE claim. An
