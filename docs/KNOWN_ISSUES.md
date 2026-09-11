@@ -2032,8 +2032,12 @@ diff review per standing convention. Documented only.
 sent. The duplicate was caught by manually reading `sent_scripts_events.jsonl`, not
 by any check.
 
-**Status:** OPEN — findings record only, no fix written. Same standing convention as
-every other backlog item here: no diff without explicit go-ahead and full diff review.
+**Status:** ~~OPEN — findings record only, no fix written. Same standing convention as
+every other backlog item here: no diff without explicit go-ahead and full diff review.~~
+**RESOLVED — the fix landed 2026-08-19; this entry was simply never updated to say so.**
+The struck text above is preserved because it was accurate when written, but it stopped
+being true three and a half weeks before this correction was made. See the **RESOLUTION**
+block at the end of this entry, including the part about how long the wrong status stood.
 
 **What nearly happened.** A One Piece package was being rebuilt around chapter 1190
 and Scopper Gaban's fate. Reading the send log directly to confirm blackout state
@@ -2169,6 +2173,71 @@ a well-verified package is still dropped if it duplicates already-sent content;
 accuracy and duplication are independent gates, and this recurrence is evidence
 that the duplication gate needs the same mechanical rigor already applied to the
 accuracy gate.
+
+**RESOLUTION (fix landed 2026-08-19; recorded here 2026-09-10).** The core problem this
+entry describes — that `blackout_conflict` and `recent_send_conflict` were pure
+self-attestation with nothing checking whether the claim was true — is fixed. It has
+been fixed since 2026-08-19.
+
+*The mechanical check.* `tools/conflict_check.py:285` defines
+`check_recent_send_conflict()`. It is a real, data-backed check, not a flag inspection:
+it loads the live ledger via `_load_send_history()`, which opens and parses
+`cron_tracking/sent_scripts_events.jsonl` directly, then evaluates four precedence
+tiers against that history — a THEORY_SPECULATION same-show/same-question block, a
+same-show date-window blackout, a same-show angle-similarity OR shared-entity signal,
+and finally clear. Tier 3's shared-entity signal (proper-noun overlap plus an exact
+chapter/episode number match) exists specifically because backtesting showed
+angle-similarity alone scored only 0.26 on the real Gaban pair documented above. The
+check was built against this entry's actual incident, not designed in the abstract.
+
+*The wiring.* `validators/validate_dual_package.py:2106` calls it. The two self-attested
+fields are still checked immediately above, but they are no longer sufficient on their
+own. Three distinct failure paths, all hard FAILs:
+
+1. **Import failure** — if `tools/conflict_check.py` cannot be imported, the check is
+   recorded as failed ("check cannot run, failing closed") rather than skipped.
+2. **Exception during the check** — a crash inside `check_recent_send_conflict()` is
+   caught and converted to a FAIL, never allowed to pass the package through silently.
+3. **A real block** — if the mechanical check returns `blocked`, the package hard-fails
+   **regardless of what it attests about itself**. This is the specific failure mode
+   this entry was opened for: a package claiming `False` for both fields while being a
+   near-duplicate of already-sent content can no longer pass.
+
+The validator defaults `tree` to the real repo root when no tree is threaded through, so
+it reads the live ledger in production rather than only in tests.
+
+*Test coverage.* `TestMechanicalConflictCheckWiring` in
+`validators/test_validate_dual_package.py` — 6 tests, using a temp tree with controlled
+history so results do not depend on the changing production ledger. It covers the
+self-attested-clear-but-mechanically-duplicate hard failure, a genuinely clean package
+passing, a missing history file neither crashing nor false-blocking, the real-repo-root
+default, and both correction-manifest exclusion cases.
+
+**NOT fully closed — the function's own named limitation.** A same-event repeat that
+shares *neither* a proper noun *nor* an extractable chapter/episode number in either
+angle is not caught by either signal. Both tier-3 signals depend on one of those two
+anchors being present in the angle text, so a heavily paraphrased repeat with neither
+still passes. This is named in `check_recent_send_conflict()`'s own docstring as a
+deliberate, known limitation rather than an oversight. The duplication gate is now
+mechanically enforced for the realistic cases; it is not exhaustive, and this entry
+should not be read as claiming otherwise.
+
+**The documentation gap this correction closes, stated plainly.** The fix shipped
+2026-08-19. This entry carried **Status: OPEN — findings record only, no fix written**
+until 2026-09-10. For three and a half weeks the backlog advertised already-shipped work
+as outstanding, and described a mechanism as absent that was in fact present, wired, and
+tested. Anyone triaging this file in that window — this is one of the longest and most
+detailed entries in it — could have spent real effort rebuilding a check that already
+existed.
+
+That is precisely the risk F42 names elsewhere in this same document: stale in-repo
+documentation as the leading cause of wasted effort. F42 identified it in a validator
+docstring; this is the same failure in the backlog itself, which is worse, because the
+backlog is the thing consulted specifically to decide what still needs doing. It was
+found only because an assumption about this repo's state was deliberately re-verified
+rather than carried forward from a sibling repo. No process change is proposed here —
+the observation is that "fix shipped" and "entry updated" are separate actions, and
+nothing currently couples them.
 
 ## F44: A batch_id that F41 permanently retired was found repopulated with real, post-correction content on disk roughly 5 hours later — never committed to git, and reusing an ID that should never be reused
 
