@@ -242,7 +242,7 @@ class TestDirectionTrackStalenessLaw171(unittest.TestCase):
             {"line_index": 0, "vo_sentence": first,
              "direction": "DIRECT-TO-CAMERA", "note": "hook"},
         ]
-        fails = [n for n in failed_names(m) if "direction_note_track" in n]
+        fails = [n for n in failed_names(m) if "match the live VO text" in n]
         self.assertEqual(fails, [])
 
     def test_stale_entry_quoting_a_since_deleted_sentence_fails(self):
@@ -287,30 +287,29 @@ class TestDirectionTrackStalenessLaw171(unittest.TestCase):
         for n, ok in matches:
             self.assertEqual(ok, "SKIP", msg=f"expected SKIP while pending, got {ok} for {n}")
 
-    def test_new_vo_sentence_with_no_corresponding_entry_is_not_detected(self):
-        # Pins the check's real, documented boundary: it validates each
-        # EXISTING track entry against the current VO, but does NOT detect a
-        # VO sentence that has NO track entry at all -- the other half of
-        # Law #171's real motivating incident (a new sentence added with
-        # zero corresponding entry). This is a distinct, separately-scoped
-        # gap, verified here as real current behavior, not just described in
-        # a comment.
+    def test_untracked_sentence_is_now_caught_by_the_coverage_check(self):
+        # SUPERSEDED 2026-09-11. This test previously asserted the OPPOSITE --
+        # that an untracked VO sentence "still passes existing entries" -- and
+        # existed to document Law #171's deliberate scope limit: the staleness
+        # check alone could not detect a sentence with no track entry at all.
+        # That gap is now closed by the coverage check (see
+        # TestDirectionTrackCoverageLaw171). Rewritten rather than deleted, so
+        # the history of the limit and its closure both stay on the record.
+        #
+        # Staleness is still correctly silent here (the one entry present DOES
+        # match the live VO) -- it's coverage that now catches the gap. Both
+        # assertions below pin that division of labor explicitly.
         m = load_valid()
         first = self._first_sentence(m)
-        # Append an extra sentence to the VO with no track entry for it at
-        # all. Only asserting on direction_note_track-specific failures
-        # below, so this deliberately doesn't need to keep the rest of the
-        # manifest (word count band, CTA placement, etc.) internally valid.
-        m["packages"][0]["vo"] = (m["packages"][0]["vo"].rstrip()
-                                  + " This extra sentence has no track entry at all.")
         m["packages"][0]["direction_note_track"] = [
             {"line_index": 0, "vo_sentence": first,
              "direction": "DIRECT-TO-CAMERA", "note": "hook"},
         ]
-        fails = [n for n in failed_names(m) if "direction_note_track" in n]
-        self.assertEqual(fails, [],
-                         msg="this check does not detect untracked new sentences -- "
-                             "documented boundary, see class docstring")
+        names = [n for n in failed_names(m) if "direction_note_track" in n]
+        self.assertFalse(any("match the live VO text" in n for n in names),
+                         msg="staleness should stay silent -- the entry is current")
+        self.assertTrue(any("covers the entire VO" in n for n in names),
+                        msg="coverage should now catch the untracked remainder")
 
     def test_multiple_valid_entries_all_pass(self):
         m = load_valid()
@@ -319,7 +318,111 @@ class TestDirectionTrackStalenessLaw171(unittest.TestCase):
             {"line_index": i, "vo_sentence": s, "direction": "GLANCE-DOWN-AT-FOOTAGE", "note": ""}
             for i, s in enumerate(sentences[:3])
         ]
-        fails = [n for n in failed_names(m) if "direction_note_track" in n]
+        fails = [n for n in failed_names(m) if "match the live VO text" in n]
+        self.assertEqual(fails, [])
+
+
+class TestDirectionTrackCoverageLaw171(unittest.TestCase):
+    """Law #171's SECOND half (added 2026-09-11), closing the scope limit the
+    staleness check deliberately left open: a VO sentence ADDED with no
+    corresponding direction_note_track entry previously passed silently.
+
+    Both halves were present in the real motivating incident -- a padding trim
+    left entries quoting deleted sentences (caught by the staleness check), AND
+    a corrected-claim rewrite added a sentence with no entry (not caught until
+    now). The original entry explicitly declined to claim Law #171 was fully
+    mechanically enforced because of this.
+
+    The check deliberately does NOT split the VO into sentences -- that
+    ambiguity (abbreviations, ellipses, quoted dialogue) was the documented
+    reason this stayed open. It concatenates entries in line_index order and
+    requires the result to account for the whole VO, whitespace-normalized."""
+
+    def _full_track(self, m, pkg_index=0, base=1):
+        """Build a track that genuinely covers the whole VO, splitting only for
+        test-fixture construction -- the CHECK itself never splits."""
+        vo = m["packages"][pkg_index]["vo"]
+        parts = [s for s in vo.split(". ") if s.strip()]
+        sentences = [p if p.endswith(".") or i == len(parts) - 1 else p + "."
+                     for i, p in enumerate(parts)]
+        m["packages"][pkg_index]["direction_note_track"] = [
+            {"line_index": i + base, "vo_sentence": s,
+             "direction": "GLANCE-DOWN-AT-FOOTAGE", "note": ""}
+            for i, s in enumerate(sentences)
+        ]
+        return m
+
+    def test_full_coverage_passes(self):
+        m = self._full_track(load_valid())
+        fails = [n for n in failed_names(m) if "covers the entire VO" in n]
+        self.assertEqual(fails, [], msg=f"unexpected coverage failure: {fails}")
+
+    def test_untracked_appended_sentence_fails(self):
+        # THE REAL INCIDENT: a corrected claim adds a sentence, track not rebuilt.
+        m = self._full_track(load_valid())
+        m["packages"][0]["vo"] += " This sentence was added with no track entry."
+        fails = [n for n in failed_names(m) if "covers the entire VO" in n]
+        self.assertNotEqual(fails, [])
+
+    def test_dropped_middle_entry_fails(self):
+        # A track entry removed while the VO kept its sentence -- coverage gap
+        # in the middle, not just at the tail.
+        m = self._full_track(load_valid())
+        del m["packages"][0]["direction_note_track"][2]
+        fails = [n for n in failed_names(m) if "covers the entire VO" in n]
+        self.assertNotEqual(fails, [])
+
+    def test_zero_based_line_index_also_works(self):
+        # Real production manifests use 1-based line_index (confirmed against
+        # batch 4786c451), but the check sorts by value rather than assuming a
+        # base, so 0-based must work identically.
+        m = self._full_track(load_valid(), base=0)
+        fails = [n for n in failed_names(m) if "covers the entire VO" in n]
+        self.assertEqual(fails, [])
+
+    def test_out_of_order_entries_still_pass_when_complete(self):
+        # Entries stored out of order but carrying correct line_index values
+        # must still pass -- the check sorts before comparing.
+        m = self._full_track(load_valid())
+        m["packages"][0]["direction_note_track"].reverse()
+        fails = [n for n in failed_names(m) if "covers the entire VO" in n]
+        self.assertEqual(fails, [])
+
+    def test_whitespace_differences_do_not_cause_false_failure(self):
+        # Extra internal whitespace in an entry must not fail coverage --
+        # comparison is whitespace-normalized, since this is about missing
+        # CONTENT, not formatting.
+        m = self._full_track(load_valid())
+        t = m["packages"][0]["direction_note_track"]
+        t[0]["vo_sentence"] = t[0]["vo_sentence"].replace(" ", "  ", 1)
+        fails = [n for n in failed_names(m) if "covers the entire VO" in n]
+        self.assertEqual(fails, [])
+
+    def test_coverage_not_evaluated_when_entries_are_already_stale(self):
+        # If an entry is stale, the staleness check already fails and coverage
+        # would fail too for the same underlying reason -- reporting both is
+        # noise. Coverage is only evaluated once every entry is itself current.
+        m = self._full_track(load_valid())
+        m["packages"][0]["direction_note_track"][0]["vo_sentence"] = "Deleted sentence."
+        names = [n for n in failed_names(m) if "direction_note_track" in n]
+        self.assertTrue(any("match the live VO text" in n for n in names))
+        self.assertFalse(any("covers the entire VO" in n for n in names))
+
+    def test_skipped_while_vo_pending(self):
+        m = self._full_track(load_valid())
+        m["packages"][0]["vo_status"] = "pending"
+        r = v.validate_manifest(m)
+        cov = [(n, ok) for n, ok, _ in r.checks if "covers the entire VO" in n]
+        for n, ok in cov:
+            self.assertNotEqual(ok, "FAIL",
+                                msg=f"coverage must not FAIL while VO pending: {n}")
+
+    def test_no_track_at_all_is_not_a_coverage_failure(self):
+        # Law #171 never made the track mandatory -- only required it stay in
+        # sync when used. Absence is a different question for a different law.
+        m = load_valid()
+        m["packages"][0].pop("direction_note_track", None)
+        fails = [n for n in failed_names(m) if "covers the entire VO" in n]
         self.assertEqual(fails, [])
 
 

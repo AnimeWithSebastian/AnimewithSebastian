@@ -1905,6 +1905,66 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result, tree: str | None 
                   "all entries current" if not stale else "; ".join(stale[:5])
                   + ("" if len(stale) <= 5 else f" (+{len(stale) - 5} more)"))
 
+            # --- COVERAGE (Law #171, second half -- added 2026-09-11) ---
+            # The staleness check above catches an entry quoting a DELETED VO
+            # sentence. It does NOT catch the reverse: a VO sentence ADDED with
+            # no corresponding track entry at all. Both halves were present in
+            # Law #171's real motivating incident (a padding trim left stale
+            # entries; a corrected-claim rewrite added an untracked sentence),
+            # and only the first half was closed -- logged as a known scope
+            # limit at the time. This closes the second half.
+            #
+            # DESIGN NOTE -- why this does NOT split the VO into sentences:
+            # deciding what counts as a "sentence" is genuinely ambiguous
+            # (abbreviations, ellipses, quoted dialogue, decimals all break
+            # naive splitting on ". "), and that ambiguity was the documented
+            # reason this half stayed open. Instead: concatenate every entry's
+            # vo_sentence in line_index order and require the result to account
+            # for the entire VO, comparing on whitespace-normalized text. This
+            # is exact, parser-free, and sidesteps sentence-splitting entirely.
+            # A VO sentence with no entry leaves real text unaccounted for and
+            # fails; a fully-tracked VO passes regardless of how it punctuates.
+            #
+            # line_index is 1-based in real production manifests (confirmed
+            # against batch 4786c451's live run_manifest.json), but this sorts
+            # by the value itself rather than assuming any particular base, so
+            # 0-based or 1-based both work. Entries with a missing/non-integer
+            # line_index fall back to their array position, so a malformed
+            # index degrades to "assume authored order" rather than crashing.
+            def _norm_ws(s: str) -> str:
+                return " ".join(s.split())
+
+            if not stale:  # only meaningful once every entry is itself current
+                indexed = []
+                for i, entry in enumerate(track):
+                    if not isinstance(entry, dict):
+                        continue
+                    li = entry.get("line_index")
+                    key = li if isinstance(li, int) and not isinstance(li, bool) else i
+                    sentence = entry.get("vo_sentence")
+                    if isinstance(sentence, str) and sentence.strip():
+                        indexed.append((key, sentence))
+                indexed.sort(key=lambda pair: pair[0])
+                joined = _norm_ws(" ".join(s for _, s in indexed))
+                vo_norm = _norm_ws(vo)
+                covered = joined == vo_norm
+                detail = "track fully covers the VO"
+                if not covered:
+                    # Report the first real divergence point, so a failure says
+                    # WHERE coverage breaks rather than just that it does.
+                    cut = 0
+                    for a, b in zip(joined, vo_norm):
+                        if a != b:
+                            break
+                        cut += 1
+                    missing_tail = vo_norm[cut:cut + 120]
+                    detail = (f"direction_note_track does not account for the whole VO "
+                              f"(track covers {len(joined)} chars, VO is {len(vo_norm)}); "
+                              f"first unaccounted-for VO text at char {cut}: "
+                              f"{missing_tail!r}")
+                r.add(f"{p} direction_note_track covers the entire VO, no untracked "
+                      f"sentences (Law #171)", covered, detail)
+
     # --- CTA exact placement: a specific question immediately followed by "Leave your take." ---
     # F15 fix (2026-07-25): a non-string cta_line previously crashed _norm()'s
     # str-only .strip()/.lower() with an unhandled AttributeError.

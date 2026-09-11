@@ -4903,13 +4903,17 @@ elsewhere.
 *Suite state.* 713 tests green (482 in `validators/`, 231 in `tools/`), up from the
 690 baseline: +7 Law #170, +7 Law #173, +9 Law #171.
 
-**STILL OPEN — a real scope limit in the Law #171 check, logged as its own follow-up
-rather than folded into the resolution above.** The check validates each *existing*
-track entry against the current VO. It does **not** detect the reverse case: a VO
-sentence with no corresponding track entry at all. Both halves were present in Law
-#171's real motivating incident — a VO edit removed padding (leaving entries quoting
-deleted sentences, which this check now catches) *and* added a new sentence for a
-corrected claim (leaving that sentence untracked, which this check does not catch).
+~~**STILL OPEN — a real scope limit in the Law #171 check, logged as its own follow-up
+rather than folded into the resolution above.**~~ **CLOSED 2026-09-11** — see the
+COVERAGE CLOSURE block at the end of this entry. The text below is preserved verbatim
+because it accurately described the gap for the day it existed.
+
+The check validates each *existing* track entry against the current VO. It does
+**not** detect the reverse case: a VO sentence with no corresponding track entry at
+all. Both halves were present in Law #171's real motivating incident — a VO edit
+removed padding (leaving entries quoting deleted sentences, which this check now
+catches) *and* added a new sentence for a corrected claim (leaving that sentence
+untracked, which this check does not catch).
 
 This is verified current behavior, not a suspicion:
 `test_new_vo_sentence_with_no_corresponding_entry_is_not_detected` constructs exactly
@@ -4923,3 +4927,152 @@ splitting on `". "` breaks on abbreviations, ellipses, and quoted dialogue), and
 whether full per-sentence coverage is required at all or only for sentences carrying a
 direction. Both are design questions needing their own authorization, not an extension
 of tonight's port.
+
+**COVERAGE CLOSURE (2026-09-11).** The gap described immediately above is closed. Law
+#171's rebuild-on-edit requirement is now mechanically enforced in both directions.
+
+*How it was closed without resolving the sentence-splitting question.* The paragraph
+above names the real obstacle: deciding what counts as a VO "sentence" is ambiguous,
+and that ambiguity is why this half stayed open. The fix sidesteps the question
+entirely rather than answering it. It never splits the VO. Instead it concatenates
+every `direction_note_track` entry's `vo_sentence` in `line_index` order and requires
+the result to account for the whole VO, compared on whitespace-normalized text. A
+sentence added with no entry leaves real text unaccounted for and fails; a fully
+tracked VO passes regardless of how it punctuates. Exact, parser-free, and with no
+sentence-boundary heuristic anywhere in it.
+
+Sorting is by `line_index` value rather than any assumed base, so 0-based and 1-based
+both work; an entry with a missing or non-integer `line_index` falls back to its array
+position, degrading to "assume authored order" rather than crashing. Coverage is only
+evaluated once every entry is itself current — a stale entry already fails the
+staleness check, and failing both for one underlying cause is noise.
+
+*Tests.* `TestDirectionTrackCoverageLaw171` in `validators/test_validate_dual_package.py`
+— 9 tests: full coverage passing, an untracked appended sentence failing (the real
+incident), a dropped middle entry failing, 0-based and out-of-order `line_index` both
+passing, whitespace differences not causing false failures, coverage staying silent
+while staleness already fails, the pending-VO case, and no-track-at-all not being a
+coverage failure.
+
+The test that documented this gap was rewritten rather than deleted:
+`test_new_vo_sentence_with_no_corresponding_entry_is_not_detected` is now
+`test_untracked_sentence_is_now_caught_by_the_coverage_check`, and asserts the
+opposite of what it used to. The old name and its assertion are gone from the tree but
+recorded here and in the new test's own comment, so the limit and its closure both
+stay on the record.
+
+*What could NOT be verified on this side, stated plainly.* The upstream change was
+described as verified against real production data (batch `4786c451`) with no false
+positives. **That batch does not exist in this repo** — it is SEBLABHRIS-only, and the
+same is true of the `4786c451` provenance cited in this validator's own comments and
+in the resolution block above, which was carried across rather than confirmed here.
+Furthermore, **no real manifest in this repo carries a `direction_note_track` field at
+all**: all 20 `run_manifest.json` files under `cron_tracking/daily_combined/pending/`
+were run through the validator and produced zero coverage checks and zero staleness
+checks, because none of them has the field.
+
+So the production evidence available here is narrower than upstream's. It confirms the
+new check is inert and causes no regressions on every real manifest this repo holds,
+which is worth having, but it does NOT independently confirm the no-false-positive
+result on a manifest that actually uses the field. The first real package built with a
+direction track in this repo will be the first genuine exercise of this check here.
+That is not a reason to withhold the change — it fails safe when the field is absent,
+which is the only state this repo has — but it should not be recorded as more
+verified than it is.
+
+## F78: deliberately never assigned in this repo — reserved, do not fill
+
+**Status:** PERMANENTLY RESERVED. This is not an open finding, a placeholder for
+future work, or an entry that went missing. F78 is intentionally skipped, and the
+gap between F77 and F79 is correct.
+
+**Why.** As of 2026-09-11 this repo contains ten in-repo references to "F78" — in
+`cron_daily_runtime.txt`, in F77's own text above, in `tools/append_send_batch.py`
+(including two that print into the blocked-send error message and stderr), and in
+`tools/test_append_send_batch.py`. Every one of them refers to **SEBLABHRIS's F78**,
+which documents the `approval.json` schema mismatch where a `verdict` string was
+used in place of the required `fetched_content_supports_claim` boolean. None of them
+refer to anything in this file. That reference count is accurate as of the date
+above and will drift as the code changes; the reservation does not depend on it.
+
+Assigning F78 to a local finding would silently re-point all of those references at
+an unrelated entry. The two inside `append_send_batch.py`'s runtime output are the
+deciding case: they surface to an operator at the moment a send is blocked, and
+sending someone to the wrong entry mid-incident is worse than sending them to a dead
+end they can recognize as one.
+
+**This is expected, not a defect.** KNOWN_ISSUES numbering diverges between this repo
+and SEBLABHRIS because each tracks its own real incidents in the order it hits them.
+The two files are not meant to align, and no attempt should be made to align them.
+Cross-repo references will therefore sometimes point to numbers that do not exist
+locally — that is the correct outcome, and it is why those references were left
+dangling rather than backfilled.
+
+**Do not fill this gap.** Not with a local finding, not with a stub mirroring
+SEBLABHRIS's F78, not to make the numbering contiguous. The next available number in
+this repo is F80.
+
+## F79: KNOWN_ISSUES entries can sit at a stale "open" status indefinitely after their fix ships — now detectable by a tool, still not prevented
+
+**Discovered:** 2026-09-10, when F43 was found carrying **Status: OPEN — findings
+record only, no fix written** three and a half weeks after its fix had actually
+shipped. Found only because an assumption about this repo's state was deliberately
+re-verified instead of carried across from SEBLABHRIS.
+
+**Status:** OPEN as a process gap; DETECTION ADDED 2026-09-11.
+`tools/known_issues_status_audit.py` now exists and reports candidates. Nothing
+prevents the drift from recurring — the tool must be run, and nothing runs it
+automatically.
+
+**The underlying problem.** "Fix shipped" and "entry updated" are separate actions
+with nothing coupling them. A fix can land in code, in tests, and in the runtime text
+while the backlog entry describing it as unfixed stays untouched. Nothing in the
+commit path notices. This is the same stale-in-repo-documentation failure F42 names as
+this project's leading cause of wasted effort, but located in the backlog itself,
+which is worse: the backlog is the artifact consulted specifically to decide what
+still needs doing, so a wrong status there converts directly into wasted work.
+
+**What the tool does.** `tools/known_issues_status_audit.py` parses every `## F<n>`
+entry, extracts its `**Status:**` line, decides whether it reads as unresolved, and
+cross-references any code artifacts the entry names (file paths, `function_name()`
+references) against what actually exists in the tree. An entry that reads as open
+while naming code that is already present is surfaced as a REVIEW CANDIDATE.
+
+It is deliberately advisory. It always exits 0, blocks nothing, and its own output
+says a candidate is not proof of staleness — an entry can legitimately cite existing
+code while describing a real remaining gap in it, which is exactly what F42 and F43
+both did, before and after their fixes. It narrows where a human should look. It does
+not decide. `--verbose` additionally lists open entries naming no checkable code, for
+completeness, explicitly marked as entries the tool can say nothing about either way.
+
+Covered by `tools/test_known_issues_status_audit.py` — 13 tests.
+
+**First run against this repo, recorded as found.** 63 entries scanned, 16 reading as
+unresolved, 9 flagged as review candidates: F42, F43, F53, F68, F69, F70, F71, F72,
+F73. These are reported here as the tool found them and were NOT triaged, resolved, or
+cleaned up as part of adding the tool. Several are near-certainly correct as-is (F42
+names the validator while describing a genuine absence of EPISODE_MOMENT logic in it;
+the "Logged only" entries F68-F73 name code they analyzed rather than code they
+fixed). Working through them is its own task, needing its own authorization.
+
+**A real false positive in the tool, found on its first run and left unfixed.** F43
+was flagged despite having been resolved the previous day. The cause is purely
+formatting, not semantics: `_status_line()` captures from `**Status:**` up to the
+first blank line **or the first line beginning with `**`**. F43's status is written as
+struck text ending a line, with `**RESOLVED ...**` starting the next line — so the
+capture stops before the resolution marker and `_looks_open()` never sees it. F76 and
+F77 use the identical additive-strikethrough convention but happen to place
+`~~ **RESOLVED` mid-line, so their capture includes the marker and they are not
+flagged.
+
+Two semantically identical entries, different results, decided entirely by where a
+newline falls. This matters beyond one false positive: the strikethrough-plus-dated-
+resolution convention is the standing convention for this whole file, so the tool is
+systematically weakest against precisely the entries that were updated correctly.
+Left unfixed deliberately — the tool shipped in this form on both repos, and changing
+its parsing is a code change needing its own authorization and diff review.
+
+**Not claimed as solved.** Detection is not prevention. Nothing runs this tool on a
+schedule, in a hook, or at commit time, and no decision has been made that it should.
+The gap that produced F43's 25 stale days is still fully open; it is now merely
+visible on demand.
