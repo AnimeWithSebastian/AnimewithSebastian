@@ -374,17 +374,43 @@ class TestCandidateSelectionLogSchema(unittest.TestCase):
         schema_end = next(i for i in range(schema_start + 1, len(lines)) if lines[i].rstrip() == '"""')
 
         relevant_tokens = ("days_since_last_considered", "read_events")
+
+        # SECOND SANCTIONED READ SITE (added 2026-09-11, F71 selection-log
+        # completeness). The guarantee this test protects is "log reads are
+        # confined to auditable, named places," not "there is literally one
+        # line." When F71's completeness check was added it deliberately did
+        # NOT widen this into an open list of consuming functions -- instead
+        # validate_manifest() performs one read at the top-level boundary and
+        # passes the resulting events into the check as a parameter, so the
+        # check itself contains no log read at all. That read site is named
+        # explicitly here rather than matched loosely, so a third one still
+        # fails this test.
+        sanctioned_read_start = next(
+            (i for i, l in enumerate(lines)
+             if "selection-log completeness (F71 fix" in l), None)
+        sanctioned_read_end = None
+        if sanctioned_read_start is not None:
+            sanctioned_read_end = next(
+                (i for i in range(sanctioned_read_start, len(lines))
+                 if "_validate_selection_log_completeness(m, r, _selection_events)" in lines[i]),
+                sanctioned_read_start)
+
         for i, line in enumerate(lines):
             if not any(tok in line for tok in relevant_tokens):
                 continue
             in_function_body = start < i < end
             in_sanctioned_import_block = import_block_start <= i < import_block_end
             in_schema_docstring = schema_start <= i <= schema_end
+            in_f71_read_site = (
+                sanctioned_read_start is not None
+                and sanctioned_read_end is not None
+                and sanctioned_read_start <= i <= sanctioned_read_end)
             self.assertTrue(
-                in_function_body or in_sanctioned_import_block or in_schema_docstring,
+                in_function_body or in_sanctioned_import_block or in_schema_docstring
+                or in_f71_read_site,
                 msg=f"{path}:{i + 1} calls days_since_last_considered/read_events "
                     f"outside the sanctioned import block, _validate_minimum_frequency_floor "
-                    f"body, and SCHEMA docstring: {line.strip()!r}",
+                    f"body, SCHEMA docstring, and the F71 completeness read site: {line.strip()!r}",
             )
 
 

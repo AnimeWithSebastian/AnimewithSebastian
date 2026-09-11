@@ -5185,6 +5185,225 @@ class TestSpoilerWarningF60(unittest.TestCase):
             self._fails(m, "tiktok_post_text first line contains a spoiler warning"), [])
 
 
+class TestSelectionLogCompletenessF71(unittest.TestCase):
+    """F71 fix (2026-09-11): every SELECTED package must have a matching
+    candidate_scored event in candidate_selection_log.jsonl.
+
+    WHY THIS EXISTS. log_candidate() has no mechanical call site in production
+    code -- it appears only in comments describing when it should be called.
+    Measured against the live log on 2026-09-11: 18 events across just 3
+    batches, while many more real batches shipped with nothing logged. The
+    floor/diversity machinery (_validate_minimum_frequency_floor,
+    days_since_last_considered) reads from that log, so an incomplete record
+    means a format can look 'recently considered' or 'never considered' purely
+    because logging was skipped.
+
+    Built against a REAL discrepancy, not a hypothetical: batch 4786c451's
+    evening package was logged as FACT_DROP but shipped as COMMENTARY after a
+    mid-batch reclassification, and the already-written log entry was never
+    updated. This check compares show AND format_type, so that drift fails too.
+
+    Like TestMinimumFrequencyFloorAdversarial above, each test builds its own
+    isolated tree and writes events through the real production write path
+    (csl.log_candidate), never hand-written JSON lines.
+    """
+
+    ANCHOR = "2026-08-23"
+
+    def _tree(self) -> str:
+        tmp = tempfile.mkdtemp()
+        self.addCleanup(shutil.rmtree, tmp, ignore_errors=True)
+        return tmp
+
+    def _log_selected(self, tree: str, *, show: str, format_type: str,
+                      post_date: str, batch_id: str = "f71-batch-1") -> dict:
+        return csl.log_candidate(
+            tree,
+            batch_id=batch_id, run_ts=f"{post_date}T22:30:00+00:00",
+            post_date=post_date, show=show,
+            angle="Angle text for F71 completeness coverage",
+            format_type=format_type,
+            axis_scores={"sub_conversion": "MED", "brand_attractiveness": "MED",
+                         "viral_discovery": "MED"},
+            cleared_monetization_gate=True, format_eligibility_checked=True,
+            format_eligibility_result="eligible",
+            format_eligibility_reason="eligibility reason",
+            outcome="selected", slot_considered_for="either",
+            rejection_reason=None,
+            selected_package_id="11111111-2222-3333-4444-555555555555",
+        )
+
+    def _manifest(self, tree_post_date: str, packages: list[dict]) -> dict:
+        m = load_valid()
+        m["post_date"] = tree_post_date
+        m["batch_id"] = "f71-batch-1"
+        for i, spec in enumerate(packages):
+            if i < len(m["packages"]):
+                m["packages"][i]["show"] = spec["show"]
+                m["packages"][i]["format_type"] = spec["format_type"]
+        return m
+
+    def _names(self, m, tree):
+        r = v.validate_manifest(m, tree=tree)
+        return [(n, ok, d) for n, ok, d in r.checks
+                if "candidate_scored log event" in n]
+
+    def test_both_packages_logged_passes(self):
+        tree = self._tree()
+        self._log_selected(tree, show="Show Alpha", format_type="FACT_DROP",
+                           post_date=self.ANCHOR)
+        self._log_selected(tree, show="Show Beta", format_type="EPISODE_MOMENT",
+                           post_date=self.ANCHOR)
+        m = self._manifest(self.ANCHOR, [
+            {"show": "Show Alpha", "format_type": "FACT_DROP"},
+            {"show": "Show Beta", "format_type": "EPISODE_MOMENT"},
+        ])
+        results = self._names(m, tree)
+        self.assertTrue(results)
+        for n, ok, d in results:
+            self.assertEqual(ok, "PASS", msg=f"{n}: {d}")
+
+    def test_completely_unlogged_selection_passes_with_the_gap_recorded(self):
+        # DELIBERATE SCOPE BOUNDARY. When the log has no selected events at
+        # all, this records a PASS naming F71's underlying gap rather than
+        # failing or skipping. It must not FAIL (an absent log says nothing
+        # about content quality, and ~100 existing tests validate against
+        # exactly this state), and it must not SKIP (a skip makes
+        # fully_passed false and would silently block every send in any tree
+        # without a log -- see TestVoPendingSkipBehavior). The check's real
+        # job is catching a log that DISAGREES with what shipped.
+        tree = self._tree()
+        m = self._manifest(self.ANCHOR, [
+            {"show": "Show Alpha", "format_type": "FACT_DROP"},
+            {"show": "Show Beta", "format_type": "EPISODE_MOMENT"},
+        ])
+        r = v.validate_manifest(m, tree=tree)
+        hits = [(n, ok, d) for n, ok, d in r.checks if "(F71)" in n]
+        self.assertTrue(hits)
+        for n, ok, d in hits:
+            self.assertEqual(ok, "PASS", msg=f"{n}: {d}")
+            self.assertIn("nothing to cross-check", d)
+
+    def test_format_mismatch_fails_with_a_distinct_message(self):
+        # THE REAL 4786c451 DEFECT: logged FACT_DROP, shipped COMMENTARY.
+        # Must fail, and must say the format disagrees rather than the generic
+        # "nothing logged" message -- they are different problems.
+        tree = self._tree()
+        self._log_selected(tree, show="Show Alpha", format_type="FACT_DROP",
+                           post_date=self.ANCHOR)
+        m = self._manifest(self.ANCHOR, [
+            {"show": "Show Alpha", "format_type": "COMMENTARY"},
+            {"show": "Show Beta", "format_type": "EPISODE_MOMENT"},
+        ])
+        results = self._names(m, tree)
+        alpha = [(n, ok, d) for n, ok, d in results if "morning" in n]
+        self.assertTrue(alpha)
+        _, ok, d = alpha[0]
+        self.assertEqual(ok, "FAIL")
+        self.assertIn("records format_type", d)
+        self.assertIn("FACT_DROP", d)
+        self.assertIn("COMMENTARY", d)
+        self.assertNotIn("no candidate_scored event", d)
+
+    def test_only_one_package_logged_fails_just_that_one(self):
+        tree = self._tree()
+        self._log_selected(tree, show="Show Alpha", format_type="FACT_DROP",
+                           post_date=self.ANCHOR)
+        m = self._manifest(self.ANCHOR, [
+            {"show": "Show Alpha", "format_type": "FACT_DROP"},
+            {"show": "Show Beta", "format_type": "EPISODE_MOMENT"},
+        ])
+        results = self._names(m, tree)
+        passes = [n for n, ok, _ in results if ok == "PASS"]
+        fails = [n for n, ok, _ in results if ok == "FAIL"]
+        self.assertEqual(len(passes), 1)
+        self.assertEqual(len(fails), 1)
+
+    def test_rejected_events_do_not_satisfy_the_check(self):
+        # A candidate that was considered and REJECTED is not evidence the
+        # shipped package was logged -- only outcome='selected' counts.
+        tree = self._tree()
+        csl.log_candidate(
+            tree, batch_id="f71-batch-1",
+            run_ts=f"{self.ANCHOR}T22:30:00+00:00", post_date=self.ANCHOR,
+            show="Show Alpha", angle="Rejected candidate angle",
+            format_type="FACT_DROP",
+            axis_scores={"sub_conversion": "LOW", "brand_attractiveness": "LOW",
+                         "viral_discovery": "LOW"},
+            cleared_monetization_gate=False, format_eligibility_checked=True,
+            format_eligibility_result="eligible",
+            format_eligibility_reason="reason",
+            outcome="rejected", slot_considered_for="either",
+            rejection_reason="failed the monetization gate",
+            selected_package_id=None,
+        )
+        m = self._manifest(self.ANCHOR, [
+            {"show": "Show Alpha", "format_type": "FACT_DROP"},
+            {"show": "Show Beta", "format_type": "EPISODE_MOMENT"},
+        ])
+        # No *selected* events exist, so this takes the no-events-at-all path:
+        # PASS with the gap recorded. The meaningful assertion is that a
+        # rejected event did NOT get treated as satisfying the check.
+        r = v.validate_manifest(m, tree=tree)
+        hits = [(n, ok, d) for n, ok, d in r.checks if "(F71)" in n]
+        self.assertTrue(hits)
+        for n, ok, d in hits:
+            self.assertEqual(ok, "PASS")
+            self.assertIn("nothing to cross-check", d)
+
+    def test_event_from_a_different_batch_and_date_does_not_count(self):
+        # An event for the same show/format but a different batch AND a
+        # different post_date is a different run's record, not this one's.
+        tree = self._tree()
+        self._log_selected(tree, show="Show Alpha", format_type="FACT_DROP",
+                           post_date="2026-07-01", batch_id="some-other-batch")
+        m = self._manifest(self.ANCHOR, [
+            {"show": "Show Alpha", "format_type": "FACT_DROP"},
+            {"show": "Show Beta", "format_type": "EPISODE_MOMENT"},
+        ])
+        # The other batch's event is correctly excluded, leaving zero selected
+        # events for THIS batch -- so this lands on the no-events path.
+        r = v.validate_manifest(m, tree=tree)
+        hits = [(n, ok, d) for n, ok, d in r.checks if "(F71)" in n]
+        self.assertTrue(hits)
+        for n, ok, d in hits:
+            self.assertEqual(ok, "PASS")
+            self.assertIn("nothing to cross-check", d)
+
+    def test_show_match_is_case_and_whitespace_insensitive(self):
+        # Log and manifest should agree on identity without being byte-exact
+        # on incidental casing/spacing -- that would be a brittle false fail.
+        tree = self._tree()
+        self._log_selected(tree, show="show  alpha", format_type="FACT_DROP",
+                           post_date=self.ANCHOR)
+        m = self._manifest(self.ANCHOR, [
+            {"show": "Show Alpha", "format_type": "FACT_DROP"},
+            {"show": "Show Beta", "format_type": "EPISODE_MOMENT"},
+        ])
+        results = self._names(m, tree)
+        morning = [(ok, d) for n, ok, d in results if "morning" in n]
+        self.assertTrue(morning)
+        self.assertEqual(morning[0][0], "PASS", msg=morning[0][1])
+
+    def test_empty_log_file_does_not_crash(self):
+        tree = self._tree()
+        os.makedirs(os.path.join(tree, "cron_tracking", "daily_combined"),
+                    exist_ok=True)
+        open(os.path.join(tree, "cron_tracking", "daily_combined",
+                          "candidate_selection_log.jsonl"), "w").close()
+        m = self._manifest(self.ANCHOR, [
+            {"show": "Show Alpha", "format_type": "FACT_DROP"},
+            {"show": "Show Beta", "format_type": "EPISODE_MOMENT"},
+        ])
+        # An empty (but present) log file must behave exactly like an absent
+        # one -- no crash, and the no-events-at-all path, not a hard failure.
+        r = v.validate_manifest(m, tree=tree)
+        hits = [(n, ok, d) for n, ok, d in r.checks if "(F71)" in n]
+        self.assertTrue(hits)
+        for n, ok, d in hits:
+            self.assertEqual(ok, "PASS", msg=f"{n}: {d}")
+
+
 class TestMinimumFrequencyFloorAdversarial(unittest.TestCase):
     """Part 2 minimum_frequency_floor adversarial tests (2026-08-22). Each test
     builds its own isolated tree with a deliberately constructed

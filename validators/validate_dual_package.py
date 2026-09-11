@@ -2601,6 +2601,165 @@ def _validate_spoiler_warning(pkg: dict[str, Any], p: str, r: Result) -> None:
           "spoiler" in first_line.lower(), f"tiktok_post_text_first_line={first_line!r}")
 
 
+def _validate_selection_log_completeness(m: dict[str, Any], r: Result,
+                                         events: list[dict[str, Any]] | None) -> None:
+    """F71 fix (2026-09-11): require every SELECTED package to have a matching
+    candidate_scored event in candidate_selection_log.jsonl.
+
+    THE GAP THIS CLOSES. log_candidate() has no mechanical call site anywhere in
+    production code -- confirmed by grep, it appears only in comments describing
+    when it *should* be called. The runtime instructs STEP 3 to log candidates in
+    prose only. The real consequence, as measured in THIS repo on 2026-09-11 (a
+    point-in-time reading, not a fixed property -- the log grows, so treat any
+    number here as "what was true on that date" rather than a current fact):
+    13 events across just 2 batches, post_dates 2026-08-23 and 2026-08-26, of
+    which only 2 are outcome='selected'. Meanwhile 20 real manifests sit under
+    cron_tracking/daily_combined/pending/ spanning 2026-08-14 to 2026-09-07,
+    nearly all of them with nothing logged at all. The log is therefore neither
+    complete nor trustworthy as a record of what was actually considered.
+
+    WHY THAT MATTERS BEYOND BOOKKEEPING. _validate_minimum_frequency_floor()
+    above already cross-checks the log for the five floor formats, and the
+    force-consideration decision is driven off the same log. Both read a record
+    that silently misses most runs, so a format can look "recently considered"
+    (suppressing a floor force) or "never considered" purely because logging was
+    skipped -- not because of anything that really happened during selection.
+    Format-diversity enforcement built on an incomplete log is enforcement in
+    name only.
+
+    A SECOND CLASS OF DEFECT THIS ALSO CATCHES: format drift between the log and
+    what shipped. A package can be logged under one format_type, then reclassified
+    mid-batch (two packages sharing a format are rejected as duplicates, so one
+    gets changed), with the already-written log entry never updated. The entry
+    then describes a selection that did not happen. This check compares show AND
+    format_type, not just presence, so that drift fails rather than passing as a
+    match. No instance of this has been found in THIS repo's log; a concrete
+    occurrence was reported in the parallel repo (logged FACT_DROP, shipped
+    COMMENTARY) -- recorded here per that report, since this side has no
+    visibility into that tree and cannot confirm it independently.
+
+    SCOPE, DELIBERATELY NARROW. This requires a matching event only for packages
+    the manifest itself reports as selected -- it does NOT require rejected
+    candidates to be logged, does not police how many were considered, and does
+    not attempt to judge whether selection explored enough format types (F71's
+    other half, a genuine design question that stays open). It only insists the
+    log honestly reflect what shipped.
+
+    WHY events IS A PARAMETER RATHER THAN A LOG READ. tools/test_candidate_selection_log.py
+    enforces a real architectural invariant: exactly ONE site in this file may
+    read the selection log, so a future change to the log's shape or semantics
+    has a single auditable consumer. That invariant was not widened to admit
+    this function -- widening converts a hard guarantee into a list that grows,
+    and the reason the constraint exists is the same reason this check is
+    needed at all (unaudited log reads are how the floor machinery came to
+    depend silently on an incomplete record). Instead the caller performs the
+    single read and hands the result here: I/O at one boundary, pure logic
+    downstream. A None value means the log was unavailable or unreadable.
+    """
+    # This function never reads the log itself -- events are supplied by the
+    # caller, which performs the single sanctioned read. That keeps
+    # tools/test_candidate_selection_log.py's one-read-site invariant intact
+    # (see this function's docstring for why that invariant is worth
+    # preserving rather than widening) and makes this logic directly testable
+    # by passing events in, with no tree on disk.
+    if events is None:
+        r.add("selection log completeness (F71): selected packages logged", True,
+              "candidate_selection_log unavailable or unreadable -- nothing to "
+              "cross-check; recorded rather than blocking, since log availability "
+              "says nothing about this package's content")
+        return
+
+    post_date = m.get("post_date")
+    batch_id = m.get("batch_id")
+
+    selected = [
+        e for e in events
+        if isinstance(e, dict)
+        and e.get("outcome") == "selected"
+        and (e.get("batch_id") == batch_id or e.get("post_date") == post_date)
+    ]
+
+    # SCOPE DECISION -- when the log has NO selected events for this batch at
+    # all, record a PASS with an explanatory detail rather than a FAIL or a
+    # SKIP. Three reasons, all real:
+    #
+    # 1. Not every environment writes this log. The shared test fixture, any
+    #    isolated tree, and any fresh checkout legitimately have no log -- and
+    #    ~100 existing tests validate real manifests against exactly that
+    #    state. Failing closed there would fail every one of them for a
+    #    bookkeeping absence that says nothing about the package's quality.
+    # 2. It must not be a SKIP either. A SKIP makes Result.fully_passed false,
+    #    which blocks a send (see TestVoPendingSkipBehavior, which asserts a
+    #    vo_status="complete" manifest produces ZERO skips). A permanent skip
+    #    here would silently block every send in any tree without a log --
+    #    caught by that existing test rather than in production, which is the
+    #    test doing exactly its job.
+    # 3. The failure mode this check exists for is a log that DISAGREES with
+    #    what shipped (an entry naming one format_type while the package
+    #    shipped as another, after a mid-batch reclassification the log never
+    #    caught up with) or a partially-written log. A wholly absent log is a
+    #    different, already-known condition -- F71's own "log_candidate() has
+    #    no call site" finding -- and blocking a send over it would punish the
+    #    package for a pipeline gap upstream of it.
+    #
+    # So: no events at all -> PASS, with the gap named in the detail so it is
+    # visible in the report rather than silent. Some events present -> every
+    # selected package must match one, because a partial or drifted log is the
+    # shape that actively misleads the floor/diversity machinery.
+    if not selected:
+        r.add("selection log completeness (F71): selected packages logged", True,
+              f"no outcome='selected' events in candidate_selection_log.jsonl for "
+              f"batch_id={batch_id!r} / post_date={post_date!r} -- nothing to "
+              f"cross-check. NOT a defect in this package: this is F71's underlying "
+              f"gap (log_candidate() has no mechanical call site). Recorded rather "
+              f"than blocking, since an absent log says nothing about content quality")
+        return
+
+    for i, pkg in enumerate(m.get("packages", []) or []):
+        slot = pkg.get("slot") or f"package[{i}]"
+        p = f"[{slot}]"
+        show = _norm(_str(pkg, "show"))
+        fmt = _str(pkg, "format_type")
+        name = (f"{p} selected package has a matching candidate_scored log "
+                f"event (F71)")
+
+        match = next(
+            (e for e in selected
+             if _norm(str(e.get("show", ""))) == show
+             and str(e.get("format_type", "")) == fmt),
+            None)
+        if match is not None:
+            r.add(name, True, "matching event found")
+            continue
+
+        # No exact match. Distinguish "nothing logged at all for this show" from
+        # "logged, but the format disagrees" -- they are different problems and
+        # the message should say which one this is.
+        show_only = next(
+            (e for e in selected if _norm(str(e.get("show", ""))) == show), None)
+        if show_only is not None:
+            # NOTE: deliberately cites no external "precedent" incident. This string
+            # is RUNTIME OUTPUT -- it is what an operator reads at the moment a send
+            # is blocked. Naming a specific batch from another repo's history would
+            # point them at something that does not exist here, mid-incident. The
+            # live values interpolated below are strictly more useful than any
+            # precedent, because they describe the mismatch actually in front of them.
+            detail = (f"a candidate_scored event exists for {pkg.get('show')!r} in this "
+                      f"batch/post_date, but it records format_type="
+                      f"{show_only.get('format_type')!r} while this package shipped as "
+                      f"{fmt!r} -- the log entry was not updated after the format "
+                      f"changed")
+        else:
+            detail = (f"no candidate_scored event with outcome='selected' found for "
+                      f"show={pkg.get('show')!r} format_type={fmt!r} at batch_id="
+                      f"{batch_id!r} / post_date={post_date!r}. STEP 3 must call "
+                      f"log_candidate() for every selected idea -- an unlogged "
+                      f"selection makes the format-diversity and minimum-frequency "
+                      f"machinery read from an incomplete record (F71)")
+
+        r.add(name, False, detail)
+
+
 def _validate_minimum_frequency_floor(m: dict[str, Any], r: Result, post_date: datetime.date | None,
                                        tree: str | None = None) -> None:
     """Minimum-frequency floor (2026-08-22, Part 2 design). Independently
@@ -2886,6 +3045,20 @@ def validate_manifest(m: dict[str, Any], tree: str | None = None) -> Result:
     # shape/presence-only check -- see _validate_minimum_frequency_floor's
     # docstring for exactly what this does and does not fail on.
     _validate_minimum_frequency_floor(m, r, post_date, tree=tree)
+
+    # --- selection-log completeness (F71 fix, 2026-09-11): every SELECTED
+    # package must have a matching candidate_scored event. The single
+    # sanctioned log read happens HERE, not inside the check, so
+    # tools/test_candidate_selection_log.py's one-read-site invariant stays
+    # intact -- see _validate_selection_log_completeness's docstring for why
+    # that invariant was preserved rather than widened.
+    _selection_events: list[dict[str, Any]] | None = None
+    if read_events is not None:
+        try:
+            _selection_events = read_events(tree if tree is not None else _REPO_ROOT)
+        except Exception:  # noqa: BLE001 -- unreadable log must not crash the run
+            _selection_events = None
+    _validate_selection_log_completeness(m, r, _selection_events)
 
     # --- package count: normally exactly two, OR exactly one with an explicit,
     # non-empty M5 quality-over-quota justification (F_new fix, 2026-07-26). A bare

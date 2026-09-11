@@ -4357,8 +4357,97 @@ zero `candidate_selection_log.jsonl` (`candidate_scored`) events by the
 time the manifest is finalized, or a small wrapper/hook that makes the
 write structurally required rather than prose-requested.
 
-**Status:** Logged only. No code, runtime, or law-file changes made.
+**Status:** ~~Logged only. No code, runtime, or law-file changes made.~~
+**ENFORCEMENT BUILT 2026-09-11** — this addendum's finding (log_candidate() has
+no mechanical call site, so the log silently under-records) is now mechanically
+detected. See the ENFORCEMENT HALF block at the end of this entry. **F71's main
+finding above — that selection tries exactly ONE format per show before falling
+through — remains fully OPEN and is NOT addressed by this work.**
 
+
+**ENFORCEMENT HALF BUILT (2026-09-11). F71 IS NOT RESOLVED.**
+
+*What was built.* `_validate_selection_log_completeness()` in
+`validators/validate_dual_package.py`: every package the manifest reports as
+selected must have a matching `candidate_scored` event with `outcome='selected'`
+in `candidate_selection_log.jsonl`. It compares **show and format_type**, not
+merely presence, so an entry that disagrees with what shipped fails rather than
+counting as a match. Covered by `TestSelectionLogCompletenessF71` — 8 tests.
+Suite is 743 green, up from 735.
+
+*Behavior, chosen after two rejected designs.* An absent or unreadable log — and a
+log with no selected events for this batch — both PASS, with the gap named in the
+check's detail so it is visible in the report rather than silent. Only a **partial
+or drifted** log FAILS, because that is the shape that actively misleads the
+floor and diversity machinery. Both earlier designs were caught by existing
+tests rather than by review: failing closed on an absent log would have broken
+~100 existing tests and any fresh checkout, and using a SKIP would have made
+`Result.fully_passed` false and **silently blocked every send** — caught by
+`TestVoPendingSkipBehavior`, which asserts a `vo_status="complete"` manifest
+produces zero skips.
+
+*The architectural constraint, preserved rather than widened.*
+`tools/test_candidate_selection_log.py` enforces that log reads live only in
+named, auditable places. Rather than add this function to a growing list of
+sanctioned consumers, `validate_manifest()` performs ONE read at the top-level
+boundary and passes the events in as a parameter; the check contains no log read
+at all. Re-verified adversarially in this repo, not taken on report: an
+unsanctioned third `read_events()` call was injected, the invariant test FAILED
+naming the exact file and line, the file was restored byte-identical, and the
+test returned to passing. The exception was narrowed; the guarantee holds.
+
+**What this repo's log actually contains (point-in-time, 2026-09-11).** 13 events
+across 2 batches — `af6c90bf` and `9a7d935f` — post_dates 2026-08-23 and
+2026-08-26 only; 11 `rejected`, 2 `selected`. Meanwhile 20 real manifests sit
+under `cron_tracking/daily_combined/pending/` spanning 2026-08-14 to 2026-09-07.
+Running the new check across all 20: **19 produced the PASS-with-gap-named result
+(nothing logged at all for that batch), and exactly 1 found a real match.** The
+under-recording this addendum identified is confirmed, at scale, against live
+data.
+
+**A distinction worth writing down rather than leaving to be rediscovered.** The
+one match — manifest `7b36ad7c` (single package, morning, Kingdom Hearts /
+FACT_DROP) — matched a log event belonging to a **different batch**, `af6c90bf`,
+because both carry `post_date=2026-08-23`. That is the check's
+`batch_id == ... or post_date == ...` clause working as designed: a rebuild keeps
+the post_date and takes a new batch_id, and the original entry still describes
+the same selection. The verdict here is correct. But it means the check verifies
+*"some batch that day logged this show and format,"* not *"this batch's own
+selection was logged."* Anyone reading a PASS should read it with that scope.
+
+**A note on how the false facts got here, because it is the same class of problem
+this file keeps finding.** This port arrived carrying measurements written as
+bare, unattributed assertions — "18 events across just 3 batches (post_dates
+2026-08-23, 2026-08-26, 2026-09-10)" and a specific FACT_DROP/COMMENTARY drift
+incident — none of which are true here. There is no 2026-09-10 event in this
+repo's log and no batch `4786c451` anywhere in this tree. The statements were
+accurate where they were written and became false in transit, and **nothing
+flagged them**, because a measurement stated without a date or a source is
+silently portable: it reads as a property of the system rather than as a reading
+someone took, in one tree, on one day.
+
+Four were corrected on apply: the measurement is now dated and local; the drift
+defect is described as a *class* with the concrete instance attributed to the
+parallel repo per report rather than asserted locally; and the
+`(real precedent: ...)` clause was **dropped entirely from the check's runtime
+failure detail**, on the same reasoning that produced F78's tombstone — that
+string is what an operator reads at the moment a send is blocked, and pointing
+them at an incident that does not exist in this repo is worse than saying
+nothing. The live values the message already interpolates describe the mismatch
+in front of them, which is strictly more useful than any precedent.
+
+This is F79's stale-status problem in a different medium. F79 covers backlog
+entries whose status outlives the fix; this is code comments whose facts outlive
+the tree they were measured in. Same root shape: a claim recorded without the
+context needed to notice when it stops being true.
+
+**Still open, explicitly.** F71's main finding — that selection tries exactly one
+format type per show before falling through to a different show or to manga — is
+untouched by this work. Whether selection explores enough of the 17 `FORMAT_TYPES`
+before declaring a show exhausted is a design question, not a validation gap, and
+it needs its own decision. This entry must not be recorded as resolved. Nor does
+this check give `log_candidate()` a call site: it detects the absence, it does not
+fill it. The log will keep under-recording until something actually writes to it.
 
 ## F74: The `daily_combined` scheduled task's own embedded dispatch text restates the RESCINDED Law #141 (fixed 30s edit, mandatory colon-handoff loop) as if still current — same failure class as F68
 
