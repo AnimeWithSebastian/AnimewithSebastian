@@ -5191,17 +5191,25 @@ class TestSelectionLogCompletenessF71(unittest.TestCase):
 
     WHY THIS EXISTS. log_candidate() has no mechanical call site in production
     code -- it appears only in comments describing when it should be called.
-    Measured against the live log on 2026-09-11: 18 events across just 3
-    batches, while many more real batches shipped with nothing logged. The
-    floor/diversity machinery (_validate_minimum_frequency_floor,
-    days_since_last_considered) reads from that log, so an incomplete record
-    means a format can look 'recently considered' or 'never considered' purely
-    because logging was skipped.
+    Measured in THIS repo on 2026-09-11 (a point-in-time reading, not a fixed
+    property -- the log grows): 13 events across just 2 batches, post_dates
+    2026-08-23 and 2026-08-26, only 2 of them outcome='selected', while 20 real
+    manifests spanning 2026-08-14 to 2026-09-07 sit under
+    cron_tracking/daily_combined/pending/ with nearly all of them logging
+    nothing at all. The floor/diversity machinery
+    (_validate_minimum_frequency_floor, days_since_last_considered) reads from
+    that log, so an incomplete record means a format can look 'recently
+    considered' or 'never considered' purely because logging was skipped.
 
-    Built against a REAL discrepancy, not a hypothetical: batch 4786c451's
-    evening package was logged as FACT_DROP but shipped as COMMENTARY after a
-    mid-batch reclassification, and the already-written log entry was never
-    updated. This check compares show AND format_type, so that drift fails too.
+    It also covers a second class of defect: format drift between the log and
+    what shipped. A package can be logged under one format_type, then
+    reclassified mid-batch (two packages sharing a format are rejected as
+    duplicates, so one gets changed), leaving the already-written log entry
+    describing a selection that did not happen. This check compares show AND
+    format_type, so that drift fails too. No instance has been found in THIS
+    repo's log; a concrete occurrence (logged FACT_DROP, shipped COMMENTARY)
+    was reported in the parallel repo -- noted per that report, since this side
+    cannot confirm it independently.
 
     Like TestMinimumFrequencyFloorAdversarial above, each test builds its own
     isolated tree and writes events through the real production write path
@@ -5285,9 +5293,10 @@ class TestSelectionLogCompletenessF71(unittest.TestCase):
             self.assertIn("nothing to cross-check", d)
 
     def test_format_mismatch_fails_with_a_distinct_message(self):
-        # THE REAL 4786c451 DEFECT: logged FACT_DROP, shipped COMMENTARY.
-        # Must fail, and must say the format disagrees rather than the generic
-        # "nothing logged" message -- they are different problems.
+        # The format-drift case: a package logged under one format_type and
+        # shipped as another. Must fail, and must say the format disagrees
+        # rather than the generic "nothing logged" message -- they are
+        # different problems and the message should say which one this is.
         tree = self._tree()
         self._log_selected(tree, show="Show Alpha", format_type="FACT_DROP",
                            post_date=self.ANCHOR)
