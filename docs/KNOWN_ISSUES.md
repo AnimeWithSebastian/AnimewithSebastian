@@ -5099,7 +5099,7 @@ dangling rather than backfilled.
 
 **Do not fill this gap.** Not with a local finding, not with a stub mirroring
 SEBLABHRIS's F78, not to make the numbering contiguous. The next available number in
-this repo is F83.
+this repo is F84.
 
 ## F79: KNOWN_ISSUES entries can sit at a stale "open" status indefinitely after their fix ships — now detectable by a tool, still not prevented
 
@@ -5354,8 +5354,26 @@ the time and should have blocked the second send.
 and 2026-07-04, one day apart, both explicitly targeting the identical
 myth ("everyone measures 2026 vs. 1995 film... two different shows
 wearing the same name" / "Stop Comparing It to the 1995 Movie"). This
-sits inside the newly-adopted 14-day same-myth WRONG_TAKE blackout (see
-the FORMAT BLUEPRINTS block in `cron_daily_runtime.txt`, second batch).
+sits inside the 14-day same-myth WRONG_TAKE blackout **as documented in
+prose** (see the FORMAT BLUEPRINTS block in `cron_daily_runtime.txt`,
+second batch).
+
+**CORRECTION, added 2026-09-11 (see F83): the WRONG_TAKE 14-day window
+named in the paragraph above was never wired into
+`tools/conflict_check.py`'s `FORMAT_BLACKOUT_DAYS` dict.** That dict
+holds exactly six entries as of this writing (`SEASON_RATING`: 7,
+`SEASON_PREVIEW`: 7, `MANGA_VS_ANIME`: 14, `WATCH_RANK`: 14,
+`WORTH_WATCHING`: 7, `EPISODE_MOMENT`: 0) — `WRONG_TAKE` is absent. So
+the Ghost in the Shell repeat above was never actually eligible to be
+caught by a date-window blackout check in code; it could only have been
+caught by the angle-similarity/shared-entity signal (precedence 3),
+which is a different, weaker mechanism than a hard date-window block.
+This does not change the finding that the repeat happened and looks like
+a real myth restated — it changes WHY nothing blocked it: not a missed
+enforcement of a real rule, but a rule that was never enforced in the
+first place. See F83 for the full writeup; this paragraph is corrected
+in place rather than rewritten so the original claim and its correction
+are both visible.
 
 **Genuinely ambiguous companion case, same category — Black Torch
 (WRONG_TAKE).** Two real sends, 2026-07-02 and 2026-07-08 (6-day gap):
@@ -5366,17 +5384,25 @@ underlying myth restated, or as two distinct angles on the same
 premise. Recorded here as ambiguous rather than resolved either way —
 forcing a classification would be arbitrary given the evidence.
 
-**Both principal cases (Link Click, Ghost in the Shell) are apparent
-ENFORCEMENT MISSES, NOT evidence either blackout rule is wrong.**
-Stated explicitly because the same second batch also found real cases
-(see F81's UPDATE, and the COMMENTARY/FACT_DROP/VILLAIN_DEFENSE/
-ORIGIN_STORY blueprints in `cron_daily_runtime.txt`) where real history
-showed a PROPOSED rule was actually wrong and needed correction. This
-entry is the opposite finding: EXISTING, independently-verified-correct
-rules that specific real sends appear to have slipped past. Do not cite
-this entry as grounds to relax, soften, or remove the SEASON_PREVIEW
-7-day or WRONG_TAKE 14-day blackouts — multiple independent sources
-confirm both numbers and nothing in this entry changes that.
+**Both principal cases (Link Click, Ghost in the Shell) were originally
+written up as apparent ENFORCEMENT MISSES, NOT evidence either blackout
+rule is wrong.** That framing still holds for **Link Click /
+SEASON_PREVIEW**: `SEASON_PREVIEW` has a real 7-day entry in
+`FORMAT_BLACKOUT_DAYS`, confirmed in code, so a real send inside that
+window that wasn't blocked is a genuine enforcement miss against a rule
+that actually runs.
+
+**It does NOT hold for Ghost in the Shell / WRONG_TAKE, per the
+correction above and F83: there is no code-enforced WRONG_TAKE blackout
+to have missed.** The repeat is still real and still looks like the same
+myth restated, but calling it an "enforcement miss" implies a working
+mechanism failed to catch it — what actually happened is that no
+date-window mechanism for WRONG_TAKE exists to catch anything, for this
+case or any other. Do not cite this entry as grounds to relax, soften, or
+remove the SEASON_PREVIEW 7-day blackout, which is real and
+code-enforced. The WRONG_TAKE 14-day figure remains confirmed **in
+prose** across multiple documents; whether and how to wire it into code
+is F83's open question, not resolved by anything in this entry.
 
 These are historical findings about already-sent, already-published
 packages. Nothing here is being unwound, corrected, or resent.
@@ -5405,3 +5431,211 @@ blueprint-verification task.
 
 **Status:** OPEN. Historical record only — no corrective action taken
 or proposed here.
+
+## F83: WRONG_TAKE's 14-day same-myth blackout is prose-only — absent from `FORMAT_BLACKOUT_DAYS`, so nothing in code currently enforces it
+
+Found 2026-09-11 while investigating F85 (F85: source-repo-only entry, not yet present in this repo as of this port -- match by content, opening line 'Every live blackout/cooldown/near-duplicate check reads only sent_scripts_events.jsonl...', when it is ported in a future handoff)'s send-history coverage gap
+(unrelated task — this is a distinct, real gap on the repo that ships,
+not part of F85 itself).
+
+**The finding.** `tools/conflict_check.py`'s `FORMAT_BLACKOUT_DAYS` dict
+holds exactly six entries:
+
+```python
+FORMAT_BLACKOUT_DAYS: dict[str, int] = {
+    "SEASON_RATING": 7,
+    "SEASON_PREVIEW": 7,
+    "MANGA_VS_ANIME": 14,
+    "WATCH_RANK": 14,
+    "WORTH_WATCHING": 7,
+    "EPISODE_MOMENT": 0,  # no blackout -- see module docstring
+}
+```
+
+`WRONG_TAKE` is not a key. Confirmed by reading the dict directly, not
+inferred. This means `check_recent_send_conflict`'s precedence-2
+date-window blackout (the hard, unconditional "same show sent within N
+days blocks regardless of angle similarity" check) never runs for
+`WRONG_TAKE` at all — `FORMAT_BLACKOUT_DAYS.get(format_type)` returns
+`None` for it, and the function's `if window_days is not None and
+window_days > 0` guard skips precedence 2 entirely. `WRONG_TAKE`
+candidates only ever get checked by precedence 3 (angle-similarity /
+shared-entity), which is a real but strictly weaker signal — it requires
+either a `difflib` ratio at or above 0.6 or a shared proper noun plus a
+matching chapter/episode number, neither of which is guaranteed to fire
+on a same-myth repeat phrased differently.
+
+**Why this matters right now, specifically.** F82 (this same file, above)
+describes the real Ghost in the Shell (2026) case — two sends one day
+apart, 2026-07-03 and 2026-07-04, both explicitly targeting the identical
+"stop comparing it to the 1995 movie" myth — as sitting "inside the
+newly-adopted 14-day same-myth WRONG_TAKE blackout," and originally
+grouped it with the Link Click / SEASON_PREVIEW case as an "apparent
+ENFORCEMENT MISS." That framing is corrected in place above (see the
+CORRECTION paragraph inline in F82), but the short version: Link Click /
+SEASON_PREVIEW is a real enforcement miss, because `SEASON_PREVIEW` truly
+has a 7-day entry in code that a real send slipped past. Ghost in the
+Shell / WRONG_TAKE is a different kind of gap — there was no enforcement
+to miss. The 14-day same-myth rule exists in the FORMAT BLUEPRINTS prose
+in `cron_daily_runtime.txt` (second batch) but was never ported into
+`FORMAT_BLACKOUT_DAYS`. Describing it as "newly-adopted" implied it had
+been wired up as part of adopting it; it hadn't.
+
+**Scope check — is this really isolated to WRONG_TAKE, and does "no
+entry" always mean "unenforced"? No — these are two different things and
+this entry is careful to keep them apart.** Cross-referenced the 17-token
+`FORMAT_TYPES` canonical list (`validators/validate_dual_package.py` line
+96) against the 6-key `FORMAT_BLACKOUT_DAYS` dict. Eleven tokens have no
+blackout entry: `WRONG_TAKE`, `CHARACTER_DIVE`, `THE_MOMENT`,
+`FACT_DROP`, `COMMENTARY`, `VILLAIN_DEFENSE`, `ORIGIN_STORY`,
+`SLEPT_ON`, `HIDDEN_GEM`, `SEASON_ROUNDUP`, `THEORY_SPECULATION`.
+(`SEASON_PREVIEW` and `SEASON_RATING` ARE present, 7 days each — not in
+the absent list. `EPISODE_MOMENT` is also present, at 0 — a deliberate
+no-blackout value recorded IN the dict, not an absence, per its own
+comment: `# no blackout -- see module docstring`.)
+
+Of those eleven absent tokens, four — `COMMENTARY`, `FACT_DROP`,
+`VILLAIN_DEFENSE`, `ORIGIN_STORY` — are documented elsewhere in this file
+(F81's UPDATE, above) as a **deliberate** no-blackout decision: real
+send-history backtests found their originally-proposed blackout rules
+would have blocked already-shipped, legitimate packages (6 of 6 real
+sends for VILLAIN_DEFENSE/ORIGIN_STORY combined, 6 of 6 for COMMENTARY, 2
+of 2 for FACT_DROP), so no rule was adopted, on purpose, backed by
+evidence. Their absence from `FORMAT_BLACKOUT_DAYS` is the correct,
+tested state — not a gap.
+
+`WRONG_TAKE` is not like those four. It is the one absent token that has
+a SPECIFIC rule asserted in prose (the 14-day same-myth window in the
+FORMAT BLUEPRINTS block, `cron_daily_runtime.txt`) with no matching
+deliberate-no-blackout finding anywhere in this file — nothing tested it
+and rejected it the way the other four were tested and rejected. Its
+absence looks identical to the deliberate four at the dict level, but the
+documentation trail behind it is opposite: a rule someone wrote down and
+intended, not a rule someone tested and declined.
+
+`THE_MOMENT` needs its own note and does NOT belong with the six named
+below. Its blueprint (`cron_daily_runtime.txt`) asserts a SPECIFIC rule
+just like `WRONG_TAKE` does: "Blackout: per-episode, minimum 24 hours
+post-broadcast so technical credits are officially verified," explicitly
+self-labeled "Shipped as proposed, UNVERIFIED-BUT-UNCONTRADICTED" and
+"reasoned, not tested" (the log lacks precise-enough air-to-send timing
+to confirm it historically). That is the same asserted-but-unwired shape
+as `WRONG_TAKE` — a specific number written down, not a tested rejection
+like the four above. It differs from `WRONG_TAKE` in two ways, not one:
+in DEGREE, its own blueprint already flags itself as unverified rather
+than presenting as settled the way the WRONG_TAKE prose does; and in
+KIND, it is a minimum delay before a single send ("don't send before
+broadcast + 24h"), not a same-show re-use window ("don't send again
+within N days of the last send") — which is plausibly exactly why it was
+never a `FORMAT_BLACKOUT_DAYS` candidate at all, since that dict is
+keyed to days-between-repeat-sends, not hours-after-a-triggering-event.
+So `THE_MOMENT`'s absence from the dict may be structurally correct (a
+different mechanism, not a missing one) even though the 24-hour figure
+itself is unenforced anywhere in code today. Recorded here as its own
+note rather than folded into `WRONG_TAKE`'s finding or into Group 3
+below, because neither fits cleanly.
+
+`THEORY_SPECULATION` ALSO needs its own note and does NOT belong in the
+genuinely-undocumented group below — this was corrected after the
+initial draft of this entry wrongly bucketed it there, caught by
+re-reading `tools/conflict_check.py` directly rather than trusting the
+first pass. `conflict_check.py` line 153 states explicitly:
+"THEORY_SPECULATION is deliberately excluded from FORMAT_BLACKOUT_DAYS:
+it uses a same-show-SAME-QUESTION block with a `revisit_justification`
+escape hatch (Decision 4), not a fixed day count." This is Precedence 1
+in `check_recent_send_conflict` — checked BEFORE the date-window
+blackout (Precedence 2) and the angle-similarity signal (Precedence 3),
+not skipped in favor of them: a `THEORY_SPECULATION` candidate sharing a
+show AND an exact `question_line` match with a historical row is blocked
+unless it carries a well-formed `revisit_justification`
+(`new_evidence_summary` + `new_evidence_source_url` + `new_evidence_date`,
+all non-empty). So this is the same asserted-but-differently-shaped
+pattern as `THE_MOMENT` and `WRONG_TAKE` — a real, code-enforced rule,
+just not a `FORMAT_BLACKOUT_DAYS` day-count — and belongs in that group,
+not with the genuinely undocumented tokens below. Unlike `WRONG_TAKE`,
+this mechanism is not merely asserted in prose; it is live and running
+in `conflict_check.py` today, confirmed by reading the branch
+implementation directly (precedence-1 block, lines ~360-379).
+
+The remaining four absent tokens — `CHARACTER_DIVE`, `SLEPT_ON`,
+`HIDDEN_GEM`, `SEASON_ROUNDUP` — are a further category: no specific
+day-count, delay-count, or alternate-mechanism rule is asserted for them
+anywhere in this file, and no deliberate-rejection finding exists either.
+They are simply undocumented on this axis, which is F59's existing "10
+undocumented-blackout formats" finding (this file, ~line 3451, itself
+flagged as stale at the end of this file — F59's original count predates
+the four deliberate-rejection findings above; F59's own "10" also
+predates this entry's finding that two of its ten, `THE_MOMENT` and
+`THEORY_SPECULATION`, have since been shown to carry their own asserted
+or live rules and so arguably no longer belong in a purely-undocumented
+bucket either — flagged here, not resolved; F59 itself should get this
+update in its own dedicated pass, consistent with how this file already
+treats F59's stale format-count issue at the end of this document).
+
+So, precisely: of 11 tokens absent from `FORMAT_BLACKOUT_DAYS`, 4 are
+deliberately absent (tested, evidence-backed, correct as-is), 1
+(`WRONG_TAKE`) is absent despite a specific, presented-as-settled asserted
+rule (this entry's main subject), 1 (`THE_MOMENT`) is absent with a
+specific but self-flagged-as-unverified asserted rule of a structurally
+different kind (delay-before-send, not re-use window — its own separate
+note above), 1 (`THEORY_SPECULATION`) is absent despite a real, live,
+code-enforced rule of yet another structurally different kind
+(same-question block with an evidence-based escape hatch, not a day
+count or a delay — its own separate note above), and the remaining 4 are
+absent with no rule asserted or enforced either way (F59's ongoing open
+scope, unaffected by this entry). Collapsing these into one "11 tokens
+have no entry" statement would make F83 read as equivalent to F59, or
+worse, as implying the deliberate cases or THE_MOMENT's and
+THEORY_SPECULATION's differently-shaped rules are also unresolved gaps of the same
+kind as WRONG_TAKE — none of that is true, and that distinction is the
+whole point of filing this as its own entry rather than folding it into
+F59.
+
+**What this entry is NOT claiming.** Not claiming the 14-day figure
+itself is wrong — it may well be the right number once wired up; that is
+a design decision, not something this entry resolves. Not claiming
+`WRONG_TAKE` candidates are currently unchecked entirely — the
+angle-similarity/shared-entity signal (precedence 3) still runs for it
+and did produce real historical value elsewhere in this file (e.g. the
+F43 Gaban backtest). Not proposing a fix or a code change here —
+documentation-only finding, per the same standard applied throughout this
+file.
+
+**Relationship to F85.** Distinct issue, found while working F85, not a
+sub-case of it. F85 is about which send-history ROWS are visible to
+`check_recent_send_conflict` at all (148 of 241 rows in
+`sent_scripts_log.json` lack `batch_id` and are invisible to every live
+check). F83 is about a RULE that has no enforcement mechanism at all,
+independent of which rows are visible — even a WRONG_TAKE row with a
+`batch_id` and full field coverage would not be date-window-checked
+today, because there is no window to check it against.
+
+**Status:** OPEN. Documentation-only finding — no corrective action taken
+or proposed here. If a future pass wires `WRONG_TAKE` into
+`FORMAT_BLACKOUT_DAYS`, that work should also address F59's broader
+finding for the other ten (now, per the THEORY_SPECULATION correction
+above, effectively nine) formats, and should re-run this session's
+investigation methodology (real send-history backtest, not just adding a
+number) before picking a day-count.
+
+**Verified against the target repo at port time (2026-09-11/12), before
+this entry was pasted there.** Both repos were checked independently and
+agree on every point below — this is not assumed to carry over just
+because the source and target share history:
+  - `FORMAT_BLACKOUT_DAYS` on the target repo holds the identical six
+    keys and values listed above, and `WRONG_TAKE` is genuinely absent
+    there too. This entry's central claim holds on both repos, not just
+    the one it was originally written against.
+  - The target repo's `conflict_check.py` carries the same explanatory
+    comment at the THEORY_SPECULATION exclusion ("deliberately excluded
+    from FORMAT_BLACKOUT_DAYS: it uses a same-show-SAME-QUESTION block
+    with a revisit_justification escape hatch, not a fixed day count"),
+    confirming the THEORY_SPECULATION correction above applies to both
+    repos identically, not just the one where it was first drafted
+    wrong.
+  - Neither `tools/format_frequency_cooldown.py`,
+    `tools/test_format_frequency_cooldown.py`,
+    `tools/reframe_destination_guard.py`, nor
+    `tools/test_reframe_destination_guard.py` (Sections 2 and 3 of this
+    handoff) exist yet on the target repo — no naming collision on
+    creation.

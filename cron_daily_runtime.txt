@@ -1137,6 +1137,41 @@ manifest (the validator fails closed if either is true or missing).
     itself belongs here — see that function's docstring for the full overdue/
     forced-consideration/fabrication rules this reporting must satisfy.
 
+  - CANDIDATE SELECTION LOG WRITE (Fix 1, wired 2026-09-11 — the module existed
+    since 2026-08-22 with zero real call sites; this closes that gap): after this
+    run's full selection pipeline has finished for BOTH slots — monetization gate,
+    format eligibility, and the diversity/blackout/final-selection pass all
+    complete, exactly as tools/candidate_selection_log.py's module docstring's
+    WRITE TIMING section requires — call tools/candidate_selection_log.py's
+    log_candidate(tree, ...) exactly ONCE per candidate genuinely considered this
+    run (both the two selected candidates and any other candidate that reached and
+    lost at the monetization gate, the format-eligibility check, or the final
+    diversity/blackout pass — not candidates that were never scored at all). Do
+    this here, at the end of STEP 3, never mid-pipeline and never right after only
+    one stage has run, per that module's explicit correction of an earlier
+    premature-write draft. Populate every required field from data this run
+    already holds at this point — do not invent or guess a value to satisfy the
+    schema:
+      batch_id (this run's batch_id), run_ts (this run's timestamp), post_date,
+      show, angle, format_type, axis_scores (the same Sub Conversion / Brand
+      Attractiveness / Viral Potential HIGH/MED/LOW scores already produced under
+      the MONETIZATION FILTER above — mapped to sub_conversion /
+      brand_attractiveness / viral_discovery), cleared_monetization_gate (bool,
+      from that same filter), format_eligibility_checked (bool),
+      format_eligibility_result ("eligible" | "ineligible" | "not_applicable"),
+      format_eligibility_reason (required unless format_eligibility_result ==
+      "not_applicable"), outcome ("selected" | "rejected"), rejection_reason
+      (required, non-empty, when outcome == "rejected"; omit when "selected"),
+      slot_considered_for ("morning" | "evening" | "either"), selected_package_id
+      (required when outcome == "selected"; omit when "rejected"). log_candidate()
+      itself raises ValueError and refuses to write on any malformed event — treat
+      that as a real signal this run's own bookkeeping is incomplete, not as
+      something to work around by loosening a field.
+    This is an append-only observability write with one sanctioned gating
+    consumer (validate_dual_package.py's _validate_minimum_frequency_floor(), used
+    just above) — it must not be read by, or influence, any other check in this
+    runtime, per the module's own scope-of-use correction.
+
 ================================================================================
 STEP 3.5 — LENGTH SELECTION (Law #138 Stage 1/2 — content-driven, not fixed)
 ================================================================================
