@@ -5683,6 +5683,31 @@ investigation methodology (real send-history backtest, not just adding a
 number) before picking a day-count. It should NOT use `angle` as the
 comparison field for the same-myth check — see the follow-up above.
 
+**THREE SITES IN THIS REPO REFERENCE F85, WHICH DOES NOT EXIST HERE — ALL
+THREE NEED UPDATING WHEN IT LANDS.** F85 was deliberately not ported (see the
+F78 tombstone's numbering policy and the parenthetical in this entry's own
+opening paragraph). Each site below is a live forward-reference, left dangling
+on purpose rather than backfilled, and each will read as resolvable-but-wrong
+the moment a real F85 is filed under some other number here:
+
+  1. This entry's opening paragraph — the "(F85: source-repo-only entry, not
+     yet present in this repo as of this port ... match by content ...)"
+     parenthetical. Strike the not-yet-present clause once it is present.
+  2. This entry's follow-up block above — "`ANGLE_SIMILARITY_THRESHOLD`
+     (validated at 0.6 in F85's follow-up)", ported verbatim from the source
+     repo on 2026-09-12.
+  3. `validators/test_validate_dual_package.py`, in
+     `TestMechanicalConflictCheckWiring._tree_with_history`'s comment — "see
+     F85 follow-up, 2026-09-12", added when 297dbea landed. This one is in
+     CODE, not in this file, and a grep of docs/ alone will not find it.
+
+That third site is the reason this list exists rather than being left implicit.
+Across three consecutive ports, F-number references have twice been missed by
+searches scoped to the documents being renumbered — once in validator
+docstrings and comments, once inside a test file arriving in the incoming diff
+itself. Whoever ports F85 should grep the whole tree for "F85", not just this
+file.
+
 **Verified against the target repo at port time (2026-09-11/12), before
 this entry was pasted there.** Both repos were checked independently and
 agree on every point below — this is not assumed to carry over just
