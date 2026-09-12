@@ -117,6 +117,16 @@ FORMAT_TYPES = (
 # SEASON_RATING never appears under its current token name). This is a forcing
 # mechanism, not a hard quota -- see the minimum_frequency_floor check below for
 # the full eligibility-vs-priority distinction this rests on.
+# [CORRECTION 2026-09-11, F80: the "WATCH_RANK at zero real sends ever" claim above
+# was WRONG on the day it was written, not merely stale -- a real WATCH_RANK send
+# (post_date 2026-07-29, Saga of Tanya the Evil II) predates this comment's own
+# 2026-08-22 date by 24 days. Left in place rather than edited, per this project's
+# no-retroactive-rewrite convention; see docs/KNOWN_ISSUES.md F80 for the full
+# finding. Real current counts as of 2026-09-11 (241 log entries): THEORY_SPECULATION
+# 0, SEASON_ROUNDUP 0, WORTH_WATCHING 3, WATCH_RANK 1, SEASON_RATING 1 under its
+# current token. This correction does not change FLOOR_FORMATS below or the gating
+# mechanism, which recomputes real state at validation time rather than trusting
+# this comment.]
 FLOOR_FORMATS = (
     "THEORY_SPECULATION", "SEASON_ROUNDUP", "WORTH_WATCHING", "WATCH_RANK", "SEASON_RATING",
 )

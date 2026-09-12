@@ -5099,7 +5099,7 @@ dangling rather than backfilled.
 
 **Do not fill this gap.** Not with a local finding, not with a stub mirroring
 SEBLABHRIS's F78, not to make the numbering contiguous. The next available number in
-this repo is F80.
+this repo is F83.
 
 ## F79: KNOWN_ISSUES entries can sit at a stale "open" status indefinitely after their fix ships — now detectable by a tool, still not prevented
 
@@ -5165,3 +5165,243 @@ its parsing is a code change needing its own authorization and diff review.
 schedule, in a hook, or at commit time, and no decision has been made that it should.
 The gap that produced F43's 25 stale days is still fully open; it is now merely
 visible on demand.
+
+## F80: FLOOR_FORMATS comment block asserted "WATCH_RANK zero real sends ever" while a real WATCH_RANK send predates the comment's own date by 24 days — the comment was wrong when written, not merely stale
+
+`validators/validate_dual_package.py`'s `FLOOR_FORMATS` comment block (added
+2026-08-22, Part 2 minimum-frequency-floor design) reads:
+
+> "sent_scripts_log.json's 219 entries as of 2026-08-22 show
+> THEORY_SPECULATION, SEASON_ROUNDUP, and WATCH_RANK at zero real sends
+> ever; WORTH_WATCHING at 2; SEASON_RATING never appears under its current
+> token name."
+
+The real `sent_scripts_log.json` contains a WATCH_RANK entry dated
+`post_date: 2026-07-29` (show: Saga of Tanya the Evil II, slot: evening) —
+24 days BEFORE the comment's own 2026-08-22 date. This is not the ordinary
+drift this project has flagged elsewhere (a true statement that became
+stale after later sends): the comment's claim was already false on the
+day it was written, since the entry it should have counted already existed
+in the log at that time.
+
+**Real current counts, checked 2026-09-11 against 241 log entries:**
+
+| format_type | real send count | dates |
+|---|---|---|
+| THEORY_SPECULATION | 0 | — |
+| SEASON_ROUNDUP | 0 | — |
+| WORTH_WATCHING | 3 | 2026-08-11, 2026-08-21, 2026-09-11 |
+| WATCH_RANK | 1 | 2026-07-29 |
+| SEASON_RATING | 1 (current token) | 2026-08-17 |
+
+Two of the comment's five specific claims (WATCH_RANK "zero ever", and
+WORTH_WATCHING's count, now 3 rather than 2 purely from time passing) no
+longer match the real log; the WATCH_RANK claim specifically was never
+accurate at any point the comment existed.
+
+**Why this matters beyond the one wrong number.** This comment is
+documentation only — `FLOOR_FORMATS` itself (the tuple the mechanism
+actually gates on) is unaffected, and `_validate_minimum_frequency_floor()`
+recomputes real state from `candidate_selection_log.jsonl` at validation
+time rather than trusting this comment. So no gate silently passed or
+failed because of this. The real risk is narrower but still genuine: this
+comment was quoted directly, as current fact, in a design conversation
+about the F71 design-half reframe mapping (2026-09-11) — a measurement
+recorded once, without a source-snapshot or date-scoped qualifier strong
+enough to prevent it being read back later as an evergreen property of the
+system, is exactly the failure class this project has flagged repeatedly
+tonight elsewhere (F71's own enforcement gap, F79's stale-status problem).
+A comment stating a specific number should either be re-verified before
+being quoted forward, or carry a stronger "as of this exact commit, not
+re-checked since" caveat than a bare date achieves in practice.
+
+**Status:** Recorded as a finding. The comment block itself carries an
+inline dated correction (see the file directly) rather than being silently
+rewritten, per this project's no-retroactive-rewrite convention — the
+original wrong claim stays visible, with the correction appended next to
+it. No code, runtime, or law-file changes made beyond that inline
+annotation; `FLOOR_FORMATS`'s actual gating behavior is untouched.
+
+---
+
+## F81: CHARACTER_DIVE and SLEPT_ON/HIDDEN_GEM had zero structural drafting guidance despite being live, selectable FORMAT_TYPES tokens — closed 2026-09-11 by adding dedicated blueprints
+
+While drafting the F71 reframe mapping's reverse pairings (2026-09-11),
+two of the six formats checked for viable reframe destinations —
+CHARACTER_DIVE and the combined SLEPT_ON/HIDDEN_GEM token — turned out
+to have NO structural guidance anywhere in `cron_daily_runtime.txt`
+beyond a bare mention in Law #85's monetization hierarchy list. Every
+other actively-used format (WATCH_RANK, SEASON_ROUNDUP, WORTH_WATCHING,
+THEORY_SPECULATION, MANGA_VS_ANIME, SEASON_RATING, SEASON_PREVIEW,
+EPISODE_MOMENT) has a dedicated law section with real beats, required
+fields, sourcing rules, and blackout windows. These two did not, despite
+being present in `FORMAT_TYPES` and selectable by the validator.
+
+Full audit of all 17 `FORMAT_TYPES` tokens (2026-09-11) found this gap
+is broader than these two: WRONG_TAKE, THE_MOMENT, FACT_DROP,
+COMMENTARY, VILLAIN_DEFENSE, and ORIGIN_STORY also have no structural
+blueprint beyond the same hierarchy-list mention. This entry closes the
+gap for CHARACTER_DIVE and SLEPT_ON/HIDDEN_GEM only. The remaining six
+(WRONG_TAKE, THE_MOMENT, FACT_DROP, COMMENTARY, VILLAIN_DEFENSE,
+ORIGIN_STORY) are NOT closed by this entry and remain a real, separate
+gap — tracked here rather than silently implied fixed by this batch.
+
+**What was added, 2026-09-11 (now live in `cron_daily_runtime.txt`'s
+FORMAT BLUEPRINTS block):**
+- CHARACTER_DIVE: a 5-beat structure (Archetype Subversion, Catalyst
+  Event, Internal Conflict, Narrative Mirror, Legacy Verdict).
+- SLEPT_ON/HIDDEN_GEM: a 5-beat structure (Call-Out Hook, Why It Was
+  Buried, Masterclass Breakdown, Ideal Viewer Profile, Cult-Classic
+  Push). The pre-existing scope constraint (must be a genuinely
+  underrated/overlooked show — the same text already used to
+  differentiate this token from WORTH_WATCHING in Law #158) is
+  preserved exactly, not loosened.
+
+**Real conflict found and preserved, not resolved:** SLEPT_ON/
+HIDDEN_GEM's blueprint is comparative by design (contrasts the subject
+show against an overhyped alternative) while Law #158 bans comparative
+language for WORTH_WATCHING mechanically. This is not a defect to fix
+— the two formats are intentionally different tools for different
+content, and this entry keeps them that way rather than reconciling
+them into one shape. This is also why the F71 reframe mapping has no
+WORTH_WATCHING → SLEPT_ON/HIDDEN_GEM pairing.
+
+**Deliberately deferred, not merely pending:** neither format carries a
+blackout window. Two candidate 14-day windows were proposed during
+drafting and explicitly rejected rather than adopted — the instruction
+governing that decision was to ship with no blackout and add one later
+only backed by a real rationale for these narrower scopes (CHARACTER_DIVE
+is per-character, SLEPT_ON/HIDDEN_GEM is per-show — both narrower than
+the existing per-format 7-day and 14-day windows this project already
+uses), not to inherit a number by analogy. Two candidate sourcing fields
+(`catalyst_event_source` on CHARACTER_DIVE, `underrated_basis` on
+SLEPT_ON/HIDDEN_GEM) were also proposed and explicitly held as separate
+follow-up: ship the guidance, see whether the fields are the right shape
+in practice, then decide on enforcement — not decided by holding this
+entry open.
+
+**Status:** Blueprints are live in `cron_daily_runtime.txt` as of this
+batch. Neither new field is wired into `validators/validate_dual_package.py`,
+and neither format has a blackout window — both are open, explicitly
+deferred, follow-up work, not oversights in this entry.
+
+**UPDATE (same day, second batch, 2026-09-11):** the six formats this
+entry named above as NOT closed — WRONG_TAKE, THE_MOMENT, FACT_DROP,
+COMMENTARY, VILLAIN_DEFENSE, ORIGIN_STORY — now have dedicated
+blueprints with real law citations (Law #85 hierarchy descriptions,
+where no dedicated law section exists beyond that list). See the
+FORMAT BLUEPRINTS block in `cron_daily_runtime.txt` for full text. Four
+further tokens (SEASON_RATING, SEASON_PREVIEW, MANGA_VS_ANIME,
+EPISODE_MOMENT) also received blueprints in the same batch — these are
+NOT gap-closures this entry ever tracked (they already had full
+governing law in Law #96 / `laws/format_reference_seasonal_types.md`),
+only packaging additions layered on top of existing, unchanged rules.
+So: this entry's own gap was six formats wide, and all six are now
+closed; separately, all 17 `FORMAT_TYPES` tokens now have a blueprint,
+of which four were never part of the gap this entry describes.
+
+Coverage arithmetic: the 6 closed in this entry's original batch
+(WATCH_RANK, SEASON_ROUNDUP, WORTH_WATCHING, THEORY_SPECULATION,
+CHARACTER_DIVE, SLEPT_ON/HIDDEN_GEM as one blueprint covering 2 tokens
+= 7 tokens) plus the 10 closed in the second batch (10 tokens, 10
+blueprints, 1:1) = 17 tokens exactly. No remaining gap.
+
+Of the six newly-closed formats, four (COMMENTARY, FACT_DROP,
+VILLAIN_DEFENSE, ORIGIN_STORY) ship with NO blackout window,
+deliberately — real send-history checks found their originally-proposed
+blackout rules would have blocked already-shipped, legitimate packages
+(6 of 6 real sends blocked for VILLAIN_DEFENSE/ORIGIN_STORY combined;
+6 of 6 for COMMENTARY; 2 of 2 legitimate cases for FACT_DROP). Each
+rule assumed a version of the format that real usage does not support
+— the same misdiagnosis in every case: a proposed rule imagined a
+trigger event ("newly revealed backstory," "a concluded arc") while
+real usage draws on already-published material or live/breaking events.
+See F82 for two separate cases where a correctly-verified blackout
+(SEASON_PREVIEW, WRONG_TAKE) appears to have been missed by a real
+historical send — the opposite finding, not grounds to soften either of
+those rules.
+
+**Status (updated):** this entry's own six-format gap is CLOSED as of
+2026-09-11. Separately, all 17 FORMAT_TYPES tokens now have dedicated
+or supplementary structural blueprints as of the same date — the
+four supplementary-only formats were never part of this entry's
+original gap and are recorded here only for the full-coverage count,
+not as something this entry closed.
+
+---
+
+## F82: Two apparent historical enforcement misses found in real send history for formats with correctly-verified blackout rules (SEASON_PREVIEW: Link Click, WRONG_TAKE: Ghost in the Shell) — logged as enforcement questions, NOT evidence either rule is wrong — plus a recurring null-angle logging-artifact pattern across three separate cases
+
+While verifying the 10-blueprint second batch's blackout timings against
+real send history (2026-09-11), two same-show/same-topic repeats were
+found that appear to fall inside an already-verified-correct blackout
+window:
+
+**SEASON_PREVIEW — Link Click.** Three real sends: 2026-08-03,
+2026-08-13, 2026-08-14. The last two are ONE DAY apart, and the
+2026-08-14 entry's angle text is word-for-word identical to the
+2026-08-13 entry (both: "Season 3 Part One premieres August 14 on
+Crunchyroll as a doubled-length 24-episode story, two months earlier
+than announced, picking up the Bahati fire case and Xia Fei's
+disappearance"). The real SEASON_PREVIEW blackout — 7 days from send
+date, confirmed in triplicate agreement across
+`laws/law_96_content_rotation_expansion.md`,
+`laws/format_reference_seasonal_types.md`, and
+`tools/conflict_check.py`'s `FORMAT_BLACKOUT_DAYS` — was in force at
+the time and should have blocked the second send.
+
+**WRONG_TAKE — Ghost in the Shell (2026).** Two real sends, 2026-07-03
+and 2026-07-04, one day apart, both explicitly targeting the identical
+myth ("everyone measures 2026 vs. 1995 film... two different shows
+wearing the same name" / "Stop Comparing It to the 1995 Movie"). This
+sits inside the newly-adopted 14-day same-myth WRONG_TAKE blackout (see
+the FORMAT BLUEPRINTS block in `cron_daily_runtime.txt`, second batch).
+
+**Genuinely ambiguous companion case, same category — Black Torch
+(WRONG_TAKE).** Two real sends, 2026-07-02 and 2026-07-08 (6-day gap):
+"Adaptation gamble — manga cut at 19 chapters, anime has to invent a
+satisfying ending" and "cancelled manga got animated because it was
+cancelled not despite it." These could reasonably read as the same
+underlying myth restated, or as two distinct angles on the same
+premise. Recorded here as ambiguous rather than resolved either way —
+forcing a classification would be arbitrary given the evidence.
+
+**Both principal cases (Link Click, Ghost in the Shell) are apparent
+ENFORCEMENT MISSES, NOT evidence either blackout rule is wrong.**
+Stated explicitly because the same second batch also found real cases
+(see F81's UPDATE, and the COMMENTARY/FACT_DROP/VILLAIN_DEFENSE/
+ORIGIN_STORY blueprints in `cron_daily_runtime.txt`) where real history
+showed a PROPOSED rule was actually wrong and needed correction. This
+entry is the opposite finding: EXISTING, independently-verified-correct
+rules that specific real sends appear to have slipped past. Do not cite
+this entry as grounds to relax, soften, or remove the SEASON_PREVIEW
+7-day or WRONG_TAKE 14-day blackouts — multiple independent sources
+confirm both numbers and nothing in this entry changes that.
+
+These are historical findings about already-sent, already-published
+packages. Nothing here is being unwound, corrected, or resent.
+
+**Separate, recurring, lower-confidence observation — worth naming even
+though not investigated tonight:** three different same-day
+duplicate-looking log rows across this batch's checks share the same
+shape — one of the pair has a `null`/`None` angle field: Rising of the
+Shield Hero Season 5 (SEASON_PREVIEW, both 2026-07-04), Overgeared
+(WRONG_TAKE, both 2026-07-04), and Witch Hat Atelier Season 2
+(WRONG_TAKE, both 2026-07-04) all show this exact pattern. Each reads
+more like an incomplete/placeholder log row than a genuine same-day
+double-send, but none are asserted as fact — recorded here as an
+unresolved pattern, not resolved case-by-case. The pattern recurring
+across these separate cases in one batch is itself worth naming,
+independent of any single instance.
+
+**Explicitly out of scope for this entry:** root-causing why any
+blackout check did not block the Link Click or Ghost in the Shell
+repeats — whether the conflict check ran for those sends, whether it
+was bypassed, whether a manual override was used, or whether the
+null-angle rows reflect a logging bug versus a real duplicate. Any of
+these are plausible; distinguishing between them is real investigative
+work requiring its own pass, not a byproduct of this batch's
+blueprint-verification task.
+
+**Status:** OPEN. Historical record only — no corrective action taken
+or proposed here.

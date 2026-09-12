@@ -624,6 +624,509 @@ manifest (the validator fails closed if either is true or missing).
     tools/candidate_selection_log.py's module docstring ("SCOPE OF GATING USE"
     section) for the full, honest statement of this one sanctioned exception.
 
+  - FORMAT-COOLDOWN CONTENT-FIRST REFRAME (F71 design half, added 2026-09-11 —
+    resolves the addendum's original finding that selection tries exactly ONE
+    format per show, then falls through to a DIFFERENT SHOW entirely, rather than
+    reframing within the same show first). This does NOT replace the MONETIZATION
+    FILTER, the ACTIVE FORMAT-DIVERSITY WEIGHTING tie-break above, or the
+    MINIMUM FREQUENCY FLOOR below — it sits between format eligibility and final
+    selection, and only changes what happens when a show's natural format is
+    unavailable.
+    ORDERING (does not invert Law #85 — selection is never format-first):
+      1. Find genuinely newsworthy, well-sourced content, unchanged.
+      2. Apply the MONETIZATION FILTER above (>=2 of 3 axes HIGH/MED). An idea
+         that fails this gate does not reach step 3 regardless of format fit.
+      3. Among formats that HONESTLY fit that content, prefer the one least
+         recently used, per the FORMAT-COOLDOWN state below.
+      4. If the content's natural format is on cooldown (see below) or blocked
+         by an existing hard blackout, apply the REFRAME mapping below rather
+         than dropping the story or defaulting to a different show.
+      5. Never reframe into a format the content does not genuinely fit. A
+         forced reframe that doesn't match its substance is worse than a
+         repeated format — do not use this mechanism to manufacture false
+         diversity.
+    FORMAT-COOLDOWN STATE (separate from, and narrower than, the 21-day
+    MINIMUM FREQUENCY FLOOR below — that mechanism forces consideration of the
+    5 FLOOR_FORMATS when overdue; this one discourages REUSE of an
+    already-fresh format so a natural-fit story doesn't get stuck waiting): a
+    format_type is "on cooldown" for this run if it appears in the trailing 7
+    populated entries of sent_scripts_log.json (same file already open for the
+    blackout/cooldown/evergreen/diversity checks above — no new file access).
+    READ COOLDOWN FROM sent_scripts_log.json ONLY, NEVER FROM
+    candidate_selection_log.jsonl (2026-09-11 design correction, caught before
+    landing): sent_scripts_log.json records only what actually SHIPPED, which is
+    what a reuse-avoidance cooldown must track. candidate_selection_log.jsonl
+    records every candidate CONSIDERED, including ones rejected for being on
+    cooldown or blacked out (see LOGGING THIS MECHANISM below) — if cooldown
+    state were ever read from that log instead, a format that keeps getting
+    reframed away from would accumulate "recently considered" events without
+    ever shipping, and get pushed further out each time a reframe fires against
+    it. That is backwards: a format that never ships should get MORE eligible
+    over time, not less. The two logs serve different, non-interchangeable
+    purposes here — ships (cooldown) vs. candidates (F71 enforcement /
+    audit trail) — and must not be cross-read.
+    7 was chosen over the originally-proposed 10-14 after checking it against
+    this channel's real send cadence (~2 packages/day): a 14-piece lockout
+    stacked on the EXISTING hard per-show blackouts (SEASON_RATING/SEASON_PREVIEW/
+    WORTH_WATCHING 7 days, MANGA_VS_ANIME/WATCH_RANK 14 days) plus the same-day
+    distinct-format rule would routinely leave close to zero eligible formats,
+    forcing either a rule violation or a held slot. At 7 pieces (~3.5 days),
+    worst case at least 10 of the 17 FORMAT_TYPES stay eligible at any moment —
+    real headroom instead of an unworkable lockout. If 7 still collides with the
+    hard blackouts often enough in practice to force holds, report the real
+    numbers rather than silently loosening it further.
+    REFRAME MAPPING — apply ONLY when the content's natural format is on
+    cooldown per the state above (or hard-blacked-out) and a genuinely
+    equivalent angle exists within the SAME show. Bidirectional as of
+    2026-09-11 (see note below the table): the original one-directional set
+    only fed under-used formats without ever draining FROM them, which would
+    have stranded exactly the tokens this mechanism exists to promote the
+    moment one of them landed on cooldown. Every pairing below was checked
+    against its destination format's own real eligibility rules before being
+    added; a pairing that would force a rule violation is omitted rather than
+    included for symmetry.
+      - EPISODE_MOMENT / THE_MOMENT on cooldown -> reframe as CHARACTER_DIVE
+        (focus on the character driving that scene), THEORY_SPECULATION (what
+        the moment sets up — subject to Law #160's full evidence/hedging
+        requirements above, unchanged), or COMMENTARY (an industry,
+        production, or distribution angle on the same event — COMMENTARY's
+        real usage, not narrative analysis).
+      - VILLAIN_DEFENSE / ORIGIN_STORY on cooldown -> reframe as WRONG_TAKE
+        (debunking a popular, incorrect community take about that villain or
+        their past).
+      - SEASON_RATING / SEASON_ROUNDUP on cooldown -> reframe as WATCH_RANK
+        (ranking the season's shows against each other — Law #98's
+        Sebastian's-own-watchlist sourcing rule above still applies in full) or
+        WORTH_WATCHING (a dedicated persuasive pitch for the one show — Law
+        #158's no-comparative-language rule above still applies in full).
+      - THEORY_SPECULATION on cooldown -> reframe as COMMENTARY or
+        CHARACTER_DIVE (analyze what is actually on the page — the scene,
+        the character's stated motive, the confirmed facts — rather than
+        what it implies about an unresolved question; this drops the
+        speculative conclusion entirely rather than softening it, since
+        COMMENTARY/CHARACTER_DIVE carry no hedging allowance of their own).
+        CONFIRMED VIABLE 2026-09-11 now that CHARACTER_DIVE has its own
+        blueprint (see the FORMAT BLUEPRINTS block below): the Catalyst
+        Event / Internal Conflict beats can hold the same underlying
+        evidence a theory would have used without needing to state or hedge
+        a speculative conclusion at all — the reframe DROPS the theory
+        rather than softening it, same as the COMMENTARY option.
+      - WATCH_RANK on cooldown -> reframe as WORTH_WATCHING (drop the
+        ranking; pick the single strongest of the shows that would have been
+        ranked and pitch it alone — Law #158's no-comparative-language rule
+        still applies in full, so the reframed VO must not retain any
+        head-to-head phrasing from the ranking angle) or SEASON_ROUNDUP,
+        CONDITIONALLY: a WATCH_RANK candidate may only reframe into
+        SEASON_ROUNDUP when EVERY show that would appear in the roundup's
+        MVPs/Fumbles beats has its own distinct, non-reused,
+        non-encyclopedic, dated source available — not merely when the
+        original research happens to be multi-show. If even one named show
+        lacks a qualifying independent source, this pairing is NOT available
+        for that candidate and the mechanism does not fire (falls back to
+        existing behavior: a different show, or holding the slot). This is a
+        per-candidate check at draft time, not a guarantee the mapping table
+        can make in advance.
+      - CHARACTER_DIVE on cooldown -> reframe as ORIGIN_STORY (the character's
+        backstory/history angle — evergreen, no additional eligibility
+        constraint beyond what CHARACTER_DIVE research already supports).
+        VILLAIN_DEFENSE is a CONDITIONAL alternative, not a default: it only
+        applies when the character is genuinely disliked or a debate-magnet
+        subject (Law #85 item 6's own scope) — do not force a well-liked or
+        neutral character into a contrarian-defense frame just to hit this
+        format; if the character doesn't fit, ORIGIN_STORY is the only valid
+        reframe here.
+      - DROPPED, CHECKED AND REJECTED: WORTH_WATCHING on cooldown ->
+        SLEPT_ON/HIDDEN_GEM. WORTH_WATCHING's own selection guidance states
+        explicitly that it applies with "no restriction on how well-known the
+        show already is" and calls this "the explicit differentiator from
+        SLEPT_ON/HIDDEN_GEM, which are scoped to underrated/overlooked shows
+        only." That scope is a real content-eligibility constraint on
+        SLEPT_ON/HIDDEN_GEM, not an angle choice a reframe can satisfy by
+        rewriting the VO — a WORTH_WATCHING candidate built around a
+        mainstream show cannot honestly become a SLEPT_ON/HIDDEN_GEM pitch
+        without either fabricating the show's obscurity or violating the
+        format's real scope. Beyond that, the two formats are incompatible in
+        MECHANISM, not just scope: SLEPT_ON/HIDDEN_GEM's Call-Out Hook and
+        Masterclass Breakdown are comparative BY DESIGN (contrasting an
+        overhyped show against this one), while Law #158 mechanically bans
+        comparative language in WORTH_WATCHING's own fields — so even a
+        WORTH_WATCHING candidate about a genuinely underrated show could not
+        honestly reframe here without acquiring language its origin format
+        forbids. No reframe destination exists for WORTH_WATCHING in this
+        mapping; if it is on cooldown, this mechanism does not apply and
+        existing fallback behavior (a different show, or holding the slot)
+        governs.
+    This mapping changes ANGLE and format_type only. It never relaxes any
+    format's own evidence, sourcing, hedging, blackout, or length requirements
+    documented earlier in this format catalog — a reframed package must clear
+    every rule its NEW format_type carries, same as if that format had been the
+    first choice.
+    LOGGING THIS MECHANISM (closes the log_candidate() call-site gap the
+    CANDIDATE SELECTION LOG paragraph above already requires, and which the
+    validator's selection-log-completeness check (F71 enforcement fix,
+    2026-09-11) depends on being real): when a reframe fires, call
+    log_candidate() twice for that slot — once recording the natural-fit
+    format_type with outcome="rejected" and once recording the REFRAMED
+    format_type with outcome="selected". The rejected event's rejection_reason
+    MUST start with the literal, machine-distinguishable prefix
+    "cooldown_reframe: " (on-cooldown per the state above) or
+    "blackout_reframe: " (hard per-show blackout), followed by the real detail
+    (which format/window blocked it). This prefix is REQUIRED, not optional
+    phrasing — a rejection_reason without one of these two exact prefixes reads,
+    to anyone auditing the log later, as a genuine MERIT-based rejection (idea
+    lost on quality/fit), which is a materially different and more concerning
+    signal than "this format was simply unavailable right now." The two must
+    stay distinguishable in the log itself, not only in this run's own memory.
+
+  - FORMAT BLUEPRINTS (F81, added 2026-09-11 — coverage note: of the 17
+    FORMAT_TYPES tokens, only 4 (WATCH_RANK, SEASON_ROUNDUP, WORTH_WATCHING,
+    THEORY_SPECULATION) have a real dedicated law section with structural/beat
+    guidance beyond the Law #85 hierarchy-list mention. This batch adds real
+    structural guidance for 2 MORE of the remaining 13 — CHARACTER_DIVE and
+    SLEPT_ON/HIDDEN_GEM — closing that specific gap for those two tokens only.
+    WRONG_TAKE, THE_MOMENT, FACT_DROP, COMMENTARY, VILLAIN_DEFENSE, and
+    ORIGIN_STORY remain in the same gap and are NOT closed by this batch — do
+    not read the two closures below as implying the rest of the hierarchy now
+    has equivalent guidance.
+
+    SECOND BATCH, same day (2026-09-11): the six formats named above as still
+    open (WRONG_TAKE, THE_MOMENT, FACT_DROP, COMMENTARY, VILLAIN_DEFENSE,
+    ORIGIN_STORY) now have dedicated blueprints below, closing that gap. Four
+    further tokens (SEASON_RATING, SEASON_PREVIEW, MANGA_VS_ANIME,
+    EPISODE_MOMENT) also received blueprints in this same batch as
+    supplementary packaging only — they already had full governing law in
+    Law #96 / laws/format_reference_seasonal_types.md, so these four are not
+    gap-closures, only structural write-ups layered on unchanged rules. Every
+    blackout/timing figure proposed for this second batch was checked against
+    real send history in sent_scripts_log.json before being adopted: ten for
+    ten, every originally-proposed number was either unverified guesswork
+    (SEASON_RATING/SEASON_PREVIEW/MANGA_VS_ANIME's 72h/24h/broadcast-gate
+    figures) or a rule built on a misread of real usage (FACT_DROP/
+    COMMENTARY/VILLAIN_DEFENSE/ORIGIN_STORY's proposed caps and locks, each
+    blocked by its own format's real shipped history). Recorded here so the
+    next person proposing a blackout checks the send log first, rather than
+    reasoning from what the format sounds like it should require. See F82 for
+    two cases where an independently-verified-CORRECT blackout (SEASON_PREVIEW,
+    WRONG_TAKE) appears to have been missed by a real historical send — the
+    opposite finding, not grounds to relax either rule.):
+
+    WATCH_RANK (Law #98 — EXISTING entry; this is supplementary tone/structure
+    guidance layered on top, not a replacement for anything below):
+      Objective: rank 3-6 shows Sebastian is CURRENTLY WATCHING, head-to-head,
+      on clear and definitive criteria (this replaces an earlier draft
+      Objective that read as an abstract "curated list -- seasonal shows,
+      studio catalogs, genre classics"; that framing was wider than Law #98
+      actually allows and was rewritten here rather than shipped with a
+      narrowing note three lines down, so a drafter reads the real constraint
+      directly instead of having to catch a correction after the fact).
+      Tone: objective, authoritative, engaging.
+      Structure: (1) Benchmark Hook -- state the ranking criteria immediately;
+      (2) Bottom Tier -- rapid, brief, fair; (3) Contenders -- mid-tier, detail
+      what held them back (at least one placement here must be a WRONG_TAKE
+      the audience will argue, per Law #98's existing requirement); (4) Top 3
+      Showdown -- deeper writing/production/character analysis; (5) CTA -- ask
+      for the audience's own #1.
+      Everything below is Law #98, unchanged, still fail-closed, not relaxed
+      by this blueprint: shows_ranked_source_note is still required and still
+      mechanically bans public-poll/aggregator language; live-source verified
+      per Law #52; 14-day blackout per ranking.
+
+    SEASON_ROUNDUP (Law #159 — EXISTING entry; supplementary):
+      Objective: comprehensive post-mortem of a whole season, its cultural
+      impact, highs and lows. Tone: reflective, analytical, complete.
+      Structure: (1) Seasonal Verdict -- one sentence characterizing the
+      season; (2) MVPs -- the 2-3 shows that carried it, focus on strengths;
+      (3) Fumbles -- high-hype shows that dropped the ball, pinpoint the exact
+      episodes or narrative shifts; (4) Post-Season Trend -- a broader
+      industry shift the season revealed.
+      HARD CONSTRAINT carried over from Law #159, unchanged: every MVP and
+      every Fumble named in beats (2)/(3) must map 1:1 to a roundup_shows
+      entry with its own distinct, non-reused, non-encyclopedic, dated source
+      -- no show may be covered in prose without a matching source entry, and
+      no source URL may repeat across two shows named in the roundup. This is
+      a real drafting constraint on the blueprint: beats (2)/(3) cannot be
+      written as free-form commentary on N shows, since each named show is a
+      load-bearing entry that must independently clear Law #159.
+
+    WORTH_WATCHING (Law #158 — EXISTING entry; supplementary):
+      Objective: dedicated, spoiler-free pitch to convince a casual or
+      skeptical viewer to start a specific show. Tone: enthusiastic,
+      persuasive, welcoming to newcomers.
+      Structure: (1) Friction Hook -- address the exact reason people skip it;
+      (2) Core Premise -- punchy elevator pitch of the setup, no major twists;
+      (3) Secret Weapon -- the single best element; (4) Time Investment -- how
+      long until it gets good; (5) Direct CTA -- strong closing urge to watch
+      now.
+      Unchanged, still fail-closed: ZERO comparative or ranking language
+      anywhere in vo, hook_line, hook_onscreen_text, youtube_title,
+      tiktok_title, or tiktok_post_text -- mechanically scanned by
+      BANNED_COMPARATIVE_LANGUAGE, fails closed regardless of
+      self-attestation. No restriction on how well-known the show already is.
+      Drafting caution (not a law conflict): beat (1) Friction Hook is the
+      beat most likely to accidentally introduce comparative phrasing
+      ("unlike [other show]...") and needs explicit care at draft time.
+
+    SLEPT_ON / HIDDEN_GEM (NEW, F81 — genuine gap closure, these tokens had
+    no structural guidance before this entry):
+      Objective: highlight a high-quality anime that bypassed the mainstream
+      radar or was unfairly dismissed. Tone: passionate, vindicating, pointed
+      at the hype machine.
+      SCOPE (pre-existing, from Law #158's own differentiator text, formalized
+      here as this format's real eligibility gate): the subject show must be
+      genuinely underrated or overlooked -- not usable for a mainstream or
+      widely-known show under any framing.
+      Structure: (1) Call-Out Hook -- contrast an overhyped popular show with
+      this one nobody discusses; (2) Why It Was Buried -- bad marketing,
+      streaming platform jail, aired alongside a mega-hit; (3) Masterclass
+      Breakdown -- the specific narrative/visual elements that make it excel;
+      (4) Ideal Viewer Profile -- exactly who this is for; (5) Cult-Classic
+      Push -- ask the small existing fanbase to show up in comments.
+      PERMANENT DIFFERENCE FROM WORTH_WATCHING, not a defect: this format's
+      Call-Out Hook and Masterclass Breakdown are comparative BY DESIGN, while
+      Law #158 mechanically bans comparative language for WORTH_WATCHING in
+      its own fields. The two formats are intentionally different tools --
+      WORTH_WATCHING argues a show's merits with zero comparison,
+      SLEPT_ON/HIDDEN_GEM argues precisely through the comparison to what's
+      overhyped -- and this is why WORTH_WATCHING has no reframe path into
+      SLEPT_ON/HIDDEN_GEM in the REFRAME MAPPING above.
+      PROPOSED, NOT YET ADOPTED: an underrated_basis field (a real,
+      source-grounded justification for why the show qualifies as
+      underrated/overlooked, citing a real source in claim_source_matrix) and
+      a blackout window. NEITHER is wired into validate_dual_package.py as of
+      this entry -- ship the guidance, see whether it survives contact with a
+      real batch, then decide the blackout number and whether to enforce the
+      field, rather than inheriting a number by analogy to an unrelated
+      format's window.
+
+    THEORY_SPECULATION (Law #160 — EXISTING entry; supplementary):
+      Objective: connect subtle narrative dots, lore, and manga hints to
+      predict twists, deaths, or endings. Tone: conversational,
+      investigative, speculative but evidence-grounded.
+      Structure: (1) Hedged Thesis -- lead with the speculative conclusion,
+      phrased through a REQUIRED_THEORY_HEDGES phrase (e.g. "the evidence
+      points to..."), populating theory_claim_line directly -- this is
+      renamed from a plain "Thesis" beat specifically because an unhedged
+      "state the shocking conclusion right up front" phrasing would violate
+      Law #160's mechanical theory_claim_line check, which requires >=1
+      REQUIRED_THEORY_HEDGES phrase and bans BANNED_THEORY_CERTAINTY_LANGUAGE
+      in that field; the thesis still leads structurally, only the certainty
+      of its phrasing changes; (2) Overlooked Clues -- 3 distinct subtle
+      pieces of evidence from episodes, openings, panel backgrounds; (3)
+      Narrative Logic -- why the twist makes sense thematically; (4)
+      Counter-Argument -- address the theory's most obvious flaw; (5) Stakes
+      CTA -- how this would change the audience's view if true.
+      Unchanged, still fail-closed: related_existing_theories,
+      originality_search_performed, theory_hedge_attested, attribution
+      language when extending someone else's theory, and the same-show-
+      same-question blackout (revisit requires revisit_justification with a
+      real dated source).
+
+    CHARACTER_DIVE (NEW, F81 — genuine gap closure, this token had no
+    structural guidance before this entry):
+      Objective: intimate psychological profile tracing a character's
+      evolution, flaws, and narrative purpose. Tone: focused, respectful of
+      the writing craft, deeply analytical.
+      Structure: (1) Archetype Subversion -- how they start vs. who they
+      become; (2) Catalyst Event -- the exact moment, trauma, or choice that
+      shifted them; (3) Internal Conflict -- opposing desires (duty vs.
+      morality) and how they drive the flaws; (4) Narrative Mirror -- how
+      they foil the protagonist or antagonist; (5) Legacy Verdict -- why the
+      writing succeeds or fails in the series' grand scheme.
+      No conflict found against any existing law text for this token.
+      PROPOSED, NOT YET ADOPTED: a catalyst_event_source field (the Catalyst
+      Event beat names a specific episode/chapter/scene; this would need to
+      cite a real, dated, claim_source_matrix-listed source, same mechanism as
+      every other factual beat under Law #52/#147/#148) and a blackout window.
+      NEITHER is wired into validate_dual_package.py as of this entry, for the
+      same reason as SLEPT_ON/HIDDEN_GEM above -- ship the guidance first.
+
+    WRONG_TAKE (NEW, F81 second batch — genuine gap closure; Law #85
+    hierarchy rank 1, description only before this entry):
+      Objective: debunk a popular, incorrect community take/myth about a
+      show, character, or plot point using a specific sourced correction --
+      not a general hot take or unfounded opinion. Confirmed by real usage
+      (36 real sends): e.g. "Wrong benchmark -- everyone measures 2026 vs
+      1995 film... two different shows wearing the same name" (Ghost in the
+      Shell 2026).
+      Fields: debunked_claim_text, sourced_correction_proof. Checked against
+      existing manifest fields -- no redundancy (claim_source_matrix is the
+      semantic-QA audit trail, not a drafting field).
+      Blackout: 14-day same-myth/plot-point restriction (per-topic, no flat
+      time delay otherwise). No prior rule existed; shipped as proposed. One
+      real historical case sits at the edge of this rule -- see F82 (Ghost in
+      the Shell, same myth targeted one day apart) -- logged, not treated as
+      grounds to soften.
+      No artificial constraint carried over: confirmed no "don't compare to
+      other fandoms" rule applies here -- that ban is WORTH_WATCHING-only
+      (Law #158).
+
+    THE_MOMENT (NEW, F81 second batch — genuine gap closure; Law #85
+    hierarchy rank 3, description only before this entry):
+      Objective: spotlight a single high-impact scene/moment for its
+      emotional or technical craft -- the "why this hit so hard" angle. Real
+      usage (17 sends) spans emotional beats and technical/production
+      moments alike.
+      Fields: climax_timestamp, technical_credits_list. No redundancy against
+      existing fields (scene/scene_verified describe the clip itself, not the
+      credited moment's production attribution).
+      Blackout: per-episode, minimum 24 hours post-broadcast so technical
+      credits are officially verified. Shipped as proposed, UNVERIFIED-BUT-
+      UNCONTRADICTED: sent_scripts_log.json does not record episode
+      air-to-send timing precisely enough to confirm this 24-hour minimum was
+      ever actually observed historically. Absence of a contradiction in the
+      log is not validation -- treat this number as reasoned, not tested.
+
+    FACT_DROP (NEW, F81 second batch — genuine gap closure; Law #85
+    hierarchy rank 4, description only before this entry):
+      Objective: deliver a single, specific, sourced lore/fact reveal with a
+      clear "here's what this actually means" angle -- not a recap. Real
+      usage (42 sends, most-used of all 10) spans lore explainers and
+      breaking-news facts alike.
+      Fields: verified_lore_source, citation_record_id. No redundancy against
+      existing fields (source_urls is a link list; citation_record_id is a
+      specific cross-referenceable record ID, not a duplicate).
+      Blackout: NONE, deliberately. The proposed 1-per-show-per-week cap was
+      checked against real send history and found to already conflict with
+      two legitimate cases: Jujutsu Kaisen (3-day gap, two distinct news
+      events) and Kingdom Hearts (same day, two distinct angles on the same
+      announcement). The cap targets the wrong failure mode -- FACT_DROP
+      became a catch-all specifically because it had no structural
+      definition, a pressure this batch removes by giving all 17 tokens real
+      blueprints. A softer cap has the same flaw, just less often. Rely on
+      the existing angle-similarity check (tools/conflict_check.py,
+      ANGLE_SIMILARITY_THRESHOLD) instead -- it already distinguishes "same
+      fact restated" from "new fact, same show" correctly. Recorded as no-cap
+      deliberately, with these two real counter-examples, so nobody
+      reintroduces one later by analogy.
+
+    COMMENTARY (NEW, F81 second batch — genuine gap closure; Law #85
+    hierarchy rank 5, description only before this entry):
+      Objective (widened to match real usage, not narrowed to a guess): cover
+      industry, production, and business events in anime -- distribution-deal
+      changes, studio swaps, circulation/sales data, convention announcements,
+      adaptation news -- as the primary use case. Thematic/artistic analysis
+      of a story's narrative arc is a valid angle within this format but is
+      NOT what real usage has actually been. Evidence: of 15 real sends,
+      examples include a Crunchyroll exclusivity-window change, Attack on
+      Titan Day 2026 announcements, Weekly Shonen Jump's circulation drop, a
+      Ghost in the Shell (2026) studio swap, live review-bombing backlash on
+      Mushoku Tensei S3, and a live-restaged Chainsaw Man scene in Japan. None
+      of these are concluded-arc essays. Same fix pattern as WATCH_RANK's
+      Objective above -- the operative text now matches reality directly
+      rather than carrying a correction underneath it.
+      Fields: thematic_lens_axis, hedged_interpretation -- retained; still
+      useful when the narrative-analysis angle is genuinely the content, and
+      neither field forces a narrative frame onto business/production angles.
+      Blackout: NONE, deliberately. The proposed "operational only once a
+      narrative phase or arc has concluded" rule was checked against real
+      send history and found to retroactively block all 6 real business/
+      industry-event examples above -- none of them wait for a concluded arc,
+      most are live or breaking. The rule assumed a form of COMMENTARY that
+      doesn't match documented real usage. Recorded explicitly so nobody adds
+      a blackout back later by analogy to another format's per-arc window.
+
+    VILLAIN_DEFENSE (NEW, F81 second batch — genuine gap closure; Law #85
+    hierarchy rank 6, description only before this entry):
+      Objective: build a sourced, contrarian defense or reframe of a
+      disliked/controversial character or show -- using their stated
+      philosophy, canon actions, or surrounding critical/fan reception, not a
+      requirement that new backstory be revealed. Real usage (2 sends): Witch
+      Hat Atelier S2's renewal-cliffhanger framing, and Dragon Ball Daima's
+      editor-criticism-vs-merch-success contrast -- both draw on already-
+      published material and ongoing reception, not a new revelation event.
+      Fields: antagonist_philosophy_thesis, canon_trauma_citation. No
+      redundancy against existing fields.
+      Blackout: NONE, deliberately. The proposed "locked until the
+      character's core background motivations are officially revealed in
+      text" rule was checked against real send history and found to block
+      BOTH real sends (2 of 2) -- neither turned on a new-revelation trigger
+      event. Same misdiagnosis as COMMENTARY: the rule imagined a trigger
+      event real usage doesn't depend on. For an ongoing or completed series,
+      a rule gated on a fresh revelation may never fire again, making the
+      format permanently unusable. Recorded explicitly as deliberate
+      no-blackout, with the 2 real examples as evidence.
+
+    ORIGIN_STORY (NEW, F81 second batch — genuine gap closure; Law #85
+    hierarchy rank 7, description only before this entry):
+      Objective: tell a character's backstory or formative history using
+      already-published canon material (manga chapters, flashback arcs,
+      databook records) -- not gated on new prequel content being released.
+      Real usage (4 sends): Hiei/Sasuke's real-world inspiration connection,
+      Guts' Eclipse trauma, Clevatess as a structural post-Berserk blueprint,
+      Arakawa's Equivalent Exchange inversion -- all built from already-
+      available canon, none from a fresh revelation.
+      Fields: canon_timeline_bounds, speculative_gap_hedges. No redundancy
+      against existing fields; speculative_gap_hedges is distinct from
+      THEORY_SPECULATION's hedging fields (Law #160), since this format
+      covers confirmed canon with narrow interpretive gaps, not open
+      speculative questions.
+      Blackout: NONE, deliberately. The proposed "locked until prequel
+      chapters, flashback arcs, or databook records are published" rule was
+      checked against real send history and found to block ALL 4 real sends
+      (4 of 4) -- the most decisive finding of this batch. None of the real
+      ORIGIN_STORY content was triggered by a new prequel/flashback
+      publication; all four use material that was already available. Same
+      misdiagnosis as COMMENTARY and VILLAIN_DEFENSE. Recorded explicitly as
+      deliberate no-blackout, with the 4 real examples as evidence.
+
+    SEASON_RATING (Law #96, ported to laws/format_reference_seasonal_types.md
+    — EXISTING entry; this blueprint is supplementary packaging only):
+      Objective: unchanged from real law -- one show, one provocative rating
+      stated in the hook, currently airing or finished within the last 30
+      days.
+      Blackout: 7-day per show (real law text, confirmed in triplicate across
+      laws/law_96_content_rotation_expansion.md,
+      laws/format_reference_seasonal_types.md, and tools/conflict_check.py's
+      FORMAT_BLACKOUT_DAYS). The proposed 72-hour figure is rejected outright
+      -- no source anywhere in the repo supports it. Real send history: 1
+      total send, no same-show repeats -- clean.
+      No artificial constraint carried over: confirmed no "can't compare to
+      other shows in the same airing block" rule exists for SEASON_RATING.
+
+    SEASON_PREVIEW (Law #96, ported to laws/format_reference_seasonal_types.md
+    — EXISTING entry; supplementary):
+      Objective: unchanged from real law -- verified premiere date within 45
+      days (before or after), answers "why this show, for this viewer, right
+      now," no trailer recap.
+      Blackout: 7-day from send date, stacked on the existing 45-day
+      premiere-window rule (real law text, confirmed in triplicate). The
+      proposed 24-hour-post-Episode-1 figure is rejected -- no source
+      anywhere supports it, and it's also the wrong shape (send-date-based,
+      not airing-based). Real send history: 33 total sends. One apparent
+      enforcement miss found -- see F82 (Link Click) -- not treated as
+      grounds to soften this number, since three independent sources confirm
+      it's correct.
+
+    MANGA_VS_ANIME (Law #96, ported to
+    laws/format_reference_seasonal_types.md — EXISTING entry; supplementary):
+      Objective: unchanged from real law -- one specific, meaningfully
+      different scene, must take a side, verified via live source (Law #52).
+      Blackout: 14-day per show (real law text, confirmed in triplicate). The
+      proposed "cannot generate until the adapted episode finishes
+      broadcasting" is not a real rule anywhere in the repo -- it's folded
+      into the EXISTING live-source-verification eligibility gate (Law #52),
+      not a separate time-based blackout. Kept explicitly separate here: the
+      14-day blackout governs re-use of the same show; the live-source
+      verification requirement governs whether the specific divergence can be
+      honestly claimed at all. Conflating the two would blur an eligibility
+      gate with a cooldown timer. Real send history: 3 total sends, no
+      same-show repeats -- clean.
+
+    EPISODE_MOMENT (Law #96, ported to laws/format_reference_seasonal_types.md
+    — EXISTING entry; supplementary):
+      Objective: unchanged from real law -- one moment/beat/reveal from a
+      currently-airing show, spoiler warning required, must air within 7
+      days.
+      Blackout: NONE -- confirmed explicitly, real law text. The only real
+      constraint is the 7-day airing-window deadline, which is an eligibility
+      cutoff, not a blackout (episode-specific content is inherently
+      self-limiting; there is nothing to cool down). The proposed table entry
+      ("7-day broadcast window") is directionally right about the number but
+      wrong to call it a blackout -- recorded here as a hard deadline
+      instead, with zero blackout stated explicitly so nobody adds one later
+      by analogy to its 7/7/14-day seasonal siblings. Real send history: 13
+      total sends, no same-show repeats -- clean.
+
   - MINIMUM FREQUENCY FLOOR (Part 2, added 2026-08-22): before writing the
     minimum_frequency_floor manifest field, call
     tools/candidate_selection_log.py's days_since_last_considered(tree, format_type,
