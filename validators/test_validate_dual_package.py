@@ -4927,6 +4927,109 @@ class TestFormatTypeEligibilityLaw98(unittest.TestCase):
                                     "preview_stance", "post_date present"))]
         self.assertEqual(new_check_fails, [])
 
+    # --- THE_MOMENT: F83 follow-up (2026-09-12), air_time_utc/generation_time_utc,
+    #     24h post-broadcast delay. Unlike the four format_types above, THE_MOMENT's
+    #     fields must SKIP (emit no check at all) when both are absent -- every
+    #     historical THE_MOMENT row predates this field pair and will lack it
+    #     permanently, so absence cannot be treated as failure the way a missing
+    #     episode_air_date_iso is above. ---
+
+    def _the_moment_checks(self, m):
+        r = v.validate_manifest(m)
+        return [(n, ok) for n, ok, _ in r.checks
+                if "[morning]" in n and "THE_MOMENT" in n]
+
+    def test_the_moment_both_fields_absent_skips_not_fails(self):
+        # The core SKIP case: a THE_MOMENT package with neither field set (every
+        # historical row) must emit ZERO delay/format checks -- not a passing check,
+        # not a failing one, none at all -- mirroring conflict_check.py's angle-less
+        # `continue` (skip the row entirely, don't score it).
+        m = self._pkg("THE_MOMENT")
+        checks = self._the_moment_checks(m)
+        self.assertEqual(checks, [])
+
+    def test_the_moment_exactly_24h_delay_passes(self):
+        m = self._pkg("THE_MOMENT",
+                       air_time_utc="2026-07-15T00:00:00Z",
+                       generation_time_utc="2026-07-16T00:00:00Z")
+        fails = self._fails(m, "THE_MOMENT 24h post-broadcast delay")
+        self.assertEqual(fails, [])
+
+    def test_the_moment_1_second_under_24h_fails(self):
+        m = self._pkg("THE_MOMENT",
+                       air_time_utc="2026-07-15T00:00:01Z",
+                       generation_time_utc="2026-07-16T00:00:00Z")
+        fails = self._fails(m, "THE_MOMENT 24h post-broadcast delay")
+        self.assertNotEqual(fails, [])
+
+    def test_the_moment_well_past_24h_passes(self):
+        m = self._pkg("THE_MOMENT",
+                       air_time_utc="2026-07-10T00:00:00Z",
+                       generation_time_utc="2026-07-16T00:00:00Z")
+        fails = self._fails(m, "THE_MOMENT 24h post-broadcast delay")
+        self.assertEqual(fails, [])
+
+    def test_the_moment_generation_before_air_fails(self):
+        # A negative delay (generated before the episode even aired) must fail, not
+        # be silently treated as "not evaluable" or pass via some sign quirk.
+        m = self._pkg("THE_MOMENT",
+                       air_time_utc="2026-07-16T00:00:00Z",
+                       generation_time_utc="2026-07-15T00:00:00Z")
+        fails = self._fails(m, "THE_MOMENT 24h post-broadcast delay")
+        self.assertNotEqual(fails, [])
+
+    def test_the_moment_air_time_present_generation_time_absent_fails(self):
+        # Only one of the pair set: not the both-absent skip case, so this must be
+        # evaluated and must fail (generation_time_utc present/valid check fails,
+        # and the delay check reports "not evaluable" as a FAIL per the file's
+        # existing not-evaluable convention).
+        m = self._pkg("THE_MOMENT", air_time_utc="2026-07-15T00:00:00Z")
+        fails = self._fails(m, "generation_time_utc present")
+        self.assertNotEqual(fails, [])
+
+    def test_the_moment_malformed_air_time_fails(self):
+        m = self._pkg("THE_MOMENT",
+                       air_time_utc="2026-07-15",  # date-only, no time/offset
+                       generation_time_utc="2026-07-16T00:00:00Z")
+        fails = self._fails(m, "air_time_utc present")
+        self.assertNotEqual(fails, [])
+
+    def test_the_moment_naive_datetime_no_offset_fails(self):
+        # A *_utc field with no timezone marker at all is ambiguous by construction
+        # and must fail closed rather than being assumed to already be UTC.
+        m = self._pkg("THE_MOMENT",
+                       air_time_utc="2026-07-15T00:00:00",
+                       generation_time_utc="2026-07-16T00:00:00Z")
+        fails = self._fails(m, "air_time_utc present")
+        self.assertNotEqual(fails, [])
+
+    def test_the_moment_explicit_nonzero_offset_normalizes_correctly(self):
+        # air_time in +09:00 (JST) exactly 24h before generation_time in Z -- must
+        # be correctly normalized to UTC and pass, proving offset math (not just Z)
+        # is handled.
+        m = self._pkg("THE_MOMENT",
+                       air_time_utc="2026-07-15T09:00:00+09:00",  # == 2026-07-15T00:00:00Z
+                       generation_time_utc="2026-07-16T00:00:00Z")
+        fails = self._fails(m, "THE_MOMENT 24h post-broadcast delay")
+        self.assertEqual(fails, [])
+
+    def test_the_moment_fields_scoped_out_on_other_format(self):
+        # Stray air_time_utc/generation_time_utc on a non-THE_MOMENT package must
+        # fail the scoping check, exactly like the other four formats' fields do.
+        m = self._pkg("FACT_DROP",
+                       air_time_utc="2026-07-15T00:00:00Z",
+                       generation_time_utc="2026-07-16T00:00:00Z")
+        self.assertNotEqual(self._fails(m, "air_time_utc/generation_time_utc absent"), [])
+
+    def test_the_moment_real_valid_fixture_unaffected(self):
+        # Neither real fixture package is THE_MOMENT and neither sets the new
+        # fields, so this must hit the skip path (both absent, non-THE_MOMENT
+        # format) with zero new failures -- same guarantee as the other four
+        # formats' test above.
+        r = v.validate_manifest(load_valid())
+        new_fails = [n for n, ok, _ in r.failures() if "air_time_utc" in n or "generation_time_utc" in n]
+        self.assertEqual(new_fails, [])
+
 
 class TestPreviewStanceStalenessLaw98F45(unittest.TestCase):
     """Item #7 (2026-08-19): preview_stance is a required field on SEASON_PREVIEW
