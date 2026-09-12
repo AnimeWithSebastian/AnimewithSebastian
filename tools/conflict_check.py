@@ -201,27 +201,54 @@ def _parse_date(value: Any) -> dt.date | None:
         return None
 
 
+# Legacy rows tagged with this batch label were emailed once on 2026-07-04
+# but never recorded, edited, or uploaded to YouTube/TikTok -- confirmed by
+# Sebastian directly and independently corroborated against
+# cron_tracking/publication_ledger.jsonl (see
+# cron_tracking/daily_combined/ARCHIVED_20260807_ax2026_batch_never_posted.md).
+# Because none of these 43 packages were ever actually published, they must
+# NOT occupy any real blackout/cooldown slot -- the archive doc says so
+# explicitly. _load_send_history excludes them so a phantom AX2026 row can
+# never block or angle-match against a real live candidate (see
+# test_conflict_check.py::TestAX2026Exclusion for the regression this
+# guards, including the Re:Zero Season 4 Part 2 false positive it would
+# otherwise produce).
+_PHANTOM_BATCH_LABELS = {"AX2026"}
+
+
 def _load_send_history(tree: str) -> list[dict[str, Any]]:
-    """Every parseable row from sent_scripts_events.jsonl. Matches
-    _existing_keys_jsonl's WARN-and-continue convention (append_send_batch.py)
-    for malformed lines -- one bad historical line must never block the scan.
+    """Every parseable row from sent_scripts_log.json, the full send ledger
+    (both current-era batch_id rows and real legacy rows), minus phantom
+    batches that were never actually published (see _PHANTOM_BATCH_LABELS).
+
+    sent_scripts_log.json is read in full rather than merged with
+    cron_tracking/sent_scripts_events.jsonl: events.jsonl is a strict subset
+    of log.json by package_id (verified 2026-09-12 -- 0 events-only rows),
+    so reading both and concatenating would double-count every events.jsonl
+    row. log.json alone is a strict superset with no coverage loss.
+
+    Matches _existing_keys_jsonl's WARN-and-continue convention
+    (append_send_batch.py) for malformed data -- one bad historical row must
+    never block the scan.
     """
-    path = os.path.join(tree, "cron_tracking", "sent_scripts_events.jsonl")
+    path = os.path.join(tree, "sent_scripts_log.json")
     rows: list[dict[str, Any]] = []
     try:
         with open(path, encoding="utf-8") as fh:
-            for line in fh:
-                line = line.strip()
-                if not line:
-                    continue
-                try:
-                    row = json.loads(line)
-                except json.JSONDecodeError:
-                    continue
-                if isinstance(row, dict):
-                    rows.append(row)
+            try:
+                data = json.load(fh)
+            except json.JSONDecodeError:
+                return rows
     except OSError:
-        pass
+        return rows
+    if not isinstance(data, list):
+        return rows
+    for row in data:
+        if not isinstance(row, dict):
+            continue
+        if row.get("batch") in _PHANTOM_BATCH_LABELS:
+            continue
+        rows.append(row)
     return rows
 
 

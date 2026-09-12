@@ -551,19 +551,15 @@ class TestBatchExclusion(unittest.TestCase):
 
 
 class TestRealFileLoading(unittest.TestCase):
-    """Exercises _load_send_history against a real temp file, including a
-    malformed line, matching append_send_batch.py's WARN-and-continue
-    convention for the same file."""
+    """Exercises _load_send_history against a real temp sent_scripts_log.json,
+    including a malformed (non-dict) entry, matching
+    append_send_batch.py's WARN-and-continue convention for malformed data."""
 
-    def test_load_real_jsonl_file_with_one_bad_line(self):
+    def test_load_real_log_json_file_with_one_bad_entry(self):
         with tempfile.TemporaryDirectory() as tree:
-            events_dir = os.path.join(tree, "cron_tracking")
-            os.makedirs(events_dir)
-            path = os.path.join(events_dir, "sent_scripts_events.jsonl")
+            path = os.path.join(tree, "sent_scripts_log.json")
             with open(path, "w", encoding="utf-8") as fh:
-                fh.write(json.dumps(sent(show="Naruto")) + "\n")
-                fh.write("{ not valid json\n")
-                fh.write(json.dumps(sent(show="Bleach")) + "\n")
+                json.dump([sent(show="Naruto"), "not a dict", sent(show="Bleach")], fh)
             rows = c._load_send_history(tree)
             self.assertEqual(len(rows), 2)
             self.assertEqual({r["show"] for r in rows}, {"Naruto", "Bleach"})
@@ -571,6 +567,95 @@ class TestRealFileLoading(unittest.TestCase):
     def test_missing_file_returns_empty_no_crash(self):
         with tempfile.TemporaryDirectory() as tree:
             self.assertEqual(c._load_send_history(tree), [])
+
+    def test_malformed_json_file_returns_empty_no_crash(self):
+        with tempfile.TemporaryDirectory() as tree:
+            path = os.path.join(tree, "sent_scripts_log.json")
+            with open(path, "w", encoding="utf-8") as fh:
+                fh.write("{ not valid json")
+            self.assertEqual(c._load_send_history(tree), [])
+
+    def test_non_list_top_level_returns_empty_no_crash(self):
+        with tempfile.TemporaryDirectory() as tree:
+            path = os.path.join(tree, "sent_scripts_log.json")
+            with open(path, "w", encoding="utf-8") as fh:
+                json.dump({"not": "a list"}, fh)
+            self.assertEqual(c._load_send_history(tree), [])
+
+
+class TestAX2026Exclusion(unittest.TestCase):
+    """Regression coverage for the AX2026 phantom-batch filter. These 43 rows
+    were emailed once on 2026-07-04 but never actually published (see
+    cron_tracking/daily_combined/ARCHIVED_20260807_ax2026_batch_never_posted.md).
+    They must never be visible to conflict checks -- if they are, a phantom
+    row can block or angle-match against a real live candidate."""
+
+    def test_ax2026_rows_never_visible_to_load_send_history(self):
+        with tempfile.TemporaryDirectory() as tree:
+            path = os.path.join(tree, "sent_scripts_log.json")
+            real_row = sent(show="Naruto", batch_id=None)
+            real_row["batch"] = None
+            phantom_row = sent(show="Some AX2026 Show", batch_id=None)
+            phantom_row["batch"] = "AX2026"
+            with open(path, "w", encoding="utf-8") as fh:
+                json.dump([real_row, phantom_row], fh)
+            rows = c._load_send_history(tree)
+            self.assertEqual(len(rows), 1,
+                              "AX2026-tagged row must be filtered out of send history")
+            self.assertEqual(rows[0]["show"], "Naruto")
+
+    def test_real_ax2026_false_positive_regression_re_zero_s4p2(self):
+        # Pinned to the real Re:Zero Season 4 Part 2 AX2026 row found during
+        # the F85 investigation (2026-09-12): date_sent 2026-07-04,
+        # post_date 2026-08-12, SEASON_PREVIEW, never published (see
+        # ARCHIVED_20260807_ax2026_batch_never_posted.md). Tier 2's date
+        # window is anchored on `date_sent` (falling back to post_date only
+        # when date_sent is missing/unparseable -- see
+        # check_recent_send_conflict's Precedence 2). So the real false
+        # positive this row can cause is against a FRESH candidate for the
+        # same show/format near the phantom row's date_sent (2026-07-04),
+        # not against the later real current-era send -- confirmed directly:
+        # replaying the real 79531612 current-era send as a candidate
+        # against this phantom row alone does NOT reproduce a block (its
+        # post_date, 2026-08-11, is 38 days past the phantom's date_sent,
+        # well outside the 7-day SEASON_PREVIEW window). This test pins the
+        # actual reproducible case instead of an unverified one.
+        phantom_row = {
+            "date_sent": "2026-07-04", "post_date": "2026-08-12", "slot": "evening",
+            "format": "SEASON_PREVIEW", "format_type": "SEASON_PREVIEW",
+            "show": "Re:Zero Season 4 Part 2", "batch": "AX2026",
+            "subject": "TOMORROW | EVENING | Re:Zero Season 4 Part 2 | Aug 12 | "
+                       "The AX Exclusive Screening Told Fans Everything They Needed To Know",
+        }
+        candidate = pkg(
+            batch_id="new-real-batch-id",
+            show="Re:Zero Season 4 Part 2", format_type="SEASON_PREVIEW",
+            angle="A brand new, unrelated angle for a genuinely fresh candidate.",
+            post_date="2026-07-08",  # 4 days after the phantom's date_sent, inside the 7d window
+        )
+
+        # Sanity check: WITHOUT filtering, the phantom row would block.
+        unfiltered_result = c.check_recent_send_conflict(
+            candidate, tree="unused", history=[phantom_row])
+        self.assertTrue(
+            unfiltered_result["blocked"],
+            "sanity check failed -- the phantom row no longer reproduces the "
+            "false positive this test guards against; re-verify the fixture")
+        self.assertEqual(unfiltered_result["signal"], "date_window_blackout")
+
+        # Real behavior: _load_send_history must filter the phantom row out,
+        # so it never reaches check_recent_send_conflict at all.
+        with tempfile.TemporaryDirectory() as tree:
+            path = os.path.join(tree, "sent_scripts_log.json")
+            with open(path, "w", encoding="utf-8") as fh:
+                json.dump([phantom_row], fh)
+            history = c._load_send_history(tree)
+            self.assertEqual(history, [],
+                              "AX2026 phantom row must be excluded from loaded history")
+            result = c.check_recent_send_conflict(candidate, tree=tree, history=history)
+            self.assertFalse(result["blocked"],
+                              "a real candidate must not be blocked by a never-published "
+                              "AX2026 phantom row")
 
 
 class TestRealProductionDataSnapshot(unittest.TestCase):
