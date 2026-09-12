@@ -5610,13 +5610,78 @@ independent of which rows are visible — even a WRONG_TAKE row with a
 `batch_id` and full field coverage would not be date-window-checked
 today, because there is no window to check it against.
 
+**FOLLOW-UP (2026-09-12) — `angle` tested as a substitute comparison field
+for the 14-day same-myth rule, and rejected.** A design for wiring
+`WRONG_TAKE` into `FORMAT_BLACKOUT_DAYS` proposed comparing
+`debunked_claim_text` across historical rows to detect a same-myth repeat.
+`debunked_claim_text` appears in **zero of 241 rows** in
+`sent_scripts_log.json` — it is one of the 22 proposed-but-unadopted
+fields this file already tracks as optional-until-proven (Section 3 of
+the same design). A check comparing against a field no historical row
+carries would match nothing and pass silently, which is worse than the
+current honest gap: it would look enforced without enforcing anything.
+
+`angle` was the obvious substitute — it is what
+`ANGLE_SIMILARITY_THRESHOLD` already compares, and is populated on 182 of
+241 rows overall. Tested directly against every real same-show
+`WRONG_TAKE` repeat in the log (8 shows have >1 `WRONG_TAKE` send; 6 of 8
+have `angle` missing on at least one side and can't be compared at all,
+leaving exactly 2 real pairs to test):
+
+- **Jaadugar: A Witch in Mongolia** (2026-06-30 vs 2026-07-12) — angle
+  similarity **0.344**. These are genuinely two different myths: the
+  first debunks "this looks like cozy fantasy romance," the second
+  debunks "the 'underrated' framing undersells it, this is fantasy not
+  war survival." Low similarity is the CORRECT read here — this pair
+  should pass, and a lexical check correctly lets it pass.
+- **Black Torch** (2026-07-02 vs 2026-07-08) — angle similarity
+  **0.284**, lower than the Jaadugar pair despite being arguably the
+  SAME myth restated in different words: both rows debunk "this looks
+  like a failed/cancelled property," one framed as "adaptation gamble
+  because the manga was cut short," the other as "it got animated
+  because it was cancelled, not despite it." A same-myth repeat that
+  should legitimately be caught scores LOWER than a different-myth pair
+  that should legitimately pass.
+
+**This is the core finding, not a threshold-tuning problem.**
+`ANGLE_SIMILARITY_THRESHOLD` (validated at 0.6 in F85's follow-up) is
+tuned to catch **lexically near-identical packages** — the copy-paste
+case, where two sends share most of their actual wording. WRONG_TAKE's
+14-day rule needs to catch **semantically equivalent claims worded
+differently** — the Black Torch case, where the myth is the same but
+the words are not. These are opposite problems, and no single similarity
+threshold serves both: lowering the threshold to catch Black Torch's
+0.284 would also catch Jaadugar's 0.344, which is a real, distinct myth
+that must be allowed to ship. `angle`'s free text is written as a pitch
+for the video, not as a structured statement of "which claim is being
+debunked," so lexical similarity over it cannot reliably distinguish the
+two cases WRONG_TAKE actually needs distinguished.
+
+The 2-of-8 coverage gap (6 of 8 real repeat pairs have `angle` missing on
+at least one side and can't be evaluated at all) is a second, independent
+reason `angle` doesn't work — but it is not the main one. Even with
+perfect coverage, the signal itself points the wrong direction, as Black
+Torch demonstrates directly.
+
+**Conclusion: no proxy was built.** The 14-day same-myth rule stays
+prose-only until `debunked_claim_text` (or an equivalent field capturing
+the specific claim being debunked, independent of how the video pitches
+itself) exists with real production data behind it. Building a lexical
+proxy now would give false confidence — a check that appears to enforce
+the rule while silently missing the Black Torch-shaped case it most needs
+to catch is worse than the current, honestly-documented gap. Anyone
+re-proposing `angle` (or another free-text field) as a substitute should
+read the Black Torch counter-example above before re-deriving this same
+conclusion from scratch.
+
 **Status:** OPEN. Documentation-only finding — no corrective action taken
 or proposed here. If a future pass wires `WRONG_TAKE` into
 `FORMAT_BLACKOUT_DAYS`, that work should also address F59's broader
 finding for the other ten (now, per the THEORY_SPECULATION correction
 above, effectively nine) formats, and should re-run this session's
 investigation methodology (real send-history backtest, not just adding a
-number) before picking a day-count.
+number) before picking a day-count. It should NOT use `angle` as the
+comparison field for the same-myth check — see the follow-up above.
 
 **Verified against the target repo at port time (2026-09-11/12), before
 this entry was pasted there.** Both repos were checked independently and

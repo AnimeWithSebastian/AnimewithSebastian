@@ -544,6 +544,30 @@ def _parse_iso_date(s: Any) -> datetime.date | None:
         return None
 
 
+def _parse_iso_utc_datetime(s: Any) -> datetime.datetime | None:
+    """Parse a strict ISO 8601 UTC datetime string into an aware datetime, or
+    None if not parseable. Mirrors _parse_iso_date's narrow, never-raise
+    contract for a *_utc field pair (air_time_utc, generation_time_utc; F83
+    follow-up, 2026-09-12) rather than the date-only *_date_iso fields above.
+
+    Accepts a trailing "Z" (normalized to "+00:00" for fromisoformat) or an
+    explicit numeric UTC offset. Rejects a naive datetime (no offset/Z at
+    all) outright -- a *_utc field with no timezone marker is ambiguous by
+    construction and must fail closed, not be assumed to already be UTC.
+    """
+    if not isinstance(s, str) or not s.strip():
+        return None
+    raw = s.strip()
+    normalized = raw[:-1] + "+00:00" if raw.endswith("Z") else raw
+    try:
+        parsed = datetime.datetime.fromisoformat(normalized)
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        return None
+    return parsed.astimezone(datetime.timezone.utc)
+
+
 def _vo_band(target_sec: float) -> tuple[int, int]:
     """VO word band for a given edit length, scaled from the 30s rule (Law #138).
     _vo_band(30) == (100, 108) exactly, so the default path is unchanged."""
@@ -1404,6 +1428,13 @@ WATCH_RANK_MAX_SHOWS = 6             # "maximum 6" (Law #98)
 SHOW_STATUS_VALUES = ("airing", "finished")
 PREVIEW_STANCE_VALUES = ("pre_air", "post_air")  # Item #7 (2026-08-19), real F45 case
 
+THE_MOMENT_MIN_DELAY_SECONDS = 86400  # "minimum 24 hours post-broadcast so technical
+                                       # credits are officially verified" (THE_MOMENT
+                                       # blueprint, cron_daily_runtime.txt; F83 follow-up,
+                                       # 2026-09-12 -- self-labeled "reasoned, not tested"
+                                       # in prose; this makes it computable for the first
+                                       # time, it does not newly validate the number itself)
+
 
 def _validate_format_type_eligibility(pkg: dict[str, Any], p: str, r: Result,
                                        post_date: datetime.date | None) -> None:
@@ -1430,7 +1461,9 @@ def _validate_format_type_eligibility(pkg: dict[str, Any], p: str, r: Result,
     skipped, matching this file's existing fail-closed convention; the count-only
     WATCH_RANK check does not depend on post_date and still runs.
 
-    Checks (all fail-closed, all scoped to their one format_type):
+    Checks (all scoped to their one format_type; fail-closed on a present-but-
+    invalid value, EXCEPT THE_MOMENT below, which SKIPS rather than fails when
+    its fields are simply absent -- see that check's own comment for why):
       EPISODE_MOMENT: episode_air_date_iso present, valid YYYY-MM-DD, not in the
         future relative to post_date, and post_date - episode_air_date_iso <= 7 days.
       SEASON_RATING: show_status in {"airing","finished"}; show_status_as_of_iso
@@ -1456,6 +1489,13 @@ def _validate_format_type_eligibility(pkg: dict[str, Any], p: str, r: Result,
         Law #98's own text requires "Sebastian must actually be watching them...
         No shows from memory," i.e. a personal currently-watching list with his own
         placement reasoning, not a third-party ranking site's standings.
+      THE_MOMENT (F83 follow-up, 2026-09-12): air_time_utc and generation_time_utc,
+        both new fields with zero historical coverage, present/valid ISO 8601 UTC
+        datetimes, and generation_time_utc - air_time_utc >= 86400 seconds (24h),
+        per the blueprint's "minimum 24 hours post-broadcast so technical credits
+        are officially verified." SKIPS (does not fail) when both fields are absent
+        -- every historical THE_MOMENT row predates this field pair and will lack it
+        permanently, the same shape as conflict_check.py's angle-less skip.
 
     Like every other Law #73/#147/#159 field check, this is presence/shape/domain
     only -- it cannot verify episode_air_date_iso or premiere_date_iso are
@@ -1655,6 +1695,62 @@ def _validate_format_type_eligibility(pkg: dict[str, Any], p: str, r: Result,
               len(public_source_hits) == 0,
               f"shows_ranked_source_note={source_note_raw!r} angle={pkg.get('angle')!r}; "
               f"violations found: {public_source_hits}" if public_source_hits else "")
+
+    # --- THE_MOMENT: air_time_utc / generation_time_utc, 24h post-broadcast delay ---
+    # F83 follow-up (2026-09-12): THE_MOMENT's blueprint (cron_daily_runtime.txt)
+    # asserts "minimum 24 hours post-broadcast so technical credits are officially
+    # verified," self-labeled "reasoned, not tested" because no field existed to
+    # check it against. air_time_utc/generation_time_utc are BOTH NEW -- present in
+    # zero historical rows, same additive/optional shape as every other field this
+    # function checks. Unlike the *_date_iso fields above (fail-closed on absence),
+    # this check must SKIP rather than fail when air_time_utc is missing: every
+    # historical THE_MOMENT row will lack it PERMANENTLY (the field did not exist
+    # when they were written), so treating absence as failure would make every past
+    # package retroactively non-compliant forever. This mirrors the angle-less skip
+    # in tools/conflict_check.py (`if not isinstance(row_angle, str) or not
+    # row_angle.strip(): continue`) -- absence of optional historical data is a
+    # skip, not a violation, in both places.
+    # Scoping check, same fail-closed shape as EPISODE_MOMENT/SEASON_RATING/
+    # SEASON_PREVIEW/WATCH_RANK above: a stray air_time_utc/generation_time_utc on
+    # a non-THE_MOMENT package most plausibly means format_type itself was set
+    # wrong upstream, not that a harmless extra field is riding along -- this
+    # one-hot schema has no field namespacing, so an unexpected field from another
+    # format's block is the cheapest available signal that something disagreed
+    # with itself about what the package actually is (same "absent when not
+    # applicable" discipline WATCH_RANK's finale_date_iso-while-airing check and
+    # SEASON_RATING's own comment already name explicitly).
+    air_time_raw = pkg.get("air_time_utc")
+    gen_time_raw = pkg.get("generation_time_utc")
+    if fmt != "THE_MOMENT":
+        r.add(f"{p} air_time_utc/generation_time_utc absent on non-THE_MOMENT package (scoping)",
+              air_time_raw is None and gen_time_raw is None,
+              f"format_type={fmt!r} air_time_utc={air_time_raw!r} "
+              f"generation_time_utc={gen_time_raw!r}")
+    elif air_time_raw is None and gen_time_raw is None:
+        # Both absent: a historical THE_MOMENT row predating this field pair, or a
+        # current one that hasn't set them yet. Skip -- not evaluable, not a failure.
+        pass
+    else:
+        air_time = _parse_iso_utc_datetime(air_time_raw)
+        r.add(f"{p} air_time_utc present and a valid ISO 8601 UTC datetime (THE_MOMENT)",
+              air_time is not None, f"air_time_utc={air_time_raw!r}")
+        gen_time = _parse_iso_utc_datetime(gen_time_raw)
+        r.add(f"{p} generation_time_utc present and a valid ISO 8601 UTC datetime (THE_MOMENT)",
+              gen_time is not None, f"generation_time_utc={gen_time_raw!r}")
+        if air_time is None or gen_time is None:
+            r.add(f"{p} generation_time_utc >= air_time_utc + {THE_MOMENT_MIN_DELAY_SECONDS}s "
+                  "(THE_MOMENT 24h post-broadcast delay)",
+                  False,
+                  f"air_time_utc={air_time_raw!r} generation_time_utc={gen_time_raw!r} -- "
+                  "not evaluable")
+        else:
+            delay_seconds = (gen_time - air_time).total_seconds()
+            r.add(f"{p} generation_time_utc >= air_time_utc + {THE_MOMENT_MIN_DELAY_SECONDS}s "
+                  "(THE_MOMENT 24h post-broadcast delay)",
+                  delay_seconds >= THE_MOMENT_MIN_DELAY_SECONDS,
+                  f"air_time_utc={air_time.isoformat()} generation_time_utc={gen_time.isoformat()} "
+                  f"delay_seconds={delay_seconds:.0f} "
+                  f"min_required={THE_MOMENT_MIN_DELAY_SECONDS}")
 
 
 def _validate_semantic_qa(pkg: dict[str, Any], p: str, r: Result, vo_pending: bool = False) -> None:
