@@ -606,7 +606,7 @@ class TestAX2026Exclusion(unittest.TestCase):
 
     def test_real_ax2026_false_positive_regression_re_zero_s4p2(self):
         # Pinned to the real Re:Zero Season 4 Part 2 AX2026 row found during
-        # the F85 investigation (2026-09-12): date_sent 2026-07-04,
+        # the F84 investigation (2026-09-12): date_sent 2026-07-04,
         # post_date 2026-08-12, SEASON_PREVIEW, never published (see
         # ARCHIVED_20260807_ax2026_batch_never_posted.md). Tier 2's date
         # window is anchored on `date_sent` (falling back to post_date only

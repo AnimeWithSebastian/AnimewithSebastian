@@ -5099,7 +5099,7 @@ dangling rather than backfilled.
 
 **Do not fill this gap.** Not with a local finding, not with a stub mirroring
 SEBLABHRIS's F78, not to make the numbering contiguous. The next available number in
-this repo is F84.
+this repo is F86, as of the 2026-09-12 port that added F84 and F85.
 
 ## F79: KNOWN_ISSUES entries can sit at a stale "open" status indefinitely after their fix ships — now detectable by a tool, still not prevented
 
@@ -5350,6 +5350,47 @@ date, confirmed in triplicate agreement across
 `tools/conflict_check.py`'s `FORMAT_BLACKOUT_DAYS` — was in force at
 the time and should have blocked the second send.
 
+**CORRECTION, added 2026-09-12: the paragraph above is wrong. This was
+not a duplicate send and no enforcement was missed.** The 2026-08-14
+row (`batch_id` `32e0fcb9-440c-4b2e-8bd4-0c900390b3c1`) carries
+`corrects_batch_id: "b03ef8b6-d254-442a-aaf9-673a6578a0c5"` — pointing
+directly at the 2026-08-13 row cited above — plus a `correction_reason`
+field ("source citation did not support claim; claim re-sourced").
+`approval.json` for `32e0fcb9` documents a Law #165 fetch-and-confirm
+review that found the original Bahati-fire/Xia-Fei citation didn't
+actually support the claim, re-sourced it, and reworded the VO
+accordingly. The two rows' shared `angle` field is identical by design
+(a correction keeps the same editorial premise); their actual shipped
+content is not: `fact_count` 7→8, `vo_word_count` 206→207, and the
+`hook_line`/`question_line`/`vo` text all differ. This is the send/
+review/resend pattern the correction mechanism exists for, used
+correctly and on record — not a blackout that should have fired and
+didn't.
+
+**The real finding is a methodology gap in how this entry was written,
+not in the blackout mechanism.** F82 asserted an enforcement failure
+against the 2026-08-14 row without first checking whether that same
+row — already open, already being read for its `angle` and `format_type`
+fields — carried a `corrects_batch_id`. It did, in the same JSON object
+cited for the duplicate claim. This is worth recording on its own terms:
+F82 is otherwise careful work (see the WRONG_TAKE correction immediately
+below, which F82 itself already caught and fixed in place). Careful work
+still skipped a one-field check on the one row it was building its
+headline claim from. Treat "does this row carry `corrects_batch_id`
+before calling it a duplicate" as a standing check for any future
+same-show/same-topic repeat found in `sent_scripts_log.json`.
+
+**This correction is scoped to the Link Click / SEASON_PREVIEW case
+only.** The Ghost in the Shell / WRONG_TAKE finding, the Black Torch
+ambiguous-companion case, and the null-angle logging-artifact
+observation below are untouched by this correction and stand as
+originally recorded.
+
+**Porting note:** this correction is numbered F82 here; it is F84 in the
+source repo (`SEBLABHRIS/AnimeWithSebastian`), where the note above was
+originally written as an instruction to whoever ported it. Recorded here
+in past tense now that the port has happened.
+
 **WRONG_TAKE — Ghost in the Shell (2026).** Two real sends, 2026-07-03
 and 2026-07-04, one day apart, both explicitly targeting the identical
 myth ("everyone measures 2026 vs. 1995 film... two different shows
@@ -5386,11 +5427,13 @@ forcing a classification would be arbitrary given the evidence.
 
 **Both principal cases (Link Click, Ghost in the Shell) were originally
 written up as apparent ENFORCEMENT MISSES, NOT evidence either blackout
-rule is wrong.** That framing still holds for **Link Click /
-SEASON_PREVIEW**: `SEASON_PREVIEW` has a real 7-day entry in
-`FORMAT_BLACKOUT_DAYS`, confirmed in code, so a real send inside that
-window that wasn't blocked is a genuine enforcement miss against a rule
-that actually runs.
+rule is wrong.** Per the 2026-09-12 correction above, that framing does
+NOT hold for **Link Click / SEASON_PREVIEW** — the 2026-08-14 send was a
+properly tagged correction of the 2026-08-13 send, not an untagged
+duplicate, so there is no enforcement miss to explain here. `SEASON_PREVIEW`
+still has a real 7-day entry in `FORMAT_BLACKOUT_DAYS`, confirmed in code,
+and nothing in this correction calls that blackout itself into question —
+only this one historical instance of it being cited as a miss.
 
 **It does NOT hold for Ghost in the Shell / WRONG_TAKE, per the
 correction above and F83: there is no code-enforced WRONG_TAKE blackout
@@ -5421,22 +5464,47 @@ across these separate cases in one batch is itself worth naming,
 independent of any single instance.
 
 **Explicitly out of scope for this entry:** root-causing why any
-blackout check did not block the Link Click or Ghost in the Shell
-repeats — whether the conflict check ran for those sends, whether it
-was bypassed, whether a manual override was used, or whether the
-null-angle rows reflect a logging bug versus a real duplicate. Any of
-these are plausible; distinguishing between them is real investigative
+blackout check did not block the Ghost in the Shell repeat (the Link
+Click case is resolved by the 2026-09-12 correction above and is no
+longer an open root-cause question) — whether the conflict check ran,
+whether it was bypassed, whether a manual override was used, or whether
+the null-angle rows reflect a logging bug versus a real duplicate. Any
+of these are plausible; distinguishing between them is real investigative
 work requiring its own pass, not a byproduct of this batch's
 blueprint-verification task.
+
+**Also surfaced while investigating this correction, recorded separately
+as its own entry rather than folded in here: see F85.** `cron_tracking/
+publication_ledger.jsonl` has zero entries for either package_id
+involved in the Link Click correction (`7182ec38-a018-440a-b30c-
+64b19866eb17`, the sent Link Click package) or the held Slime package
+(`8cf962b9-786a-42ab-9888-8de397136784`) discussed above, at any date.
+That finding is unrelated to whether the Link Click send was a genuine
+duplicate — it doesn't bear on this entry's correction either way — but
+it is a real, separate gap and is tracked in F85 rather than left to
+evaporate as an incidental discovery.
 
 **Status:** OPEN. Historical record only — no corrective action taken
 or proposed here.
 
+**Provenance note (added 2026-09-11, during unrelated validation-engine work):**
+the Ghost in the Shell, Black Torch, and null-angle evidence above came from
+`sent_scripts_log.json`, which is the only file covering that date range —
+`cron_tracking/sent_scripts_events.jsonl` starts 2026-07-14, when
+`tools/append_send_batch.py` introduced the dual-write mechanism. Checking
+these claims against `sent_scripts_events.jsonl` instead finds none of them
+(Ghost in the Shell: zero rows at any date; Black Torch: one unrelated row,
+2026-08-08 COMMENTARY). That is not a contradiction — it is expected, since
+`sent_scripts_events.jsonl` cannot contain anything from before it existed.
+See F85 for the general finding this points to.
+
+
 ## F83: WRONG_TAKE's 14-day same-myth blackout is prose-only — absent from `FORMAT_BLACKOUT_DAYS`, so nothing in code currently enforces it
 
-Found 2026-09-11 while investigating F85 (F85: source-repo-only entry, not yet present in this repo as of this port -- match by content, opening line 'Every live blackout/cooldown/near-duplicate check reads only sent_scripts_events.jsonl...', when it is ported in a future handoff)'s send-history coverage gap
+Found 2026-09-11 while investigating F84's send-history coverage gap
 (unrelated task — this is a distinct, real gap on the repo that ships,
-not part of F85 itself).
+not part of F84 itself). F84 landed in this repo on 2026-09-12, resolving
+the forward-reference this parenthetical originally carried.
 
 **The finding.** `tools/conflict_check.py`'s `FORMAT_BLACKOUT_DAYS` dict
 holds exactly six entries:
@@ -5480,6 +5548,20 @@ to miss. The 14-day same-myth rule exists in the FORMAT BLUEPRINTS prose
 in `cron_daily_runtime.txt` (second batch) but was never ported into
 `FORMAT_BLACKOUT_DAYS`. Describing it as "newly-adopted" implied it had
 been wired up as part of adopting it; it hadn't.
+
+**CORRECTION, added 2026-09-12: the "Link Click / SEASON_PREVIEW is a
+real enforcement miss" clause above is also now wrong, per F82's
+2026-09-12 correction (see F82, above).** The 2026-08-14 Link Click send
+was a properly tagged correction (`corrects_batch_id` pointing at the
+2026-08-13 send) of a Law #165 citation fix, not a duplicate that slipped
+past the `SEASON_PREVIEW` blackout. There was no enforcement miss on
+either side of this sentence's comparison — not for Ghost in the Shell /
+WRONG_TAKE (no code-enforced blackout existed to miss, as this entry
+already found) and not for Link Click / SEASON_PREVIEW (the blackout was
+never actually triggered, because the second send was a correction, not
+a repeat). This entry's core subject — `WRONG_TAKE` absent from
+`FORMAT_BLACKOUT_DAYS` — is untouched by this correction; only the
+Link Click comparison point used to illustrate it is affected.
 
 **Scope check — is this really isolated to WRONG_TAKE, and does "no
 entry" always mean "unenforced"? No — these are two different things and
@@ -5601,12 +5683,14 @@ F43 Gaban backtest). Not proposing a fix or a code change here —
 documentation-only finding, per the same standard applied throughout this
 file.
 
-**Relationship to F85.** Distinct issue, found while working F85, not a
-sub-case of it. F85 is about which send-history ROWS are visible to
-`check_recent_send_conflict` at all (148 of 241 rows in
-`sent_scripts_log.json` lack `batch_id` and are invisible to every live
-check). F83 is about a RULE that has no enforcement mechanism at all,
-independent of which rows are visible — even a WRONG_TAKE row with a
+**Relationship to F84.** Distinct issue, found while working F84, not a
+sub-case of it. F84 is about which send-history ROWS are visible to
+`check_recent_send_conflict` at all (105 of 241 rows in
+`sent_scripts_log.json` are real legacy sends that lack `batch_id`, per
+F84's own 297dbea follow-up correcting an earlier 148 figure that
+included 43 never-posted AX2026 phantom rows). F83 is about a RULE that
+has no enforcement mechanism at all, independent of which rows are
+visible — even a WRONG_TAKE row with a
 `batch_id` and full field coverage would not be date-window-checked
 today, because there is no window to check it against.
 
@@ -5644,7 +5728,7 @@ leaving exactly 2 real pairs to test):
   that should legitimately pass.
 
 **This is the core finding, not a threshold-tuning problem.**
-`ANGLE_SIMILARITY_THRESHOLD` (validated at 0.6 in F85's follow-up) is
+`ANGLE_SIMILARITY_THRESHOLD` (validated at 0.6 in F84's follow-up) is
 tuned to catch **lexically near-identical packages** — the copy-paste
 case, where two sends share most of their actual wording. WRONG_TAKE's
 14-day rule needs to catch **semantically equivalent claims worded
@@ -5683,30 +5767,41 @@ investigation methodology (real send-history backtest, not just adding a
 number) before picking a day-count. It should NOT use `angle` as the
 comparison field for the same-myth check — see the follow-up above.
 
-**THREE SITES IN THIS REPO REFERENCE F85, WHICH DOES NOT EXIST HERE — ALL
-THREE NEED UPDATING WHEN IT LANDS.** F85 was deliberately not ported (see the
-F78 tombstone's numbering policy and the parenthetical in this entry's own
-opening paragraph). Each site below is a live forward-reference, left dangling
-on purpose rather than backfilled, and each will read as resolvable-but-wrong
-the moment a real F85 is filed under some other number here:
+**RESOLVED 2026-09-12 — the three forward-reference sites below were fixed
+when F84 landed in this repo.** This section is kept as a historical record
+of the tracking rather than deleted, consistent with this file's no-
+retroactive-rewrite convention. All three sites originally referenced F85
+as a number that did not yet exist here, under the plan that it would land
+as F84 (the next free number per the F78 tombstone):
 
   1. This entry's opening paragraph — the "(F85: source-repo-only entry, not
      yet present in this repo as of this port ... match by content ...)"
-     parenthetical. Strike the not-yet-present clause once it is present.
+     parenthetical. Fixed: now reads "F84" and states the port date.
   2. This entry's follow-up block above — "`ANGLE_SIMILARITY_THRESHOLD`
-     (validated at 0.6 in F85's follow-up)", ported verbatim from the source
-     repo on 2026-09-12.
+     (validated at 0.6 in F85's follow-up)". Fixed: now reads "F84's
+     follow-up".
   3. `validators/test_validate_dual_package.py`, in
      `TestMechanicalConflictCheckWiring._tree_with_history`'s comment — "see
-     F85 follow-up, 2026-09-12", added when 297dbea landed. This one is in
-     CODE, not in this file, and a grep of docs/ alone will not find it.
+     F85 follow-up, 2026-09-12". This site was in CODE, not in this file,
+     and a grep of docs/ alone would not have found it. Checked directly at
+     port time: this repo's copy of that file already reads "F85" at the
+     identical line as the source repo (both sides' `conflict_check.py`,
+     `test_conflict_check.py`, and `format_frequency_cooldown.py` were
+     already byte-identical before this port — the underlying AX2026 fix
+     had already been ported in 7a406d6, only its KNOWN_ISSUES.md writeup
+     had not). That comment is corrected to "F84" as part of this same
+     commit — see the accompanying code diff.
 
-That third site is the reason this list exists rather than being left implicit.
-Across three consecutive ports, F-number references have twice been missed by
-searches scoped to the documents being renumbered — once in validator
-docstrings and comments, once inside a test file arriving in the incoming diff
-itself. Whoever ports F85 should grep the whole tree for "F85", not just this
-file.
+That third site was the reason this list existed rather than being left
+implicit. Across three consecutive ports, F-number references were twice
+missed by searches scoped to the documents being renumbered — once in
+validator docstrings and comments, once inside a test file arriving in the
+incoming diff itself. This port's grep covered the whole tree, not just this
+file, and found four more code sites carrying the same "F85" text needing the
+same F84 translation: `tools/format_frequency_cooldown.py` (four comment
+references) and `tools/test_conflict_check.py` (one comment reference),
+neither of which F83's original tracking list above anticipated because
+neither file existed in this repo when that list was written.
 
 **Verified against the target repo at port time (2026-09-11/12), before
 this entry was pasted there.** Both repos were checked independently and
@@ -5729,3 +5824,267 @@ because the source and target share history:
     `tools/test_reframe_destination_guard.py` (Sections 2 and 3 of this
     handoff) exist yet on the target repo — no naming collision on
     creation.
+
+## F84: Every live blackout/cooldown/near-duplicate check reads only `sent_scripts_events.jsonl`, which structurally cannot see any send before 2026-07-14 — 148 of 241 real historical sends are invisible to enforcement, not due to a bug but because that file did not exist yet
+
+**Found while:** verifying F82's four claims against the real logs, during
+unrelated validation-engine build work (2026-09-11). F82's claims all checked
+out as accurate in `sent_scripts_log.json` but appeared absent or different
+in `cron_tracking/sent_scripts_events.jsonl`, which looked at first like a
+data-integrity conflict between the two files. It is not — the two files
+were never supposed to agree over the full history, and once the actual
+relationship between them was traced, F82 needed only a provenance footnote,
+not a correction (see that footnote for the specific claim-by-claim check).
+This entry records the underlying mechanism, since it applies to every
+current and future blackout/cooldown check, not just F82's four examples.
+
+**THE RELATIONSHIP BETWEEN THE TWO FILES, CONFIRMED BY EXACT KEY MATCHING —
+not inferred from row counts or date-range eyeballing.** Every row in
+`cron_tracking/sent_scripts_events.jsonl` (97 rows) matches a row in
+`sent_scripts_log.json` at the `(batch_id, package_id)` level, with zero
+mismatches. Of `sent_scripts_log.json`'s 241 rows, 93 carry a `batch_id` and
+all 93 are present in `sent_scripts_events.jsonl` (one further row in
+`sent_scripts_log.json` shares a duplicate-looking key and is the sole
+non-perfect-1:1 case). The remaining **148 rows in `sent_scripts_log.json`
+have no `batch_id` field at all** — they predate the batch_id / dual-write
+mechanism. `git log --diff-filter=A` confirms `tools/append_send_batch.py`
+(which performs the dual write to both files in one call) was added
+2026-07-15, and `sent_scripts_events.jsonl`'s own earliest row is dated
+2026-07-14. `sent_scripts_log.json`'s earliest row is 2026-05-30.
+
+**Conclusion: `sent_scripts_events.jsonl` is not incomplete or buggy — it is
+a strict subset of `sent_scripts_log.json` by construction, covering only
+2026-07-14 onward.** `sent_scripts_log.json` is the only file with visibility
+into the channel's first ~6.5 weeks of real sends (2026-05-30 through
+2026-07-13 inclusive).
+
+**WHICH REAL CHECKS THIS AFFECTS, CONFIRMED FROM THE ACTUAL CODE, NOT
+ASSUMED:**
+- `tools/conflict_check.py`'s `check_recent_send_conflict()` — the sole live
+  blackout/cooldown/near-duplicate/angle-similarity check used by the daily
+  runtime — reads exclusively through `_load_send_history()`, which opens
+  `cron_tracking/sent_scripts_events.jsonl` and only that file (confirmed by
+  grep: no reference to `sent_scripts_log.json` anywhere in
+  `tools/conflict_check.py`).
+- `validators/validate_dual_package.py` references `sent_scripts_log.json`
+  only in comments and documentation strings (e.g. describing historical
+  format-token usage, the `SCHEMA` docstring's `trailing_format_counts`
+  description) — it performs no live read of either send-history file for
+  any check in this module. Its live history-shaped checks
+  (`_validate_minimum_frequency_floor`, `_validate_selection_log_completeness`)
+  read `candidate_selection_log.jsonl` instead, a separate log with its own
+  documented scope (candidates considered, not shows sent) and is not a
+  substitute for either send-history file.
+
+**THE PRACTICAL CONSEQUENCE, STATED PLAINLY:** a blackout, cooldown, or
+near-duplicate check today for a show whose only prior real sends fall
+before 2026-07-14 sees no history for that show at all and passes — not
+because the content is genuinely fresh, but because the one file the check
+reads cannot contain a row from that period, regardless of what actually
+shipped. F82's Ghost in the Shell and Black Torch cases are the two concrete
+instances already found; there may be others among the 148 pre-07-14 rows
+that no one has specifically checked for.
+
+**EXPLICITLY NOT PROPOSING A FIX.** Whether `check_recent_send_conflict()`
+should also read `sent_scripts_log.json` for the pre-07-14 window, whether
+the older rows are even shaped correctly for that check (they lack
+`batch_id`, and some lack `angle` entirely per F82's null-angle
+observation), or whether the practical risk of an 8-week-old show
+resurfacing is low enough not to matter — these are real design questions
+needing their own review, not a byproduct of this pass. No behavior change
+to any live check is made by this entry. It exists so the boundary is
+written down rather than rediscovered by the next person who checks a
+pre-07-14 claim against `sent_scripts_events.jsonl` and mistakes the
+expected absence for a contradiction.
+
+**ANGLE_SIMILARITY_THRESHOLD (0.6) validated against real pairs in the file
+the mechanism actually reads, post-07-14 (2026-09-11):** tested against
+every same-show repeat found in `sent_scripts_events.jsonl` rather than
+against F82's pre-07-14 examples, which this mechanism cannot see at all
+(the coverage gap above is exactly why those examples were unusable for
+this test). Real `difflib.SequenceMatcher` ratios: Kingdom Hearts's two
+same-day FACT_DROP sends (near-identical D23/Disney announcement text,
+differing only in key-visual description) scored 0.753 and were caught;
+Link Click's byte-identical 08-13/08-14 SEASON_PREVIEW repeat scored 1.000
+and was caught; Link Click's genuinely-distinct 08-03-vs-08-13/14 pair
+(new character reveal vs. premiere date, same show) scored 0.257 and was
+correctly NOT caught. Checking signal precedence rather than the ratio
+alone: the Link Click 08-13/08-14 repeat is SEASON_PREVIEW, one of six
+tokens with a real entry in `FORMAT_BLACKOUT_DAYS` (`SEASON_RATING`: 7,
+`SEASON_PREVIEW`: 7, `MANGA_VS_ANIME`: 14, `WATCH_RANK`: 14,
+`WORTH_WATCHING`: 7, `EPISODE_MOMENT`: 0 — the last is an explicit
+no-blackout with a 7-day airing deadline instead, not a cooldown), so tier 2
+(date-window blackout) would independently block it regardless of angle
+similarity.
+
+**CORRECTION, added 2026-09-12: the Link Click 08-13/08-14 pair described
+above was never a repeat that needed catching, so "was caught" and "would
+independently block it" both misstate what this pair actually is.** Per
+F82's 2026-09-12 correction (see F82, above), the 08-14 send
+(`corrects_batch_id` pointing at 08-13) is a properly tagged Law #165
+correction of the 08-13 send, not a duplicate. The 1.000 `difflib` score
+is real and the shared `angle` text really is byte-identical — that part
+of this entry's measurement is accurate — but a correction is SUPPOSED to
+keep its editorial premise (hence identical `angle`) while changing its
+sourced claims (hence `fact_count` 7→8 and a rewritten `vo`). A blackout
+or angle-similarity check that blocked this pair would have blocked a
+legitimate correction, not caught a duplicate. Whether this pair was
+actually intercepted by live tier-2/tier-3 checks at send time, or shipped
+because corrections bypass those checks by design, is not established by
+either this entry or F82 — F82 explicitly did not root-cause the
+mechanism (see its "explicitly out of scope" note). This paragraph's
+scoring measurement stands; its characterization of what the pair IS, and
+what catching or blocking it would have meant, does not.
+
+Corrected framing (as of today's format-blueprint batch — an earlier draft
+of this entry described these as "10 undocumented formats with no blackout
+window," accurate this morning and stale within hours; verified directly
+against `cron_daily_runtime.txt`'s blueprint text and
+`tools/conflict_check.py`'s live `FORMAT_BLACKOUT_DAYS` dict rather than
+carried forward from that earlier summary): all 17 format tokens now have
+drafting blueprints, but `FORMAT_BLACKOUT_DAYS` itself is unchanged in code —
+still only the six entries above. Of the 11 tokens with no code-level entry,
+four (`FACT_DROP`, `COMMENTARY`, `VILLAIN_DEFENSE`, `ORIGIN_STORY`) now carry
+an explicit, permanent DELIBERATE no-blackout decision in their blueprint —
+each documents a specific proposed day-count or trigger-event rule that was
+checked against real send history and found to have retroactively blocked
+real shipped packages (e.g. ORIGIN_STORY's proposed rule would have blocked
+all 4 of its 4 real sends), so no window was adopted. Two (`WRONG_TAKE`:
+14-day per-topic, `THE_MOMENT`: 24-hour post-broadcast) have a specific
+number proposed in the blueprint but NOT yet wired into
+`FORMAT_BLACKOUT_DAYS` or the validator. Two (`SLEPT_ON`/`HIDDEN_GEM`,
+`CHARACTER_DIVE`) have a blackout proposed in principle but not yet given a
+number, pending real usage. `THEORY_SPECULATION` was never a "no blackout"
+case at all — Law #160 gives it its own same-show-SAME-QUESTION block with a
+`revisit_justification` escape hatch, a different mechanism than a day-count
+window. For all 11 of these tokens, angle-similarity (tier 3) remains the
+only code-enforced signal today, same as before this batch — what changed is
+that the blueprint now states, per format, why no window is enforced yet,
+rather than leaving the gap unexplained. This is exactly the failure class
+this entry and F82 both document — a specific claim ("10 undocumented
+formats") accurate when first drafted, gone stale within hours as the
+repo's real state moved past it — caught here before it landed rather than
+after.
+
+The threshold itself held up against every real pair available for testing:
+no false negative and no false positive found. This is a tested result, not
+an assumed one — but it says nothing about the pre-07-14 era, where the real
+risk (per this entry) is not that 0.6 is wrong, but that no history exists
+for the check to compare against at all.
+
+**Same stale-count failure found elsewhere in this file (not corrected
+here — out of scope for this diff):** F59 (line ~3451) and its own
+practical-consequence paragraph (line ~3461) both describe "the 10
+undocumented-blackout formats," the same count corrected above. F59's core
+finding — no minimum-days floor between same-show sends independent of
+angle similarity, for formats with no `FORMAT_BLACKOUT_DAYS` entry — is
+unaffected by the count itself and does not need re-verification on that
+basis. But the "10" label carries the same staleness this entry documents:
+of those formats, four now have a *deliberate* no-blackout decision (not
+merely undocumented), which is a materially different fact for anyone
+deciding whether to build F59's proposed floor — a deliberate no-blackout
+decision, backed by real send-history evidence that a day-count would have
+blocked real shipped packages, is a stronger reason not to add a floor than
+a format simply never having been reached yet. Left as a pointer rather
+than an edit to preserve this diff's scope; F59 itself should get this
+correction in a dedicated pass.
+
+**Status:** OPEN. Documentation-only finding — no corrective action taken or
+proposed here.
+
+**FOLLOW-UP (2026-09-12) — the "148 legacy rows" framing above was wrong in
+a way that would have caused real damage if built as originally scoped, and
+the fix has now shipped.** Investigating whether `_load_send_history()`
+should read `sent_scripts_log.json` found that the 148 batch_id-less rows
+are not one population: **43 of the 148 are the `AX2026` batch** —
+packages emailed once on 2026-07-04 that were never recorded, edited, or
+uploaded (see
+`cron_tracking/daily_combined/ARCHIVED_20260807_ax2026_batch_never_posted.md`,
+which already concluded these rows must never occupy a real blackout/cooldown
+slot). The corrected split is **105 real legacy rows**, not 148. Of those
+105, **16 lack `angle`** (not 59 — the other 43 in the original count were
+AX2026 rows), and of those 16, 15 are fully bare (no `subject`/`title`
+fallback either); tier 3's existing code already skips angle-less rows via
+`continue`, so no fallback needed building.
+
+This was caught, not assumed: tracing a specific near-miss (Re:Zero Season 4
+Part 2, two `SEASON_PREVIEW`-tagged rows) back to its source row found that
+the "conflicting" row was an AX2026 phantom that was never published. Had
+`_load_send_history()` been widened to read all 148 batch_id-less rows
+without excluding AX2026, a real future candidate for the same show/format
+near the phantom's `date_sent` (2026-07-04) would have been wrongly blocked
+by content nobody ever shipped — reproduced directly in
+`tools/test_conflict_check.py::TestAX2026Exclusion::test_real_ax2026_false_positive_regression_re_zero_s4p2`.
+
+**Fix shipped:** `_load_send_history()` now reads `sent_scripts_log.json` at
+the tree root (a JSON array, 241 rows) instead of
+`cron_tracking/sent_scripts_events.jsonl` (97 rows), explicitly filtering out
+any row with `batch == "AX2026"` (see `_PHANTOM_BATCH_LABELS` in
+`tools/conflict_check.py`). `sent_scripts_events.jsonl` is not also read —
+confirmed a strict subset of `sent_scripts_log.json` by `package_id` (0
+events-only rows), so reading both would double-count 97 rows. No
+angle-fallback logic was added and no `batch_id` backfill was performed, per
+the same investigation's conclusions.
+
+**Measured impact, not assumed safe:** every real batch_id-bearing candidate
+(93 rows) was replayed through `check_recent_send_conflict()` twice — once
+against the old events.jsonl-only history (97 rows), once against the new
+`sent_scripts_log.json`-minus-AX2026 history (198 rows) — and diffed.
+**Zero candidates flip between blocked and clear.** History visibility grew
+from 97 to 198 rows (241 total minus 43 correctly excluded AX2026 phantoms)
+with no change to any real production outcome.
+
+**Status:** FIXED (2026-09-12). `tools/conflict_check.py`'s
+`_load_send_history()` updated; regression coverage added in
+`tools/test_conflict_check.py` (`TestAX2026Exclusion`, plus updated
+`TestRealFileLoading` for the new JSON-array format); the shared fixture
+helper in `validators/test_validate_dual_package.py`
+(`TestMechanicalConflictCheckWiring._tree_with_history`) updated to match.
+Full suite (`validators/` + `tools/`) passes: 786 tests + 77 subtests.
+
+
+## F85: `publication_ledger.jsonl` has zero entries for either package_id in the F82 Link Click correction, despite both packages having a confirmed send
+
+**Found:** 2026-09-12, while independently verifying F82's Link Click
+correction (see F82's 2026-09-12 CORRECTION paragraph, above). Not part
+of that investigation's original scope — surfaced incidentally while
+checking whether either the sent Link Click package or its held Slime
+companion had a corresponding publication record.
+
+**The finding.** `cron_tracking/publication_ledger.jsonl` contains
+exactly 3 lines in total: a Villainess entry (2026-07-26), a Jujutsu
+Kaisen repost (2026-08-03), and a Chainsaw Man repost (2026-08-04).
+Checked both package_ids from the F82 Link Click correction against the
+full file by direct substring match:
+
+- `7182ec38-a018-440a-b30c-64b19866eb17` — the Link Click package,
+  confirmed `status: "sent"` with `emails_sent: true` in both
+  `sent_scripts_log.json` and `pending/32e0fcb9.../state.json`. Zero
+  matches in `publication_ledger.jsonl`.
+- `8cf962b9-786a-42ab-9888-8de397136784` — the Slime package held
+  separately the same night under Law #165 (see F36). Also zero matches,
+  though this one is arguably expected since it was never sent.
+
+**Why this is worth its own entry rather than a note.** A package with a
+confirmed, logged, emailed send — not a draft, not a held batch, not an
+edge case — has no corresponding row in the file that is supposed to
+track publication. This is not a question of timing (the file predating
+the send, the way F84 explains gaps in `sent_scripts_events.jsonl`) —
+the ledger has entries from 2026-07-26 onward and the Link Click send was
+2026-08-14, well inside its coverage window. The ledger's near-total
+sparseness (3 rows against 241 real sends in `sent_scripts_log.json`)
+suggests it is being written to selectively or manually rather than as a
+routine step of the send pipeline, but that is an inference, not
+something confirmed by reading code in this pass — recorded here as an
+open question, not asserted as the mechanism.
+
+**Explicitly out of scope for this entry:** what writes to
+`publication_ledger.jsonl`, when, or why only 3 of 241+ real sends are
+represented — that requires reading whatever code path(s) touch the
+file, which this entry does not do. Also out of scope: whether this
+bears on the F82 Link Click correction — it does not; the correction's
+finding (correctly tagged, correctly reasoned) stands independent of
+whether either package has a publication-ledger row.
+
+**Status:** OPEN. Documentation-only finding — no corrective action
+taken or proposed here.

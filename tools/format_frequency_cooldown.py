@@ -8,7 +8,7 @@ checks -- those ask "was THIS SPECIFIC show/angle sent too recently," this
 asks "has THIS FORMAT been overused in the recent rotation, regardless of
 show." Both can be true or false independently.
 
-DELIBERATE FILE CHOICE -- READ BEFORE CHANGING (per F85,
+DELIBERATE FILE CHOICE -- READ BEFORE CHANGING (per F84,
 docs/KNOWN_ISSUES.md): this module reads `sent_scripts_log.json`, NOT
 `cron_tracking/sent_scripts_events.jsonl`, even though
 tools/conflict_check.py's live checks read the latter. This is intentional,
@@ -21,10 +21,10 @@ not an inconsistency to "fix":
     one.
   - A trailing-7 read is inherently a full-history question. events.jsonl
     is a strict subset of log.json covering only 2026-07-14 onward (97 of
-    241 real sends, per F85) -- reading it here would make this new gate
+    241 real sends, per F84) -- reading it here would make this new gate
     wrong by construction from day one, not merely exposed to a latent risk
     the way conflict_check.py's date-window blackouts are.
-  - F85 explicitly declined to change what EXISTING checks read, because
+  - F84 explicitly declined to change what EXISTING checks read, because
     that is a live-enforcement behavior change needing its own review. That
     reasoning protects conflict_check.py's current behavior; it does not
     oblige a brand-new check to inherit the same limitation when the wider,
@@ -36,7 +36,7 @@ not an inconsistency to "fix":
 
 DATA-QUALITY FINDINGS THIS MODULE'S NORMALIZATION EXISTS TO HANDLE (verified
 directly against the real file, 2026-09-11, before writing any of the logic
-below -- see docs/KNOWN_ISSUES.md F85's cooldown-gate discussion for the
+below -- see docs/KNOWN_ISSUES.md F84's cooldown-gate discussion for the
 full verification trace):
 
   (a) format_type coverage: all 148 pre-batch_id rows (of 241 total) carry a

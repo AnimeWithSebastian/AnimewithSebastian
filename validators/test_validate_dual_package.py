@@ -726,7 +726,7 @@ class TestMechanicalConflictCheckWiring(unittest.TestCase):
     def _tree_with_history(self, rows: list[dict]) -> str:
         # conflict_check._load_send_history() reads sent_scripts_log.json at
         # the tree root (a JSON array), not cron_tracking/sent_scripts_events.jsonl
-        # (see F85 follow-up, 2026-09-12: events.jsonl is a strict subset of
+        # (see F84 follow-up, 2026-09-12: events.jsonl is a strict subset of
         # log.json by package_id, so log.json is the sole read target now).
         tmp = tempfile.mkdtemp()
         path = os.path.join(tmp, "sent_scripts_log.json")
