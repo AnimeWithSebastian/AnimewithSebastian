@@ -2,8 +2,9 @@
 
 **Status:** ACTIVE. User-approved. Governs the packaging of every 30s Short. Does not
 relax any existing creative law (VO 100-108 words, exact "Leave your take.", 30s
-per-cut timings #140, seamless loop #141, face-cam split-screen layout #134 Stage 2
-(2026-08-09, superseding the earlier anime-only rule) all still apply).
+per-cut timings #140, seamless loop #141, anime-footage-only-full-frame layout #134
+(RESTORED 2026-09-12, superseding the 2026-08-09 Stage 2 face-cam split-screen
+mandate) all still apply).
 
 ## Evidence base (both must agree)
 - **Channel analytics:** clean titles (no hashtags) outperformed hashtagged ones

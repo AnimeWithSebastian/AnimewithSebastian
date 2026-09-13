@@ -93,9 +93,9 @@ window) — not a new gap introduced by this law.
 
 ## Video style / production
 
-No change to Law #134 Stage 2: face-cam split screen (Creator TOP / anime
-footage BOTTOM) required, same as every other Shorts format_type. No
-anime-only exception for this format either.
+No change to Law #134 (restored 2026-09-12): anime footage only, full frame,
+required, same as every other Shorts format_type. No exception for this format
+either.
 
 ## Where this fits (implementation status)
 

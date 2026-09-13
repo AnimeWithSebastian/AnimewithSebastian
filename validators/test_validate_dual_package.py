@@ -212,220 +212,6 @@ class TestSingleHookLaw170(unittest.TestCase):
         self.assertNotEqual(fails, [])
 
 
-class TestDirectionTrackStalenessLaw171(unittest.TestCase):
-    """Law #171 (added 2026-09-10; mechanical enforcement added later the same
-    day per F79's own recommendation): direction_note_track entries must stay
-    in sync with the live VO text. Field name and shape confirmed directly
-    against real, live production data (batch 4786c451's run_manifest.json),
-    not assumed -- {"line_index", "vo_sentence", "direction", "note"}.
-
-    Found necessary after a real incident: a VO edit (removing padding,
-    adding a new sentence for a corrected claim) left a package's track
-    stale -- still quoting deleted sentences, missing an entry for the new
-    one -- caught only by a manual re-check at final render, not by anything
-    mechanical. This class pins the check that now catches it automatically.
-    """
-
-    def _first_sentence(self, m, pkg_index=0):
-        return m["packages"][pkg_index]["vo"].split(". ")[0] + "."
-
-    def test_no_track_present_is_not_required_and_passes(self):
-        m = load_valid()
-        m["packages"][0].pop("direction_note_track", None)
-        fails = [n for n in failed_names(m) if "direction_note_track" in n]
-        self.assertEqual(fails, [])
-
-    def test_current_track_matching_live_vo_passes(self):
-        m = load_valid()
-        first = self._first_sentence(m)
-        m["packages"][0]["direction_note_track"] = [
-            {"line_index": 0, "vo_sentence": first,
-             "direction": "DIRECT-TO-CAMERA", "note": "hook"},
-        ]
-        fails = [n for n in failed_names(m) if "match the live VO text" in n]
-        self.assertEqual(fails, [])
-
-    def test_stale_entry_quoting_a_since_deleted_sentence_fails(self):
-        m = load_valid()
-        m["packages"][0]["direction_note_track"] = [
-            {"line_index": 0, "vo_sentence": "This sentence was deleted from the VO.",
-             "direction": "DIRECT-TO-CAMERA", "note": "stale"},
-        ]
-        fails = [n for n in failed_names(m) if "direction_note_track" in n]
-        self.assertNotEqual(fails, [])
-
-    def test_missing_vo_sentence_field_fails(self):
-        m = load_valid()
-        m["packages"][0]["direction_note_track"] = [
-            {"line_index": 0, "direction": "DIRECT-TO-CAMERA", "note": "no sentence key"},
-        ]
-        fails = [n for n in failed_names(m) if "direction_note_track" in n]
-        self.assertNotEqual(fails, [])
-
-    def test_non_dict_entry_fails_without_crashing(self):
-        m = load_valid()
-        m["packages"][0]["direction_note_track"] = ["not a dict"]
-        fails = [n for n in failed_names(m) if "direction_note_track" in n]
-        self.assertNotEqual(fails, [])
-
-    def test_non_list_track_fails_without_crashing(self):
-        m = load_valid()
-        m["packages"][0]["direction_note_track"] = "not a list"
-        fails = [n for n in failed_names(m) if "direction_note_track" in n]
-        self.assertNotEqual(fails, [])
-
-    def test_skipped_while_vo_status_pending(self):
-        m = load_valid()
-        m["packages"][0]["vo_status"] = "pending"
-        m["packages"][0]["direction_note_track"] = [
-            {"line_index": 0, "vo_sentence": "Anything at all, doesn't matter here.",
-             "direction": "DIRECT-TO-CAMERA", "note": "n/a"},
-        ]
-        r = v.validate_manifest(m)
-        matches = [(n, ok) for n, ok, _ in r.checks if "direction_note_track" in n]
-        self.assertTrue(matches)
-        for n, ok in matches:
-            self.assertEqual(ok, "SKIP", msg=f"expected SKIP while pending, got {ok} for {n}")
-
-    def test_untracked_sentence_is_now_caught_by_the_coverage_check(self):
-        # SUPERSEDED 2026-09-11. This test previously asserted the OPPOSITE --
-        # that an untracked VO sentence "still passes existing entries" -- and
-        # existed to document Law #171's deliberate scope limit: the staleness
-        # check alone could not detect a sentence with no track entry at all.
-        # That gap is now closed by the coverage check (see
-        # TestDirectionTrackCoverageLaw171). Rewritten rather than deleted, so
-        # the history of the limit and its closure both stay on the record.
-        #
-        # Staleness is still correctly silent here (the one entry present DOES
-        # match the live VO) -- it's coverage that now catches the gap. Both
-        # assertions below pin that division of labor explicitly.
-        m = load_valid()
-        first = self._first_sentence(m)
-        m["packages"][0]["direction_note_track"] = [
-            {"line_index": 0, "vo_sentence": first,
-             "direction": "DIRECT-TO-CAMERA", "note": "hook"},
-        ]
-        names = [n for n in failed_names(m) if "direction_note_track" in n]
-        self.assertFalse(any("match the live VO text" in n for n in names),
-                         msg="staleness should stay silent -- the entry is current")
-        self.assertTrue(any("covers the entire VO" in n for n in names),
-                        msg="coverage should now catch the untracked remainder")
-
-    def test_multiple_valid_entries_all_pass(self):
-        m = load_valid()
-        sentences = [s.strip() + "." for s in m["packages"][0]["vo"].split(". ") if s.strip()]
-        m["packages"][0]["direction_note_track"] = [
-            {"line_index": i, "vo_sentence": s, "direction": "GLANCE-DOWN-AT-FOOTAGE", "note": ""}
-            for i, s in enumerate(sentences[:3])
-        ]
-        fails = [n for n in failed_names(m) if "match the live VO text" in n]
-        self.assertEqual(fails, [])
-
-
-class TestDirectionTrackCoverageLaw171(unittest.TestCase):
-    """Law #171's SECOND half (added 2026-09-11), closing the scope limit the
-    staleness check deliberately left open: a VO sentence ADDED with no
-    corresponding direction_note_track entry previously passed silently.
-
-    Both halves were present in the real motivating incident -- a padding trim
-    left entries quoting deleted sentences (caught by the staleness check), AND
-    a corrected-claim rewrite added a sentence with no entry (not caught until
-    now). The original entry explicitly declined to claim Law #171 was fully
-    mechanically enforced because of this.
-
-    The check deliberately does NOT split the VO into sentences -- that
-    ambiguity (abbreviations, ellipses, quoted dialogue) was the documented
-    reason this stayed open. It concatenates entries in line_index order and
-    requires the result to account for the whole VO, whitespace-normalized."""
-
-    def _full_track(self, m, pkg_index=0, base=1):
-        """Build a track that genuinely covers the whole VO, splitting only for
-        test-fixture construction -- the CHECK itself never splits."""
-        vo = m["packages"][pkg_index]["vo"]
-        parts = [s for s in vo.split(". ") if s.strip()]
-        sentences = [p if p.endswith(".") or i == len(parts) - 1 else p + "."
-                     for i, p in enumerate(parts)]
-        m["packages"][pkg_index]["direction_note_track"] = [
-            {"line_index": i + base, "vo_sentence": s,
-             "direction": "GLANCE-DOWN-AT-FOOTAGE", "note": ""}
-            for i, s in enumerate(sentences)
-        ]
-        return m
-
-    def test_full_coverage_passes(self):
-        m = self._full_track(load_valid())
-        fails = [n for n in failed_names(m) if "covers the entire VO" in n]
-        self.assertEqual(fails, [], msg=f"unexpected coverage failure: {fails}")
-
-    def test_untracked_appended_sentence_fails(self):
-        # THE REAL INCIDENT: a corrected claim adds a sentence, track not rebuilt.
-        m = self._full_track(load_valid())
-        m["packages"][0]["vo"] += " This sentence was added with no track entry."
-        fails = [n for n in failed_names(m) if "covers the entire VO" in n]
-        self.assertNotEqual(fails, [])
-
-    def test_dropped_middle_entry_fails(self):
-        # A track entry removed while the VO kept its sentence -- coverage gap
-        # in the middle, not just at the tail.
-        m = self._full_track(load_valid())
-        del m["packages"][0]["direction_note_track"][2]
-        fails = [n for n in failed_names(m) if "covers the entire VO" in n]
-        self.assertNotEqual(fails, [])
-
-    def test_zero_based_line_index_also_works(self):
-        # Real production manifests use 1-based line_index (confirmed against
-        # batch 4786c451), but the check sorts by value rather than assuming a
-        # base, so 0-based must work identically.
-        m = self._full_track(load_valid(), base=0)
-        fails = [n for n in failed_names(m) if "covers the entire VO" in n]
-        self.assertEqual(fails, [])
-
-    def test_out_of_order_entries_still_pass_when_complete(self):
-        # Entries stored out of order but carrying correct line_index values
-        # must still pass -- the check sorts before comparing.
-        m = self._full_track(load_valid())
-        m["packages"][0]["direction_note_track"].reverse()
-        fails = [n for n in failed_names(m) if "covers the entire VO" in n]
-        self.assertEqual(fails, [])
-
-    def test_whitespace_differences_do_not_cause_false_failure(self):
-        # Extra internal whitespace in an entry must not fail coverage --
-        # comparison is whitespace-normalized, since this is about missing
-        # CONTENT, not formatting.
-        m = self._full_track(load_valid())
-        t = m["packages"][0]["direction_note_track"]
-        t[0]["vo_sentence"] = t[0]["vo_sentence"].replace(" ", "  ", 1)
-        fails = [n for n in failed_names(m) if "covers the entire VO" in n]
-        self.assertEqual(fails, [])
-
-    def test_coverage_not_evaluated_when_entries_are_already_stale(self):
-        # If an entry is stale, the staleness check already fails and coverage
-        # would fail too for the same underlying reason -- reporting both is
-        # noise. Coverage is only evaluated once every entry is itself current.
-        m = self._full_track(load_valid())
-        m["packages"][0]["direction_note_track"][0]["vo_sentence"] = "Deleted sentence."
-        names = [n for n in failed_names(m) if "direction_note_track" in n]
-        self.assertTrue(any("match the live VO text" in n for n in names))
-        self.assertFalse(any("covers the entire VO" in n for n in names))
-
-    def test_skipped_while_vo_pending(self):
-        m = self._full_track(load_valid())
-        m["packages"][0]["vo_status"] = "pending"
-        r = v.validate_manifest(m)
-        cov = [(n, ok) for n, ok, _ in r.checks if "covers the entire VO" in n]
-        for n, ok in cov:
-            self.assertNotEqual(ok, "FAIL",
-                                msg=f"coverage must not FAIL while VO pending: {n}")
-
-    def test_no_track_at_all_is_not_a_coverage_failure(self):
-        # Law #171 never made the track mandatory -- only required it stay in
-        # sync when used. Absence is a different question for a different law.
-        m = load_valid()
-        m["packages"][0].pop("direction_note_track", None)
-        fails = [n for n in failed_names(m) if "covers the entire VO" in n]
-        self.assertEqual(fails, [])
-
-
 class TestWordCountUnicodeAndContractions(unittest.TestCase):
     """F5 fix: _words() must count an accented name (e.g. Pok\u00e9mon) as ONE word,
     not two ("Pok"+"mon"), WITHOUT breaking contraction counting -- a naive \\w+
@@ -557,24 +343,25 @@ class TestInvalidCases(unittest.TestCase):
         self.assertFailsOn(m, "within the closing")
 
     def test_face_direction(self):
-        # STAGE 1 REBUILD (2026-08-09): face-cam split-screen is now the REQUIRED
-        # default (creator top / anime bottom, Sebastian's confirmed decision) --
-        # this test now proves the INVERSE failure: a package that reverts to
-        # face=False with an anime-only video_style must fail both checks.
+        # LAW #134 RESTORATION (2026-09-12): face-cam split screen is removed;
+        # Shorts revert to anime-footage-only, full frame. face=True and a
+        # face/split-naming video_style must now FAIL (the inverse of the
+        # 2026-08-09 to 2026-09-12 Stage 2 requirement this test used to prove).
         m = load_valid()
-        m["packages"][0]["face"] = False
-        m["packages"][0]["video_style"] = "Anime Clips Only"
+        m["packages"][0]["face"] = True
+        m["packages"][0]["video_style"] = "Face-Cam Split Screen"
         names = failed_names(m)
-        self.assertTrue(any("face flag is true" in n for n in names), names)
-        self.assertTrue(any("declares the face-cam split-screen format" in n for n in names), names)
+        self.assertTrue(any("face flag is not set to a face-cam value" in n for n in names), names)
+        self.assertTrue(any("does not declare a face-cam or split-screen format" in n for n in names), names)
 
     def test_split_screen_direction(self):
-        # STAGE 1 REBUILD (2026-08-09): split_screen=True is now REQUIRED (it is
-        # the face-cam format itself), so this test proves the inverse failure --
-        # reverting split_screen to False must fail.
+        # LAW #134 RESTORATION (2026-09-12): split_screen=True is now BANNED
+        # again (anime-footage-only, full frame), so this test proves setting
+        # it to True must fail -- the inverse of the 2026-08-09 to 2026-09-12
+        # Stage 2 requirement this test used to prove.
         m = load_valid()
-        m["packages"][1]["split_screen"] = False
-        self.assertFailsOn(m, "split_screen flag is true")
+        m["packages"][1]["split_screen"] = True
+        self.assertFailsOn(m, "split_screen flag is not set to true")
 
     def test_clip_missing_duration(self):
         m = load_valid()
@@ -3254,7 +3041,6 @@ class TestClipDescriptionsSurfaceLocationLaw73Update6(unittest.TestCase):
         self.assertIn("does not match", detail, msg=f"expected a segment-count-mismatch message, not a per-cut mismap; got {detail!r}")
 
 
-
 if __name__ == "__main__":
     unittest.main(verbosity=2)
 
@@ -3396,19 +3182,24 @@ class TestCTAFormulaBoundaryCases(unittest.TestCase):
 
 class TestLaw73TopTrackExemption(unittest.TestCase):
     """NEW (Stage 1, per user instruction): proves the Law #73 clip-verification
-    chain is scoped ONLY to pkg["clips"] (the bottom-half anime footage track) and
-    has zero requirements on any top-half creator-cam field. A face-cam package
-    that sets no scene_verified/verification_source_url-style fields anywhere
-    except inside clips[] -- and has no "top track" structure at all in the
-    schema -- must validate cleanly, proving the scoping doc is enforced in
-    practice, not just asserted in a comment."""
+    chain is scoped ONLY to pkg["clips"] and has zero requirements on any
+    creator-cam field. LAW #134 RESTORATION (2026-09-12): face-cam split screen
+    is removed and there is no top/bottom track split anymore -- Shorts are
+    anime-footage-only, full frame. This class's original point survives that
+    change unaltered: it was never really about face-cam being present, it was
+    about proving _validate_clip_verification only ever reads pkg["clips"] and
+    has no awareness of any other field, face-cam or otherwise. A package with
+    no scene_verified/verification_source_url-style fields anywhere except
+    inside clips[] -- and no "top track" structure at all in the schema -- must
+    validate cleanly, proving the scoping doc is enforced in practice, not just
+    asserted in a comment."""
 
-    def test_facecam_package_with_no_top_track_fields_passes_law73(self):
+    def test_package_with_no_top_track_fields_passes_law73(self):
         m = load_valid()
         pkg = m["packages"][0]
-        # Confirm the required face-cam fields are set (creator top / anime bottom).
-        self.assertTrue(pkg["face"])
-        self.assertTrue(pkg["split_screen"])
+        # Confirm the restored anime-footage-only fields are set (Law #134).
+        self.assertFalse(pkg["face"])
+        self.assertFalse(pkg["split_screen"])
         # There is no top-track schema field in this manifest format at all --
         # the package has no "creator_clips", "top_track", "facecam_verification"
         # or similar key. Assert that directly: the only clip-shaped, verification-

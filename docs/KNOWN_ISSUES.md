@@ -5283,7 +5283,7 @@ dangling rather than backfilled.
 
 **Do not fill this gap.** Not with a local finding, not with a stub mirroring
 SEBLABHRIS's F78, not to make the numbering contiguous. The next available number in
-this repo is F95, as of the 2026-09-13 port that added F86 through F94.
+this repo is F97, as of the 2026-09-13 Law #134 port that added F95 and F96.
 
 ## F79: KNOWN_ISSUES entries can sit at a stale "open" status indefinitely after their fix ships — now detectable by a tool, still not prevented
 
@@ -7054,3 +7054,195 @@ open is the assumption itself: until someone audits the full F1-F79 range
 across both repos, any sub-F80 cross-reference arriving in a handoff is
 unverified. The same two errors are being logged on the source side, since the
 handoff that produced them was generated there from the same assumptions.
+
+## F95: Law #134 restored to anime-footage-only — the face-cam split-screen mandate and its direction-note-track mechanic are removed here, ported from SEBLABHRIS 166e42a
+
+**Ported:** 2026-09-13, from SEBLABHRIS/AnimeWithSebastian commit
+`166e42a3be89fc1227d3ffdf1adc82bad56b2e9d` (that repo records the change as its
+own F97). This entry records what actually landed in THIS repo, with this
+repo's own measured numbers — not a copy of the source entry's.
+
+**What changed.** Law #134's Stage 2 face-cam split-screen requirement (Creator
+TOP / anime footage BOTTOM, in force 2026-08-09 to 2026-09-12) is struck in
+place across the prose, and Shorts revert to anime footage only, full frame.
+Three `validators/validate_dual_package.py` checks are INVERTED rather than
+relaxed: `face` and `split_screen` go from REQUIRED-true to BANNED-true, and
+`video_style` goes from required-to-name-face-cam to banned-from-naming it via
+`BANNED_STYLE_TOKENS`, which becomes an active blocklist again. A stale package
+that still sets `face: true` out of habit now fails closed instead of shipping
+silently.
+
+**The `[FACE:]` / `direction_note_track` mechanic is removed WHOLE, not struck**
+— the field, its schema example, its two validator checks, and its two
+dedicated test classes. The field's own documentation defined every note type
+(DIRECT-TO-CAMERA, GLANCE-DOWN-AT-FOOTAGE, REACTION BEAT) as a face-cam delivery
+cue, so nothing in it survives without a face track.
+
+**A related regression fixed in the same pass:** `_str()`'s silent coercion of a
+non-string `video_style` to `""` let a poisoned value vacuously pass the
+banned-token scan — an empty string contains none of the banned tokens, so
+`12345` or `['a']` would have PASSED a check whose whole purpose is to fail
+closed. An explicit `style_is_string` guard now runs ahead of the scan.
+
+**Measured here, not inherited.** This repo's suite went **839 to 821**, a drop
+of 18, entirely in `validators/`. `validators/test_validate_dual_package.py`
+went from 472 to 454 test methods, and the -18 is exactly the two removed
+classes: `TestDirectionTrackStalenessLaw171` (9) and
+`TestDirectionTrackCoverageLaw171` (9). Confirmed by counting `def test_`
+methods before and after, not by subtraction alone. `tools/` is unchanged at
+327. The source repo measured the same -18 on its own tree; the file-level
+counts (472 to 454) happen to match exactly, the full-suite counts do not,
+because the two repos' suites differ in what else they contain.
+
+**Applied as a diff, not as the supplied full-file bundle.** The handoff
+included both. The bundle's `validate_dual_package.py` was missing nine items
+this repo carries — the F80 correction tag and its doc pointer, four
+THE_MOMENT F83 references, the null-acceptance comment, the dated local
+selection-log measurement, the drift-as-class attribution, the removal of a
+nonexistent-batch citation from blocked-send runtime output, and the F90 CTA
+finding — so overwriting would have reverted all nine. Applying the unified
+diff instead preserved them automatically, because no hunk touches those
+regions. Verified item-by-item by name after applying, not by line count.
+
+**Two prose divergences surfaced during the port, both handled by content
+anchoring rather than by line number:**
+
+1. This repo's TWO-TRACK SCRIPT section was worded differently from the source's,
+   so that hunk's context did not match. Resolved by removing this repo's own
+   block by its bullet boundaries — which also caught an extra bullet the
+   source did not have at that position (`MECHANICAL DIRECTION-TRACK TEMPLATE`,
+   Law #171), part of the same mechanic and correctly removed with it.
+2. The source's `FORMAT BLUEPRINTS (F83` label is `(F81` here, and its
+   `SAME-FORMAT COLLISION ... F88 closure` is `F86 closure` here. Neither was
+   touched by any hunk, so both survived — which matters because the `(F81`
+   string is a live content anchor in `tools/reframe_destination_guard.py`, and
+   overwriting the file would have broken that anchor's own test.
+
+**Status:** RESOLVED as ported. Long-form's separate Anime TOP / Face BOTTOM
+layout (Law #136) is unaffected — this is Shorts/TikTok only.
+
+**HONESTY NOTE, carried across from the source entry because it applies equally
+here:** no verbatim July 14, 2026 pre-face-cam prose survives in either repo.
+Every "restored" passage is new prose written in the surrounding style, informed
+by what the repo says about that period, and marked
+`~~STRUCK, dated 2026-09-12~~` where it replaces period-accurate historical
+text. It is a reconstruction, not a recovered original.
+
+## F96: [ported from SEBLABHRIS/AnimeWithSebastian F98] A scheduled cron task's stored instruction text drifted from its repo for weeks, and the investigation into it initially asserted a wrong finding before being corrected — recorded here as a pattern, not a local issue
+
+**Source:** SEBLABHRIS/AnimeWithSebastian, commit `7dead90`,
+`docs/KNOWN_ISSUES.md` F98. This entry describes THAT repo's own
+`daily_combined` scheduled cron task (cron ID `087efcd5`) and its live stored
+instruction text — an object this repo does not have. Nothing below is a
+finding about this repo's own state; it is ported as a pattern worth being
+aware of if this repo ever gains its own externally-stored, non-versioned
+instruction surface (a scheduler task, a webhook config, a third-party
+automation prompt).
+
+**Found:** 2026-09-12, while reviewing scope for the F97 Law #134 restoration.
+
+**What this is:** the `daily_combined` scheduled task (the platform-level cron
+that actually triggers the daily Shorts run) carries its own full instruction
+body, stored by the scheduler itself — not a file in this repository, not
+covered by `git diff`, `git log`, or any commit in this history. It is a
+fundamentally different kind of object from every other file discussed in this
+document: a live, mutable, non-versioned prompt that instructs the agent
+directly on every run, edited only by whoever updates the scheduled task
+through the platform's own task-management surface.
+
+**A claim made in this entry was asserted, then disproven, and the correction
+is the more important record than the original finding:** the entry as first
+written (same day, during F97 scope review) asserted that the stored task text
+"will carry stale Law #134 face-cam language once F97 lands" — extrapolated
+from the F97 framing, without actually reading the live stored text first.
+When the text was later read directly, in full, it already said verbatim:
+"anime footage only (no face/split/inset)." There was no face-cam instruction,
+no `[FACE: ...]` mechanic reference, and no contradiction with the repo's
+Law #134 restoration anywhere in it. The claim was wrong. A prior turn's
+urgency framing built on top of that same wrong claim (describing it as an
+active blocker that would make the validator "reject on three checks") was
+also corrected before any fix was applied. Recording the error and its
+correction here deliberately, rather than quietly replacing the finding with
+only the confirmed ones, because the failure mode — extrapolating a stale-text
+claim from a framing instead of reading the text — is the more reusable
+lesson than the (non-)finding itself.
+
+**What was actually confirmed stale, by directly reading and diffing the live
+stored text against the repo:**
+
+1. **Law #141 colon-handoff (real, ~7 weeks stale).** The stored task text
+   mandated an "EXPLICIT SEAMLESS LOOP — DIRECT COLON HANDOFF," forcing the
+   VO's final sentence to end on an intentionally incomplete colon setup, with
+   `loop_read_aloud_pass` / `carries_loop_back` treated as required checks.
+   `cron_daily_runtime.txt` has said the opposite since 2026-07-27: the VO ends
+   on "any clean, complete, natural closing thought... no forced incomplete
+   colon setup required," and those same fields are inert/optional, confirmed
+   directly against `validators/validate_dual_package.py`.
+2. **Law #145 vs Law #170 single-hook drafting (real, ~2 days stale at time of
+   fix).** The stored task text required "exactly TWO internal hook_candidates
+   with selected_hook_index." Law #170 (added 2026-09-10) supersedes this:
+   draft exactly ONE hook directly, no candidates array. The validator accepts
+   EITHER shape (legacy two-candidate or new single-hook, per the SOURCE repo's own F80 entry -- NOT this repo's F80, which is the unrelated FLOOR_FORMATS comment finding; the closest local counterpart is this repo's F76, verified by content, but the citation is left pointing at the source repo rather than silently retargeted) — which is
+   exactly why this drift persisted silently: nothing failed, so nothing
+   surfaced it.
+
+Both items were confirmed non-blocking against the live validator before being
+characterized: neither would have failed closed on tomorrow's run. The actual
+risk was daily drafting under two stale creative instructions, not a run
+failure.
+
+**No other drift found.** Every Law # the stored text cites (#129, #137, #140,
+#143, #144, #145, #146, #147) was checked against the repo for rescission or
+supersession language; only #145 (via #170) showed drift. Every file path and
+script invocation the task references was confirmed to still exist and run.
+This was a keyword-driven sweep, not an exhaustive line-by-line semantic
+comparison — treat absence of further findings here as "not found by this
+pass," not as a proof of completeness.
+
+**Fix applied 2026-09-12:** the scheduler's stored task text for cron
+`087efcd5` was updated directly via the scheduling tool's own `update` action
+(the text lives in the scheduler, not this repo — no commit represents it).
+Three stale clauses were replaced with current-law language (Law #141
+rescission, Law #170 single-hook, and the corresponding QA-checklist field);
+everything else in the ~110-line task text — steps 1-4, 6-9, file paths, the
+email/validator/logging/push sequence — was left untouched. The corrected text
+was shown to Sebastian in full diff form and approved before being applied,
+then re-fetched and confirmed byte-identical to the approved draft.
+
+**A dated sync line was added to the task text itself** — "TASK TEXT LAST
+SYNCED 2026-09-12 against repo commit 166e42a3be89fc1227d3ffdf1adc82bad56b2e9d"
+— because both stale items above persisted for weeks specifically because
+nothing recorded when the text was last checked against the repo. The next
+person (or run) that opens the stored text now sees its own age directly,
+rather than needing to diff two separate documents to notice drift.
+
+**Why this still matters even after the fix:** the underlying two-sources-of-
+truth structure is unchanged. The versioned repo file (`cron_daily_runtime.txt`)
+and the scheduler's own stored prompt text are still two independently edited
+objects, and nothing regenerates or automatically checks one against the
+other. Today's fix corrects the drift that had already accumulated and adds a
+visible age marker; it does not prevent new drift from accumulating again the
+next time a law changes in the repo without a corresponding scheduler update.
+
+**Status:** the 2026-09-12 drift (Law #141, Law #170) is FIXED and verified
+applied. The face-cam claim in this entry's original framing is RETRACTED as
+incorrect. The general two-sources-of-truth problem remains OPEN — the sync
+line makes future drift visible by age, but does not prevent it. Whether the
+task text should eventually be generated from the repo or periodically
+diffed automatically is still a real design question, left open here rather
+than resolved unilaterally.
+
+**Applicability note:** this repo has not been checked for an equivalent
+drifted instruction surface, because none is currently known to exist. If one
+is later added, treat this entry as the reference case for what to check and
+how the check was structured — a keyword sweep of every Law/F-number the
+stored text cites, cross-checked against rescission/supersession language,
+non-exhaustive by the source entry's own admission.
+
+**One cross-reference was rewritten during the port.** The body above
+originally read "per F80", meaning the SOURCE repo's F80 (the validator
+accepting either hook shape). This repo's F80 is the unrelated FLOOR_FORMATS
+comment finding, so the citation would have resolved cleanly to the wrong entry
+— the same silent-misresolution class recorded in F94. It now names the
+source repo explicitly, with this repo's closest counterpart (F76) noted rather
+than silently substituted.

@@ -175,17 +175,17 @@ TITLE_STOPWORDS = frozenset({
     "are", "is", "not", "and", "or", "for", "on", "at", "as", "but", "you",
 })
 
-# STAGE 1 REBUILD (2026-08-09) NOTE: this constant's name is legacy and its ORIGINAL
-# meaning ("these tokens are banned") is INVERTED today — face-cam split screen is now
-# the REQUIRED default Shorts format (Law #134 Stage 2), so these tokens are what
-# video_style is now required to contain, not banned from containing. Retained only so
-# any downstream code/tests still importing the name keep working; it is NOT used
-# below to fail a package on these tokens' presence. See the real, current enforcement
-# in validate_package() ("face flag is true" / "split_screen flag is true" / "video_style
-# declares the face-cam split-screen format" checks). This comment previously read
-# "Face / split-screen signals banned for Shorts (anime footage only)", which was
-# itself a stale, incorrect description of current behavior — fixed 2026-08-10
-# alongside the Law #139/#140/#144/#73/#103 anime-only text corrections.
+# LAW #134 RESTORATION (2026-09-12): face-cam split screen is removed as Shorts'
+# required format; Shorts REVERT to anime-footage-only, full frame (Sebastian's
+# decision, 2026-09-12 — see hero_or_villain_master_laws_final.txt Law #134 for the
+# restoration note: this is reconstructed prose, not the recovered original July 14,
+# 2026 rule text). These tokens are BANNED again — video_style, face, and
+# split_screen must NOT signal a face-cam/split-screen format. This constant briefly
+# had its meaning inverted from 2026-08-09 to 2026-09-12 (Stage 2 face-cam mandate,
+# when these tokens were REQUIRED, not banned) — that inversion is itself now
+# reverted. See the real, current enforcement in validate_package() ("face flag is
+# not set to a face-cam value" / "split_screen flag is not set to true" /
+# "video_style does not declare a face-cam or split-screen format" checks).
 BANNED_STYLE_TOKENS = ("face", "facecam", "face cam", "face inset", "inset", "split screen", "split-screen")
 BANNED_CTA = ("drop it.", "drop your take.", "like and comment", "what do you think")
 
@@ -762,7 +762,14 @@ def _validate_clip_verification(clips: list[Any], pkg: dict[str, Any], p: str, r
     CURRENTLY-AVAILABLE dimension to verify. When Stage 3 introduces an actual
     top-track schema field, it must remain outside this function's scope by
     construction, and a dedicated (much lighter) check should be added elsewhere
-    for it -- never folded into _validate_clip_verification. This validator checks presence/shape ONLY (Law #147's
+    for it -- never folded into _validate_clip_verification.
+
+    LAW #134 RESTORATION (2026-09-12): face-cam split screen is removed; Shorts
+    revert to anime-footage-only, full frame. The "BOTTOM-HALF-ONLY SCOPING"
+    framing above is now purely historical -- there is no top/bottom split and
+    no Stage 3 top-track field coming. This function's actual behavior is
+    unchanged either way: it always has, and still does, validate only
+    pkg["clips"] (the single anime-footage track), never anything else. This validator checks presence/shape ONLY (Law #147's
     M6 self-attestation pattern): that scene_verified is a boolean on every
     clip, and that verification_source_url is present and non-empty whenever
     scene_verified is true. It cannot verify that a URL actually shows the
@@ -1967,110 +1974,6 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result, tree: str | None 
         r.add(f"{p} VO within {vo_min}-{vo_max} words", vo_min <= counted <= vo_max,
               f"words={counted} (edit={int(target_sec)}s)")
 
-    # --- direction_note_track staleness (Law #171, added 2026-09-10; mechanical
-    # enforcement added later the same day per F79/F171's own recommendation) ---
-    # Field name confirmed against the real, live run_manifest.json for batch
-    # 4786c451 (the one precedent that actually built this track): a package's
-    # "direction_note_track" is a list of {"line_index", "vo_sentence",
-    # "direction", "note"} objects describing how each VO sentence should be
-    # performed. Law #171's mandatory companion rule requires this track be
-    # rebuilt any time the VO text changes -- found necessary after a real VO
-    # edit (a padding removal, a corrected claim adding a new sentence) left a
-    # package's track stale: still quoting deleted sentences, missing an entry
-    # for the new one. That specific incident was caught only by a manual
-    # re-check at final render, not by anything mechanical -- this check closes
-    # that gap. Skipped while vo_status == "pending" (nothing to check a track
-    # against yet, same convention as every other VO-dependent check above);
-    # FAILS CLOSED once a real VO exists. A package that doesn't carry a
-    # direction_note_track at all is not required to have one by this specific
-    # check -- Law #171 does not make the track itself mandatory, only requires
-    # it be kept in sync WHEN one is used; presence is a separate question for
-    # a separate law/check, not silently assumed here.
-    track = pkg.get("direction_note_track")
-    if track is not None:
-        if vo_pending:
-            r.skip(f"{p} direction_note_track entries match the live VO text (Law #171)",
-                   "VO not yet present, pending Claude's draft")
-        elif not isinstance(track, list):
-            r.add(f"{p} direction_note_track entries match the live VO text (Law #171)",
-                  False, f"direction_note_track is not a list: {type(track).__name__}")
-        else:
-            stale = []
-            for i, entry in enumerate(track):
-                if not isinstance(entry, dict):
-                    stale.append(f"entry[{i}] is not an object: {entry!r}")
-                    continue
-                sentence = entry.get("vo_sentence")
-                if not isinstance(sentence, str) or not sentence.strip():
-                    stale.append(f"entry[{i}] vo_sentence is missing/empty: {sentence!r}")
-                elif sentence not in vo:
-                    stale.append(f"entry[{i}] vo_sentence not found verbatim in current "
-                                 f"VO (stale -- rebuild required): {sentence!r}")
-            r.add(f"{p} direction_note_track entries match the live VO text (Law #171)",
-                  not stale,
-                  "all entries current" if not stale else "; ".join(stale[:5])
-                  + ("" if len(stale) <= 5 else f" (+{len(stale) - 5} more)"))
-
-            # --- COVERAGE (Law #171, second half -- added 2026-09-11) ---
-            # The staleness check above catches an entry quoting a DELETED VO
-            # sentence. It does NOT catch the reverse: a VO sentence ADDED with
-            # no corresponding track entry at all. Both halves were present in
-            # Law #171's real motivating incident (a padding trim left stale
-            # entries; a corrected-claim rewrite added an untracked sentence),
-            # and only the first half was closed -- logged as a known scope
-            # limit at the time. This closes the second half.
-            #
-            # DESIGN NOTE -- why this does NOT split the VO into sentences:
-            # deciding what counts as a "sentence" is genuinely ambiguous
-            # (abbreviations, ellipses, quoted dialogue, decimals all break
-            # naive splitting on ". "), and that ambiguity was the documented
-            # reason this half stayed open. Instead: concatenate every entry's
-            # vo_sentence in line_index order and require the result to account
-            # for the entire VO, comparing on whitespace-normalized text. This
-            # is exact, parser-free, and sidesteps sentence-splitting entirely.
-            # A VO sentence with no entry leaves real text unaccounted for and
-            # fails; a fully-tracked VO passes regardless of how it punctuates.
-            #
-            # line_index is 1-based in real production manifests (confirmed
-            # against batch 4786c451's live run_manifest.json), but this sorts
-            # by the value itself rather than assuming any particular base, so
-            # 0-based or 1-based both work. Entries with a missing/non-integer
-            # line_index fall back to their array position, so a malformed
-            # index degrades to "assume authored order" rather than crashing.
-            def _norm_ws(s: str) -> str:
-                return " ".join(s.split())
-
-            if not stale:  # only meaningful once every entry is itself current
-                indexed = []
-                for i, entry in enumerate(track):
-                    if not isinstance(entry, dict):
-                        continue
-                    li = entry.get("line_index")
-                    key = li if isinstance(li, int) and not isinstance(li, bool) else i
-                    sentence = entry.get("vo_sentence")
-                    if isinstance(sentence, str) and sentence.strip():
-                        indexed.append((key, sentence))
-                indexed.sort(key=lambda pair: pair[0])
-                joined = _norm_ws(" ".join(s for _, s in indexed))
-                vo_norm = _norm_ws(vo)
-                covered = joined == vo_norm
-                detail = "track fully covers the VO"
-                if not covered:
-                    # Report the first real divergence point, so a failure says
-                    # WHERE coverage breaks rather than just that it does.
-                    cut = 0
-                    for a, b in zip(joined, vo_norm):
-                        if a != b:
-                            break
-                        cut += 1
-                    missing_tail = vo_norm[cut:cut + 120]
-                    detail = (f"direction_note_track does not account for the whole VO "
-                              f"(track covers {len(joined)} chars, VO is {len(vo_norm)}); "
-                              f"first unaccounted-for VO text at char {cut}: "
-                              f"{missing_tail!r}")
-                r.add(f"{p} direction_note_track covers the entire VO, no untracked "
-                      f"sentences (Law #171)", covered, detail)
-
     # --- CTA exact placement: a specific question immediately followed by "Leave your take." ---
     # F15 fix (2026-07-25): a non-string cta_line previously crashed _norm()'s
     # str-only .strip()/.lower() with an unhandled AttributeError.
@@ -2156,27 +2059,35 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result, tree: str | None 
               bool(opening) and _norm(opening.rstrip(".!?")) == _norm(first_sent.rstrip(".!?")),
               f"opening={opening!r} first={first_sent!r}")
 
-    # --- STAGE 1 REBUILD (2026-08-09): face-cam split-screen (creator TOP / anime
-    # BOTTOM, per Sebastian's confirmed permanent decision) is now the REQUIRED
-    # default Shorts format -- this INVERTS the prior Law #134 anime-only ban rather
-    # than merely relaxing it. face=true and split_screen=true are now the required
-    # values; video_style must declare the split-screen format. BANNED_STYLE_TOKENS is
-    # retained as a constant (for any downstream code/tests still importing the name)
-    # but is no longer used to fail a package -- the tokens it lists ("face",
-    # "split screen", "inset", etc.) are exactly the tokens video_style is now
-    # REQUIRED to signal, not banned from containing.
+    # --- LAW #134 RESTORATION (2026-09-12): face-cam split screen is removed;
+    # Shorts REVERT to anime-footage-only, full frame -- Sebastian's decision,
+    # 2026-09-12. This RE-INVERTS the Stage 1 Rebuild (2026-08-09) logic below,
+    # which had itself inverted the original anime-only ban. face and split_screen
+    # must NOT be true, and video_style must NOT name a face-cam/split-screen
+    # format -- BANNED_STYLE_TOKENS is enforced as an actual ban again.
     # F15 fix (2026-07-25, still applies): a non-string video_style would otherwise
     # crash _norm()'s str-only .strip()/.lower() with an unhandled AttributeError.
+    # New finding (2026-09-12, caught by TestNonStringFieldCrashes while rebuilding
+    # this check for the Law #134 restoration): _str()'s default-"" coercion for a non-string
+    # video_style must NOT be allowed to vacuously satisfy a banned-token check --
+    # an empty string contains none of BANNED_STYLE_TOKENS, so a poisoned
+    # non-string value (12345, ['a'], ...) would silently PASS a check whose whole
+    # point is to fail closed. video_style must be a real, non-empty string AND
+    # must not name a face-cam/split-screen format.
+    video_style_raw = pkg.get("video_style", None)
+    style_is_string = isinstance(video_style_raw, str) and video_style_raw.strip() != ""
     style = _norm(_str(pkg, "video_style"))
-    r.add(f"{p} face flag is true (face-cam split-screen is the required default format)",
-          pkg.get("face", None) is True, f"face={pkg.get('face')}")
-    r.add(f"{p} split_screen flag is true (face-cam split-screen is the required default format)",
-          pkg.get("split_screen", None) is True,
+    r.add(f"{p} face flag is not set to a face-cam value (Law #134: anime footage only)",
+          pkg.get("face", None) is not True, f"face={pkg.get('face')}")
+    r.add(f"{p} split_screen flag is not set to true (Law #134: anime footage only)",
+          pkg.get("split_screen", None) is not True,
           f"split_screen={pkg.get('split_screen')}")
-    r.add(f"{p} video_style declares the face-cam split-screen format",
-          any(tok in style for tok in ("face", "split")),
-          f"video_style={pkg.get('video_style')!r}; expected it to name the face-cam "
-          f"split-screen format (creator top / anime bottom)")
+    r.add(f"{p} video_style does not declare a face-cam or split-screen format "
+          f"(Law #134: anime footage only)",
+          style_is_string and not any(tok in style for tok in BANNED_STYLE_TOKENS),
+          f"video_style={video_style_raw!r}; must be a non-empty string and must not "
+          f"name a face-cam or split-screen format -- Shorts are anime footage only, "
+          f"full frame")
 
     # --- per-cut timing REQUIRED and must tile the fixed 30s edit (Law #140) ---
     # F15 fix (2026-07-25): a non-list clips (e.g. an int) made "or []" a no-op
@@ -3410,18 +3321,11 @@ PACKAGE {
   "hook_line": "assumption-breaking first line (== opening_sentence == the selected candidate)",
   "opening_sentence": "EXACT first sentence of the VO (opening_line accepted as alias)",
   "vo": "full VO text (100-108 words; contains '<question?> Leave your take.'); may end on any clean, complete, natural closing thought -- same plain-statement standard as the rest of the VO (Law #141 rescission, 2026-07-27: the forced incomplete-colon-setup loop ending is no longer required or specially scored; a loop-style ending is still allowed if it arises naturally and passes every other register check)",
-  // OPTIONAL. "direction_note_track" (Law #171, field name confirmed 2026-09-10
-  // against the real, live run_manifest.json for batch 4786c451): a per-sentence
-  // performance-direction list, checked for staleness against the CURRENT "vo"
-  // text above once vo_status is no longer "pending" -- every entry's
-  // "vo_sentence" must appear verbatim in "vo" or the check fails closed. Not
-  // required to be present at all; only checked for staleness when it is.
-  "direction_note_track": [
-    {"line_index": 0, "vo_sentence": "<exact first VO sentence>",
-     "direction": "DIRECT-TO-CAMERA", "note": "..."},
-    {"line_index": 1, "vo_sentence": "<exact next VO sentence>",
-     "direction": "GLANCE-DOWN-AT-FOOTAGE", "note": "..."}
-  ],
+  // LAW #134 RESTORATION (2026-09-12): the "direction_note_track" field (Law #171,
+  // per-sentence face-cam performance-direction list) and its staleness/coverage
+  // checks are REMOVED -- there is no face-cam track for Shorts to describe
+  // anymore (Shorts are anime footage only, full frame). Do not add this field to
+  // new packages; it is no longer read or checked by the validator.
   "vo_word_count": 104,
   "question_line": "the specific question immediately before the CTA (ends with ?)",
   "cta_line": "Leave your take.",
@@ -3472,14 +3376,13 @@ PACKAGE {
     // final_to_opening_readaloud -- OPTIONAL, INERT (Law #141 rescission, 2026-07-27).
     // No longer required, read, or checked.
   },
-  // F42 addendum fix (2026-09-10): this example previously showed the pre-Law
-  // #134-Stage-2 anime-only shape, directly contradicting the live checks below
-  // (face/split_screen MUST be true -- see "face flag is true" / "split_screen
-  // flag is true" checks). A package built by copying this example would have
-  // failed all three checks it was supposedly demonstrating. Corrected to match
-  // the real, current required default.
-  "video_style": "Face-Cam Split Screen (Creator TOP / anime footage BOTTOM — Law #134 Stage 2)",
-  "face": true, "split_screen": true,
+  // LAW #134 RESTORATION (2026-09-12): this example previously showed the
+  // 2026-08-09 to 2026-09-12 face-cam split-screen shape, which would now FAIL
+  // the live checks below (face/split_screen MUST NOT be true -- see "face flag
+  // is not set to a face-cam value" / "split_screen flag is not set to true"
+  // checks). Corrected to match the restored anime-footage-only default.
+  "video_style": "Anime Footage Only (full frame — Law #134, restored 2026-09-12)",
+  "face": false, "split_screen": false,
   "sources": [{"claim": "...", "url": "...", "date": "Mon YYYY"}, ...],   // >=2, url+date each
   "clips": [   // any clip count (F22, no fixed minimum); per-cut timing REQUIRED;
                // must tile 0->30s contiguously

@@ -47,9 +47,9 @@ For **every** package:
 
 The fixed 30-second edit (Law #138 — VO fills the fixed edit) is unchanged; this law
 adds the explicit per-cut timeline on top of it. All other creative laws
-(100–108-word VO, exact CTA placement, loop line, face-cam split-screen layout
-per Law #134 Stage 2, separate production sections, ≥2 dated sources, etc.)
-remain fully enforced.
+(100–108-word VO, exact CTA placement, loop line, anime-footage-only full-frame
+layout per Law #134 (restored 2026-09-12), separate production sections, ≥2 dated
+sources, etc.) remain fully enforced.
 
 ## Duration experiment (M1) — RETIRED (Stage 2, 2026-08-09)
 The `duration_experiment` field and its 45-59s/list-ranking/recurring-series/≤1-per-batch

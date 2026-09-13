@@ -97,12 +97,12 @@ Standard `scene_verified` + `clip_locate` path (Law #73), unchanged, for any
 segment referencing already-aired footage (e.g. a returning show's new
 season announcement alongside a recap beat).
 
-## Split screen — REQUIRED, no exception
+## Video style — anime footage only, no exception
 
-Face-cam split screen (Creator TOP / anime footage BOTTOM, Law #134 Stage 2)
-is required for every video under this format — confirmed decision, no
-face-only exception. Every package needs real bottom-half visual content
-from one of the three sources above for every show segment.
+Anime footage only, full frame (Law #134, RESTORED 2026-09-12, superseding the
+2026-08-09 Stage 2 face-cam split-screen mandate) is required for every video
+under this format — confirmed decision, no exception. Every package needs real
+visual content from one of the three sources above for every show segment.
 
 ## Multi-show structure
 

@@ -87,9 +87,9 @@
         },
         "final_to_opening_readaloud": "So when she goes quiet, remember what that silence has already decided: Fern's silence is the most aggressive thing she does."
       },
-      "video_style": "Face-Cam Split Screen (creator top / anime footage bottom)",
-      "face": true,
-      "split_screen": true,
+      "video_style": "Anime Footage Only (full frame \u2014 Law #134, restored 2026-09-12)",
+      "face": false,
+      "split_screen": false,
       "sources": [
         {
           "claim": "Fern vs Aura is a fan-cited standout combat scene",
@@ -306,9 +306,9 @@
         },
         "final_to_opening_readaloud": "So before you argue the top spot, remember exactly how this whole ranking got scored: This season's power ranking is not close at the top."
       },
-      "video_style": "Face-Cam Split Screen (creator top / anime footage bottom)",
-      "face": true,
-      "split_screen": true,
+      "video_style": "Anime Footage Only (full frame \u2014 Law #134, restored 2026-09-12)",
+      "face": false,
+      "split_screen": false,
       "sources": [
         {
           "claim": "Season lineup and current airing slate",

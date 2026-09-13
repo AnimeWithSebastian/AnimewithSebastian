@@ -35,9 +35,10 @@ Every creative law that governed the morning/evening runs still governs BOTH pac
    **explicit seamless loop — the exact final VO sentence flows back into the exact
    first sentence, attested by `loop_read_aloud_pass` + `loop_transition_note`, with
    exactly the final cut carrying the loop-back (Law #141, which supersedes the earlier
-   shared-anchor loop check)**; Shorts REQUIRE face-cam split screen — Creator TOP /
-   anime footage BOTTOM (Law #134 Stage 2, 2026-08-09, superseding the July 14, 2026
-   anime-only rule this point originally stated); **per-cut clip timings REQUIRED — every cut
+   shared-anchor loop check)**; Shorts are anime footage only, full frame (Law #134,
+   RESTORED 2026-09-12, superseding the 2026-08-09 Stage 2 face-cam split-screen
+   mandate, which had itself superseded the July 14, 2026 anime-only rule this
+   point originally stated); **per-cut clip timings REQUIRED — every cut
    carries `duration_sec` + cumulative range, cuts tile the fixed 30s edit
    contiguously, and each package states `total_clip_time_sec` = 30 (Law #140,
    which supersedes the earlier no-timings preference)**; separate titles, TikTok
@@ -53,8 +54,8 @@ Every creative law that governed the morning/evening runs still governs BOTH pac
    CTA exact placement; **explicit seamless loop mechanics (exact first/last sentence,
    `loop_transition` = loop_line + " " + opening_sentence, `loop_read_aloud_pass`=true,
    nonempty note, exactly the final cut carries the loop-back — Law #141)**;
-   face-cam split-screen required (Law #134 Stage 2, superseding the earlier
-   anime-only/no-face check); **per-cut clip timings
+   anime-footage-only, full frame, required (Law #134, RESTORED 2026-09-12,
+   superseding the 2026-08-09 Stage 2 face-cam split-screen check); **per-cut clip timings
    present and tiling the 30s edit contiguously with `total_clip_time_sec` = 30 (Law
    #140)**; required production sections; source count ≥2 per package; separate
    posting-time lines; recipient exactly correct. No model-based revision is needed

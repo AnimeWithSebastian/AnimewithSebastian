@@ -55,11 +55,11 @@ short:
    carries_loop_back=true" clip-plan requirement, and the mandatory "LOOP-BACK:" email line)
    is no longer required or specially scored. A loop-style ending is still allowed if
    it arises naturally and reads well, but do not force one artificially;
-   face-cam split-screen (creator TOP / anime footage BOTTOM — Law #134 Stage 2;
-   manga/manhwa panels allowed within the anime-footage half for manga-based
-   formats) is the required default video_style — NOT anime-footage-only (that
-   line here was stale against Law #134 Stage 2's real, current inversion; found
-   during the 2026-09-08 full repo audit, see docs/KNOWN_ISSUES.md F68);
+   anime-footage-only, full frame (Law #134, RESTORED 2026-09-12 — supersedes the
+   2026-08-09 Stage 2 face-cam split-screen mandate referenced by this line as of
+   the 2026-09-08 audit, docs/KNOWN_ISSUES.md F68; manga/manhwa panels allowed for
+   manga-based formats) is the required default video_style — no face track, no
+   split screen, no creator-camera inset;
    clip plan with PER-CUT TIMINGS REQUIRED (Law #140) — every cut carries duration_sec
    + timeline_start_sec + timeline_end_sec, the cuts tile the fixed 30s edit
    contiguously (first starts 0, each end = next start, last ends 30, durations sum to

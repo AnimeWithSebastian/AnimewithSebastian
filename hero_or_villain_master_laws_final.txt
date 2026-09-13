@@ -22,7 +22,7 @@ POSTING SCHEDULE:
   Every script email must include a RECOMMENDED POST TIME block per Law #99.
 - Scripts delivered by automated cron at 7:30 PM ET the night before
 
-FORMAT: YouTube Shorts — REQUIRED FACE-CAM SPLIT SCREEN for every format (Law #134, updated Stage 2, 2026-08-09; supersedes the July 14 2026 anime-only rule). Creator TOP / anime footage BOTTOM. Manga panels allowed for manga-based formats within the anime-footage half. Bottom caption + voice over required. (Long-form keeps its separate Anime TOP / Face BOTTOM layout, unchanged by this update.)
+FORMAT: YouTube Shorts — anime footage only, full frame (Law #134, RESTORED 2026-09-12; no face-cam, no split screen, no inset — see Law #134 for the reconstruction note on why this restoration is new prose, not recovered original text). Manga panels allowed for manga-based formats. Bottom caption + voice over required. (Long-form keeps its separate Anime TOP / Face BOTTOM layout, unaffected by this change.)
 VO TARGET: DERIVED FROM THE FIXED CAPCUT EDIT DURATION at the calibrated rate 3.3–3.6 w/s — VO FILLS THE EDIT (Law #138, corrected July 15, 2026, length ceiling updated Stage 2, 2026-08-09; supersedes Law #131 for Shorts) | Max Short length 180 sec (real YouTube Shorts ceiling) ≈ 594–648 words; 30 sec ≈ 100–108 words (target ~104); 20 sec ≈ 66–72 words (20–180s is now open-ended, not just these three sample points) | Research: Montage June 2026 (76% watch-through at 30–45 sec) + Marketeze Q1 2026 (38–47 sec peak engagement) | The VO conforms to the fixed edit — never shorten the edit to fit a short VO
 BANNED WORDS: "bro", "bro...", "Follow and Subscribe"
 
@@ -6657,15 +6657,15 @@ ViralHookAnalyzer 5,000 Shorts, CreatorFlowX 42K channels — all verified July 
 confirms: anime commentary is a HYBRID niche. The correct style depends on FORMAT CODE,
 not a blanket rule. Law #103 governs all style selection going forward.
 
-CURRENT RULE (Law #103 — superseded by Law #134, updated July 14, 2026; Shorts half superseded again Stage 2, 2026-08-09):
-  SHORTS: ALL formats → REQUIRED FACE-CAM SPLIT SCREEN, creator TOP / anime footage BOTTOM — for EVERY format
-  (WRONG_TAKE, HIDDEN_GEM, COMMENTARY, FACT_DROP, CHARACTER_DIVE, TRIVIA, ORIGIN_STORY, SEASON_PREVIEW,
-  MANGA_VS_ANIME, NEW_ANIME_INTRO, TOP10/LIST, and all others). Manga panels allowed for manga-based formats
-  within the anime-footage half.
-  LONG-FORM: face-led / split layout per Law #134 (Anime TOP 60% / Face BOTTOM 40%) — UNCHANGED by the Stage 2
-  Shorts update. Talking Head applies to LONG-FORM ONLY. The old per-format Talking Head / Face Cam Inset
-  mappings remain retired as separate per-format toggles for Shorts (split screen is now the fixed, universal
-  Shorts layout instead, not a per-format choice).
+CURRENT RULE (Law #103 — superseded by Law #134, updated July 14, 2026; Shorts half superseded again Stage 2,
+2026-08-09; Shorts half RESTORED to anime-footage-only 2026-09-12 — see Law #134):
+  SHORTS: ALL formats → anime footage only, full frame — for EVERY format (WRONG_TAKE, HIDDEN_GEM, COMMENTARY,
+  FACT_DROP, CHARACTER_DIVE, TRIVIA, ORIGIN_STORY, SEASON_PREVIEW, MANGA_VS_ANIME, NEW_ANIME_INTRO, TOP10/LIST,
+  and all others). No face-cam, no split screen, no inset. Manga panels allowed for manga-based formats.
+  LONG-FORM: face-led / split layout per Law #134 (Anime TOP 60% / Face BOTTOM 40%) — UNCHANGED by the 2026-09-12
+  Shorts restoration. Talking Head applies to LONG-FORM ONLY. The old per-format Talking Head / Face Cam Inset
+  mappings remain retired as separate per-format toggles for Shorts (anime-footage-only is now the fixed,
+  universal Shorts layout instead, not a per-format choice).
 
 PRODUCTION TEMPLATE (still locked for faceless-style videos — E and C styles):
 Main clip layer: Scale 185% / X: 0 / Y: -60
@@ -13082,21 +13082,20 @@ and pretend the plan is unaffected. Instead:
   than being sent as if the clip plan were fully anime-sourced when it is
   not.
 
-RELATIONSHIP TO THE FACE-CAM SPLIT-SCREEN video_style RULE (updated for Law
-#134 Stage 2, 2026-08-09 — this section originally described the July 14,
-2026 "anime footage only" rule, which Stage 2 superseded):
+RELATIONSHIP TO THE video_style RULE (updated 2026-09-12 — this section
+described the Law #134 Stage 2 face-cam split-screen rule from 2026-08-09 to
+2026-09-12; Law #134's Shorts half is now RESTORED to anime-footage-only, so
+this relationship reverts to that standard):
 
-The current video_style rule (REQUIRED face-cam split screen — Creator TOP /
-anime footage BOTTOM — per Law #134 Stage 2; `face` and `split_screen` must
-be true and `video_style` must name the face/split format, checked by the
-validator's face-cam split-screen requirement) is not weakened or
-reinterpreted by this update. A manga-panel fallback is an explicit, flagged
-EXCEPTION to the anime-footage HALF of that layout (the bottom row), not a
-way of avoiding the anime-footage half or the layout requirement as a whole.
-It requires Sebastian's own editing judgment on how (or whether) to use a
-manga panel within the anime-footage bottom row of an otherwise-compliant
-split-screen edit — it is never presented as compliant anime footage, and
-clip_plan_needs_manga_source: true exists
+The current video_style rule (anime footage only, full frame, per Law #134,
+RESTORED 2026-09-12; no `face`/`split_screen` flags, `video_style` must not
+name a face/split format, checked by the validator's anime-footage-only
+requirement) is not weakened or reinterpreted by this update. A manga-panel
+fallback is an explicit, flagged EXCEPTION to the anime-footage frame, not a
+way of avoiding the anime-footage requirement as a whole. It requires
+Sebastian's own editing judgment on how (or whether) to use a manga panel
+within an otherwise-compliant anime-footage edit — it is never presented as
+compliant anime footage, and clip_plan_needs_manga_source: true exists
 specifically so this exception is visible before Sebastian starts editing,
 not discovered mid-edit.
 
@@ -14765,18 +14764,20 @@ After 72 hours, the "just announced" frame expires and shifts to standard strate
 LAW #103 — VIDEO STYLE SELECTION LAW (added July 4, 2026)
 ================================================================================
 
-**STATUS: SUPERSEDED FOR SHORTS (Law #134 Stage 2, 2026-08-09).** This law's
-five-style toolkit (A. Talking Head, B. Split Screen, C. Manga Panels, D. Manga
-Panels + Face Cam Inset, E. Anime Clips Only) and its per-format-code style
-selection table below were written July 4, 2026, before even the original July
-14, 2026 "anime footage only" Shorts rule existed. Both this law's style menu
-and the July 14 rule it predates are now superseded: every Shorts and TikTok
-package REQUIRES face-cam split screen (Creator TOP / anime footage BOTTOM) per
-Law #134 Stage 2 — not a per-format-code choice among five styles. The research
-citations and rationale below are kept as historical record and MUST NOT be used
-to select a non-split-screen style for a Short. The ENFORCEMENT section's
+**STATUS: SUPERSEDED FOR SHORTS (originally by Law #134 Stage 2, 2026-08-09;
+Stage 2 itself RESTORED to anime-footage-only 2026-09-12 — see Law #134).**
+This law's five-style toolkit (A. Talking Head, B. Split Screen, C. Manga
+Panels, D. Manga Panels + Face Cam Inset, E. Anime Clips Only) and its
+per-format-code style selection table below were written July 4, 2026, before
+even the original July 14, 2026 "anime footage only" Shorts rule existed.
+This law's style menu remains superseded: every Shorts and TikTok package is
+anime footage only, full frame, per Law #134 (RESTORED 2026-09-12) — not a
+per-format-code choice among five styles, and not the face-cam split screen
+that governed 2026-08-09 to 2026-09-12 either. The research citations and
+rationale below are kept as historical record and MUST NOT be used to select
+a face-cam or split-screen style for a Short. The ENFORCEMENT section's
 RECOMMENDED VIDEO STYLE line and its violation conditions below are similarly
-retired for Shorts — Law #134 Stage 2's single required layout applies
+retired for Shorts — Law #134's anime-footage-only requirement applies
 universally instead.
 
 SOURCE: User instruction July 4, 2026 — "we can make the video a talking head, half
@@ -15022,17 +15023,37 @@ BANNED: "the final cour" with no context — production-scheduling jargon most c
 IF the VO cannot make the point without the term and cannot define it without breaking the rhythm — replace the term entirely with plain language.
 GOAL: The video must land for someone who watched Demon Slayer once AND someone who has seen 400 anime. Same VO. Same impact.
 
-Law #134: VIDEO LAYOUT STANDARD (updated Stage 2, 2026-08-09 — SUPERSEDES the July 14, 2026 Shorts anime-only rule; long-form half unchanged)
+Law #134: VIDEO LAYOUT STANDARD (Shorts half RESCINDED 2026-09-12 — see below; long-form half unchanged)
 
-SHORTS LAYOUT — REQUIRED FACE-CAM SPLIT SCREEN. Creator TOP / anime footage BOTTOM.
+SHORTS LAYOUT — RESCINDED 2026-09-12; RESTORED to anime-footage-only, full frame.
+Sebastian's decision, 2026-09-12: no more face-cam split screen for Shorts/TikTok. Every YouTube Short and
+TikTok is anime footage only, full frame — no creator face-cam track, no split layout, no inset. The
+[FACE: <direction>] two-track performance-script mechanic (direction-note track, Law #171's staleness/
+coverage checks, the rendered [FACE: ...] tags) is removed in full — there is no face track for it to
+describe. Manga panels remain allowed within the anime-footage frame for manga-based formats, unchanged
+from before. Caption overlay is unchanged: Anton | ALL CAPS | White fill | Black outline | Size 15 |
+Outline 3-4 | Bottom 60-70% | Orange highlight #FF6B00 | Word-by-word timing.
+HONESTY NOTE: this is a RESTORATION, not a revert. The original July 14, 2026 "anime footage only (no
+face/split/inset)" rule's exact wording is not preserved verbatim anywhere in this file or the repo — only
+summarized/paraphrased references to it survived (see "What the Stage 2 text used to require" below for
+those references, and for the Stage 2 text itself). The paragraph above is newly written prose reconstructing
+the pre-Stage-2 rule's intent from those references and from Sebastian's 2026-09-12 instruction, not a
+recovered original. A future reader should treat it as a reconstruction, not the original July 14 text.
+
+What the Stage 2 text used to require (2026-08-09 to 2026-09-12, preserved for the record, not deleted):
+~~SHORTS LAYOUT — REQUIRED FACE-CAM SPLIT SCREEN. Creator TOP / anime footage BOTTOM.
 Every YouTube Short and TikTok now REQUIRES face-cam split screen: Sebastian's face in the TOP row, anime
 footage in the BOTTOM row, full horizontal width, no border or gap. This is Sebastian's confirmed, permanent
 format decision (2026-08-09), replacing the July 14, 2026 anime-only rule and its loop-optimization rationale.
-Caption overlay applies as before: Anton | ALL CAPS | White fill | Black outline | Size 15 | Outline 3-4 | Bottom 60-70% | Orange highlight #FF6B00 | Word-by-word timing.
+Caption overlay applies as before: Anton | ALL CAPS | White fill | Black outline | Size 15 | Outline 3-4 |
+Bottom 60-70% | Orange highlight #FF6B00 | Word-by-word timing.
 Face-cam direction lines ([FACE: ...]) are REQUIRED again in Shorts clip plans as of this update (reversing
-the July 14, 2026 removal).
+the July 14, 2026 removal).~~
+That text itself already documents that a July 14, 2026 anime-only rule existed before it and was tied to
+the (now separately rescinded, 2026-07-27) Law #141 loop-optimization mandate — consistent with Sebastian's
+recollection, even though its own original wording is not preserved here.
 
-LONG-FORM LAYOUT — Anime TOP / Face BOTTOM.
+LONG-FORM LAYOUT — Anime TOP / Face BOTTOM. UNAFFECTED by the 2026-09-12 Shorts change above.
 Long-form YouTube videos only: Anime footage TOP row (60% height) | Sebastian's face BOTTOM row (40% height) | Full horizontal width both rows | No border or gap.
 For each section, include a face delivery note before the scene description.
 Rules: Direct eye contact default. Eye contact breaks allowed (brief glance upward toward anime footage). No filler mugging. Delivery notes allowed (pause, word emphasis, tempo change).
@@ -15468,8 +15489,8 @@ ELIGIBILITY CATEGORY = none, STATUS = PASS.
 ## SEPARATE-PRODUCT NOTE (preserves Law #134 / #136)
 
 Law #137 governs MODEL selection ONLY. It does not change the product split:
-- Shorts remain DAILY, now with REQUIRED face-cam split screen (creator top / anime bottom) as of the
-  Stage 2 (2026-08-09) update to Law #134 — no longer anime-only (Law #131 governs length/pacing, not layout).
+- Shorts remain DAILY, anime footage only, full frame (Law #134, RESTORED 2026-09-12) — Law #131 governs
+  length/pacing, not layout.
 - Long-form remains a SEPARATE, EARNED 8–12 minute product with its own face layout (Law #136), unchanged.
 Model eligibility never merges the two products and never makes a Short into long-form (or
 vice versa). Category 1 (flagship long-form) applies to the long-form product; it does not

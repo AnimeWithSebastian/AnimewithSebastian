@@ -97,9 +97,9 @@
         },
         "final_to_opening_readaloud": "So when she goes quiet, remember what that silence has already decided: Fern's silence is the most aggressive thing she does."
       },
-      "video_style": "Face-Cam Split Screen (creator top / anime footage bottom)",
-      "face": true,
-      "split_screen": true,
+      "video_style": "Anime Footage Only (full frame \u2014 Law #134, restored 2026-09-12)",
+      "face": false,
+      "split_screen": false,
       "sources": [
         {
           "claim": "Fern vs Aura is a fan-cited standout combat scene",
@@ -324,9 +324,9 @@
         },
         "final_to_opening_readaloud": "So before you call it filler, remember exactly what he planted: Everyone calling Elbaph filler missed what Oda actually set up."
       },
-      "video_style": "Face-Cam Split Screen (creator top / anime footage bottom)",
-      "face": true,
-      "split_screen": true,
+      "video_style": "Anime Footage Only (full frame \u2014 Law #134, restored 2026-09-12)",
+      "face": false,
+      "split_screen": false,
       "sources": [
         {
           "claim": "Dorry and Brogy's 100-year duel over honor",

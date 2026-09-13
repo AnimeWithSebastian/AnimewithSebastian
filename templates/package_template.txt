@@ -26,7 +26,7 @@ BODY (render exactly these labeled sections — nothing more):
 SHOW:    {Show}
 ANGLE:   {one-line angle}
 FORMAT:  {format_type}
-STYLE:   Face-Cam Split Screen  (Creator TOP / anime footage BOTTOM — Law #134 Stage 2; manga panels allowed within the anime-footage half for manga-based formats)
+STYLE:   Anime Footage Only, full frame  (Law #134, restored 2026-09-12; manga panels allowed for manga-based formats)
 TOPIC:   {topic_class: timely|evergreen}{ — signals: currently_airing/premiere/chapter/news/seasonal_ranking if timely}
 SERIES:  {series.id if recurring, e.g. seasonal_power_ranking / episode_scene_test — else "one-off"}
 {if recurring — M2 viewer-facing markers, REQUIRED:}
@@ -46,10 +46,8 @@ HOOK FAMILY: {question|revelation|contradiction|observation}
 ━━━ VO ({vo_word_count} words — fills the resolved {capcut_target_sec}s CapCut edit) ━━━
 {full VO text — pure, tag-free spoken text exactly as pkg["vo"] stores it; this is
 the SAME clean field every validator check (word count, exact CTA phrase,
-opening_sentence match, every Law #149 closer rule) reads and is completely
-unaffected by direction notes. vo_word_count is computed straight from this field,
-exactly as it always has been — [FACE: ...] tags are never present in vo itself,
-only in the rendered display below. Word count scales to the resolved edit length at
+opening_sentence match, every Law #149 closer rule) reads. vo_word_count is computed
+straight from this field, exactly as it always has been. Word count scales to the resolved edit length at
 3.3-3.6 words/sec (Law #138): 20s ≈ 66-72 words, 30s = 100-108 words (target ~104),
 45s ≈ 148-162, 90s ≈ 297-324, 150s ≈ 495-540, 180s ≈ 594-648. Length is an open
 per-content judgment call in [20,180]s (STEP 3.5) — no fixed default, no separate
@@ -59,24 +57,13 @@ lines. Contains the specific question immediately followed by the exact phrase
 rescinded July 27, 2026 — a seamless loop-style ending is no longer required or
 specially scored; a loop-back line only appears below if one arose naturally).}
 
-━━━ PERFORMANCE SCRIPT (render-time-only view — Law #134 Stage 2 two-track) ━━━
-{THIS section, not the VO block above, is the rendering that interleaves the VO's
-sentences with the parallel direction-note track built alongside it: one
-[FACE: <direction>] tag immediately before the VO sentence it governs — e.g.
-"[FACE: direct-to-camera, lean in] <sentence> [FACE: glance-down-at-footage]
-<sentence>". DIRECT-TO-CAMERA (default; CUT 1 always this, lean in, zero warmup) /
-GLANCE-DOWN-AT-FOOTAGE (brief break toward the anime footage to cue a specific clip)
-/ REACTION BEAT (non-verbal beat carrying emotional weight). These bracket tags
-exist ONLY in this rendered display — they are never written into the vo field
-above, so they never affect vo_word_count or any other validator check.}
-
 {OPTIONAL — LOOP-BACK section, ONLY rendered if a loop-style ending arose naturally
 this run (Law #141 rescinded July 27, 2026; no longer required):}
 ━━━ LOOP-BACK (seamless replay — optional, not required) ━━━
 LOOP-BACK: {exact final VO sentence} -> {exact first VO sentence}
 NOTE: {brief note on why it reads as a natural seamless replay}
 
-━━━ CLIP PLAN (face-cam split screen; per-cut timings REQUIRED — Law #140) ━━━
+━━━ CLIP PLAN (anime footage only, full frame; per-cut timings REQUIRED — Law #140) ━━━
 CUT 1 — {duration} sec (0:00–{end}): {scene + episode/panel ref} — {why this frame}
 CUT 2 — {duration} sec ({start}–{end}): {scene ref} — {why}
 CUT 3 — {duration} sec ({start}–{end}): {scene ref} — {why}
