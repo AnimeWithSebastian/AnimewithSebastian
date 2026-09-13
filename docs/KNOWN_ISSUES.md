@@ -5283,7 +5283,7 @@ dangling rather than backfilled.
 
 **Do not fill this gap.** Not with a local finding, not with a stub mirroring
 SEBLABHRIS's F78, not to make the numbering contiguous. The next available number in
-this repo is F97, as of the 2026-09-13 Law #134 port that added F95 and F96.
+this repo is F98, as of the 2026-09-13 port that added F95 through F97.
 
 ## F79: KNOWN_ISSUES entries can sit at a stale "open" status indefinitely after their fix ships — now detectable by a tool, still not prevented
 
@@ -7246,3 +7246,69 @@ comment finding, so the citation would have resolved cleanly to the wrong entry
 — the same silent-misresolution class recorded in F94. It now names the
 source repo explicitly, with this repo's closest counterpart (F76) noted rather
 than silently substituted.
+
+## F97: Port completeness is verified by test count and diff application, and a prose-only rule is invisible to both — one confirmed missing rule (Law #174's STEP 6 mandatory re-validation), found only because a later hunk had nothing to strike
+
+**Found:** 2026-09-13, while porting SEBLABHRIS 166e42a (landed as 0f6dacd). A
+hunk in that commit strikes a STEP 6 sub-point about re-validating
+`direction_note_track` after a VO trim. The hunk's removal text did not match
+anything in this repo, and investigation showed why: **the rule it strikes was
+never delivered here in the first place.** This repo's STEP 6 contains zero
+mentions of trim, re-validate, or re-run.
+
+**What is actually missing.** `df6665e`'s Fix 4 — mandatory re-validation
+after any VO edit during STEP 6 review. The previous port delivered that
+commit's STEP 6.5 changes, including Law #174's point 3.5 (time-sensitive claim
+re-verification), which this repo does have. It did not deliver the STEP 6
+block. Both are prose in the same file from the same commit; one arrived and one
+did not, and nothing flagged the difference.
+
+**Why this rule specifically matters.** It exists because VO trims silently
+break things — confirmed three separate times in a single batch on the
+source side: a dropped CTA, a singular/plural error, and a stale claim that
+survived a rewrite. The validator catches all three IF it runs again after the
+edit. The gap was never that the checks were wrong; it was that nothing re-ran
+them. A missing "re-run after any trim" rule is therefore not a documentation
+nicety — it is the only thing standing between a correct check and a
+silently broken package.
+
+**THE GENERAL FORM, which is the reusable part.** Every completeness check this
+project has built keys on one of two signals:
+
+1. **Test-count delta** — did the suite move by the expected amount, and is
+   the delta accounted for by named classes?
+2. **Diff application** — did every hunk apply, and did the rejects get
+   resolved?
+
+**A prose-only rule is invisible to both.** It moves no test count, because
+prose has no tests. It fails no hunk, because a rule that was never delivered
+produces no reject — there is simply nothing where it should have been.
+The port reports clean on every signal being watched, and the absence is
+undetectable from inside the port that caused it. This one surfaced only by
+accident, a full port later, when a *different* commit tried to edit the text
+and found nothing to edit.
+
+**This is the same blind spot in a different medium.** `approval_gate.py` sat
+with zero direct tests through an entire port because its code landed while its
+test file did not, and the suite stayed green either way (F87's writeup records
+that case). Same shape: the verification signal was insensitive to the thing
+that went missing.
+
+**What would actually close it.** Ported prose needs a content check, not just a
+patch-applied check: for each prose rule a commit claims to add, confirm the
+rule's own distinctive text is present in the target file afterward — the
+same content-matching discipline F94 prescribes for F-number references, applied
+to rules instead of numbers. A handoff that says "adds a mandatory re-validation
+rule to STEP 6" should be verifiable by grepping the target for that rule's
+text, and a port should not be called complete until that grep passes. This is
+cheap and specific; it is not a proposal to diff whole files, which is the thing
+that keeps reverting local work.
+
+**Status:** OPEN. The missing rule is tracked, not reconstructed. It was
+deliberately NOT rebuilt from the striking hunk's surrounding context —
+that would be inference, and the rule needs to arrive verbatim from the source
+repo to be trustworthy. Until it does, this repo's STEP 6 has no mandatory
+re-validation rule after a VO edit, and anyone editing a VO during review should
+re-run `validate_dual_package.py` manually rather than relying on the runtime
+text to tell them to. The general verification gap above remains open
+independently of whether that one rule arrives.
