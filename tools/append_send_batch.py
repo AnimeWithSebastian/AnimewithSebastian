@@ -47,8 +47,8 @@ import argparse
 import datetime as dt
 import json
 import os
-import re
 import sys
+from approval_gate import check_fetch_review_gate
 from typing import Any
 
 CRON_ID_DEFAULT = "daily_combined"
@@ -660,134 +660,24 @@ def main(argv: list[str]) -> int:
               file=sys.stderr)
         return 1
 
+    # F87 fix (2026-09-12): the Law #173 schema pre-check and the core-aware
+    # unsupported-claim gate used to be inlined here, running ONLY at this
+    # post-send log-append step -- which is exactly the timing problem F87
+    # names (a gate that fires after the irreversible send has already
+    # happened). The check logic itself was correct; it has been extracted,
+    # unchanged, into tools/approval_gate.check_fetch_review_gate() so the
+    # SAME gate can also run pre-send (see tools/presend_approval_check.py,
+    # called at STEP 6.5 before STEP 7's send). This call site is unchanged
+    # in behavior -- same checks, same precedence, same error wording --
+    # only the implementation moved to a shared module.
     fetch_review = approval.get("fetch_review")
-    if not isinstance(fetch_review, list) or not fetch_review:
+    gate_result = check_fetch_review_gate(fetch_review)
+    if not gate_result.ok:
         path = write_state(manifest, args.tree, args.cron_id,
                            emails_sent=args.emails_sent, log_appended=False,
                            git_pushed=args.git_pushed,
-                           error="approval.json has no non-empty fetch_review list (Law #165) "
-                                 "— an approval with no fetch record is not a completed review")
-        print(f"[BLOCKED] approval.json missing fetch_review; wrote failure state to {path}",
-              file=sys.stderr)
-        return 1
-
-    # SCHEMA PRE-CHECK (Law #173, added 2026-09-10 -- directly addresses F78): an
-    # approval.json authored with a "verdict" string field (e.g. "confirmed")
-    # instead of the required "fetched_content_supports_claim" boolean produced
-    # the exact same generic "unsupported/malformed" error the genuine-content-
-    # failure path below produces -- costing real diagnostic time distinguishing
-    # a field-naming mistake from an actual verification failure. This scans for
-    # entries missing the real field but carrying a plausible substitute name,
-    # and fails with a distinct, schema-specific message BEFORE the generic
-    # content-verification path, so the two failure classes are never conflated
-    # again. An entry with NO substitute-looking field at all still falls through
-    # to the existing generic check below, unchanged -- this only catches the
-    # specific "used the wrong field name" shape F78 found.
-    _VERDICT_SUBSTITUTE_KEYS = ("verdict", "supported", "confirmed", "status", "result")
-    schema_suspects = []
-    for e in fetch_review:
-        if not isinstance(e, dict):
-            continue
-        if "fetched_content_supports_claim" in e:
-            continue  # real field present (whatever its value) -- not a schema issue
-        found = [k for k in _VERDICT_SUBSTITUTE_KEYS if k in e]
-        if found:
-            schema_suspects.append((e, found))
-
-    if schema_suspects:
-        detail = "; ".join(
-            f"claim={e.get('claim', '<no claim>')!r} has field(s) {found!r} but not "
-            f"'fetched_content_supports_claim'"
-            for e, found in schema_suspects[:5]
-        )
-        more = "" if len(schema_suspects) <= 5 else f" (+{len(schema_suspects) - 5} more)"
-        path = write_state(manifest, args.tree, args.cron_id,
-                           emails_sent=args.emails_sent, log_appended=False,
-                           git_pushed=args.git_pushed,
-                           error=f"approval.json schema mismatch (Law #173): "
-                                 f"{len(schema_suspects)} fetch_review entr"
-                                 f"{'y' if len(schema_suspects) == 1 else 'ies'} use a "
-                                 f"different field name instead of the required boolean "
-                                 f"'fetched_content_supports_claim' -- this looks like a "
-                                 f"field-naming mistake, not a content-verification "
-                                 f"failure (see F78). {detail}{more}")
-        print(f"[BLOCKED] approval.json schema mismatch (Law #173, see F78); "
-              f"wrote failure state to {path}", file=sys.stderr)
-        return 1
-
-    # CORE-AWARE GATE (2026-08-19, narrow fix for the false-positive block on
-    # honestly-disclosed non-core claims): a fetch_review entry only needs
-    # fetched_content_supports_claim == True when it is a CORE claim. An
-    # entry explicitly marked non-core may legitimately have
-    # fetched_content_supports_claim: False WITHOUT blocking the log, but
-    # only if it carries a real, non-empty "note" explaining the gap --
-    # non-core does not mean "skip disclosure", it means "not audience-
-    # facing enough to be a hard blocker once honestly disclosed".
-    #
-    # core/non-core detection precedence (explicit, in order):
-    #   1. A structured "core" key present on the entry (True or False) is
-    #      authoritative. If present, the legacy text-prefix convention
-    #      below is IGNORED for that entry -- the two signals never get a
-    #      chance to silently disagree.
-    #   2. Else, a claim string starting with a case-insensitive, start-
-    #      anchored NON-CORE marker (in square brackets) is treated as
-    #      core=False. This is the LEGACY path: every existing approval.json
-    #      in this repo (7+ files, including real production batches)
-    #      encodes non-core claims this way, since no approval.json has ever
-    #      used a structured field.
-    #   3. Else (no structured field, no text-prefix match): default to
-    #      core=True -- the safe, strict default, identical to today's
-    #      behavior for any entry with no explicit signal either way.
-    #
-    # GOING FORWARD: new approval.json files should be built using the
-    # structured "core": true/false field, not the legacy bracketed text
-    # marker. The text-prefix path exists only to keep historical/legacy
-    # approvals working; it is not the intended long-term format.
-    _NON_CORE_PREFIX_RE = re.compile(r"^\s*\[NON-CORE\b", re.IGNORECASE)
-
-    def _is_core(entry: dict) -> bool:
-        if "core" in entry and entry["core"] is not None:
-            return entry["core"] is not False
-        claim = entry.get("claim")
-        if isinstance(claim, str) and _NON_CORE_PREFIX_RE.match(claim):
-            return False
-        return True
-
-    def _has_real_note(entry: dict) -> bool:
-        note = entry.get("note")
-        return isinstance(note, str) and note.strip() != ""
-
-    unsupported = []
-    for e in fetch_review:
-        if not isinstance(e, dict):
-            unsupported.append(e)
-            continue
-        if e.get("fetched_content_supports_claim") is True:
-            continue
-        # fetched_content_supports_claim is False/missing/malformed from here.
-        if _is_core(e):
-            unsupported.append(e)
-        elif not _has_real_note(e):
-            # Non-core but undisclosed (no real note) -- still blocks. A
-            # non-core claim isn't a free pass to skip disclosure entirely.
-            unsupported.append(e)
-        # else: non-core, unsupported, but honestly disclosed via a real
-        # note -- allowed through, does not block the log.
-
-    if unsupported:
-        # A malformed (non-dict) fetch_review entry is itself one of the things
-        # this gate must fail closed on -- so the detail message must handle it
-        # without calling .get() on a non-dict and crashing instead of blocking.
-        detail = "; ".join(
-            (str(e.get("claim", e)) if isinstance(e, dict) else repr(e))
-            for e in unsupported[:5]
-        )
-        path = write_state(manifest, args.tree, args.cron_id,
-                           emails_sent=args.emails_sent, log_appended=False,
-                           git_pushed=args.git_pushed,
-                           error=f"approval.json contains {len(unsupported)} unsupported/malformed "
-                                 f"core claim(s), cannot log as approved send (Law #165): {detail}")
-        print(f"[BLOCKED] approval.json has unsupported claim(s); wrote failure state to {path}",
+                           error=gate_result.error)
+        print(f"[BLOCKED] {gate_result.error}; wrote failure state to {path}",
               file=sys.stderr)
         return 1
 

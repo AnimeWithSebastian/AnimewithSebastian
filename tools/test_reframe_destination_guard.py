@@ -49,6 +49,10 @@ class TestUnconditionalPairings(unittest.TestCase):
         result = rdg.guard_reframe_pairing("WATCH_RANK", "WORTH_WATCHING")
         self.assertEqual(result.outcome, "PASS")
 
+    def test_fact_drop_to_commentary_passes_unconditionally(self):
+        result = rdg.guard_reframe_pairing("FACT_DROP", "COMMENTARY")
+        self.assertEqual(result.outcome, "PASS")
+
     def test_character_dive_to_origin_story_passes_unconditionally(self):
         result = rdg.guard_reframe_pairing("CHARACTER_DIVE", "ORIGIN_STORY")
         self.assertEqual(result.outcome, "PASS")
@@ -68,6 +72,16 @@ class TestConditionalPairings(unittest.TestCase):
         result = rdg.guard_reframe_pairing("CHARACTER_DIVE", "VILLAIN_DEFENSE")
         self.assertEqual(result.outcome, "PASS_WITH_CONDITION")
         self.assertIn("genuinely disliked", result.detail)
+        self.assertIn("Law #165", result.detail)
+
+    def test_fact_drop_to_wrong_take_passes_with_condition(self):
+        # FIX 1 (2026-09-12, F86 closure): FACT_DROP's lore-explainer half
+        # may reframe to WRONG_TAKE, but only when the fact corrects a real
+        # community myth -- not every FACT_DROP fact has one, same
+        # conditional shape as CHARACTER_DIVE -> VILLAIN_DEFENSE above.
+        result = rdg.guard_reframe_pairing("FACT_DROP", "WRONG_TAKE")
+        self.assertEqual(result.outcome, "PASS_WITH_CONDITION")
+        self.assertIn("real, existing community myth", result.detail)
         self.assertIn("Law #165", result.detail)
 
 
@@ -212,12 +226,97 @@ class TestMapStaysInSyncWithProse(unittest.TestCase):
             f"match before trusting this module again.",
         )
 
+    def test_fact_drop_appears_as_a_reframe_source_in_the_prose(self):
+        # Direct regression pin for FIX 1: FACT_DROP was previously ABSENT
+        # from REFRAME_MAP entirely (F86) -- this confirms the added prose
+        # bullet uses the exact "FACT_DROP on cooldown ->" pattern the sync
+        # test above already checks generically for every key.
+        self.assertIn("FACT_DROP on cooldown ->", self.runtime_text)
+
     def test_worth_watching_dropped_language_still_present(self):
         # Confirms the specific "checked and rejected" language this
         # module's WORTH_WATCHING FAIL messaging depends on has not been
         # silently softened or removed from the prose.
         self.assertIn("DROPPED, CHECKED AND REJECTED", self.runtime_text)
         self.assertIn("No reframe destination exists for WORTH_WATCHING", self.runtime_text)
+
+
+class TestReframeCitationAnchorsResolve(unittest.TestCase):
+    """F89 (2026-09-12): every citation into cron_daily_runtime.txt in
+    reframe_destination_guard.py used to be a line number, and had already
+    drifted -- the file gets edited and nothing checked whether the cited
+    ranges still resolved to the described content. rdg.REFRAME_CITATION_
+    ANCHORS now holds a short, verbatim quoted fragment per citation
+    instead. This test cannot verify an anchor is still SEMANTICALLY
+    correct (that requires a human re-reading both sides, same limitation
+    as TestMapStaysInSyncWithProse above), but it CAN catch the cheapest,
+    most likely drift: the cited passage being renamed, reworded, or
+    removed while the guard module still quotes the old text. Every
+    anchor string must appear verbatim in cron_daily_runtime.txt, or this
+    test fails loudly naming exactly which anchor broke."""
+
+    @classmethod
+    def setUpClass(cls):
+        with open(RUNTIME_PATH, encoding="utf-8") as fh:
+            cls.runtime_text = fh.read()
+
+    def test_every_anchor_resolves_in_the_runtime_file(self):
+        missing = [
+            anchor_id
+            for anchor_id, anchor_text in rdg.REFRAME_CITATION_ANCHORS.items()
+            if anchor_text not in self.runtime_text
+        ]
+        self.assertEqual(
+            missing,
+            [],
+            f"REFRAME_CITATION_ANCHORS id(s) {missing} no longer appear "
+            f"verbatim in cron_daily_runtime.txt -- the cited passage was "
+            f"likely reworded, moved, or removed. Re-read the REFRAME "
+            f"MAPPING section (search 'REFRAME MAPPING \u2014') and update "
+            f"both the anchor string in reframe_destination_guard.py's "
+            f"REFRAME_CITATION_ANCHORS and whatever claim that citation "
+            f"was supporting before trusting this module again.",
+        )
+
+    def test_anchor_dict_has_no_duplicate_ids_or_empty_strings(self):
+        # Cheap sanity check on the anchor dict itself -- an accidentally
+        # duplicated key silently overwrites the earlier entry (Python dict
+        # literals don't error on this), and an empty string trivially
+        # "matches" everywhere, defeating the whole point of an anchor.
+        for anchor_id, anchor_text in rdg.REFRAME_CITATION_ANCHORS.items():
+            self.assertTrue(
+                anchor_text.strip(),
+                f"anchor {anchor_id!r} is empty or whitespace-only",
+            )
+
+    def test_every_anchor_is_unique_in_the_runtime_file(self):
+        # F89 (2026-09-12): presence alone (test above) is not enough. An
+        # anchor that is only INCIDENTALLY unique today -- a short fragment
+        # that happens not to occur twice, rather than a clause distinctive
+        # enough that it structurally couldn't -- can start silently
+        # matching a second, unrelated passage after some unrelated edit,
+        # at which point the citation is no longer reliably pointing at the
+        # passage it was meant to. Assert count == 1, not merely >= 1, and
+        # name every anchor that fails so a human knows exactly what
+        # drifted into ambiguity instead of having to re-diff the whole file.
+        non_unique = {
+            anchor_id: self.runtime_text.count(anchor_text)
+            for anchor_id, anchor_text in rdg.REFRAME_CITATION_ANCHORS.items()
+            if self.runtime_text.count(anchor_text) != 1
+        }
+        self.assertEqual(
+            non_unique,
+            {},
+            f"REFRAME_CITATION_ANCHORS entries with an occurrence count "
+            f"other than 1 in cron_daily_runtime.txt: {non_unique} "
+            f"(anchor_id -> occurrence count). A count of 0 means the "
+            f"anchor is missing (see the resolves-in-the-runtime-file test "
+            f"above); a count >= 2 means the anchor text now matches more "
+            f"than one passage and can no longer reliably identify which "
+            f"one this citation means -- reword the anchor to a clause "
+            f"distinctive enough that it can't collide, not just one that "
+            f"happens not to today.",
+        )
 
 
 if __name__ == "__main__":

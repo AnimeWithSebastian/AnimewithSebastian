@@ -2,7 +2,12 @@
 """Item #3+#8 (recurring-failure-patterns audit, 2026-08-18): a real,
 data-backed near-duplicate/blackout check, replacing pure self-attestation.
 
-Real incident this fixes (F43, docs/KNOWN_ISSUES.md ~line 2009): a One Piece
+Real incident this fixes (F43, docs/KNOWN_ISSUES.md -- search for the
+heading "## F43: `blackout_conflict` and `recent_send_conflict` are pure
+self-attestation with zero mechanical verification" rather than trusting a
+line number; F89, 2026-09-12: the prior "~line 2009" hedge had already
+drifted to the section's real current line 2029, and a hedge is still a
+positional citation that goes stale, not a fix for one): a One Piece
 "Gaban loses his arm at Ch.1190" package nearly re-shipped six days after an
 already-sent package covering the identical chapter/character/beat, because
 validate_dual_package.py only ever checked that `blackout_conflict` and
@@ -409,7 +414,34 @@ def check_recent_send_conflict(pkg: dict[str, Any], tree: str,
     # Precedence 2: same-show date-window blackout (documented formats only).
     window_days = FORMAT_BLACKOUT_DAYS.get(format_type)
     pkg_post_date = _parse_date(pkg.get("post_date"))
-    if window_days is not None and window_days > 0 and pkg_post_date is not None:
+    if window_days is not None and window_days > 0:
+        # F58 fix (2026-09-12): a documented-format candidate with no usable
+        # post_date must fail closed here, not silently skip this signal.
+        # post_date is schema-required and manifest-level-validated upstream
+        # (validate_dual_package.py's validate_manifest); a candidate reaching
+        # this function without one means the value was dropped in transit
+        # (the historical bug -- see F58 in docs/KNOWN_ISSUES.md), not that a
+        # dateless candidate is a legitimate case. This mirrors Precedence 3's
+        # existing stance that a missing date must never silently skip a
+        # signal -- Precedence 3 runs unbounded on a missing date because it
+        # has no window to anchor to; Precedence 2 blocks instead, because a
+        # window it cannot evaluate cannot be certified clear either.
+        if pkg_post_date is None:
+            # Belt-and-braces: validate_manifest() now injects post_date onto
+            # every package dict before this function ever runs (see the
+            # setdefault in validate_dual_package.py's per-package loop), so
+            # a documented-format candidate reaching this point with no
+            # usable post_date should be unreachable through the normal
+            # validate_manifest() -> check_recent_send_conflict() path. This
+            # branch stays as a guard against a future call site that
+            # constructs a package dict and calls this function directly,
+            # bypassing that injection -- do not remove it as dead code.
+            return {"blocked": True,
+                    "reason": f"format {format_type!r} has a documented "
+                              f"{window_days}d blackout window, but this candidate has no "
+                              "usable post_date to evaluate it against -- failing closed "
+                              "rather than silently skipping the date-window signal",
+                    "matched_batch_id": None, "signal": "date_window_missing_post_date"}
         for row in same_show:
             row_date = _parse_date(row.get("date_sent")) or _parse_date(row.get("post_date"))
             if row_date is None:

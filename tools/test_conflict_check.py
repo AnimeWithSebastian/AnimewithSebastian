@@ -204,6 +204,122 @@ class TestDateWindowBoundaries(unittest.TestCase):
                           "rows outside the loose search window must not be considered at all")
 
 
+class TestF58MissingPostDateFailsClosed(unittest.TestCase):
+    """F58 fix (2026-09-12): a documented-format candidate (window_days > 0
+    in FORMAT_BLACKOUT_DAYS) reaching this function with no usable post_date
+    must block, not silently skip Precedence 2. Real historical instance:
+    batch d08fde73's Black Torch package (WORTH_WATCHING, manifest post_date
+    2026-08-21, pkg-level post_date missing) -- the true prior send
+    (cb10a88e, WORTH_WATCHING window irrelevant to format but same-show) was
+    13 days earlier, outside the 7-day window either way, so this real case
+    never actually flipped outcome -- confirmed separately by a full sweep of
+    every tracked manifest finding zero real in-window hits. These tests
+    isolate the missing-input behavior directly rather than relying on a
+    historical manifest that happens not to exercise the in-window branch.
+    """
+
+    def test_documented_format_missing_post_date_blocks(self):
+        # WORTH_WATCHING has a documented 7-day window. A same-show history
+        # row exists, but the candidate has no post_date at all -- must fail
+        # closed rather than silently returning not-blocked.
+        history = [sent(show="Black Torch", format_type="COMMENTARY",
+                        angle="predates Chainsaw Man's power system",
+                        date_sent="2026-08-08T20:37:48Z")]
+        candidate = pkg(show="Black Torch", format_type="WORTH_WATCHING",
+                       angle="a completely different angle about pacing")
+        candidate.pop("post_date", None)
+        result = c.check_recent_send_conflict(candidate, tree="unused", history=history)
+        self.assertTrue(result["blocked"])
+        self.assertEqual(result["signal"], "date_window_missing_post_date")
+
+    def test_documented_format_null_post_date_blocks(self):
+        # Same as above, but post_date is explicitly None rather than absent
+        # -- both real manifest shapes must be caught the same way.
+        history = [sent(show="Black Torch", format_type="COMMENTARY",
+                        date_sent="2026-08-08T20:37:48Z")]
+        candidate = pkg(show="Black Torch", format_type="WORTH_WATCHING",
+                       angle="a completely different angle", post_date=None)
+        result = c.check_recent_send_conflict(candidate, tree="unused", history=history)
+        self.assertTrue(result["blocked"])
+        self.assertEqual(result["signal"], "date_window_missing_post_date")
+
+    def test_documented_format_malformed_post_date_blocks(self):
+        # _parse_date returns None on unparseable strings too -- must be
+        # treated identically to missing, not silently coerced or skipped.
+        history = [sent(show="Black Torch", format_type="COMMENTARY",
+                        date_sent="2026-08-08T20:37:48Z")]
+        candidate = pkg(show="Black Torch", format_type="WORTH_WATCHING",
+                       angle="a completely different angle",
+                       post_date="not-a-real-date")
+        result = c.check_recent_send_conflict(candidate, tree="unused", history=history)
+        self.assertTrue(result["blocked"])
+        self.assertEqual(result["signal"], "date_window_missing_post_date")
+
+    def test_undocumented_format_missing_post_date_does_not_trigger_this_guard(self):
+        # WRONG_TAKE has no FORMAT_BLACKOUT_DAYS entry -- Precedence 2 must
+        # not even evaluate the guard for undocumented formats. Angle
+        # similarity is the only signal for these; a missing post_date here
+        # must not itself cause a block through this new branch.
+        history = [sent(show="Solo Leveling", format_type="WRONG_TAKE",
+                        angle="guild politics take is overrated",
+                        date_sent="2026-08-01T00:00:00Z")]
+        candidate = pkg(show="Solo Leveling", format_type="WRONG_TAKE",
+                       angle="a totally different opinion about pacing")
+        candidate.pop("post_date", None)
+        result = c.check_recent_send_conflict(candidate, tree="unused", history=history)
+        self.assertFalse(result["blocked"])
+
+    def test_episode_moment_zero_day_window_missing_post_date_still_blocks(self):
+        # EPISODE_MOMENT's window_days == 0 is falsy-adjacent but must still
+        # be treated as "documented" (window_days is not None and > 0 is
+        # False for 0, so the 0-day case correctly never blocks on date
+        # proximity per test_episode_moment_has_no_date_blackout above --
+        # confirm the missing-post_date guard does NOT fire here either,
+        # since window_days > 0 is False for EPISODE_MOMENT and the whole
+        # Precedence 2 branch is skipped by design, same as an undocumented
+        # format).
+        history = [sent(show="Bleach", format_type="EPISODE_MOMENT",
+                        date_sent="2026-08-19T00:00:00Z")]
+        candidate = pkg(show="Bleach", format_type="EPISODE_MOMENT",
+                       angle="a different moment")
+        candidate.pop("post_date", None)
+        result = c.check_recent_send_conflict(candidate, tree="unused", history=history)
+        self.assertFalse(result["blocked"],
+                          "EPISODE_MOMENT's 0-day window must stay a no-op, "
+                          "including when post_date is missing")
+
+    def test_documented_format_with_real_post_date_still_evaluates_normally(self):
+        # Sanity check: supplying a real, valid post_date must not trip the
+        # new guard and must fall through to the existing window-math path.
+        history = [sent(show="Frieren", format_type="SEASON_RATING",
+                        date_sent="2026-08-01T00:00:00Z")]
+        candidate = pkg(show="Frieren", format_type="SEASON_RATING",
+                       angle="different but same-show", post_date="2026-08-07")
+        result = c.check_recent_send_conflict(candidate, tree="unused", history=history)
+        self.assertTrue(result["blocked"])
+        self.assertEqual(result["signal"], "date_window_blackout")
+
+    def test_real_black_torch_case_no_longer_silently_skips(self):
+        # The real F58 instance, reconstructed from the actual repo data:
+        # batch d08fde73's Black Torch WORTH_WATCHING candidate had no
+        # pkg-level post_date; its true prior same-show send (cb10a88e,
+        # COMMENTARY, 2026-08-08) was 13 real days earlier -- outside
+        # WORTH_WATCHING's 7-day window either way, so the CORRECT outcome
+        # is not-blocked, but it must be not-blocked because the window was
+        # actually evaluated and found clear, not because the signal was
+        # skipped. This test only asserts the signal actually runs (fed a
+        # real post_date, as the plumbing fix now supplies); it does not
+        # assert on a bare missing-post_date input, which is what the
+        # earlier tests in this class already cover.
+        history = [sent(show="Black Torch", format_type="COMMENTARY",
+                        date_sent="2026-08-08T20:37:48Z")]
+        candidate = pkg(show="Black Torch", format_type="WORTH_WATCHING",
+                       angle="different angle", post_date="2026-08-21")
+        result = c.check_recent_send_conflict(candidate, tree="unused", history=history)
+        self.assertFalse(result["blocked"])
+        self.assertIsNone(result["signal"])
+
+
 class TestAngleSimilaritySignal(unittest.TestCase):
     def test_low_similarity_same_show_does_not_block(self):
         history = [sent(show="Jujutsu Kaisen", format_type="THE_MOMENT",

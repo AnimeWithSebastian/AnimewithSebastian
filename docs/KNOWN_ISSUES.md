@@ -203,7 +203,8 @@ check. This entry documents the underlying validator bug that workaround exposed
 per standing instruction to log real findings rather than silently working around and
 forgetting them.
 
-**Location:** `validators/validate_dual_package.py`, line 624:
+**Location (as of 2026-07-25, when this finding was recorded):**
+`validators/validate_dual_package.py`, line 624:
 ```python
 sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", vo) if s.strip()]
 ```
@@ -229,7 +230,8 @@ failure mode), not something specific to the word "Dr." The `$3.5 million` case 
 the bug is masked, not prevented, when no space follows the period (e.g. a mid-number
 decimal) — it is not evidence the splitter handles abbreviations correctly.
 
-**Blast radius:** every check downstream of the `sentences` list at line 624 is
+**Blast radius:** every check downstream of the `sentences` list at the line-624
+location above (as of 2026-07-25) is
 potentially affected if the abbreviation lands in what should be the VO's first or
 last sentence: `loop_line is the VO's exact final sentence`, `opening_sentence is the
 VO's exact first sentence`, and the loop-transition/colon-handoff family of checks
@@ -258,6 +260,13 @@ switching to an abbreviation-aware splitter, or requiring `opening_sentence`/
 first/last-fragment equality). This is a findings record only, per explicit
 instruction not to fix tonight — no diff without explicit go-ahead and full diff
 review first, same as every other backlog item in this file.
+
+**STATUS UPDATE (F89 triage, 2026-09-12): still open, still live.** The exact
+same naive regex (`re.split(r"(?<=[.!?])\s+", vo)`) is still in
+`validators/validate_dual_package.py` today, now at line 2144 (not 624 — the
+file has grown substantially since 2026-07-25 and this is unrelated drift, not
+a fix). Nothing above has been implemented; the bug described in this entry is
+reproducible against current code right now.
 
 ---
 
@@ -1317,7 +1326,7 @@ actually built.
 Law #73 UPDATE 5 and Law #73 UPDATE 6 make contradictory demands for any package whose clips are sourced from a movie or other non-episodic release, where `clip_locate.episode` is legitimately `0`.
 
 - **UPDATE 5** explicitly permits `episode: 0` to mean "season/arc confirmed, no numbered episode in source." This is proven in production by the MHA/Eri package (`cron_tracking/daily_combined/run_manifest_20260802_v2_replacement.json`), which uses `episode: 0` with `season: "Season 4 (Shie Hassaikai arc)"` (a string) as the established convention for an arc-only, no-specific-episode TV source.
-- **UPDATE 6** mechanically requires a literal `S{season}E{episode}` token inside the corresponding `clip_descriptions` CUT segment for every `scene_verified: true` clip whose `clip_locate` carries `season`/`episode`. The check (`validators/validate_dual_package.py`, lines 536-595) computes `wanted = (str(int(season)), str(int(episode)))` unconditionally whenever `episode` is present as an `int` — `0` included — and `season` parses as a digit-string, then requires that exact literal token in the CUT text. There is no code path that accepts a non-numeric, named-source label (e.g. "CHAINSAW MAN: THE MOVIE, REZE ARC") as satisfying this check, and no code path that exempts `episode: 0` or movie/non-episodic sources from the requirement.
+- **UPDATE 6** mechanically requires a literal `S{season}E{episode}` token inside the corresponding `clip_descriptions` CUT segment for every `scene_verified: true` clip whose `clip_locate` carries `season`/`episode`. The check (`validators/validate_dual_package.py`, search the string `"clip_descriptions surfaces clip_locate season/episode for every verified clip (Law #73 UPDATE 6)"` — F89, 2026-09-12: replaces a `lines 536-595` citation that had drifted; the real block is now around line 1112) computes `wanted = (str(int(season)), str(int(episode)))` unconditionally whenever `episode` is present as an `int` — `0` included — and `season` parses as a digit-string, then requires that exact literal token in the CUT text. There is no code path that accepts a non-numeric, named-source label (e.g. "CHAINSAW MAN: THE MOVIE, REZE ARC") as satisfying this check, and no code path that exempts `episode: 0` or movie/non-episodic sources from the requirement.
 
 **Concrete reproducing example:** `build_manifest_run10.py`'s Chainsaw Man package — 5 clips, all with `clip_locate: {"season": 1, "episode": 0}` (movie source, no aired episode number). Labeling the CUT segments with the accurate movie-source citation ("CHAINSAW MAN: THE MOVIE, REZE ARC") is correct and non-fabricated, but fails UPDATE 6's check, which demands a literal `S1E0` token — a fabricated, non-existent episode number — to pass. Rendering `S1E0` was rejected as unacceptable (would invent an episode that doesn't exist); the package is correctly left `BLOCKED` (`validate_dual_package.py` → `RESULT: BLOCKED`, exit code 1) rather than forcing a false pass.
 
@@ -1694,9 +1703,10 @@ drafted.
 resubmission audit) and checking which law numbers were already in use
 before picking #168.
 
-**The gap:** `validators/validate_dual_package.py` (line 557) contains the
+**The gap:** `validators/validate_dual_package.py` contains the
 comment "episode_source (Law #167, added 2026-08-13): mirrors Law #73
-UPDATE 8's...", and the field is fully implemented and enforced —
+UPDATE 8's..." (F89, 2026-09-12: originally cited at line 557; that had
+drifted — the real current line is 721), and the field is fully implemented and enforced —
 `episode_source_ok = episode_source in ("explicitly_stated", "inferred")` is
 a real gate, and `validators/test_validate_dual_package.py` has working
 fixtures/tests exercising it (e.g. `_valid_clip_locate(..., episode_source:
@@ -2026,9 +2036,23 @@ Correcting the docstring is a one-line-area edit with no behavioral effect, but 
 touches the validator, and validator changes require their own authorization and
 diff review per standing convention. Documented only.
 
+**F89 TRIAGE NOTE (2026-09-12): this addendum's own text is now stale — the
+docstring was fixed at some later point not documented anywhere in this file.**
+`validate_dual_package.py`'s current schema docstring (verified today) reads
+`"video_style": "Face-Cam Split Screen (Creator TOP / anime footage BOTTOM — Law
+#134 Stage 2)"` with `"face": true, "split_screen": true` — matching the live
+checks, not contradicting them — and carries its own inline comment stating it
+was "Corrected to match the real, current required default." The originally-cited
+lines (2199-2200, and the live checks at 1526-1533) have also drifted positionally
+(the schema block is now further down the file and the live checks are now around
+2171-2178), but that is secondary — the substantive claim ("Explicitly NOT fixed")
+is simply no longer true, and this file has no entry recording when or why it was
+fixed. Logged here per F89 scope (citation accuracy), not corrected further — the
+actual fix commit/date is a separate research question, out of scope for this pass.
+
 ## F43: `blackout_conflict` and `recent_send_conflict` are pure self-attestation with zero mechanical verification — a real duplicate very nearly shipped because of it
 
-**Discovered:** 2026-08-15, while rebuilding the batch that F41 found had never been
+**Discovered:** 2026-08-15, while rebuilding the batch that F42 found had never been
 sent. The duplicate was caught by manually reading `sent_scripts_events.jsonl`, not
 by any check.
 
@@ -2056,9 +2080,11 @@ Same show, same chapter, same character, same arm-loss beat, same format family,
 days apart. The rebuild would have republished the previous week's video. The package
 was dropped (see the 2026-08-15 batch's `approval.json` `dropped_package_record`).
 
-**Why nothing would have caught it.** `validators/validate_dual_package.py` checks
-only that the two conflict flags are PRESENT and set to `false`
-(`validate_dual_package.py:1616-1620`):
+**Why nothing would have caught it (as of 2026-08-15, before the 2026-08-19 fix
+documented in RESOLUTION above — this describes pre-fix behavior, not current code).**
+`validators/validate_dual_package.py` checked
+only that the two conflict flags were PRESENT and set to `false`
+(`validate_dual_package.py:1616-1620`, at the time):
 
 ```
     bo = pkg.get("blackout_conflict", None)
@@ -2070,11 +2096,13 @@ only that the two conflict flags are PRESENT and set to `false`
 That is the entire mechanism. The validator never opens `blackout_state.json`, never
 opens `sent_scripts_log.json` or `sent_scripts_events.jsonl`, never compares the
 package's `show` against recent sends, and never computes a date distance. A package
-asserting `recent_send_conflict: false` while duplicating yesterday's send passes
-cleanly. The validator's own comment at line 1951 acknowledges the limitation
-("blackout_conflict/recent_send_conflict are self-attested"), so this is a known
-shape — but the acknowledgment is the whole treatment, and the near-miss shows the
-cost is real and not hypothetical.
+asserting `recent_send_conflict: false` while duplicating yesterday's send passed
+cleanly under the pre-fix validator. The validator's own comment (at line 1951, at
+the time) acknowledged the limitation
+("blackout_conflict/recent_send_conflict are self-attested"), so this was a known
+shape — but the acknowledgment was the whole treatment, and the near-miss showed the
+cost was real and not hypothetical. (F89, 2026-09-12: superseded by the real
+mechanical check landed 2026-08-19, per RESOLUTION above.)
 
 **Why this is the same pattern already closed twice elsewhere.** This repo has
 twice decided that a drafting-pass obligation at this risk level needs a mechanical
@@ -2085,7 +2113,8 @@ backstop, and has built one:
   `BANNED_COMPARATIVE_LANGUAGE` regex scan that fails closed on a match **regardless
   of what the flag claims**.
 - **Law #167's `episode_source`** replaced an implicit assumption with a closed enum
-  checked at `validate_dual_package.py:581-583`.
+  checked at `validate_dual_package.py:581-583` (F89, 2026-09-12: drifted; the real
+  current line is 735 — search `episode_source_ok = episode_source in`).
 
 The conflict flags are strictly more checkable than either of those: the necessary
 data is already in the repo, in files the runtime is already instructed to read
@@ -3260,9 +3289,12 @@ filesystem:
   `repo/cron_tracking`" — this entry confirms and generalizes that
   observation rather than discovering it fresh).
 
-`cron_daily_runtime.txt` line 1506 explicitly instructs the runtime to
+`cron_daily_runtime.txt` explicitly instructs the runtime to
 `cd /home/user/workspace/repo` before touching any `cron_tracking/...`
-relative path, so `/home/user/workspace/repo/cron_tracking/` is the
+relative path (F89, 2026-09-12: originally cited at line 1506; the current
+file has this at line 2257, under "STEP 5 — DETERMINISTIC PREFLIGHT
+VALIDATION" — search `cd /home/user/workspace/repo` immediately followed by
+`python3 validators/validate_dual_package.py`), so `/home/user/workspace/repo/cron_tracking/` is the
 authoritative tree the real `daily_combined` runtime reads and writes. The
 bare `/home/user/workspace/cron_tracking/daily_combined/` copy has no
 current reader or writer for this cron_id — it is dead, not merely stale.
@@ -3448,8 +3480,12 @@ mechanism cleared today's `d08fde73` batch despite Black Torch being sent
 manga/fusion-power-system framing) inside `WORTH_WATCHING`'s documented
 7-day blackout window.
 
-**Root cause.** `tools/conflict_check.py` line 383-385 only runs the
-date-window signal when `pkg_post_date is not None`. Today's manifest has
+**Root cause.** `tools/conflict_check.py` only runs the
+date-window signal when `pkg_post_date is not None` (F89, 2026-09-12: originally
+cited at line 383-385; the real current line is 417 — search
+`if window_days is not None and window_days > 0 and pkg_post_date is not None:`).
+Still true today — this remains an open, unfixed gap, confirmed by reading the
+current function body. Today's manifest has
 `post_date: None` on both packages (confirmed by direct read), so the
 blackout check for `WORTH_WATCHING` (and any other documented-window format)
 never executed — not a false negative from the date math, but the signal
@@ -3466,6 +3502,142 @@ on every candidate package before `check_recent_send_conflict` runs, and
 fail closed (block, don't skip the signal) if it's missing — same
 fail-closed pattern already used by item #6/#7's format-eligibility and
 stance-staleness checks.
+
+**FIXED (2026-09-12) — root cause corrected, was a plumbing bug, not a
+policy gap.** Sebastian's original framing of this entry described the bug
+as the date-window check simply "not running" for the eleven undocumented-
+blackout formats, letting repeats through. That characterization was wrong
+in two ways, both confirmed by direct reading of `tools/conflict_check.py`
+and every real tracked manifest before writing any fix:
+
+1. **Wrong direction.** The gap is in Precedence 2 — the *documented*
+   date-window blackout, which covers exactly the seven formats with a
+   `FORMAT_BLACKOUT_DAYS` entry (`SEASON_RATING`, `SEASON_PREVIEW`,
+   `MANGA_VS_ANIME`, `WATCH_RANK`, `WORTH_WATCHING`, `EPISODE_MOMENT`, and
+   the 0-day case) — the opposite set from "the eleven undocumented-
+   blackout formats." Precedence 3, which actually covers the undocumented
+   formats, is deliberately fail-open-on-date-but-fail-closed-on-signal by
+   design ("a missing date must never silently skip either signal") and was
+   never broken. That part of the original framing does not appear anywhere
+   in the corrected fix.
+2. **Wrong mechanism.** The real cause was not "the check doesn't run when
+   `post_date` is null" as an isolated policy choice — it was that
+   `post_date` is schema-required and already validated at the **manifest**
+   level (`validate_manifest`'s "post_date present and valid YYYY-MM-DD"
+   check) and already threaded into `validate_package()` as a parsed
+   parameter, but the per-package dict handed to
+   `check_recent_send_conflict()` never carried a copy of it — the same bug
+   class as F61 and its `corrects_batch_id` follow-up, just for a third
+   field. The value existed one layer up and was silently dropped in
+   transit, not absent because no real flow produces it.
+
+Before writing any code, a live count against both real append-only send
+logs (`sent_scripts_log.json`, 242 entries; `cron_tracking/
+sent_scripts_events.jsonl`, 98 entries) found **zero** rows with a null
+`post_date` — historical rows always have one, via `date_sent` with
+`post_date` as fallback. On the candidate side, 59 of 61 real package dicts
+across every tracked manifest had no `post_date` key at all; the two
+exceptions (`replacement_20260902`'s morning/evening packages) are a rare
+manual-replacement shape, and even there the two packages' own dates
+legitimately differ from the shared manifest date (2026-09-01 vs. the
+manifest's 2026-09-02) rather than being a sync bug. A full sweep of every
+tracked manifest through the corrected logic, before vs. after, found
+**zero** manifests whose overall pass/fail outcome changed — not because
+the fix is a no-op, but because no tracked candidate ever genuinely falls
+inside a documented blackout window once the real date is used (confirmed
+by direct computation across every same-show/documented-format pair in the
+tracked history). The bug was real — verified in isolation via a bare
+`check_recent_send_conflict` call reproducing this entry's own Black Torch
+case, which returns `blocked: False` (silent skip) on the unfixed code and
+correctly evaluates the window once given the real date — it simply never
+flipped a real historical outcome because no tracked case happened to land
+inside a window.
+
+**Separately, an arithmetic error in this entry's own opening paragraph —
+and it changes what this entry actually proves, not just a number.** It
+states Black Torch was "sent 11 days earlier." The real dates are
+`cb10a88e` (`date_sent: 2026-08-08`) against `d08fde73`'s manifest
+`post_date: 2026-08-21` — a 13-day gap, not 11 (`sent_scripts_log.json`
+confirms `cb10a88e`'s own `format_type` was `COMMENTARY`, not
+`WORTH_WATCHING` — `WORTH_WATCHING` was `d08fde73`'s own candidate format,
+not the prior send's).
+
+**Say this plainly: at the true 13-day gap, Black Torch was outside
+`WORTH_WATCHING`'s 7-day window regardless of whether the date-window
+signal ran at all.** The "enforcement miss" this entry originally documented
+was never a real miss — the signal skipped silently instead of evaluating,
+but evaluating it correctly would have cleared this candidate anyway, the
+same outcome the silent skip produced by accident. This entry's premise was
+partly wrong in the same shape as F82: an entry asserting a failure the data
+doesn't actually support. The plumbing bug was real and worth fixing (see
+below), but this specific case was never proof of a repeat sneaking through
+— it's proof the check wasn't running, which is a different and smaller
+claim than what the original opening paragraph implied. The number itself
+is corrected here rather than silently left, per this session's F93
+convention of never letting a fix ship without the entry it fixes getting
+an honest update.
+
+**Fix actually applied:**
+- `validators/validate_dual_package.py`: the per-package loop that already
+  injects `batch_id`/`corrects_batch_id` onto a `pkg_for_validation` copy
+  (F61/F-next pattern) now also `setdefault`s `post_date` onto that copy
+  from the manifest's already-parsed `post_date`, only when the package
+  doesn't already carry its own (preserving the legitimate
+  `replacement_20260902`-style per-package override).
+- `tools/conflict_check.py`: `check_recent_send_conflict` itself now fails
+  closed — returns `blocked: True`, `signal: "date_window_missing_post_date"`
+  — when a documented-format candidate (`window_days is not None and
+  window_days > 0`) still has no usable `post_date` after the above, rather
+  than relying on every call site remembering to supply one. Per Sebastian's
+  explicit direction: the guarantee belongs inside the function that owns
+  Precedence 2's logic, not scattered across call sites a future caller
+  could add without knowing the requirement. Because `validate_manifest()`
+  now injects `post_date` onto every package dict before this function ever
+  runs, a documented-format candidate reaching this guard with no usable
+  date should be unreachable through the normal path today — the guard is
+  belt-and-braces against a future call site that constructs a package dict
+  and calls `check_recent_send_conflict()` directly, bypassing the
+  injection. Commented in place so it isn't later misread as dead code and
+  removed.
+- Tests: `tools/test_conflict_check.py` gained a new
+  `TestF58MissingPostDateFailsClosed` class (7 tests, not 8 — an earlier
+  verbal count in this session's review thread said 8 and was corrected
+  against a live pytest collection before this entry was finalized) covering
+  missing/None/malformed `post_date` on documented formats (blocks),
+  undocumented formats and the 0-day `EPISODE_MOMENT` case (guard correctly
+  does not fire), a real-post-date sanity check, and a reconstruction of
+  this entry's own Black Torch case proving it now evaluates instead of
+  silently skipping. `validators/test_validate_dual_package.py` gained two
+  tests confirming the plumbing itself: one proving a manifest-level-only
+  `post_date` reaches the mechanical check and produces a real block, one
+  proving a package-level `post_date` wins over a conflicting
+  manifest-level one — the second of these was originally checked with a
+  synthetic manifest using a show with no real send history, which passed
+  but proved nothing (nothing to collide with); rebuilt against a real show
+  (One Piece) with real history before being trusted, since a test that
+  passes without exercising what it claims is indistinguishable from a
+  working one unless you check what it's actually doing. Full suite: 839
+  passed, 77 subtests, zero regressions (up from 830/77 before this fix).
+
+**Evidence level — mechanism, not outcome.** A full sweep of all 30 tracked
+manifests through the fix, before vs. after, found zero manifests whose
+overall pass/fail status changed and zero manifests whose failing-check set
+changed at all. That is a clean bill for safety (the fix does not
+over-block anything in real tracked history) but it is not evidence the fix
+catches anything real, because no tracked manifest contains a genuine
+same-show collision inside a documented blackout window once the real date
+is used — there is nothing in the tracked data for the fix to catch. The
+fix is verified two other ways instead: by construction (the plumbing gap
+and the silent-skip are both directly confirmed by reading the code before
+and after) and by the guard tests above, including a live reconstruction of
+this entry's own Black Torch inputs and a synthetic precedence proof built
+against One Piece's real send log. A future reader should take this entry's
+evidence as mechanism-level — the fail-open path is closed and the
+precedence rule is demonstrated — not outcome-level, since no real
+historical case exists to flip.
+
+**Status:** Fixed and tested. Precedence 3's unbounded-on-missing-date
+behavior was confirmed unchanged and untouched throughout.
 
 ---
 
@@ -3659,8 +3831,14 @@ the same underlying claim from sources that were not among the two originally
 cited. `approval_status: "APPROVED"` was set by Sebastian with full visibility
 into this exact nuance (`verification_gaps_and_caveats` documents it at
 length, concluding the claim "holds up across independent sources").
-`tools/append_send_batch.py`'s gate logic (see `unsupported` list construction
-around line 657) only checks whether *any* CORE-tagged entry in the whole
+`tools/append_send_batch.py`'s gate logic (F89, 2026-09-12: as of this entry's
+original writing, the `unsupported` list construction lived inline in
+`append_send_batch.py` around line 657; F89 (2026-09-12, same day as this F89
+triage) extracted it unchanged into `tools/approval_gate.check_fetch_review_gate()`
+— search `unsupported = []` in that file. Confirmed by re-reading the extracted
+function: the limitation described below is still present, unchanged, in the
+current code — this is a citation-location update only, not a claim that the
+gap was fixed) only checks whether *any* CORE-tagged entry in the whole
 `fetch_review` array has `fetched_content_supports_claim` not `True` — it has
 no concept of "this specific claim is covered by a passing entry elsewhere in
 the same array," so it fails closed on the 2 originally-cited-source entries
@@ -4045,9 +4223,11 @@ split-screen format -- a real, unconditional `BLOCKED` result (17 failed
 checks on first run), not a skip.
 
 **Root cause -- verified precisely, not assumed:** `cron_daily_runtime.txt`
-itself is NOT stale on this point. Line 758 explicitly documents "FACE-CAM
+itself is NOT stale on this point. It explicitly documents "FACE-CAM
 SPLIT SCREEN REQUIRED (Law #134, updated Stage 2, 2026-08-09 -- supersedes
-the July 14, 2026 anime-only rule)" and line 84 states the same. The
+the July 14, 2026 anime-only rule)" (F89, 2026-09-12: originally cited at
+line 758; now at line 1388, drifted by later insertions) and line 84 states
+the same (F89, 2026-09-12: verified unchanged, still line 84). The
 runtime doc is current and internally consistent with the validator. The
 stale text lives in a different artifact: the `daily_combined` scheduled
 task's own embedded description/step list (the standing prompt configured
@@ -4311,7 +4491,11 @@ ever invoked from `tools/test_candidate_selection_log.py` and
 `validators/test_validate_dual_package.py` (test fixtures). The only place
 it's invoked in a non-test context is inside `cron_daily_runtime.txt` —
 and that is free-text prose ("call tools/candidate_selection_log.py's
-log_candidate() exactly ONCE per candidate..." at line 612) instructing
+log_candidate() exactly ONCE per candidate...", originally at line 612;
+F89, 2026-09-12: the phrasing has since evolved slightly and now appears
+at line 1238 as "log_candidate(tree, ...) exactly ONCE per candidate
+genuinely considered this..." — same instruction, drifted position, not a
+substantive change) instructing
 whichever model executes that day's cron run to make the call itself.
 There is no wrapper script, no hook, and no validator check that fails
 closed if a given `post_date`'s run produced zero log events —
@@ -5099,7 +5283,7 @@ dangling rather than backfilled.
 
 **Do not fill this gap.** Not with a local finding, not with a stub mirroring
 SEBLABHRIS's F78, not to make the numbering contiguous. The next available number in
-this repo is F86, as of the 2026-09-12 port that added F84 and F85.
+this repo is F94, as of the 2026-09-13 port that added F86 through F93.
 
 ## F79: KNOWN_ISSUES entries can sit at a stale "open" status indefinitely after their fix ships — now detectable by a tool, still not prevented
 
@@ -6088,3 +6272,703 @@ whether either package has a publication-ledger row.
 
 **Status:** OPEN. Documentation-only finding — no corrective action
 taken or proposed here.
+
+## F86: REFRAME MAPPING has no defined path for two independently-selected candidates colliding on the same format_type, or for a format with no cooldown-destination entry at all (FACT_DROP)
+
+**Found:** 2026-09-12, batch `d0385ca7`, while resolving a same-day format
+collision between the Saint Seiya and Bleach candidates, and separately
+while checking a Blue Lock candidate's reframe options off FACT_DROP
+earlier the same run.
+
+**The finding, two instances of one shape.** The REFRAME MAPPING table in
+`cron_daily_runtime.txt` (originally ~lines 684-758; F89, 2026-09-12:
+drifted, now ~lines 747-856 -- search "REFRAME MAPPING — apply ONLY when") and
+its Python counterpart
+`tools/reframe_destination_guard.py`'s `REFRAME_MAP` (F89, 2026-09-12: this
+file's own citations were already rewritten to content anchors earlier in
+this triage pass) are both built
+entirely around one trigger: a format is *on cooldown* and needs a
+destination format to reframe into. Two real situations this run didn't
+fit that trigger shape at all:
+
+1. **FACT_DROP has no entry as a source format anywhere** — not in the
+   runtime prose, not in `REFRAME_MAP`. A FACT_DROP-natural candidate that
+   lands on cooldown has no defined reframe destination; calling
+   `guard_reframe_pairing('FACT_DROP', ...)` raises `ValueError` by the
+   module's own fail-loud design. Practical effect: the candidate must
+   ship under a different natural-fit format directly, or the slot holds.
+2. **Two independently-selected candidates can both be genuinely,
+   correctly the same format_type on the same day** — not because either
+   was misdiagnosed, but because both stories are honestly that format.
+   Tonight: Saint Seiya (a lawsuit/embezzlement story) and Bleach (a
+   broadcast-delay story, after a same-day news event invalidated its
+   original EPISODE_MOMENT premise) were both correctly COMMENTARY. The
+   validator's distinct-format guard (`validate_dual_package.py` line
+   3212, `formats[0] != formats[1]`) is a hard, unconditional check with
+   no override. The mapping table has no entry for "format X is not on
+   cooldown, but two candidates both need it the same day" — that isn't
+   a case it was designed to solve, and reframing either candidate into a
+   nominal destination format (e.g. CHARACTER_DIVE, THEORY_SPECULATION)
+   it doesn't genuinely fit would violate the mapping's own stated rule
+   against reframing into a format the content does not fit.
+
+**Resolution used tonight (not a fix to the gap itself):** held the
+Bleach slot per M5 (quality over quota) rather than force a bad label;
+shipped Saint Seiya alone as a single justified package
+(`single_package_reason` on batch `d0385ca7`). Full hold record at
+`cron_tracking/daily_combined/held/bleach_delay_d0385ca7_held.json`.
+
+**Explicitly out of scope for this entry:** designing an actual fix (a
+new REFRAME_MAP entry, a same-format-collision tiebreak rule, or a
+FACT_DROP destination mapping) — none is proposed here. Both instances
+are the same underlying design gap (the mapping assumes a cooldown-driven
+need and doesn't handle collisions or missing-source-formats arising any
+other way), recorded together because they share that shape, not because
+either instance's specific fix should be identical.
+
+**Status:** RESOLVED 2026-09-12 (same day). See Resolution below.
+
+**Resolution (2026-09-12, same day):** Both instances fixed, on explicit
+owner decision, as two separate changes (FIX 1 and FIX 2 respectively —
+kept separate because, as this entry itself says, they are the same
+underlying shape but do not share one fix):
+
+- **Instance 1 (FACT_DROP has no source entry) — FIX 1:** `REFRAME_MAP` in
+  `tools/reframe_destination_guard.py` gained a `"FACT_DROP"` key with two
+  destinations: `("COMMENTARY", None)` — unconditional, because FACT_DROP's
+  own real-usage data spans both a breaking-news half (which is squarely
+  COMMENTARY's real objective) and a lore-explainer half — and
+  `("WRONG_TAKE", <condition>)` — `PASS_WITH_CONDITION`, gated on the
+  candidate actually correcting a real community myth, same conditional
+  shape as the existing CHARACTER_DIVE -> VILLAIN_DEFENSE entry, since not
+  every FACT_DROP fact has a myth to debunk. The matching prose was added to
+  `cron_daily_runtime.txt`'s REFRAME MAPPING block. Both destinations were
+  checked against their own real eligibility rules before being added — a
+  destination that would have forced a rule violation would have been
+  dropped and explained rather than included for symmetry (neither was).
+  Tests: `tools/test_reframe_destination_guard.py` gained 3 new cases
+  (unconditional COMMENTARY pass, conditional WRONG_TAKE pass, and a direct
+  regression pin on the new prose pattern) — 30/30 passing.
+
+- **Instance 2 (same-format collision has no defined behavior) — FIX 2:**
+  `cron_daily_runtime.txt` STEP 3 gained explicit same-format-collision
+  guidance (a new bullet immediately following the existing
+  ACTIVE FORMAT-DIVERSITY WEIGHTING bullet), rather than leaving this to be
+  rediscovered each time it happens. It codifies exactly what tonight's
+  batch already did correctly by hand: attempt a reframe first only if one
+  candidate has a genuinely better honest alternate fit under the REFRAME
+  MAPPING (never a fit invented to dodge the collision); if no honest
+  reframe exists, hold the weaker slot and ship the stronger one alone via
+  the validator's existing `single_package_reason` field; never force a
+  format onto content that doesn't fit it merely to resolve the collision;
+  and record the held package with the same field shape actually used
+  tonight (`cron_tracking/daily_combined/held/bleach_delay_d0385ca7_held.json`
+  is now the referenced template) — hold reason, VO state, sources,
+  clip-plan status, `held_for_format_collision_not_content: true`,
+  viability window, and next steps.
+
+- **Not changed:** the validator's distinct-format check itself
+  (originally cited at `validate_dual_package.py` line 3212; F89,
+  2026-09-12: drifted slightly, the real check -- `r.add("distinct formats
+  (no duplicate)", ...)` -- is now at line 3222, in the "distinct shows AND
+  distinct formats" block starting line 3208) — it was already correct and
+  unconditional; nothing here loosens it. Neither fix invents a new
+  format_type, a new manifest field, or an override of the monetization
+  filter, blackout rules, or same-day-same-show ban.
+
+---
+
+## F87: The Law #165 core-aware fetch_review gate in `append_send_batch.py` fires AFTER the email is already sent, so a negative-control entry authored without `"core": false` blocks logging only once the irreversible step is done
+
+**Found:** 2026-09-12, batch `d0385ca7`, at the real STEP 7 logging call for
+the Saint Seiya morning package — not a hypothetical, the actual
+`append_send_batch.py` invocation returned exit 1 and `[BLOCKED]` for
+exactly this reason on the real production send.
+
+**The check itself is correct and working as designed.** This is
+explicitly not the F83 shape (a law documented in prose with no code
+enforcing it). The core-aware gate added 2026-08-19 to
+`append_send_batch.py` is real, wired, and fired exactly as written: it
+requires every `fetch_review` entry to either have
+`fetched_content_supports_claim == true`, or be explicitly marked
+`"core": false` (or use the legacy `[NON-CORE]` claim-text prefix) with a
+real note if `false`. Entries with neither marker default to `core=True`
+(the documented, intentional safe default) and block if unsupported.
+
+**What actually happened:** `approval_d0385ca7.json`'s `fetch_review`
+contained three genuine negative-control entries (claim text of the form
+"does ANY source support the rejected framing?", where `false` is the
+correct, successful outcome of the check) — but none of the three carried
+a `core` key or a `[NON-CORE]` prefix at authoring time. Nothing in the
+drafting process prompts an author to recognize "this entry's claim is a
+negated cross-check" and mark it accordingly. The gate correctly treated
+all three as core-and-unsupported and blocked the log — but the email had
+already gone out in STEP 7, which runs before STEP 8 logging by design.
+Result: `emails_sent: true, log_appended: false, status: "failed"` in
+`state.json` — an accurate record of a real, avoidable near-miss, not a
+false block.
+
+**The timing problem, named specifically:** this gate protects the
+integrity of the *log*, and by its own documented limitation cannot
+retroactively unsend an email that already went out. That means the
+earliest point a missing `core` marker can currently be caught is *after*
+the one step in the whole pipeline that cannot be undone. A schema/intent
+check that only fires post-send is a gate in the wrong place for the class
+of error it's best suited to catch — authoring omissions are exactly the
+kind of thing a pre-send check should catch, while they're still cheap to
+fix.
+
+**Resolution used tonight (not a fix to the gap itself):** added
+`"core": false` to the three affected entries after manually re-verifying
+each was a genuine negative control (not a reclassification of a failed
+verification — the distinction the gate exists to preserve), then
+re-ran `append_send_batch.py`, which appended clean on retry. The email
+itself was not re-sent; it was already correct and already out.
+
+**Explicitly out of scope for this entry (at the time it was first logged):**
+designing the actual fix. Three shapes were suggested during triage — a
+pre-send schema check similar to Law #173's shape (which already catches a
+different fetch_review authoring mistake before it can propagate), a
+drafting convention/template change that prompts marking negative controls
+at authoring time, or better structural detection in the script itself
+(e.g. inferring negative-control shape from claim text patterns) — but no
+choice between them was made at that point.
+
+**Resolution (2026-09-12, same day):** chose a combination of the first two
+suggested shapes, not the third:
+
+1. **Pre-send schema/gate check, Law #173's shape, moved earlier.** The
+   core-aware gate logic that lived only inside `append_send_batch.py`
+   (running at STEP 8, post-send) was extracted unchanged into
+   `tools/approval_gate.py::check_fetch_review_gate()` — same checks, same
+   precedence, same error wording, now a standalone testable function.
+   `append_send_batch.py` was updated to call this shared function instead
+   of duplicating the logic inline (verified behavior-identical: all 62
+   pre-existing `tools/test_append_send_batch.py` tests still pass
+   unchanged after the extraction). A new script,
+   `tools/presend_approval_check.py`, calls the same shared function and is
+   now wired into `cron_daily_runtime.txt` STEP 6.5 as an explicit new
+   point 3, run before STEP 7's send — so the exact class of error this
+   entry describes (an authoring omission) is now caught while the send can
+   still be stopped, not just logged as failed afterward. STEP 8's call
+   to the same gate is unchanged and remains the authoritative check for
+   what gets logged as a successful send; the pre-send check is a second,
+   earlier application of the identical rule, not a replacement.
+2. **Drafting convention for negative controls**, documented in
+   `cron_daily_runtime.txt` STEP 6.5 point 1: any fetch_review entry that is
+   a deliberate negative control must be authored with an explicit
+   `"core": false` plus a real, non-empty `"note"` at drafting time, not
+   patched in after a block surfaces it.
+
+**Why not the third shape (structural detection in the script):** inferring
+"this claim is a negative control" from claim text patterns means guessing
+author intent from wording — the same claim text ("does any source support
+X") could be a real assertion being verified in one package and a
+deliberate negative control in another; the gate cannot tell those apart
+without being told, and a heuristic that's wrong in either direction is
+worse than requiring an explicit marker (wrong-blocks-a-real-claim, or
+worse, wrong-passes-an-actual-unsupported-core-claim by misclassifying it as
+a control). An explicit, human-authored `"core": false` + `"note"` keeps the
+gate's fail-closed default intact and keeps the classification decision with
+the person who knows what the entry is actually checking, rather than with
+a pattern-matcher guessing at it.
+
+**Status:** RESOLVED (design + pre-send enforcement). Both parts of the fix
+(the moved gate and the authoring convention) are live in
+`cron_daily_runtime.txt` STEP 6.5 as of 2026-09-12; `tools/approval_gate.py`
+and `tools/presend_approval_check.py` are new files backing it, with
+dedicated tests in `tools/test_approval_gate.py` (18 tests) and
+`tools/test_presend_approval_check.py` (9 tests), plus the pre-existing
+`tools/test_append_send_batch.py` suite (62 tests) re-run and confirmed
+unaffected by the extraction. Not yet exercised on a live production batch
+send end-to-end through STEP 6.5 in practice — first real use will confirm
+the wiring holds outside of test fixtures.
+
+## F88: Distinct from F87 — the F87 gate itself is correctly wired and rule-correct, but until tonight's fix it was positioned only after the one step in the pipeline (the send) that cannot be undone
+
+**Found:** 2026-09-12, during the same triage session that resolved F87,
+as an explicit, separate finding the user asked to be logged apart from
+F87's own entry.
+
+**Why this is a different finding from F87, not a duplicate:** F87 is about
+a rule that was *never wired at all* being caught by a check that only sees
+it too late (the drafting convention gap — nothing told the author to mark
+a negative control as non-core). F83, similarly, is about a rule that was
+*never wired into code at all* (WRONG_TAKE's blackout exists only in prose).
+This entry is neither of those shapes. Here, the rule was already correct,
+already enforced, already catching the exact problem it was designed to
+catch (`append_send_batch.py`'s core-aware gate did block the bad send from
+being logged) — the only defect was *timing*: the one gate that existed ran
+at STEP 8 (post-send, pre-log), when the only thing left to protect by then
+is the log's own integrity, not the send itself. A correct, working,
+correctly-positioned-for-its-original-purpose gate can still be a gate in
+the wrong place for a *different* purpose (stopping a send) that it was
+never actually asked to serve until now.
+
+**Named specifically, per the user's request:** a gate firing after an
+irreversible action is a gate in the wrong place — not a bug in the gate's
+logic, a bug in the gate's position in the pipeline. The email send in
+STEP 7 cannot be recalled once it happens; the Law #165 gate, as it existed
+before tonight, only ever ran at STEP 8, structurally after STEP 7. No
+amount of the gate being "correct" changes that a check whose only job is
+to protect against a bad send can't do that job if the bad send has already
+gone out by the time the check runs.
+
+**Resolution:** the same `tools/approval_gate.py` extraction and
+`tools/presend_approval_check.py` addition described in F87's Resolution
+section also closes this entry — the identical gate now runs once at STEP
+6.5 (pre-send, point 3) in addition to its original position at STEP 8
+(post-send, log-append, unchanged). This entry exists to record the timing
+problem as its own named issue, separately from F87's authoring-convention
+gap, since the two are conceptually distinct even though one fix session
+addressed both.
+
+**Status:** RESOLVED. `cron_daily_runtime.txt` STEP 6.5 point 3 now runs
+`tools/presend_approval_check.py` before STEP 7's send, using the same
+`tools/approval_gate.check_fetch_review_gate()` function STEP 8 already
+called. See F87's Resolution section for the shared implementation detail
+and test coverage; this entry intentionally does not repeat that detail.
+
+---
+
+## F89: Line-number citations into `cron_daily_runtime.txt` are a maintenance liability with no mechanical backstop — they drift silently every time the file is edited, and nothing detects the drift
+
+**Found:** 2026-09-12, as a direct byproduct of tonight's FIX 1/FIX 2 work
+on `tools/reframe_destination_guard.py`. Not a hypothetical risk — it
+happened tonight, in this exact session, to this exact file.
+
+**What happened:** `reframe_destination_guard.py` carries a
+`REFRAME_MAPPING_BLOCK = ("cron_daily_runtime.txt", start, end)` citation
+constant, plus several separate per-entry citations inlined as plain
+strings in comments and error messages, and one more in a module-level
+comment (`"lines 678-758 as of the commit that added this module"`, line
+46 — itself already stale by definition, since it names the pre-tonight
+bounds of the very block `REFRAME_MAPPING_BLOCK` has since moved twice).
+Tonight's edits inserted 64 lines (FIX 2, STEP 3) and 23 lines (FIX 1,
+REFRAME MAPPING prose) into `cron_daily_runtime.txt`, plus a later 5-line
+insertion (the "weaker slot is deliberately a judgment call" sentence) —
+all three landing before every one of the cited line ranges below.
+`REFRAME_MAPPING_BLOCK` got updated each time, three times in one
+session, only because whoever was editing happened to be working directly
+next to it and noticed. The other citations sit at other points in the
+same file, were never touched by any of tonight's insertions' surrounding
+context, and are now stale by the same three shifts — nobody was looking
+at them, so nothing caught it.
+
+**The known-stale citations, as of this entry (uncorrected — see
+Disposition below for why), confirmed by direct grep against the file as
+it now stands:**
+- Line 46: `"lines 678-758 as of the commit that added this module"` —
+  stale on two counts: those were the block's bounds before ANY of
+  tonight's three edits, not just the most recent one.
+- Line 175: `"cron_daily_runtime.txt lines 719-727"`
+- Line 191: `"lines 732-737"`
+- Line 322: `"lines 738-758"`
+- Line 362: `"lines 764-779"`
+- Line 392: `"lines 771-775"`
+
+**Why this is a finding about the mechanism, not just six wrong numbers:**
+fixing these six tonight would not fix the underlying problem — the next
+edit to `cron_daily_runtime.txt` (and there will be one; this file has
+been edited in nearly every session logged in this document) breaks them
+again, and again nothing will notice, because nothing checks a citation
+string against the file's actual current content. `REFRAME_MAPPING_BLOCK`
+only survived tonight by accident of proximity, not by any structural
+protection — the same accident will not always happen.
+
+**Disposition — deliberately not fixed tonight:** the user's explicit
+instruction was to record the shape of the fix, not build it in this
+session. Two real options, neither implemented:
+1. A test that asserts each citation still points at what it claims —
+   e.g. reads the cited line range out of `cron_daily_runtime.txt` and
+   checks it contains an expected anchor phrase, failing loudly the next
+   time the file shifts instead of staying silently wrong.
+2. Replace line-number citations with content anchors (e.g. citing a
+   stable heading or a distinctive phrase and searching for it, the way
+   `REFRAME_MAPPING_BLOCK`'s own start/end could instead be found by
+   grepping for "REFRAME MAPPING —" and the start of "FORMAT BLUEPRINTS"
+   rather than hardcoded line numbers).
+
+**Same lesson as the cross-repository ports, independently reached:**
+positional references (line numbers, byte offsets) into a file that keeps
+changing break silently; content anchors (a heading, a unique phrase, a
+structural marker) do not, because they keep pointing at the same thing
+regardless of what moved around it. This entry and that lesson arrived at
+the same conclusion from different work.
+
+**Status:** OPEN. Documentation-only finding — no corrective action taken
+or proposed here beyond naming the two real fix shapes above. The six
+stale citations listed remain stale as of this entry; do not treat their
+listing here as a fix.
+
+**RESOLVED, 2026-09-12 (later same night).** Option 2 above (content
+anchors) was implemented. Before editing, a fresh regex sweep of
+`reframe_destination_guard.py` found the true count was **17** in-file
+citations, not the six listed above — this entry's own count was itself
+incomplete (it only listed the citations noticed adjacent to that
+session's edits, per the "nobody was looking at them" mechanism the entry
+itself describes). All 17 were individually verified against
+`cron_daily_runtime.txt`'s actual current content, confirmed resolvable
+(content moved, never deleted), and replaced with a module-level
+`REFRAME_CITATION_ANCHORS` dict of verbatim quoted fragments, each looked
+up by id from the call site instead of a line number. `REFRAME_MAPPING_
+BLOCK` (the tuple constant referenced above) was removed outright —
+grepping the repo confirmed nothing read it programmatically; it was
+documentation wearing a tuple's shape. A new test,
+`TestReframeCitationAnchorsResolve` in `test_reframe_destination_guard.py`,
+asserts every anchor string is still present in the runtime file, modeled
+on the existing `TestMapStaysInSyncWithProse`. Three additional citations
+outside this file were fixed the same way: `laws/law_159_season_roundup_
+multi_show.md`, `laws/law_149_vo_writing_craft.md`, and
+`tools/conflict_check.py`'s own "~line 2009" hedge (itself found to have
+drifted to the real current line 2029 during this fix). One of those three
+(`laws/law_158_worth_watching_single_show_persuasion.md`) got its anchor
+fixed but its underlying prose claim was left flagged, not corrected — see
+that law file's own inline F89 note; that is a separate, still-open
+substantive issue, not a citation-position problem, and is explicitly out
+of scope for this entry. Full validators/ and tools/ suites pass
+unchanged (510 and 319 tests respectively) after the anchor migration.
+
+**Two weak anchors tightened, and a uniqueness assertion added (2026-09-12,
+same night, later pass).** Post-migration review flagged two of the twelve
+anchors — `watch_rank_to_season_roundup_condition` and the entry then named
+`watch_rank_to_season_roundup_per_candidate_line` — as unique only
+incidentally: short fragments ("a WATCH_RANK candidate may only reframe
+into", "not a guarantee the mapping table") that nothing else happened to
+phrase that way today, rather than clauses distinctive because of what they
+assert. Both were replaced with the clause that actually carries the cited
+meaning — the condition ("EVERY show that would appear in the roundup's")
+and its consequence, the latter renamed to
+`watch_rank_to_season_roundup_no_source_consequence` and anchored on
+"lacks a qualifying independent source, this pairing is NOT available".
+Separately, `TestReframeCitationAnchorsResolve` gained
+`test_every_anchor_is_unique_in_the_runtime_file`, asserting
+`count == 1` (not `count >= 1`) for every anchor, with a failure message
+naming which anchor_id matched how many times. Presence alone doesn't catch
+an anchor that starts matching a second, unrelated passage after some later
+unrelated edit — at that point the citation is no longer reliably pointing
+at one thing, and a plain `in` check would keep passing. Full suite:
+830 passed, 77 subtests, zero regressions.
+
+**Addendum — the evidence/pointer distinction held up better than expected
+(2026-09-12, KNOWN_ISSUES.md triage pass).** All 26 remaining citations in
+this file were individually triaged against the EVIDENCE-vs-POINTER test
+described above, and zero were genuinely ambiguous — every one resolved
+cleanly to "this describes a historical state, dated and left alone" or
+"this points at current code/prose and gets a content anchor." A citation's
+purpose was, in practice, usually legible from its own sentence: a citation
+inside a "here is what the bug looked like when found" paragraph reads as
+evidence, one inside a "here is where the current check lives" paragraph
+reads as a pointer, and the two didn't blur together the way the abstract
+description of the split made it sound like they might. Worth recording as
+a calibration note for future triage passes: the hard cases the framing
+anticipated didn't materialize in this file's 26.
+
+## F90: Five VO errors in one batch, all caught by human review, none by any mechanism — four fixes addressing the error class, one deliberately not built
+
+**Found:** 2026-09-12, batch `d0385ca7` (Saint Seiya lawsuit / Bleach TYBW
+delay). Five VO errors surfaced across drafts of this batch, all caught by
+human review before send, none caught by validate_dual_package.py, the
+semantic_qa self-audit, or Law #165 review. The three actually reproduced
+and fixed here:
+  1. VO said "his former manager" (reads singular) while the same package's
+     `captions` field said "11 DEFENDANTS" — the manifest contradicted
+     itself. (VO text: "...suing his former manager and ten others...";
+     `tiktok_post_text` correctly says "10 others" in digit form, so the
+     count IS recoverable from the manifest, but `vo` never states a summed
+     total and `captions`' "11" has no matching token anywhere in `vo`.)
+  2. The VO's closing "Leave your take." was cut while trimming the Bleach
+     VO to the 100-108 word band; nothing noticed until human review.
+  3. The Bleach VO's central claim — "episodes 49 and 50, the last two
+     episodes, were supposed to air September 19th and 26th" — was true when
+     written and Law #165-verified, then became false when ANN reported a
+     delay to October 19/26 mid-build, before send.
+  4/5. Two earlier-draft instances of the same two shapes as #1 and #2
+     (contradiction-on-trim and CTA-cut-on-trim), not separately reproduced
+     here beyond what #1/#2 already document.
+
+**Disposition, one fix per error class:**
+
+**Fix 1 — CTA presence/adjacency check (error #2, #5): THIS IS THE
+IMPORTANT FINDING OF THIS ENTRY, not a footnote to it.** The check is
+ALREADY PRESENT AND CORRECT — not absent, not silently failing to fire.
+Checked directly against `validators/validate_dual_package.py` before
+writing anything: the check exists (`"{p} question immediately followed
+by '{CTA_EXACT}' in VO"` and `"{p} exact CTA phrase present in VO"`, both
+`Result.add()`-registered and therefore fail-closed via
+`Result.ok`/`fully_passed`). Confirmed by direct trace that BOTH checks
+would correctly FAIL against a VO with the CTA text physically removed —
+this is not a check that silently passes broken input, and it is not a
+check with a logic bug. It is a fully working, fail-closed check that
+still produced ZERO protection, because nothing in the pipeline forces
+`validate_package()` to be re-run against the VO text AFTER a hand-trim
+made during STEP 6 review. `vo_word_count` is compared against a live
+recount of `vo` (`abs(counted - wc) <= 1`), which confirms the recorded
+count matches the text — it does NOT confirm the text was ever re-run
+through the CTA check after being trimmed.
+
+**A working check that produced zero protection is WORSE than a missing
+check, not merely equally bad.** A missing check is visibly missing —
+anyone reading the validator can see the gap. This check passes its own
+tests, exists in the code, is fail-closed by construction, and LOOKS like
+coverage — while protecting nothing, because it was never run against the
+text that actually shipped. That is the same shape as F83 (a rule that
+exists only in prose, never wired into code, and looks governed while
+being unenforced) and F88 (a gate that is correctly wired and
+rule-correct, but positioned only after the one step — the send — that
+cannot be undone). In all three cases the mechanism is real and the
+positioning is what defeats it. The lesson generalizes beyond this one
+check: **a check only protects the text it was last run against.** Any
+edit after the last run — not just a CTA trim, any edit at all —
+re-creates this exact failure mode for whatever that check covers, unless
+re-running is made mandatory on edit. See Fix 4 below, which is the
+mandatory-re-run rule that actually closes this gap; this entry documents
+the check itself (no logic changed) at
+`validators/validate_dual_package.py`'s CTA-check comment.
+
+**Fix 2 — VO/manifest self-contradiction check (error #1, #4): ASSESSED,
+NOT BUILT. Reporting infeasibility as narrow-honest rather than shipping a
+noisy approximation, per explicit instruction.** Tested a numeric-token
+cross-check (extract digit AND spelled-cardinal numbers from `vo`, and
+separately from `captions`/`youtube_title`/`tiktok_title`; flag any
+captions/title number with no matching token anywhere in `vo`) against
+every historical manifest with a real VO in `cron_tracking/`:
+  - Against tonight's real Saint Seiya package, it correctly and uniquely
+    flags `11` (present in `captions`, absent from `vo` in any form) — a
+    true positive matching the real error.
+  - Against two packages in `run_manifest_20260802_v2_replacement.json`
+    (One Piece, My Hero Academia), it fires two false positives: `captions`
+    on those packages is not pure caption text, it is caption text
+    concatenated with production/styling instructions ("...max 2 lines on
+    screen at once"), and the check has no way to distinguish a styling
+    parameter's "2" from a factual claim's "2" — both live in the same
+    untyped `captions` string field, and the schema
+    (`validators/validate_dual_package.py` line ~3470: `"captions":
+    "string"`) enforces no shape boundary between the two. This is not a
+    stale-data artifact: nothing prevents a future package's `captions`
+    field from mixing content and styling prose the same way again.
+  - Root cause of the real error is also narrower than "numbers disagree":
+    the VO never contains a literal `11` or any digit that conflicts with
+    captions' `11` — it just never sums its own components ("his former
+    manager" + "ten others") into an explicit total, so a same-value
+    coincidence check would not have caught it even in principle; only the
+    absence of ANY matching token catches it, and that same absence-based
+    signal is what produces the two false positives above.
+  - Distinct from the existing `numeric_cross_check` self-attestation
+    (`SEMANTIC_QA_CHECK_KEYS`, added 2026-07-25): that attestation verifies
+    VO counts against the CITED SOURCE's enumeration, not against other
+    manifest fields. It did not and could not have caught this error, and
+    remains correctly scoped to what it already covers.
+  **Conclusion: the only honest mechanized version found is "flag a
+  captions/title number with no matching token anywhere in VO, for human
+  review, never fail-closed" — and even that narrow version is unusable as
+  built.** Two false positives out of three real packages tested is a
+  two-thirds-wrong flag rate. A check that fires incorrectly two-thirds of
+  the time does not add caution, it trains reviewers to ignore it — which
+  is a worse outcome than not having the check at all, because a real
+  positive later gets the same dismissive glance as the false ones before
+  it. Shipping it as a fail-closed check would additionally be the
+  angle-similarity mistake again (a plausible-sounding proxy standing in
+  for a check the validator cannot actually make honestly). NOT BUILT.
+
+  **The prerequisite for building this is recorded, not lost — see F92.**
+  The root cause of both false positives is `captions` mixing actual
+  on-screen caption content with production/styling notes in one untyped
+  string, with no schema boundary between the two (F92). If `captions` is
+  ever split so caption content and styling notes live in separate fields,
+  this check becomes re-buildable against the content-only field without
+  the false-positive source found here — that is a genuine future unlock,
+  not a dead end, and F92 exists so it can be found and acted on later
+  instead of re-derived from scratch. Independent of that fix, the "VO
+  never sums its own claimed components" gap (the deeper reason the real
+  error wasn't a same-value collision) would still require a human or
+  model attestation, not a mechanical check, even after F92 is resolved.
+
+**Fix 3 — mandatory pre-send re-verification of time-sensitive claims
+(error #3): BUILT.** New Law #174, `cron_daily_runtime.txt` STEP 6.5 point
+3.5. Distinct from Law #165's fetch-and-confirm review (which confirms a
+claim was true when its source was fetched, not that it is still true at
+send time) and from point 3's mechanical `presend_approval_check.py` gate
+(which checks approval.json's shape, not claim freshness). Requires
+re-fetching the source for every claim that could plausibly have expired
+between drafting and send — dates, schedules, "last"/"final"/"upcoming"
+framing, counts a future announcement could change — immediately before
+STEP 7, and records the pass in `approval.json` under
+`presend_time_sensitive_recheck`. Self-attested (like the `semantic_qa`
+keys); no validator mechanism can independently know whether a real-world
+fact changed since drafting.
+
+**Fix 4 — mandatory re-validation after any word-count trim (error #2,
+#4): BUILT, procedural.** `cron_daily_runtime.txt` STEP 6, new block
+immediately after the existing Law #165 fetch-and-confirm review.
+Requires a full re-run of `validators/validate_dual_package.py` after ANY
+edit to `vo` made during STEP 6 review — mirroring the REDO ROUND TRIP
+rule STEP 4.7 already applies to a Claude-corrected VO coming back from
+`AWAITING_VO` — plus a hand-confirmed checklist (CTA still present and at
+the end; every claim still matches its source; locked/derived fields
+still match the post-edit VO verbatim; `direction_note_track` still valid
+per Law #171) since a mechanical re-run alone was never designed to catch
+a claim that went stale in the trim, only the mechanical shape of the
+result. This is the fix behind two of tonight's five errors (#2 and #4
+share the identical "trimmed, didn't re-check" shape) — process, not
+code, made explicit rather than assumed obvious.
+
+**What this entry does NOT close — read this before treating the error
+class as solved.** Fix 1 is mechanical and was already working; Fix 3 and
+Fix 4 are procedural additions that depend on being followed, not
+validator-enforced beyond what they explicitly require re-running; Fix 2
+is explicitly NOT built, and the numeric-disagreement gap it investigated
+remains open. Semantic VO accuracy in general — whether a sentence
+faithfully represents what a source says, independent of any numeric
+token — remains human/model-dependent and is not mechanizable with tools
+available to this pipeline; see F91 for that finding recorded as its own
+entry. (An earlier draft of this entry cited "F83's finding" for this
+limitation; F83 is the unrelated WRONG_TAKE blackout prose-vs-code gap.
+That citation was wrong and was corrected before this entry was
+committed — F91 is the real entry for this limitation, not F83.)
+
+**Status:** Fix 1 — documentation-only, no code change (check was already
+correct). Fix 2 — NOT BUILT, reported infeasible-as-honest per above (see
+F92 for the schema change that would unlock it). Fix 3 — BUILT (Law #174,
+`cron_daily_runtime.txt`). Fix 4 — BUILT, procedural
+(`cron_daily_runtime.txt`). None of these four close the general semantic-
+accuracy gap tracked separately in F91; do not read this entry as having
+done so.
+
+## F91: Semantic VO accuracy — whether a sentence faithfully represents what its source actually says — is human/model-dependent and not mechanizable with tools available to this pipeline
+
+**Why this is its own entry.** F90 originally cited "F83's finding" for
+this limitation. F83 is the WRONG_TAKE 14-day same-myth blackout gap —
+unrelated to VO accuracy. The citation was wrong, caught before it was
+written into F90 permanently, and is recorded here as its own real entry
+so the limitation is stated rather than pointed at something that doesn't
+say it.
+
+**The finding:** no check in `validators/validate_dual_package.py`, and no
+feasible check identified across F90's Fix 2 investigation, `numeric_cross_check`,
+or any other `SEMANTIC_QA_CHECK_KEYS` self-attestation, can verify that a
+VO sentence *faithfully represents* what its cited source says, independent
+of surface-level signals (word count, CTA presence, a number matching
+somewhere else in the manifest). Every mechanized check in this pipeline
+operates on SHAPE — does a field exist, does a count match, does a phrase
+appear verbatim — not MEANING. Confirming meaning requires reading the
+source and the VO side by side and judging whether one accurately
+describes the other; that judgment is exactly what Law #165's
+fetch-and-confirm review asks a human or a model-acting-as-reviewer to do,
+and it is exactly what the weekly spot-check (M6) exists to audit
+retroactively. Neither is a mechanical guarantee — both depend on the
+reviewer actually doing the comparison carefully, every time, which is a
+process property, not a code property.
+
+**Concretely, this means:** a VO can pass every existing mechanical check
+— word count in-band, CTA present and adjacent, every claim's URL fetched
+and confirmed to contain supporting text, every number arithmetically
+consistent with its source — and STILL misrepresent the source, if the
+misrepresentation is in phrasing, emphasis, or omission rather than in a
+checkable fact. Tonight's `d0385ca7` batch is a real example of the
+narrower, checkable end of this spectrum (a count that went ambiguous on
+trim); the general case — a sentence that is technically true but leaves
+a false impression, or drops context that changes the claim's meaning —
+has no mechanical detector and is not close to having one.
+
+**Status:** OPEN, permanently, in the sense that this is a description of
+a structural limit rather than a bug to fix. Do not read future validator
+additions (F90's Fix 3/Fix 4, or any future check) as closing this entry
+unless they specifically demonstrate mechanized meaning-verification,
+which none currently do or are likely to. This entry exists so nobody
+cites a future narrow fix as having solved semantic accuracy in general —
+cite THIS entry for that limitation, not a narrow mechanical check that
+happens to catch one shape of it.
+
+## F92: `captions` field has no schema boundary between actual caption content and production/styling notes — blocks F90's Fix 2 and any other content-vs-metadata check
+
+**Found:** 2026-09-12, while testing F90's Fix 2 (VO/manifest numeric
+cross-check) against historical manifests. `run_manifest_20260802_v2_replacement.json`'s
+One Piece and My Hero Academia packages both have a `captions` field
+containing actual on-screen caption text concatenated with styling and
+production instructions in the same string — e.g. "...max 2 lines on
+screen at once." mixed into the same field as the caption words
+themselves. The schema (`validators/validate_dual_package.py`, `"captions":
+"string"`) enforces no separation; any free text is valid.
+
+**Why this matters beyond F90:** this is not a one-off data-quality issue
+in an old manifest — nothing in the current schema prevents a future
+package from mixing content and styling prose in `captions` again. Any
+future check that needs to reason about caption CONTENT specifically
+(numeric cross-checks, banned-word scans, length limits meant for
+on-screen text, translation/localization tooling) inherits the same
+blind spot F90's Fix 2 hit: no way to tell a factual token from a
+production-note token in the same string.
+
+**The unlock:** if `captions` is ever split into two fields — e.g.
+`captions_text` (actual on-screen words only) and `captions_production_notes`
+(styling/timing instructions, free text) — or otherwise given a real
+schema boundary between the two, F90's Fix 2 numeric cross-check becomes
+re-buildable against `captions_text` alone without the false-positive
+source identified there. This is a genuine future unlock, not a dead end;
+recorded here so it can be found and acted on rather than re-discovered
+from scratch.
+
+**Status:** OPEN. No schema change made as part of this entry — this is a
+finding and a prerequisite, not a fix. Fixing it requires deciding the
+new field shape and updating every drafting/validation site that reads or
+writes `captions`, which is a larger change than this entry's scope.
+
+---
+
+## F93: Nothing closes the loop between a fix shipping and the entry describing the problem getting updated — three instances found only because citation verification happened to walk past them
+
+**Found:** 2026-09-12, as a side effect of the F89 citation-accuracy triage
+pass (both the code/law-file pass and the KNOWN_ISSUES.md pass). Not found
+by anyone looking for this specific failure mode — found because fixing
+line-number citations required re-reading the current code next to each
+claim, and three of those re-reads turned up a claim that was no longer true.
+
+**The pattern, three instances:**
+
+1. **`laws/law_158_worth_watching_single_show_persuasion.md`** claimed the
+   validator does not check the blackout/recent-send conflict independently.
+   This was made false by the F43 fix (commit `d677c2cc770acf242842e54f3869ef65b889e532`,
+   2026-08-19), which added exactly that independent mechanical check in
+   `tools/conflict_check.py`. The law file's claim was never updated to
+   reflect it — flagged in place with an F89 NOTE, not corrected, per this
+   pass's scope.
+2. **F42's addendum** claimed a `video_style`/`face`/`split_screen` docstring
+   contradiction was "Explicitly NOT fixed." The docstring has since been
+   corrected — confirmed today by reading the live schema docstring, which
+   now matches the live checks and carries its own inline comment noting it
+   was "Corrected to match the real, current required default." No entry
+   anywhere in this file records when or why that fix happened.
+3. **F43 itself** sat in this file marked as an open problem for weeks after
+   its own fix shipped 2026-08-19 — the RESOLUTION language exists in the
+   entry, but the entry's surrounding claims (e.g. "why nothing would have
+   caught it") kept describing pre-fix behavior in present tense until this
+   pass added explicit "as of 2026-08-15, before the fix" framing.
+
+**Same shape every time:** a fix lands in the code, the KNOWN_ISSUES (or law
+file) entry describing the original problem is never revisited, and the
+written record diverges from what the code actually does. This is the
+INVERSE of F82 — there, an entry claimed something was broken that had never
+actually been broken; here, entries claim things are broken (or missing)
+that have since been fixed. Both are the record drifting from the code, in
+opposite directions.
+
+**Why this matters:** all three instances were found purely as a byproduct
+of citation-line-number verification, not because anyone was checking
+whether closed problems still read as open. Without that unrelated pass
+walking directly past each one, none would have surfaced. The three
+still-open gaps also confirmed in this same pass — F32 (Law #73 UPDATE 5 vs
+UPDATE 6 conflict), F58 (`conflict_check.py` post_date-null bypass), and F76
+(Law #58 encyclopedic-pairing verification gap) — were themselves only
+re-confirmed as a side effect of the same citation walk, not from anyone
+deliberately auditing them. Stale-closed and still-open findings alike are
+currently only found by accident.
+
+**Status:** OPEN. No fix proposed here. Whether the right mechanism is a
+convention (touch the KNOWN_ISSUES entry in the same commit as the fix), a
+commit-time checklist item, or a periodic audit pass is a real design
+question, and this entry is not the pass to decide it — recorded here so
+the question can be picked up deliberately rather than the next instance
+again being found by accident.
+
+---

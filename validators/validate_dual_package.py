@@ -2074,6 +2074,16 @@ def validate_package(pkg: dict[str, Any], idx: int, r: Result, tree: str | None 
     # --- CTA exact placement: a specific question immediately followed by "Leave your take." ---
     # F15 fix (2026-07-25): a non-string cta_line previously crashed _norm()'s
     # str-only .strip()/.lower() with an unhandled AttributeError.
+    # F90 finding (2026-09-12): this check is present and fail-closed -- confirmed
+    # by direct read, not assumed. A tonight incident where a word-count trim cut
+    # "Leave your take." off the end of the VO and nothing caught it was NOT this
+    # check silently passing a broken VO; both `combined_ok` below and the plain
+    # `CTA_EXACT in vo` check would correctly FAIL on VO text with the CTA removed.
+    # The real gap was procedural: the trimmed VO was never re-run through
+    # validate_package() after the trim, so this check never saw the broken text
+    # at all. See docs/KNOWN_ISSUES.md F90 and cron_daily_runtime.txt's STEP 6
+    # "re-run after any trim" rule (Law #174) -- the fix for this class of miss is
+    # mandatory re-validation on edit, not a change to this check's logic.
     cta = _str(pkg, "cta_line")
     r.add(f"{p} CTA line is exactly '{CTA_EXACT}'", _norm(cta) == _norm(CTA_EXACT),
           f"cta_line={cta!r}")
@@ -3279,10 +3289,34 @@ def validate_manifest(m: dict[str, Any], tree: str | None = None) -> Result:
     # site, via the same setdefault mechanism -- a direct mirror of the F61
     # pattern, not new design. Does not mutate the original package dicts in
     # `pkgs`.
+    # F58 fix (2026-09-12): same bug class as F61/F-next -- post_date is
+    # schema-validated at the manifest level above (post_date_raw / post_date
+    # near the top of this function) and threaded into validate_package() as
+    # an already-parsed parameter, but individual package dicts have never
+    # carried their own post_date key (confirmed: 59 of 61 real package dicts
+    # across every tracked manifest have no post_date field at all). Because
+    # check_recent_send_conflict() reads pkg.get("post_date") -- not the
+    # separate post_date parameter -- Precedence 2's date-window blackout
+    # silently found no date on every real candidate and skipped instead of
+    # blocking (real instance: F58's Black Torch case, d08fde73 vs cb10a88e --
+    # F58's own writeup originally said 11 days apart; the real gap is 13
+    # days, still outside WORTH_WATCHING's 7-day window either way, but the
+    # arithmetic error is corrected in docs/KNOWN_ISSUES.md alongside this
+    # fix). Fix:
+    # inject the manifest's real post_date the same way batch_id and
+    # corrects_batch_id already are, via the same setdefault mechanism -- a
+    # direct mirror of the F61 pattern, not new design. setdefault (not a
+    # forced overwrite) preserves the rare replacement-manifest shape where a
+    # package dict already carries its own post_date (e.g. the 2026-09-02
+    # replacement batch's two packages, whose per-package dates legitimately
+    # differ from the shared manifest post_date). Does not mutate the
+    # original package dicts in `pkgs`.
     for i, pkg in enumerate(pkgs):
         pkg_for_validation = dict(pkg)
         pkg_for_validation.setdefault("batch_id", batch_id)
         pkg_for_validation.setdefault("corrects_batch_id", m.get("corrects_batch_id"))
+        if post_date is not None:
+            pkg_for_validation.setdefault("post_date", post_date.isoformat())
         validate_package(pkg_for_validation, i, r, tree=tree, post_date=post_date)
 
     return r

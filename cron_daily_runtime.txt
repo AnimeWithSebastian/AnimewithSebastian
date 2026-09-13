@@ -345,6 +345,51 @@ Pick BOTH ideas together so you can guarantee cross-slot diversity in one pass:
     run_manifest.json — see docs/FORMAT_DIVERSITY_WEIGHTING_TRACKING.md for known
     real-world (non-)confirmation status before citing any send as evidence this
     mechanism fired.
+  - SAME-FORMAT COLLISION (FIX 2, added 2026-09-12, F86 closure): the validator's distinct-format check
+    (validate_dual_package.py, formats[0] != formats[1]) is a hard,
+    unconditional rule with no override -- two packages cannot both ship
+    in one batch carrying the same format_type. That check has always
+    existed; what was missing was guidance for what to DO when two
+    independently-selected, otherwise-good candidates land on the same
+    format honestly (both are genuinely that format, not miscategorized).
+    This is the real shape tonight's batch (d0385ca7) hit: a Saint Seiya
+    lawsuit story and a Bleach delay-announcement story were both,
+    honestly, COMMENTARY -- neither WRONG_TAKE (no community myth to
+    debunk in either), FACT_DROP (both are breaking industry/production
+    news, not lore, and see the FACT_DROP reframe entry above for that
+    format's own real scope), nor THE_MOMENT (neither is a scene from a
+    currently-airing episode) fit either story honestly. Follow, in order:
+      1. ATTEMPT A REFRAME FIRST, but only if one of the two candidates has
+         a genuinely better alternate fit under the REFRAME MAPPING above --
+         not a forced fit invented to resolve the collision. Check the
+         REFRAME_MAP entry for that candidate's format_type: if a listed
+         destination's own eligibility rule is honestly satisfied by this
+         specific candidate (e.g. a genuine myth to debunk, a real
+         underused/blacked-out natural fit elsewhere), reframe into it and
+         proceed with two distinct formats. If checking the mapping shows no
+         honest destination exists for either candidate -- as it did tonight,
+         where neither collision candidate had a real reframe path out of
+         COMMENTARY -- do not invent one.
+      2. IF NO HONEST REFRAME EXISTS: hold the weaker of the two slots and
+         ship the stronger one alone, via the validator's existing
+         single_package_reason field (validate_dual_package.py requires
+         either exactly two packages, or exactly one with a non-empty
+         single_package_reason -- this field already exists for exactly
+         this situation; it was simply never documented here as the answer
+         to a format collision). "Weaker" is a genuine editorial judgment at
+         draft time (sourcing depth, timeliness, monetization axis scores),
+         not a coin flip -- state the reason in single_package_reason itself.
+         This is deliberately a judgment call rather than a mechanical
+         precedence -- no data exists on which axis should dominate, and
+         the safeguard is that the reasoning gets written into
+         single_package_reason where it can be reviewed, not that the
+         choice is automated.
+      3. NEVER FORCE A FORMAT ONTO CONTENT THAT DOESN'T FIT IT TO RESOLVE THE
+         COLLISION. Recategorizing a candidate into some OTHER controlled
+         format_type it doesn't honestly satisfy, just to make the two
+         packages distinct, reintroduces the exact honesty problem Law #85
+         and the format eligibility checks exist to prevent -- a fabricated
+         category is worse than a held slot.
   - FORMAT VOCABULARY — LAW #96 + WATCH_RANK (Law #98) PORT (restored into this step;
     same restoration pattern as Law #58/#84/#73 tonight — these were previously ACTIVE
     on paper but absent from this runtime): format_type MUST be one of the controlled
@@ -735,6 +780,29 @@ manifest (the validator fails closed if either is true or missing).
         neutral character into a contrarian-defense frame just to hit this
         format; if the character doesn't fit, ORIGIN_STORY is the only valid
         reframe here.
+      - FACT_DROP on cooldown -> reframe as COMMENTARY (the breaking-news
+        half) or WRONG_TAKE (the lore-explainer half), CONDITIONALLY.
+        FACT_DROP's own blueprint states its 42 real sends "span lore
+        explainers and breaking-news facts alike" -- one format_type
+        covering two real content shapes -- so the reframe splits along that
+        same line rather than picking one destination for both. COMMENTARY
+        takes the breaking-news half unconditionally: COMMENTARY's own
+        objective already centers on industry/production/business events
+        (a Crunchyroll exclusivity change, an Attack on Titan Day
+        announcement, a Jump circulation drop) -- a breaking-news FACT_DROP
+        candidate is the same shape of content COMMENTARY already covers,
+        not a stretch. WRONG_TAKE takes the lore-explainer half, but ONLY
+        when the fact corrects a real, existing community myth or widespread
+        incorrect take -- WRONG_TAKE's own objective requires a genuine myth
+        to debunk with a sourced correction, and not every FACT_DROP lore
+        reveal has one (some are simply reveals nobody had gotten wrong).
+        Do not fabricate a myth to debunk just to force this pairing; where
+        no real myth exists, this destination is not available for that
+        candidate (falls back to existing behavior: a different show, or
+        holding the slot). WRONG_TAKE's existing 14-day same-myth blackout
+        applies to the reframed candidate exactly as it already applies to
+        every other WRONG_TAKE candidate -- this pairing does not loosen or
+        add to that rule.
       - DROPPED, CHECKED AND REJECTED: WORTH_WATCHING on cooldown ->
         SLEPT_ON/HIDDEN_GEM. WORTH_WATCHING's own selection guidance states
         explicitly that it applies with "no restriction on how well-known the
@@ -2362,23 +2430,119 @@ background run. When Sebastian (or Claude with Sebastian present) approves:
      finding, an approval.json built with a "verdict" string field instead of
      the "fetched_content_supports_claim" boolean the logger requires): before
      writing or finalizing approval.json, confirm the EXACT field name and type
-     the current tools/append_send_batch.py Law #165 gate reads — as of this
+     the current tools/approval_gate.py Law #165 gate reads — as of this
      writing, "fetched_content_supports_claim": true/false per fetch_review
-     entry — by checking the logger source directly, not by assuming this
+     entry — by checking the gate source directly, not by assuming this
      writing is still current. Do this once, early, per batch, before
      drafting fetch_review entries, not after a send/log failure surfaces it.
   1. Write cron_tracking/daily_combined/pending/<batch_id>/approval.json:
        {"approved_by": "...", "approved_at": "<ISO ts>",
         "fetch_review": [{"claim": "...", "url": "...",
-          "fetched_content_supports_claim": true/false, "note": "..."}, ...
-          one entry per core claim across both packages...],
+          "fetched_content_supports_claim": true/false,
+          "core": true/false, "note": "..."}, ...
+          one entry per claim reviewed across both packages...],
         "changes_made_before_approval": "none" | "<description>"}
-  2. If any fetch_review entry has fetched_content_supports_claim=false, the
-     package CANNOT be approved as-is — go fix the citation/claim, re-run
-     STEP 5's validator, and restart this review from (a). Approval can never
-     be recorded alongside a known-unsupported core claim.
-  3. Only after approval.json is written with all entries true AND matching
-     the schema confirmed in step 0, proceed to STEP 7's send.
+     AUTHORING CONVENTION FOR NEGATIVE CONTROLS (F87 fix, 2026-09-12): a
+     fetch_review entry whose claim is a deliberate negative control — the
+     claim asks whether a source supports the WRONG framing, and
+     fetched_content_supports_claim=false is the CORRECT, expected result,
+     not a failed verification — MUST be authored with an explicit
+     "core": false on that entry PLUS a real, non-empty "note" explaining
+     what the control checked and why false is the right answer. Do not
+     omit "core" and rely on a default: an entry with no "core" key is
+     treated as core=true (fail-closed default), which is exactly the gap
+     that let an undisclosed negative control block a send until it was
+     manually re-marked after the fact. Every OTHER entry (a real citation
+     for a claim actually being asserted in the package) either omits
+     "core" (defaults to true, today's normal case) or sets "core": true
+     explicitly — never mark a real, asserted claim as non-core to dodge
+     the gate.
+  2. Every CORE fetch_review entry (core=true, or core omitted) must have
+     fetched_content_supports_claim=true. If any core entry has
+     fetched_content_supports_claim=false, the package CANNOT be approved
+     as-is — go fix the citation/claim, re-run STEP 5's validator, and
+     restart this review from (a). Approval can never be recorded alongside
+     a known-unsupported core claim. A NON-core entry (core=false) may have
+     fetched_content_supports_claim=false ONLY when it carries a real,
+     non-empty "note" per the authoring convention above — an undisclosed
+     non-core failure (missing or blank note) blocks exactly like a core
+     failure does; "core": false is never a silent free pass.
+  3. PRE-SEND CHECK (Law #173 extended, F87 fix, 2026-09-12 — moves the
+     same core-aware gate that used to run only at STEP 8's log-append to
+     BEFORE STEP 7's send, since a gate that fires only after the email is
+     already out cannot prevent the thing it's checking for): run
+       python3 tools/presend_approval_check.py \
+         cron_tracking/daily_combined/pending/<batch_id>/approval.json
+     Exit 0 ("[PASS]") means the gate clears — proceed to STEP 7. Exit 1
+     ("[BLOCKED]") means STOP: do not send, fix approval.json per point 2
+     above (or add the missing "core"/"note" fields per the authoring
+     convention if the block is really a mis-marked negative control), and
+     re-run this check. Exit 2 means the file itself could not be loaded —
+     fix the path/JSON before re-running. This check calls the exact same
+     tools/approval_gate.check_fetch_review_gate() function STEP 8 also
+     calls; passing here does not skip STEP 8 — STEP 8 remains the
+     authoritative gate for what gets logged as a successful send, and this
+     step exists only to catch the same problem earlier, while it can still
+     stop a send instead of only marking it unlogged afterward.
+  3.5 TIME-SENSITIVE CLAIM RE-VERIFICATION (Law #174, added 2026-09-12 — F90
+     fix, distinct from Law #165's fetch-and-confirm review above and from
+     point 3's mechanical fetch_review-shape gate). Law #165 confirms a claim
+     was TRUE when its source was fetched. It does not and cannot confirm the
+     claim is STILL true at send time — the two can be hours apart, and the
+     world does not hold still in between. Tonight's motivating case: a VO
+     claimed specific dates were "the last two" episodes of a series; that
+     claim was true when written and passed Law #165 review, then became
+     false when a delay was announced mid-build, before send. No static
+     check — not word count, not source-matrix shape, not Law #165 as
+     already performed — catches a fact expiring after it was verified.
+     Only re-checking immediately before send does.
+
+     SCOPE (deliberately narrow — this is re-checking claims that can
+     EXPIRE, not re-running the full Law #165 review a second time): a claim
+     qualifies for this pass if the honest test "could this have become
+     false since it was written?" is yes. In practice this means claims
+     naming:
+       - dates, air dates, or schedules ("airs September 19th")
+       - ordinal/superlative episode or chapter claims ("the last two
+         episodes," "the final chapter," "the newest arc")
+       - anything framed as current or pending ("upcoming," "this week,"
+         "still ongoing," "has not yet been confirmed")
+       - counts that a future announcement could change (episode counts,
+         chapter counts, "only three left")
+     A claim does NOT qualify solely for being a number or a date if it
+     describes a fixed historical event that cannot un-happen ("the manga
+     started in 1986," "the lawsuit was filed September 2nd") — re-fetching
+     those adds cost with no real exposure. When genuinely unsure whether a
+     claim is expiry-prone, treat it as qualifying rather than skip it; the
+     cost of an extra fetch is far smaller than the cost of a false claim
+     reaching send.
+
+     PROCEDURE: for every claim identified as qualifying, re-fetch its
+     source (or search fresh if the story is developing) and confirm the
+     claim still holds AS OF SEND TIME, not as of drafting time. If a
+     qualifying claim has changed or is now stale, STOP: do not send either
+     package as-is. Either rewrite the claim to the current facts and
+     restart STEP 5/6 review for that package, or hold the slot per the
+     existing quality-over-quota (M5) standard — never send a claim known
+     to be stale at send time on the theory that it was accurate when
+     written.
+
+     Record the re-verification pass in approval.json alongside the
+     fetch_review array, e.g.:
+       "presend_time_sensitive_recheck": [
+         {"claim": "...", "qualifies_because": "...",
+          "rechecked_url": "...", "still_true_at_send_time": true/false,
+          "note": "..."}, ...
+         one entry per qualifying claim across both packages, or an empty
+         list with a note if a package genuinely has none
+       ]
+     This is self-attested like the semantic_qa keys (M6) — no validator
+     mechanism can know whether a fact changed in the world since drafting;
+     the discipline is in actually re-fetching, not in a boolean existing.
+  4. Only after approval.json is written matching the schema confirmed in
+     step 0, satisfies point 2, step 3's pre-send check exits 0, AND point
+     3.5's time-sensitive re-verification pass is recorded with every
+     qualifying claim confirmed still true, proceed to STEP 7's send.
 
 ================================================================================
 STEP 7 — SEND TWO SEPARATE PLAIN-TEXT EMAILS (only after STEP 6.5 approval.json exists)

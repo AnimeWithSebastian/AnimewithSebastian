@@ -143,10 +143,13 @@
    **Point 9 is real — it just lives in the OTHER document.** `cron_daily_runtime.txt`
    STEP 4.5 **point 9** is the AI-SLOP PATTERN CHECK (seven named hollow-phrasing
    patterns). It is live and enforced: `ai_slop_pattern_check` is one of the ten
-   `SEMANTIC_QA_CHECK_KEYS`, commented "runtime STEP 4.5 point 9" at
-   `validators/validate_dual_package.py:304`. This law's own line 48 already attributes
-   point 9 to the runtime explicitly — the two documents WERE correctly distinguished at
-   the time of writing.
+   `SEMANTIC_QA_CHECK_KEYS` in `validators/validate_dual_package.py`, commented
+   `"runtime STEP 4.5 point 9, added 2026-07-26 (this change) --"` right there in the
+   tuple (F89, 2026-09-12: line-number citation replaced with this verbatim comment
+   text after the original `:304` reference drifted to its current line 364 — grep
+   the quoted comment text directly rather than trusting any line number here again).
+   This law's own line 48 already attributes point 9 to the runtime explicitly — the
+   two documents WERE correctly distinguished at the time of writing.
 
    **REVISED READING of the dangling Law #158 citation (supersedes and retires the
    earlier point-6 guess).** Law #158 cites "Law #149 point 9's enumerated-pattern

@@ -797,6 +797,70 @@ class TestMechanicalConflictCheckWiring(unittest.TestCase):
         self.assertEqual(mech_failures, [],
                           msg=f"valid fixture unexpectedly collided with real history: {mech_failures}")
 
+    def test_manifest_post_date_is_forwarded_into_mechanical_check_and_blocks(self):
+        # F58 fix (2026-09-12): the manifest's schema-required, already-parsed
+        # post_date must actually reach check_recent_send_conflict()'s input,
+        # not just validate_package()'s own post_date parameter. This fixture
+        # package never sets its own post_date (matches real production
+        # shape -- 59 of 61 real package dicts had none at all); the only
+        # date available anywhere is the manifest-level one. A same-show
+        # history row placed inside the documented window relative to THAT
+        # manifest date must produce a real block. Before the fix, this
+        # candidate had no post_date visible to the mechanical check at all,
+        # so the date-window signal silently never ran and this test would
+        # have found no mechanical failure -- the exact F58 gap.
+        tree = self._tree_with_history([{
+            "batch_id": "hist-1", "show": "Frieren: Beyond Journey's End",
+            "format_type": "SEASON_RATING",
+            "angle": "a completely different, unrelated pacing complaint",
+            "date_sent": "2026-07-12T00:00:00Z", "post_date": "2026-07-12",
+        }])
+        m = load_valid()
+        m["post_date"] = "2026-07-16"  # manifest-level; 4 days after the history row -- inside SEASON_RATING's 7-day window
+        m["packages"][0]["show"] = "Frieren: Beyond Journey's End"
+        m["packages"][0]["format_type"] = "SEASON_RATING"
+        m["packages"][0].pop("post_date", None)  # confirm no pkg-level post_date is present
+        m["packages"][0]["blackout_conflict"] = False
+        m["packages"][0]["recent_send_conflict"] = False
+        r = v.validate_manifest(m, tree=tree)
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
+        mech_failures = [n for n in names if "mechanical conflict check" in n]
+        self.assertTrue(mech_failures,
+                        msg="manifest-level post_date was not forwarded into the "
+                            "mechanical conflict check -- the date-window signal "
+                            "silently failed to run (the F58 gap)")
+
+    def test_package_level_post_date_overrides_manifest_level_when_both_present(self):
+        # F58 fix, question 3 (real case: replacement_20260902's Grand Blue
+        # package carried its own post_date=2026-09-01 while the manifest's
+        # was 2026-09-02 -- a legitimate same-batch date mismatch, not a data
+        # error). setdefault() must NOT overwrite an already-present
+        # package-level post_date with the manifest's value: the package's
+        # own date is the more specific truth for its own blackout window.
+        # Set up history so the two candidate dates give different
+        # blocked/not-blocked answers, proving which one the check actually used.
+        tree = self._tree_with_history([{
+            "batch_id": "hist-1", "show": "Frieren: Beyond Journey's End",
+            "format_type": "SEASON_RATING",
+            "angle": "a completely different, unrelated pacing complaint",
+            "date_sent": "2026-07-12T00:00:00Z", "post_date": "2026-07-12",
+        }])
+        m = load_valid()
+        m["post_date"] = "2026-07-20"  # manifest-level: 8 days after history -- OUTSIDE the 7-day window
+        m["packages"][0]["show"] = "Frieren: Beyond Journey's End"
+        m["packages"][0]["format_type"] = "SEASON_RATING"
+        m["packages"][0]["post_date"] = "2026-07-16"  # pkg-level: 4 days after history -- INSIDE the window
+        m["packages"][0]["blackout_conflict"] = False
+        m["packages"][0]["recent_send_conflict"] = False
+        r = v.validate_manifest(m, tree=tree)
+        names = [name for name, ok, _ in r.checks if ok == "FAIL"]
+        mech_failures = [n for n in names if "mechanical conflict check" in n]
+        self.assertTrue(mech_failures,
+                        msg="expected the package-level post_date (inside the window) to "
+                            "win over the manifest-level post_date (outside the window), "
+                            "but no mechanical failure was found -- the manifest-level "
+                            "date appears to have overridden the package's own value")
+
     def test_correction_manifest_corrects_batch_id_excludes_the_corrected_batch(self):
         # F-next regression (2026-08-23, same bug class as F61): a genuine
         # correction manifest sets corrects_batch_id at the MANIFEST level

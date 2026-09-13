@@ -69,12 +69,27 @@ show that received a `WORTH_WATCHING` package cannot receive a second one
 until 7 days have passed. Enforced the same way every other format's
 blackout is enforced today: the manifest sets `blackout_conflict: false` and
 `recent_send_conflict: false` as a self-attested input (per the real,
-existing pattern at `validate_dual_package.py` lines 1018–1022), checked
-against `sent_scripts_log.json` by the model doing the generation, not
-computed independently by the validator itself. This is a real, existing
+existing pattern at `validate_dual_package.py`'s "blackout / recent-send
+conflict inputs must be present and clear" block), checked against
+`sent_scripts_log.json` by the model doing the generation, not computed
+independently by the validator itself. This is a real, existing
 architectural limitation shared by every current format's blackout rule
 (WATCH_RANK's 14-day, SEASON_RATING's 7-day, EPISODE_MOMENT's 7-day airing
 window) — not a new gap introduced by this law.
+
+> **F89 NOTE (2026-09-12, unresolved, out of scope for this citation fix):**
+> the anchor above now points at the correct passage, but the *prose claim
+> itself* is stale in a way F89 does not fix. The cited passage's own
+> comment documents an F43 correction (2026-08-19) that made
+> `tools/conflict_check.check_recent_send_conflict()` an independent
+> mechanical check the validator hard-fails on — self-attestation alone is
+> explicitly "no longer sufficient on their own." This paragraph's claim
+> that blackout/recent-send conflict is "not computed independently by the
+> validator itself" and is "a real, existing architectural limitation" is
+> therefore no longer accurate for `WORTH_WATCHING`'s blackout (or for any
+> other format sharing this mechanism). This needs its own fix, separate
+> from the citation-anchor work here — flagging rather than silently
+> rewriting the substantive claim.
 
 ## Video style / production
 

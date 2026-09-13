@@ -42,8 +42,11 @@ A trailer is not "an aired episode," so Law #73's `clip_locate` (season/
 episode number, AIRED/ACCURATE/CURRENTLY-AVAILABLE triad) does not apply —
 forcing a trailer through that test is a category error, confirmed during
 design (that triad exists specifically to check aired-footage claims, per
-`cron_daily_runtime.txt` lines 385–419). Instead, each trailer-sourced clip
-carries its own `trailer_reference` object, confirmed exact shape:
+`cron_daily_runtime.txt`'s "CLIP VERIFICATION (Law #73, restored and
+extended July 25, 2026" passage, which sets AIRED/ACCURATE/CURRENTLY
+AVAILABLE as the three dimensions every `clips[]` entry must be checked
+against). Instead, each trailer-sourced clip carries its own
+`trailer_reference` object, confirmed exact shape:
 
 ```json
 "trailer_reference": {
