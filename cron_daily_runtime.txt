@@ -2304,6 +2304,54 @@ This fetch-and-confirm step is NOT optional and NOT satisfied by re-reading
 manifest fields, however detailed they look. It is the one thing a mechanical
 validator structurally cannot do.
 
+MANDATORY RE-VALIDATION AFTER ANY VO EDIT DURING REVIEW (Law #174 extension,
+added 2026-09-12 -- F90 fix, same principle as STEP 4.7's REDO ROUND TRIP and
+Law #171's direction-track companion rule, applied here to STEP 6 for the
+first time). Tonight's motivating case: two of five VO errors caught by human
+review came from the exact same move -- trimming the VO to hit the 100-108
+word band during this review stage, without re-checking what the trim
+changed. One trim cut the CTA ("Leave your take.") off the end; a separate
+edit changed a plural ("11 defendants") into an ambiguous singular reading
+("his former manager"). A STEP 5 PASS is a snapshot of ONE specific VO text.
+The instant that text changes for any reason -- a word-count trim, a
+correction, a rewording, ANY edit at all, no matter how small it looks --
+that PASS no longer describes the current package and must be treated as
+stale.
+  1. Any edit to the vo field during STEP 6 review REQUIRES re-running STEP 5
+     in full:
+       python3 validators/validate_dual_package.py cron_tracking/daily_combined/run_manifest.json
+     before this package may proceed to STEP 6.5 approval. This is the same
+     unconditional rule STEP 4.7 already applies to a Claude-corrected VO
+     coming back from AWAITING_VO -- there is no reason a hand-edit made
+     later in the pipeline should be held to a lower standard than a VO
+     correction made earlier in it.
+  2. Re-running STEP 5 alone is necessary but not sufficient -- it catches
+     the mechanical checks (CTA adjacency, word count, banned patterns) but
+     was never designed to catch a fact that quietly went stale. After any
+     trim or rewrite, also re-confirm by hand, for the CURRENT (post-edit) VO
+     text specifically:
+       a. CTA still present, exactly "Leave your take.", still at the end.
+       b. Every claim still matches its cited source -- a trim can silently
+          drop the ONE sentence that gave a number its context (singular vs.
+          plural, a name vs. a role), leaving neighboring text that reads
+          differently even though no single word became factually false.
+       c. Any locked/derived field that mirrors VO content (hook_line,
+          opening_sentence, captions, on-screen text) still matches the
+          post-edit VO verbatim -- an edit to vo alone, with nothing else
+          touched, is exactly how those fields go stale silently.
+       d. ~~STRUCK 2026-09-12 (in force 2026-09-10 to 2026-09-12, Law #171):
+          direction_note_track is still valid per Law #171's existing
+          companion rule above -- this point does not replace that rule, it
+          runs alongside it; a VO trim can invalidate both the mechanical
+          checks and the direction track in the same edit.~~ Law #171 and its
+          direction_note_track field are REMOVED as of 2026-09-12 (Law #134
+          restoration -- no face-cam track exists to keep in sync). Nothing
+          replaces this point; there is no longer a second track to invalidate.
+  3. Treat "it's just a small trim" as the failure mode this rule exists to
+     stop, not as a reason to skip it. A trim is an edit, full stop, and
+     every edit invalidates prior verification -- there is no edit small
+     enough to justify skipping re-validation.
+
 CONDITIONAL QUOTE REUSE (Law #172, added 2026-09-10 — narrows WHEN a fresh
 fetch is required under Law #165 above; does not change the standard in (a)-(d)
 for any claim that needs it):

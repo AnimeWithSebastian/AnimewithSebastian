@@ -7047,6 +7047,88 @@ stable as its least stable token**; one quoting a renumbered F-number is
 positional in disguise. Corrected to F81 here with explicit approval, so
 4d162af's own anchor test resolves.
 
+**AUDIT COMPLETE (2026-09-13). The F1-F79 range has now been compared
+heading-by-heading against the source repo, and this entry's Error 2 needs a
+correction.**
+
+*Method.* The source repo supplied its own F1-F79 heading list, extracted with
+multi-line heading reconstruction (several headings wrap across 3-6 physical
+lines, and a single-line grep silently truncates them). This repo's headings were
+extracted the same way and compared by number, then by normalised subject text.
+
+*Result.*
+
+- **F15 through F75 are identical across both repos** — 61 entries, every one
+  matching on subject. The range that was assumed shared genuinely is shared.
+- **F1-F14 do not exist as entries in either repo.** Both files begin at F15.
+  Both carry the same single backward reference to F1-F14 having been assigned
+  under a prior session convention without ever being written up. A real, matched
+  absence, not a gap on one side.
+- **Divergence begins at exactly F76** — which is precisely where this repo
+  started assigning its own numbers rather than receiving them. The four divergent
+  numbers map as:
+
+  | number | this repo | source repo |
+  |---|---|---|
+  | F76 | Law #170 single-hook vs. validator gate | Law #58 `none_sole_encyclopedic` (absent here) |
+  | F77 | Laws #171/#173 process-text-only | GAP, no entry |
+  | F78 | tombstone, deliberately never assigned | `approval.json` `verdict` field (absent here) |
+  | F79 | stale-status detection | Laws #171/#173 process-text-only |
+
+  So the source's F79 is this repo's F77, and the source's F78 is precisely the
+  entry this repo's F78 tombstone was created to point at — the tombstone is
+  correct and self-consistent. The source's F76 and F78 have no counterpart here
+  at all; they were never ported.
+
+- **Independently confirms F96's content-derived claim.** F96 states that the
+  source's F80 (validator accepting either hook shape) corresponds to this repo's
+  F76, established by reading what each entry is about. The audit reaches the same
+  answer from the opposite direction: this repo's F76 has no counterpart in the
+  source's F1-F79 range, consistent with it living at F80 there.
+
+**CORRECTION to this entry's Error 2, stated plainly because the original claim
+is wrong as written.** Error 2 above says "their F41 is this repo's F42," citing
+a `video_style`/`face`/`split_screen` addendum that appears in F42 here and not in
+F41. **The audit shows F41 and F42 have identical headings in both repos.** There
+is no numbering divergence at F41/F42. What is actually true:
+
+- The addendum content the incoming text referenced lives under **F42** in this
+  repo (1 ADDENDUM block, 3 `video_style` mentions; this repo's F41 body has
+  zero of either).
+- Whether that same addendum sits under F41 or F42 on the source side is
+  **unknown** — only their headings were supplied, not their bodies. Either
+  their F41 body carries an addendum this repo's F41 does not, or their text
+  simply cited the wrong number.
+- The translation applied at port time (pointing that reference at F42) remains
+  **correct for this repo**, because that is where the content is here. Only the
+  stated reason was wrong.
+
+**The refined lesson, which is sharper than the original.** Error 2 was read as
+evidence that sub-F80 numbers might mean different things. The audit says they do
+not, below F76. The real failure mode is narrower and harder to see: **matching
+headings do not guarantee matching bodies.** A cross-reference can misresolve
+even when both repos agree on what a number means, because the specific paragraph
+being cited sits in a different entry on each side. Heading-level agreement is
+therefore not sufficient to wave a reference through — what matters is
+whether the cited *content* is where the reference expects it, which only reading
+both entries can settle.
+
+**THIS AUDIT COMPARED HEADINGS ONLY. BODIES WERE NEVER COMPARED, AND THIS ENTRY
+MUST NOT BE READ AS "SUB-F80 IS NOW SAFE."** The one body-level divergence that IS
+confirmed — the `video_style` addendum sitting under F42 here and cited as F41 by
+the source — was found by accident, while chasing something else, not by any
+systematic check. Nobody has looked for others. Two entries can share a heading
+word-for-word and still place a given paragraph under different numbers, and that
+is precisely the case this audit cannot detect. A cross-reference into the F15-F75
+range therefore still needs its cited CONTENT verified, not just its number
+matched against this list.
+
+**What this closes and what it does not.** Closed: the "nobody has audited
+F1-F79" gap this entry left open — that range is now audited at the heading
+level, and the shared/divergent boundary is known to be F75/F76. NOT closed: the
+body-level comparison described above, which remains entirely undone. Error 1 (the
+F86-to-F83 map error) is unaffected by any of this and stands exactly as recorded.
+
 **Status:** OPEN as a standing caution, not a defect with a fix. Nothing in
 this repo is currently wrong as a result — both errors were caught before
 application and the corrected numbers are what landed in 19692ed. What remains
