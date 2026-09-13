@@ -5283,7 +5283,7 @@ dangling rather than backfilled.
 
 **Do not fill this gap.** Not with a local finding, not with a stub mirroring
 SEBLABHRIS's F78, not to make the numbering contiguous. The next available number in
-this repo is F94, as of the 2026-09-13 port that added F86 through F93.
+this repo is F95, as of the 2026-09-13 port that added F86 through F94.
 
 ## F79: KNOWN_ISSUES entries can sit at a stale "open" status indefinitely after their fix ships — now detectable by a tool, still not prevented
 
@@ -6972,3 +6972,85 @@ the question can be picked up deliberately rather than the next instance
 again being found by accident.
 
 ---
+
+## F94: A cross-repo numbering map was wrong twice in a single port — once above F80 and once BELOW it, falsifying the standing assumption that sub-F80 numbers are shared
+
+**Discovered:** 2026-09-13, while porting SEBLABHRIS commits 3ef83cf, df6665e,
+4d162af and 7db3b52 (landed here as 19692ed). Both errors were found by
+content-matching — reading what the incoming entries say about themselves
+— not by following the handoff's own numbering map, which asserted one of
+them incorrectly and did not mention the other at all.
+
+**Error 1: the map named the wrong target for a reference used 8 times.**
+The handoff's PART 1 stated `our F86 <-> their F84`. That contradicted the
+previous port's map (`our F86 -> your F83`, 2026-09-12) and, more decisively,
+contradicted the incoming entries' own prose, which states twice:
+
+> "F86 is the unrelated WRONG_TAKE blackout prose-vs-code gap"
+> "F86 is the WRONG_TAKE 14-day same-myth blackout gap"
+
+This repo's **F83** is `WRONG_TAKE's 14-day same-myth blackout is prose-only`.
+This repo's F84 is the send-history coverage entry — a real, unrelated
+finding. Had the stated map been followed, all eight references would have
+resolved cleanly to the wrong entry. Not a dangling link: a working link to
+something else, which is the harder failure to notice because nothing appears
+broken.
+
+**Error 2, and the more important one: a divergence BELOW F80.** The incoming
+text referenced "F41's addendum" for a `video_style`/`face`/`split_screen`
+docstring contradiction marked "Explicitly NOT fixed." This repo's F41 contains
+no such text (zero matches). This repo's **F42** contains it — six matches,
+including the `ADDENDUM (2026-08-15)` whose "Explicitly NOT fixed" line was
+corrected here in commit 5ae7078. So their F41 is this repo's F42.
+
+**Why error 2 changes how future ports must work.** Every numbering map
+exchanged between these repos has mapped only the F80+ range, on the implicit
+understanding that lower numbers were assigned before the repos diverged and
+are therefore shared. **That assumption is now falsified.** It held for F32,
+F43, F58 and F76 in this same port — all four verified by content and all
+four genuinely shared — but it did not hold for F41/F42. One
+counterexample is enough: sub-F80 numbers are NOT guaranteed to mean the same
+thing in both repos, and a future port that assumes they are will produce
+exactly the silent misresolution Error 1 produced, in a range nobody is
+checking.
+
+**The concrete rule this leaves behind.** Verify every F-number reference in
+incoming text by CONTENT, regardless of magnitude. Do not scope verification to
+"the numbers being renumbered" or to "numbers above the divergence point,"
+because neither boundary is real. The cheap version of this check is: for each
+referenced number, read what the incoming text says that entry is about, then
+read this repo's entry under that number and confirm they describe the same
+finding. That is what caught both errors here, and it costs one grep per
+reference.
+
+**Three methods have now each beaten an instruction this session, and they are
+distinct.** Recorded together because each catches a class the others miss:
+
+1. **Unscoped grep of the incoming text.** Finds references the instructions
+   never enumerated — because a change-based list structurally cannot
+   surface a reference to an entry the change did not touch. (Found F36, the
+   five F86s in code, F89 in two test files that an instruction affirmatively
+   cleared as having none.)
+2. **Reading the local file before applying a diff's minus-block.** Finds
+   removal text that no longer matches because this repo already changed it.
+   (Found the anchor-B `F83's UPDATE` / `F81's UPDATE` mismatch, 2026-09-12.)
+3. **Content-matching a reference against both repos' entries.** Finds numbers
+   that resolve cleanly to the wrong thing. (Found both errors in this entry.)
+
+A fourth, related case from this same port: `reframe_destination_guard.py`'s new
+content anchor quoted `"FORMAT BLUEPRINTS (F83, added 2026-09-11"`, a string
+that does not exist here because this repo renumbered that label to F81 during
+the blueprints port. The commit whose entire purpose was replacing fragile
+line-number citations with durable content anchors shipped an anchor whose
+durability depended on a cross-repo-renumbered token. **An anchor is only as
+stable as its least stable token**; one quoting a renumbered F-number is
+positional in disguise. Corrected to F81 here with explicit approval, so
+4d162af's own anchor test resolves.
+
+**Status:** OPEN as a standing caution, not a defect with a fix. Nothing in
+this repo is currently wrong as a result — both errors were caught before
+application and the corrected numbers are what landed in 19692ed. What remains
+open is the assumption itself: until someone audits the full F1-F79 range
+across both repos, any sub-F80 cross-reference arriving in a handoff is
+unverified. The same two errors are being logged on the source side, since the
+handoff that produced them was generated there from the same assumptions.
